@@ -1,0 +1,30 @@
+<!-- @dsCard group="纸和卡片" height=340 width=960 subtitle="模块页的纸：方格、左边一列缝线、手画的边、纸纹" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Sheet</title>
+<style>
+  html, body { margin: 0; }
+  .stage { padding: 28px 32px; }
+  .rows { margin-top: var(--space-5); width: 460px; }
+  .r { display: flex; align-items: center; gap: var(--space-3); height: 40px; font-size: var(--text-body-lg); }
+  .r .t { flex: 1; }
+  .r + .r { border-top: 1px solid var(--color-line); }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="stage">
+  <section class="pm-sheet" data-hand="sheet" data-seed="1440" data-tilt="-0.2" style="width: 620px; height: 272px">
+    <h2 class="pm-sheet-title">摸鱼读读</h2>
+    <p class="pm-sheet-sub">在读 2 本 · 今年读完 12 本</p>
+    <div class="rows">
+      <div class="r"><span class="t">《海边的柚子树》</span><span class="pm-chip pm-cat-sky">在读</span><span class="pm-num pm-soft">62%</span></div>
+      <div class="r"><span class="t">《慢慢来的勇气》</span><span class="pm-chip pm-cat-sky">在读</span><span class="pm-num pm-soft">18%</span></div>
+      <div class="r"><span class="t">《云朵收集手册》</span><span class="pm-chip pm-cat-mint">读完</span><span class="pm-num pm-soft">10 月</span></div>
+    </div>
+  </section>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

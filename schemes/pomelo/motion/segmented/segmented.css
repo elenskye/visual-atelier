@@ -1,0 +1,9 @@
+/* 分段：选中色是一条手画的荧光笔（.pm-seg-hl，data-hand="pick"），弹着拖到新的一格（0.42 秒），路上抹宽一点（.is-pop）。
+   用法：.pm-seg 里第一个放 <span class="pm-seg-hl" data-hand="pick">，格子不再各自带 data-hand="pick"。 */
+.pm-seg-hl { position: absolute; left: 3px; top: 3px; height: 30px; transform: translateX(var(--pm-seg-x, 0px)); transition: transform .42s cubic-bezier(.3,1.5,.5,1); pointer-events: none; }
+.pm-seg-hl.is-pop { animation: pm-smear .42s ease-out; }
+@keyframes pm-smear { 40% { scale: 1.35 .9; } 100% { scale: 1 1; } }
+.pm-seg-item { transition: font-weight .1s; }
+@media (prefers-reduced-motion: reduce) {
+  .pm-seg-hl, .pm-seg-hl.is-pop { transition: none !important; animation: none !important; }
+}

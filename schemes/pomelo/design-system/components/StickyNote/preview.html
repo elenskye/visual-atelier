@@ -1,0 +1,22 @@
+<!-- @dsCard group="纸和卡片" height=200 subtitle="便签：便签纸不跟配色和明暗走，字是 on-sticky" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>StickyNote</title>
+<style>
+  html, body { margin: 0; }
+  .stage { display: flex; gap: 40px; padding: 36px 40px; }
+  .pm-note { width: 168px; min-height: 120px; font-size: var(--text-body-lg); line-height: 26px; }
+  .pm-note b { display: block; font-size: var(--text-card-title); }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="stage">
+  <div class="pm-note" data-hand="note" data-seed="601" data-tilt="-2" data-tapes="1"><b>周六</b>交房租<br>给阳台浇水</div>
+  <div class="pm-note" data-hand="note" data-seed="602" data-tilt="1.5"><b>买</b>牛奶 · 柚子茶<br>寄快递</div>
+  <div class="pm-note" data-hand="note" data-seed="603" data-tilt="-0.8" data-tapes="1"><b>别忘了</b>下午三点<br>和小林视频</div>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

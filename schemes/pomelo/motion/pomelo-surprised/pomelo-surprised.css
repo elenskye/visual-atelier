@@ -1,0 +1,5 @@
+/* 柚子吓一跳：跳一下（睡着时被鼠标吵醒）。0.5 秒。 */
+.pm-pomelo[data-face="surprised"] > svg { animation: pm-pomelo-jump .5s ease-out both; }
+@media (prefers-reduced-motion: reduce) {
+  .pm-pomelo[data-face="surprised"] > svg { animation: none; }
+}

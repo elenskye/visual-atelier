@@ -1,0 +1,38 @@
+{
+  "id": "pomelo-idle",
+  "title": "柚子 · 平常（呼吸、看一看、眨眼）",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "expressive",
+  "surface": "pomelo-idle",
+  "trigger": "一直在：顶栏的柚子、柚子瓣中间、贴纸簿的柚子平常就是这样",
+  "durationMs": 5200,
+  "loop": true,
+  "reducedMotion": "不动：停在平常的脸，眼睛不转不眨",
+  "use": "顶栏左上角的柚子、柚子瓣中间、贴纸簿、找东西的出纸口",
+  "source": "canvases/pomelo-explore/p2-final/css.mjs「柚子：脸、身子的动作」（站主 2026-11-05 验收）",
+  "contract": "<span class=\"pm-pomelo\" data-face=\"normal\">pomelo-normal.svg</span>：脸一出现动画就开始，一直循环",
+  "files": {
+    "css": "pomelo-idle.css",
+    "html": "pomelo-idle.fragment.html"
+  },
+  "capture": {
+    "host": ".pomelo-demo",
+    "viewport": [
+      200,
+      190
+    ],
+    "scale": 2,
+    "padPx": 0,
+    "fps": 20,
+    "skipRest": true,
+    "endMs": 5200,
+    "holdStartMs": 50,
+    "holdEndMs": 50,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0
+  }
+}

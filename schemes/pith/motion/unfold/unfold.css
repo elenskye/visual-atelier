@@ -1,0 +1,12 @@
+/* 舒展（expressive，登记的表面 answer-unfold，≤ 1.4 秒）：回答一段段从折痕里往下展开，落定前轻轻过一点；点编号 [n] 时，那几个字下面扫过一道，页边注从上往下展开，带一点回弹（站主 2026-11-23）。
+   回答：每段 .pith-unfold，写出来那一刻加 .is-in，--d 给每段错开（0.4 秒一段）。页边注：.pith-sidenote 加 .is-open 展开（0.55 秒），去掉收起。编号 .pith-ref.is-on 填上强调色。 */
+.pith-unfold.is-in { animation: pith-unfold .9s cubic-bezier(.23,1,.32,1) var(--d, 0s) backwards; }
+@keyframes pith-unfold { from { clip-path: inset(0 0 100% 0); transform: translateY(-6px); } 70% { clip-path: inset(0 0 -20% 0); transform: translateY(1px); } to { clip-path: inset(0 0 -20% 0); transform: none; } }
+.pith-sidenote.pith-unfold-note { transform: scaleY(0); transform-origin: 0 0; opacity: 0; transition: transform .5s cubic-bezier(.34,1.45,.64,1), opacity .18s; }
+.pith-sidenote.pith-unfold-note.is-open { transform: none; opacity: 1; }
+.pith-ref.is-on + .pith-mark, .pith-mark.is-in { animation: pith-mark .5s .1s cubic-bezier(.23,1,.32,1) backwards; }
+@keyframes pith-mark { from { background-size: 0 3px; } }
+@media (prefers-reduced-motion: reduce) {
+  .pith-unfold.is-in, .pith-mark.is-in, .pith-ref.is-on + .pith-mark { animation: none; }
+  .pith-sidenote.pith-unfold-note { transition: none; }
+}

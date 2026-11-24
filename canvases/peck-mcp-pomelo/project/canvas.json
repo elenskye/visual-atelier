@@ -1,0 +1,148 @@
+{
+  "v": 3,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-16T08:03:49Z"
+  },
+  "title": "Peck MCP",
+  "launch": {
+    "view": "canvas"
+  },
+  "pages": [
+    {
+      "id": "ex1",
+      "name": "EX1：六家各一版"
+    }
+  ],
+  "boards": {
+    "peck-deepseek-icons.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1200,
+      "h": 620,
+      "title": "图标 · DeepSeek（Peck 循环）",
+      "page": "ex1"
+    },
+    "peck-deepseek-home.dc.html": {
+      "x": 1280,
+      "y": 0,
+      "w": 1200,
+      "h": 800,
+      "title": "首页 · DeepSeek（Peck 循环）",
+      "page": "ex1"
+    },
+    "peck-sonnet-icons.dc.html": {
+      "x": 0,
+      "y": 1000,
+      "w": 1200,
+      "h": 600,
+      "title": "图标 · Sonnet（Peck 循环）",
+      "page": "ex1"
+    },
+    "peck-sonnet-home.dc.html": {
+      "x": 1280,
+      "y": 1000,
+      "w": 1200,
+      "h": 800,
+      "title": "首页 · Sonnet（Peck 循环）",
+      "page": "ex1"
+    },
+    "codex-icons.dc.html": {
+      "x": 0,
+      "y": 2000,
+      "w": 1200,
+      "h": 720,
+      "title": "图标 · Codex",
+      "page": "ex1"
+    },
+    "codex-home.dc.html": {
+      "x": 1280,
+      "y": 2000,
+      "w": 1200,
+      "h": 800,
+      "title": "首页 · Codex",
+      "page": "ex1"
+    },
+    "grok-icons.dc.html": {
+      "x": 0,
+      "y": 3000,
+      "w": 1200,
+      "h": 500,
+      "title": "图标 · Grok",
+      "page": "ex1"
+    },
+    "grok-home.dc.html": {
+      "x": 1280,
+      "y": 3000,
+      "w": 1200,
+      "h": 800,
+      "title": "首页 · Grok",
+      "page": "ex1"
+    },
+    "agy-icons.dc.html": {
+      "x": 0,
+      "y": 4000,
+      "w": 1200,
+      "h": 660,
+      "title": "图标 · Antigravity",
+      "page": "ex1"
+    },
+    "agy-home.dc.html": {
+      "x": 1280,
+      "y": 4000,
+      "w": 1200,
+      "h": 800,
+      "title": "首页 · Antigravity",
+      "page": "ex1"
+    },
+    "muse-icons.dc.html": {
+      "x": 0,
+      "y": 5000,
+      "w": 1200,
+      "h": 640,
+      "title": "图标 · Muse",
+      "page": "ex1"
+    },
+    "muse-home.dc.html": {
+      "x": 1280,
+      "y": 5000,
+      "w": 1200,
+      "h": 800,
+      "title": "首页 · Muse",
+      "page": "ex1"
+    }
+  },
+  "order": [
+    "peck-deepseek-icons.dc.html",
+    "peck-deepseek-home.dc.html",
+    "peck-sonnet-icons.dc.html",
+    "peck-sonnet-home.dc.html",
+    "codex-icons.dc.html",
+    "codex-home.dc.html",
+    "grok-icons.dc.html",
+    "grok-home.dc.html",
+    "agy-icons.dc.html",
+    "agy-home.dc.html",
+    "muse-icons.dc.html",
+    "muse-home.dc.html"
+  ],
+  "notes": {
+    "how": {
+      "x": 2600,
+      "y": 0,
+      "w": 600,
+      "fill": "orange",
+      "page": "ex1",
+      "text": "这一页有什么\nPeck Phase 13（2026-11-16）的 Atelier MCP 一轮：同一份说明（BRIEF.md），六家在 Peck 里只用 dw 的 MCP 工具，各画一版 Pomelo 前十个模块的图标和首页。全是模拟数据。\n一行一家，左边图标、右边首页，从上到下：\n1 Peck 循环 · DeepSeek V4.1 Flash\n2 Peck 循环 · Claude Sonnet 5.5\n3 Codex\n4 Grok\n5 Antigravity\n6 Muse（导出 PNG 前额度用完，板是画完的）\n十二张都过 dw check。Claude Code 这一轮只做了连通检查，没有画。\n原来六块 peck-mcp-<名字> 并成了这一块，画板内容没改。"
+    }
+  },
+  "designSystems": [
+    {
+      "title": "Pomelo 柚儿园",
+      "namespace": "pomelo",
+      "artifact": "https://claude.ai/artifact/5uaouHwXAXihjxhh9g4vb3",
+      "version": null,
+      "copiedAt": "2026-11-16T03:31:49Z"
+    }
+  ]
+}

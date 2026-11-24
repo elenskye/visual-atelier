@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>界面字体</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Doto:wght@700;900&amp;display=swap">
+<style>
+body{margin:0}
+@font-face{font-family:"Fusion Pixel 12";src:url(/_blob/3cac2eac4c813b222f13d0c459436aa1) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Departure Mono";src:url(/_blob/13ad4bc2c335a5fe439f1dd23f0a7087) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+
+.pk{position:relative;box-sizing:border-box;overflow:hidden;font-family:var(--f-body);font-size:var(--fs-body);line-height:1.55;color:var(--tx);background:var(--bg);-webkit-font-smoothing:antialiased;font-synthesis:none;font-variant-numeric:tabular-nums;--clip:polygon(0 6px,3px 6px,3px 3px,6px 3px,6px 0,calc(100% - 6px) 0,calc(100% - 6px) 3px,calc(100% - 3px) 3px,calc(100% - 3px) 6px,100% 6px,100% calc(100% - 6px),calc(100% - 3px) calc(100% - 6px),calc(100% - 3px) calc(100% - 3px),calc(100% - 6px) calc(100% - 3px),calc(100% - 6px) 100%,6px 100%,6px calc(100% - 3px),3px calc(100% - 3px),3px calc(100% - 6px),0 calc(100% - 6px));--clip2:polygon(0 4px,2px 4px,2px 2px,4px 2px,4px 0,calc(100% - 4px) 0,calc(100% - 4px) 2px,calc(100% - 2px) 2px,calc(100% - 2px) 4px,100% 4px,100% calc(100% - 4px),calc(100% - 2px) calc(100% - 4px),calc(100% - 2px) calc(100% - 2px),calc(100% - 4px) calc(100% - 2px),calc(100% - 4px) 100%,4px 100%,4px calc(100% - 2px),2px calc(100% - 2px),2px calc(100% - 4px),0 calc(100% - 4px));--notch:polygon(0 2px,2px 2px,2px 0,calc(100% - 2px) 0,calc(100% - 2px) 2px,100% 2px,100% calc(100% - 2px),calc(100% - 2px) calc(100% - 2px),calc(100% - 2px) 100%,2px 100%,2px calc(100% - 2px),0 calc(100% - 2px))}
+.dots{background-image:radial-gradient(circle at 1.5px 1.5px,var(--grid) 1.1px,transparent 1.6px);background-size:8px 8px}
+.pk *{box-sizing:border-box}
+:where(.pk) :where(p,h1,h2,h3,ul,ol,figure){margin:0;padding:0}
+:where(.pk) :where(ul,ol){list-style:none}
+:where(.pk) button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0;text-align:left}
+:where(.pk) :where(i,em){font-style:normal}
+.px{width:16px;height:16px;fill:currentColor;flex:none;display:block}
+.px.s12{width:12px;height:12px}.px.s24{width:24px;height:24px}
+.nm{font-family:var(--f-name);font-weight:var(--fw-name);font-size:var(--fs-name)}
+.code{font-family:var(--f-code);font-size:var(--fs-code)}
+/* 模块：外层是边线色，:before 是面板色，两层都切成像素阶梯角 */
+.mod{position:relative;isolation:isolate;clip-path:var(--clip);background:var(--mline,var(--line));padding:14px 18px 16px;min-width:0}
+.mod:before{content:"";position:absolute;inset:1px;clip-path:var(--clip);background:var(--mbg,var(--pane));z-index:-1}
+.mod.run{--mline:var(--cy-line)}
+.mod.wait{--mline:var(--warn-line)}
+.ml{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--tx3);margin-bottom:12px;white-space:nowrap}
+.ml .l{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.08em;color:var(--tx2)}
+.ml .l:before{content:"[ ";color:var(--tx3)}.ml .l:after{content:" ]";color:var(--tx3)}
+.ml .r{margin-left:auto}
+.ml .n{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:17px;line-height:1;color:var(--tx2)}
+.lbl{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;letter-spacing:.1em;color:var(--tx3);margin-bottom:6px}
+.dot{display:inline-block;width:7px;height:7px;flex:none}
+.dot.muse{background:var(--muse)}.dot.grok{background:var(--grok)}.dot.api{background:var(--api)}
+.who{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.who .arr{color:var(--tx3)}
+/* 3×3 点阵转圈 */
+.tw{display:inline-grid;grid-template-columns:repeat(3,3px);gap:1.5px;flex:none}
+.tw i{width:3px;height:3px;background:var(--cy-blk);box-shadow:var(--dglow);animation:tw 1.2s steps(1) infinite}
+.tw i:nth-child(2){animation-delay:.3s}.tw i:nth-child(4){animation-delay:.6s}.tw i:nth-child(6){animation-delay:.15s}.tw i:nth-child(8){animation-delay:.45s}.tw i:nth-child(9){animation-delay:.9s}
+.lt .tw i{box-shadow:inset 0 0 0 .5px var(--blk-ol)}
+/* 按钮：点阵字、英文大写 */
+.btn{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:34px;padding:0 14px;clip-path:var(--clip2);background:var(--line2);font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.08em;white-space:nowrap;color:var(--tx)}
+.btn:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.btn.pri{background:var(--cy-ol);color:var(--on-cy);text-shadow:var(--on-glow)}
+.btn.pri:before{background:var(--cy-fill)}
+.btn.danger{background:var(--bad-line);color:var(--bad)}
+.btn.warn{background:var(--warn);color:var(--on-warn,#02101A)}.btn.warn:before{display:none}
+.lt .btn.warn{--on-warn:#FFFFFF}
+.btn.ghost{background:transparent;color:var(--tx2)}.btn.ghost:before{display:none}
+.btn .k{font-size:12px;opacity:.7}
+/* 开关 */
+.tg{display:flex;align-items:center;gap:10px;font-size:13px}
+.tgt{position:relative;isolation:isolate;width:34px;height:18px;flex:none;clip-path:var(--clip2);background:var(--cy-ol)}
+.tgt:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--cy-fill);z-index:-1}
+.tgt i{position:absolute;top:3px;left:19px;width:12px;height:12px;background:var(--on-cy);clip-path:var(--notch)}
+.tgt.off{background:var(--line2)}.tgt.off:before{background:var(--pane)}.tgt.off i{left:3px;background:var(--line2)}
+/* 分段：选中的那块也切成像素角 */
+.seg{display:inline-flex;gap:3px;padding:3px;clip-path:var(--clip2);background:var(--line2);position:relative;isolation:isolate}
+.seg:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.seg button{position:relative;isolation:isolate;height:28px;padding:0 12px;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.08em;color:var(--tx2);display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;clip-path:var(--clip2)}
+.seg button.on{background:var(--cy-ol);color:var(--on-cy);text-shadow:var(--on-glow)}
+.seg button.on:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--cy-fill);z-index:-1}
+.seg.full{display:flex;width:100%}.seg.full button{flex:1 1 0}
+.seg.ink button.on{background:var(--tx);color:var(--bg);text-shadow:none}
+.seg.ink button.on:before{display:none}
+/* 选项片 */
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;clip-path:var(--clip2);background:var(--line2);font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;letter-spacing:.06em;color:var(--tx2);white-space:nowrap}
+.chip:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.chip.on{background:var(--cy-ol);color:var(--tx)}
+/* 标签：一级台阶角 */
+.tag{position:relative;isolation:isolate;display:inline-flex;align-items:center;height:19px;padding:0 6px;clip-path:var(--notch);font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:12.5px;letter-spacing:.06em;line-height:1;white-space:nowrap;vertical-align:middle}
+.tag.new{background:var(--ok);color:var(--bg)}.tag.del{background:var(--bad);color:var(--bg)}
+.tag.rec{background:var(--cy-ol);color:var(--on-cy);text-shadow:var(--on-glow)}
+.tag.rec:before{content:"";position:absolute;inset:1px;clip-path:var(--notch);background:var(--cy-fill);z-index:-1}
+.tag.mid{background:var(--warn-line);color:var(--warn)}
+.tag.mid:before{content:"";position:absolute;inset:1px;clip-path:var(--notch);background:var(--warn-soft);z-index:-1}
+.tag.hi{background:var(--bad);color:var(--bg)}
+.tag.lo{background:var(--raise);color:var(--tx2)}
+/* 单选、多选：像素圆和像素方 */
+.rb{position:relative;isolation:isolate;width:16px;height:16px;flex:none;clip-path:var(--clip2);background:var(--line2)}
+.rb:before{content:"";position:absolute;inset:2px;clip-path:var(--notch);background:var(--pane);z-index:-1}
+.on>.rb,.rb.on{background:var(--cy-tx)}
+.on>.rb:after,.rb.on:after{content:"";position:absolute;left:5px;top:5px;width:6px;height:6px;background:var(--cy-tx)}
+.cb{position:relative;isolation:isolate;width:16px;height:16px;flex:none;display:flex;align-items:center;justify-content:center;clip-path:var(--notch);background:var(--line2);color:transparent}
+.cb:before{content:"";position:absolute;inset:2px;background:var(--pane);z-index:-1}
+.cb .px{width:12px;height:12px}
+.on>.cb,.cb.on{background:var(--cy-ol);color:var(--on-cy)}
+.on>.cb:before,.cb.on:before{inset:1px;background:var(--cy-fill)}
+/* 输入框 */
+.field{display:flex;align-items:center;height:38px;padding:0 12px;clip-path:var(--clip2);background:var(--cy-ol);position:relative;isolation:isolate;font-size:13px;color:var(--tx3)}
+.field:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane2);z-index:-1}
+.field .pr{font-family:var(--f-code);font-size:13px;color:var(--cy-tx);margin-right:8px}
+.caret{display:inline-block;width:8px;height:15px;background:var(--cy-blk);box-shadow:var(--dglow);margin-left:2px;vertical-align:middle;animation:blink 1.05s steps(1) infinite}
+.lt .caret{box-shadow:inset 0 0 0 1px var(--blk-ol)}
+.kbd{font-family:var(--f-code);font-size:11.5px;color:var(--tx3)}
+/* 方块进度 */
+.blocks{display:grid;grid-template-columns:repeat(28,minmax(0,1fr));gap:3px}
+.blocks i{display:block;height:14px;background:var(--off)}
+.blocks i.f{background:var(--cy-blk);box-shadow:var(--bglow);animation:wave 2.4s ease-in-out infinite}
+.blocks i.h{background:var(--cy-blk);box-shadow:var(--bglow);animation:blink .8s steps(1) infinite}
+.lt .blocks i.f,.lt .blocks i.h{box-shadow:inset 0 0 0 1px var(--blk-ol)}
+.meter{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:3px}
+.meter i{height:10px;background:var(--off)}
+.meter i.f{background:var(--cy-blk);box-shadow:var(--dglow)}
+.lt .meter i.f{box-shadow:inset 0 0 0 1px var(--blk-ol)}
+/* 点阵勾 */
+.dck{display:inline-grid;grid-template-columns:repeat(7,4px);grid-auto-rows:4px;gap:1px;flex:none}
+.dck i{width:4px;height:4px;background:var(--off)}
+.dck i.on{background:var(--cy-blk);box-shadow:var(--dglow)}
+.lt .dck i.on{background:var(--cy-tx)}
+@keyframes blink{50%{opacity:0}}
+@keyframes tw{50%{opacity:.18}}
+@keyframes wave{0%,100%{filter:brightness(1)}50%{filter:brightness(.62)}}
+@keyframes bounce{0%{transform:scale(1)}18%{transform:scale(1.5);animation-timing-function:cubic-bezier(.3,1.6,.5,1)}40%{transform:scale(.9)}55%,100%{transform:scale(1)}}
+@keyframes ring{0%,10%{transform:scale(1);opacity:0}14%{opacity:.9}60%,100%{transform:scale(2.6);opacity:0}}
+@keyframes scanx{0%{left:-90px}62%,100%{left:100%}}
+@media (prefers-reduced-motion:reduce){.pk *,.pk *:before,.pk *:after{animation:none!important;transition:none!important}.pk .scan-fx{display:none}}
+
+.dk{--bg:#050816;--grid:rgba(120,140,255,.085);--pane:#0A0F24;--pane2:#0F1630;--raise:#172040;--line:#1E2850;--line2:#2E3B72;--tx:#E8ECFF;--tx2:#9AA3CF;--tx3:#7A84B6;--cy-fill:#00E5FF;--cy-ol:#00E5FF;--on-cy:#02101A;--cy-tx:#00E5FF;--cy-blk:#00E5FF;--blk-ol:transparent;--cy-line:rgba(0,229,255,.6);--cy-soft:rgba(0,229,255,.10);--cy-scan:rgba(0,229,255,.22);--muse:#A78BFA;--grok:#FFB86B;--api:#60A5FA;--ok:#4ADE80;--warn:#FFB86B;--bad:#FB7185;--warn-soft:rgba(255,184,107,.10);--bad-soft:rgba(251,113,133,.10);--ok-soft:rgba(74,222,128,.10);--warn-line:rgba(255,184,107,.55);--bad-line:rgba(251,113,133,.6);--glow:0 0 16px rgba(0,229,255,.85);--tglow:0 0 26px rgba(0,229,255,.75),0 0 6px rgba(0,229,255,1);--dglow:0 0 8px rgba(0,229,255,1);--bglow:0 0 12px rgba(0,229,255,.85);--on-glow:0 0 6px rgba(0,229,255,.9);--hglow:0 0 8px rgba(232,236,255,.35);--off:#141C3C;color-scheme:dark}
+.lt{--bg:#F2F4FC;--grid:rgba(40,50,130,.10);--pane:#FFFFFF;--pane2:#F5F7FD;--raise:#E7EBF8;--line:#DAE0F0;--line2:#B4BDDB;--tx:#0B1030;--tx2:#4E567A;--tx3:#646C92;--muse:#6D4AE8;--grok:#A35E00;--api:#2563EB;--ok:#12804C;--warn:#A35E00;--bad:#E11D48;--warn-soft:#FFF3E2;--bad-soft:#FFE9EE;--ok-soft:#E3F5EC;--warn-line:#A35E00;--bad-line:#E11D48;--glow:none;--tglow:none;--dglow:none;--bglow:none;--hglow:none;--off:#E1E6F5;--cy-fill:#007A94;--cy-ol:#007A94;--on-cy:#FFFFFF;--cy-tx:#007A94;--cy-blk:#0099B8;--blk-ol:transparent;--cy-line:#0099B8;--cy-soft:#E2F4F8;--cy-scan:rgba(0,153,184,.24);--on-glow:none;color-scheme:light}
+.lt.c1{--cy-fill:#A6ECF7;--cy-ol:#0089A6;--on-cy:#0B1030;--cy-tx:#00758C;--cy-blk:#4DD3E8;--blk-ol:#0089A6;--cy-line:#0089A6;--cy-soft:#E3F8FB;--cy-scan:rgba(0,180,208,.30);--on-glow:none}
+.lt.c3{--cy-fill:#0B1030;--cy-ol:#0B1030;--on-cy:#00E5FF;--cy-tx:#00758C;--cy-blk:#00D8F0;--blk-ol:#0B1030;--cy-line:#0B1030;--cy-soft:#E3F8FB;--cy-scan:rgba(0,229,255,.35);--on-glow:0 0 6px rgba(0,229,255,.7)}
+.pk{--f-name:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-name:400;--fs-name:12px;--f-title:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-title:400;--fs-title:18px;--f-body:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fs-body:12.5px;--f-code:"Departure Mono","Fusion Pixel 12","PingFang SC",monospace;--fs-code:11px}
+.ff1{--f-name:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fw-name:600;--fs-name:13.5px;--f-title:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fw-title:600;--fs-title:17px;--f-body:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fs-body:12.5px;--f-code:"IBM Plex Mono","PingFang SC",monospace;--fs-code:12px}
+.ff2{--f-name:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-name:400;--fs-name:12px;--f-title:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-title:400;--fs-title:18px;--f-body:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fs-body:12.5px;--f-code:"Departure Mono","Fusion Pixel 12","PingFang SC",monospace;--fs-code:11px}
+.ff3{--f-name:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-name:400;--fs-name:12px;--f-title:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-title:400;--fs-title:18px;--f-body:"Fusion Pixel 12","PingFang SC",sans-serif;--fs-body:12px;--f-code:"Departure Mono","Fusion Pixel 12","PingFang SC",monospace;--fs-code:11px}
+
+.pk.fb{width:1280px;height:800px;padding:24px 32px 26px;display:flex;flex-direction:column;gap:14px}
+.top{display:flex;align-items:baseline;gap:16px;font-family:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif}
+.top h1{font-size:20px;font-weight:600}
+.top p{font-size:13px;color:var(--tx2)}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.fc{display:flex;flex-direction:column;gap:6px;padding:12px 16px 14px;font-family:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif}
+.fh{display:flex;align-items:baseline;gap:8px;white-space:nowrap}
+.fh b{font-size:14px;font-weight:600}
+.fh span{font-size:11.5px;color:var(--tx3);overflow:hidden;text-overflow:ellipsis}
+.fh .tag{margin-left:auto}
+.s1{font-size:24px;line-height:30px;white-space:nowrap;overflow:hidden}
+.s2{font-size:12px;line-height:18px;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fn{font-size:11.5px;line-height:1.5;color:var(--tx3);margin-top:2px}
+.f-pix .s1,.f-pix .s2{font-family:"Fusion Pixel 12","PingFang SC",sans-serif}
+.f-dep .s1{font-family:"Departure Mono","Fusion Pixel 12","PingFang SC",monospace;font-size:22px}
+.f-dep .s2{font-family:"Departure Mono","Fusion Pixel 12","PingFang SC",monospace;font-size:11px}
+.f-sans .s1{font-family:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;font-size:22px;font-weight:600}
+.f-sans .s2{font-family:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;font-size:12.5px}
+.f-dots .s1{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:24px;letter-spacing:.06em;color:var(--cy-tx);text-shadow:var(--tglow)}
+.f-dots .s2{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.08em}
+.opts3{flex:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;min-height:0}
+.oc{display:flex;flex-direction:column;gap:8px;min-height:0}
+.oh{display:flex;align-items:center;gap:10px;font-family:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;white-space:nowrap}
+.oh .k{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:20px;color:var(--cy-tx);text-shadow:var(--dglow)}
+.oh b{font-size:15px;font-weight:600}
+.oh .tag{margin-left:auto}
+.od{font-family:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;font-size:12px;line-height:1.5;color:var(--tx2);min-height:36px;margin-top:-2px}
+.sp{flex:1;display:flex;flex-direction:column;gap:7px;min-height:0;overflow:hidden}
+.sp .ml{margin-bottom:0}
+.sp .clk{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:22px;line-height:1;color:var(--cy-tx);text-shadow:var(--tglow)}
+.ttl{font-family:var(--f-title);font-weight:var(--fw-title);font-size:var(--fs-title);line-height:1.35;text-shadow:var(--hglow)}
+.st2{display:flex;flex-direction:column;gap:6px}
+.st2 li{display:grid;grid-template-columns:16px minmax(0,1fr);gap:10px}
+.st2 .ic{height:20px;display:flex;align-items:center;justify-content:center;color:var(--ok)}
+.st2 .ic i{width:10px;height:10px;background:var(--cy-blk);box-shadow:var(--glow)}
+.lt .st2 .ic i{box-shadow:inset 0 0 0 1px var(--blk-ol)}
+.sl{display:flex;align-items:baseline;gap:10px;line-height:20px}
+.sl b{white-space:nowrap}
+.sl .lead{flex:1;border-bottom:1px dotted var(--line2);transform:translateY(-4px)}
+.sl .tm{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;color:var(--tx3)}
+.run .sl .tm{color:var(--cy-tx);text-shadow:var(--dglow)}
+.sx{font-size:var(--fs-body);color:var(--tx3)}
+.out{margin-top:4px;padding-left:10px;font-family:var(--f-code);font-size:var(--fs-code);line-height:18px;color:var(--tx2);white-space:nowrap;overflow:hidden;background:linear-gradient(var(--cy-blk) 50%,transparent 0) 0 0/2px 4px repeat-y}
+.out div{overflow:hidden;text-overflow:ellipsis}
+.out .o3{color:var(--tx)}
+.askm{padding-top:9px;border-top:1px dotted var(--line2);display:flex;flex-direction:column;gap:3px}
+.q{font-family:var(--f-title);font-weight:var(--fw-title);font-size:var(--fs-title);line-height:1.35;margin-bottom:4px}
+.opt{display:grid;grid-template-columns:16px minmax(0,1fr);gap:10px;padding:5px 8px;clip-path:var(--clip2)}
+.opt.on{background:var(--cy-soft)}
+.opt .rb{margin-top:2px}
+.opt b{display:flex;align-items:center;gap:8px}
+.opt .d{display:block;font-size:var(--fs-body);color:var(--tx2)}
+.brow{display:flex;align-items:center;gap:8px;margin-top:auto}
+.brow .fp{margin-left:auto;font-family:var(--f-code);font-size:var(--fs-code);color:var(--tx3);white-space:nowrap}
+.leg{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 12px;font-family:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;font-size:11.5px;color:var(--tx3)}
+.leg b{font-weight:500;color:var(--tx2)}
+.oc.rec .mod{--mline:var(--cy-line)}
+</style>
+</helmet>
+<div class="{{root}}">
+  <div class="top"><h1>界面字体</h1><p>点阵字 Doto 已经管数字、标签、按钮。剩下三种字：名字、说明、代码。三格摆同一段界面，中间是我推荐的。</p></div>
+  <div class="cards"><div class="mod fc f-pix"><p class="fh"><b>缝合像素 12</b><span>Fusion Pixel · 中文像素字</span></p><p class="s1">合成一个面板 Ab12</p><p class="s2">12 格一个字，中文、English、0123 都有</p><p class="fn">只用 12、18、24 号才清楚。开源（OFL），能打包进 App。</p></div><div class="mod fc f-dep"><p class="fh"><b>Departure Mono</b><span>像素等宽</span></p><p class="s1">pnpm check</p><p class="s2">SettingsSheet.tsx:41  +74 −21</p><p class="fn">11 格，只用 11、22 号。只有英文和符号，中文落到缝合像素。开源（OFL）。</p></div><div class="mod fc f-sans"><p class="fh"><b>IBM Plex Sans + 苹方</b><span>光滑字</span></p><p class="s1">合成一个面板 Ab12</p><p class="s2">第二轮一直在用的字，读长段不累</p><p class="fn">苹方是 Mac 自带的中文字；Plex 问卷里定过。</p></div><div class="mod fc f-dots"><p class="fh"><b>Doto</b><span>点阵字 · 已定</span></p><p class="s1">RUNNING 02:14</p><p class="s2">SEND · PICK · UNDO TASK</p><p class="fn">数字、标签、按钮（第二轮定的）。只有英文和数字。</p></div></div>
+  <div class="opts3"><section class="oc ff1">
+    <p class="oh"><span class="k">F1</span><b>光滑</b></p>
+    <p class="od">名字、说明、代码都用光滑字；像素味只靠点阵字、图形和角。</p>
+    <div class="mod sp run"><p class="ml"><span class="l">NOW</span><span class="r"><span class="clk">02:14</span></span></p>
+    <h2 class="ttl">把设置里三个对话框合成一个面板</h2>
+    <ol class="st2">
+      <li><span class="ic"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg></span><div><p class="sl"><b class="nm">Muse 写规范</b><i class="lead"></i><span class="tm">48s</span></p><p class="sx">读了 12 个文件，列出 6 条要改的</p></div></li>
+      <li class="run"><span class="ic"><i></i></span><div><p class="sl"><b class="nm">Grok 跑 pnpm check</b><i class="lead"></i><span class="tm">02:14</span></p>
+        <div class="out"><div>SettingsSheet.tsx:41  providers 的类型不对</div><div class="o3">→ 改 SettingsProps，再跑一遍</div></div></div></li>
+    </ol>
+    <div class="askm"><p class="q">Tailwind 要不要一起升到 4.1？</p>
+      <div class="opt on"><i class="rb"></i><div><b class="nm">一起升<em class="tag rec">PICK</em></b><span class="d">顺手改 6 个文件的类名，多跑约 2 分钟</span></div></div>
+      <div class="opt"><i class="rb"></i><div><b class="nm">先不升</b><span class="d">这次只合并对话框，升级另开任务</span></div></div>
+    </div>
+    <div class="brow"><button type="button" class="btn pri">SEND<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><button type="button" class="btn">CANCEL</button><span class="fp">+86 −132 · 4 files</span></div>
+  </div>
+    <div class="leg"><b>名字</b><span>Plex Sans 粗 · 13.5</span><b>说明</b><span>Plex Sans · 12.5</span><b>代码</b><span>Plex Mono · 12</span></div>
+  </section><section class="oc ff2 rec">
+    <p class="oh"><span class="k">F2</span><b>像素名字</b><em class="tag rec">PICK</em></p>
+    <p class="od">任务名、步骤名、问题、选项这些「名字」用像素字；说明留光滑字，长段好读；代码用 Departure Mono。</p>
+    <div class="mod sp run"><p class="ml"><span class="l">NOW</span><span class="r"><span class="clk">02:14</span></span></p>
+    <h2 class="ttl">把设置里三个对话框合成一个面板</h2>
+    <ol class="st2">
+      <li><span class="ic"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg></span><div><p class="sl"><b class="nm">Muse 写规范</b><i class="lead"></i><span class="tm">48s</span></p><p class="sx">读了 12 个文件，列出 6 条要改的</p></div></li>
+      <li class="run"><span class="ic"><i></i></span><div><p class="sl"><b class="nm">Grok 跑 pnpm check</b><i class="lead"></i><span class="tm">02:14</span></p>
+        <div class="out"><div>SettingsSheet.tsx:41  providers 的类型不对</div><div class="o3">→ 改 SettingsProps，再跑一遍</div></div></div></li>
+    </ol>
+    <div class="askm"><p class="q">Tailwind 要不要一起升到 4.1？</p>
+      <div class="opt on"><i class="rb"></i><div><b class="nm">一起升<em class="tag rec">PICK</em></b><span class="d">顺手改 6 个文件的类名，多跑约 2 分钟</span></div></div>
+      <div class="opt"><i class="rb"></i><div><b class="nm">先不升</b><span class="d">这次只合并对话框，升级另开任务</span></div></div>
+    </div>
+    <div class="brow"><button type="button" class="btn pri">SEND<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><button type="button" class="btn">CANCEL</button><span class="fp">+86 −132 · 4 files</span></div>
+  </div>
+    <div class="leg"><b>名字</b><span>缝合像素 · 12，标题 18</span><b>说明</b><span>Plex Sans + 苹方 · 12.5</span><b>代码</b><span>Departure Mono · 11</span></div>
+  </section><section class="oc ff3">
+    <p class="oh"><span class="k">F3</span><b>全像素</b></p>
+    <p class="od">说明也换成像素字，整屏最统一；代价是长段文字读着累一点。</p>
+    <div class="mod sp run"><p class="ml"><span class="l">NOW</span><span class="r"><span class="clk">02:14</span></span></p>
+    <h2 class="ttl">把设置里三个对话框合成一个面板</h2>
+    <ol class="st2">
+      <li><span class="ic"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg></span><div><p class="sl"><b class="nm">Muse 写规范</b><i class="lead"></i><span class="tm">48s</span></p><p class="sx">读了 12 个文件，列出 6 条要改的</p></div></li>
+      <li class="run"><span class="ic"><i></i></span><div><p class="sl"><b class="nm">Grok 跑 pnpm check</b><i class="lead"></i><span class="tm">02:14</span></p>
+        <div class="out"><div>SettingsSheet.tsx:41  providers 的类型不对</div><div class="o3">→ 改 SettingsProps，再跑一遍</div></div></div></li>
+    </ol>
+    <div class="askm"><p class="q">Tailwind 要不要一起升到 4.1？</p>
+      <div class="opt on"><i class="rb"></i><div><b class="nm">一起升<em class="tag rec">PICK</em></b><span class="d">顺手改 6 个文件的类名，多跑约 2 分钟</span></div></div>
+      <div class="opt"><i class="rb"></i><div><b class="nm">先不升</b><span class="d">这次只合并对话框，升级另开任务</span></div></div>
+    </div>
+    <div class="brow"><button type="button" class="btn pri">SEND<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><button type="button" class="btn">CANCEL</button><span class="fp">+86 −132 · 4 files</span></div>
+  </div>
+    <div class="leg"><b>名字</b><span>缝合像素 · 12，标题 18</span><b>说明</b><span>缝合像素 · 12</span><b>代码</b><span>Departure Mono · 11</span></div>
+  </section></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["深色","浅色"],"default":"深色","section":"看"},"lc":{"editor":"enum","options":["L1 柔青","L2 深青","L3 墨底青光"],"default":"L2 深青","section":"看"},"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+renderVals() {
+    const dark = (this.props.theme ?? '深色') === '深色';
+    const lc = 'c' + ((this.props.lc ?? 'L2').slice(1, 2));
+    return { root: 'pk fb dots ' + (dark ? 'dk' : 'lt') + ' ' + lc };
+  }
+}
+</script>
+</body>
+</html>

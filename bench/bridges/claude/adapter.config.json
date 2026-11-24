@@ -1,0 +1,30 @@
+{
+  "adapterName": "claude-design",
+  "version": "1.0.0",
+  "hooksModule": "./scripts/hooks.mjs",
+  "templates": {
+    "rootShell": "./templates/bundler-root-shell.html",
+    "pageShell": "./templates/bundler-page-shell.html",
+    "dcRuntime": "../../vendor/claude-design/dc-runtime.js",
+    "manifestSchema": "./templates/manifest.schema.json"
+  },
+  "knownAssetUuids": {
+    "7082c4d2-af20-4139-891c-5ca5457e8573": {
+      "logicalName": "dc-runtime.js",
+      "description": "Claude Design <x-dc> component runtime (React 18.3.1 + ReactDOM + DCLogic)"
+    }
+  },
+  "defaultCompression": {
+    "text/html": true,
+    "text/javascript": true,
+    "application/javascript": true,
+    "text/css": true,
+    "image/svg+xml": true,
+    "font/woff2": false,
+    "font/woff": false,
+    "font/ttf": false,
+    "image/png": false,
+    "image/jpeg": false,
+    "image/webp": false
+  }
+}

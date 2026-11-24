@@ -1,0 +1,11 @@
+{
+  "$note": "要通过的 APCA 对比度（Lc 绝对值），明暗都查：正文 ≥ 75，次要的字和交互色 ≥ 60（根目录 CLAUDE.md「核心约定」9）。加了角色就在这里加配对。",
+  "pairs": [
+    { "fg": "text", "bg": "page", "min": 75, "use": "正文 / page" },
+    { "fg": "text", "bg": "surface", "min": 75, "use": "正文 / surface" },
+    { "fg": "text-2", "bg": "page", "min": 60, "use": "说明 / page" },
+    { "fg": "text-2", "bg": "surface", "min": 60, "use": "说明 / surface" },
+    { "fg": "accent", "bg": "page", "min": 60, "use": "强调 / page" },
+    { "fg": "on-accent", "bg": "accent", "min": 60, "use": "主按钮上的字 / accent" }
+  ]
+}

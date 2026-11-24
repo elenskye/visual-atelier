@@ -1,0 +1,42 @@
+<!-- @dsCard group="笔迹和贴纸" height=200 width=960 subtitle="界面小图标的画法：24 格一笔单线，跟着文字颜色；选中时垫一笔荧光笔" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Icon</title>
+<style>
+  html, body { margin: 0; }
+  .grid { display: flex; flex-wrap: wrap; gap: 8px 2px; padding: 20px 24px 8px; }
+  .g { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 60px; font-size: var(--text-caption); line-height: 18px; color: var(--color-ink-soft); }
+  .g [data-hand] { color: var(--color-ink); }
+  .sel { position: relative; display: flex; }
+  .sizes { display: flex; align-items: flex-end; gap: 18px; padding: 12px 32px; color: var(--color-pen); }
+  .sizes .k { font-size: var(--text-small); color: var(--color-ink-soft); }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="grid">
+  <div class="g"><span data-hand="icon" data-size="24" data-seed="21" data-d="M12 5 L12 19 M5 12 L19 12"></span>加</div>
+  <div class="g"><span data-hand="icon" data-size="24" data-seed="22" data-d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5"></span>关</div>
+  <div class="g"><span data-hand="icon" data-size="24" data-seed="23" data-d="M5.5 12.5 L10 17 L18.5 7"></span>好了</div>
+  <div class="g"><span data-hand="icon" data-size="24" data-seed="24" data-d="M7 10 L12 15 L17 10"></span>展开</div>
+  <div class="g"><span data-hand="icon" data-size="24" data-seed="25" data-d="M15 5 L8 12 L15 19"></span>返回</div>
+  <div class="g"><span data-hand="icon" data-size="24" data-seed="26" data-d="M16 16 L20.5 20.5" data-o="10.5 10.5 6"></span>找</div>
+  <div class="g"><span data-hand="icon" data-size="24" data-seed="27" data-d="M5 19 L6 15 L16 5 L19 8 L9 18 Z M14 7 L17 10"></span>写</div>
+  <div class="g"><span data-hand="icon" data-size="24" data-seed="28" data-d="M5 7 L19 7 M9.5 7 L9.5 4.5 L14.5 4.5 L14.5 7 M7 7 L8 20 L16 20 L17 7"></span>丢掉</div>
+  <div class="g"><span data-hand="icon" data-size="24" data-seed="29" data-d="M9 4.5 L15 4.5 M10 4.5 L10 10 L7 14 L17 14 L14 10 L14 4.5 M12 14 L12 20"></span>置顶</div>
+  <div class="g"><span data-hand="icon" data-size="24" data-seed="30" data-d="M8 3.5 L8 7 M16 3.5 L16 7 M4.5 10 L19.5 10" data-rect="4.5 5.5 15 14.5 3"></span>日历</div>
+  <div class="g"><span data-hand="icon" data-size="24" data-seed="31" data-d="M4 11.5 L12 4.5 L20 11.5 M6.5 9.5 L6.5 19.5 L17.5 19.5 L17.5 9.5 M10 19.5 L10 14.5 L14 14.5 L14 19.5"></span>首页</div>
+  <div class="g"><span data-hand="icon" data-size="24" data-seed="32" data-dots="6 12 1.7, 12 12 1.7, 18 12 1.7"></span>更多</div>
+  <div class="g"><span data-hand="icon" data-size="24" data-seed="33" data-d="M12 4 Q12 12 20 12 Q12 12 12 20 Q12 12 4 12 Q12 12 12 4 Z"></span>柚子</div>
+  <div class="g"><span class="sel"><span class="pm-mark" data-hand="marker" data-sw="10" data-seed="34" style="display: flex"><span data-hand="icon" data-size="24" data-seed="35" data-d="M4 11.5 L12 4.5 L20 11.5 M6.5 9.5 L6.5 19.5 L17.5 19.5 L17.5 9.5 M10 19.5 L10 14.5 L14 14.5 L14 19.5"></span></span></span>选中</div>
+</div>
+<div class="sizes">
+  <span class="k">16 · 20 · 24</span>
+  <span data-hand="icon" data-size="16" data-seed="41" data-d="M16 16 L20.5 20.5" data-o="10.5 10.5 6"></span>
+  <span data-hand="icon" data-size="20" data-seed="42" data-d="M16 16 L20.5 20.5" data-o="10.5 10.5 6"></span>
+  <span data-hand="icon" data-size="24" data-seed="43" data-d="M16 16 L20.5 20.5" data-o="10.5 10.5 6"></span>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

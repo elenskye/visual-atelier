@@ -1,0 +1,590 @@
+{
+  "$note": "Design System 的名字与资产分组。资产取自本方案 marks/（按 manifest 的 id）；带 render 的取 build:marks 导出的 PNG（资产库会去掉 SVG 里的 <style>，favicon 只能用 PNG；单色 Logo 另给上好色的 PNG）。带 themed 的取 build:marks 生成的上好色 SVG（图形语言的 roles 图形）。上传记录在 published.json。",
+  "title": "Vermilion 朱红",
+  "namespace": "Vermilion",
+  "by": "Elen Skye",
+  "via": "Claude Code · visual-atelier",
+  "assetGroups": [
+    {
+      "name": "Logos",
+      "tile": "l",
+      "assets": [
+        {
+          "id": "logo-mark",
+          "name": "logo-mark.svg"
+        },
+        {
+          "id": "logo-mark",
+          "render": "logo-mark@512-light.png",
+          "name": "logo-mark-light.png"
+        },
+        {
+          "id": "logo-mark",
+          "render": "logo-mark@512-dark.png",
+          "name": "logo-mark-dark.png"
+        },
+        {
+          "id": "logo-lockup",
+          "name": "logo-lockup.svg"
+        },
+        {
+          "id": "logo-lockup-paths",
+          "name": "logo-lockup-paths.svg"
+        },
+        {
+          "id": "logo-lockup-paths",
+          "render": "logo-lockup-paths@584x128-light.png",
+          "name": "logo-lockup-paths-light.png"
+        },
+        {
+          "id": "logo-lockup-paths",
+          "render": "logo-lockup-paths@584x128-dark.png",
+          "name": "logo-lockup-paths-dark.png"
+        },
+        {
+          "id": "wordmark",
+          "name": "wordmark.svg"
+        },
+        {
+          "id": "logo-mono-black",
+          "name": "logo-mono-black.svg"
+        },
+        {
+          "id": "logo-mono-white",
+          "name": "logo-mono-white.svg"
+        },
+        {
+          "id": "app-icon-180",
+          "name": "app-icon-180.svg"
+        },
+        {
+          "id": "favicon",
+          "render": "favicon@128-light.png",
+          "name": "favicon-light.png"
+        },
+        {
+          "id": "favicon",
+          "render": "favicon@128-dark.png",
+          "name": "favicon-dark.png"
+        },
+        {
+          "id": "apple-touch-icon",
+          "name": "apple-touch-icon.png"
+        }
+      ]
+    },
+    {
+      "name": "Icons",
+      "tile": "s",
+      "assets": [
+        {
+          "id": "route-glyph",
+          "name": "route-glyph.svg"
+        },
+        {
+          "id": "glyph-write",
+          "themed": "light",
+          "name": "glyph-write-light.svg"
+        },
+        {
+          "id": "glyph-write",
+          "themed": "dark",
+          "name": "glyph-write-dark.svg"
+        },
+        {
+          "id": "glyph-project",
+          "themed": "light",
+          "name": "glyph-project-light.svg"
+        },
+        {
+          "id": "glyph-project",
+          "themed": "dark",
+          "name": "glyph-project-dark.svg"
+        },
+        {
+          "id": "glyph-gallery",
+          "themed": "light",
+          "name": "glyph-gallery-light.svg"
+        },
+        {
+          "id": "glyph-gallery",
+          "themed": "dark",
+          "name": "glyph-gallery-dark.svg"
+        },
+        {
+          "id": "glyph-create",
+          "themed": "light",
+          "name": "glyph-create-light.svg"
+        },
+        {
+          "id": "glyph-create",
+          "themed": "dark",
+          "name": "glyph-create-dark.svg"
+        },
+        {
+          "id": "glyph-travel",
+          "themed": "light",
+          "name": "glyph-travel-light.svg"
+        },
+        {
+          "id": "glyph-travel",
+          "themed": "dark",
+          "name": "glyph-travel-dark.svg"
+        },
+        {
+          "id": "glyph-other",
+          "themed": "light",
+          "name": "glyph-other-light.svg"
+        },
+        {
+          "id": "glyph-other",
+          "themed": "dark",
+          "name": "glyph-other-dark.svg"
+        },
+        {
+          "id": "glyph-write-simple",
+          "themed": "light",
+          "name": "glyph-write-simple-light.svg"
+        },
+        {
+          "id": "glyph-write-simple",
+          "themed": "dark",
+          "name": "glyph-write-simple-dark.svg"
+        },
+        {
+          "id": "glyph-project-simple",
+          "themed": "light",
+          "name": "glyph-project-simple-light.svg"
+        },
+        {
+          "id": "glyph-project-simple",
+          "themed": "dark",
+          "name": "glyph-project-simple-dark.svg"
+        },
+        {
+          "id": "glyph-gallery-simple",
+          "themed": "light",
+          "name": "glyph-gallery-simple-light.svg"
+        },
+        {
+          "id": "glyph-gallery-simple",
+          "themed": "dark",
+          "name": "glyph-gallery-simple-dark.svg"
+        },
+        {
+          "id": "glyph-create-simple",
+          "themed": "light",
+          "name": "glyph-create-simple-light.svg"
+        },
+        {
+          "id": "glyph-create-simple",
+          "themed": "dark",
+          "name": "glyph-create-simple-dark.svg"
+        },
+        {
+          "id": "glyph-travel-simple",
+          "themed": "light",
+          "name": "glyph-travel-simple-light.svg"
+        },
+        {
+          "id": "glyph-travel-simple",
+          "themed": "dark",
+          "name": "glyph-travel-simple-dark.svg"
+        },
+        {
+          "id": "glyph-other-simple",
+          "themed": "light",
+          "name": "glyph-other-simple-light.svg"
+        },
+        {
+          "id": "glyph-other-simple",
+          "themed": "dark",
+          "name": "glyph-other-simple-dark.svg"
+        },
+        {
+          "id": "end-mark-arrive",
+          "themed": "light",
+          "name": "end-mark-arrive-light.svg"
+        },
+        {
+          "id": "end-mark-arrive",
+          "themed": "dark",
+          "name": "end-mark-arrive-dark.svg"
+        },
+        {
+          "id": "end-mark-hills",
+          "themed": "light",
+          "name": "end-mark-hills-light.svg"
+        },
+        {
+          "id": "end-mark-hills",
+          "themed": "dark",
+          "name": "end-mark-hills-dark.svg"
+        },
+        {
+          "id": "end-mark-dots",
+          "themed": "light",
+          "name": "end-mark-dots-light.svg"
+        },
+        {
+          "id": "end-mark-dots",
+          "themed": "dark",
+          "name": "end-mark-dots-dark.svg"
+        },
+        {
+          "id": "icon-tip",
+          "themed": "light",
+          "name": "icon-tip-light.svg"
+        },
+        {
+          "id": "icon-tip",
+          "themed": "dark",
+          "name": "icon-tip-dark.svg"
+        },
+        {
+          "id": "icon-caution",
+          "themed": "light",
+          "name": "icon-caution-light.svg"
+        },
+        {
+          "id": "icon-caution",
+          "themed": "dark",
+          "name": "icon-caution-dark.svg"
+        },
+        {
+          "id": "icon-idea",
+          "themed": "light",
+          "name": "icon-idea-light.svg"
+        },
+        {
+          "id": "icon-idea",
+          "themed": "dark",
+          "name": "icon-idea-dark.svg"
+        },
+        {
+          "id": "icon-done",
+          "themed": "light",
+          "name": "icon-done-light.svg"
+        },
+        {
+          "id": "icon-done",
+          "themed": "dark",
+          "name": "icon-done-dark.svg"
+        },
+        {
+          "id": "icon-wip",
+          "themed": "light",
+          "name": "icon-wip-light.svg"
+        },
+        {
+          "id": "icon-wip",
+          "themed": "dark",
+          "name": "icon-wip-dark.svg"
+        },
+        {
+          "id": "icon-question",
+          "themed": "light",
+          "name": "icon-question-light.svg"
+        },
+        {
+          "id": "icon-question",
+          "themed": "dark",
+          "name": "icon-question-dark.svg"
+        },
+        {
+          "id": "icon-link",
+          "themed": "light",
+          "name": "icon-link-light.svg"
+        },
+        {
+          "id": "icon-link",
+          "themed": "dark",
+          "name": "icon-link-dark.svg"
+        },
+        {
+          "id": "icon-place",
+          "themed": "light",
+          "name": "icon-place-light.svg"
+        },
+        {
+          "id": "icon-place",
+          "themed": "dark",
+          "name": "icon-place-dark.svg"
+        },
+        {
+          "id": "icon-time",
+          "themed": "light",
+          "name": "icon-time-light.svg"
+        },
+        {
+          "id": "icon-time",
+          "themed": "dark",
+          "name": "icon-time-dark.svg"
+        },
+        {
+          "id": "icon-date",
+          "themed": "light",
+          "name": "icon-date-light.svg"
+        },
+        {
+          "id": "icon-date",
+          "themed": "dark",
+          "name": "icon-date-dark.svg"
+        },
+        {
+          "id": "icon-mail",
+          "themed": "light",
+          "name": "icon-mail-light.svg"
+        },
+        {
+          "id": "icon-mail",
+          "themed": "dark",
+          "name": "icon-mail-dark.svg"
+        },
+        {
+          "id": "icon-download",
+          "themed": "light",
+          "name": "icon-download-light.svg"
+        },
+        {
+          "id": "icon-download",
+          "themed": "dark",
+          "name": "icon-download-dark.svg"
+        },
+        {
+          "id": "icon-book",
+          "themed": "light",
+          "name": "icon-book-light.svg"
+        },
+        {
+          "id": "icon-book",
+          "themed": "dark",
+          "name": "icon-book-dark.svg"
+        },
+        {
+          "id": "icon-music",
+          "themed": "light",
+          "name": "icon-music-light.svg"
+        },
+        {
+          "id": "icon-music",
+          "themed": "dark",
+          "name": "icon-music-dark.svg"
+        },
+        {
+          "id": "icon-film",
+          "themed": "light",
+          "name": "icon-film-light.svg"
+        },
+        {
+          "id": "icon-film",
+          "themed": "dark",
+          "name": "icon-film-dark.svg"
+        },
+        {
+          "id": "icon-photo",
+          "themed": "light",
+          "name": "icon-photo-light.svg"
+        },
+        {
+          "id": "icon-photo",
+          "themed": "dark",
+          "name": "icon-photo-dark.svg"
+        },
+        {
+          "id": "icon-paint",
+          "themed": "light",
+          "name": "icon-paint-light.svg"
+        },
+        {
+          "id": "icon-paint",
+          "themed": "dark",
+          "name": "icon-paint-dark.svg"
+        },
+        {
+          "id": "icon-food",
+          "themed": "light",
+          "name": "icon-food-light.svg"
+        },
+        {
+          "id": "icon-food",
+          "themed": "dark",
+          "name": "icon-food-dark.svg"
+        },
+        {
+          "id": "icon-heart",
+          "themed": "light",
+          "name": "icon-heart-light.svg"
+        },
+        {
+          "id": "icon-heart",
+          "themed": "dark",
+          "name": "icon-heart-dark.svg"
+        },
+        {
+          "id": "icon-star",
+          "themed": "light",
+          "name": "icon-star-light.svg"
+        },
+        {
+          "id": "icon-star",
+          "themed": "dark",
+          "name": "icon-star-dark.svg"
+        },
+        {
+          "id": "icon-code",
+          "themed": "light",
+          "name": "icon-code-light.svg"
+        },
+        {
+          "id": "icon-code",
+          "themed": "dark",
+          "name": "icon-code-dark.svg"
+        },
+        {
+          "id": "icon-trip",
+          "themed": "light",
+          "name": "icon-trip-light.svg"
+        },
+        {
+          "id": "icon-trip",
+          "themed": "dark",
+          "name": "icon-trip-dark.svg"
+        },
+        {
+          "id": "icon-flag",
+          "themed": "light",
+          "name": "icon-flag-light.svg"
+        },
+        {
+          "id": "icon-flag",
+          "themed": "dark",
+          "name": "icon-flag-dark.svg"
+        },
+        {
+          "id": "icon-pen",
+          "themed": "light",
+          "name": "icon-pen-light.svg"
+        },
+        {
+          "id": "icon-pen",
+          "themed": "dark",
+          "name": "icon-pen-dark.svg"
+        }
+      ]
+    },
+    {
+      "name": "Illustrations",
+      "tile": "l",
+      "assets": [
+        {
+          "id": "og-default-v3",
+          "render": "og-default-v3@1200x630-light.png",
+          "name": "og-default-v3.png"
+        },
+        {
+          "id": "og-card",
+          "render": "og-card@sample-1.png",
+          "name": "og-card-sample-short.png"
+        },
+        {
+          "id": "og-card",
+          "render": "og-card@sample-5.png",
+          "name": "og-card-sample-long.png"
+        },
+        {
+          "id": "og-default",
+          "name": "og-default.png"
+        },
+        {
+          "id": "status-404",
+          "name": "wander-error-cloud-pages-404.png"
+        },
+        {
+          "id": "status-empty",
+          "name": "wander-empty-cloud-pages-oops.png"
+        },
+        {
+          "id": "section-deco",
+          "themed": "light",
+          "name": "section-deco-light.svg"
+        },
+        {
+          "id": "section-deco",
+          "themed": "dark",
+          "name": "section-deco-dark.svg"
+        },
+        {
+          "id": "og-graphic",
+          "themed": "light",
+          "name": "og-graphic-light.svg"
+        },
+        {
+          "id": "og-graphic",
+          "themed": "dark",
+          "name": "og-graphic-dark.svg"
+        },
+        {
+          "id": "og-card-graphic",
+          "themed": "light",
+          "name": "og-card-graphic-light.svg"
+        },
+        {
+          "id": "og-card-graphic",
+          "themed": "dark",
+          "name": "og-card-graphic-dark.svg"
+        },
+        {
+          "id": "empty-graphic",
+          "themed": "light",
+          "name": "empty-graphic-light.svg"
+        },
+        {
+          "id": "empty-graphic",
+          "themed": "dark",
+          "name": "empty-graphic-dark.svg"
+        },
+        {
+          "id": "ppt-cover",
+          "themed": "light",
+          "name": "ppt-cover-light.svg"
+        },
+        {
+          "id": "ppt-cover",
+          "themed": "dark",
+          "name": "ppt-cover-dark.svg"
+        },
+        {
+          "id": "ppt-section",
+          "themed": "light",
+          "name": "ppt-section-light.svg"
+        },
+        {
+          "id": "ppt-section",
+          "themed": "dark",
+          "name": "ppt-section-dark.svg"
+        },
+        {
+          "id": "loading-enso",
+          "themed": "light",
+          "name": "loading-enso-light.svg"
+        },
+        {
+          "id": "loading-enso",
+          "themed": "dark",
+          "name": "loading-enso-dark.svg"
+        },
+        {
+          "id": "not-found",
+          "themed": "light",
+          "name": "not-found-light.svg"
+        },
+        {
+          "id": "not-found",
+          "themed": "dark",
+          "name": "not-found-dark.svg"
+        }
+      ]
+    }
+  ]
+}

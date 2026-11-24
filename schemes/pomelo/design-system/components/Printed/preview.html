@@ -1,0 +1,32 @@
+<!-- @dsCard group="印出来的" height=290 width=960 subtitle="年度小报的纸：票根、信纸；颜色固定，深色模式下也是浅色的纸" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Printed</title>
+<style>
+  html, body { margin: 0; }
+  .demo { display: flex; align-items: flex-start; gap: 48px; padding: 32px 40px; }
+  .tickets { position: relative; width: 340px; height: 130px; }
+  .tickets .pm-ticket { position: absolute; }
+  .stars { padding: 4px 0 0; font-size: var(--text-small); line-height: 18px; color: var(--color-print-ink-soft); }
+  .pm-letter { width: 440px; }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="demo">
+  <div class="tickets">
+    <div class="pm-ticket" data-hand="ticket" data-seed="1601" data-tilt="-5" style="left: 0; top: 0"><span class="pm-ticket-tear"></span><div class="pm-ticket-kind">电影票 · 1 张</div><div class="pm-ticket-name">海边的柚子树</div><div class="stars">★★★★☆</div></div>
+    <div class="pm-ticket" data-hand="ticket" data-seed="1602" data-tilt="3" style="left: 112px; top: 14px; --pm-print: var(--color-print-cream)"><span class="pm-ticket-tear"></span><div class="pm-ticket-kind">电影票 · 1 张</div><div class="pm-ticket-name">云朵收集者</div><div class="stars">★★★★★</div></div>
+    <div class="pm-ticket" data-hand="ticket" data-seed="1603" data-tilt="-2" style="left: 224px; top: 4px"><span class="pm-ticket-tear"></span><div class="pm-ticket-kind">电影票 · 2 张</div><div class="pm-ticket-name">慢慢来</div><div class="stars">★★★☆☆</div></div>
+  </div>
+  <div class="pm-letter">
+    <p>这一年你有 214 天留下了点什么，六月最勤快。</p>
+    <p>你读完 12 本书，最喜欢《海边的柚子树》。</p>
+    <p>明年也慢慢来，我一直在这儿。</p>
+    <div class="pm-letter-sign">— 柚子</div>
+  </div>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

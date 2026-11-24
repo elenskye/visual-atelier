@@ -1,0 +1,63 @@
+{
+  "$note": "语义角色的明暗取值（站主 2026-07-25 批准，2026-10-23 从个人网站迁入）。七个角色分工未经站主批准不得改变。",
+  "roles": {
+    "page": {
+      "label": "页面",
+      "light": "#f6efe2",
+      "dark": "#14201f"
+    },
+    "surface": {
+      "label": "表面",
+      "light": "#fdf9f0",
+      "dark": "#233230"
+    },
+    "surface-cool": {
+      "label": "分区",
+      "light": "#ece0cb",
+      "dark": "#1d2b29"
+    },
+    "text": {
+      "label": "正文",
+      "light": "#1b1d1c",
+      "dark": "#f2ece0"
+    },
+    "muted": {
+      "label": "次要文字",
+      "light": "#686359",
+      "dark": "#c1b9ac"
+    },
+    "line": {
+      "label": "结构线",
+      "light": "#ddd2bf",
+      "dark": "#384340"
+    },
+    "soft-line": {
+      "label": "弱结构线",
+      "light": "#e6dfd3",
+      "dark": "#343e3b"
+    },
+    "accent": {
+      "label": "结构色（常态）",
+      "light": "#2d6f6a",
+      "dark": "#77c8c2"
+    },
+    "accent-strong": {
+      "label": "结构色（强）",
+      "light": "#28625d",
+      "dark": "#87cfc9"
+    },
+    "accent-soft": {
+      "label": "结构色（浅底）",
+      "light": "#daddd1",
+      "dark": "#263e3c"
+    },
+    "ember": {
+      "label": "交互色（朱红）",
+      "light": "#bf2929",
+      "dark": "#ffa196"
+    }
+  },
+  "aliases": {
+    "focus": "ember"
+  }
+}

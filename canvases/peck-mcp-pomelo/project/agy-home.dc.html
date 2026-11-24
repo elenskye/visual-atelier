@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>首页（桌面）</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/pomelo/tokens.css">
+<link rel="stylesheet" href="ds/pomelo/components/bundle.css">
+<script src="ds/pomelo/components/bundle.js"></script>
+<script src="./agy-pomelo-art.js"></script>
+</head>
+<body class="pm pm-desk">
+<x-dc>
+<helmet>
+<style>
+html, body { margin: 0; padding: 0; width: 1200px; height: 800px; overflow: hidden; }
+.desk-stage {
+  position: relative;
+  width: 1200px;
+  height: 800px;
+  overflow: hidden;
+}
+.topbar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1200px;
+  height: 51px;
+  padding: 0 22px;
+  background: var(--color-top);
+  color: var(--color-on-top);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+}
+.top-left, .top-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.traffic-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 6px;
+}
+.traffic-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-art-ink);
+  display: block;
+}
+.top-yuzu {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.top-nav-btn {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+.top-nav-btn > [data-hand-painted] {
+  background: var(--color-card);
+  border-radius: 50%;
+}
+.top-date {
+  position: relative;
+  padding: 4px 12px;
+  font-size: var(--text-caption);
+  line-height: 18px;
+  color: var(--color-on-sticky);
+  white-space: nowrap;
+}
+.top-date > [data-hand-painted] {
+  background: var(--color-sticky);
+  border-radius: 6px;
+  box-shadow: var(--shadow-note);
+}
+.top-action {
+  position: relative;
+  height: 30px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--text-small);
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.greeting-box {
+  position: absolute;
+  left: 34px;
+  top: 62px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.greeting-hi {
+  margin: 0;
+  font-size: var(--text-greeting);
+  line-height: 50px;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+.greeting-sub {
+  font-size: 18px;
+  line-height: 26px;
+  color: var(--color-ink-soft);
+}
+
+.card-brief {
+  position: absolute;
+  left: 34px;
+  top: 128px;
+  width: 356px;
+  padding: 15px 20px 15px 28px;
+}
+.brief-sticker {
+  position: absolute;
+  right: 10px;
+  top: -12px;
+  width: 52px;
+  height: 52px;
+  transform: rotate(7deg);
+  pointer-events: none;
+}
+.card-brief p {
+  margin: 0 0 6px;
+  font-size: var(--text-body);
+  line-height: 22px;
+  color: var(--color-ink);
+}
+.card-brief p:last-child {
+  margin-bottom: 0;
+}
+
+.card-media {
+  position: absolute;
+  left: 34px;
+  top: 336px;
+  width: 356px;
+  padding: 15px 20px;
+}
+.media-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.media-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--color-cat-pink-tint);
+}
+.media-row--film {
+  background: var(--color-cat-orange-tint);
+}
+.media-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.media-title {
+  font-size: var(--text-body);
+  font-weight: 700;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+.media-meta {
+  font-size: var(--text-caption);
+  color: var(--color-ink-soft);
+  white-space: nowrap;
+}
+
+.card-todo {
+  position: absolute;
+  left: 416px;
+  top: 70px;
+  width: 352px;
+  padding: 16px 20px;
+}
+.card-todo .pm-check {
+  min-height: 38.5px;
+}
+
+.card-days {
+  position: absolute;
+  left: 416px;
+  top: 348px;
+  width: 352px;
+  padding: 16px 20px;
+  --pm-card-bg: var(--color-cat-pink-tint);
+}
+.days-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.day-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: var(--color-card);
+}
+.day-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.day-name {
+  font-size: var(--text-body-lg);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+.day-date {
+  font-size: var(--text-caption);
+  color: var(--color-ink-soft);
+}
+.day-count {
+  font-size: var(--text-body);
+  color: var(--color-ink-soft);
+  white-space: nowrap;
+}
+.day-count .pm-stat-num {
+  margin: 0 3px;
+}
+
+.card-receipt {
+  position: absolute;
+  left: 794px;
+  top: 70px;
+  width: 372px;
+}
+
+.card-sticky {
+  position: absolute;
+  left: 794px;
+  top: 408px;
+  width: 372px;
+  padding: 16px 20px;
+}
+.sticky-body {
+  margin: 0 0 10px;
+  font-size: var(--text-body-lg);
+  line-height: 24px;
+}
+.sticky-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-caption);
+  color: var(--color-ink-soft);
+}
+
+.cat-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex: none;
+}
+
+.dock-bar {
+  position: absolute;
+  left: 34px;
+  right: 34px;
+  bottom: 16px;
+  height: 120px;
+  padding: 12px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dock-bar > [data-hand-painted] {
+  background: var(--color-paper);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+.dock-tape {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 18px;
+  font-size: var(--text-card-title);
+  font-weight: 700;
+  color: var(--color-on-sticky);
+  isolation: isolate;
+}
+.dock-tape::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 3px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--color-tape-mint-a) 0 7px,
+    var(--color-tape-mint-b) 7px 14px
+  );
+  transform: rotate(-3deg);
+  box-shadow: 0 1px 2px var(--color-shadow);
+}
+.dock-items {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+.dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.dock-sticker-wrap {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dock-label {
+  font-size: var(--text-small);
+  line-height: 18px;
+  font-weight: 700;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+.dock-book-btn {
+  position: relative;
+  width: 82px;
+  height: 82px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  color: var(--color-ink);
+}
+.dock-book-btn > [data-hand-painted] {
+  background: var(--color-card);
+  border-radius: 50%;
+  box-shadow: var(--shadow-note);
+}
+.dock-book-title {
+  font-size: var(--text-body);
+  font-weight: 700;
+  line-height: 18px;
+  white-space: nowrap;
+}
+.dock-book-sub {
+  font-size: var(--text-caption);
+  line-height: 15px;
+  color: var(--color-ink-soft);
+  white-space: nowrap;
+}
+</style>
+</helmet>
+<div class="desk-stage" data-hand="desk" data-seed="1">
+  <!-- 顶栏（高 51） -->
+  <header class="topbar">
+    <div class="top-left">
+      <div class="traffic-dots" aria-hidden="true">
+        <span class="traffic-dot" style="background:#FF5F57"></span>
+        <span class="traffic-dot" style="background:#FEBC2E"></span>
+        <span class="traffic-dot" style="background:#28C840"></span>
+      </div>
+      <span class="top-yuzu" data-pm-sticker="yuzu" data-pm-size="32"></span>
+      <button class="top-nav-btn" data-hand="round" data-seed="11" type="button">‹</button>
+      <button class="top-nav-btn" data-hand="round" data-seed="12" type="button">›</button>
+    </div>
+    <div class="top-right">
+      <div class="top-date" data-hand="note" data-seed="13" data-tilt="-1.6">11 月 16 日 · 周一</div>
+      <button class="top-action" data-hand="button" data-fill="card" data-stroke="pen" data-seed="14" type="button">
+        <span data-hand="icon" data-size="16" data-seed="15" data-o="10.5 10.5 5.5" data-d="M15 15 L20 20"></span>
+        <span>找东西</span>
+      </button>
+      <button class="top-action" data-hand="button" data-fill="card" data-stroke="pen" data-seed="16" type="button">
+        <span data-hand="icon" data-size="16" data-seed="17" data-o="12 12 4.5" data-d="M12 3 L12 6 M12 18 L12 21 M3 12 L6 12 M18 12 L21 12"></span>
+        <span>设置</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 问候语（46 粗）「下午好」，后面淡墨「今天也慢慢来。」 -->
+  <div class="greeting-box">
+    <h1 class="greeting-hi"><span class="pm-mark" data-hand="marker" data-seed="21" data-sw="16">下午好</span></h1>
+    <span class="greeting-sub">今天也慢慢来。</span>
+  </div>
+
+  <!-- 今日简报（右上角贴一张柚子贴纸）：两三句话 -->
+  <article class="pm-card card-brief" data-hand="card" data-seed="31" data-tilt="-1.1" data-tapes="1" data-stitches>
+    <span class="brief-sticker" data-pm-sticker="yuzu" data-pm-size="52"></span>
+    <h3 class="pm-card-title" style="padding-right:44px">
+      <span class="cat-dot" style="background:var(--color-cat-orange)"></span>
+      <span>今日简报</span>
+      <span class="pm-card-meta">柚子写好啦</span>
+    </h3>
+    <p>今天手头有 5 件小事，下午 3 点前记得<span class="pm-mark" data-hand="marker" data-seed="311">交水电费</span>。</p>
+    <p>这周买菜做饭花了 ¥328，比上周少 ¥54；《山茶文具店》还剩最后 2 章，睡前翻几页就读完啦。</p>
+  </article>
+
+  <!-- 在读在看：两三本书、一部片 -->
+  <article class="pm-card card-media" data-hand="card" data-seed="32" data-tilt="1.1" data-tapes="1">
+    <h3 class="pm-card-title">
+      <span class="cat-dot" style="background:var(--color-cat-pink)"></span>
+      <span>在读在看</span>
+      <span class="pm-card-meta">摸鱼读读 · 好奇看看</span>
+    </h3>
+    <div class="media-list">
+      <div class="media-row">
+        <div class="media-main">
+          <span class="pm-chip pm-cat-pink">在读</span>
+          <span class="media-title">《山茶文具店》</span>
+        </div>
+        <span class="media-meta pm-num">读到 82%</span>
+      </div>
+      <div class="media-row">
+        <div class="media-main">
+          <span class="pm-chip pm-cat-pink">在读</span>
+          <span class="media-title">《冬日手账指南》</span>
+        </div>
+        <span class="media-meta pm-num">读到 45%</span>
+      </div>
+      <div class="media-row">
+        <div class="media-main">
+          <span class="pm-chip pm-cat-mint">想读</span>
+          <span class="media-title">《京都小住》</span>
+        </div>
+        <span class="media-meta">刚放进书架</span>
+      </div>
+      <div class="media-row media-row--film">
+        <div class="media-main">
+          <span class="pm-chip pm-cat-orange">在看</span>
+          <span class="media-title">《海街日记》</span>
+        </div>
+        <span class="media-meta">周末电影夜</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- 今天的待办（横线卡）：4～5 条，勾了的划掉 -->
+  <article class="pm-card pm-card--lined card-todo" data-hand="card" data-seed="33" data-tilt="0.8" data-tapes="2">
+    <h3 class="pm-card-title">
+      <span class="cat-dot" style="background:var(--color-cat-mint)"></span>
+      <span>今天的待办</span>
+      <span class="pm-card-meta pm-num">2 / 5</span>
+    </h3>
+    <button class="pm-check" role="checkbox" aria-checked="true" type="button">
+      <span data-hand="check" data-seed="401"></span>
+      <span class="pm-check-text" data-hand="strike" data-seed="411">晨间给阳台迷迭香浇水</span>
+    </button>
+    <button class="pm-check" role="checkbox" aria-checked="true" type="button">
+      <span data-hand="check" data-seed="402"></span>
+      <span class="pm-check-text" data-hand="strike" data-seed="412">去街角面包店买海盐卷</span>
+    </button>
+    <button class="pm-check" role="checkbox" aria-checked="false" type="button">
+      <span data-hand="check" data-seed="403"></span>
+      <span class="pm-check-text" data-hand="strike" data-seed="413">下午 3 点前交水电费</span>
+    </button>
+    <button class="pm-check" role="checkbox" aria-checked="false" type="button">
+      <span data-hand="check" data-seed="404"></span>
+      <span class="pm-check-text" data-hand="strike" data-seed="414">整理秋游胶片相册</span>
+    </button>
+    <button class="pm-check" role="checkbox" aria-checked="false" type="button">
+      <span data-hand="check" data-seed="405"></span>
+      <span class="pm-check-text" data-hand="strike" data-seed="415">傍晚慢跑 4 公里</span>
+    </button>
+  </article>
+
+  <!-- 快到的日子：3 条，第一个的天数用荧光笔划一下 -->
+  <article class="pm-card card-days" data-hand="card" data-seed="34" data-tilt="-1.3" data-tapes="1">
+    <h3 class="pm-card-title">
+      <span class="cat-dot" style="background:var(--color-cat-mint)"></span>
+      <span>快到的日子</span>
+      <span class="pm-card-meta">来日方长</span>
+    </h3>
+    <div class="days-list">
+      <div class="day-item">
+        <div class="day-info">
+          <span class="day-name">妈妈生日 · 5 天</span>
+          <span class="day-date">11 月 21 日 · 周六</span>
+        </div>
+        <span class="day-count">还有 <span class="pm-stat-num"><b class="pm-mark" data-hand="marker" data-seed="501" data-sw="12">5</b></span> 天</span>
+      </div>
+      <div class="day-item">
+        <div class="day-info">
+          <span class="day-name">交房租 · 14 天</span>
+          <span class="day-date">11 月 30 日 · 周一</span>
+        </div>
+        <span class="day-count">还有 <span class="pm-stat-num">14</span> 天</span>
+      </div>
+      <div class="day-item">
+        <div class="day-info">
+          <span class="day-name">冬至吃饺子 · 35 天</span>
+          <span class="day-date">12 月 21 日 · 周一</span>
+        </div>
+        <span class="day-count">还有 <span class="pm-stat-num">35</span> 天</span>
+      </div>
+    </div>
+  </article>
+
+  <!-- 资产小票：几行账户和合计 -->
+  <div class="pm-receipt card-receipt" data-hand="frame" data-stroke="none" data-tapes="1" data-tilt="-1.0" data-seed="35">
+    <div class="pm-receipt-head">— 柚儿园 · 钱来钱往 · 11 月 16 日 —</div>
+    <div class="pm-receipt-cut"></div>
+    <div class="pm-receipt-row"><span>日常零花 · 储蓄卡</span><span class="pm-num">¥12,480.00</span></div>
+    <div class="pm-receipt-row"><span>旅行小金库</span><span class="pm-num">¥18,600.00</span></div>
+    <div class="pm-receipt-row"><span>稳稳攒钱 · 基金</span><span class="pm-num">¥54,230.50</span></div>
+    <div class="pm-receipt-row"><span>备用金 · 现金信封</span><span class="pm-num">¥3,200.00</span></div>
+    <div class="pm-receipt-cut"></div>
+    <div class="pm-receipt-row pm-receipt-total"><span>合计</span><span class="pm-num">¥88,510.50</span></div>
+    <div class="pm-receipt-cut"></div>
+    <div class="pm-receipt-foot">慢慢攒 · 钱来钱往</div>
+  </div>
+
+  <!-- 念念不忘一条（黄便签） -->
+  <article class="pm-note card-sticky" data-hand="note" data-seed="36" data-tilt="-1.6" data-tapes="1">
+    <h3 class="pm-card-title">
+      <span class="cat-dot" style="background:var(--color-cat-mint)"></span>
+      <span>念念不忘</span>
+      <span class="pm-card-meta">昨天傍晚 · 随手记</span>
+    </h3>
+    <p class="sticky-body">路过街角花店带了一束尤加利叶，插在窗台的旧玻璃瓶里，满屋子都是清爽的草木香。下次经过还要买两支洋甘菊。</p>
+    <div class="sticky-foot">
+      <span>#生活碎片 · #窗台植物</span>
+      <span>存进抽屉</span>
+    </div>
+  </article>
+
+  <!-- 最下面一排「常用」：薄荷胶带写「常用」，后面五个置顶模块的贴纸（56 见方，各歪一点），最后是手画圆框里的「贴纸簿」 -->
+  <footer class="dock-bar" data-hand="card" data-seed="60" data-tilt="0.3" data-tapes="1">
+    <div class="dock-tape">常用</div>
+    <div class="dock-items">
+      <div class="dock-item">
+        <div class="dock-sticker-wrap"><span style="transform:rotate(-5.5deg)" data-pm-sticker="todo" data-pm-size="56"></span></div>
+        <span class="dock-label">一步一步</span>
+      </div>
+      <div class="dock-item">
+        <div class="dock-sticker-wrap"><span style="transform:rotate(4.8deg)" data-pm-sticker="notes" data-pm-size="56"></span></div>
+        <span class="dock-label">念念不忘</span>
+      </div>
+      <div class="dock-item">
+        <div class="dock-sticker-wrap"><span style="transform:rotate(-4.2deg)" data-pm-sticker="jobs" data-pm-size="56"></span></div>
+        <span class="dock-label">投石问路</span>
+      </div>
+      <div class="dock-item">
+        <div class="dock-sticker-wrap"><span style="transform:rotate(5.2deg)" data-pm-sticker="seeker" data-pm-size="56"></span></div>
+        <span class="dock-label">Seeker</span>
+      </div>
+      <div class="dock-item">
+        <div class="dock-sticker-wrap"><span style="transform:rotate(-4.6deg)" data-pm-sticker="yuzu" data-pm-size="56"></span></div>
+        <span class="dock-label">柚子</span>
+      </div>
+    </div>
+    <button class="dock-book-btn" data-hand="round" data-seed="68" type="button">
+      <span data-hand="pstar" data-gold data-size="22" data-seed="69"></span>
+      <span class="dock-book-title">贴纸簿</span>
+      <span class="dock-book-sub">22 个模块</span>
+    </button>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":800}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    if (window.PomeloArt) window.PomeloArt.renderStickers(document.body);
+    if (window.Pomelo) this.stop = window.Pomelo.paintLive(document.body);
+  }
+  componentDidUpdate() {
+    if (window.PomeloArt) window.PomeloArt.renderStickers(document.body);
+    if (window.Pomelo) window.Pomelo.paint(document.body);
+  }
+  componentWillUnmount() {
+    if (this.stop) this.stop();
+  }
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

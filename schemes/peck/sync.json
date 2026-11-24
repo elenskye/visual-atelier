@@ -1,0 +1,247 @@
+{
+  "$note": "同步清单：哪些文件复制到 Peck 的什么位置（规则见 docs/adoption.md）。由 tooling/sync/sync.mjs 按 Git tag 构建后复制；dist 取构建产物（dist/peck/ 下），src 取方案里的文件。peck.css 是 Design System 的 tokens.css（变量、字体样式、两个字体的 @font-face，字体在 fonts/），bundle.css 是 pk- 组件的样式；DESIGN.md、peck-rules.md、DESIGN-SYSTEM.md 和 components/ 的说明与示例给 Peck 的云端开发看（它看不到本仓库）。目标目录整个归同步管，Peck 不手改，里面另写 VERSION、SHA256SUMS 与 README.md。",
+  "consumers": {
+    "peck": {
+      "root": "~/Documents/GitHub/personal-cli-studio/peck",
+      "dir": "src/vendor/peck",
+      "files": [
+        {
+          "to": "peck.css",
+          "dist": "design-system/project/tokens.css"
+        },
+        {
+          "to": "bundle.css",
+          "dist": "design-system/project/components/bundle.css"
+        },
+        {
+          "to": "fonts/fusion-pixel-12.woff2",
+          "dist": "design-system/project/fonts/fusion-pixel-12.woff2"
+        },
+        {
+          "to": "fonts/departure-mono.woff2",
+          "dist": "design-system/project/fonts/departure-mono.woff2"
+        },
+        {
+          "to": "fonts/fusion-pixel-12.OFL.txt",
+          "src": "type/fonts/fusion-pixel-12.OFL.txt"
+        },
+        {
+          "to": "fonts/departure-mono.OFL.txt",
+          "src": "type/fonts/departure-mono.OFL.txt"
+        },
+        {
+          "to": "tokens.ts",
+          "dist": "tokens/tokens.ts"
+        },
+        {
+          "to": "DESIGN.md",
+          "src": "DESIGN.md"
+        },
+        {
+          "to": "peck-rules.md",
+          "src": "peck-rules.md"
+        },
+        {
+          "to": "DESIGN-SYSTEM.md",
+          "dist": "design-system/project/README.md"
+        },
+        {
+          "to": "components/Ask/README.md",
+          "dist": "design-system/project/components/Ask/README.md"
+        },
+        {
+          "to": "components/Ask/preview.html",
+          "dist": "design-system/project/components/Ask/preview.html"
+        },
+        {
+          "to": "components/Button/README.md",
+          "dist": "design-system/project/components/Button/README.md"
+        },
+        {
+          "to": "components/Button/preview.html",
+          "dist": "design-system/project/components/Button/preview.html"
+        },
+        {
+          "to": "components/Chip/README.md",
+          "dist": "design-system/project/components/Chip/README.md"
+        },
+        {
+          "to": "components/Chip/preview.html",
+          "dist": "design-system/project/components/Chip/preview.html"
+        },
+        {
+          "to": "components/Choice/README.md",
+          "dist": "design-system/project/components/Choice/README.md"
+        },
+        {
+          "to": "components/Choice/preview.html",
+          "dist": "design-system/project/components/Choice/preview.html"
+        },
+        {
+          "to": "components/Cover/preview.html",
+          "dist": "design-system/project/components/Cover/preview.html"
+        },
+        {
+          "to": "components/Field/README.md",
+          "dist": "design-system/project/components/Field/README.md"
+        },
+        {
+          "to": "components/Field/preview.html",
+          "dist": "design-system/project/components/Field/preview.html"
+        },
+        {
+          "to": "components/FileRow/README.md",
+          "dist": "design-system/project/components/FileRow/README.md"
+        },
+        {
+          "to": "components/FileRow/preview.html",
+          "dist": "design-system/project/components/FileRow/preview.html"
+        },
+        {
+          "to": "components/Icon/README.md",
+          "dist": "design-system/project/components/Icon/README.md"
+        },
+        {
+          "to": "components/Icon/preview.html",
+          "dist": "design-system/project/components/Icon/preview.html"
+        },
+        {
+          "to": "components/Menu/README.md",
+          "dist": "design-system/project/components/Menu/README.md"
+        },
+        {
+          "to": "components/Menu/preview.html",
+          "dist": "design-system/project/components/Menu/preview.html"
+        },
+        {
+          "to": "components/Module/README.md",
+          "dist": "design-system/project/components/Module/README.md"
+        },
+        {
+          "to": "components/Module/preview.html",
+          "dist": "design-system/project/components/Module/preview.html"
+        },
+        {
+          "to": "components/Motion/README.md",
+          "dist": "design-system/project/components/Motion/README.md"
+        },
+        {
+          "to": "components/Motion/preview.html",
+          "dist": "design-system/project/components/Motion/preview.html"
+        },
+        {
+          "to": "components/Progress/README.md",
+          "dist": "design-system/project/components/Progress/README.md"
+        },
+        {
+          "to": "components/Progress/preview.html",
+          "dist": "design-system/project/components/Progress/preview.html"
+        },
+        {
+          "to": "components/Segmented/README.md",
+          "dist": "design-system/project/components/Segmented/README.md"
+        },
+        {
+          "to": "components/Segmented/preview.html",
+          "dist": "design-system/project/components/Segmented/preview.html"
+        },
+        {
+          "to": "components/Steps/README.md",
+          "dist": "design-system/project/components/Steps/README.md"
+        },
+        {
+          "to": "components/Steps/preview.html",
+          "dist": "design-system/project/components/Steps/preview.html"
+        },
+        {
+          "to": "components/Switch/README.md",
+          "dist": "design-system/project/components/Switch/README.md"
+        },
+        {
+          "to": "components/Switch/preview.html",
+          "dist": "design-system/project/components/Switch/preview.html"
+        },
+        {
+          "to": "components/Tag/README.md",
+          "dist": "design-system/project/components/Tag/README.md"
+        },
+        {
+          "to": "components/Tag/preview.html",
+          "dist": "design-system/project/components/Tag/preview.html"
+        },
+        {
+          "to": "components/Toast/README.md",
+          "dist": "design-system/project/components/Toast/README.md"
+        },
+        {
+          "to": "components/Toast/preview.html",
+          "dist": "design-system/project/components/Toast/preview.html"
+        },
+        {
+          "to": "components/Wait/README.md",
+          "dist": "design-system/project/components/Wait/README.md"
+        },
+        {
+          "to": "components/Wait/preview.html",
+          "dist": "design-system/project/components/Wait/preview.html"
+        },
+        {
+          "to": "components/Who/README.md",
+          "dist": "design-system/project/components/Who/README.md"
+        },
+        {
+          "to": "components/Who/preview.html",
+          "dist": "design-system/project/components/Who/preview.html"
+        },
+        {
+          "to": "marks/app-icon/j2.svg",
+          "src": "marks/app-icon/j2.svg"
+        },
+        {
+          "to": "marks/app-icon/j2-128.svg",
+          "src": "marks/app-icon/j2-128.svg"
+        },
+        {
+          "to": "marks/app-icon/j2-64.svg",
+          "src": "marks/app-icon/j2-64.svg"
+        },
+        {
+          "to": "marks/app-icon/j2-32.svg",
+          "src": "marks/app-icon/j2-32.svg"
+        },
+        {
+          "to": "marks/app-icon/j2-16.svg",
+          "src": "marks/app-icon/j2-16.svg"
+        },
+        {
+          "to": "marks/menubar/idle.svg",
+          "src": "marks/menubar/idle.svg"
+        },
+        {
+          "to": "marks/menubar/run-1.svg",
+          "src": "marks/menubar/run-1.svg"
+        },
+        {
+          "to": "marks/menubar/run-2.svg",
+          "src": "marks/menubar/run-2.svg"
+        },
+        {
+          "to": "marks/menubar/run-3.svg",
+          "src": "marks/menubar/run-3.svg"
+        },
+        {
+          "to": "marks/menubar/wait.svg",
+          "src": "marks/menubar/wait.svg"
+        },
+        {
+          "to": "marks/menubar/count-3.svg",
+          "src": "marks/menubar/count-3.svg"
+        },
+        {
+          "to": "marks/raster/a3.png",
+          "src": "marks/raster/a3.png"
+        }
+      ]
+    }
+  }
+}

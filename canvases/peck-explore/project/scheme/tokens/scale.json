@@ -1,0 +1,215 @@
+{
+  "$note": "非颜色 token：字、间距、控件尺寸、布局宽、像素阶梯角、发光。没有圆角（radius 留空），角都是像素台阶（step）。发光只在深色里有。",
+  "width": {
+    "left": "288px",
+    "right": "336px",
+    "gap": "16px",
+    "pad-top": "22px",
+    "pad-x": "30px",
+    "pad-bottom": "28px"
+  },
+  "space": {
+    "1": "2px",
+    "2": "4px",
+    "3": "6px",
+    "4": "8px",
+    "5": "10px",
+    "6": "12px",
+    "7": "14px",
+    "8": "16px",
+    "9": "18px",
+    "10": "22px",
+    "11": "28px",
+    "12": "30px"
+  },
+  "radius": {},
+  "step": {
+    "module": {
+      "levels": 2,
+      "size": "3px",
+      "use": "模块、卡片、菜单"
+    },
+    "control": {
+      "levels": 2,
+      "size": "2px",
+      "use": "按钮、选项片、分段、输入框"
+    },
+    "small": {
+      "levels": 1,
+      "size": "2px",
+      "use": "标签、单选多选、开关的钮"
+    }
+  },
+  "size": {
+    "button": "34px",
+    "button-sm": "26px",
+    "chip": "28px",
+    "seg": "28px",
+    "input": "30px",
+    "field": "38px",
+    "row": "23px",
+    "menu-row": "30px",
+    "tag": "19px",
+    "check": "16px",
+    "switch-w": "34px",
+    "switch-h": "18px",
+    "icon": "16px",
+    "icon-sm": "12px",
+    "icon-lg": "24px",
+    "header": "44px"
+  },
+  "font": {
+    "name": "\"Fusion Pixel 12\",\"PingFang SC\",sans-serif",
+    "body": "\"IBM Plex Sans\",\"PingFang SC\",\"Hiragino Sans GB\",sans-serif",
+    "code": "\"Departure Mono\",\"Fusion Pixel 12\",\"PingFang SC\",monospace",
+    "dots": "\"Doto\",\"IBM Plex Mono\",monospace"
+  },
+  "text": {
+    "hero": "24px",
+    "title": "18px",
+    "name": "12px",
+    "body": "12.5px",
+    "small": "12px",
+    "code": "11px",
+    "label": "13px",
+    "button": "14px",
+    "count": "17px",
+    "num": "26px",
+    "timer": "54px"
+  },
+  "leading": {
+    "hero": "30px",
+    "title": "24px",
+    "name": "18px",
+    "body": "19px",
+    "small": "18px",
+    "code": "18px",
+    "label": "16px",
+    "button": "16px",
+    "count": "17px",
+    "num": "26px",
+    "timer": "54px"
+  },
+  "type": {
+    "hero": {
+      "name": "首页大标题",
+      "font": "name",
+      "size": 24,
+      "leading": 30,
+      "weight": 400,
+      "use": "首页「weather-cli 要做什么？」"
+    },
+    "title": {
+      "name": "标题",
+      "font": "name",
+      "size": 18,
+      "leading": 24,
+      "weight": 400,
+      "use": "模块里的大标题、任务名"
+    },
+    "name": {
+      "name": "名字",
+      "font": "name",
+      "size": 12,
+      "leading": 18,
+      "weight": 400,
+      "use": "任务名、步骤名、问题、选项、项目名"
+    },
+    "body": {
+      "name": "正文",
+      "font": "body",
+      "size": 12.5,
+      "leading": 19,
+      "weight": 400,
+      "use": "说明、回答、总结"
+    },
+    "small": {
+      "name": "小字",
+      "font": "body",
+      "size": 12,
+      "leading": 18,
+      "weight": 400,
+      "use": "提示、时间、模块头右边的话"
+    },
+    "code": {
+      "name": "代码",
+      "font": "code",
+      "size": 11,
+      "leading": 18,
+      "weight": 400,
+      "use": "代码、路径、命令、文件名（字号不小于 12 的唯一例外）"
+    },
+    "label": {
+      "name": "标签",
+      "font": "dots",
+      "size": 13,
+      "leading": 16,
+      "weight": 900,
+      "use": "标签、选项片、小按钮：英文大写"
+    },
+    "button": {
+      "name": "按钮",
+      "font": "dots",
+      "size": 14,
+      "leading": 16,
+      "weight": 900,
+      "use": "按钮、分段、模块头 [ LABEL ]"
+    },
+    "count": {
+      "name": "计数",
+      "font": "dots",
+      "size": 17,
+      "leading": 17,
+      "weight": 900,
+      "use": "模块头右边的数"
+    },
+    "num": {
+      "name": "数字",
+      "font": "dots",
+      "size": 26,
+      "leading": 26,
+      "weight": 900,
+      "use": "改动的文件数、进度百分比"
+    },
+    "timer": {
+      "name": "计时",
+      "font": "dots",
+      "size": 54,
+      "leading": 54,
+      "weight": 900,
+      "use": "在跑的计时"
+    }
+  },
+  "shadow": {
+    "glow-dot": {
+      "light": "none",
+      "dark": "0 0 8px rgba(0,229,255,1)",
+      "use": "点阵、光标、进度块的点"
+    },
+    "glow-block": {
+      "light": "none",
+      "dark": "0 0 12px rgba(0,229,255,.85)",
+      "use": "进度块"
+    },
+    "glow-text": {
+      "light": "none",
+      "dark": "0 0 16px rgba(0,229,255,.85)",
+      "use": "大号青字"
+    },
+    "glow-timer": {
+      "light": "none",
+      "dark": "0 0 26px rgba(0,229,255,.75), 0 0 6px rgba(0,229,255,1)",
+      "use": "计时数字"
+    },
+    "glow-on-cyan": {
+      "light": "none",
+      "dark": "0 0 6px rgba(0,229,255,.9)",
+      "use": "青块上的字"
+    },
+    "glow-ink": {
+      "light": "none",
+      "dark": "0 0 8px rgba(232,236,255,.35)",
+      "use": "白字微光"
+    }
+  }
+}

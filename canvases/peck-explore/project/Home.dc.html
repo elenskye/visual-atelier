@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>项目列表（打开第一眼）</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+body{margin:0}
+.peck{position:relative;overflow:hidden;box-sizing:border-box;font-family:"IBM Plex Sans", "PingFang SC", "Hiragino Sans GB", ui-sans-serif, system-ui, sans-serif;font-size:14px;line-height:1.55;color:var(--color-text);background:var(--color-page);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+.peck *{box-sizing:border-box}
+.peck[data-theme="dark"]{--color-page:#0C0F14;--color-panel:#12161C;--color-card:#171C23;--color-raised:#1E242D;--color-code:#0F1318;--color-line:#262D37;--color-line-strong:#35404D;--color-text:#E8EEF4;--color-muted:#B4BEC8;--color-faint:#ADB7C2;--color-accent:#00E5FF;--color-on-accent:#04161B;--color-accent-text:#00E5FF;--color-accent-soft:#0F2A30;--color-accent-line:#00E5FF;--color-muse:#C6B5FF;--color-grok:#FFB454;--color-api:#8CC0FF;--color-success:#3DDC97;--color-warning:#FFC875;--color-danger:#FFA3A3;--color-diff-add:#10301F;--color-diff-del:#3A1A1A;--shadow-card:0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px rgb(0 0 0 / 0.45);--shadow-sheet:0 24px 64px rgb(0 0 0 / 0.6);--glow:0 0 0 3px rgb(0 229 255 / 0.22), 0 0 24px rgb(0 229 255 / 0.18);color-scheme:dark}
+.peck[data-theme="light"]{--color-page:#F3F5F8;--color-panel:#FAFBFC;--color-card:#FFFFFF;--color-raised:#ECF0F4;--color-code:#F1F4F7;--color-line:#DCE2E9;--color-line-strong:#C3CCD6;--color-text:#15202B;--color-muted:#536273;--color-faint:#66758A;--color-accent:#00E5FF;--color-on-accent:#04161B;--color-accent-text:#007A8A;--color-accent-soft:#DDF8FB;--color-accent-line:#19B8CF;--color-muse:#6B46F0;--color-grok:#B4600A;--color-api:#1D5BD6;--color-success:#0B7A42;--color-warning:#B45309;--color-danger:#C62828;--color-diff-add:#E6F6EC;--color-diff-del:#FBE7E7;--shadow-card:0 1px 2px rgb(21 32 43 / 0.06), 0 8px 24px rgb(21 32 43 / 0.06);--shadow-sheet:0 24px 64px rgb(21 32 43 / 0.18);--glow:0 0 0 3px rgb(0 229 255 / 0.28);color-scheme:light}
+.peck{--color-accent:var(--accent)}
+.peck[data-theme="dark"]{--color-accent-text:var(--accent);--color-accent-line:var(--accent)}
+.peck[data-mood="quiet"]{--glow:0 0 0 0 transparent}
+.peck[data-mood="quiet"] .shine{display:none}
+.mono{font-family:"IBM Plex Mono", "SF Mono", Menlo, ui-monospace, monospace;font-size:12.5px}
+.muted{color:var(--color-muted)}.faint{color:var(--color-faint)}
+.small{font-size:13px}.caption{font-size:12px}
+.h-title{font-size:16px;font-weight:600;line-height:1.35}
+.h-page{font-size:20px;font-weight:600;line-height:1.35}
+.h-display{font-size:28px;font-weight:600;line-height:1.35}
+/* 外壳 */
+.titlebar{height:44px;display:flex;align-items:center;gap:12px;padding:0 14px 0 12px;background:var(--color-panel);border-bottom:1px solid var(--color-line);position:relative}
+.shine{position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--color-accent) 30%,var(--color-accent) 45%,transparent 70%);opacity:.55}
+.lights{display:flex;gap:8px;margin-right:8px}.lights i{width:12px;height:12px;border-radius:50%;background:var(--color-line-strong);display:block}
+.cols{display:flex;height:756px}
+.col{display:flex;flex-direction:column;min-width:0;background:var(--color-panel)}
+.col+.col{border-left:1px solid var(--color-line)}
+.col-side{width:260px}.col-main{flex:1 1 0;background:var(--color-page)}.col-changes{width:380px}
+.colhead{height:44px;display:flex;align-items:center;gap:8px;padding:0 14px;border-bottom:1px solid var(--color-line);flex:none}
+.pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;border:1px solid var(--color-line);background:var(--color-card);font-size:13px;color:var(--color-text);white-space:nowrap}
+.pill.ghost{background:transparent}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:32px;padding:0 14px;border-radius:6px;border:1px solid var(--color-line);background:var(--color-card);font-size:13px;font-weight:500;color:var(--color-text);white-space:nowrap}
+.btn.primary{background:var(--color-accent);border-color:transparent;color:var(--color-on-accent);box-shadow:var(--glow)}
+.btn.danger{color:var(--color-danger);border-color:var(--color-danger)}
+.btn.quiet{color:var(--color-muted)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;flex:none}
+.dot.muse{background:var(--color-muse)}.dot.grok{background:var(--color-grok)}.dot.api{background:var(--color-api)}
+.dot.run{background:var(--color-accent);box-shadow:var(--glow)}
+.who{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.who .arrow{color:var(--color-faint);margin:0 1px}
+/* 左栏任务 */
+.task{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid var(--color-line);align-items:flex-start}
+.task.on{background:var(--color-accent-soft)}
+.task .st{width:16px;height:16px;border-radius:50%;flex:none;margin-top:3px;display:flex;align-items:center;justify-content:center}
+.st.run{border:2px solid var(--color-accent);box-shadow:var(--glow)}.st.run i{width:6px;height:6px;border-radius:50%;background:var(--color-accent);display:block}
+.st.ok{background:var(--color-success)}.st.bad{background:var(--color-danger)}.st.todo{border:1.5px solid var(--color-line-strong)}
+.task .t{min-width:0}.task .t p{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* 中栏 */
+.chat{flex:1 1 0;overflow:hidden;padding:20px 24px 0;display:flex;flex-direction:column;gap:14px}
+.me{align-self:flex-end;max-width:70%;background:var(--color-accent-soft);border:1px solid var(--color-line);border-radius:12px 12px 4px 12px;padding:10px 14px}
+.steps{position:relative;padding-left:22px}
+.steps:before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:1px;background:var(--color-line-strong)}
+.step{position:relative;padding:6px 0 6px 0}
+.step .st{position:absolute;left:-22px;top:9px;width:16px;height:16px;border-radius:50%;background:var(--color-page);display:flex;align-items:center;justify-content:center}
+.step .st.ok{background:var(--color-success)}.step .st.run{border:2px solid var(--color-accent);box-shadow:var(--glow);background:var(--color-page)}.step .st.run i{width:6px;height:6px;border-radius:50%;background:var(--color-accent);display:block}.step .st.todo{border:1.5px solid var(--color-line-strong)}
+.step .line{display:flex;align-items:center;gap:8px;min-width:0}
+.step .line b{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step .sub{margin:2px 0 0;color:var(--color-muted);font-size:13px}
+.out{margin-top:8px;background:var(--color-code);border:1px solid var(--color-line);border-radius:8px;padding:10px 12px;color:var(--color-muted);white-space:pre;overflow:hidden;line-height:1.7}
+.out .ok{color:var(--color-success)}.out .hl{color:var(--color-text)}
+.card{background:var(--color-card);border:1px solid var(--color-line);border-radius:12px;box-shadow:var(--shadow-card);padding:16px 18px;position:relative;overflow:hidden}
+.card .shine{top:0;height:2px;opacity:.9}
+.composer{flex:none;margin:12px 24px 20px;background:var(--color-card);border:1px solid var(--color-line);border-radius:12px;box-shadow:var(--shadow-card)}
+.composer.on{border-color:var(--color-accent-line);box-shadow:var(--glow)}
+.composer .in{padding:12px 14px 6px;color:var(--color-faint);min-height:52px}
+.composer .row{display:flex;align-items:center;gap:8px;padding:8px 10px 10px;border-top:1px solid var(--color-line)}
+.composer .row .sp{flex:1}
+.kbd{font-family:"IBM Plex Mono", "SF Mono", Menlo, ui-monospace, monospace;font-size:11px;color:var(--color-faint);border:1px solid var(--color-line);border-radius:4px;padding:1px 5px}
+/* 右栏改动 */
+.file{display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--color-line)}
+.file .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file .pm{white-space:nowrap}.pm .a{color:var(--color-success)}.pm .d{color:var(--color-danger);margin-left:6px}
+.tag{font-size:11px;padding:1px 6px;border-radius:4px;border:1px solid currentColor;line-height:1.4}
+.tag.new{color:var(--color-success)}.tag.del{color:var(--color-danger)}
+.diff{margin:12px 14px 0;background:var(--color-code);border:1px solid var(--color-line);border-radius:8px;overflow:hidden}
+.diff .hd{padding:6px 10px;border-bottom:1px solid var(--color-line);color:var(--color-muted);display:flex;gap:8px}
+.diff .ln{display:flex;line-height:1.6;white-space:pre}
+.diff .ln i{width:34px;flex:none;text-align:right;padding-right:8px;color:var(--color-faint);font-style:normal}
+.diff .ln span{padding-left:8px;flex:1}
+.diff .add{background:var(--color-diff-add)}.diff .add span{color:var(--color-success)}
+.diff .del{background:var(--color-diff-del)}.diff .del span{color:var(--color-danger)}
+/* 卡片 */
+.ask{width:460px;background:var(--color-card);border:1px solid var(--color-warning);border-radius:12px;box-shadow:var(--shadow-sheet);padding:16px 18px}
+.ask.red{border-color:var(--color-danger)}
+.ask .hd{display:flex;align-items:center;gap:8px;color:var(--color-warning);font-weight:500;font-size:13px}
+.ask.red .hd{color:var(--color-danger)}
+.ask h3{margin:8px 0 0;font-size:16px;font-weight:600;line-height:1.4}
+.ask .opts{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.input{height:34px;border:1px solid var(--color-line);border-radius:6px;background:var(--color-raised);padding:0 10px;display:flex;align-items:center;color:var(--color-faint);font-size:13px}
+.input.on{border-color:var(--color-accent-line);box-shadow:var(--glow);color:var(--color-text)}
+/* 开关 */
+.sw{width:34px;height:20px;border-radius:999px;background:var(--color-line-strong);position:relative;flex:none}
+.sw i{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;display:block}
+.sw.on{background:var(--color-accent)}.sw.on i{left:16px}
+.sw.on{box-shadow:var(--glow)}
+.seg{display:inline-flex;border:1px solid var(--color-line);border-radius:6px;overflow:hidden}
+.seg span{padding:5px 12px;font-size:13px;color:var(--color-muted)}
+.seg span.on{background:var(--color-accent-soft);color:var(--color-accent-text);font-weight:500}
+</style>
+</helmet>
+<div class="peck" data-theme="{{theme}}" data-mood="{{mood}}" style="--accent: {{accent}}; width: 1280px; height: 800px">
+<div class="titlebar"><div class="shine"></div><div class="lights"><i></i><i></i><i></i></div>
+  <span class="h-title" style="display:inline-flex;align-items:center;gap:8px"><span style="color:var(--color-accent-text)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M14 4a5 5 0 0 0-5 5v3l-5 2 5 1v2a4 4 0 0 0 4 4h1V9"/><path d="M14 9h6l-6 2"/><circle cx="12.5" cy="8" r=".8" fill="currentColor"/></svg></span>Peck</span>
+  <span style="flex:1"></span>
+  <span class="muted"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span></div>
+<div style="padding:28px 40px 0;height:756px;overflow:hidden">
+  <div style="display:flex;align-items:flex-end;gap:12px"><span class="h-page">项目</span><span class="muted small">3 个 · 1 个在跑</span><span style="flex:1"></span><span class="btn primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>打开项目文件夹</span></div>
+  <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:16px;margin-top:20px">
+  <div class="card" style="padding:0"><div class="shine" style=""></div>
+    <div style="padding:16px 18px 12px;display:flex;align-items:center;gap:10px"><span class="st run" style="width:14px;height:14px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center"><i style="width:5px;height:5px;border-radius:50%;background:var(--color-accent);display:block"></i></span><b class="h-title">weather-cli</b><span class="mono faint" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">~/Code/weather-cli</span></div>
+    <p class="small muted" style="margin:0;padding:0 18px 10px">在跑 · 把设置里三个对话框合成一个面板</p>
+    <div style="border-top:1px solid var(--color-line)"><div class="task" style="padding:8px 18px"><span class="st run"><i></i></span><div class="t" style="flex:1;display:flex;gap:10px;min-width:0"><p style="flex:1">把设置里三个对话框合成一个面板</p><span class="faint small" style="white-space:nowrap">2 分 14 秒</span></div></div><div class="task" style="padding:8px 18px"><span class="st ok"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" stroke-width="3"><path d="m5 12 4 4L19 7"/></svg></span><div class="t" style="flex:1;display:flex;gap:10px;min-width:0"><p style="flex:1">给首页加项目列表，带最近三次任务</p><span class="faint small" style="white-space:nowrap">09:12</span></div></div><div class="task" style="padding:8px 18px"><span class="st ok"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" stroke-width="3"><path d="m5 12 4 4L19 7"/></svg></span><div class="t" style="flex:1;display:flex;gap:10px;min-width:0"><p style="flex:1">修 Diff 里中文文件名乱码</p><span class="faint small" style="white-space:nowrap">昨天</span></div></div></div></div><div class="card" style="padding:0"><div class="shine" style="display:none"></div>
+    <div style="padding:16px 18px 12px;display:flex;align-items:center;gap:10px"><span class="st bad" style="width:14px;height:14px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg></span><b class="h-title">notes-sync</b><span class="mono faint" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">~/Code/notes-sync</span></div>
+    <p class="small muted" style="margin:0;padding:0 18px 10px">上一次失败了 · 已撤销</p>
+    <div style="border-top:1px solid var(--color-line)"><div class="task" style="padding:8px 18px"><span class="st bad"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" stroke-width="3"><path d="M18 6 6 18M6 6l12 12"/></svg></span><div class="t" style="flex:1;display:flex;gap:10px;min-width:0"><p style="flex:1">把同步改成增量</p><span class="faint small" style="white-space:nowrap">11-07</span></div></div><div class="task" style="padding:8px 18px"><span class="st ok"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" stroke-width="3"><path d="m5 12 4 4L19 7"/></svg></span><div class="t" style="flex:1;display:flex;gap:10px;min-width:0"><p style="flex:1">加冲突提示</p><span class="faint small" style="white-space:nowrap">11-06</span></div></div><div class="task" style="padding:8px 18px"><span class="st ok"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" stroke-width="3"><path d="m5 12 4 4L19 7"/></svg></span><div class="t" style="flex:1;display:flex;gap:10px;min-width:0"><p style="flex:1">读 iCloud 目录</p><span class="faint small" style="white-space:nowrap">11-05</span></div></div></div></div><div class="card" style="padding:0"><div class="shine" style="display:none"></div>
+    <div style="padding:16px 18px 12px;display:flex;align-items:center;gap:10px"><span class="st todo" style="width:14px;height:14px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center"></span><b class="h-title">pomelo-site</b><span class="mono faint" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">~/Code/pomelo-site</span></div>
+    <p class="small muted" style="margin:0;padding:0 18px 10px">空闲 · 上次 11-03</p>
+    <div style="border-top:1px solid var(--color-line)"><div class="task" style="padding:8px 18px"><span class="st ok"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" stroke-width="3"><path d="m5 12 4 4L19 7"/></svg></span><div class="t" style="flex:1;display:flex;gap:10px;min-width:0"><p style="flex:1">首页改成三栏</p><span class="faint small" style="white-space:nowrap">11-03</span></div></div><div class="task" style="padding:8px 18px"><span class="st ok"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" stroke-width="3"><path d="m5 12 4 4L19 7"/></svg></span><div class="t" style="flex:1;display:flex;gap:10px;min-width:0"><p style="flex:1">补 RSS</p><span class="faint small" style="white-space:nowrap">11-01</span></div></div><div class="task" style="padding:8px 18px"><span class="st ok"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" stroke-width="3"><path d="m5 12 4 4L19 7"/></svg></span><div class="t" style="flex:1;display:flex;gap:10px;min-width:0"><p style="flex:1">初始化</p><span class="faint small" style="white-space:nowrap">10-28</span></div></div></div></div>
+    <div style="border:1.5px dashed var(--color-line-strong);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--color-muted);min-height:180px"><span style="color:var(--color-faint)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M12 5v14M5 12h14"/></svg></span><span class="small">把项目文件夹拖进来，或者点右上角打开</span></div>
+  </div>
+  <p class="small faint" style="margin:20px 0 0">菜单栏的小啄木鸟一直在：有任务在跑它多一个点，跑完 macOS 通知你（设置里能关）。</p>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"dark","section":"外观"},"mood":{"editor":"enum","options":["lively","quiet"],"default":"lively","section":"外观"},"accent":{"editor":"color","options":["#00E5FF","#2FE9FF","#19D3EB"],"default":"#00E5FF","section":"外观"},"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+renderVals() {
+return { theme: this.props.theme ?? 'dark', mood: this.props.mood ?? 'lively', accent: this.props.accent ?? '#00E5FF' };
+}
+}
+</script>
+</body>
+</html>

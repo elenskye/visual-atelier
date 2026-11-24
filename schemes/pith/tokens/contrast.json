@@ -1,0 +1,89 @@
+{
+  "$note": "要通过的 APCA 对比度（Lc 绝对值），两套配色、明暗都查：正文 ≥ 75，次要的字和交互色 ≥ 60（根目录 CLAUDE.md「核心约定」9）。珊瑚、金、线只当装饰，不进配对。",
+  "pairs": [
+    {
+      "fg": "text",
+      "bg": "page",
+      "min": 75,
+      "use": "正文 / page"
+    },
+    {
+      "fg": "text",
+      "bg": "surface",
+      "min": 75,
+      "use": "正文 / surface"
+    },
+    {
+      "fg": "text",
+      "bg": "raised",
+      "min": 75,
+      "use": "正文 / raised"
+    },
+    {
+      "fg": "text-2",
+      "bg": "page",
+      "min": 75,
+      "use": "次正文 / page"
+    },
+    {
+      "fg": "text-3",
+      "bg": "page",
+      "min": 60,
+      "use": "说明 / page"
+    },
+    {
+      "fg": "text-3",
+      "bg": "surface",
+      "min": 60,
+      "use": "说明 / surface"
+    },
+    {
+      "fg": "text-4",
+      "bg": "page",
+      "min": 60,
+      "use": "最淡的字 / page"
+    },
+    {
+      "fg": "text-4",
+      "bg": "surface",
+      "min": 60,
+      "use": "最淡的字 / surface"
+    },
+    {
+      "fg": "text-4",
+      "bg": "tint",
+      "min": 60,
+      "use": "最淡的字 / tint（选中的行）"
+    },
+    {
+      "fg": "accent-text",
+      "bg": "page",
+      "min": 60,
+      "use": "强调的字 / page"
+    },
+    {
+      "fg": "accent-text",
+      "bg": "surface",
+      "min": 60,
+      "use": "强调的字 / surface"
+    },
+    {
+      "fg": "second",
+      "bg": "page",
+      "min": 60,
+      "use": "第二色 / page"
+    },
+    {
+      "fg": "second",
+      "bg": "surface",
+      "min": 60,
+      "use": "第二色 / surface"
+    },
+    {
+      "fg": "on-accent",
+      "bg": "accent",
+      "min": 60,
+      "use": "强调上的字 / accent"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "check",
+  "title": "勾选 · 果冻弹、划线自己画出来",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "勾上：aria-checked=\"true\"，点的那一下加 .is-pop（不加就只淡入勾，不弹不划）",
+  "durationMs": 600,
+  "reducedMotion": "勾和划线直接画好，不弹",
+  "use": "待办、打卡、清单（.pm-check）",
+  "source": "canvases/pomelo-explore/p2-final/controls.mjs（站主 2026-11-05 验收的「控件的小动静」）",
+  "files": {
+    "css": "check.css",
+    "html": "check.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".ck-demo",
+    "viewport": [
+      280,
+      130
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "attr": {
+          "aria-checked": "true"
+        },
+        "add": "is-pop",
+        "on": ".c1"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "id": "chat-pop",
+  "title": "问柚子 · 小窗从柚子那里长出来",
+  "status": "approved",
+  "approved": "站主 2026-11-10 批准（看了导出的 GIF，明暗）",
+  "tier": "calm",
+  "trigger": "打开：小窗加 .is-open；收起：换成 .is-closing，动画放完（0.2 秒）再拿掉",
+  "durationMs": 420,
+  "reducedMotion": "直接出现、直接收起",
+  "use": "顶栏右上角「问柚子」（⌘J）的对话小窗",
+  "source": "站主 2026-11-10 提的优化（Dawn Plan · Phase 9 开工前的一轮）：照 book-open、toast 的写法，缓动用 tokens/motion.json 的 sheet",
+  "files": {
+    "css": "chat-pop.css",
+    "html": "chat-pop.fragment.html"
+  },
+  "capture": {
+    "scale": 1.5,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 400,
+    "holdEndMs": 900,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".chat-demo",
+    "viewport": [
+      420,
+      340
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-open",
+        "on": ".pm-chat-pop"
+      },
+      {
+        "at": 1400,
+        "remove": "is-open",
+        "add": "is-closing",
+        "on": ".pm-chat-pop"
+      }
+    ]
+  }
+}

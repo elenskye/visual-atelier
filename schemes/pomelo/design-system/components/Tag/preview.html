@@ -1,0 +1,36 @@
+<!-- @dsCard group="控件" height=150 width=960 subtitle="标签：分类色的浅底，字是墨色；小标签带一个圆点" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Tag</title>
+<style>
+  html, body { margin: 0; }
+  .demo { padding: 20px 36px; }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .row + .row { margin-top: 18px; }
+  .add { display: inline-flex; align-items: center; gap: 3px; height: 28px; padding: 0 10px; color: var(--color-link); font-size: var(--text-body); }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="demo">
+  <div class="row">
+    <span class="pm-tag pm-cat-orange">柚子<button class="pm-tag-x" type="button" aria-label="去掉「柚子」"><span data-hand="icon" data-size="13" data-seed="51" data-d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5"></span></button></span>
+    <span class="pm-tag pm-cat-sky">海边<button class="pm-tag-x" type="button" aria-label="去掉「海边」"><span data-hand="icon" data-size="13" data-seed="52" data-d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5"></span></button></span>
+    <span class="pm-tag pm-cat-mint">周末<button class="pm-tag-x" type="button" aria-label="去掉「周末」"><span data-hand="icon" data-size="13" data-seed="53" data-d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5"></span></button></span>
+    <span class="pm-tag pm-cat-pink">读书<button class="pm-tag-x" type="button" aria-label="去掉「读书」"><span data-hand="icon" data-size="13" data-seed="54" data-d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5"></span></button></span>
+    <span class="pm-tag pm-cat-grape">晚风<button class="pm-tag-x" type="button" aria-label="去掉「晚风」"><span data-hand="icon" data-size="13" data-seed="55" data-d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5"></span></button></span>
+    <button class="add" type="button"><span data-hand="icon" data-size="14" data-seed="56" data-d="M12 5 L12 19 M5 12 L19 12"></span>加一个</button>
+  </div>
+  <div class="row">
+    <span class="pm-chip pm-cat-mint">生活</span>
+    <span class="pm-chip pm-cat-sky">读看</span>
+    <span class="pm-chip pm-cat-pink">记事</span>
+    <span class="pm-chip pm-cat-orange">出门</span>
+    <span class="pm-chip pm-cat-grape">求职</span>
+    <span class="pm-chip pm-cat-yuzu">柚子</span>
+  </div>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

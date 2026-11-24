@@ -1,0 +1,44 @@
+{
+  "id": "hover",
+  "title": "悬停 · 上墨",
+  "status": "approved",
+  "approved": "站主 2026-11-24 验收 Pith Explore EX11（「验收完毕，开始做优化页、建 schemes/pith/」）",
+  "tier": "calm",
+  "trigger": "鼠标放上、键盘聚焦（演示加 .is-hover）：图标按钮 .pith-ink、链接 .pith-link、列表行 .pith-row、卡片 .pith-lift、按钮 .pith-sweep",
+  "durationMs": 520,
+  "reducedMotion": "直接到终态：淡底在、珊瑚点在，不滑、不写、不弹",
+  "use": "所有能悬停的地方（顶栏的三个图标和 Logo 另有生长：topbar-grow、logo-grow）",
+  "source": "canvases/pith-explore EX10、EX11（站主 11-23、11-24 定的动效）",
+  "requires": [
+    "design-system/bundle.css"
+  ],
+  "files": {
+    "css": "hover.css",
+    "html": "hover.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 300,
+    "holdEndMs": 900,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".hv-demo",
+    "viewport": [
+      760,
+      84
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-hover",
+        "on": ".h",
+        "all": true
+      }
+    ]
+  }
+}

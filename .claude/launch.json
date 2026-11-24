@@ -1,0 +1,65 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "website-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "/Users/elenskye/Documents/GitHub/personal-website",
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "4399"
+      ],
+      "port": 4399
+    },
+    {
+      "name": "website-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "/Users/elenskye/Documents/GitHub/personal-website",
+        "run",
+        "preview",
+        "--",
+        "--port",
+        "4400"
+      ],
+      "port": 4400
+    },
+    {
+      "name": "bench",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "bench/bin/dw.js",
+        "serve",
+        "--port",
+        "4321"
+      ],
+      "port": 4321
+    },
+    {
+      "name": "bench-dev",
+      "runtimeExecutable": "/Users/elenskye/.nvm/versions/node/v22.23.2/bin/node",
+      "runtimeArgs": [
+        "bench/bin/dw.js",
+        "serve",
+        "--port",
+        "4341"
+      ],
+      "port": 4341
+    },
+    {
+      "name": "pomelo-ui",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--dir",
+        "/Users/elenskye/Documents/GitHub/pomelo",
+        "dev"
+      ],
+      "port": 1420
+    }
+  ]
+}

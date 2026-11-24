@@ -1,0 +1,54 @@
+{
+  "id": "save-grow",
+  "title": "生长 · 存进知识库",
+  "status": "approved",
+  "approved": "站主 2026-11-24 验收 Pith Explore EX11（「验收完毕，开始做优化页、建 schemes/pith/」）",
+  "tier": "expressive",
+  "surface": "save-grow",
+  "trigger": "点交付卡的「存进……」：种子加 .is-in 沿弧线飞（起点、落点现量）；0.82 秒后知识库图标加 .is-fed、+1 加 .is-in",
+  "durationMs": 1900,
+  "reducedMotion": "种子不飞，图标不晃，+1 直接出现",
+  "use": "交付卡（.pith-deliver）的「存进……」和顶栏的知识库图标",
+  "source": "canvases/pith-explore EX10、EX11（站主 11-23、11-24 定的动效）",
+  "requires": [
+    "design-system/bundle.css"
+  ],
+  "files": {
+    "css": "save-grow.css",
+    "html": "save-grow.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 300,
+    "holdEndMs": 900,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".sg-demo",
+    "viewport": [
+      520,
+      250
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-in",
+        "on": ".s"
+      },
+      {
+        "at": 820,
+        "add": "is-fed",
+        "on": ".kb"
+      },
+      {
+        "at": 820,
+        "add": "is-in",
+        "on": ".b"
+      }
+    ]
+  }
+}

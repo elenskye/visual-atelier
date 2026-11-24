@@ -1,0 +1,6 @@
+/* 柚子在想：一笔小卷卷画出来、停一下、再从头擦掉，1.6 秒一圈，和柚子「在想」的表情同一个节拍。 */
+.pm-think-line path { stroke-dasharray: 1 2; animation: pm-think-loop 1.6s ease-in-out infinite; }
+@keyframes pm-think-loop { 0% { stroke-dashoffset: 1.01; } 45%, 55% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -1.01; } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-think-line path { animation: none; stroke-dashoffset: 0; }
+}

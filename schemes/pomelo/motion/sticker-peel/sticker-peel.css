@@ -1,0 +1,16 @@
+/* 贴纸簿里的贴纸：鼠标移上去一角翘起来、影子变深（0.3 秒，弹性）；按下翘得更高；拖着走影子更远；
+   松手就撕下来往上飞走（.is-flyoff，0.45 秒，飞向顶栏「桌上开着」）；那一页关掉以后贴回簿子啪一下（.is-back，0.5 秒）。
+   用法：贴纸格子 .pm-peel，里面的贴纸包一层 .pm-peel-art。 */
+.pm-peel-art { display: flex; transition: transform .3s cubic-bezier(.3,1.6,.5,1), filter .2s; }
+.pm-peel:hover .pm-peel-art, .pm-peel.is-hover .pm-peel-art { transform: perspective(300px) rotateX(14deg) rotateY(-10deg) translateY(-5px) scale(1.06); filter: drop-shadow(2px 8px 6px rgba(0, 0, 0, .2)); }
+.pm-peel.is-peeling .pm-peel-art { transform: perspective(300px) rotateX(24deg) rotateY(-16deg) translateY(-8px) scale(1.1); filter: drop-shadow(4px 12px 8px rgba(0, 0, 0, .25)); }
+.pm-peel.is-held { z-index: 60; }
+.pm-peel.is-held .pm-peel-art { filter: drop-shadow(6px 18px 12px rgba(0, 0, 0, .28)); }
+.pm-peel.is-flyoff { z-index: 60; animation: pm-flyoff .45s cubic-bezier(.5, 0, .75, 0) both; pointer-events: none; }
+.pm-peel.is-back .pm-peel-art { animation: pm-slap-back .5s cubic-bezier(.3,1.6,.5,1); }
+@keyframes pm-flyoff { 0% { transform: none; } 30% { transform: translateY(-14px) rotate(-10deg) scale(1.15); } 100% { transform: translate(-120px, -520px) rotate(-40deg) scale(.4); opacity: 0; } }
+@keyframes pm-slap-back { 0% { transform: scale(1.12) rotate(-6deg); } 50% { transform: scale(.94) rotate(2deg); } 100% { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-peel-art, .pm-peel.is-flyoff, .pm-peel.is-back .pm-peel-art { animation: none !important; transition: none !important; }
+  .pm-peel:hover .pm-peel-art, .pm-peel.is-hover .pm-peel-art, .pm-peel.is-peeling .pm-peel-art { transform: none; }
+}

@@ -1,0 +1,37 @@
+{
+  "$note": "同步清单：哪些文件复制到哪个消费方的什么位置（规则见 docs/adoption.md）。由 tooling/sync/sync.mjs 按 Git tag 构建后复制；src 取方案目录里的源文件，dist 取构建产物（dist/<方案>/ 下），tool 取 tooling/ 下的生成模块（状态跟着 asset 登记的资产走）。目标目录整个归同步管，消费方不手改，里面另写 VERSION、SHA256SUMS 与 README.md。 2026-11-01 起网站不用名字字标与分区装饰（站主决定），这两项不再同步。",
+  "consumers": {
+    "personal-website": {
+      "root": "~/Documents/GitHub/personal-website",
+      "dir": "src/vendor/vermilion",
+      "files": [
+        { "to": "graphic.css", "src": "marks/graphic/graphic.css" },
+        { "to": "empty-graphic.svg", "src": "marks/graphic/empty-graphic.svg" },
+        { "to": "og-default.png", "dist": "marks/png/og-default-v3@1200x630-light.png" },
+        { "to": "category-glyph-hover/category-glyph-hover.css", "src": "motion/category-glyph-hover/category-glyph-hover.css" },
+        { "to": "category-glyph-hover/write.fragment.html", "src": "motion/category-glyph-hover/single/write.fragment.html" },
+        { "to": "category-glyph-hover/project.fragment.html", "src": "motion/category-glyph-hover/single/project.fragment.html" },
+        { "to": "category-glyph-hover/gallery.fragment.html", "src": "motion/category-glyph-hover/single/gallery.fragment.html" },
+        { "to": "category-glyph-hover/create.fragment.html", "src": "motion/category-glyph-hover/single/create.fragment.html" },
+        { "to": "loading-enso/loading-enso.css", "src": "motion/loading-enso/loading-enso.css" },
+        { "to": "loading-enso/loading-enso.fragment.html", "src": "motion/loading-enso/loading-enso.fragment.html" },
+        { "to": "selection-slide/selection-slide.css", "src": "motion/selection-slide/selection-slide.css" },
+        { "to": "selection-slide/selection-slide.js", "src": "motion/selection-slide/selection-slide.js" },
+        { "to": "count-up/count-up.css", "src": "motion/count-up/count-up.css" },
+        { "to": "visit-once.js", "src": "motion/visit-once.js" },
+        { "to": "stroke-draw-v2/stroke-draw-v2.css", "src": "motion/stroke-draw-v2/stroke-draw-v2.css" },
+        { "to": "not-found-intro/not-found-intro.css", "src": "motion/not-found-intro/not-found-intro.css" },
+        { "to": "not-found-intro/not-found-intro.fragment.html", "src": "motion/not-found-intro/not-found-intro.fragment.html" },
+        { "to": "end-mark/end-mark.css", "src": "motion/end-mark/end-mark.css" },
+        { "to": "end-mark/end-mark.js", "src": "motion/end-mark/end-mark.js" },
+        { "to": "end-mark/end-mark.fragment.html", "src": "motion/end-mark/end-mark.fragment.html" },
+        { "to": "icons/icons.json", "src": "marks/icons.json" },
+        { "to": "og-card/template.json", "src": "marks/og-card/template.json" },
+        { "to": "og-card/card.mjs", "tool": "og-card/card.mjs", "asset": "og-card" },
+        { "to": "og-card/outline.mjs", "tool": "og-card/outline.mjs", "asset": "og-card" },
+        { "to": "watermark/template.json", "src": "marks/watermark/template.json" },
+        { "to": "watermark/watermark.mjs", "tool": "watermark/watermark.mjs", "asset": "watermark" }
+      ]
+    }
+  }
+}

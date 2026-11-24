@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>R2 · 笔势的三个维度</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&amp;family=Noto+Serif+SC:wght@400&amp;family=Source+Serif+4:opsz,wght@8..60,400&amp;family=Work+Sans:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#28625d}a:hover{color:#bf2929}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1260px; box-sizing: border-box; padding: 72px; background: #f6efe2; color: #1b1d1c; font-family: 'Work Sans', 'Noto Sans SC', sans-serif; display: flex; flex-direction: column; gap: 40px">
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <div style="font-size: 13px; line-height: 1.6; color: #2d6f6a; text-transform: uppercase">Round 2 · Brush</div>
+    <h1 style="margin: 0; font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-weight: 400; font-size: 56px; line-height: 1.05">一次只改一件事</h1>
+  </div>
+  <div style="display: grid; grid-template-columns: 160px 464px 204px 280px; column-gap: 40px; font-size: 13px; color: #686359">
+    <span></span><span>64px · 写作 项目 画廊 创作 游记 其他</span><span>24px · 小尺寸</span><span>分区装饰</span>
+  </div>
+  <sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <div style="font-size: 13px; color: #2d6f6a">{{g.title}}</div>
+      <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="3">
+        <div style="display: grid; grid-template-columns: 160px 464px 204px 280px; column-gap: 40px; align-items: center; height: 116px">
+          <div style="display: flex; flex-direction: column; gap: 4px">
+            <div style="font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-size: 24px; line-height: 1.2">{{r.name}}</div>
+            <div style="font-size: 13px; color: #686359">{{r.tag}}</div>
+          </div>
+          <div style="display: flex; gap: 16px">
+            <sc-for list="{{r.icons}}" as="src" hint-placeholder-count="6">
+              <img src="{{src}}" alt="" style="width: 64px; height: 64px; display: block">
+            </sc-for>
+          </div>
+          <div style="display: flex; gap: 12px">
+            <sc-for list="{{r.icons}}" as="src" hint-placeholder-count="6">
+              <img src="{{src}}" alt="" style="width: 24px; height: 24px; display: block">
+            </sc-for>
+          </div>
+          <div style="width: 280px; height: 110px; background: #fdf9f0; border-radius: 8px; overflow: hidden"><img src="{{r.deco}}" alt="" style="width: 280px; height: 110px; display: block"></div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1260}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const mid = { name: '中', tag: '第一轮的笔势', icons: ['/_blob/1d08fc90e68645cfe4739e03463e99fc', '/_blob/8564658b066cd464a3e555bdba0a3dc1', '/_blob/4d6100288d22476bb53e98cda8d9063b', '/_blob/bb2eba73c5976aafd6cd4f90f5c4b91b', '/_blob/9c9fdaa4ec72cfe0e0997b473d5cbc3a', '/_blob/79ed91e2d75cd33cddf78c89b09c8729'], deco: '/_blob/917f323b22b27a9aa79d2c3f63a463f2' };
+    return {
+      groups: [
+        { title: '粗细', rows: [
+          { name: '细', tag: '最粗处 × 0.7', icons: ['/_blob/68b7e49d5fb1fde108783f81076c96ff', '/_blob/49a2aff1993d64a3c8048774ee60e521', '/_blob/a19a919ef54de5b7fa5396ae912cb821', '/_blob/b4a861a11c3862c41070d70b3910e3dd', '/_blob/acad989cf7fec79641f458bab33e1063', '/_blob/2943fe3f9e7f2a5c7b696118429f5d47'], deco: '/_blob/41f4fb0f75f31720445aa6ba0d385389' },
+          mid,
+          { name: '粗', tag: '最粗处 × 1.35', icons: ['/_blob/6acd75aa1ef30e666404845c4c1ae8cf', '/_blob/4b2e479172a0571b5acae6dd762442ac', '/_blob/95bf5dbc51268fffe67e4dea80ae26e7', '/_blob/b3cd20367d6d36859d931dfe622ab274', '/_blob/26a1a19fb82e4b2864db9da3f791d06c', '/_blob/c96396de80951f02b1d9d813d145b9a3'], deco: '/_blob/f08d8f391759f5ed2dff212cae3a437c' }
+        ] },
+        { title: '墨感', rows: [
+          { name: '光洁', tag: '边缘干净', icons: mid.icons, deco: mid.deco },
+          { name: '飞白', tag: '后半段裂成几缕', icons: ['/_blob/4776356553698b3bf70b562b049b572b', '/_blob/1c9b3a9b4e35b460df994261c1d31428', '/_blob/01438f8ad84c396d7dc78e71014ede4f', '/_blob/54844f346bd00ac1a83b78f7cc2c912d', '/_blob/e4c21adae98dfa081c0160016d0fbeb6', '/_blob/3476ffc5f51f04a9178fd00eb6572535'], deco: '/_blob/dec98555817102c3d6a48d7d676b8f6b' }
+        ] },
+        { title: '简繁', rows: [
+          { name: '三笔', tag: '第一轮的笔数', icons: mid.icons, deco: mid.deco },
+          { name: '简笔', tag: '每类一到两笔', icons: ['/_blob/adedf39f63c64c7b8bfdedec645f529e', '/_blob/677ab6c40d79b2da45bc4acbec1c331b', '/_blob/325eeff8a8a31d3652a5ef7c9d8bc4dc', '/_blob/6019c3d87c03e53600e80c1aaf7608bd', '/_blob/32a73f856ddf29fc59ddcdc4e136cdf6', '/_blob/32ea807334c7e4cca83417efd6c832c3'], deco: '/_blob/1703f0b9f985437f43d339abf74d4ee1' }
+        ] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

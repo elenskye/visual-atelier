@@ -1,0 +1,1273 @@
+{
+  "v": 3,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-05T05:13:44Z"
+  },
+  "title": "Pomelo Explore",
+  "launch": {
+    "view": "canvas",
+    "page": "notes"
+  },
+  "pages": [
+    {
+      "id": "x1",
+      "name": "EX1：三种画法、维度、颜色、动效"
+    },
+    {
+      "id": "x2",
+      "name": "EX2：线描贴纸第二版、两个配色家族"
+    },
+    {
+      "id": "x3",
+      "name": "EX3：外框 A 和 B3"
+    },
+    {
+      "id": "x4",
+      "name": "EX4：五套配色、对比度、手作零件、动效"
+    },
+    {
+      "id": "x5",
+      "name": "EX5：见字如面的贴纸"
+    },
+    {
+      "id": "x6",
+      "name": "EX6：跨模块联动"
+    },
+    {
+      "id": "x7",
+      "name": "EX7：玩物有志"
+    },
+    {
+      "id": "frame",
+      "name": "R1：外框（B3）"
+    },
+    {
+      "id": "marks",
+      "name": "R2：柚子、贴纸、App 图标"
+    },
+    {
+      "id": "icons",
+      "name": "R3：界面小图标"
+    },
+    {
+      "id": "motion",
+      "name": "R4：动效、空状态"
+    },
+    {
+      "id": "atlas",
+      "name": "R5：Atlas 年度小报"
+    },
+    {
+      "id": "notes",
+      "name": "R6：见字如面原型"
+    },
+    {
+      "id": "notes-pdf",
+      "name": "R7：见字如面格式条、PDF"
+    },
+    {
+      "id": "x8",
+      "name": "EX8：Atlas 新的几幕"
+    }
+  ],
+  "boards": {
+    "Marks-Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "柚子 · 8 个表情",
+      "page": "marks"
+    },
+    "Marks-Menubar.dc.html": {
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "菜单栏和 AI 按钮",
+      "page": "marks"
+    },
+    "Marks-Modules.dc.html": {
+      "x": 2800,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "模块贴纸",
+      "page": "marks"
+    },
+    "Marks-Dock.dc.html": {
+      "x": 4200,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "模块坞里的样子",
+      "page": "marks"
+    },
+    "Marks-AppIcon-grid.dc.html": {
+      "x": 0,
+      "y": 960,
+      "w": 1280,
+      "h": 800,
+      "title": "App 图标 · 方格纸",
+      "page": "marks"
+    },
+    "Marks-AppIcon-mint.dc.html": {
+      "x": 1400,
+      "y": 960,
+      "w": 1280,
+      "h": 800,
+      "title": "App 图标 · 薄荷桌面",
+      "page": "marks"
+    },
+    "Marks-AppIcon-kraft.dc.html": {
+      "x": 2800,
+      "y": 960,
+      "w": 1280,
+      "h": 800,
+      "title": "App 图标 · 牛皮纸",
+      "page": "marks"
+    },
+    "Marks-Library.dc.html": {
+      "x": 4200,
+      "y": 960,
+      "w": 1280,
+      "h": 800,
+      "title": "通用贴纸 · 32 个",
+      "page": "marks"
+    },
+    "Marks-Colors.dc.html": {
+      "x": 0,
+      "y": 1920,
+      "w": 1280,
+      "h": 800,
+      "title": "换颜色",
+      "page": "marks"
+    },
+    "Marks-Picker.dc.html": {
+      "x": 1400,
+      "y": 1920,
+      "w": 1280,
+      "h": 800,
+      "title": "选图标和颜色",
+      "page": "marks"
+    },
+    "Marks-Empty.dc.html": {
+      "x": 2800,
+      "y": 1920,
+      "w": 1280,
+      "h": 800,
+      "title": "空状态插图",
+      "page": "marks"
+    },
+    "Marks-Places.dc.html": {
+      "x": 4200,
+      "y": 1920,
+      "w": 1280,
+      "h": 800,
+      "title": "设置和日历的贴纸 · 滚动条",
+      "page": "marks"
+    },
+    "Icons-Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "界面图标 · 第一批",
+      "page": "icons"
+    },
+    "Icons-Batch2.dc.html": {
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "界面图标 · 第二批",
+      "page": "icons"
+    },
+    "Icons-InUse.dc.html": {
+      "x": 2800,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "界面图标 · 用起来的样子",
+      "page": "icons"
+    },
+    "Motion-Controls.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 1236,
+      "title": "控件的小动静",
+      "is_interactive": true,
+      "radius": 12,
+      "page": "motion"
+    },
+    "Motion-Faces.dc.html": {
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 688,
+      "title": "柚子的表情",
+      "is_interactive": true,
+      "radius": 12,
+      "page": "motion"
+    },
+    "Motion-Moments.dc.html": {
+      "x": 0,
+      "y": 1356,
+      "w": 1280,
+      "h": 1784,
+      "title": "招牌时刻",
+      "is_interactive": true,
+      "radius": 12,
+      "page": "motion"
+    },
+    "Motion-Frame.dc.html": {
+      "x": 1400,
+      "y": 1356,
+      "w": 1280,
+      "h": 1216,
+      "title": "外框的动静",
+      "is_interactive": true,
+      "radius": 12,
+      "page": "motion"
+    },
+    "Motion-Eggs.dc.html": {
+      "x": 0,
+      "y": 3260,
+      "w": 1280,
+      "h": 1236,
+      "title": "小彩蛋",
+      "is_interactive": true,
+      "radius": 12,
+      "page": "motion"
+    },
+    "Motion-Worried.dc.html": {
+      "x": 1400,
+      "y": 3260,
+      "w": 1280,
+      "h": 410,
+      "title": "柚子 · 担心（第 9 张脸）",
+      "is_interactive": true,
+      "radius": 12,
+      "page": "motion"
+    },
+    "Motion-Empty.dc.html": {
+      "x": 0,
+      "y": 4616,
+      "w": 1280,
+      "h": 732,
+      "title": "空状态",
+      "is_interactive": true,
+      "radius": 12,
+      "page": "motion"
+    },
+    "Frame-Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "桌面",
+      "is_interactive": true,
+      "radius": 12,
+      "page": "frame"
+    },
+    "Frame-Page.dc.html": {
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "模块页 · 钱来钱往（开着的页叠在右边）",
+      "is_interactive": true,
+      "radius": 12,
+      "page": "frame"
+    },
+    "Frame-Bloom.dc.html": {
+      "x": 2800,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "柚子瓣",
+      "is_interactive": true,
+      "radius": 12,
+      "page": "frame"
+    },
+    "Frame-Book.dc.html": {
+      "x": 0,
+      "y": 960,
+      "w": 1280,
+      "h": 800,
+      "title": "贴纸簿（模块坞）",
+      "is_interactive": true,
+      "radius": 12,
+      "page": "frame"
+    },
+    "Frame-Search.dc.html": {
+      "x": 1400,
+      "y": 960,
+      "w": 1280,
+      "h": 800,
+      "title": "找东西（小票）",
+      "is_interactive": true,
+      "radius": 12,
+      "page": "frame"
+    },
+    "X4-Palettes.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 2000,
+      "h": 800,
+      "title": "五套配色 · 明暗各一版",
+      "page": "x4",
+      "radius": 12
+    },
+    "X4-Contrast.dc.html": {
+      "x": 0,
+      "y": 1280,
+      "w": 1280,
+      "h": 720,
+      "title": "对比度",
+      "page": "x4",
+      "radius": 12
+    },
+    "X4-Kit.dc.html": {
+      "x": 1360,
+      "y": 1280,
+      "w": 1280,
+      "h": 800,
+      "title": "手作零件和比例",
+      "page": "x4",
+      "radius": 12
+    },
+    "X4-Motion.dc.html": {
+      "x": 2720,
+      "y": 1280,
+      "w": 1280,
+      "h": 672,
+      "title": "动效：三种性格、两档",
+      "page": "x4",
+      "radius": 12,
+      "is_interactive": true
+    },
+    "X1-Sticker.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1200,
+      "h": 800,
+      "title": "S1 贴纸",
+      "page": "x1"
+    },
+    "X1-Offprint.dc.html": {
+      "x": 1280,
+      "y": 0,
+      "w": 1200,
+      "h": 800,
+      "title": "S2 错版线描",
+      "page": "x1"
+    },
+    "X1-Hybrid.dc.html": {
+      "x": 2560,
+      "y": 0,
+      "w": 1200,
+      "h": 800,
+      "title": "S3 线描贴纸（混合）",
+      "page": "x1"
+    },
+    "X1-Dials.dc.html": {
+      "x": 0,
+      "y": 1180,
+      "w": 1200,
+      "h": 1110,
+      "title": "维度：一次只变一项",
+      "page": "x1"
+    },
+    "X1-Color.dc.html": {
+      "x": 1280,
+      "y": 1180,
+      "w": 1200,
+      "h": 1110,
+      "title": "颜色：三套对照",
+      "page": "x1"
+    },
+    "X1-Motion.dc.html": {
+      "x": 2560,
+      "y": 1180,
+      "w": 1200,
+      "h": 1000,
+      "title": "动效：三种性格 × 三个场景",
+      "page": "x1"
+    },
+    "X2-Hybrid.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1200,
+      "h": 940,
+      "title": "S3 线描贴纸 · 第二版",
+      "page": "x2"
+    },
+    "X2-Dials.dc.html": {
+      "x": 1280,
+      "y": 0,
+      "w": 1200,
+      "h": 640,
+      "title": "维度：还没定的三项",
+      "page": "x2"
+    },
+    "X2-Motion.dc.html": {
+      "x": 2560,
+      "y": 0,
+      "w": 1200,
+      "h": 780,
+      "title": "动效：按场景定",
+      "page": "x2"
+    },
+    "X2-Pens.dc.html": {
+      "x": 0,
+      "y": 1340,
+      "w": 1570,
+      "h": 1110,
+      "title": "配色 · 钢笔家族",
+      "page": "x2"
+    },
+    "X2-Bold.dc.html": {
+      "x": 1650,
+      "y": 1340,
+      "w": 1570,
+      "h": 1110,
+      "title": "配色 · 色面家族",
+      "page": "x2"
+    },
+    "X3-A-Home.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "A · 首页",
+      "page": "x3",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "X3-A-Money.dc.html": {
+      "x": 1360,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "A · 钱来钱往",
+      "page": "x3",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "X3-A-Jump.dc.html": {
+      "x": 2720,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "A · 柚子瓣",
+      "page": "x3",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "X3-A-Ask.dc.html": {
+      "x": 4080,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "A · 问柚子",
+      "page": "x3",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "X3-B-Home.dc.html": {
+      "x": 0,
+      "y": 1340,
+      "w": 1280,
+      "h": 800,
+      "title": "B3 · 桌面",
+      "page": "x3",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "X3-B-Money.dc.html": {
+      "x": 1360,
+      "y": 1340,
+      "w": 1280,
+      "h": 800,
+      "title": "B3 · 钱来钱往",
+      "page": "x3",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "X3-B-Jump.dc.html": {
+      "x": 2720,
+      "y": 1340,
+      "w": 1280,
+      "h": 800,
+      "title": "B3 · 柚子的贴纸册",
+      "page": "x3",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "X3-B-Ask.dc.html": {
+      "x": 4080,
+      "y": 1340,
+      "w": 1280,
+      "h": 800,
+      "title": "B3 · 问柚子",
+      "page": "x3",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "X5-Sticker.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "见字如面的贴纸 · A 漂流瓶、B 纸飞机、C 字里的笑脸",
+      "radius": 12,
+      "page": "x5"
+    },
+    "Notes-Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "三栏：拖列表两边的边调宽，双指左右滑收栏",
+      "radius": 12,
+      "is_interactive": true,
+      "page": "notes"
+    },
+    "Notes-Fold.dc.html": {
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "往左滑一次：收起标签",
+      "radius": 12,
+      "is_interactive": true,
+      "page": "notes"
+    },
+    "Notes-Select.dc.html": {
+      "x": 2800,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "深色 · 选中文字时才出格式条",
+      "radius": 12,
+      "is_interactive": true,
+      "page": "notes"
+    },
+    "Notes-Menu.dc.html": {
+      "x": 0,
+      "y": 960,
+      "w": 1280,
+      "h": 800,
+      "title": "右键的格式",
+      "radius": 12,
+      "is_interactive": true,
+      "page": "notes"
+    },
+    "Notes-Locked.dc.html": {
+      "x": 1400,
+      "y": 960,
+      "w": 1280,
+      "h": 800,
+      "title": "加密的笔记",
+      "radius": 12,
+      "is_interactive": true,
+      "page": "notes"
+    },
+    "Notes-Focus.dc.html": {
+      "x": 2800,
+      "y": 960,
+      "w": 1280,
+      "h": 800,
+      "title": "专心写：占满整个窗口",
+      "radius": 12,
+      "is_interactive": true,
+      "page": "notes"
+    },
+    "Notes-Settings.dc.html": {
+      "x": 0,
+      "y": 1920,
+      "w": 1280,
+      "h": 800,
+      "title": "设置：字号、行距、正文宽度、格式条",
+      "radius": 12,
+      "is_interactive": true,
+      "page": "notes"
+    },
+    "Notes-Toolbar.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 920,
+      "title": "格式条和新画的图标",
+      "radius": 12,
+      "page": "notes-pdf"
+    },
+    "Notes-Export.dc.html": {
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "导出：每次弹设置",
+      "radius": 12,
+      "is_interactive": true,
+      "page": "notes-pdf"
+    },
+    "Notes-PDF-Pomelo.dc.html": {
+      "x": 0,
+      "y": 1120,
+      "w": 1340,
+      "h": 1000,
+      "title": "PDF · 柚儿园",
+      "radius": 12,
+      "page": "notes-pdf"
+    },
+    "Notes-PDF-Print.dc.html": {
+      "x": 1460,
+      "y": 1120,
+      "w": 1340,
+      "h": 1000,
+      "title": "PDF · 印刷（批了）",
+      "radius": 12,
+      "page": "notes-pdf"
+    },
+    "Links-Embed.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "文章里嵌一条念念不忘（浅色）",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Links-Embed-Dark.dc.html": {
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "文章里嵌一条念念不忘（深色）",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Links-Embed-Caret.dc.html": {
+      "x": 2800,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "光标进到那张小卡：露出 ![[…]]",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Links-Suggest-Article.dc.html": {
+      "x": 0,
+      "y": 960,
+      "w": 1280,
+      "h": 800,
+      "title": "文章里打 [[：文章、笔记、书、影、游戏混在一起",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Links-Suggest-Note.dc.html": {
+      "x": 1400,
+      "y": 960,
+      "w": 1280,
+      "h": 800,
+      "title": "念念不忘里打 [[（深色）",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Links-Chips.dc.html": {
+      "x": 0,
+      "y": 1920,
+      "w": 1280,
+      "h": 800,
+      "title": "念念不忘卡片里的 [[标题]]，下面是「链接到这里的」（浅色）",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Links-Chips-Dark.dc.html": {
+      "x": 1400,
+      "y": 1920,
+      "w": 1280,
+      "h": 800,
+      "title": "念念不忘卡片里的 [[标题]]（深色）",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Links-Shelf.dc.html": {
+      "x": 0,
+      "y": 2880,
+      "w": 1280,
+      "h": 800,
+      "title": "写的时候右边开一栏念念不忘，拖一条进文章（浅色）",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Links-Shelf-Dark.dc.html": {
+      "x": 1400,
+      "y": 2880,
+      "w": 1280,
+      "h": 800,
+      "title": "书架（深色）",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Links-Clip-Menu.dc.html": {
+      "x": 0,
+      "y": 3840,
+      "w": 1280,
+      "h": 800,
+      "title": "选一段，右键「记到念念不忘」",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Links-Clip-Box.dc.html": {
+      "x": 1400,
+      "y": 3840,
+      "w": 1280,
+      "h": 800,
+      "title": "念念不忘的输入框弹出来，接着打标签（浅色）",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Links-Clip-Box-Dark.dc.html": {
+      "x": 2800,
+      "y": 3840,
+      "w": 1280,
+      "h": 800,
+      "title": "念念不忘的输入框（深色）",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Links-Back-Article.dc.html": {
+      "x": 0,
+      "y": 4800,
+      "w": 1280,
+      "h": 800,
+      "title": "文章最后的「链接到这里的」",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Links-Back-Book.dc.html": {
+      "x": 1400,
+      "y": 4800,
+      "w": 1280,
+      "h": 1060,
+      "title": "摸鱼读读的面板：读后感（浅色）",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Links-Back-Film-Dark.dc.html": {
+      "x": 2800,
+      "y": 4800,
+      "w": 1280,
+      "h": 1060,
+      "title": "好奇看看的面板：观后感（深色）",
+      "radius": 12,
+      "page": "x6"
+    },
+    "Games-Table.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "玩物有志：表格和筛选（浅色）",
+      "radius": 12,
+      "page": "x7"
+    },
+    "Games-Dark.dc.html": {
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "深色 · 平台的下拉（能管理平台）",
+      "radius": 12,
+      "page": "x7"
+    },
+    "Games-Panel.dc.html": {
+      "x": 0,
+      "y": 960,
+      "w": 1280,
+      "h": 1060,
+      "title": "一个游戏的面板：周目和玩后感（浅色）",
+      "radius": 12,
+      "page": "x7"
+    },
+    "Games-Panel-Dark.dc.html": {
+      "x": 1400,
+      "y": 960,
+      "w": 1280,
+      "h": 1060,
+      "title": "一个游戏的面板（深色）",
+      "radius": 12,
+      "page": "x7"
+    },
+    "Games-Sticker.dc.html": {
+      "x": 0,
+      "y": 2140,
+      "w": 1280,
+      "h": 800,
+      "title": "玩物有志的贴纸 · A 卡带、B 掌机、C 手柄（挑一个）",
+      "radius": 12,
+      "page": "x7"
+    },
+    "Atlas-Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "走一遍（Tabloid 1.1.1）",
+      "is_interactive": true,
+      "radius": 12,
+      "page": "atlas"
+    },
+    "Atlas-Pages.dc.html": {
+      "x": 0,
+      "y": 940,
+      "w": 2500,
+      "h": 3406,
+      "title": "全部的页摊开看",
+      "is_interactive": false,
+      "radius": 12,
+      "page": "atlas"
+    },
+    "Atlas-Bubbles.dc.html": {
+      "x": 2700,
+      "y": 940,
+      "w": 1640,
+      "h": 1010,
+      "title": "和柚子聊的事 · 通用 6 个、专属 12 个泡泡",
+      "is_interactive": false,
+      "radius": 12,
+      "page": "atlas"
+    },
+    "Atlas-Module.dc.html": {
+      "x": 1400,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "Atlas 模块页 · 一年一张封面（Tabloid 1.1.1 画的）",
+      "is_interactive": false,
+      "radius": 12,
+      "page": "atlas"
+    },
+    "Atlas-Desk.dc.html": {
+      "x": 2800,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "桌上的两样 · 节拍表",
+      "is_interactive": false,
+      "radius": 12,
+      "page": "atlas"
+    },
+    "Scenes-Writing.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 2340,
+      "h": 800,
+      "title": "写下的字（见字如面这一年）· 两幕",
+      "radius": 12,
+      "page": "x8"
+    },
+    "Scenes-Games.dc.html": {
+      "x": 0,
+      "y": 900,
+      "w": 1850,
+      "h": 800,
+      "title": "玩物有志 · B 掌机",
+      "radius": 12,
+      "page": "x8"
+    },
+    "Scenes-Kit.dc.html": {
+      "x": 2440,
+      "y": 0,
+      "w": 2090,
+      "h": 820,
+      "title": "通用幕的零件和排法",
+      "radius": 12,
+      "page": "x8"
+    },
+    "Scenes-Custom.dc.html": {
+      "x": 2440,
+      "y": 940,
+      "w": 1980,
+      "h": 960,
+      "title": "通用幕 · 四个模块排出来的样子",
+      "radius": 12,
+      "page": "x8"
+    },
+    "Scenes-Flow.dc.html": {
+      "x": 4640,
+      "y": 0,
+      "w": 1600,
+      "h": 1080,
+      "title": "新的几幕放在哪 · 通用幕怎么排出来",
+      "radius": 12,
+      "page": "x8"
+    }
+  },
+  "order": [
+    "X1-Sticker.dc.html",
+    "X1-Offprint.dc.html",
+    "X1-Hybrid.dc.html",
+    "X1-Dials.dc.html",
+    "X1-Color.dc.html",
+    "X1-Motion.dc.html",
+    "X2-Hybrid.dc.html",
+    "X2-Dials.dc.html",
+    "X2-Motion.dc.html",
+    "X2-Pens.dc.html",
+    "X2-Bold.dc.html",
+    "X3-A-Home.dc.html",
+    "X3-A-Money.dc.html",
+    "X3-A-Jump.dc.html",
+    "X3-A-Ask.dc.html",
+    "X3-B-Home.dc.html",
+    "X3-B-Money.dc.html",
+    "X3-B-Jump.dc.html",
+    "X3-B-Ask.dc.html",
+    "X4-Palettes.dc.html",
+    "X4-Contrast.dc.html",
+    "X4-Kit.dc.html",
+    "X4-Motion.dc.html",
+    "X5-Sticker.dc.html",
+    "Links-Embed.dc.html",
+    "Links-Embed-Dark.dc.html",
+    "Links-Embed-Caret.dc.html",
+    "Links-Suggest-Article.dc.html",
+    "Links-Suggest-Note.dc.html",
+    "Links-Chips.dc.html",
+    "Links-Chips-Dark.dc.html",
+    "Links-Shelf.dc.html",
+    "Links-Shelf-Dark.dc.html",
+    "Links-Clip-Menu.dc.html",
+    "Links-Clip-Box.dc.html",
+    "Links-Clip-Box-Dark.dc.html",
+    "Links-Back-Article.dc.html",
+    "Links-Back-Book.dc.html",
+    "Links-Back-Film-Dark.dc.html",
+    "Games-Table.dc.html",
+    "Games-Dark.dc.html",
+    "Games-Panel.dc.html",
+    "Games-Panel-Dark.dc.html",
+    "Games-Sticker.dc.html",
+    "Frame-Main.dc.html",
+    "Frame-Page.dc.html",
+    "Frame-Bloom.dc.html",
+    "Frame-Book.dc.html",
+    "Frame-Search.dc.html",
+    "Marks-Main.dc.html",
+    "Marks-Menubar.dc.html",
+    "Marks-Modules.dc.html",
+    "Marks-Dock.dc.html",
+    "Marks-AppIcon-grid.dc.html",
+    "Marks-AppIcon-mint.dc.html",
+    "Marks-AppIcon-kraft.dc.html",
+    "Marks-Library.dc.html",
+    "Marks-Colors.dc.html",
+    "Marks-Picker.dc.html",
+    "Marks-Empty.dc.html",
+    "Marks-Places.dc.html",
+    "Icons-Main.dc.html",
+    "Icons-Batch2.dc.html",
+    "Icons-InUse.dc.html",
+    "Motion-Controls.dc.html",
+    "Motion-Faces.dc.html",
+    "Motion-Moments.dc.html",
+    "Motion-Frame.dc.html",
+    "Motion-Eggs.dc.html",
+    "Motion-Worried.dc.html",
+    "Motion-Empty.dc.html",
+    "Atlas-Main.dc.html",
+    "Atlas-Module.dc.html",
+    "Atlas-Desk.dc.html",
+    "Atlas-Pages.dc.html",
+    "Atlas-Bubbles.dc.html",
+    "Notes-Main.dc.html",
+    "Notes-Fold.dc.html",
+    "Notes-Select.dc.html",
+    "Notes-Menu.dc.html",
+    "Notes-Locked.dc.html",
+    "Notes-Focus.dc.html",
+    "Notes-Settings.dc.html",
+    "Notes-Toolbar.dc.html",
+    "Notes-Export.dc.html",
+    "Notes-PDF-Pomelo.dc.html",
+    "Notes-PDF-Print.dc.html",
+    "Scenes-Writing.dc.html",
+    "Scenes-Games.dc.html",
+    "Scenes-Kit.dc.html",
+    "Scenes-Custom.dc.html",
+    "Scenes-Flow.dc.html"
+  ],
+  "notes": {
+    "motion-how": {
+      "x": 0,
+      "y": -220,
+      "w": 820,
+      "fill": "orange",
+      "text": "怎么看\n每格就是 schemes/pomelo/motion/ 的一个零件，和导出的 GIF、Pomelo 以后用的是同一份。「再来一次」重放；控件能直接点。\n要拖时间轴、一帧帧看、导 GIF：bench 的 Motion Deck http://127.0.0.1:4321/#/motion/pomelo\n外框里的样子：这块画布的「优化 · 外框（B3）」那一页，五张板都能玩。",
+      "page": "motion"
+    },
+    "p3Top": {
+      "x": 0,
+      "y": -280,
+      "text": "五套配色，明暗都过 APCA",
+      "kind": "title1",
+      "maxW": 3360,
+      "page": "x4"
+    },
+    "p3Row2": {
+      "x": 0,
+      "y": 1000,
+      "text": "对比度、手作零件、动效",
+      "kind": "title1",
+      "maxW": 4000,
+      "page": "x4"
+    },
+    "p3How": {
+      "x": 2080,
+      "y": 0,
+      "w": 560,
+      "page": "x4",
+      "fill": "orange",
+      "text": "这一页有什么\n· 五套配色：10 格都是方案里的真颜色\n· 对比度：动过哪些颜色，每组最低多少\n· 手作零件：线条、贴纸、胶带、字号、圆角、投影、歪，都由生成器画\n· 动效：三种性格能重播，下面是两档的数值\n\n用新配色的桌面后来又改了几轮，最新的在「优化 · 外框」。这一页是 11-05 批的那版，冻结了，不再生成。"
+    },
+    "p3Ask": {
+      "x": 4080,
+      "y": 1280,
+      "w": 560,
+      "page": "x4",
+      "fill": "teal",
+      "text": "站主 2026-11-05 批准\n规则写在 schemes/pomelo/DESIGN.md（画布上也有一份 project/DESIGN.md）。\n\n颜色动了 30 处，为了明暗都过 APCA：深色下的次要文字和危险色变亮了，荧光笔变暗了；浅色下薄荷桌面和牛皮纸桌面亮了一点，紫笔的荧光笔浅了一点。只改亮度。\n\n动效和手绘的数值都照 Phase 2 小样，没改。"
+    },
+    "x1-r1Styles": {
+      "x": 0,
+      "y": -280,
+      "text": "画法：同一套内容，三种画法",
+      "kind": "title1",
+      "maxW": 3760,
+      "page": "x1"
+    },
+    "x1-r1Rest": {
+      "x": 0,
+      "y": 900,
+      "text": "维度、颜色、动效",
+      "kind": "title1",
+      "maxW": 3760,
+      "page": "x1"
+    },
+    "x2-r2Top": {
+      "x": 0,
+      "y": -280,
+      "text": "第二轮：S3 第二版、剩下的维度、动效",
+      "kind": "title1",
+      "maxW": 3760,
+      "page": "x2"
+    },
+    "x2-r2Pal": {
+      "x": 0,
+      "y": 1060,
+      "text": "配色：两个家族，最后挑几套放进设置里",
+      "kind": "title1",
+      "maxW": 3220,
+      "page": "x2"
+    },
+    "x3-p2A": {
+      "x": 0,
+      "y": -280,
+      "text": "A · 骨架不动，只换外观",
+      "kind": "title1",
+      "maxW": 5360,
+      "page": "x3"
+    },
+    "x3-p2B": {
+      "x": 0,
+      "y": 1060,
+      "text": "B3 · 桌面拼贴",
+      "kind": "title1",
+      "maxW": 5360,
+      "page": "x3"
+    },
+    "x3-p2Ahow": {
+      "x": 5480,
+      "y": 0,
+      "w": 420,
+      "page": "x3",
+      "fill": "orange",
+      "text": "A 怎么玩（点画板的 Play）\n· 点顶栏左边的柚子：柚子瓣长出来，按住拖一拖会转，松手还会接着转；输入字能找模块，找不到就问柚子\n· 首页：勾待办会果冻弹；简报卡右上角的柚子贴纸能撕起来\n· 钱来钱往：点「资产」，纸以左边的缝线为轴翻过去；点一行，右边弹出面板\n· 问柚子：点下面两个小问题，柚子会想、再一个字一个字回答；点「确认」记下这笔\n· 齿轮：换 5 套配色和深浅"
+    },
+    "x3-p2Bhow": {
+      "x": 5480,
+      "y": 1340,
+      "w": 420,
+      "page": "x3",
+      "fill": "orange",
+      "text": "B3 怎么玩（点画板的 Play）\n· 便签都能拖，甩一下会滑出去、碰到边弹回来；小票右上角能翻面\n· 点左上角的柚子：贴纸册从下面滑上来。点一张贴纸，它被撕下来飞走、那一页摊到桌上；也能按住拖出册子\n· 开着的页在右上角排一排；「回桌面」回来\n· 钱来钱往：纸上插着页签，点「资产」翻页；点一行，一张便签啪地贴上来\n· 问柚子：柚子坐在桌上，戳它会换表情\n· 齿轮：换 5 套配色和深浅"
+    },
+    "x5-title": {
+      "x": 0,
+      "y": -280,
+      "text": "见字如面的贴纸：三个方案挑一个",
+      "kind": "title1",
+      "maxW": 4000,
+      "page": "x5"
+    },
+    "x5-how": {
+      "x": 1400,
+      "y": 0,
+      "w": 560,
+      "fill": "orange",
+      "text": "11-13 定了 B 纸飞机（进了方案 0.7.0，名字「见字如面」）。\n三个都不画纸笔本子：A 漂流瓶（写下的话漂到对方那里）、B 纸飞机（一封信飞出去，拖着一圈虚线和一颗心）、C 字里的笑脸（纸上的字排成一张脸）。没选上的 A、C 留在 notes/drafts.mjs。原型的 Tweaks 里还能换着看。",
+      "page": "x5"
+    },
+    "notes-title": {
+      "x": 0,
+      "y": -280,
+      "text": "见字如面：写成篇的文章和长笔记（替代 Bear）",
+      "kind": "title1",
+      "maxW": 4000,
+      "page": "notes"
+    },
+    "notes-how": {
+      "x": 4200,
+      "y": 0,
+      "w": 560,
+      "fill": "orange",
+      "text": "怎么看（11-13 照你的意见改过一轮，批了）\n七张板是同一个原型，起始画面不同，都点得动：列表和正文合在一张卡里；拖卡片的左边、列表右边那道虚线调三栏的宽（各有最小宽度，挤小了标签用省略号）；双指往左滑一次收起标签、再一次收起列表，往右滑放回来（没有按钮）；格式条浮在正文上（图钉切换「选中文字时才出来」）；右上「专心写」占满整个窗口，右上角「缩小」回来；纸上边的「设置」调字号、行距、正文宽度。\nTweaks：配色、明暗、格式条两种模式、贴纸方案。双指滑在画布上可能被画布自己拿去平移，点开这张板单独看最准。",
+      "page": "notes"
+    },
+    "notes-pdf-title": {
+      "x": 0,
+      "y": -280,
+      "text": "格式条、导出和 PDF 的两种样式",
+      "kind": "title1",
+      "maxW": 4000,
+      "page": "notes-pdf"
+    },
+    "notes-pdf-how": {
+      "x": 2920,
+      "y": 0,
+      "w": 560,
+      "fill": "orange",
+      "text": "格式条和新画的 19 个图标（多了全屏专心写用的「缩小」）：11-13 批了，进了方案 0.7.0。\nPDF · 印刷：11-13 批了。\n还要你看的：导出每次弹的设置（格式、样式、目录、页眉和页码、标签和日期），PDF · 柚儿园（纸的颜色、手札体标题、柚子配色）。纸张 A4；折起来的标题和列表全部展开印出来；附件放在 PDF 旁边的一个文件夹里；Word 的样式跟 PDF 走。",
+      "page": "notes-pdf"
+    },
+    "x6-title": {
+      "x": 0,
+      "y": -300,
+      "text": "EX6：念念不忘、见字如面、书影游戏互相链接",
+      "kind": "title1",
+      "maxW": 4080,
+      "page": "x6"
+    },
+    "x6-r0": {
+      "x": 4200,
+      "y": 0,
+      "w": 560,
+      "fill": "orange",
+      "text": "① 文章里嵌一条念念不忘\n小白卡：念念不忘的小贴纸、日期时间，下面是那条笔记的全文（手札体，和正文的苹方分开），右上角去念念不忘看原条。笔记改了这里跟着变，删了就变成淡墨虚线框「这条笔记不在了」（没画）。\n光标进到卡上时，照 Bear 2 的规矩在它上面露出一行源文字 ![[念念不忘/2026-11-02 21:14]]（淡墨，用笔记的日期时间认它），卡片的边描粗。\n要你定：源文字用日期时间认笔记（我选的，导出成 Markdown 也看得懂），还是用笔记编号。",
+      "page": "x6"
+    },
+    "x6-r1": {
+      "x": 4200,
+      "y": 960,
+      "w": 560,
+      "fill": "orange",
+      "text": "② 打 [[ 的提示\n一条纸做的菜单，挂在光标下面：每行是那个模块的小贴纸、标题（打的字划荧光笔）和一行淡墨（书写作者，影写导演和年份，游戏写平台和状态，文章、笔记写日期）。笔记没有标题，用开头的几个字。\n不分组，按对得上的程度排；最多 6 条。文章里和念念不忘里是同一个。",
+      "page": "x6"
+    },
+    "x6-r2": {
+      "x": 4200,
+      "y": 1920,
+      "w": 560,
+      "fill": "orange",
+      "text": "③ 念念不忘卡片里的 [[标题]]\n写的时候是 [[塞尔达传说：王国之泪]]，存好以后画成一个能点的小标题：模块的小贴纸 + 链接色的字和淡底，点了打开那本书、那部片、那个游戏或那篇文章。\n卡片下面原来的「N 条笔记引用了它」改成「链接到这里的 · N」，展开后文章和笔记混在一起（小贴纸分开）。",
+      "page": "x6"
+    },
+    "x6-r3": {
+      "x": 4200,
+      "y": 2880,
+      "w": 560,
+      "fill": "orange",
+      "text": "④ 书架\n正文右上新加一个羽毛按钮「念念不忘」，点开右边站出一栏（宽 282）：搜索、标签（下拉，带荧光笔的 #标签）、一张张笔记小卡。打开时左边的标签栏自动收起（不然正文太窄），关掉放回来。\n按住一张往正文里拖：原处那张变淡，手上那张歪一点、投影深一点，落点是一条主色横线；松手就成了 ① 那张小卡。",
+      "page": "x6"
+    },
+    "x6-r4": {
+      "x": 4200,
+      "y": 3840,
+      "w": 560,
+      "fill": "orange",
+      "text": "⑤ 记到念念不忘\n选中一段，右键菜单最上面加一项「记到念念不忘」（羽毛图标，粗一点）。点了在那段下面弹出念念不忘的输入框（左上角拍着念念不忘的贴纸）：选的字已经填好，下一行是「来自《关于慢慢来》」，书名号那里其实是 [[关于慢慢来]]，所以这篇文章的「链接到这里的」里会有它。光标停在最后，直接打 #，标签的提示贴在 # 下面；「记下」存好，输入框收起。",
+      "page": "x6"
+    },
+    "x6-r5": {
+      "x": 4200,
+      "y": 4800,
+      "w": 560,
+      "fill": "orange",
+      "text": "⑥ 链接到这里的\n文章最后：虚线下淡墨「链接到这里的 · 3」，下面一排链接色的小按钮（照现在的样子，多了小贴纸和淡墨日期），文章、笔记混排。\n书影游戏的面板最下面多一栏「读后感 · N」（好奇看看是「观后感」，玩物有志是「玩后感」）：每行小贴纸、文章标题（粗）或笔记开头、淡墨日期，点了打开。面板长了，这两张板的窗口画高了一点。",
+      "page": "x6"
+    },
+    "x7-title": {
+      "x": 0,
+      "y": -300,
+      "text": "EX7：玩物有志（游戏）",
+      "kind": "title1",
+      "maxW": 2680,
+      "page": "x7"
+    },
+    "x7-r0": {
+      "x": 2800,
+      "y": 0,
+      "w": 560,
+      "fill": "orange",
+      "text": "玩物有志：和摸鱼读读、好奇看看同一套（表格 + 右边的面板），放在贴纸簿的「兴趣」里。\n表格：名称、类型（自己能改，按顺序配颜色的小标签）、平台、国家、状态（想玩 · 在玩 · 通关，颜色照书影的想读 · 在读 · 已读）、尝尝咸淡、完成（最近一次的年份）、周目、备注。\n工具栏：搜索、状态分段、类型、平台、排序、「新游戏」。平台和类型一样能自己改：下拉最下面「管理平台…」。\n要你定：平台要不要也配颜色（现在是淡墨字，免得一行两个彩色标签太花）。",
+      "page": "x7"
+    },
+    "x7-r1": {
+      "x": 2800,
+      "y": 960,
+      "w": 560,
+      "fill": "orange",
+      "text": "面板（和书影的一样，标题「编辑」）：名称（✦ 补全）、类型、平台、国家、状态、尝尝咸淡、完成时间、备注、玩后感。\n几周目我做成书影「重读」那样：完成时间下面一行一个周目（几周目、哪一年、几颗星、红色 ×），最下面主色小字「+ 再玩一周目」；表格里的「完成」是最近一次，「周目」是一共几周目。不用单独一个「几周目」的下拉。\n要你定：这样合并，还是分开成「完成」年份 + 「几周目」下拉。",
+      "page": "x7"
+    },
+    "x7-r2": {
+      "x": 1400,
+      "y": 2140,
+      "w": 560,
+      "fill": "orange",
+      "text": "贴纸三个方案（64 格，兴趣的樱粉，和书影同一种画法）：A 卡带（切角的卡带，标签上一颗星）、B 掌机（竖着的掌机，屏幕里一颗心）、C 手柄（圆头手柄，线绕一圈拖着一颗闪光）。\n通用贴纸里已经有一个「游戏」手柄（自建模块能挑），所以 C 画成了不一样的样子；挑 A 或 B 就不会和它撞。原型里默认是 B，每张板的 Tweaks 都能换。\n批了以后在 visual-atelier 的 art.mjs 里定稿、发版、同步。",
+      "page": "x7"
+    },
+    "atlas-how": {
+      "x": 4200,
+      "y": 0,
+      "w": 560,
+      "fill": "orange",
+      "text": "怎么看这一页（Tabloid 1.1.1，第一轮定稿）\n\n· 「走一遍」点 Play：点信封拆开，小报跟着节拍自己翻，碰一下就停；点星星、纸条、卡片弹出原记录；下面一条是上一页、下一页、自动翻、目录、收进抽屉。\n· 右上角的 Tweaks：换配色和明暗、减弱动态效果；「这一年」里能关掉几幕（没数据的幕不出现）、换成「今年没过完」、换一年聊的话题（看通用的泡泡）。\n· 「全部的页摊开看」是同一份页；「泡泡」是聊天页能用的全部 18 个。\n\n数据全是编的。设计的源在 schemes/pomelo/atlas/tabloid/，冻结的快照在 schemes/pomelo/atlas/releases/。",
+      "page": "atlas"
+    },
+    "x8-how": {
+      "x": 4640,
+      "y": 1140,
+      "w": 560,
+      "fill": "orange",
+      "text": "Pomelo v1.0 Phase 7 · 第三轮（11-16）\n\n· 站主挑了树顶 B（木牌）：写下的字两幕定稿成 Tabloid 1.1.1（替掉 1.1.0），同步进了 Pomelo。A（树顶坐着柚子）留在这里，没用。\n· 玩物有志（B · 掌机）和通用幕在 1.1.0 定稿。\n\n数据全是编的。",
+      "page": "x8"
+    }
+  },
+  "designSystems": [
+    {
+      "title": "Pomelo 柚儿园",
+      "namespace": "pomelo",
+      "artifact": "https://claude.ai/artifact/5uaouHwXAXihjxhh9g4vb3",
+      "version": null,
+      "copiedAt": "2026-11-12T09:49:57Z"
+    }
+  ]
+}

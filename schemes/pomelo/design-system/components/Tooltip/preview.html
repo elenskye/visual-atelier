@@ -1,0 +1,21 @@
+<!-- @dsCard group="控件" height=150 subtitle="鼠标提示：纸签挂在一根线上，晃两下停住" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Tooltip</title>
+<style>
+  html, body { margin: 0; }
+  .demo { display: flex; gap: 30px; padding: 20px 40px; }
+  .hold { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="demo">
+  <div class="hold"><button class="pm-btn pm-btn--icon" data-hand="round" data-seed="1420" type="button" aria-label="找东西"><span data-hand="icon" data-size="20" data-seed="61" data-d="M16 16 L20.5 20.5" data-o="10.5 10.5 6"></span></button><span class="pm-tip" role="tooltip"><span class="pm-tip-string"></span><span class="pm-tip-tag">找东西</span></span></div>
+  <div class="hold"><button class="pm-btn pm-btn--icon" data-hand="round" data-seed="1421" type="button" aria-label="置顶"><span data-hand="icon" data-size="20" data-seed="62" data-d="M9 4.5 L15 4.5 M10 4.5 L10 10 L7 14 L17 14 L14 10 L14 4.5 M12 14 L12 20"></span></button><span class="pm-tip" role="tooltip"><span class="pm-tip-string"></span><span class="pm-tip-tag">置顶</span></span></div>
+  <div class="hold"><button class="pm-btn pm-btn--icon" data-hand="round" data-seed="1422" type="button" aria-label="丢掉"><span data-hand="icon" data-size="20" data-seed="63" data-d="M5 7 L19 7 M9.5 7 L9.5 4.5 L14.5 4.5 L14.5 7 M7 7 L8 20 L16 20 L17 7"></span></button><span class="pm-tip" role="tooltip"><span class="pm-tip-string"></span><span class="pm-tip-tag">丢掉</span></span></div>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

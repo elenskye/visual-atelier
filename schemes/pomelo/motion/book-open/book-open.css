@@ -1,0 +1,13 @@
+/* 贴纸簿：从桌面下面歪着滑上来（0.6 秒，带一点回弹），底下一层淡淡的灰；收起时斜着滑回去（.is-closing，0.32 秒）。
+   --pm-book-from 是从多远滑上来（默认 700px，贴纸簿下边伸出画面）。 */
+.pm-scrim.is-open { animation: pm-scrim-in .25s both; }
+.pm-scrim.is-closing { animation: pm-scrim-out .3s both; }
+.pm-book.is-open { animation: pm-book-up .6s cubic-bezier(.25, 1.3, .5, 1) both; }
+.pm-book.is-closing { animation: pm-book-down .32s cubic-bezier(.5, 0, .75, 0) both; pointer-events: none; }
+@keyframes pm-scrim-in { 0% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes pm-scrim-out { 0% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes pm-book-up { 0% { transform: translateY(var(--pm-book-from, 700px)) rotate(5deg); } 100% { transform: none; } }
+@keyframes pm-book-down { 0% { transform: none; } 100% { transform: translateY(calc(var(--pm-book-from, 700px) + 60px)) rotate(4deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-scrim.is-open, .pm-scrim.is-closing, .pm-book.is-open, .pm-book.is-closing { animation: none !important; transition: none !important; }
+}

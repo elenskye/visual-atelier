@@ -1,0 +1,18 @@
+<!-- @dsCard group="图形" height=420 width=1000 subtitle="顶栏三个、界面三个、十种记录、生长阶段、十四个 Agent 图标（静止的样子）" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Icons</title>
+<style>
+  html, body { margin: 0; }
+  .demo { padding: 24px 32px; }
+  .lb { margin: 0 0 8px; font: 700 11px/1 var(--font-sans); letter-spacing: .1em; color: var(--color-text-4); }
+  .row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .ic { color: var(--color-text); } .ic .pith-glyph { width: 44px; height: 44px; } .ic.sm .pith-glyph { width: 36px; height: 36px; } .ic .pith-stage { color: var(--color-accent); } .ic .pith-agent, .ic .pith-agent * { animation: none !important; } .ic .pith-agent--save .sd { opacity: 0; }
+</style>
+</head>
+<body class="pith">
+<div class="demo" style="display:flex;flex-direction:column;gap:16px"><div><p class="lb">顶栏 · 界面</p><div class="row ic"><!-- @include marks/icons/kb.svg --><!-- @include marks/icons/lib.svg --><!-- @include marks/icons/set.svg --><!-- @include marks/icons/new.svg --><!-- @include marks/icons/search.svg --><!-- @include marks/icons/send.svg --></div></div><div><p class="lb">十种记录 · 生长阶段</p><div class="row ic sm"><!-- @include marks/types/full.svg --><!-- @include marks/types/excerpt.svg --><!-- @include marks/types/note.svg --><!-- @include marks/types/web.svg --><!-- @include marks/types/file.svg --><!-- @include marks/types/scan.svg --><!-- @include marks/types/concept.svg --><!-- @include marks/types/report.svg --><!-- @include marks/types/wonder.svg --><!-- @include marks/types/answer.svg --><span style="width:20px"></span><!-- @include marks/stages/seed.svg --><!-- @include marks/stages/sprout.svg --><!-- @include marks/stages/evergreen.svg --></div></div><div><p class="lb">Pith 在想</p><div class="row ic sm"><!-- @include marks/agents/think.svg --><!-- @include marks/agents/search.svg --><!-- @include marks/agents/read.svg --><!-- @include marks/agents/cite.svg --><!-- @include marks/agents/lib.svg --><!-- @include marks/agents/web.svg --><!-- @include marks/agents/compute.svg --><!-- @include marks/agents/skill.svg --><!-- @include marks/agents/write.svg --><!-- @include marks/agents/ask.svg --><!-- @include marks/agents/save.svg --><!-- @include marks/agents/bg.svg --><!-- @include marks/agents/word.svg --><!-- @include marks/agents/done.svg --></div></div></div>
+</body>
+</html>

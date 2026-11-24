@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>visual-atelier</title>
+<link rel="stylesheet" href="/board/board.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-l">
+    <div class="menu-wrap">
+      <button id="canvas-btn" class="title-btn" aria-haspopup="menu" aria-expanded="false">
+        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 5l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/></svg>
+        <span id="canvas-title">画布</span>
+        <svg class="ic sm" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
+      </button>
+      <div id="canvas-menu" class="menu" role="menu" hidden></div>
+    </div>
+  </div>
+  <div class="top-r">
+    <span id="ds-chips" class="ds-chips"></span>
+    <span id="globals" class="globals" role="group" aria-label="所有画板">
+      <button class="pill g-dark" aria-pressed="false" title="所有画板都按深色看（带「dark」参数的画板改参数，其余模拟系统的深色）">深色</button>
+      <button class="pill g-motion" aria-pressed="false" title="所有画板都按「减弱动态效果」看">减弱动效</button>
+    </span>
+    <div class="menu-wrap" id="version-wrap">
+      <button id="version-btn" class="pill" aria-haspopup="menu" aria-expanded="false">最新</button>
+      <div id="version-menu" class="menu right" role="menu" hidden></div>
+    </div>
+    <a id="cloud-link" class="pill" target="_blank" rel="noopener" hidden>在 Claude 打开</a>
+  </div>
+</header>
+<div id="banner" class="banner" role="status" hidden></div>
+
+<section id="dsview" class="dsview" hidden aria-label="Design System">
+  <nav id="ds-nav" class="ds-nav" aria-label="Design System 的分节"></nav>
+  <div id="ds-main" class="ds-main"></div>
+</section>
+
+<section id="motionview" class="dsview motionview" hidden aria-label="Motion Deck">
+  <nav id="mo-nav" class="ds-nav" aria-label="动效零件"></nav>
+  <div id="mo-main" class="ds-main"></div>
+</section>
+
+<section id="checksview" class="dsview checksview" hidden aria-label="Checks">
+  <div id="ck-main" class="ds-main"></div>
+</section>
+
+<main id="stage" class="stage" aria-label="画布">
+  <div id="world" class="world"></div>
+  <div id="strips" class="strips"></div>
+  <iframe id="pageview" class="pageview" title="页面" hidden></iframe>
+
+  <div id="tb-left" class="tb tb-l">
+    <div class="menu-wrap" id="page-wrap">
+      <button id="page-btn" class="page-btn" aria-haspopup="menu" aria-expanded="false"></button>
+      <div id="page-menu" class="menu" role="menu" hidden></div>
+    </div>
+    <span class="sep" id="page-sep"></span>
+    <button class="tool on" data-tool="select" title="选择（V）" aria-label="选择">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4l12 7.5-5.2 1.3 3 5.6-2.3 1.2-3-5.7L6.5 17z"/></svg>
+    </button>
+    <button class="tool" data-tool="hand" title="抓手（H），或按住空格拖" aria-label="抓手">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12V6.5a1.5 1.5 0 0 1 3 0V11m0-5.5V5a1.5 1.5 0 0 1 3 0v6m0-5a1.5 1.5 0 0 1 3 0v6.5m0-3a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1.2a6 6 0 0 1-4.7-2.3L4.6 15a1.6 1.6 0 0 1 2.4-2l1 1"/></svg>
+    </button>
+  </div>
+  <div id="tb-right" class="tb tb-r">
+    <button id="zoom-out" class="tool" title="缩小（−）" aria-label="缩小">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg>
+    </button>
+    <div class="menu-wrap">
+      <button id="zoom-btn" class="zoom-btn" aria-haspopup="menu" aria-expanded="false">100%</button>
+      <div id="zoom-menu" class="menu right" role="menu" hidden>
+        <button role="menuitem" data-zoom="in">放大<kbd>+</kbd></button>
+        <button role="menuitem" data-zoom="out">缩小<kbd>−</kbd></button>
+        <button role="menuitem" data-zoom="fit">适合窗口<kbd>1</kbd></button>
+        <button role="menuitem" data-zoom="1">100%<kbd>0</kbd></button>
+        <button role="menuitem" data-zoom="0.5">50%</button>
+        <button role="menuitem" data-zoom="0.25">25%</button>
+      </div>
+    </div>
+    <button id="zoom-in" class="tool" title="放大（+）" aria-label="放大">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12M12 6v12"/></svg>
+    </button>
+  </div>
+  <p id="empty" class="empty" hidden></p>
+</main>
+
+<section id="focus" class="focus" hidden aria-label="单张铺满">
+  <header class="focus-top">
+    <button id="focus-back" class="tool" title="回到画布（Esc）" aria-label="回到画布">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg>
+    </button>
+    <span id="focus-title" class="focus-title"></span>
+    <button id="focus-more" class="tool more" title="改名、删除这张" aria-label="这张画板：改名、删除" aria-haspopup="menu">⋯</button>
+    <div class="focus-r">
+      <span id="focus-review" class="focus-review">
+        <span id="focus-rv-state" class="rv"></span>
+        <button id="focus-approve" class="pill ok" title="批准这张">批准</button>
+        <button id="focus-reject" class="pill no" title="退回这张，可以写一句原因">退回</button>
+      </span>
+      <div class="menu-wrap">
+        <button id="focus-compare" class="pill" aria-haspopup="menu" aria-expanded="false" title="并排对比：另一张板，或这张的旧版本">对比</button>
+        <div id="compare-menu" class="menu right" role="menu" hidden></div>
+      </div>
+      <button id="focus-prev" class="pill" title="上一张（←）">上一张</button>
+      <button id="focus-next" class="pill" title="下一张（→）">下一张</button>
+      <button id="focus-tweaks" class="pill" aria-pressed="false">Tweaks</button>
+      <button class="pill g-dark" aria-pressed="false" title="所有画板都按深色看">深色</button>
+      <button class="pill g-motion" aria-pressed="false" title="所有画板都按「减弱动态效果」看">减弱动效</button>
+      <span class="focus-zoom" id="focus-zoom" role="group" aria-label="放大缩小">
+        <button id="focus-zoom-out" class="tool" title="缩小（−；⌘ 加滚轮、触控板捏合也行）" aria-label="缩小">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg>
+        </button>
+        <button id="focus-zoom-pct" class="zoom-btn" title="回到 100%（0）">100%</button>
+        <button id="focus-zoom-in" class="tool" title="放大（+）" aria-label="放大">
+          <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12M12 6v12"/></svg>
+        </button>
+      </span>
+      <div class="seg" id="focus-fit" role="group" aria-label="缩放方式">
+        <button data-fit="fill" title="宽度铺满，上下滚动">Fill</button>
+        <button data-fit="fit" class="on" title="整张放进窗口（1）">Fit</button>
+      </div>
+    </div>
+  </header>
+  <div id="focus-body" class="focus-body"></div>
+</section>
+
+<div id="review-wrap" class="menu-wrap review-wrap"><div id="review-menu" class="menu" role="menu" hidden></div></div>
+<div id="act-wrap" class="menu-wrap review-wrap"><div id="act-menu" class="menu act-menu" role="menu" hidden></div></div>
+
+<dialog id="ask" class="ask" aria-labelledby="ask-title">
+  <form method="dialog">
+    <p id="ask-title" class="ask-title"></p>
+    <p id="ask-text" class="ask-text" hidden></p>
+    <input id="ask-input" type="text" maxlength="80" aria-labelledby="ask-title" autocomplete="off" hidden>
+    <div class="row">
+      <button id="ask-cancel" class="pill" value="cancel">取消</button>
+      <button id="ask-ok" class="pill primary" value="ok">确定</button>
+    </div>
+  </form>
+</dialog>
+
+<aside id="panel" class="panel" hidden aria-label="Tweaks">
+  <header class="panel-top">
+    <div>
+      <p class="panel-k">Tweaks</p>
+      <p id="panel-title" class="panel-title"></p>
+    </div>
+    <button id="panel-close" class="tool" aria-label="关掉 Tweaks">
+      <svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+    </button>
+  </header>
+  <div id="panel-body" class="panel-body"></div>
+  <footer class="panel-foot">
+    <p class="hint">改的值记在这台电脑的浏览器里，每张板各记各的，刷新还在；不写回文件。要留下哪一组，复制参数发给 Agent。</p>
+    <div class="row">
+      <button id="panel-reset" class="pill">恢复默认</button>
+      <button id="panel-copy" class="pill">复制参数</button>
+    </div>
+  </footer>
+</aside>
+
+<script type="module" src="/board/board.js"></script>
+</body>
+</html>

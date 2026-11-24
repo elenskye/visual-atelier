@@ -1,0 +1,9 @@
+/* 标签：加的时候从右上拍上去（0.45 秒，弹性）；去掉时掀起一角往右上撕走（0.38 秒）。 */
+.pm-tag.is-in { animation: pm-tag-slap .45s cubic-bezier(.3,1.6,.5,1) both; }
+.pm-tag.is-leaving { animation: pm-tag-peel .38s ease-in both; pointer-events: none; }
+@keyframes pm-tag-slap { 0% { transform: translate(10px, -24px) rotate(14deg) scale(1.4); opacity: 0; } 60% { transform: rotate(-4deg) scale(.94); opacity: 1; } 100% { transform: none; } }
+@keyframes pm-tag-peel { 0% { transform: none; } 35% { transform: translateY(-6px) rotate(-10deg) scale(1.06); } 100% { transform: translate(30px, -40px) rotate(30deg); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-tag.is-in { animation: none; }
+  .pm-tag.is-leaving { animation: none; opacity: 0; }
+}

@@ -1,0 +1,6 @@
+/* 输入框：没有多余的方框；聚焦时手画的边描粗（Design System 已经写了，0.18 秒），框里的小图标晃一下（0.6 秒，只晃一次）。 */
+.pm-field:focus-within .pm-field-icon, .pm-field.is-focus .pm-field-icon { animation: pm-pencil .6s ease-in-out; }
+@keyframes pm-pencil { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-14deg) translateY(-1px); } 70% { transform: rotate(8deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-field:focus-within .pm-field-icon, .pm-field.is-focus .pm-field-icon { animation: none; }
+}

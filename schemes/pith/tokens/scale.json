@@ -1,0 +1,54 @@
+{
+  "$note": "非颜色 token：字、字号、间距、圆角、宽、阴影。值来自 Pith Explore EX7–EX11 的花园笔记（站主 11-23 定的框架和对话页）。",
+  "width": {
+    "content": "640px",
+    "sidenote": "270px",
+    "composer": "720px"
+  },
+  "space": {
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "5": "24px",
+    "6": "32px",
+    "7": "48px"
+  },
+  "radius": {
+    "s": "6px",
+    "m": "8px",
+    "l": "14px",
+    "pill": "999px"
+  },
+  "font": {
+    "serif": "\"Newsreader\", \"Noto Serif SC\", \"Songti SC\", serif",
+    "sans": "\"Lato\", \"Noto Sans SC\", \"PingFang SC\", sans-serif",
+    "mono": "ui-monospace, \"SF Mono\", Menlo, monospace"
+  },
+  "text": {
+    "tiny": "11px",
+    "small": "12.5px",
+    "ui": "13.5px",
+    "body": "17px",
+    "lead": "24px",
+    "title": "32px",
+    "display": "60px"
+  },
+  "leading": {
+    "body": "1.9",
+    "ui": "1.5",
+    "title": "1.15"
+  },
+  "shadow": {
+    "sm": {
+      "light": ".2px .2px .8px -10px rgb(40 10 0 / .02), .8px .8px 3.8px -10px rgb(40 10 0 / .024), 2.5px 2.5px 12.5px -10px rgb(40 10 0 / .035), 6px 6px 30px -10px rgb(40 10 0 / .05)",
+      "dark": "0 1px 2px rgb(0 0 0 / .4)",
+      "use": "卡片、输入框"
+    },
+    "lg": {
+      "light": "2.4px 2.2px 5.5px -3px rgb(30 10 10 / .05), 8px 7.4px 18.5px -3px rgb(30 10 10 / .07), 36px 33px 83px -3px rgb(30 10 10 / .2)",
+      "dark": "0 18px 50px -12px rgb(0 0 0 / .8)",
+      "use": "右侧面板、弹层、⌘K、悬停抬起的卡片"
+    }
+  }
+}

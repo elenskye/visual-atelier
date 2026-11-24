@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>C 涟漪 · 放进网站</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&amp;family=Noto+Serif+SC:wght@400&amp;family=Source+Serif+4:opsz,wght@8..60,400&amp;family=Work+Sans:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#28625d}a:hover{color:#bf2929}
+.ln{fill:none;stroke:#2d6f6a;stroke-linecap:round;stroke-linejoin:round}
+.ln,.mk{stroke-dasharray:1;stroke-dashoffset:0}
+.em{fill:#bf2929;opacity:0;transform-box:fill-box;transform-origin:center}
+.fl{transform-box:fill-box}
+.hov:hover .ln,.hov:hover .mk{animation:vd .8s cubic-bezier(.3,.6,.2,1) both;animation-delay:calc(var(--i)*110ms)}
+.hov:hover .fl{animation:vf .7s cubic-bezier(.3,.6,.2,1) both;animation-delay:calc(var(--i)*90ms)}
+.hov:hover .em{animation:va 1.2s both}
+.loop .ln,.loop .mk{animation:vdl 3.6s cubic-bezier(.3,.6,.2,1) infinite;animation-delay:calc(var(--i)*110ms)}
+.loop .fl{animation:vfl 3.6s cubic-bezier(.3,.6,.2,1) infinite;animation-delay:calc(var(--i)*90ms)}
+.loop .em{animation:val 3.6s infinite}
+@keyframes vd{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes vf{from{opacity:0;transform:translate(var(--dx),var(--dy))}to{opacity:1;transform:none}}
+@keyframes va{0%,65%{opacity:0;transform:scale(.3)}85%{opacity:1;transform:scale(1.25)}100%{opacity:1;transform:scale(1)}}
+@keyframes vdl{0%{stroke-dashoffset:1}28%,100%{stroke-dashoffset:0}}
+@keyframes vfl{0%{opacity:0;transform:translate(var(--dx),var(--dy))}25%,100%{opacity:1;transform:none}}
+@keyframes val{0%,24%{opacity:0;transform:scale(.3)}32%{opacity:1;transform:scale(1.25)}38%,92%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+.cell{transition:background-color 180ms}
+.cell:hover{background:#fdf9f0}
+.card{border:1px solid transparent;transition:transform 180ms,background-color 180ms,box-shadow 180ms,border-color 160ms}
+.card h3{transition:color 160ms}
+.card:hover{background:#fdf9f0;border-color:#e6dfd3;box-shadow:0 18px 42px rgba(27,29,28,.08);transform:translateY(-3px)}
+.card:hover h3{color:#bf2929}
+@media (prefers-reduced-motion:reduce){.ln,.mk,.fl,.em{animation:none!important}}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1560px; box-sizing: border-box; background: #f6efe2; color: #1b1d1c; font-family: 'Work Sans', 'Noto Sans SC', sans-serif">
+  <header style="height: 88px; box-sizing: border-box; padding: 0 72px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd2bf">
+    <a href="#" aria-label="首页" style="display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; color: #28625d">
+      <svg viewBox="0 0 64 64" width="36" height="36" aria-hidden="true"><path d="M10 54c14-4 8-16 18-22s20-4 20-16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.4" stroke-dasharray="1 8.8"/><circle cx="49" cy="12" r="6.8" fill="none" stroke="currentColor" stroke-width="4.4"/></svg>
+    </a>
+    <nav style="display: flex; gap: 40px; font-size: 17px">
+      <a href="#" aria-current="page" style="color: #bf2929; text-decoration: none; border-bottom: 1.5px solid #2d6f6a; padding-bottom: 6px">呦呦漫游</a>
+      <a href="#" style="color: #686359; text-decoration: none; padding-bottom: 6px">职业</a>
+      <a href="#" style="color: #686359; text-decoration: none; padding-bottom: 6px">当下</a>
+      <a href="#" style="color: #686359; text-decoration: none; padding-bottom: 6px">关于我</a>
+    </nav>
+    <div style="width: 44px"></div>
+  </header>
+  <main style="padding: 72px 144px 96px; display: flex; flex-direction: column; gap: 56px">
+    <section style="position: relative; height: 230px">
+      <img src="/_blob/d05f210479ee009b9cd876eeb590bf52" alt="" style="position: absolute; right: -24px; top: -16px; width: 560px; height: 220px">
+      <div style="position: relative; display: flex; flex-direction: column; gap: 20px">
+        <div style="font-size: 15px; line-height: 1.6; color: #2d6f6a; text-transform: uppercase">Wander</div>
+        <div style="display: flex; align-items: center; gap: 20px">
+          <h1 style="margin: 0; font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-weight: 400; font-size: 67px; line-height: 0.95">呦呦漫游</h1>
+          <span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 32px; border: 1.5px solid #bf2929; border-radius: 999px; color: #bf2929; font-family: ui-monospace, monospace; font-size: 15px">09</span>
+        </div>
+        <p style="margin: 0; font-size: 24px; line-height: 1.75; color: #686359">这里收纳写作、项目、画作和一些我想要做出的探索</p>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <div style="font-size: 13px; color: #2d6f6a">分类图形</div>
+      <div style="display: flex; gap: 24px">
+        <div class="cell hov" style="display: flex; flex-direction: column; align-items: center; gap: 10px; width: 120px; padding: 18px 0 14px; border-radius: 8px">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><path class="ln" pathLength="1" d="M48,35C48,37 47,39 46,40C45,41 44,42 43,43C42,44 41,45 39,46C38,46 37,47 35,48C34,48 33,48 32,48C31,49 29,48 28,48C27,48 26,48 25,47C23,47 22,46 21,45C20,44 19,43 19,42C18,41 18,40 17,39C17,37 17,36 17,35C17,34 17,33 17,31C17,30 18,29 19,28C19,27 20,25 21,24C21,23 22,22 23,21C24,19 26,18 27,17C29,17 31,16 33,16C35,15 37,16 39,16C41,16 43,17 44,18C46,20 47,22 48,24C49,25 49,27 49,29C49,31 49,33 48,35Z" stroke-width="1.6" style="--i:3"/><path class="ln" pathLength="1" d="M46,34C45,35 45,37 44,38C43,39 42,40 41,40C40,41 39,42 38,42C37,43 37,43 36,44C35,44 34,44 33,44C32,44 31,44 30,44C29,44 28,44 27,43C26,43 25,42 24,42C24,41 23,40 23,39C22,39 21,38 21,37C21,36 21,35 21,34C21,33 21,32 21,31C21,30 22,29 22,28C23,27 23,26 24,25C25,24 25,23 26,23C27,22 28,21 29,20C30,20 32,19 33,19C35,18 36,18 38,19C39,19 41,20 42,21C44,22 45,23 45,25C46,26 47,28 47,29C47,31 46,32 46,34Z" stroke-width="1.6" style="--i:2"/><path class="ln" pathLength="1" d="M43,33C43,34 42,35 41,36C41,36 40,37 40,37C39,38 38,38 38,39C37,39 36,40 35,40C35,40 34,40 33,40C33,40 32,40 31,40C31,40 30,40 29,40C28,39 28,39 27,38C27,38 27,37 26,37C26,36 26,35 25,35C25,34 25,33 25,33C25,32 25,31 25,30C25,30 26,29 26,28C26,28 27,27 27,26C27,26 28,25 29,25C29,24 30,23 31,23C32,22 33,22 34,22C35,21 37,21 38,22C39,22 40,22 41,23C41,24 42,25 43,26C43,27 44,28 43,29C43,31 43,32 43,33Z" stroke-width="1.6" style="--i:1"/><path class="ln" pathLength="1" d="M40,32C40,32 40,33 40,33C39,34 39,34 38,34C38,34 38,35 37,35C37,35 36,36 36,36C35,36 35,36 34,36C34,36 33,36 33,36C33,36 32,36 32,36C31,35 31,35 31,35C30,35 30,35 30,34C29,34 29,33 29,33C29,33 29,32 29,32C29,31 29,31 29,30C29,30 29,29 30,29C30,28 30,28 30,28C30,27 31,27 31,27C32,26 32,25 33,25C33,25 34,25 35,24C35,24 36,24 37,24C38,25 38,25 39,26C39,26 40,27 40,27C40,28 41,29 41,29C41,30 40,31 40,32Z" stroke-width="1.6" style="--i:0"/><circle class="em" cx="33" cy="31" r="3.2"/></svg>
+          <span style="font-size: 14px; color: #686359">写作</span>
+        </div>
+        <div class="cell hov" style="display: flex; flex-direction: column; align-items: center; gap: 10px; width: 120px; padding: 18px 0 14px; border-radius: 8px">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><path class="ln" pathLength="1" d="M53,36C54,38 54,41 54,43C54,45 53,47 52,49C51,51 49,52 47,53C45,54 42,54 40,55C38,55 36,54 34,54C33,54 31,54 29,54C28,54 26,55 23,55C21,54 19,54 17,53C15,52 13,51 12,49C11,47 10,45 10,43C10,40 10,38 11,36C12,34 13,32 14,31C15,29 16,28 17,26C18,25 18,23 19,21C20,20 21,18 23,16C24,15 26,13 29,13C31,12 34,12 36,12C38,13 40,15 41,16C43,18 44,20 45,21C46,23 47,25 47,26C48,28 49,29 50,31C51,32 52,34 53,36Z" stroke-width="1.6" style="--i:3"/><path class="ln" pathLength="1" d="M48,34C49,36 50,38 50,39C50,41 49,43 48,44C47,45 45,46 44,47C42,48 40,48 39,49C37,49 36,49 34,48C33,48 31,48 30,48C29,48 27,49 25,48C24,48 22,48 21,47C19,47 17,46 16,44C15,43 15,41 15,39C15,38 15,36 16,34C16,33 17,31 18,30C19,29 19,27 20,26C21,25 21,24 22,23C23,21 24,20 25,19C26,17 28,16 29,15C31,15 33,15 35,15C36,16 38,17 39,18C41,19 41,21 42,23C43,24 43,25 44,26C45,28 46,28 46,30C47,31 48,33 48,34Z" stroke-width="1.6" style="--i:2"/><path class="ln" pathLength="1" d="M44,32C44,33 45,35 45,36C45,37 44,39 43,40C43,41 42,41 40,42C39,42 38,43 37,43C36,43 35,42 34,42C33,42 32,42 31,42C29,42 28,43 27,43C26,43 25,42 24,42C23,41 21,41 21,40C20,39 19,37 19,36C19,35 19,33 20,32C20,31 21,30 22,29C23,28 23,28 23,27C24,26 24,25 25,24C25,23 26,21 27,21C28,20 29,19 30,19C31,18 33,18 34,18C35,19 36,20 37,21C38,22 39,23 39,24C40,25 40,25 41,26C41,27 42,28 42,29C43,30 43,31 44,32Z" stroke-width="1.6" style="--i:1"/><path class="ln" pathLength="1" d="M39,30C40,31 40,32 40,33C40,33 40,34 39,35C39,35 38,36 37,36C37,37 36,36 35,36C34,36 34,36 33,36C32,36 32,36 31,36C30,37 30,37 29,36C29,36 28,36 27,36C26,36 26,35 25,35C25,34 24,33 24,32C24,31 24,31 25,30C25,30 26,29 26,28C26,28 26,27 27,27C27,26 27,25 28,25C28,24 28,23 29,23C29,22 30,22 31,22C31,21 32,21 33,21C34,22 35,23 35,23C36,24 36,24 36,25C37,26 37,26 37,26C38,27 38,27 38,28C39,29 39,29 39,30Z" stroke-width="1.6" style="--i:0"/><circle class="em" cx="32" cy="28" r="3.2"/></svg>
+          <span style="font-size: 14px; color: #686359">项目</span>
+        </div>
+        <div class="cell hov" style="display: flex; flex-direction: column; align-items: center; gap: 10px; width: 120px; padding: 18px 0 14px; border-radius: 8px">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><path class="ln" pathLength="1" d="M53,32C53,34 54,36 53,39C53,41 53,43 52,45C51,47 50,49 48,50C46,51 43,52 41,52C39,53 37,53 35,53C33,53 31,53 29,53C27,53 25,54 22,53C20,53 18,52 16,51C15,49 13,47 13,45C12,43 12,40 11,38C11,36 11,34 11,32C11,30 11,28 11,26C11,24 11,21 12,19C12,17 14,15 16,14C18,13 21,12 23,12C25,11 27,11 29,11C31,11 33,11 35,11C37,11 40,11 42,11C44,12 46,12 48,14C50,15 51,17 51,19C52,22 52,24 53,26C53,28 53,30 53,32Z" stroke-width="1.6" style="--i:3"/><path class="ln" pathLength="1" d="M49,32C49,34 49,36 49,38C49,39 49,41 49,43C48,44 47,46 45,47C44,48 42,48 40,48C38,48 37,48 35,49C33,49 32,49 30,49C29,49 27,49 25,49C24,49 22,48 20,47C19,46 18,44 17,42C17,41 16,39 16,37C16,35 16,34 16,33C16,31 16,29 16,28C16,26 16,24 17,22C18,21 19,19 20,18C22,17 24,17 25,16C27,16 28,16 30,16C32,16 33,15 35,15C37,15 39,16 40,16C42,16 44,17 45,18C46,19 47,21 48,22C48,24 48,26 49,28C49,29 49,31 49,32Z" stroke-width="1.6" style="--i:2"/><path class="ln" pathLength="1" d="M45,33C45,34 46,35 46,36C46,37 45,39 45,40C44,41 43,43 42,43C41,44 39,44 38,44C37,44 36,45 35,45C34,45 33,45 31,45C30,45 29,45 28,45C26,45 25,44 24,43C23,43 22,41 22,40C22,39 22,38 22,36C22,35 21,34 21,33C21,32 21,30 21,29C21,28 21,27 22,25C22,24 23,23 24,23C25,22 27,22 28,21C29,21 30,21 31,21C32,21 34,21 35,21C36,21 37,21 39,21C40,21 41,22 42,22C43,23 44,24 45,26C45,27 45,28 45,30C45,31 45,32 45,33Z" stroke-width="1.6" style="--i:1"/><path class="ln" pathLength="1" d="M41,33C41,34 42,34 42,35C41,36 41,37 41,38C41,38 40,39 40,40C39,40 38,40 37,40C36,40 36,41 35,41C34,41 33,41 33,41C32,41 31,41 30,41C30,40 29,40 28,40C27,39 27,38 27,38C27,37 27,36 27,35C26,35 26,34 26,33C26,33 26,32 26,31C26,30 27,29 27,29C27,28 28,27 28,27C29,26 30,26 30,26C31,26 32,26 33,26C33,26 34,26 35,26C36,26 36,26 37,26C38,26 39,26 40,26C40,27 41,28 41,29C41,30 41,30 41,31C41,32 41,32 41,33Z" stroke-width="1.6" style="--i:0"/><circle class="em" cx="33" cy="33" r="3.2"/></svg>
+          <span style="font-size: 14px; color: #686359">画廊</span>
+        </div>
+        <div class="cell hov" style="display: flex; flex-direction: column; align-items: center; gap: 10px; width: 120px; padding: 18px 0 14px; border-radius: 8px">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><path class="ln" pathLength="1" d="M54,32C54,34 54,36 53,38C52,40 50,41 49,43C47,44 45,45 43,45C42,46 40,46 38,46C37,46 36,46 34,46C33,46 31,46 30,46C29,46 27,46 26,46C24,46 22,46 20,45C19,45 17,44 15,43C14,42 12,40 11,38C10,36 10,34 10,32C10,30 10,28 11,26C12,24 14,22 15,21C17,20 19,19 21,19C23,19 25,19 26,19C28,19 29,20 30,20C31,20 33,20 34,20C35,20 36,19 38,19C40,19 41,19 43,19C45,20 47,20 49,21C51,22 52,24 53,26C54,28 54,30 54,32Z" stroke-width="1.6" style="--i:3"/><path class="ln" pathLength="1" d="M50,32C50,34 49,36 49,37C48,39 46,40 45,41C44,42 42,43 41,43C40,43 38,43 37,43C36,43 35,43 34,43C32,43 32,43 30,43C29,43 28,43 27,43C26,43 24,43 23,43C22,42 20,42 19,41C18,40 16,39 16,37C15,36 14,34 14,33C14,31 15,29 16,28C16,26 18,25 19,24C20,23 22,22 23,22C25,22 26,22 27,22C28,22 29,23 30,23C32,23 33,23 34,23C35,23 35,22 37,22C38,22 40,22 41,22C43,22 44,23 45,24C46,25 48,26 48,28C49,29 49,31 50,32Z" stroke-width="1.6" style="--i:2"/><path class="ln" pathLength="1" d="M45,33C45,34 44,35 44,36C43,37 43,39 42,39C41,40 39,40 38,41C37,41 36,41 35,41C35,41 34,41 33,41C33,41 32,41 31,41C30,41 29,41 28,41C28,41 26,41 25,41C25,40 24,40 23,39C22,38 21,38 20,37C19,36 19,34 19,33C19,32 20,30 20,29C21,28 22,27 23,27C23,26 24,26 26,26C27,26 28,26 29,26C30,26 31,26 31,26C32,26 32,26 33,26C34,26 34,25 35,25C36,25 38,25 39,25C40,26 41,26 41,27C42,28 44,29 44,30C45,31 45,32 45,33Z" stroke-width="1.6" style="--i:1"/><path class="ln" pathLength="1" d="M40,33C40,34 40,35 39,36C39,36 38,37 38,37C37,38 37,38 36,38C36,38 35,38 34,38C34,38 33,39 33,39C32,39 32,38 31,38C31,38 30,38 30,38C29,38 29,38 28,38C27,38 27,38 26,37C26,37 25,36 25,36C24,35 24,34 24,33C24,33 24,32 25,31C25,31 25,30 26,30C26,29 27,29 28,29C29,29 29,29 30,29C30,29 31,29 32,29C32,29 32,29 33,29C33,29 34,29 34,29C35,29 36,29 36,29C37,29 37,29 38,30C38,30 39,31 39,31C40,32 40,33 40,33Z" stroke-width="1.6" style="--i:0"/><circle class="em" cx="32" cy="33" r="3.2"/></svg>
+          <span style="font-size: 14px; color: #686359">创作</span>
+        </div>
+        <div class="cell hov" style="display: flex; flex-direction: column; align-items: center; gap: 10px; width: 120px; padding: 18px 0 14px; border-radius: 8px">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><path class="ln" pathLength="1" d="M57,33C57,35 57,38 56,40C55,42 53,45 51,46C49,47 46,48 44,48C42,49 41,50 39,51C37,51 36,53 34,54C32,54 30,55 28,54C26,54 24,53 22,52C21,51 19,50 18,48C16,47 15,46 13,45C12,43 10,41 9,40C8,38 9,35 9,33C9,31 8,29 9,26C9,24 9,21 10,19C11,17 12,15 14,14C16,12 19,12 21,12C24,12 27,13 29,14C31,14 32,16 33,16C35,17 36,16 38,17C40,17 43,17 44,18C46,19 48,20 49,21C51,23 53,25 54,27C55,28 57,31 57,33Z" stroke-width="1.6" style="--i:4"/><path class="ln" pathLength="1" d="M53,32C54,34 53,37 53,39C52,40 50,42 48,43C47,44 44,45 43,45C41,46 40,46 39,47C37,48 36,49 34,50C33,51 31,50 29,50C28,50 26,49 25,48C24,47 22,46 21,45C20,44 18,43 17,42C16,41 15,39 14,38C13,36 13,34 13,32C13,31 13,29 13,27C14,25 13,23 14,21C15,20 16,17 17,16C19,15 22,15 24,15C26,15 28,16 30,17C32,17 33,18 34,19C35,19 37,19 38,19C40,19 41,19 43,20C44,21 45,22 47,23C48,24 50,25 51,27C52,29 53,31 53,32Z" stroke-width="1.6" style="--i:3"/><path class="ln" pathLength="1" d="M50,32C50,34 50,35 49,37C49,38 47,39 45,40C44,41 43,42 42,42C40,43 39,43 38,44C37,44 36,45 35,46C34,46 32,46 31,46C29,46 28,45 27,44C26,44 25,43 24,42C23,41 22,40 21,39C20,38 19,38 19,36C18,35 18,33 18,32C18,30 18,29 18,27C18,26 18,25 19,23C20,22 20,20 22,19C23,18 25,18 26,18C28,18 30,19 31,19C32,20 33,21 34,21C35,22 36,21 38,22C39,22 40,22 41,22C43,23 44,24 45,24C46,25 47,26 48,27C49,29 49,30 50,32Z" stroke-width="1.6" style="--i:2"/><path class="ln" pathLength="1" d="M46,32C46,33 46,34 46,35C45,36 44,37 43,37C42,38 41,38 40,39C39,39 38,40 37,40C37,40 36,41 35,41C34,42 33,42 32,42C31,42 30,41 29,40C28,40 28,40 27,39C27,38 26,38 25,37C24,36 23,35 23,35C22,34 23,32 23,31C23,30 23,29 23,28C23,27 23,26 23,25C24,24 24,23 25,22C26,21 28,21 29,21C30,21 31,22 32,23C33,23 34,23 35,23C35,24 36,24 37,24C38,24 39,24 40,24C41,25 42,25 42,26C43,27 44,27 45,28C45,29 46,30 46,32Z" stroke-width="1.6" style="--i:1"/><path class="ln" pathLength="1" d="M42,31C42,32 42,33 42,33C42,34 41,35 40,35C40,36 39,36 39,36C38,36 37,36 37,37C36,37 36,37 35,37C35,37 34,38 33,38C33,37 32,37 32,37C31,37 30,36 30,36C29,36 29,35 29,35C29,34 28,34 28,33C27,33 27,32 27,31C27,30 27,30 27,29C28,29 28,27 28,27C28,26 28,25 29,25C29,24 30,24 31,24C32,24 33,25 34,25C34,25 35,26 35,26C36,26 36,26 37,26C37,26 38,26 38,26C39,27 39,27 40,27C40,28 41,28 42,29C42,29 42,30 42,31Z" stroke-width="1.6" style="--i:0"/><circle class="em" cx="36" cy="30" r="3.2"/></svg>
+          <span style="font-size: 14px; color: #686359">游记</span>
+        </div>
+        <div class="cell hov" style="display: flex; flex-direction: column; align-items: center; gap: 10px; width: 120px; padding: 18px 0 14px; border-radius: 8px">
+          <svg viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><path class="ln" pathLength="1" d="M54,32C54,34 54,36 53,38C53,40 51,42 50,44C49,46 48,47 47,49C45,50 43,51 41,52C39,53 37,54 35,54C33,54 31,54 29,54C27,53 25,53 23,52C21,51 19,50 18,49C16,47 15,45 13,44C12,42 12,40 11,38C10,36 10,34 10,32C10,30 10,28 11,26C12,24 13,22 14,20C15,18 16,17 18,15C19,14 21,13 23,12C25,11 27,10 29,10C31,10 33,10 35,10C37,11 39,11 41,12C43,13 45,14 47,15C48,17 50,19 51,20C52,22 53,24 53,26C54,28 54,30 54,32Z" stroke-width="1.6" style="--i:3"/><path class="ln" pathLength="1" d="M50,31C50,33 50,35 49,36C49,38 48,39 48,41C47,42 45,43 44,44C43,46 42,46 40,47C39,48 37,48 35,48C34,49 32,49 30,48C29,48 27,48 26,47C24,46 23,46 22,45C21,43 19,42 18,41C18,39 17,38 16,36C16,35 16,33 16,31C16,30 16,28 16,27C17,25 17,23 18,22C19,21 21,20 22,19C23,17 24,16 26,16C27,15 29,15 31,15C32,14 34,14 35,14C37,15 39,15 40,16C42,17 43,17 44,18C46,20 47,21 47,22C48,23 49,25 49,27C50,28 50,30 50,31Z" stroke-width="1.6" style="--i:2"/><path class="ln" pathLength="1" d="M46,31C46,32 46,33 46,34C45,35 45,37 44,38C44,39 43,40 42,40C41,41 40,42 39,42C38,43 37,43 36,43C35,43 33,43 32,43C31,43 30,43 29,42C28,42 26,41 25,40C25,40 24,39 23,38C23,37 22,36 22,35C22,33 21,32 21,31C21,30 22,29 22,28C22,26 23,25 24,24C24,23 25,22 26,21C27,21 27,20 28,19C30,19 31,19 32,18C33,18 35,18 36,18C37,19 38,19 39,19C40,20 41,21 42,22C43,22 44,23 44,24C45,25 46,26 46,27C46,28 46,30 46,31Z" stroke-width="1.6" style="--i:1"/><path class="ln" pathLength="1" d="M42,30C42,31 43,32 42,32C42,33 42,34 41,35C41,35 40,36 40,36C39,37 39,37 38,37C37,38 36,38 36,38C35,38 34,38 34,38C33,38 32,38 32,38C31,37 30,37 29,36C29,36 28,35 28,35C28,34 28,33 27,32C27,32 27,31 27,30C27,29 27,29 27,28C28,27 28,27 28,26C29,26 29,25 30,24C30,24 31,23 32,23C32,23 33,22 34,22C34,22 35,22 36,22C36,23 37,23 38,23C39,23 39,24 40,25C40,25 41,25 42,26C42,27 42,27 42,28C42,29 42,30 42,30Z" stroke-width="1.6" style="--i:0"/><circle class="em" cx="35" cy="30" r="3.2"/></svg>
+          <span style="font-size: 14px; color: #686359">其他</span>
+        </div>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <div style="font-size: 13px; color: #2d6f6a">无封面卡片 · 空状态</div>
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; align-items: start">
+        <a class="card hov" href="#" style="display: flex; gap: 16px; align-items: flex-start; padding: 24px; border-radius: 8px; color: inherit; text-decoration: none">
+          <svg viewBox="0 0 64 64" width="44" height="44" aria-hidden="true" style="flex-shrink: 0"><path class="ln" pathLength="1" d="M48,35C48,37 47,39 46,40C45,41 44,42 43,43C42,44 41,45 39,46C38,46 37,47 35,48C34,48 33,48 32,48C31,49 29,48 28,48C27,48 26,48 25,47C23,47 22,46 21,45C20,44 19,43 19,42C18,41 18,40 17,39C17,37 17,36 17,35C17,34 17,33 17,31C17,30 18,29 19,28C19,27 20,25 21,24C21,23 22,22 23,21C24,19 26,18 27,17C29,17 31,16 33,16C35,15 37,16 39,16C41,16 43,17 44,18C46,20 47,22 48,24C49,25 49,27 49,29C49,31 49,33 48,35Z" stroke-width="1.6" style="--i:3"/><path class="ln" pathLength="1" d="M46,34C45,35 45,37 44,38C43,39 42,40 41,40C40,41 39,42 38,42C37,43 37,43 36,44C35,44 34,44 33,44C32,44 31,44 30,44C29,44 28,44 27,43C26,43 25,42 24,42C24,41 23,40 23,39C22,39 21,38 21,37C21,36 21,35 21,34C21,33 21,32 21,31C21,30 22,29 22,28C23,27 23,26 24,25C25,24 25,23 26,23C27,22 28,21 29,20C30,20 32,19 33,19C35,18 36,18 38,19C39,19 41,20 42,21C44,22 45,23 45,25C46,26 47,28 47,29C47,31 46,32 46,34Z" stroke-width="1.6" style="--i:2"/><path class="ln" pathLength="1" d="M43,33C43,34 42,35 41,36C41,36 40,37 40,37C39,38 38,38 38,39C37,39 36,40 35,40C35,40 34,40 33,40C33,40 32,40 31,40C31,40 30,40 29,40C28,39 28,39 27,38C27,38 27,37 26,37C26,36 26,35 25,35C25,34 25,33 25,33C25,32 25,31 25,30C25,30 26,29 26,28C26,28 27,27 27,26C27,26 28,25 29,25C29,24 30,23 31,23C32,22 33,22 34,22C35,21 37,21 38,22C39,22 40,22 41,23C41,24 42,25 43,26C43,27 44,28 43,29C43,31 43,32 43,33Z" stroke-width="1.6" style="--i:1"/><path class="ln" pathLength="1" d="M40,32C40,32 40,33 40,33C39,34 39,34 38,34C38,34 38,35 37,35C37,35 36,36 36,36C35,36 35,36 34,36C34,36 33,36 33,36C33,36 32,36 32,36C31,35 31,35 31,35C30,35 30,35 30,34C29,34 29,33 29,33C29,33 29,32 29,32C29,31 29,31 29,30C29,30 29,29 30,29C30,28 30,28 30,28C30,27 31,27 31,27C32,26 32,25 33,25C33,25 34,25 35,24C35,24 36,24 37,24C38,25 38,25 39,26C39,26 40,27 40,27C40,28 41,29 41,29C41,30 40,31 40,32Z" stroke-width="1.6" style="--i:0"/><circle class="em" cx="33" cy="31" r="3.2"/></svg>
+          <div style="display: flex; flex-direction: column; gap: 12px">
+            <h3 style="margin: 0; font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-weight: 400; font-size: 23px; line-height: 1.25">发明不等于创新</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #686359">发明不等于创新。很多真正改变历史进程的时刻，不在于某个概念第一次被做出来，而在于它第一次被系统化、标准化、嵌入经济与社会结构之中，……</p>
+            <div style="font-size: 13px; color: #686359"><span style="color: #2d6f6a">写作</span><span style="color: #ddd2bf"> · </span>中文<span style="color: #ddd2bf"> · </span>2025年11月</div>
+          </div>
+        </a>
+        <a class="card loop" href="#" style="display: flex; gap: 16px; align-items: flex-start; padding: 24px; border-radius: 8px; color: inherit; text-decoration: none; background: #fdf9f0; border-color: #e6dfd3; box-shadow: 0 18px 42px rgba(27,29,28,.08); transform: translateY(-3px)">
+          <svg viewBox="0 0 64 64" width="44" height="44" aria-hidden="true" style="flex-shrink: 0"><path class="ln" pathLength="1" d="M48,35C48,37 47,39 46,40C45,41 44,42 43,43C42,44 41,45 39,46C38,46 37,47 35,48C34,48 33,48 32,48C31,49 29,48 28,48C27,48 26,48 25,47C23,47 22,46 21,45C20,44 19,43 19,42C18,41 18,40 17,39C17,37 17,36 17,35C17,34 17,33 17,31C17,30 18,29 19,28C19,27 20,25 21,24C21,23 22,22 23,21C24,19 26,18 27,17C29,17 31,16 33,16C35,15 37,16 39,16C41,16 43,17 44,18C46,20 47,22 48,24C49,25 49,27 49,29C49,31 49,33 48,35Z" stroke-width="1.6" style="--i:3"/><path class="ln" pathLength="1" d="M46,34C45,35 45,37 44,38C43,39 42,40 41,40C40,41 39,42 38,42C37,43 37,43 36,44C35,44 34,44 33,44C32,44 31,44 30,44C29,44 28,44 27,43C26,43 25,42 24,42C24,41 23,40 23,39C22,39 21,38 21,37C21,36 21,35 21,34C21,33 21,32 21,31C21,30 22,29 22,28C23,27 23,26 24,25C25,24 25,23 26,23C27,22 28,21 29,20C30,20 32,19 33,19C35,18 36,18 38,19C39,19 41,20 42,21C44,22 45,23 45,25C46,26 47,28 47,29C47,31 46,32 46,34Z" stroke-width="1.6" style="--i:2"/><path class="ln" pathLength="1" d="M43,33C43,34 42,35 41,36C41,36 40,37 40,37C39,38 38,38 38,39C37,39 36,40 35,40C35,40 34,40 33,40C33,40 32,40 31,40C31,40 30,40 29,40C28,39 28,39 27,38C27,38 27,37 26,37C26,36 26,35 25,35C25,34 25,33 25,33C25,32 25,31 25,30C25,30 26,29 26,28C26,28 27,27 27,26C27,26 28,25 29,25C29,24 30,23 31,23C32,22 33,22 34,22C35,21 37,21 38,22C39,22 40,22 41,23C41,24 42,25 43,26C43,27 44,28 43,29C43,31 43,32 43,33Z" stroke-width="1.6" style="--i:1"/><path class="ln" pathLength="1" d="M40,32C40,32 40,33 40,33C39,34 39,34 38,34C38,34 38,35 37,35C37,35 36,36 36,36C35,36 35,36 34,36C34,36 33,36 33,36C33,36 32,36 32,36C31,35 31,35 31,35C30,35 30,35 30,34C29,34 29,33 29,33C29,33 29,32 29,32C29,31 29,31 29,30C29,30 29,29 30,29C30,28 30,28 30,28C30,27 31,27 31,27C32,26 32,25 33,25C33,25 34,25 35,24C35,24 36,24 37,24C38,25 38,25 39,26C39,26 40,27 40,27C40,28 41,29 41,29C41,30 40,31 40,32Z" stroke-width="1.6" style="--i:0"/><circle class="em" cx="33" cy="31" r="3.2"/></svg>
+          <div style="display: flex; flex-direction: column; gap: 12px">
+            <h3 style="margin: 0; font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-weight: 400; font-size: 23px; line-height: 1.25; color: #bf2929">AI 能够取代教师吗</h3>
+            <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #686359">首先，技术层面是可行的，“个性化教学”、“情感识别与响应”和“知识传递”……</p>
+            <div style="font-size: 13px; color: #686359"><span style="color: #2d6f6a">写作</span><span style="color: #ddd2bf"> · </span>中文</div>
+          </div>
+        </a>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 32px; background: #fdf9f0; border-radius: 8px">
+          <img src="/_blob/6697c368d65cdcaa3e814f4a345fada4" alt="" style="width: 256px; height: 160px">
+          <p style="margin: 0; font-size: 16px; color: #686359">没有符合当前筛选的内容。</p>
+        </div>
+      </div>
+    </section>
+    <section style="display: flex; flex-direction: column; gap: 16px">
+      <div style="font-size: 13px; color: #2d6f6a">分享图 · 文章题图</div>
+      <div style="display: flex; gap: 32px">
+        <div style="position: relative; width: 560px; height: 294px; background: #f6efe2; border: 1px solid #e6dfd3; border-radius: 8px; overflow: hidden; box-sizing: border-box">
+          <img src="/_blob/3e2826faa8e8199746f95bf2db594d99" alt="" style="position: absolute; left: 0; top: 0; width: 558px; height: 292px">
+          <div style="position: relative; padding: 40px; display: flex; flex-direction: column; gap: 10px">
+            <div style="font-size: 12px; color: #2d6f6a; text-transform: uppercase">Elen Skye</div>
+            <div style="font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-size: 44px; line-height: 1.05">尘世漫游</div>
+            <div style="font-size: 15px; color: #686359">写作、项目、画作和一些探索</div>
+          </div>
+        </div>
+        <div style="width: 560px; height: 294px; background: #fdf9f0; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column">
+          <img src="/_blob/d05f210479ee009b9cd876eeb590bf52" alt="" style="width: 560px; height: 200px; display: block; object-fit: cover">
+          <div style="padding: 8px 28px 0; display: flex; flex-direction: column; gap: 8px">
+            <div style="font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-size: 30px; line-height: 1.2">发明不等于创新</div>
+            <div style="font-size: 13px; color: #686359"><span style="color: #2d6f6a">写作</span><span style="color: #ddd2bf"> · </span>中文<span style="color: #ddd2bf"> · </span>2025年11月</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1560}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "id": "empty-state",
+  "title": "空状态 · 画完再弹",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "expressive",
+  "surface": "empty-state",
+  "trigger": "一页第一次显示空状态时带着 .is-in 渲染（放进页面就画一次）；再画一次就把元素拿掉再放回去",
+  "durationMs": 1940,
+  "reducedMotion": "不画、不弹，直接是画好的样子，话直接显示",
+  "use": "各模块还空着的那一页：插图在 marks/empty/（8 张），话在 marks/art.mjs 的 EMPTY",
+  "source": "DESIGN.md §5 第 6 条；画法和节奏照 Phase 2 的空书架、投石问路（canvases/pomelo-explore/p2-final/，站主 2026-11-05 验收）",
+  "files": {
+    "css": "empty-state.css",
+    "html": "empty-state.fragment.html"
+  },
+  "capture": {
+    "host": ".empty-demo",
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-in"
+      }
+    ],
+    "skipRest": true,
+    "viewport": [
+      370,
+      260
+    ],
+    "scale": 1.5,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 40,
+    "holdEndMs": 1600,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0
+  }
+}

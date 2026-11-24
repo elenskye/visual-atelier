@@ -1,0 +1,76 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Vermilion 朱红</title>
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--color-page); color: var(--color-text); font-family: var(--font-serif); overflow: hidden; }
+  .cover { position: relative; height: 288px; overflow: hidden; }
+  .art { position: absolute; top: 0; left: 480px; width: 480px; height: 288px; overflow: hidden; }
+  .art svg { display: block; width: 480px; height: 288px; }
+  .slab { fill: var(--color-accent-strong); }
+  .sand { fill: var(--color-line); }
+  .tint { fill: var(--color-accent-soft); }
+  .blk { rx: var(--radius-md); }
+  .cut { fill: var(--color-page); }
+  .dot { fill: var(--color-accent-strong); }
+  .arrive { fill: none; stroke: var(--color-ember); stroke-width: 6px; }
+  .words { position: absolute; left: var(--space-6); bottom: var(--space-6); max-width: 440px; }
+  .name { margin: 0; font-size: 88px; line-height: .95; font-weight: 400; letter-spacing: -.01em; color: var(--color-text); }
+  .tag { margin: var(--space-3) 0 0 2px; font-family: var(--font-sans); font-size: 14px; line-height: 20px; color: var(--color-muted); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="art" aria-hidden="true">
+<svg viewBox="0 0 480 288" width="480" height="288">
+<!--
+  blocks      color-accent-strong 176×256 bled off the top (the structure teal, largest) · color-line 128×144 (the paper's sand) · color-accent-soft 144×192 bleeding off the right edge · one color-ember ring r=16 (the only red: an arrival, never a field) — about a third of 960×288
+  arrangement one tall teal slab with two satellites, bottoms on one line space-7 above the edge, space-4 gutters
+  pattern     the brand's literal motif, a dotted route: 29 dots r=3 at a 13px pitch rising from the slab (cut out in color-page) across the sand to the ember ring — "点状虚线路径加终点圆圈"
+  scales      sides in space-2 multiples; gutters space-4; corners radius-md; dot pitch ≈ space-3; ring r = space-4
+-->
+<rect class="slab blk" x="16" y="-16" width="176" height="256" rx="8"/>
+<rect class="sand blk" x="208" y="96" width="128" height="144" rx="8"/>
+<rect class="tint blk" x="352" y="48" width="144" height="192" rx="8"/>
+<circle class="cut" cx="44.0" cy="214.0" r="3"/>
+<circle class="cut" cx="54.5" cy="206.2" r="3"/>
+<circle class="cut" cx="65.7" cy="199.6" r="3"/>
+<circle class="cut" cx="77.5" cy="194.2" r="3"/>
+<circle class="cut" cx="89.9" cy="189.9" r="3"/>
+<circle class="cut" cx="102.5" cy="186.5" r="3"/>
+<circle class="cut" cx="115.4" cy="183.8" r="3"/>
+<circle class="cut" cx="128.3" cy="181.8" r="3"/>
+<circle class="cut" cx="141.2" cy="180.1" r="3"/>
+<circle class="cut" cx="154.2" cy="178.7" r="3"/>
+<circle class="cut" cx="167.2" cy="177.4" r="3"/>
+<circle class="cut" cx="180.3" cy="176.2" r="3"/>
+<circle class="dot" cx="193.3" cy="175.0" r="3"/>
+<circle class="dot" cx="206.3" cy="173.6" r="3"/>
+<circle class="dot" cx="219.4" cy="172.1" r="3"/>
+<circle class="dot" cx="232.4" cy="170.4" r="3"/>
+<circle class="dot" cx="245.4" cy="168.3" r="3"/>
+<circle class="dot" cx="258.3" cy="166.0" r="3"/>
+<circle class="dot" cx="271.2" cy="163.4" r="3"/>
+<circle class="dot" cx="283.9" cy="160.4" r="3"/>
+<circle class="dot" cx="296.6" cy="157.0" r="3"/>
+<circle class="dot" cx="309.1" cy="153.2" r="3"/>
+<circle class="dot" cx="321.5" cy="149.1" r="3"/>
+<circle class="dot" cx="333.8" cy="144.5" r="3"/>
+<circle class="dot" cx="345.9" cy="139.6" r="3"/>
+<circle class="dot" cx="357.9" cy="134.2" r="3"/>
+<circle class="dot" cx="369.8" cy="128.4" r="3"/>
+<circle class="dot" cx="381.3" cy="122.4" r="3"/>
+<circle class="dot" cx="392.7" cy="115.9" r="3"/>
+<circle class="arrive" cx="424" cy="96" r="16"/>
+</svg>
+</div>
+<div class="words">
+<h1 class="name">Vermilion<br>朱红</h1>
+<p class="tag">暖纸冷青，朱红重点。</p>
+</div>
+</div>
+</body>
+</html>

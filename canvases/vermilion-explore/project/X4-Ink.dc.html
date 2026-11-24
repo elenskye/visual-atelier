@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>R3 Fix · 大图的墨感，五种处理</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&amp;family=Noto+Serif+SC:wght@400&amp;family=Source+Serif+4:opsz,wght@8..60,400&amp;family=Work+Sans:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#28625d}a:hover{color:#bf2929}
+</style>
+</helmet>
+<div style="width: 2400px; height: 2860px; display: flex; flex-direction: column; font-family: 'Work Sans', 'Noto Sans SC', sans-serif">
+  <sc-for list="{{themes}}" as="t" hint-placeholder-count="2">
+    <div style="box-sizing: border-box; height: 1430px; padding: 56px; display: flex; flex-direction: column; gap: 20px; background: {{t.page}}; color: {{t.text}}">
+      <div style="display: flex; align-items: baseline; gap: 20px">
+        <div style="font-size: 13px; line-height: 1.6; color: {{t.accent}}; text-transform: uppercase">{{t.eyebrow}}</div>
+        <h2 style="margin: 0; font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-weight: 400; font-size: 40px; line-height: 1.1">{{t.title}}</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: 220px 420px 400px 420px 420px 240px; column-gap: 28px; font-size: 13px; color: {{t.muted}}">
+        <span></span><span>分区装饰</span><span>分享图</span><span>PPT 封面</span><span>PPT 封面 · 收笔处放大</span><span>空状态</span>
+      </div>
+      <sc-for list="{{t.rows}}" as="r" hint-placeholder-count="5">
+        <div style="display: grid; grid-template-columns: 220px 420px 400px 420px 420px 240px; column-gap: 28px; align-items: center; height: 244px">
+          <div style="display: flex; flex-direction: column; gap: 6px">
+            <div style="font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-size: 26px; line-height: 1.2">{{r.name}}</div>
+            <div style="font-size: 14px; line-height: 1.6; color: {{t.muted}}">{{r.tag}}</div>
+          </div>
+          <img src="{{r.deco}}" alt="" style="width: 420px; height: 165px; display: block">
+          <div style="width: 400px; height: 210px; border: 1px solid {{t.soft}}; border-radius: 8px; overflow: hidden; box-sizing: border-box"><img src="{{r.og}}" alt="" style="width: 398px; height: 208px; display: block"></div>
+          <div style="width: 420px; height: 236px; border: 1px solid {{t.soft}}; border-radius: 8px; overflow: hidden; box-sizing: border-box"><img src="{{r.ppt}}" alt="" style="width: 418px; height: 234px; display: block"></div>
+          <div style="position: relative; width: 420px; height: 236px; border: 1px solid {{t.soft}}; border-radius: 8px; overflow: hidden; box-sizing: border-box"><img src="{{r.ppt}}" alt="" style="position: absolute; width: 1680px; height: 945px; left: -1100px; top: -720px; max-width: none"></div>
+          <div style="width: 240px; height: 168px; background: {{t.surface}}; border-radius: 8px; display: flex; align-items: center; justify-content: center"><img src="{{r.empty}}" alt="" style="width: 224px; height: 140px; display: block"></div>
+        </div>
+      </sc-for>
+    </div>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":2400,"height":2860}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const meta = [
+      ['不用飞白', '全部光洁，和图标一样'],
+      ['现状 · 三缕', '后半笔整齐裂成三缕（对照）'],
+      ['鬃丝飞白', '十几根鬃丝按墨量自然断开，边缘先干'],
+      ['鬃丝 · 轻', '同上但墨更足，只在收笔处露白'],
+      ['提按', '不用纹理，靠按下、提起的粗细节奏']
+    ];
+    const L = [
+      ['/_blob/765114dcc83c031f558b60d571d1b54f', '/_blob/16ceb9b3e0a30e2cc88c4b9a277ccb62', '/_blob/66a7aa8e24425e0223e46c343a0d74cc', '/_blob/da05006248f765ae9c778a8ac51034da'],
+      ['/_blob/6c8bdec2efd0c1f65cfbecedca97535a', '/_blob/381f5e4b6b8fcc04dba0ce339ff1d712', '/_blob/045d8b99dd214106b14602e3a9d351bb', '/_blob/6df0ec68f9f320097a9a3badff578fcd'],
+      ['/_blob/cdcbdfc934a48ef9675e2c2ea6ebdf1f', '/_blob/a2351f3bf86c3c13495dff3ce6905828', '/_blob/927d092df8574d696305c16f07f806a2', '/_blob/cd4924577eaf867afe4609750ba2e3b3'],
+      ['/_blob/51d9e7cbf93299a23beeee6f86b9de47', '/_blob/eb74ac10b6c220857f275cb84540a908', '/_blob/2af00df0a184596d368903b1a08146a1', '/_blob/44ddcc025e1b6fb93a19087d921ac8cd'],
+      ['/_blob/210529cce08de4d452be7b8473fed694', '/_blob/4d73f207a1629214e196a87fe61a6307', '/_blob/9133f7476bc517524d9b2711b57015a6', '/_blob/2311abd5f090f1c8cfd81b9c06e2989c']
+    ];
+    const D = [
+      ['/_blob/26650a863f890457fac287240ae42052', '/_blob/e5512fd68896282f2ffa2b19ca4de35a', '/_blob/ec6216cb7e891f8b529569161f854f31', '/_blob/cb2adefd83be165f6d745606dbcc1efc'],
+      ['/_blob/0a3eebbea134fbe20c017e5d72228feb', '/_blob/88fcfad5a4c8962ea537299b4bb741a9', '/_blob/10553660757fe17bbb030f5af20c66a2', '/_blob/af4b01a42b8eb335a3be034a59d81066'],
+      ['/_blob/1a838c5e59cae8e2f99eedd61eef62db', '/_blob/917d22a10bef5cd3d975c700916f6a31', '/_blob/dd65ad5e2f54872d98b42019a658bd6b', '/_blob/970a45060dd98098f5b4dc3e3070e839'],
+      ['/_blob/0d7e614f347a5384e826860e42ecf582', '/_blob/4122f5d87118dc9c7d90270bb6dab585', '/_blob/973c3157b29f7636c9fd100b9a34888d', '/_blob/ce0587c13e6553d500003f89f465574d'],
+      ['/_blob/948c42f6814a435e5d8815fbd611f4ab', '/_blob/3ba74f696a1de78135b34d89343b042d', '/_blob/bf8e1869a63a8a8ce78346816364419d', '/_blob/75254202e317ec2c01f1e73ff7503962']
+    ];
+    const rows = (S) => meta.map(([name, tag], i) => ({ name, tag, deco: S[i][0], og: S[i][1], ppt: S[i][2], empty: S[i][3] }));
+    return {
+      themes: [
+        { eyebrow: 'Round 3 Fix · Light', title: '大图的墨感，五种处理', page: '#f6efe2', surface: '#fdf9f0', text: '#1b1d1c', muted: '#686359', accent: '#2d6f6a', soft: '#e6dfd3', rows: rows(L) },
+        { eyebrow: 'Round 3 Fix · Dark', title: '暗色下同样五种', page: '#14201f', surface: '#233230', text: '#f2ece0', muted: '#c1b9ac', accent: '#77c8c2', soft: '#343e3b', rows: rows(D) }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "id": "section-deco-intro",
+  "title": "分区装饰入场",
+  "status": "approved",
+  "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+  "tier": "expressive",
+  "surface": "section-deco-intro",
+  "trigger": "外层带 .is-playing（片段已写上）；每次打开网站只写一次：once.js 在 <head> 里给同一次访问的后续页面加 data-va-visited，直接显示终态（站主 2026-10-31 定）",
+  "durationMs": 1030,
+  "loop": false,
+  "reducedMotion": "静态终态：纸片与笔画直接完整显示",
+  "requires": ["marks/graphic/graphic.css"],
+  "source": { "generator": "tooling/graphic/build.mjs（片段）", "rules": "DESIGN.md §5「已登记的 expressive 表面」" },
+  "files": { "css": "section-deco-intro.css", "html": "section-deco-intro.fragment.html", "js": "section-deco-intro.once.js" },
+  "capture": {
+    "host": ".va-section-deco",
+    "playClass": "is-playing",
+    "viewport": [480, 220],
+    "scale": 2,
+    "padPx": 8,
+    "fps": 25,
+    "skipRest": true,
+    "holdStartMs": 300,
+    "holdEndMs": 2000,
+    "themes": ["light", "dark"],
+    "loop": 0
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "$note": "Design System 的发布记录：地址、建它的账号、创建标记、最近一次发布、已上传资产的 id 与校验和。由发布时更新；构建用它生成 index。",
+  "url": "https://claude.ai/artifact/KpUihg5AHn6cw1ggNTx6s1",
+  "slug": "98658916-b520-483a-8eb7-33fa8164d2a0",
+  "account": "现用账号",
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-10T08:21:27Z"
+  },
+  "lastChange": {
+    "at": "2026-11-10T09:29:04Z",
+    "note": "Peck Explore 收尾：站主认了 Design System；菜单栏模板图换成 14 格的鸟（6 个资产重新上传），说明里的菜单栏一条跟着改"
+  },
+  "assets": {
+    "App/peck-a3.png": {
+      "blob": "f1b746a11f96e75c2bf5e05d738698c1",
+      "size": 1033530,
+      "sha256": "066026db29c0da931191fe34e4f58e4e53ede47d5a825f94a72dc87a81409df4"
+    },
+    "App/peck-j2-128.svg": {
+      "blob": "d43a3fb0598f656566d882bc7c0252c0",
+      "size": 2568,
+      "sha256": "d0db8c3f620b8e0a9271a56b5e949c8a228ca59204425428088bdce5869e9889"
+    },
+    "App/peck-j2-16.svg": {
+      "blob": "9ce2f35c0999a182bfecca37871292cb",
+      "size": 1277,
+      "sha256": "1fe9ea6a34d87112974297f87562b7911a289ed6292ac53d3443fb1d1d8385d5"
+    },
+    "App/peck-j2-32.svg": {
+      "blob": "80a75b300f6c5231ba1c0cfcb5e4d6ab",
+      "size": 2165,
+      "sha256": "c5656ac1fa09050be4e7daea93004c8d51f6362e74920dec5654944af4c632c8"
+    },
+    "App/peck-j2-64.svg": {
+      "blob": "faa1e88d73699599b225f7150921add3",
+      "size": 2363,
+      "sha256": "d4001158767c16369bbe4012ba7bc125e842c8048daf5edbd43ac4f196abf63a"
+    },
+    "App/peck-j2.svg": {
+      "blob": "b7cef4e49684e634cad4be08fc4b1c9c",
+      "size": 2686,
+      "sha256": "633c0ef436b137cd77d76507743cbbce15e0be4faf5b56d548c46665c789a737"
+    },
+    "MenuBar/menubar-count-3.svg": {
+      "blob": "8661355f20005a89efb4ece78c25a6ca",
+      "size": 1172,
+      "sha256": "da4c40a87be8e833089109197843b31e9bf0a1466ab9d0534a02f11d5d527267"
+    },
+    "MenuBar/menubar-idle.svg": {
+      "blob": "918e73f896e451b012dafb50eebb0308",
+      "size": 698,
+      "sha256": "a9115748aa992c64494566a47af2da57969b548d1f7c5073b762c889d5f6425a"
+    },
+    "MenuBar/menubar-run-1.svg": {
+      "blob": "5a4523b255cd7350208518bc88802d2d",
+      "size": 883,
+      "sha256": "0daefd92402c078719044879a3a292d47496442ed966ea8f2b2148a32f61e43e"
+    },
+    "MenuBar/menubar-run-2.svg": {
+      "blob": "9c6a3bbeb53015a2d44d8bec14c226fa",
+      "size": 883,
+      "sha256": "415b87b2524603c1a2ef77a9b49169ddbd5a57838cfcbbbd75cb0451ea008700"
+    },
+    "MenuBar/menubar-run-3.svg": {
+      "blob": "1b6b983b1376817b5984b483fb99c97b",
+      "size": 883,
+      "sha256": "f3b0470f32b3efba382df5e8bfbafd197315e7afeaa07784bbe48dad9289aa09"
+    },
+    "MenuBar/menubar-wait.svg": {
+      "blob": "25664895cbb5959497680ad8d92d7f1e",
+      "size": 1075,
+      "sha256": "36f73b33c4b96addb44f812bba0effd7147549cc5e5fda9a968a5149cde1bb95"
+    }
+  },
+  "version": "1794298985-1c1e"
+}

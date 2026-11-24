@@ -1,0 +1,18 @@
+{
+  "$note": "网页方言：变量名和明暗的选择器。根上写 data-theme=\"dark\" 是深色。消费方要别的方言（比如 Pomelo 的）再加。",
+  "web": {
+    "colorVars": {
+      "page": "--color-page",
+      "surface": "--color-surface",
+      "line": "--color-line",
+      "text": "--color-text",
+      "text-2": "--color-text-2",
+      "accent": "--color-accent",
+      "on-accent": "--color-on-accent"
+    },
+    "aliasVars": {},
+    "light": { "selector": ":root", "colorScheme": "light" },
+    "dark": { "selector": ":root[data-theme='dark']", "colorScheme": "dark" }
+  },
+  "pending": []
+}

@@ -1,0 +1,24 @@
+/* 鼠标提示：纸签挂在一根线上，鼠标移上去垂下来，晃两下停住（Phase 2「控件的小动静」）。
+   用法：按钮或贴纸外面包一层 .pm-tip-host，Design System 的 .pm-tip 放在它里面最后；
+   键盘聚焦、柚子瓣里打字找到的那张（.is-hover）也挂出来。 */
+.pm-tip-host { position: relative; }
+.pm-tip-host > .pm-tip {
+  position: absolute; left: 50%; top: calc(100% + 4px); z-index: 30;
+  translate: -50% 0; transform-origin: 50% 0;
+  opacity: 0; visibility: hidden; pointer-events: none;
+}
+.pm-tip-host:hover > .pm-tip, .pm-tip-host:focus-visible > .pm-tip, .pm-tip-host:has(> :focus-visible) > .pm-tip, .pm-tip-host.is-hover > .pm-tip {
+  opacity: 1; visibility: visible;
+  animation: pm-tip-swing 1.1s ease-out both;
+}
+@keyframes pm-tip-swing {
+  0% { transform: translateY(-8px) rotate(0); opacity: 0; }
+  15% { opacity: 1; transform: rotate(16deg); }
+  35% { transform: rotate(-11deg); }
+  55% { transform: rotate(6deg); }
+  75% { transform: rotate(-3deg); }
+  100% { transform: none; opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pm-tip-host:hover > .pm-tip, .pm-tip-host:focus-visible > .pm-tip, .pm-tip-host:has(> :focus-visible) > .pm-tip, .pm-tip-host.is-hover > .pm-tip { animation: none; }
+}

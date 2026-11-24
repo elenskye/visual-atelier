@@ -1,0 +1,17 @@
+/* 勾选：勾上时勾选框果冻弹（0.6 秒），柚黄弹出来、勾画出来，墨线从左到右把那一行划掉（0.35 秒）。
+   果冻弹和划线只在点的那一下放（.is-pop），打开页面时已经勾上的不动。 */
+.pm-ck-box { transform-box: fill-box; transform-origin: 50% 90%; }
+.pm-ck-fill { transition: transform .15s ease-in; }
+[aria-checked="true"] .pm-ck-fill { transition: transform .3s cubic-bezier(.3,1.6,.5,1); }
+.pm-ck-tick { transition: stroke-dashoffset .12s ease-in; }
+[aria-checked="true"] .pm-ck-tick { transition: stroke-dashoffset .25s .15s ease-out; }
+.pm-check-text { transition: color .3s; }
+.pm-check.is-pop[aria-checked="true"] .pm-ck-box { animation: pm-jbox .6s both; }
+.pm-check.is-pop[aria-checked="true"] .pm-ck-fill { animation: pm-jpop .5s both; }
+.pm-check.is-pop[aria-checked="true"] .pm-check-text > [data-hand-painted] path { stroke-dasharray: 1 2; animation: pm-strike .35s .2s ease-out both; }
+@keyframes pm-jbox { 0% { transform: scale(1); } 18% { transform: scale(1.32, .72); } 36% { transform: scale(.84, 1.18); } 54% { transform: scale(1.08, .94); } 72% { transform: scale(.98, 1.02); } 100% { transform: scale(1); } }
+@keyframes pm-jpop { 0% { transform: scale(0); } 45% { transform: scale(1.25); } 70% { transform: scale(.9); } 100% { transform: scale(1); } }
+@keyframes pm-strike { 0% { stroke-dashoffset: 1.01; } 100% { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-ck-fill, .pm-ck-tick, .pm-check-text, .pm-check.is-pop[aria-checked="true"] .pm-ck-box, .pm-check.is-pop[aria-checked="true"] .pm-ck-fill, .pm-check.is-pop[aria-checked="true"] .pm-check-text > [data-hand-painted] path { transition: none !important; animation: none !important; }
+}

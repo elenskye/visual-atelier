@@ -1,0 +1,23 @@
+<!-- @dsCard group="设置" height=230 width=960 subtitle="设置 › 外观：两套配色的色板（各自用自己的颜色画）、选中的那块" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Appearance</title>
+<style>
+  html, body { margin: 0; }
+  .demo { padding: 24px 32px; }
+  .lb { margin: 0 0 8px; font: 700 11px/1 var(--font-sans); letter-spacing: .1em; color: var(--color-text-4); }
+  .row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .pith-swatch { width: 100%; text-align: left; }
+</style>
+</head>
+<body class="pith">
+<div class="demo" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;width:620px">
+  <button class="pith-swatch is-on" data-palette="paper-sea"><i></i><b>纸与海</b><span>默认</span></button>
+  <button class="pith-swatch" data-palette="mist-ochre"><i></i><b>雾与赭</b></button>
+  <button class="pith-swatch" data-palette="paper-sea" data-theme="dark"><i></i><b>纸与海 · 暗</b></button>
+  <button class="pith-swatch" data-palette="mist-ochre" data-theme="dark"><i></i><b>雾与赭 · 暗</b></button>
+</div>
+</body>
+</html>

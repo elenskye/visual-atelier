@@ -1,0 +1,1390 @@
+{
+  "00d151340b2d1a913f22630a573601d6": {
+    "source_sha256": "1e4a663061bcb01d3fdd9cde9c72e332cdf56b587bc7cff944e2d07360da40df",
+    "file": "out/assets/d-deco-dark.svg",
+    "sha256": "6b4b3fc5c3d5da4fd6181417e5740b1abdb4b5a438f9e988d73f4fec52c65036",
+    "size": 1487
+  },
+  "01020ed9519d9de6ccc9a91f729843b8": {
+    "source_sha256": "8ff304777cd686373feb0857fc8edab6baaeeab0b4968183a89144a1cf5da025",
+    "file": "out2/assets/ed-og-light.svg",
+    "sha256": "082261193bcfa133c06742d44ebaf1c2fc19bb909b8474a4c4a83a2b09828eb3",
+    "size": 3441
+  },
+  "0102621c925c62bd185a18316732e998": {
+    "saved": "blobs/0102621c925c62bd185a18316732e998.svg",
+    "sha256": "22d36ed4355d50b51a7293f26bbb7cfdb5411814e15ce3452ce715448e5b2b40",
+    "size": 6534
+  },
+  "01438f8ad84c396d7dc78e71014ede4f": {
+    "source_sha256": "4031e3b5ad3380293194435b304ba3c8d73693838dfdcfa3191cf67418b6e85d",
+    "file": "out2/assets/e2-dry-gallery.svg",
+    "sha256": "68b0a4bb1591a021d9247dabfd1130e32ca4756a760f40e4e1dd00d4deb4679f",
+    "size": 2693
+  },
+  "0195d9c0375b8047d1b26492767a21d7": {
+    "source_sha256": "9c916cc5f1bd3e8b3b033f5d08549b9305853ae709bad7b7b4ab0da63209a573",
+    "file": "out2/assets/ed-other-light.svg",
+    "sha256": "426772c6bf3e7831c5a26108409caa31d630777414efb6b82f02b65b7610fb38",
+    "size": 2893
+  },
+  "01c202212466bebbc83efe6fda24ee38": {
+    "saved": "blobs/01c202212466bebbc83efe6fda24ee38.svg",
+    "sha256": "8f2eef60cd03c27c80eed236bba28a19bedf89b8a81f5f7bcd06bb3a77accf6b",
+    "size": 3785
+  },
+  "02b62f1e4df097223205560ef986918b": {
+    "source_sha256": "54c3713c7a97b6fdd9d0c548c1ad49c31b79667cca1f921212307db861863ffd",
+    "file": "out/assets/d-icon-write-light.svg",
+    "sha256": "5b628b7788c4079c9b3bb58bbb360f3c24c16bf16f0b55388725a1cf5c75ae70",
+    "size": 1082
+  },
+  "045d8b99dd214106b14602e3a9d351bb": {
+    "source_sha256": "08e32d2002edb432bbf12ff673b76c7747bd7b665a7ae5605f708b6f634e954e",
+    "file": "out4/assets/f-split-ppt-light.svg",
+    "sha256": "2e8d914ad23c4c54051d0296da258a6932ad0bd5b3ce27691d1a9091a856bb1c",
+    "size": 9659
+  },
+  "0566f301e93e09d841e19859102359b9": {
+    "source_sha256": "a289e8ffc3b4620c08dee7794ccb15214eaa6a56d864d4c69b721ce4536003fd",
+    "file": "out3/assets/r3-travel-24-dark.svg",
+    "sha256": "e56ff91a013c740343eb5afa7049c5bde1baa2cfd869f7a78ae7e55f20e99915",
+    "size": 914
+  },
+  "09bfe64c6b0da29fb508a9e771cc6c06": {
+    "source_sha256": "affd332461090fbb5f60d8f66092e689619c533c1b178b43c1047d2894184074",
+    "file": "out/assets/e-icon-project-light.svg",
+    "sha256": "cc0ccde5589e2fc6ab8809e19d82b2a6abbb05b4a8bf3d8f76efbb78db3d751d",
+    "size": 980
+  },
+  "0a3eebbea134fbe20c017e5d72228feb": {
+    "source_sha256": "125504b5095f0f4aa2580e508395fbfea7a2704c296cc57f590c842f421dfb15",
+    "file": "out4/assets/f-split-deco-dark.svg",
+    "sha256": "df86f16aa1d81734a2fa266975d545a5f49d1ba5c0275c4bd4ac032589ecab4b",
+    "size": 4789
+  },
+  "0d7e614f347a5384e826860e42ecf582": {
+    "source_sha256": "0527ba1757b8afff653d6eec469245d6ca0ad08b70033dfaf499302c59cd43a5",
+    "file": "out4/assets/f-bristleLight-deco-dark.svg",
+    "sha256": "492eaa67ce336f2b47bfc710126d863218c5274a3fd01fec091946ec66933a84",
+    "size": 53047
+  },
+  "0dff22b65fb06020433e483befa86fea": {
+    "source_sha256": "54922e81e86326ebc8b260598aca9bd702efff63c329c570bf4f99c2aa9036a8",
+    "file": "out/assets/d-icon-project-dark.svg",
+    "sha256": "d52959c35a66636a189e56a467c1f29a444a39e8419d5796a3afaba553d26304",
+    "size": 1082
+  },
+  "0e1d8030000f90fe44a998a04ad77ff3": {
+    "source_sha256": "fdd1038ae114110910b814b7c3977ec5585c2a7e218946afaaf537ee8eab6f59",
+    "file": "out/assets/c-empty-dark.svg",
+    "sha256": "b4062dd1560fa73701e69a1f186bffc96f8b3a5008c37ac133ebe36be2dd0ec5",
+    "size": 4865
+  },
+  "0ed6fbd992d83327c4f0d0e96ebb2db7": {
+    "source_sha256": "d605749cc7d222552e79e0b9237dcf716fe7a818725c8d7af2a5898f8925ffbc",
+    "file": "out/assets/d-og-dark.svg",
+    "sha256": "a9c0e5f336df6887ac90dec362e963ff9e8f954f15e59c5fbfc980bdfcd05f1b",
+    "size": 1870
+  },
+  "10553660757fe17bbb030f5af20c66a2": {
+    "source_sha256": "91c90c823fdbbdeef9e21dc4de73c90437f2b00119f249b028746e7b1ad6de82",
+    "file": "out4/assets/f-split-ppt-dark.svg",
+    "sha256": "e0c8d9ec27c869e70b33f195c8f90037797d2da3752ef246010a43c0dd9c3e98",
+    "size": 9659
+  },
+  "134339eccf5d3521c5edabe4ab3f578e": {
+    "source_sha256": "8d9c76a1815d752ad87dbd471703334616f69631b70e315ec778d43507879d46",
+    "file": "out2/assets/ed-empty-light.svg",
+    "sha256": "d03bf8cc9c73b47cad80c7b8f4152bfcd6b5bd748c80ce4c7c39a57e3ffaf8b3",
+    "size": 2444
+  },
+  "14da4dfc5792363e63f577f351266cf7": {
+    "source_sha256": "46008f7f834e7942cb24b105227113501307caeff96dfd5a7669fa07f0dfbd96",
+    "file": "out2/assets/ed-project-dark.svg",
+    "sha256": "a03c76c8c9d69f9d5d510a47abe93087cc63753edb90fb0237d497b9cab9f8f2",
+    "size": 1556
+  },
+  "1521a602da170b9512d70ef90d7f8288": {
+    "source_sha256": "91c90c823fdbbdeef9e21dc4de73c90437f2b00119f249b028746e7b1ad6de82",
+    "file": "out4/assets/f-split-ppt-dark.svg",
+    "sha256": "e0c8d9ec27c869e70b33f195c8f90037797d2da3752ef246010a43c0dd9c3e98",
+    "size": 9659
+  },
+  "16ceb9b3e0a30e2cc88c4b9a277ccb62": {
+    "source_sha256": "ee0dbf999b41c85ddbea36c3bcdfa0d2a1c331a55ddd01e92346c6709c4aad22",
+    "file": "out4/assets/f-clean-og-light.svg",
+    "sha256": "687c6800aac3b4b570f9be8e126b106095c0d7d9a9a816b648e0598c7d9a15c9",
+    "size": 3439
+  },
+  "1703f0b9f985437f43d339abf74d4ee1": {
+    "source_sha256": "7e85d6caafb0942173a953be37bb3761edbe5e99b2d19a772f048564bdfac362",
+    "file": "out/assets/e-deco-light.svg",
+    "sha256": "eb9b86b48e48def873153db3448b3e1f303c6ab8fc3af804073357039787b0f7",
+    "size": 2435
+  },
+  "188ad3348632c474d25c2e1018a8c599": {
+    "saved": "blobs/188ad3348632c474d25c2e1018a8c599.svg",
+    "sha256": "6b2e4e79c390af8a649282e0cc6b1af226e60a25ef2edfdeb1424475445a73ea",
+    "size": 6797
+  },
+  "196b35db4b8c87eab482e57ec2e04214": {
+    "source_sha256": "7e85d6caafb0942173a953be37bb3761edbe5e99b2d19a772f048564bdfac362",
+    "file": "out/assets/e-deco-light.svg",
+    "sha256": "eb9b86b48e48def873153db3448b3e1f303c6ab8fc3af804073357039787b0f7",
+    "size": 2435
+  },
+  "1a5b395696aa46c54ef119466ff6308d": {
+    "source_sha256": "40e1cf72840cfea3ca8f2a47f89ce4416afa71cde149f472c666530bfac6f010",
+    "file": "out/assets/a-deco-dark.svg",
+    "sha256": "7f0a85d8c1371c36922941f37ee89f58399afbaa69692a6d3fc534e6c1f34675",
+    "size": 955
+  },
+  "1a838c5e59cae8e2f99eedd61eef62db": {
+    "source_sha256": "bf53e372d28046765fa69f934316cf6e34b3f3f6f5407275588d1955c6c41274",
+    "file": "out3/assets/r3-deco-dark.svg",
+    "sha256": "24a52e3ff97453722be4b95503b8674ec2b5e3a700d878891a6b200a76bd5ac7",
+    "size": 46604
+  },
+  "1b8d09bda5220453964335d2c556272d": {
+    "source_sha256": "46008f7f834e7942cb24b105227113501307caeff96dfd5a7669fa07f0dfbd96",
+    "file": "out2/assets/ed-project-dark.svg",
+    "sha256": "a03c76c8c9d69f9d5d510a47abe93087cc63753edb90fb0237d497b9cab9f8f2",
+    "size": 1556
+  },
+  "1c9b3a9b4e35b460df994261c1d31428": {
+    "source_sha256": "cf7af4863d31d1d564d43949a13a95145e401e58747ffb717cb9f7490764df97",
+    "file": "out2/assets/e2-dry-project.svg",
+    "sha256": "dd9847c75a0b27026c46fc9c6cbe15323241058bc9e9e6fce63b2c6f6c7ff3c3",
+    "size": 1870
+  },
+  "1d08fc90e68645cfe4739e03463e99fc": {
+    "source_sha256": "06a7a0fb8fa0171dff45ab6b39ffe85a0580618a7b636374470268bcd507cfa5",
+    "file": "out/assets/e-icon-write-light.svg",
+    "sha256": "427dbae4cc4d24c3e3b6c1e378914cc9fdd34fddf1f3873760ae853317e6985c",
+    "size": 1193
+  },
+  "1f90b8725da616d8bac3c372dbdb833d": {
+    "saved": "blobs/1f90b8725da616d8bac3c372dbdb833d.svg",
+    "sha256": "51716fcdf0d7ad22481e27aaf6fc106af7b1de5b13e92ac9796043dca1c8223a",
+    "size": 6127
+  },
+  "1fc52b67bc957c58b1feb99c703b622e": {
+    "source_sha256": "c34bb1768b3b222b8a5e37933545fbf139862a141902f9f77d53341a44ede0ec",
+    "file": "out2/assets/ed-other-dark.svg",
+    "sha256": "ff8121286990b1032ef4afa97450645e6973edc7980761e0f55af9ce59d1a5f1",
+    "size": 2893
+  },
+  "210529cce08de4d452be7b8473fed694": {
+    "source_sha256": "5344e6fa3cece05225682e56a729ebe1f7f8b4f2781b568cda2cf0abf36fa59a",
+    "file": "out4/assets/f-press-deco-light.svg",
+    "sha256": "ba936b115602ed16b6db015722a036e37860992973d88b6e6cebd9b28b129136",
+    "size": 5343
+  },
+  "211e4925bdfbb6af4991e72f8f3930ba": {
+    "source_sha256": "3f74bd1d34910506fd64e257cb22677e0a203cf503de5cc7ce1a297e087b5d30",
+    "file": "out2/assets/ed-travel-dark.svg",
+    "sha256": "85c83b7c30d89459b948cd7c74e898b428e69369d33be5ad6c9f76819d0ed65b",
+    "size": 1928
+  },
+  "2311abd5f090f1c8cfd81b9c06e2989c": {
+    "source_sha256": "1af9e8f22c754694dc6028f710a70db10c2ec2b4243966c081206817c4b2d89f",
+    "file": "out4/assets/f-press-empty-light.svg",
+    "sha256": "07a5b3b639c9c2e0672ad81fa90b38d977334c0fabb55399cdc0a39a587be6e6",
+    "size": 5010
+  },
+  "25b1254c6dfdf56846f5b323a246369e": {
+    "source_sha256": "66a4448bdc610fd45677d5261189c230a8504a2551bcea4388a45b14dbd1344d",
+    "file": "out3/assets/r3-mod-days-dark.svg",
+    "sha256": "bc2fa1df4cd27aa657285720121a0dd37f25774e96f0a744d6f5687615f895d6",
+    "size": 2494
+  },
+  "26650a863f890457fac287240ae42052": {
+    "source_sha256": "ddff11f68cccbedeb6f740b44d9e2f47913cbb20f29a36d085abfd04f6857a67",
+    "file": "out4/assets/f-clean-deco-dark.svg",
+    "sha256": "41b19462e1ab0cf210bf4cf03e18ac1aecb665a6d76c3da56c6788d9ecede7e3",
+    "size": 2641
+  },
+  "26a1a19fb82e4b2864db9da3f791d06c": {
+    "source_sha256": "a24fe89dd5d4e137ea6e00952e010d232b6fd3a9cb49134da81c4899fc41bb71",
+    "file": "out2/assets/e2-w135-travel.svg",
+    "sha256": "62207613a98c2119dcbd960f1c8cccceb5b42f09c86e7058fe7af0cb67b8f0fe",
+    "size": 1700
+  },
+  "26da7f565d79c89df28f86da35105138": {
+    "source_sha256": "68eb8bd7f556388357dcf12e1ba85a89a95f076d421811f7085b13f20570afc9",
+    "file": "out/assets/c-icon-project-dark.svg",
+    "sha256": "fde21ced4a7b3ead5449ef311de70eff042a92ec32c054ab97f4ca4b9eea1868",
+    "size": 3102
+  },
+  "286ebf0aa8bb70e3e488b4cfbb801c1d": {
+    "source_sha256": "62ca9f4fd49f819bd720b65ffa8c460ef84cdc1efc71dd4de26995d4d1973cb6",
+    "file": "out/assets/a-icon-create-dark.svg",
+    "sha256": "d318331b925b5afc14e8aeaa4c2e79d8bb6a7eeaf4f0ad4a9f83c6be141c399b",
+    "size": 669
+  },
+  "2943fe3f9e7f2a5c7b696118429f5d47": {
+    "source_sha256": "31ade2e1c6dfc86e7daa8051fa3129f6b4db94611740b095a0a6939568314bcd",
+    "file": "out2/assets/e2-w07-other.svg",
+    "sha256": "ddf762c9c546402a1d4f9bce2a209063d2ee345551e632f3228f015a807d317d",
+    "size": 2228
+  },
+  "2a3edb3617615e3d95f5dd89b815ff1d": {
+    "source_sha256": "ee8cef04d900c2f0c6ed79e81d7bb7c137853da6d2d56ec14682d5e55ac4ab31",
+    "file": "out/assets/d-og-light.svg",
+    "sha256": "7f11cf42f6854d0120669f6006332503efcd83d5f402213fda4e8c28e1e92faf",
+    "size": 1870
+  },
+  "2af00df0a184596d368903b1a08146a1": {
+    "source_sha256": "5c3a5d8549f6eff5b696946497b92b89ae2d809b145158ecc9e0d107057cd8af",
+    "file": "out4/assets/f-bristleLight-ppt-light.svg",
+    "sha256": "cc273e2dde4f15d9360a86e1339a97df2a95eecf1d20c2767ecb517b8f2b9362",
+    "size": 146112
+  },
+  "2b0be6234ec8ed8a970b954dd05c7367": {
+    "source_sha256": "fb781c160207d64bd99e2f64c58304b4e254ec990b344ef4381a824a90c82860",
+    "file": "out/assets/d-icon-create-light.svg",
+    "sha256": "e1ee5132d14b4b3b55398be17703236c2e0c418ea9382db773460810abaf847d",
+    "size": 1262
+  },
+  "2c5089394b0576e4c1fcab7384d30932": {
+    "source_sha256": "616a9ba65cef998b03d2f33b6ea63e097ea1048166075c9f72ea936dfd2fd634",
+    "file": "out4/assets/f-split-og-dark.svg",
+    "sha256": "c1764dd9d5ac20fcc9c023ee3f564882b7cbb58b8138d65f2648e1a98faa44d6",
+    "size": 6448
+  },
+  "2c63d7f19fd48f88b26f5087890f5183": {
+    "source_sha256": "a26077b3c9f2ae13d0efd05b772f247503bb365e932fb5d4dfc0c15c01167925",
+    "file": "out/assets/d-icon-project-light.svg",
+    "sha256": "61bf50c938adb1f6b2955b8c87ead729a996678ae61d870404ce2a06bcd2a8d4",
+    "size": 1082
+  },
+  "317c5202c9940d7e208e6edbcf3f776e": {
+    "source_sha256": "c12839889117938353db81b4971c274a921e46c030ae034f2f8a9dd1aa4dbba5",
+    "file": "out/assets/a-icon-other-light.svg",
+    "sha256": "20beb389083af2e0208ddfa9e48c06ffbf8e00389e0496a824241c814914697d",
+    "size": 1072
+  },
+  "325eeff8a8a31d3652a5ef7c9d8bc4dc": {
+    "source_sha256": "44b098fa30029e829a885c89512b31851b5edb8f7b0733148ce81e245d96fccd",
+    "file": "out2/assets/e2-simple-gallery.svg",
+    "sha256": "15a9a268f9bb4bd7d799d3b91f7b97a2fffbe2bf704d4c5f8bf0db607daff1ad",
+    "size": 958
+  },
+  "32a73f856ddf29fc59ddcdc4e136cdf6": {
+    "source_sha256": "33637a8e252ef7f91a8f39e1f92c5d4ac52e9038b61edddcecee7ff7e5b0d5c2",
+    "file": "out2/assets/e2-simple-travel.svg",
+    "sha256": "ad923d563f84fb8c72f4c2af0ce7b66a9d419b31a85fb0fa59f6f93dfb09f7d1",
+    "size": 698
+  },
+  "32ea807334c7e4cca83417efd6c832c3": {
+    "source_sha256": "75ff350c4c7951992203b7816d4977bb3a42195c6001d1d3e4cfbcbb0778a010",
+    "file": "out2/assets/e2-simple-other.svg",
+    "sha256": "3d9254646971794f7e633c4658b92db8fa2b1facb936cf46c7d74dfb1b100a5d",
+    "size": 2226
+  },
+  "33cee6e289b0b2a357146c0e2843f5af": {
+    "source_sha256": "2ddb3f429db14182e0ca9b673eb235d181a234028f385877a2c1419bd83b27a8",
+    "file": "out/assets/d-empty-dark.svg",
+    "sha256": "3069c3a36098d85cb8869b0eeccc2389777f9db519d2580df70d931a6d58d1b3",
+    "size": 1191
+  },
+  "3476ffc5f51f04a9178fd00eb6572535": {
+    "source_sha256": "fcd4d71590588290db625c868ae59f6955358d9f211362032c7076900d035d9a",
+    "file": "out2/assets/e2-dry-other.svg",
+    "sha256": "c0ec70b89072525b32d5d040e571c417e87f28c1ddc6e5a2ef639f10c4f20a7f",
+    "size": 4444
+  },
+  "354ad798807aab12561dbd7230b0600e": {
+    "saved": "blobs/354ad798807aab12561dbd7230b0600e.svg",
+    "sha256": "8e426b4d1f2b80dc6b9151c4e6148d6460dffe30d63745faa9b32403ef6e4cc0",
+    "size": 6534
+  },
+  "35d1005d93087e2d1b4b9fc9ccd242c3": {
+    "source_sha256": "3f74bd1d34910506fd64e257cb22677e0a203cf503de5cc7ce1a297e087b5d30",
+    "file": "out2/assets/ed-travel-dark.svg",
+    "sha256": "85c83b7c30d89459b948cd7c74e898b428e69369d33be5ad6c9f76819d0ed65b",
+    "size": 1928
+  },
+  "360ce3665b8461c81efb84d1fb5b6345": {
+    "saved": "blobs/360ce3665b8461c81efb84d1fb5b6345.svg",
+    "sha256": "2bba0e310dc5d67e52f4aa533e1113f925be0b192dadf0b08eae679b5ede58ef",
+    "size": 6811
+  },
+  "36c1a220bbd7c1571e3174385199ec03": {
+    "source_sha256": "3bb506aebe3e69cf3715392ee1e08d71e8619559f144412a92fad945fa86b155",
+    "file": "out3/assets/r3-tray-idle.svg",
+    "sha256": "14bf73ad2ce61c28b87de9a6e19c3aaee3fb789770fb281ca588b69d3e941753",
+    "size": 1181
+  },
+  "36d0055ee603ee7cb8666eb29f8136c6": {
+    "source_sha256": "06b0b582833d33c21ee019de33236f44bb8364805cef2d2b4993ebdfe2d3c856",
+    "file": "out/assets/d-icon-travel-dark.svg",
+    "sha256": "5e82ac5c34dcf6adc162e603dd6f8229c55bf31e9a85c4c40335b9d83087714d",
+    "size": 1009
+  },
+  "381f5e4b6b8fcc04dba0ce339ff1d712": {
+    "source_sha256": "3ecdd9d7f9f287b7575c91c73a8a33d0094c5277c75512bbd8f1949231fa4a8b",
+    "file": "out4/assets/f-split-og-light.svg",
+    "sha256": "c5f0b17d1dbbaa42b06c5fa2b9fdf89d9be3c3294b2f9f47ab717a3980a36335",
+    "size": 6448
+  },
+  "38bc779344e315d392950a73ebf5c5d5": {
+    "saved": "blobs/38bc779344e315d392950a73ebf5c5d5.svg",
+    "sha256": "ee5b2b4e6d4f992ae2d7416c72200ba035ca4a3ed172f327dfceeaf7cb8887fe",
+    "size": 6811
+  },
+  "3ba74f696a1de78135b34d89343b042d": {
+    "source_sha256": "3142524ad42bfda5f810805a91488bd34100d63ede78ebafc8a347ae30200a72",
+    "file": "out4/assets/f-press-og-dark.svg",
+    "sha256": "b2f805ce34f07a4f160025ab93d782e1be5248bb7100051134ee26746552688a",
+    "size": 7140
+  },
+  "3db9b9727a7851cf7f0377d670b79ee0": {
+    "source_sha256": "7e726d3bcddf2b18ee25b76885ed10793670168c0211304164a0d6d144ebf95c",
+    "file": "out/assets/b-empty-dark.svg",
+    "sha256": "314a7c5daa1fec1277e4769d4f9cae8dc2f1953c0f229d515bad96dcbd6a76ed",
+    "size": 4924
+  },
+  "3e2826faa8e8199746f95bf2db594d99": {
+    "source_sha256": "d9d5016d1027f351f730df374cac073f3d17db2b3cd929dbd723cb3efd46755a",
+    "file": "out/assets/c-og-light.svg",
+    "sha256": "2dac7435e103341d71ed3f5b8fdb5214ed0add320c4350bbbdfa767bd857e9fb",
+    "size": 19481
+  },
+  "405e9938d92e5117faad7029ae133128": {
+    "source_sha256": "f8932a10b1741b73dfdf266f7e14f053decf5d2a0bbd9c4f023bd87d452f241e",
+    "file": "out2/assets/ed-gallery-light.svg",
+    "sha256": "50d187643e4891785da34a8ca5ba14d2572f75a7d94a81112d389addc863f617",
+    "size": 1489
+  },
+  "4122f5d87118dc9c7d90270bb6dab585": {
+    "source_sha256": "8b3dc8f0e5231027a4296fdaf3bf29865323ac2ff2335bafb990d745c3893625",
+    "file": "out4/assets/f-bristleLight-og-dark.svg",
+    "sha256": "fbef8e20530d66c760dac085abcd74e0a7b630364b98d4a82344e01b0f0e803c",
+    "size": 78376
+  },
+  "41f4fb0f75f31720445aa6ba0d385389": {
+    "source_sha256": "e20e3d8e54d9a9839792070bd3036744849d972924b807a4f57400a94e46cfcb",
+    "file": "out2/assets/e2-w07-deco.svg",
+    "sha256": "23861f063b7d1152c16555fe109de242064b51abd0d07f14d2a44d07191bb14a",
+    "size": 2433
+  },
+  "4373554eacb3d1ba2137746a16216114": {
+    "source_sha256": "22aafefc740bc26a2906dd70649b17ccb2ca74855236a7c9347a309938f57d5e",
+    "file": "out3/assets/r3-mod-todo-dark.svg",
+    "sha256": "81739d8c3f3c53d0d71ce3b1f5e15ffe2a25b6474db810d45463df6ea6bd2f2f",
+    "size": 1786
+  },
+  "44ddcc025e1b6fb93a19087d921ac8cd": {
+    "source_sha256": "88c821556cc41e5b36f8b897997b5e33e440a2a3248941fbf91e5075fb8bd0bf",
+    "file": "out4/assets/f-bristleLight-empty-light.svg",
+    "sha256": "e96fe77a8015edddaca9db112cfcadaa17a503cf6c3b79593b004e6c27bc51aa",
+    "size": 49606
+  },
+  "45b6fcd60ee2852cacc5195bad6b3cbf": {
+    "source_sha256": "db2702578276102ccf118624159ba8a149b04ef40ee41621e7ca1f3952223f58",
+    "file": "out2/assets/ed-write-dark.svg",
+    "sha256": "687816a7909726b019796bae4b7bb862232252d3ac6afe4bf3a1f9c34024ca7d",
+    "size": 1792
+  },
+  "4776356553698b3bf70b562b049b572b": {
+    "source_sha256": "d1333f51662389fb10e48b67e6043f4fd3d72440e247f31eb10e4b3747d21776",
+    "file": "out2/assets/e2-dry-write.svg",
+    "sha256": "fa2378d9f07c75bd321c67f7ffe6981580afb9d1a453e6180da2b0b16ff9cda3",
+    "size": 2292
+  },
+  "47dbd4e730c807152d585e261a451940": {
+    "source_sha256": "c34bb1768b3b222b8a5e37933545fbf139862a141902f9f77d53341a44ede0ec",
+    "file": "out2/assets/ed-other-dark.svg",
+    "sha256": "ff8121286990b1032ef4afa97450645e6973edc7980761e0f55af9ce59d1a5f1",
+    "size": 2893
+  },
+  "498a9d30303272b4b8849e2335217c77": {
+    "saved": "blobs/498a9d30303272b4b8849e2335217c77.svg",
+    "sha256": "7fa2b5c24b47956206ca27ffc974df214275abd5aa283c198b23771dd0bec460",
+    "size": 3785
+  },
+  "49a2aff1993d64a3c8048774ee60e521": {
+    "source_sha256": "4f2793d892e84e2cf271fcb8c63af09b16209dca90f8ff57c94389e576feb48c",
+    "file": "out2/assets/e2-w07-project.svg",
+    "sha256": "e3881d9a524e367f805fb31c505e0ede99f03935ea3853c1ce817937fc2f0e9b",
+    "size": 984
+  },
+  "4b2e479172a0571b5acae6dd762442ac": {
+    "source_sha256": "87e242d33c72f3e0b45d546917d163a6de1455360cffeea673066a09663c2024",
+    "file": "out2/assets/e2-w135-project.svg",
+    "sha256": "b1ba7c5c6bfe7c0859de8d028af89b1415d1deacbce82bf121ab10c400d83f1e",
+    "size": 987
+  },
+  "4ca94ea3708f9edc2513b3f131219fd8": {
+    "source_sha256": "2e820ddac5f46678ec98b28aec34d5a79e175a67066e1f3292f5d6115ba0e9d7",
+    "file": "out2/assets/ed-create-dark.svg",
+    "sha256": "3d5a69e886621b29e21bca83d6b03d321687e65a11607633bec0cd10d9863dfc",
+    "size": 2033
+  },
+  "4d6100288d22476bb53e98cda8d9063b": {
+    "source_sha256": "17d4fc3d4b7fc5c5af57b685fe1700e052673e0589b8e8b41e7a8300d21c8812",
+    "file": "out/assets/e-icon-gallery-light.svg",
+    "sha256": "5ffbe08ce1357b105d0313eca812301e5a2b3114bb621b309a5649c4d8fa2aff",
+    "size": 1389
+  },
+  "4d73f207a1629214e196a87fe61a6307": {
+    "source_sha256": "94c306947a8d4e1bab037aceed34301613f8cd75a84024544c05cb8988abac82",
+    "file": "out4/assets/f-press-og-light.svg",
+    "sha256": "bd82c26d3e708f7e407fccea77141434297a8572f9c33375188c0917416e02d2",
+    "size": 7140
+  },
+  "4efa4c5ed59fb1ee5346d4aad8bd44ec": {
+    "source_sha256": "5623e42788f75aed841227b1e9c922973a713460e405203e0988cef470b906b4",
+    "file": "out/assets/a-icon-write-light.svg",
+    "sha256": "3022586453f1b4eca01135d77a70b809f0ed30b288b5f22cd24922a86a35d24e",
+    "size": 637
+  },
+  "4f05e24ec423732023e2f09de4f78b08": {
+    "source_sha256": "a65f3bbda53011d4dd168968f045dbecd96ea5fa79af92ee5a133a7fe39a45a1",
+    "file": "out/assets/b-deco-light.svg",
+    "sha256": "53b60a52f2dfdaea3d8e6bdfd3b38f2a2a1331f2a688128f0dd48db43ff4a775",
+    "size": 11242
+  },
+  "51d9e7cbf93299a23beeee6f86b9de47": {
+    "source_sha256": "3153dda6ea5ad68ded24596dbb235fddb6124ab893a1714d2c64b10374ec25ca",
+    "file": "out4/assets/f-bristleLight-deco-light.svg",
+    "sha256": "acd01c5a365105353f786e85a478d95c0a9e743ece9b8b7bd0cdb9d7fdc668a8",
+    "size": 53047
+  },
+  "5212c77b891f0e6c713d79a04f2c59c0": {
+    "source_sha256": "0bf6b31030c43a77e0648a2630cabb5b621e2e8e614c195ef58c74f743bbef6d",
+    "file": "out/assets/d-icon-write-dark.svg",
+    "sha256": "2bb3ba550784efc76d0b61af12723d40080fd40cad87ac912ba5d11ec44f183a",
+    "size": 1082
+  },
+  "533d891c007216e9e3da963cd9e13a6d": {
+    "source_sha256": "94eee06b4ad8b629387aafcc399728fe80a0cb5a39c3eb78da380940da1e16cc",
+    "file": "out2/assets/ed-create-light.svg",
+    "sha256": "b2696d4895984677ff6e67095b6e8cfade40f5cdab233c3adf912ad22610c56a",
+    "size": 2033
+  },
+  "54501c0d5c84fc1c8c6603b87b7e23c6": {
+    "source_sha256": "71ba3b25711dfdbdb965a8adeb1c7c19499077a089af0cc6486bc219ed8b8f85",
+    "file": "out2/assets/ed-empty-dark.svg",
+    "sha256": "75703d6b7eed32ddb9edfcc5fdab83b721bb7267d599d7db5074f11a37d8768e",
+    "size": 2444
+  },
+  "54844f346bd00ac1a83b78f7cc2c912d": {
+    "source_sha256": "5f16ced9a6444805a9a3f5647eff4dcc8771584ddd38cdee54a03377259b486e",
+    "file": "out2/assets/e2-dry-create.svg",
+    "sha256": "1be288626670836ddf02a0e366ad8394213f9959250f80c18627973fbe5d586b",
+    "size": 2682
+  },
+  "5805422caf09ed58419f1eb7983989a9": {
+    "source_sha256": "aaa0a3a5a425ea069756f00967fb63874fe0779aaa252ebcc1fa2f0133bb4a67",
+    "file": "out/assets/c-icon-write-light.svg",
+    "sha256": "1f6b088405a8d8fa569e0ac0d13094d63622523af906a991bf23c86d49277ebd",
+    "size": 3113
+  },
+  "5a51929bed2b118b4c8bf5a36374af6c": {
+    "source_sha256": "5860fa7e55e68c62ee2fc60681a8c01875b6742b00ea1611ee992a4fefbff93f",
+    "file": "out/assets/a-icon-project-dark.svg",
+    "sha256": "87d2c1d90938d68fefcf4287d8d9127123d408668e5ea2e90d9a7bd9ba65dbfa",
+    "size": 565
+  },
+  "5c3d62f6bd8e1b1bf6e6064b2914dcab": {
+    "source_sha256": "9aa3b997a3aff9c660855bc8042b1e66d1a7de956d3442da61991b1ed9fbaf19",
+    "file": "out/assets/a-icon-other-dark.svg",
+    "sha256": "0000c8a18420fd7381cf010a59984064f8969b195b71c87939c39e0366a9813a",
+    "size": 1072
+  },
+  "6019c3d87c03e53600e80c1aaf7608bd": {
+    "source_sha256": "62b7c327ee4e66ec1143443ebd1baa77ef1043be5ccc460dea7619f86e30707c",
+    "file": "out2/assets/e2-simple-create.svg",
+    "sha256": "bea2caa40ddfc968a2ad8b49a5d5ffa5a877773a44faf25b2eddbc8e41e36b40",
+    "size": 954
+  },
+  "60901d790a999a15f6d8d9f801e552f4": {
+    "source_sha256": "e32924bc033fc1f8c53f47f7f68551abc2f5e4c792fcf3fff89caaa147ac5304",
+    "file": "out/assets/c-icon-other-dark.svg",
+    "sha256": "ec75fbd6bb009e0521955a223228907dc2f5ebd135eaa614a95974c0ad86e883",
+    "size": 3076
+  },
+  "6094b237402fe54b9647062ce7e8366e": {
+    "source_sha256": "7b2047c5cf0a7a337e3a828cbd00e9bc318ae60cffa38c2c200239bf8f7138a2",
+    "file": "out/assets/c-icon-travel-dark.svg",
+    "sha256": "f49ab18c2dd630be05665220406ccc2434a058cbbbe2cb9874febf70a09df578",
+    "size": 3889
+  },
+  "61fbd82429423a1bdf379cb2dc944f18": {
+    "source_sha256": "db2702578276102ccf118624159ba8a149b04ef40ee41621e7ca1f3952223f58",
+    "file": "out2/assets/ed-write-dark.svg",
+    "sha256": "687816a7909726b019796bae4b7bb862232252d3ac6afe4bf3a1f9c34024ca7d",
+    "size": 1792
+  },
+  "6247201a3f6a4a98480e762d81b9c9c5": {
+    "source_sha256": "c36760554bc304c58d903627e97f876c8032fbc317430a35ddee172382aad734",
+    "file": "out/assets/d-icon-other-light.svg",
+    "sha256": "791922680723929981e23e747a51c382593827c18b676f73e3575023b207aaf7",
+    "size": 2562
+  },
+  "64fa78ce716e460aef3cb9a1b73a0ec3": {
+    "source_sha256": "36e9f28de227826f4a6aa9b0e0e196299dfdc852a3174f81a8cbc563f9a4c918",
+    "file": "out/assets/a-icon-gallery-dark.svg",
+    "sha256": "91d0d87a1e0ca1ec5d94a5e6f3e24b7eb2a25b1abcdfdf382dc91d44e2d52a15",
+    "size": 1010
+  },
+  "6697c368d65cdcaa3e814f4a345fada4": {
+    "source_sha256": "2d4d6b11990e4c45d4c3334c1eaeff8944572df0ed5a8aa65e24cbdd0d867dee",
+    "file": "out/assets/c-empty-light.svg",
+    "sha256": "904efdefda94f84c839c915a8a1a1abd9e6e4b06712324dfccab66366449b5fc",
+    "size": 4865
+  },
+  "66a7aa8e24425e0223e46c343a0d74cc": {
+    "source_sha256": "c0e3dcb47db517f301d1e7506c5a921ba5a1cfe21f91f33ed88f6cd3c40f7a42",
+    "file": "out4/assets/f-clean-ppt-light.svg",
+    "sha256": "83dccbdb61a5e11cc04a69f69db354168b55f1053264cc4b2837a8b1086721b7",
+    "size": 5515
+  },
+  "677ab6c40d79b2da45bc4acbec1c331b": {
+    "source_sha256": "5e203240ef383153d6f69db1d67c9198825838f27e9a00f09c8d745000338691",
+    "file": "out2/assets/e2-simple-project.svg",
+    "sha256": "7b3a559c79aa13bddbe150d683ee6206d6c9745960f3076bebb804c7b03f62e7",
+    "size": 644
+  },
+  "68024edf1da930c80e5cd7d2f2aa3142": {
+    "source_sha256": "5c3104eea766257268fb6fedabac0ee2c23701fb13628d44e662de8e844bc24f",
+    "file": "out2/assets/ed-project-light.svg",
+    "sha256": "e60f53917c9c2d011b9f4181919cdd11fc36d64258a6c9dbb1839eba9a230fa5",
+    "size": 1556
+  },
+  "6850ce3f03126408889326cc7d1e2774": {
+    "source_sha256": "4bb3832aaee18443afb7767999e469fd143b759a103400a96d1c54195f713577",
+    "file": "out/assets/e-icon-create-light.svg",
+    "sha256": "399309045a3829f6f1bc9324a83d9001005f238e66493e7f9ef3ec4a558f5385",
+    "size": 1381
+  },
+  "68b7e49d5fb1fde108783f81076c96ff": {
+    "source_sha256": "8f54261d83b08663df631495ecd6dd9ede380202b15f06dd5a866f29c1168954",
+    "file": "out2/assets/e2-w07-write.svg",
+    "sha256": "beeb864b3dfde92b083e7ef6a85a2e086d631e66603f33087843126cf449240c",
+    "size": 1191
+  },
+  "6acd75aa1ef30e666404845c4c1ae8cf": {
+    "source_sha256": "6751aae03bbe3a5178bdb5d14e579662d11e0f13f145d75543babb005697e730",
+    "file": "out2/assets/e2-w135-write.svg",
+    "sha256": "491cb25db6bd9e7ddef5a7b3133c7f636309bbf6027f42dbb5db8b9aa21f7408",
+    "size": 1205
+  },
+  "6b8108e72da73dd99e96f0f65184e2c2": {
+    "source_sha256": "08e32d2002edb432bbf12ff673b76c7747bd7b665a7ae5605f708b6f634e954e",
+    "file": "out4/assets/f-split-ppt-light.svg",
+    "sha256": "2e8d914ad23c4c54051d0296da258a6932ad0bd5b3ce27691d1a9091a856bb1c",
+    "size": 9659
+  },
+  "6c8bdec2efd0c1f65cfbecedca97535a": {
+    "source_sha256": "512631eb9828381ae85314d1d7fd75cb3362c480d6587b322447d4798008193c",
+    "file": "out4/assets/f-split-deco-light.svg",
+    "sha256": "f959ac6a130511bdb229024a8f12f1611a019c60fa5fda22563d127577af6f2d",
+    "size": 4789
+  },
+  "6d753b12c2a110d2c022ee945857c41e": {
+    "source_sha256": "f8932a10b1741b73dfdf266f7e14f053decf5d2a0bbd9c4f023bd87d452f241e",
+    "file": "out2/assets/ed-gallery-light.svg",
+    "sha256": "50d187643e4891785da34a8ca5ba14d2572f75a7d94a81112d389addc863f617",
+    "size": 1489
+  },
+  "6df0ec68f9f320097a9a3badff578fcd": {
+    "source_sha256": "5ec90371e0c75249246e9fe52887a5bd43bc0e7ffd3512d71e83fbad2f80779a",
+    "file": "out4/assets/f-split-empty-light.svg",
+    "sha256": "08890ed7afdd4ee44dbe8ff6c69d77065fbb054fd2a6b6d06b603fc043e6c0d5",
+    "size": 4464
+  },
+  "6e0fb2bcbe423163fe6deaa5aa03f8c8": {
+    "source_sha256": "09d42142fd29a33b944c0f57a2441826a471193083056851367bc01b27284734",
+    "file": "out/assets/e-og-dark.svg",
+    "sha256": "b25da604bbc8b8a705179dfe5bddac2c6bbfb751007aa5152645bd95f6df6d91",
+    "size": 3475
+  },
+  "6f1e3dbce9429eec71caf515f8c07960": {
+    "source_sha256": "2246b262fc013f7cb74f08ddde3f38910d90caec860eca37fd378017b20ab736",
+    "file": "out/assets/e-icon-other-light.svg",
+    "sha256": "26877deff0a1e3ff355767f7e311a85f6257666cb1079674e8ad5f543921a241",
+    "size": 2233
+  },
+  "7045140911d2fe2a41ecf55180950112": {
+    "source_sha256": "3649975d336f22742a43fd3b5abf901da0c7e3bd1bb0a4b7346f0c857203eec9",
+    "file": "out3/assets/r3-create-24-dark.svg",
+    "sha256": "398117d6f89f754cb84e49ce00f4353bdfef93a8a4fc4ea308c21fb5659b335d",
+    "size": 1606
+  },
+  "734581a55de05d3dbb9bde7e20ffefa7": {
+    "source_sha256": "38d74e450cf5659c45786ddd4ef6c5eee174dae07fd3f5742aae56235966e7f5",
+    "file": "out/assets/d-icon-gallery-light.svg",
+    "sha256": "9625dcea657a10fad50eabde88398f91fd8ac0aa7caa75afaebdf51e1f453429",
+    "size": 904
+  },
+  "7415fc44c2031695fedefa31718eb23e": {
+    "source_sha256": "e0d7cb1f09bb060c301811c32ce6037ddfdee8c03a9773cb6a27289b30faef9f",
+    "file": "out/assets/a-icon-create-light.svg",
+    "sha256": "60a97005f0d21ef14d0c2ab4262ab10a4a12e0d9af1f06bf706c6b78ef4108de",
+    "size": 669
+  },
+  "75254202e317ec2c01f1e73ff7503962": {
+    "source_sha256": "7c8b5be11e085f90c332d3f176c693b1dbc302b423291e906c89f7522269e1b1",
+    "file": "out4/assets/f-press-empty-dark.svg",
+    "sha256": "7d63fece194cdd089b126197da483c598c1a29655f5289263c88749672c19f64",
+    "size": 5010
+  },
+  "765114dcc83c031f558b60d571d1b54f": {
+    "source_sha256": "391ee9c69ea23d3e49ed7660663cc94eacea377de4f0e625db8bfda9db3d8113",
+    "file": "out4/assets/f-clean-deco-light.svg",
+    "sha256": "a6ef536786c39ef7f7743a1b96c7da6a714ea71484fc1455a5780ce1aaff49be",
+    "size": 2641
+  },
+  "76b9667f5e8e5e9b94011243eee89a59": {
+    "source_sha256": "9e62a5db03fd96fcc44ca226c435377827b7744497117b32b4fe086cf6f3e2f2",
+    "file": "out/assets/e-icon-gallery-dark.svg",
+    "sha256": "a421f573aac76cdac7eece3aa46b75f51c6adc02759fca45f5148b509e4a2e5e",
+    "size": 1389
+  },
+  "771322ef39163f55e67152898ffc6407": {
+    "saved": "blobs/771322ef39163f55e67152898ffc6407.svg",
+    "sha256": "f9e4fc927c81d094da2ec055fb10bb9151c3dd99352601c0dca760103c57adb0",
+    "size": 6127
+  },
+  "77de91647c3b30ee78dd98e0aa5c691f": {
+    "source_sha256": "063fd501b2d16151b864eafa6937f11b518dacaaa751941e661ff342470dda1b",
+    "file": "out/assets/a-og-dark.svg",
+    "sha256": "67b00f475cbd3a76caa0ee2d3d670a4758c832dcb9a0bdc99984465da4a1043e",
+    "size": 1141
+  },
+  "781436654955de09f536301e9dd42e49": {
+    "source_sha256": "4981ab841d518862916d3a378c50590128beb90f0aa64297b5389b16ded80610",
+    "file": "out/assets/a-icon-project-light.svg",
+    "sha256": "148dc237df92d35faa36fe838684ea0a2f428afe06fa2d1bf966d9452f00ca4b",
+    "size": 565
+  },
+  "787aaa32501919c801538d47e6686833": {
+    "saved": "blobs/787aaa32501919c801538d47e6686833.svg",
+    "sha256": "7673eda9c78a01e0adf9aa2c119ee52b385917fb19d2d506f3b3a2e4de8d4809",
+    "size": 5873
+  },
+  "7922520982f587600589e04b9df130ec": {
+    "source_sha256": "6c706368ee35e8365b5097c1e8210b9f3535e26aa850c16a6523f1b8824d8fb7",
+    "file": "out/assets/d-icon-travel-light.svg",
+    "sha256": "a99c30232f31904a5b3631bd43a9048b3e60eb3df7b4f934fe03f0eea6e555c1",
+    "size": 1009
+  },
+  "79ed91e2d75cd33cddf78c89b09c8729": {
+    "source_sha256": "2246b262fc013f7cb74f08ddde3f38910d90caec860eca37fd378017b20ab736",
+    "file": "out/assets/e-icon-other-light.svg",
+    "sha256": "26877deff0a1e3ff355767f7e311a85f6257666cb1079674e8ad5f543921a241",
+    "size": 2233
+  },
+  "7e8b6e4435e4ed064399f022061fa17f": {
+    "source_sha256": "3459feb60e831bee57845f5d04595a35c6643daae7452eec820bad5431f1b365",
+    "file": "out3/assets/r3-mod-notes-light.svg",
+    "sha256": "787d130b78ade1d04798826e40079f7c9230b672791dff3a541a16733ea2fe38",
+    "size": 1458
+  },
+  "7f19855ca8bbb92753a1bd01fe8101e3": {
+    "source_sha256": "9dbad09f5e15ba83fa5df0f07054af049eeb3f5eaf15d11d249a5d6d7cca9aa4",
+    "file": "out2/assets/ed-travel-light.svg",
+    "sha256": "bd8733aa1b865b943cc7d964f126cace48b80edfb2aa00ac58f8eb08d3aa31d8",
+    "size": 1928
+  },
+  "82a64d82e949fe63b86627f6c8df7ea9": {
+    "source_sha256": "8be2726169fc701952371cdd940d38135f922328b33cf1f64ed327004610dbac",
+    "file": "out3/assets/r3-tray-ready.svg",
+    "sha256": "606ad4c8107c0fc7b33e2a5fcd3536413c78b2bb016df7a0576fda31acbb4e25",
+    "size": 1114
+  },
+  "842f2f21e188ca6f95207de8c7d2f038": {
+    "source_sha256": "54be7a8fd2f8587af8e41f75f92684c207ed1f8bb0cbecbed501e4b0ecb8504d",
+    "file": "out3/assets/r3-create-24-light.svg",
+    "sha256": "8c340f48a76f0842498b4c427645625f7c4f8bdf6eaa61b950cc496e20f4086a",
+    "size": 1606
+  },
+  "850b84ea86c971b0dc92724d623b0829": {
+    "source_sha256": "0357b75fd4e27ac15c04adda875745a5213947cc9edbee3d569bb9da62d8d505",
+    "file": "out/assets/c-icon-other-light.svg",
+    "sha256": "7b5f9ef220b5d6fa12c287121205398a61ebc916d3e5a06b955583e55021bd6b",
+    "size": 3076
+  },
+  "8564658b066cd464a3e555bdba0a3dc1": {
+    "source_sha256": "affd332461090fbb5f60d8f66092e689619c533c1b178b43c1047d2894184074",
+    "file": "out/assets/e-icon-project-light.svg",
+    "sha256": "cc0ccde5589e2fc6ab8809e19d82b2a6abbb05b4a8bf3d8f76efbb78db3d751d",
+    "size": 980
+  },
+  "86f968b7f12fd8defad9e9c8d045f2af": {
+    "source_sha256": "728a6afd03906229af46a5926cf27e381b3da2f5e3aec60302f5d7a9924d9f58",
+    "file": "out/assets/c-icon-project-light.svg",
+    "sha256": "dfcf8624648c8b2678d5d8976fe50f02466e929b707f1abcc5bcbbccd4da29a8",
+    "size": 3102
+  },
+  "870196d4384dc02cc89f1f6169b71f4e": {
+    "source_sha256": "4df927a70de0e1e314ecfe80ba9dea6923e803eb915c71b50bb660c8d2fcd5f8",
+    "file": "out3/assets/r3-other-24-dark.svg",
+    "sha256": "a022e6bec32449f4debb06ffedf8065bba0660cbf1bd24f2947f107f826a533a",
+    "size": 2886
+  },
+  "87fd1a42dd2fb2e21f6dfe4499db9ef3": {
+    "source_sha256": "d39b53fd9e869d0c6ced78251775e96aca03dae4f37a63bfbe1c830fcaa09b97",
+    "file": "out/assets/e-icon-write-dark.svg",
+    "sha256": "24d41acec35854060b7c77ee8c17fe1f5281014f883784eaf99a432b55191802",
+    "size": 1193
+  },
+  "8893c67e70d8b0371477d888905f49a4": {
+    "source_sha256": "b9fd72b1daf9782f2ef9837ba56a8f3c8a3dc2696331d6427e5808cbee7cdce9",
+    "file": "out3/assets/r3-project-24-light.svg",
+    "sha256": "e72a29066ab39de4a0c273eb7089c1c118705ce8b2a8461d874c9b832cb91dd4",
+    "size": 1220
+  },
+  "88fcfad5a4c8962ea537299b4bb741a9": {
+    "source_sha256": "616a9ba65cef998b03d2f33b6ea63e097ea1048166075c9f72ea936dfd2fd634",
+    "file": "out4/assets/f-split-og-dark.svg",
+    "sha256": "c1764dd9d5ac20fcc9c023ee3f564882b7cbb58b8138d65f2648e1a98faa44d6",
+    "size": 6448
+  },
+  "89e5452badafcba0956cd499c5d9bd57": {
+    "source_sha256": "4f895b797b2843afa40f4bb0aa3784f53831aff24495329b09f54b69310863f2",
+    "file": "out3/assets/r3-mod-books-light.svg",
+    "sha256": "e24b68aac6f6155e6f6cc1b946fa6c6ae543288988671961bc446f4732a0a281",
+    "size": 1292
+  },
+  "8dde648a84b0d17525e5640e4408deff": {
+    "source_sha256": "dcb187cc6ac616197ecaf26a04a2b4a4fd931629851a24bef417f7aec57e1dbd",
+    "file": "out/assets/a-og-light.svg",
+    "sha256": "769a46b908aadabc07bbd11e010765ae11ebe673d5d2860abe1ca3f10376560c",
+    "size": 1141
+  },
+  "8f478bd900d97fda8be9f0f2437176e0": {
+    "source_sha256": "bf5cf629aa97176fc45619a95024fc4598ee53dcf5daa1a2c92260ca8993b293",
+    "file": "out3/assets/r3-travel-24-light.svg",
+    "sha256": "6e777e62cefab979b3732c954e8fdbab5fb33bd8aafffafc466aa18ef6ff8fdd",
+    "size": 914
+  },
+  "9133f7476bc517524d9b2711b57015a6": {
+    "source_sha256": "7c7864c4aff687a43539d01bc8a02a23cc0f928653362dcb738f68476101ea14",
+    "file": "out4/assets/f-press-ppt-light.svg",
+    "sha256": "daf89420351cad52108edadbdda01f14cb42a54995a20bc4a6de0d0ecbfccdbf",
+    "size": 10604
+  },
+  "917d22a10bef5cd3d975c700916f6a31": {
+    "source_sha256": "75f5eccb8f0ade1a3fea3781641b18d1e95808d9b8c771799f88cedf1b2dc3c8",
+    "file": "out3/assets/r3-og-dark.svg",
+    "sha256": "26c98d0780686a7349d9aaab76f3e83172282fc6c7d1fa4cd4a2d269a2b43e64",
+    "size": 68797
+  },
+  "917f323b22b27a9aa79d2c3f63a463f2": {
+    "source_sha256": "7e85d6caafb0942173a953be37bb3761edbe5e99b2d19a772f048564bdfac362",
+    "file": "out/assets/e-deco-light.svg",
+    "sha256": "eb9b86b48e48def873153db3448b3e1f303c6ab8fc3af804073357039787b0f7",
+    "size": 2435
+  },
+  "927d092df8574d696305c16f07f806a2": {
+    "source_sha256": "e7bd954d52366c329a5757aa728d27b07a8a70262a1dcda5ba6778fcccdc0df0",
+    "file": "out3/assets/r3-ppt-cover-light.svg",
+    "sha256": "bd52f2a917134355457c21fc5e98bd46bac6538358a5d4fb445177765ac60098",
+    "size": 128868
+  },
+  "9379f7612e19fc3171d7934db706c04d": {
+    "source_sha256": "ab0748b737f196e4cd71bb28545621e122b30dcca41081794f6c98d6a1d4c5d8",
+    "file": "out/assets/e-empty-light.svg",
+    "sha256": "56d12acde60d89aaf954898b0ceeece822c431dcf46a0c415e4b9b3db826828a",
+    "size": 2023
+  },
+  "948c42f6814a435e5d8815fbd611f4ab": {
+    "source_sha256": "9fbfa86ac16456cdc01ee05c04e80f7062a80fafb47376e9a072936d360e2f3c",
+    "file": "out4/assets/f-press-deco-dark.svg",
+    "sha256": "a7b74c0f71a516fa4ea7994328ab4212f5c4d8b074bb4a4576a62c4ebf46a412",
+    "size": 5343
+  },
+  "95360a1750dd7c930abc07bbf1f98664": {
+    "source_sha256": "907047d325045ca8a59cd828141b76355c89a8ed8cea760c733d1a117134af3e",
+    "file": "out/assets/d-icon-gallery-dark.svg",
+    "sha256": "cb3b888137325b09c23f1d03c01983e36b0824decc4616b4c8c5013f288ca4fa",
+    "size": 904
+  },
+  "95bf5dbc51268fffe67e4dea80ae26e7": {
+    "source_sha256": "075dd77460aeddc7a069afe70cf155909691ec7de9f2db9ff60db0aef08c3cfe",
+    "file": "out2/assets/e2-w135-gallery.svg",
+    "sha256": "9fbf24f3af7c8ae996b712c86afbef2b1dfede37878aa04a631ab3fb69eaf9a7",
+    "size": 1384
+  },
+  "96adcdc58ff64535be20801dc837e9ae": {
+    "source_sha256": "94eee06b4ad8b629387aafcc399728fe80a0cb5a39c3eb78da380940da1e16cc",
+    "file": "out2/assets/ed-create-light.svg",
+    "sha256": "b2696d4895984677ff6e67095b6e8cfade40f5cdab233c3adf912ad22610c56a",
+    "size": 2033
+  },
+  "970a45060dd98098f5b4dc3e3070e839": {
+    "source_sha256": "34105ddaba0fe71c1d121d74df8601ebe94b2cd0591d5641fc9e40793034406e",
+    "file": "out3/assets/r3-empty-dark.svg",
+    "sha256": "fa79524dedbe45ebce7947af7d25066692f3ae661ada567b2b4755d6b58e9e1c",
+    "size": 43511
+  },
+  "973c3157b29f7636c9fd100b9a34888d": {
+    "source_sha256": "051946ccf59271fbaf62706ebe8b06e896529f2841dad8a34a2a28247684dfef",
+    "file": "out4/assets/f-bristleLight-ppt-dark.svg",
+    "sha256": "4685eab54bd111d80be9aba09011b35fb4f92e9ebcc9db7cad8dad845e3b0939",
+    "size": 146112
+  },
+  "97f93b920fcbc0bbbb82b8e64cc88eb5": {
+    "source_sha256": "512631eb9828381ae85314d1d7fd75cb3362c480d6587b322447d4798008193c",
+    "file": "out4/assets/f-split-deco-light.svg",
+    "sha256": "f959ac6a130511bdb229024a8f12f1611a019c60fa5fda22563d127577af6f2d",
+    "size": 4789
+  },
+  "9aa9addbf4f576c663b0e5f25c647f7c": {
+    "source_sha256": "c1dd04974bcf20696be04801f57fccd2e16f0129e7f269dbc9997ee750f9ec39",
+    "file": "out/assets/b-empty-light.svg",
+    "sha256": "c38991db50ef574f0244c59a03949b11712bae5cb5a6d299a8e9928265fd3af7",
+    "size": 4924
+  },
+  "9b501b4fadaa469f102d18fe97144ff0": {
+    "source_sha256": "d1f234318b6cafcd745e5de7decef6c2cb9d77e1ca8b81d3b271c73c2a0854d6",
+    "file": "out2/assets/ed-write-light.svg",
+    "sha256": "93310995bb5edc7cd282ef59a6b196bc3a0ea7fa210ce30ccf0e6757ddf46bac",
+    "size": 1792
+  },
+  "9b702929ec446a14ef55d16093777bdd": {
+    "source_sha256": "308704fcdcdccda858d9c2a4b5806c31cee93a8a0f03d643099c70307d52df79",
+    "file": "out/assets/b-deco-dark.svg",
+    "sha256": "fc17ced8eabfc107b531187ce701a3769e24d0557ef512faa2b9d35586485d41",
+    "size": 11242
+  },
+  "9c9fdaa4ec72cfe0e0997b473d5cbc3a": {
+    "source_sha256": "2f04d8b985354b79b7bc900c87a6d2dd51726f0b0b677f717cbeb37fdae09881",
+    "file": "out/assets/e-icon-travel-light.svg",
+    "sha256": "ba3b9975923f494afe99e2c06b9f19fd3236f3261e34bcec841b33c011b47491",
+    "size": 1712
+  },
+  "9daa15522067f997e42cf34db3e1b93e": {
+    "source_sha256": "ae89e3bde4ec766cda604735d5457a2ee9bcf8070afd9a56d9d0b833f2d736a2",
+    "file": "out3/assets/r3-ppt-section-dark.svg",
+    "ink": "split",
+    "sha256": "fea587ca3b429276fb6075d94aae5dea043a12f66ad4b208987f6d331675fc77",
+    "size": 3071
+  },
+  "9dd42bc3707f705140aae7c469d4ed4a": {
+    "source_sha256": "e2bac7491a5ab1e3b98b99b5ad8941c1093cb18a36b70a98c2b5441feb96ddd0",
+    "file": "out/assets/a-empty-dark.svg",
+    "sha256": "f330dd5c83960d3b4cf6dc21336166a6bd0494ede0cd6a4035b162e53d284a73",
+    "size": 789
+  },
+  "a0482e90c0175dc544ffd68c25172aac": {
+    "source_sha256": "06a7a0fb8fa0171dff45ab6b39ffe85a0580618a7b636374470268bcd507cfa5",
+    "file": "out/assets/e-icon-write-light.svg",
+    "sha256": "427dbae4cc4d24c3e3b6c1e378914cc9fdd34fddf1f3873760ae853317e6985c",
+    "size": 1193
+  },
+  "a19a919ef54de5b7fa5396ae912cb821": {
+    "source_sha256": "fb766af8d7affbc60f87a1d3a4462f096f26424aa3b74c8f0eae2136c790f1c6",
+    "file": "out2/assets/e2-w07-gallery.svg",
+    "sha256": "ab44c283210333905cc3fabf8441aafc26dadf3e7ea7296a9d6672c6f2b51b25",
+    "size": 1383
+  },
+  "a1c0b07a14820df46a215faea0278b73": {
+    "source_sha256": "5c3104eea766257268fb6fedabac0ee2c23701fb13628d44e662de8e844bc24f",
+    "file": "out2/assets/ed-project-light.svg",
+    "sha256": "e60f53917c9c2d011b9f4181919cdd11fc36d64258a6c9dbb1839eba9a230fa5",
+    "size": 1556
+  },
+  "a2351f3bf86c3c13495dff3ce6905828": {
+    "source_sha256": "2334905c9b1049fbe8a22247ac9b47a616dfa159f09184e3a002f9cc013a49f9",
+    "file": "out3/assets/r3-og-light.svg",
+    "sha256": "32115bc26064f7967be624dd9ed5e2510035414a7757bee80e1d04cccb2b1df8",
+    "size": 68797
+  },
+  "a450b27b5de15f67a80a5f4978564f68": {
+    "source_sha256": "720960f4fa8b03ae24f20f6442419d9f2596d51fb37050b7a0d665ffde3e1a2e",
+    "file": "out3/assets/r3-appicon-light.svg",
+    "sha256": "6dd29181ce77288d7fdf41e765077b1a3df062ff946e2d5f6a74d3b30ff9d327",
+    "size": 5335
+  },
+  "a4f6bad615a0cfa4448048f4893246b0": {
+    "source_sha256": "2995909bb441d9dcbe2d278cedfdc190243272be0dc1730136e009f19c0a7341",
+    "file": "out/assets/e-icon-travel-dark.svg",
+    "sha256": "2ce6bc0317196dda103b39696f2145a9738bcad923e91e2a18f36e4cf00bca7f",
+    "size": 1712
+  },
+  "a50f2ee8b71affd1daff9072c6a2c737": {
+    "source_sha256": "10f48fa68dcad328c9dbc861ed32ab809eae0bbe60259d8851152830fc39a491",
+    "file": "out/assets/a-icon-write-dark.svg",
+    "sha256": "e7d1b7b3e516ea436c8d586d64893264c860fe4002909587abc80e20060acdc4",
+    "size": 637
+  },
+  "a5a1fd19e6c33a68bd215df9f313ae54": {
+    "source_sha256": "5ec90371e0c75249246e9fe52887a5bd43bc0e7ffd3512d71e83fbad2f80779a",
+    "file": "out4/assets/f-split-empty-light.svg",
+    "sha256": "08890ed7afdd4ee44dbe8ff6c69d77065fbb054fd2a6b6d06b603fc043e6c0d5",
+    "size": 4464
+  },
+  "a69992e248816596af8e04c72bd49a42": {
+    "source_sha256": "eca342e7011110d259c91f46b5f044cd5f9c6d2bcccb5521b1ee83d22d9805c6",
+    "file": "out3/assets/r3-write-24-dark.svg",
+    "sha256": "9a9392d16911d78f3134d356c7bdb032ee141d017e7aa0e84652c3b278d49371",
+    "size": 1364
+  },
+  "a6e5bda7137cef32549a7604903f03ec": {
+    "saved": "blobs/a6e5bda7137cef32549a7604903f03ec.svg",
+    "sha256": "79740eb1541ea5c181fd6bbe67a4a5a52f04886f056415530b5d6a700560b750",
+    "size": 6797
+  },
+  "a7fda50cd932c91c1bfeeb4df77198ba": {
+    "source_sha256": "2e820ddac5f46678ec98b28aec34d5a79e175a67066e1f3292f5d6115ba0e9d7",
+    "file": "out2/assets/ed-create-dark.svg",
+    "sha256": "3d5a69e886621b29e21bca83d6b03d321687e65a11607633bec0cd10d9863dfc",
+    "size": 2033
+  },
+  "a83a6a1d64bee51a605f52c865a02299": {
+    "source_sha256": "9c916cc5f1bd3e8b3b033f5d08549b9305853ae709bad7b7b4ab0da63209a573",
+    "file": "out2/assets/ed-other-light.svg",
+    "sha256": "426772c6bf3e7831c5a26108409caa31d630777414efb6b82f02b65b7610fb38",
+    "size": 2893
+  },
+  "acad989cf7fec79641f458bab33e1063": {
+    "source_sha256": "15efbe597c8ae863b0642599ab316c5689186e31e6141e1db749e70ef643f4c6",
+    "file": "out2/assets/e2-w07-travel.svg",
+    "sha256": "ecb4593c99474b944a9f6ab0c4640f230c4d34cc8a1d40855686e432be5ebf80",
+    "size": 1713
+  },
+  "ad9810900264173054ba42a207705b06": {
+    "source_sha256": "46f9cf4dd4428a65a14f404180b779a064a58879903291953a89086c0a0e93ef",
+    "file": "out3/assets/r3-mod-books-dark.svg",
+    "sha256": "a457851e343efb52d006a5d5c28057f116bf9b9543546f71650befc1075f7471",
+    "size": 1292
+  },
+  "adedf39f63c64c7b8bfdedec645f529e": {
+    "source_sha256": "9b6d594168e9f0c81237a2b24d68912fff2c7669acf29ee83cd405c28a2c77b0",
+    "file": "out2/assets/e2-simple-write.svg",
+    "sha256": "2de9555ed0500a5391c1a791dc49ba71a165f64fc8826503429b626094885e9c",
+    "size": 765
+  },
+  "af4b01a42b8eb335a3be034a59d81066": {
+    "source_sha256": "1fb93e2853f2928483e058f1595ef7ab3bf4ccc6c045acb3d015170ceba5f2e1",
+    "file": "out4/assets/f-split-empty-dark.svg",
+    "sha256": "dc42e85f54e3ddc519cbfcf3c4686e49c1064b2800f07e04346e9956ccce775b",
+    "size": 4464
+  },
+  "b092d48b857871d6a6a553f9ce4ce5b3": {
+    "source_sha256": "12790d9ae837fcee69de2b6aac3cfae2f797cfb3bbfc1d5212828a3f11ab9e00",
+    "file": "out/assets/a-icon-gallery-light.svg",
+    "sha256": "39af097e2daca5961c4b705dd54bed1e8e0e893ef4059f47a5bff35c020c55f9",
+    "size": 1010
+  },
+  "b09c604612c8b6e75fb93a3418defdf1": {
+    "saved": "blobs/b09c604612c8b6e75fb93a3418defdf1.svg",
+    "sha256": "9d6f3f26e6752b34345110a42293cba96f685fb25d4b013708ebcb915fcc7222",
+    "size": 5873
+  },
+  "b0cc89ad785e773090cfa1701d3476a2": {
+    "source_sha256": "a5cb8f64b521dbcdafa1f69e163369e6eb377be4485e79a288f4bfeca1f20d50",
+    "file": "out3/assets/r3-other-24-light.svg",
+    "sha256": "98c375332431f8199728d85493e7d73d63f31d284fa3a9c4b3d50e7f2ee51005",
+    "size": 2886
+  },
+  "b1fa9f13db1a6354ed5e1f1c7114628b": {
+    "source_sha256": "24b43def662bd8473bbf6610cdd2665460f78d217f8cd2e6db79e38b23f1a0ee",
+    "file": "out/assets/e-deco-dark.svg",
+    "sha256": "7a551eebd7b035dab2881fcf4cde48f216acacd2e09aad1415595de3e3d38830",
+    "size": 2435
+  },
+  "b2452aa6e7302cc400ef4641e9d59dd8": {
+    "source_sha256": "ff0252d0f18cd27513b960032c6886519427dcc7f5386a9592d8046b2fe07caf",
+    "file": "out3/assets/r3-ppt-section-light.svg",
+    "ink": "split",
+    "sha256": "c7bc5ea7fe574888c876f0c0d1ce55cf65a3749840bc3f719eccebe689b4c20e",
+    "size": 3071
+  },
+  "b2e2c5bd357d87c961ebb75ba32a522c": {
+    "source_sha256": "5afe00c4e2bdd5f147d870f02cac0d9b11a75a62ad51db92b4c549b4adc5c82f",
+    "file": "out/assets/d-deco-light.svg",
+    "sha256": "13223b2bdeeaed940d1c0e28faea44071fe348caa9a95b9a9c17c91de9162d41",
+    "size": 1487
+  },
+  "b3cd20367d6d36859d931dfe622ab274": {
+    "source_sha256": "718a3a842f26435268de71396dbf18456df86ef073e5e120bca5b5c0981fa840",
+    "file": "out2/assets/e2-w135-create.svg",
+    "sha256": "cbf1093e70185e81a0bfc3f073996a48c740740aa90c62962deaa7683207440b",
+    "size": 1371
+  },
+  "b4730a8b74daa7f788c5b37ab1f2e28f": {
+    "source_sha256": "e04ae4ed91deaffb702dbaa687b0cd74027dba4803e3bbd212c18bc6814ee40c",
+    "file": "out/assets/c-icon-gallery-light.svg",
+    "sha256": "a6dcf6d08657cebc628d8d073700d47c9ada00c05df54bea757c8d45bb141e46",
+    "size": 3107
+  },
+  "b4a861a11c3862c41070d70b3910e3dd": {
+    "source_sha256": "39af97355be2056fbe2d40042ab741e9ac62633b3f841fa7b138b52c054f88d5",
+    "file": "out2/assets/e2-w07-create.svg",
+    "sha256": "3aa749dafbc2cb73c10a29466f8b32a5b44dc6e8051c8a8fc7ac5ff61d1e0ff2",
+    "size": 1347
+  },
+  "b776219814d0a53510193d1abb1903a4": {
+    "source_sha256": "b6289448bfb133a3567cfeb39e296221de5dd98beda4fa6cda2ad7d5574b07fd",
+    "file": "out/assets/e-og-light.svg",
+    "sha256": "7e4f7d83f51951b9edee1035c4983ae2cd62b03589c6c474ab952534369725f6",
+    "size": 3475
+  },
+  "b90950f6e626e007998307e549153c9d": {
+    "source_sha256": "6b0e6718a87ee9a4ee210ef287009d347159125cf0d56becd9deb87c42084f5a",
+    "file": "out2/assets/ed-deco-dark.svg",
+    "sha256": "cdc0a41e310040b4fd20a953e76fd26ea5e29681d80ed5ccd66d8d272fa4442e",
+    "size": 2625
+  },
+  "bb2eba73c5976aafd6cd4f90f5c4b91b": {
+    "source_sha256": "4bb3832aaee18443afb7767999e469fd143b759a103400a96d1c54195f713577",
+    "file": "out/assets/e-icon-create-light.svg",
+    "sha256": "399309045a3829f6f1bc9324a83d9001005f238e66493e7f9ef3ec4a558f5385",
+    "size": 1381
+  },
+  "bcc5d196492b829b0a36783a809c3c18": {
+    "source_sha256": "938873272bce03acb6dbdc32cf631ed1eee876f3a3dcb03885d1f767cba4f9d1",
+    "file": "out2/assets/ed-og-dark.svg",
+    "sha256": "3c50fc13e4f8fa7203ca999b0328eea0e72872fd1cd525b518a7ff7f36975bad",
+    "size": 3441
+  },
+  "be5248fb9d3fe2038e6635e3f09362ee": {
+    "source_sha256": "be73805e118e2717b4cb7c3bf8a12e01237fcfbb120e1692554d3ff60958ca72",
+    "file": "out/assets/b-og-light.svg",
+    "sha256": "2f4ed446860c4a6733e10a9c9c828e427681f443ff5af264d683a4243ef30158",
+    "size": 22135
+  },
+  "beaec6302382f36a39cde14b618c6e5d": {
+    "source_sha256": "a82e2d38aacb83175635f04edd144e06cc6e75299411d6dd6f0da5e4c8eb508e",
+    "file": "out2/assets/ed-gallery-dark.svg",
+    "sha256": "8c2f3e1cbdfac12261c32bbea2266950f97835d16b8d869abb36b65482ef0d83",
+    "size": 1489
+  },
+  "bf8e1869a63a8a8ce78346816364419d": {
+    "source_sha256": "96331e3092ce340aabb8e6c3fe34866c345a4b79380f20aa334e493d2da9af18",
+    "file": "out4/assets/f-press-ppt-dark.svg",
+    "sha256": "0488dea9deb24cf248e79e518c7366db46be0188a193b72163e82c809cdb2877",
+    "size": 10604
+  },
+  "bfde281c702923a61cd5de4ee4b3d4ac": {
+    "source_sha256": "883c8c6350f85f83ae91724524e09cb2349db4f649d9ed256a6a32eaf58e772a",
+    "file": "out/assets/c-icon-travel-light.svg",
+    "sha256": "7173e96bcf2202d5b85f7852d3387e90336f511dd35328e77df528f2b41dc3fa",
+    "size": 3889
+  },
+  "c2cc63a03ba99a66055096fd2f45ca4c": {
+    "source_sha256": "2f04d8b985354b79b7bc900c87a6d2dd51726f0b0b677f717cbeb37fdae09881",
+    "file": "out/assets/e-icon-travel-light.svg",
+    "sha256": "ba3b9975923f494afe99e2c06b9f19fd3236f3261e34bcec841b33c011b47491",
+    "size": 1712
+  },
+  "c471dd8967e8fbbd0badd2b12c315c1f": {
+    "source_sha256": "3910fa76eb91f7a80b5a24b062888fc8af4e43d0fdd3dc0aae865489e318fdd0",
+    "file": "out3/assets/r3-mod-picky-light.svg",
+    "sha256": "bd590fe5a20a699836babd1b1d8ec7618ba9fd8f240550248c8714ecbe9009ab",
+    "size": 1816
+  },
+  "c8d66ab93af1b7d2a5a009e97075e5b2": {
+    "source_sha256": "f5e71d43c5e88f294ac2721751b0b2912b8f655ba29543b43cd2b041ffc0ccc1",
+    "file": "out3/assets/r3-mod-notes-dark.svg",
+    "sha256": "bd6c64919787936e5fad7215448ee236ed0f6115f4e86115e95968a405fa0ea6",
+    "size": 1458
+  },
+  "c96396de80951f02b1d9d813d145b9a3": {
+    "source_sha256": "b94ad3282e9b323a598d518b66cc36e7a3d69ca352ac5b6656dbb015f8e6df80",
+    "file": "out2/assets/e2-w135-other.svg",
+    "sha256": "440f71e87568698a429358628a7ebe95ebb3da4ccb1dbab92bcc667e73d16902",
+    "size": 2225
+  },
+  "cb2adefd83be165f6d745606dbcc1efc": {
+    "source_sha256": "28e7d400b44072e8d12c43e964a0a5f4d8689f17ce8ab277d51fc40123d94e2c",
+    "file": "out4/assets/f-clean-empty-dark.svg",
+    "sha256": "4254facd2cebfa9432b6fedc3c2d2da0df3ac54f3b1e72d9dab1ae91573bb90a",
+    "size": 2438
+  },
+  "cd4924577eaf867afe4609750ba2e3b3": {
+    "source_sha256": "ec2f52749cb9685812b1d2c09443cb28ba12cd6a5f85f320071c69f9655532f0",
+    "file": "out3/assets/r3-empty-light.svg",
+    "sha256": "514e4802d3e47b1fba15d7073349f358b256baa998f58a4de9d0314a170650b5",
+    "size": 43511
+  },
+  "cdcbdfc934a48ef9675e2c2ea6ebdf1f": {
+    "source_sha256": "224a19a23ce4c6800c8aee246e81f514364236c438ac0988d513e829a7e9937e",
+    "file": "out3/assets/r3-deco-light.svg",
+    "sha256": "1ed760940208dcb5a698994bb01cdb8e909a17b27f3a3098962021a9bd02adbd",
+    "size": 46604
+  },
+  "ce0587c13e6553d500003f89f465574d": {
+    "source_sha256": "910dac6d44098e1968535836f4518b040adf76aa3811a712463f2918819c8bad",
+    "file": "out4/assets/f-bristleLight-empty-dark.svg",
+    "sha256": "19678d9a9563bcb1f96665447d4cc5ce8269b7d7c79adac6014a97b080e6b1d8",
+    "size": 49606
+  },
+  "ced115d74b44c6abbc50f68841e8d2f7": {
+    "source_sha256": "54ed5b0855fff53e352d4e54f6048f91cad935a0dcd30dc00b15cdeaa58cf485",
+    "file": "out/assets/a-icon-travel-light.svg",
+    "sha256": "825088a6b03b596f4d09e473830e583809743775042fe73ce5c117eecc621627",
+    "size": 556
+  },
+  "d05f210479ee009b9cd876eeb590bf52": {
+    "source_sha256": "2210faeac9ee40ee14f96de7cb9dd1e371e67466a7cb3bfef8dc19aad53c0f24",
+    "file": "out/assets/c-deco-light.svg",
+    "sha256": "7b7623b0d4ca7d0c65cd2cd193f8c9806ecc52d938f2ad0bd9dc2f179c6122f9",
+    "size": 13657
+  },
+  "d0c5e74eb121dd3cae8146fdbee016e1": {
+    "source_sha256": "7bfedb36a2a736814d35f61e3c1999075374e17ebafdb3f95e586ab3f5279ee3",
+    "file": "out/assets/b-og-dark.svg",
+    "sha256": "93a019c4722de66ec976bae7287eeb20a4aa4ccdb8215204b300e9ea525b4782",
+    "size": 22135
+  },
+  "d3d443bc5222cfb298d4330789813d37": {
+    "source_sha256": "aa05d81a9f3dac8a6933182ec40519942f0f51943fc5e4de83b6e1bd7d5f9f3e",
+    "file": "out/assets/d-empty-light.svg",
+    "sha256": "e06860d8a33eaaa4b1c566c15be220c6a9e2b0f924906851b00dcd355e109189",
+    "size": 1191
+  },
+  "d463588e5bd3e7b0f9747f21487f8caa": {
+    "source_sha256": "e95dd7df45ee126e42a209060ec8a3ac5b12de5a3917703067e82c8b563adc66",
+    "file": "out/assets/a-empty-light.svg",
+    "sha256": "6b2174c93da274ba9b948f07f097c9bdcdaa90d31e59370f59c1e43e83efbcc1",
+    "size": 789
+  },
+  "d666b4a88241a5e2c8446525709bafb1": {
+    "source_sha256": "3f6818f794c1e5794b83830e91da1b67600ecddcc7131d079cc999e0efdfad6b",
+    "file": "out/assets/d-icon-other-dark.svg",
+    "sha256": "11fe9c7422bf616e1dd17ed4926332e6b5126cce4d867b153f1a1736a3edfe94",
+    "size": 2562
+  },
+  "d6fb307bc97896984ee3ba79f9d6faaa": {
+    "source_sha256": "242800c2057e449dcab22840b5d7d326f07db00343e662cb938083a76e08492e",
+    "file": "out/assets/c-icon-create-dark.svg",
+    "sha256": "958af6b054b40e893e92e8b82d7b216fe522ca3714c87e5dd216e23e7002796c",
+    "size": 3126
+  },
+  "da05006248f765ae9c778a8ac51034da": {
+    "source_sha256": "6a0bf78bc44bf86ca727a3decafef323fbc817f45bfdfe7a7bca0118e63416ae",
+    "file": "out4/assets/f-clean-empty-light.svg",
+    "sha256": "3bdafa4ed00900848e11b122b11323ebdd2cfccba5de7295405e62a72532b449",
+    "size": 2438
+  },
+  "db643db51bc43148d715543fa640c5fb": {
+    "source_sha256": "35fa0dc6699e0fe9a950f98c3fb8479c6a75cdc9b81400fe256a715eddbd02d6",
+    "file": "out3/assets/r3-mod-todo-light.svg",
+    "sha256": "19559e6820763c3b23f87d40ac735d6f2c21c8c795092eadf0d98433749bacc1",
+    "size": 1786
+  },
+  "dd4fd405b26dc2b2b9dc10ddd06e1d27": {
+    "source_sha256": "cfcc062147f7b7c3595acabcd9c149007c0c478a234e9a699b792084537e8a03",
+    "file": "out2/assets/ed-deco-light.svg",
+    "sha256": "ab0a2ef866613de55ae354de01fab0c38b8f1d5e7dfe53911f2d7ff5f291aa66",
+    "size": 2625
+  },
+  "dd65ad5e2f54872d98b42019a658bd6b": {
+    "source_sha256": "13606c2f96cea7454cd719ef5e96fbc79fdf0b0d37e43f80b460db2660696cd5",
+    "file": "out3/assets/r3-ppt-cover-dark.svg",
+    "sha256": "60ccf4c1928e9009510794ed58a8941cc76ae72a000addd70186eb507523c837",
+    "size": 128868
+  },
+  "dec98555817102c3d6a48d7d676b8f6b": {
+    "source_sha256": "2f729332313f49e2acd43bd8de25e56878749b884d2ddd403f60c0ec4f0c1d78",
+    "file": "out2/assets/e2-dry-deco.svg",
+    "sha256": "c8dcfb6a6576907e809671e634abed3cd3d36bda68737d3d486faad946816b2e",
+    "size": 5010
+  },
+  "df81514b4c7998317dacc0438ab30054": {
+    "source_sha256": "125504b5095f0f4aa2580e508395fbfea7a2704c296cc57f590c842f421dfb15",
+    "file": "out4/assets/f-split-deco-dark.svg",
+    "sha256": "df86f16aa1d81734a2fa266975d545a5f49d1ba5c0275c4bd4ac032589ecab4b",
+    "size": 4789
+  },
+  "e2a47250ccfbf37e6e2b5cdd4b34ea6a": {
+    "source_sha256": "a32794324ee6da31eb751032f24d66ddf911437e590ddeb52e7f99c9515298d4",
+    "file": "out3/assets/r3-mod-days-light.svg",
+    "sha256": "9f9027fd352e3d0f02606568513dfdede60367318229468bc80a20fd33e3bfae",
+    "size": 2494
+  },
+  "e31c43080aa741648410459526d15f46": {
+    "source_sha256": "60c366027660bcc57842f667801786e61589ac2b0713c84350d43184274834b3",
+    "file": "out/assets/c-icon-gallery-dark.svg",
+    "sha256": "1e8a92636eb4afd2351fda6c77120103cfa218479d0a86cc78e9ba72deacab15",
+    "size": 3107
+  },
+  "e3885707b262d77bb5c195b981718c3b": {
+    "source_sha256": "4a2d2ae140189636ce61745d9b72922dd193b67e45648fdc931e63798a3cd2c8",
+    "file": "out3/assets/r3-mod-finance-dark.svg",
+    "sha256": "cafbc741a7f0b700f896fd1044156632a63d863905673497b6753c1e6fadd881",
+    "size": 3383
+  },
+  "e4c21adae98dfa081c0160016d0fbeb6": {
+    "source_sha256": "a81a120ba4c1bbe86abd224e3ef397381d303442e869cc50f6b623e7b7b92dff",
+    "file": "out2/assets/e2-dry-travel.svg",
+    "sha256": "0d62585db039f7e93c29afae338e1c241f92170f89af481413aab4207882e9dc",
+    "size": 3492
+  },
+  "e5512fd68896282f2ffa2b19ca4de35a": {
+    "source_sha256": "76ed0273928a2f1cc7e8048b960f365e2094dbdd49ec807be953eb47f5c09e53",
+    "file": "out4/assets/f-clean-og-dark.svg",
+    "sha256": "75707907bc0bdec68a590d82dada929065c177f97a224a3c5073f0f47d1dbed1",
+    "size": 3439
+  },
+  "e633023f354ed827740e16bdeff6c5e8": {
+    "source_sha256": "f42aaf523dba6648f846b608b51925b6c3ff48ee4b14c89d8265f5ddace10110",
+    "file": "out/assets/c-deco-dark.svg",
+    "sha256": "7909ae1fa87f12d599ff374e10ee9b5dce51681d7414f82fbfb383b29c394810",
+    "size": 13657
+  },
+  "e8e534eea0f153ea16d52e19ca6dfb9d": {
+    "source_sha256": "a82e2d38aacb83175635f04edd144e06cc6e75299411d6dd6f0da5e4c8eb508e",
+    "file": "out2/assets/ed-gallery-dark.svg",
+    "sha256": "8c2f3e1cbdfac12261c32bbea2266950f97835d16b8d869abb36b65482ef0d83",
+    "size": 1489
+  },
+  "e9dc5b19e473a3ef48acdac6c5c6fb0c": {
+    "source_sha256": "0bba3dc1aba7b41de207780971a034ab12e99a43a963243e033232798cd840d0",
+    "file": "out/assets/e-empty-dark.svg",
+    "sha256": "6fc583ac4e434067f1834e1caafb6d78f03a5ca87ee9a7cc70bcbcc0b3748092",
+    "size": 2023
+  },
+  "ea2163ddf028f2f4a61723b7fdc0f9e7": {
+    "source_sha256": "04de731f87964b754d7efabe313d75aa324f0d0f9b69e169132793026fb55200",
+    "file": "out3/assets/r3-write-24-light.svg",
+    "sha256": "37d976a32f8943f3eda21def1b89a5d002a6a7a30706c6b1a437b2aed12b7b85",
+    "size": 1364
+  },
+  "eb74ac10b6c220857f275cb84540a908": {
+    "source_sha256": "03cfc576544e341f58dedf77293b2b587f4701755a93a27a10d0ac0d18fbe4b8",
+    "file": "out4/assets/f-bristleLight-og-light.svg",
+    "sha256": "7c855331aed748fab0233957af0762b4bc66a7cb0f5fd5576de70eed65f0a638",
+    "size": 78376
+  },
+  "ec6216cb7e891f8b529569161f854f31": {
+    "source_sha256": "113b467b837843c915eb941c49c9fdda14fcec5b2ba70b2f34e8f9be87dfaad8",
+    "file": "out4/assets/f-clean-ppt-dark.svg",
+    "sha256": "7382c50b595e6cc2c4727e329b9875e2db3e86542a69cd3a92a976ca09c785ca",
+    "size": 5515
+  },
+  "ec98db45ae7af09ca53b6a3c949c3156": {
+    "source_sha256": "17d4fc3d4b7fc5c5af57b685fe1700e052673e0589b8e8b41e7a8300d21c8812",
+    "file": "out/assets/e-icon-gallery-light.svg",
+    "sha256": "5ffbe08ce1357b105d0313eca812301e5a2b3114bb621b309a5649c4d8fa2aff",
+    "size": 1389
+  },
+  "ee8ebae1f7ad256031d95ef7536ad393": {
+    "source_sha256": "aa9238677c2b5321d0269d363175366497a99a832fbbfb65801f522a0e728a2f",
+    "file": "out3/assets/r3-project-24-dark.svg",
+    "sha256": "2f8f515ceea81b495d490dd6800edbc497d80989b8247c779d27ee749425d83c",
+    "size": 1220
+  },
+  "f08d8f391759f5ed2dff212cae3a437c": {
+    "source_sha256": "06c6edcac9ee4937615892a7cdb98beca98bce58c7ec83b7c93f1bae78714fe3",
+    "file": "out2/assets/e2-w135-deco.svg",
+    "sha256": "a8e59fd6ffacceb5087ffc583a4a0d1892c370172b99deb37725813ceefd4d6f",
+    "size": 2431
+  },
+  "f0e9022ed063bd6f72e65205cdf46c84": {
+    "source_sha256": "15adfc1bc251b66332f9baf59385f904ae63c67a1d1efe57a0241454aae32b14",
+    "file": "out/assets/c-og-dark.svg",
+    "sha256": "e20cf59c94a4117212aedc55b3e0a04b1c6e28263ae6dc6b054e76994b176609",
+    "size": 19481
+  },
+  "f106468d2bce75895050617353895f9f": {
+    "source_sha256": "ad063d1e22dc29bfa3ba4d6520bd84df7fbae42469b230ff90cbf313a4fbb49d",
+    "file": "out3/assets/r3-gallery-24-light.svg",
+    "sha256": "580cf1875f04a4d60e7903e6db8899ca171ecfaafe10f1328c4fb5c2b5d8aab2",
+    "size": 1058
+  },
+  "f13ab5fd31ce54480b6ca837dab11acf": {
+    "source_sha256": "713b2837568a3e4d4c50c7c056734b0421bad9d64e12ef54d46f7a52eacbc4c8",
+    "file": "out/assets/d-icon-create-dark.svg",
+    "sha256": "fd16ccdeeaeff7559b72dd663799bf5b842ad736353696d8d50f5a451b1f46f7",
+    "size": 1262
+  },
+  "f1c7e4f0f7d8c5e901b7ef88f0f784b4": {
+    "source_sha256": "3ecdd9d7f9f287b7575c91c73a8a33d0094c5277c75512bbd8f1949231fa4a8b",
+    "file": "out4/assets/f-split-og-light.svg",
+    "sha256": "c5f0b17d1dbbaa42b06c5fa2b9fdf89d9be3c3294b2f9f47ab717a3980a36335",
+    "size": 6448
+  },
+  "f23f7a21a41689953d441afcb9b90aab": {
+    "source_sha256": "7c680f5ebbc967e50a8e182505df66c21e6455c635f049151be48242eb795f90",
+    "file": "out3/assets/r3-gallery-24-dark.svg",
+    "sha256": "cbb3b31c55e9bb4bdb8c332e1a34f5c567041d502c2567034673c39d95b9f53c",
+    "size": 1058
+  },
+  "f2e323909b50d3905085c1038fdf99bd": {
+    "source_sha256": "7a42697824aebab4bb91a176968562806ed4ecd1a0e9588c74eb8e55ba4202b7",
+    "file": "out/assets/a-icon-travel-dark.svg",
+    "sha256": "3d0af08d83af36d3285b86e7785bd0734146e89c1ea8e8e0db2e74937da7c978",
+    "size": 556
+  },
+  "f560160f0ee6cea4f452885b28d4839d": {
+    "source_sha256": "d2ccec12bd132170d9683d27452e9cf9ebf618a3784fd027c61241554f3698db",
+    "file": "out/assets/e-icon-other-dark.svg",
+    "sha256": "0b093654ec3c0de1017a9aeee5c336649ff3929a8a1a9f25755ed3fe0b816445",
+    "size": 2233
+  },
+  "f6313a3ceb2feffeb0e4b4a0f4fb32de": {
+    "source_sha256": "7884ab98c227e03df925bb35e8e626a1540a1fc77450ade7a0a62ec368fbadc9",
+    "file": "out/assets/c-icon-create-light.svg",
+    "sha256": "d6d1f4fbae111475d095d02f12ad065cb19d65da5e9cfdee0bf43785f820bf51",
+    "size": 3126
+  },
+  "f7f610ad8d0ad6f5e39710d52d878893": {
+    "source_sha256": "6281957fea24c3712b02fec5b2296974fbccde5e374bfeb8b0edc10164b65b69",
+    "file": "out/assets/e-icon-create-dark.svg",
+    "sha256": "110654322959d796d966bc4709ae3eac1699f677f6b06d8c7236efad58411088",
+    "size": 1381
+  },
+  "f9397a75a36178643a990598eb608ff7": {
+    "source_sha256": "a556aded828072d9511e24abfd3370844814381909b447dd4f5e5cf88c6b6bf3",
+    "file": "out3/assets/r3-appicon-dark.svg",
+    "sha256": "d3c6abc8227198ffee3082f52fd5de25f6e8f4b8586b71ac08b8c97371fc298e",
+    "size": 5335
+  },
+  "faeda5ae369e6391d6134930996ff2d8": {
+    "source_sha256": "db65ab7c2fd575404f167cf6a45f0bf4db46fdef28b5ce003007095e933edae0",
+    "file": "out/assets/c-icon-write-dark.svg",
+    "sha256": "09e4020296ebd378adcd2f021fe33397d4fe76ef1031a5ec061f7fc1569ff4b5",
+    "size": 3113
+  },
+  "fb013efda449e7efcfa40661725b66f3": {
+    "source_sha256": "2cded7a23ae95a5e78ca566c2ac70094c6813addd1ab439f1072b063ffe7b3fd",
+    "file": "out/assets/a-deco-light.svg",
+    "sha256": "c108b6a8423116b75153da89a141a7d7f2c9e155c5129492d1f64fa3e3703fc3",
+    "size": 955
+  },
+  "fb3d6ca0338e7745b242e50c9729a937": {
+    "source_sha256": "9dbad09f5e15ba83fa5df0f07054af049eeb3f5eaf15d11d249a5d6d7cca9aa4",
+    "file": "out2/assets/ed-travel-light.svg",
+    "sha256": "bd8733aa1b865b943cc7d964f126cace48b80edfb2aa00ac58f8eb08d3aa31d8",
+    "size": 1928
+  },
+  "fcea693e165975e65ea8eeaa3a21c16a": {
+    "source_sha256": "5ccd525e3462cc6ff5280348cc1b6042d0a02dc4ba5274b1c4975e3b0dc22c79",
+    "file": "out3/assets/r3-mod-finance-light.svg",
+    "sha256": "ff7c56d48791b4aac2052a73aa7cb4a2962e804a0ead32c2e26478744424fd9b",
+    "size": 3383
+  },
+  "fd4e15cb77e68397db2ff1de88e15a3e": {
+    "source_sha256": "d1f234318b6cafcd745e5de7decef6c2cb9d77e1ca8b81d3b271c73c2a0854d6",
+    "file": "out2/assets/ed-write-light.svg",
+    "sha256": "93310995bb5edc7cd282ef59a6b196bc3a0ea7fa210ce30ccf0e6757ddf46bac",
+    "size": 1792
+  },
+  "fe78b821837cb3278938c582b7d13bd5": {
+    "source_sha256": "faf8a523612cb128472b67d418b8a16092ad4efbfbd683496b5e14a581da5936",
+    "file": "out/assets/e-icon-project-dark.svg",
+    "sha256": "46676dc54a3f749b125e2e3e2ec3b51ae769ed040e7fa469d8e71bbeaffbacb9",
+    "size": 980
+  },
+  "febd3f12e9650e80753f4c6814a92e49": {
+    "source_sha256": "0284d3ecc97e0b4e03788d27e24bc2620bd2a5091a9acc5688886edf91fd086c",
+    "file": "out3/assets/r3-mod-picky-dark.svg",
+    "sha256": "da782d7baf19e19c2c9a911ba7ea4a84d9a2ca25fac9edbdcfb97e3a23554ee3",
+    "size": 1816
+  },
+  "fef26560c1d24f9c3c277e413dc91e11": {
+    "source_sha256": "1fb93e2853f2928483e058f1595ef7ab3bf4ccc6c045acb3d015170ceba5f2e1",
+    "file": "out4/assets/f-split-empty-dark.svg",
+    "sha256": "dc42e85f54e3ddc519cbfcf3c4686e49c1064b2800f07e04346e9956ccce775b",
+    "size": 4464
+  }
+}

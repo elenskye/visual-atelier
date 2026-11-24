@@ -1,0 +1,32 @@
+<!-- @dsCard group="笔迹和贴纸" height=300 subtitle="荧光笔、划掉、手写下划线、分割线、小票虚线、十字绣" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>PenMarks</title>
+<style>
+  html, body { margin: 0; }
+  .list { padding: 24px 40px; width: 560px; }
+  .row { display: flex; align-items: center; height: 40px; font-size: var(--text-body-lg); }
+  .row .k { width: 120px; flex: none; font-size: var(--text-small); color: var(--color-ink-soft); }
+  .row .v { flex: 1; display: flex; align-items: center; gap: var(--space-2); }
+  .threads { display: flex; gap: 6px; }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="list">
+  <div class="row"><span class="k">荧光笔</span><span class="v"><span>下午好呀，今天要</span><span class="pm-mark" data-hand="marker" data-seed="801">交作业</span></span></div>
+  <div class="row"><span class="k">划掉</span><span class="v"><span class="pm-strike" data-hand="strike" data-seed="802">给猫买粮</span></span></div>
+  <div class="row"><span class="k">手写下划线</span><span class="v"><span class="pm-underline" data-hand="underline" data-seed="803">记得带伞</span></span></div>
+  <div class="row"><span class="k">分割线</span><span class="v"><span class="pm-rule" data-hand="rule" data-seed="804" style="width: 320px"></span></span></div>
+  <div class="row"><span class="k">小票虚线</span><span class="v"><span class="pm-dash" style="width: 320px"></span></span></div>
+  <div class="row"><span class="k">十字绣</span><span class="v threads">
+    <span data-hand="icon" data-size="18" data-seed="811" data-d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5" style="color: var(--color-thread-1)"></span>
+    <span data-hand="icon" data-size="18" data-seed="812" data-d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5" style="color: var(--color-thread-2)"></span>
+    <span data-hand="icon" data-size="18" data-seed="813" data-d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5" style="color: var(--color-thread-3)"></span>
+    <span data-hand="icon" data-size="18" data-seed="814" data-d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5" style="color: var(--color-thread-4)"></span>
+    <span class="pm-soft" style="font-size: var(--text-small)">记得越多线越深</span></span></div>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

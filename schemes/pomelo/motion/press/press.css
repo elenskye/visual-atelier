@@ -1,0 +1,10 @@
+/* 按钮：按下 0.08 秒扁下去（字按钮扁成 0.9 × 0.84，图标按钮缩到 0.9），松手 0.38 秒弹回来。
+   图标按钮、贴纸这类小按钮加 .pm-press：鼠标移上去抬起 1 像素。 */
+.pm-btn, .pm-press { transition: transform .38s cubic-bezier(.3,1.6,.5,1); }
+.pm-btn:active:not(:disabled), .pm-btn.is-pressed { transform: scale(.9, .84); transition-duration: .08s; }
+.pm-btn--icon:active:not(:disabled), .pm-btn--icon.is-pressed { transform: scale(.9); }
+.pm-press:hover { transform: translateY(-1px); }
+.pm-press:active, .pm-press.is-pressed { transform: scale(.9); transition-duration: .08s; }
+@media (prefers-reduced-motion: reduce) {
+  .pm-btn, .pm-press { transition: none !important; animation: none !important; }
+}

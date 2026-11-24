@@ -1,0 +1,29 @@
+{
+  "id": "loading-enso",
+  "title": "加载圆相",
+  "status": "approved",
+  "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+  "tier": "expressive",
+  "surface": "loading-enso",
+  "trigger": "放进页面即循环；等待结束就移除",
+  "durationMs": 1800,
+  "loop": true,
+  "reducedMotion": "循环停止：只显示静止的纸圆与圆相，不显示朱红点",
+  "requires": ["marks/graphic/graphic.css"],
+  "source": { "generator": "tooling/graphic/build.mjs（片段）", "rules": "DESIGN.md §5「已登记的 expressive 表面」" },
+  "files": { "css": "loading-enso.css", "html": "loading-enso.fragment.html" },
+  "capture": {
+    "host": ".va-loading-enso",
+    "playClass": "is-playing",
+    "viewport": [160, 160],
+    "scale": 3,
+    "padPx": 8,
+    "fps": 25,
+    "skipRest": true,
+    "endMs": 1800,
+    "holdStartMs": 40,
+    "holdEndMs": 40,
+    "themes": ["light", "dark"],
+    "loop": 0
+  }
+}

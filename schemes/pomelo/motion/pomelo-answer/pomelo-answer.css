@@ -1,0 +1,8 @@
+/* 柚子回答：一个字一个字写出来（每个字晚 24 毫秒）；重点那几个字下面带荧光笔（.pm-ch-b）。
+   字多的回答，界面把 --pm-i 的上限压在 120（3 秒写完），后面的字和第 120 个一起出来。 */
+.pm-answer.is-live .pm-ch { opacity: 0; animation: pm-ch-in .01s linear forwards; animation-delay: calc(min(var(--pm-i, 0), 120) * 24ms + 50ms); }
+.pm-ch-b { font-weight: 600; background: linear-gradient(transparent 58%, var(--color-marker) 58%, var(--color-marker) 92%, transparent 92%); }
+@keyframes pm-ch-in { to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-answer.is-live .pm-ch { opacity: 1; animation: none; }
+}

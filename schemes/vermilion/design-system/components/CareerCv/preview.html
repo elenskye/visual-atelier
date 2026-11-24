@@ -1,0 +1,43 @@
+<!-- @dsCard group="列表与筛选" height=640 subtitle="操作按钮、技能表、经历条目" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>CareerCv</title>
+<style>
+  .vm-demo { padding: var(--space-6); max-width: 980px; }
+  .vm-demo .cv { margin-top: 0; }
+</style>
+</head>
+<body class="vm-page">
+<div class="vm-demo">
+  <div class="cv">
+    <div class="cv-actions">
+      <a class="button-link" href="#">发邮件</a>
+      <a class="button-link" href="#">下载简历 PDF</a>
+    </div>
+    <section class="cv-section" aria-label="技能">
+      <h2>技能</h2>
+      <dl class="cv-skills">
+        <dt>机器学习</dt><dd>模型设计、评测与对比实验。</dd>
+        <dt>软件工程</dt><dd>后端服务、前端界面与部署。</dd>
+      </dl>
+    </section>
+    <section class="cv-section" aria-label="经历">
+      <h2>经历</h2>
+      <div class="cv-entry">
+        <span class="cv-period">2024 — 2026</span>
+        <div class="cv-entry-body">
+          <h3>研究助理</h3>
+          <p class="cv-org">某实验室</p>
+          <ul>
+            <li>一句话写清做了什么、结果如何。</li>
+            <li>第二条成果。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+{
+  "$note": "动效档位的数值；规则见本方案 DESIGN.md §5。",
+  "tiers": {
+    "calm": {
+      "stateMs": [
+        160,
+        220
+      ],
+      "enterMs": 320,
+      "enterEasing": "ease-out",
+      "maxMsWithoutSignature": 320,
+      "forbid": [
+        "parallax",
+        "loop",
+        "bounce",
+        "page-transition"
+      ]
+    },
+    "expressive": {
+      "maxSingleMs": 1200,
+      "registeredSurfacesOnly": true,
+      "loopRules": "只在访客在场时运行、可暂停、不出现在正文旁边",
+      "registeredSurfaces": [
+        "category-glyph-hover",
+        "section-deco-intro",
+        "loading-enso"
+      ]
+    }
+  },
+  "calmExceptions": {
+    "$note": "calm 时长上限（maxMsWithoutSignature）的例外，站主批准才能加。零件在 motion.json 里写 calmException 指向这里；时长不得超过登记值。仍须遵守 calm 的其余规则：不循环、不用朱红抵达、减弱动效时静态。",
+    "stroke-draw": {
+      "durationMs": 640,
+      "paperMs": 320,
+      "easing": "cubic-bezier(.5,0,.2,1)",
+      "parts": ["stroke-draw-v2", "not-found-intro", "end-mark"],
+      "why": "320ms 写不清笔顺；站主比较 320 / 480 / 640 / 800 / 1000ms 后选定 640ms",
+      "approved": "站主 2026-11-01 选定（VL1 Phase 7）"
+    }
+  },
+  "signature": {
+    "logo-route": {
+      "durationMs": 520,
+      "easing": "ease-out",
+      "arrivalAt": 0.85,
+      "tier": "calm"
+    }
+  },
+  "registeredSurfaces": {
+    "$status": "approved（站主 2026-10-30 批准）。规则见 DESIGN.md §5，实现见 motion/ 下同名零件。",
+    "category-glyph-hover": {
+      "tier": "expressive",
+      "where": "无封面卡片的分类图形、分类图形单独出现处",
+      "trigger": "hover / focus-visible",
+      "maxMs": 700,
+      "paper": {
+        "durationMs": 260,
+        "easing": "cubic-bezier(.3,.6,.2,1)"
+      },
+      "stroke": {
+        "durationMs": 340,
+        "staggerMs": 100,
+        "firstDelayMs": 60,
+        "easing": "cubic-bezier(.5,0,.2,1)"
+      },
+      "emberAt": 0.82
+    },
+    "section-deco-intro": {
+      "tier": "expressive",
+      "where": "页面大标题旁的分区装饰",
+      "trigger": "每次打开网站只写一次；同一次访问里站内跳转或刷新直接显示终态（站主 2026-10-31 定）",
+      "maxMs": 1200,
+      "paper": {
+        "durationMs": 420,
+        "staggerMs": 140
+      },
+      "stroke": {
+        "durationMs": 520,
+        "staggerMs": 170,
+        "easing": "cubic-bezier(.5,0,.2,1)"
+      },
+      "loop": false
+    },
+    "loading-enso": {
+      "tier": "expressive",
+      "where": "页面或面板等待数据时",
+      "loopMs": 1800,
+      "loop": true,
+      "phases": {
+        "paperIn": [
+          0,
+          0.16
+        ],
+        "stroke": [
+          0.1,
+          0.56
+        ],
+        "ember": [
+          0.56,
+          0.66
+        ],
+        "hold": [
+          0.66,
+          0.8
+        ],
+        "fadeOut": [
+          0.8,
+          1.0
+        ]
+      }
+    }
+  }
+}

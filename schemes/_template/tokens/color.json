@@ -1,0 +1,14 @@
+{
+  "$note": "{{title}} 的语义角色，明暗各一套。模板给的是中性的占位色，换成这套方案自己的；改了跑 npm run qa -- --scheme {{name}} 过 APCA（门槛在 contrast.json）。要多套配色时照 docs/architecture.md 改写成 palettes。",
+  "textRole": "text",
+  "pageRole": "page",
+  "roles": {
+    "page": { "label": "页面底", "group": "底和线", "use": "整页的底", "light": "#FAFAF7", "dark": "#16171A" },
+    "surface": { "label": "面", "group": "底和线", "use": "卡片、弹层、输入框的面", "light": "#FFFFFF", "dark": "#202125" },
+    "line": { "label": "线", "group": "底和线", "use": "分隔线、控件的边（装饰，不查对比）", "light": "#DCDDD8", "dark": "#36383D" },
+    "text": { "label": "正文", "group": "字", "use": "正文、标题", "light": "#1D1E21", "dark": "#ECEDEF" },
+    "text-2": { "label": "说明", "group": "字", "use": "说明、次要的字", "light": "#55585E", "dark": "#B8BCC3" },
+    "accent": { "label": "强调", "group": "强调", "use": "主按钮、链接、选中", "light": "#2F55C7", "dark": "#A6BFFF" },
+    "on-accent": { "label": "强调上的字", "group": "强调", "use": "主按钮上的字和图标", "light": "#FFFFFF", "dark": "#10131A" }
+  }
+}

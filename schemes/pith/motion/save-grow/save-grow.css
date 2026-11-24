@@ -1,0 +1,23 @@
+/* 生长 · 存进知识库（expressive，登记的表面 save-grow，1.9 秒；站主 2026-11-23）：点交付卡的「存进……」，一颗珊瑚色的种子从按钮出发，沿一条弧线落到顶栏知识库图标的正中；
+   落下的那一刻图标晃一下、芽弹一下、漾开一圈珊瑚色、+1。交付卡上的「已种下」前面，「存进知识库」的 Agent 图标演一遍（agents 零件的 .once）。
+   种子：<i class="pith-seed is-in" style="offset-path: path('M x0 y0 Q cx cy x1 y1')">（加 .is-in 才飞），起点、落点每次按真实位置量（窗口大小、顶栏布局会变），不要写死；
+   原型：控制点 cx = (x0 + x1) / 2 + 120、cy = min(y0, y1) - 40。0.82 秒后给知识库图标加 .is-fed、+1 加 .is-in，1.9 秒后都拿掉。 */
+.pith-seed { position: absolute; left: 0; top: 0; z-index: 70; width: 12px; height: 12px; border-radius: 50%; background: var(--color-coral); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-coral) 22%, transparent); offset-anchor: center; offset-rotate: 0deg; pointer-events: none; opacity: 0; }
+.pith-seed.is-in { animation: pith-seed .82s cubic-bezier(.55,0,.35,1) forwards; }
+@keyframes pith-seed { 0% { offset-distance: 0%; transform: scale(0); } 12% { offset-distance: 2%; transform: scale(1.25); } 88% { offset-distance: 100%; transform: scale(.9); opacity: 1; } 100% { offset-distance: 100%; transform: scale(.2); opacity: 0; } }
+.pith-ink.is-fed { color: var(--color-text); }
+.pith-ink.is-fed > .pith-glyph { transform-origin: 50% 100%; animation: pith-fed-sway .7s cubic-bezier(.34,1.56,.64,1); }
+.pith-ink.is-fed .t .co { transform-box: fill-box; transform-origin: center; animation: pith-fed-bud .7s cubic-bezier(.34,1.56,.64,1); }
+.pith-ink.is-fed::after { content: ""; position: absolute; left: 50%; top: 50%; width: 10px; height: 10px; margin: -5px; border-radius: 50%; border: 1.5px solid var(--color-coral); animation: pith-fed-ring .7s ease-out forwards; pointer-events: none; }
+@keyframes pith-fed-sway { 25% { transform: rotate(-10deg) scale(1.06); } 55% { transform: rotate(7deg); } 100% { transform: none; } }
+@keyframes pith-fed-bud { 0% { transform: scale(1); } 30% { transform: scale(1.9); } 100% { transform: none; } }
+@keyframes pith-fed-ring { from { transform: scale(.6); opacity: 1; } to { transform: scale(4.2); opacity: 0; } }
+.pith-badge { opacity: 0; }
+.pith-badge.is-in { animation: pith-plus 1.8s cubic-bezier(.23,1,.32,1) both; }
+@keyframes pith-plus { 0% { opacity: 0; transform: translateY(4px) scale(.6); } 20%, 75% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .pith-seed { display: none; }
+  .pith-ink.is-fed > .pith-glyph, .pith-ink.is-fed .t .co { animation: none; }
+  .pith-ink.is-fed::after { display: none; }
+  .pith-badge.is-in { animation: none; opacity: 1; }
+}

@@ -1,0 +1,50 @@
+{
+  "id": "pomelo-dizzy",
+  "title": "小彩蛋 · 连戳柚子会晕",
+  "status": "approved",
+  "approved": "Phase 2 定稿里的小彩蛋（站主 2026-11-05 验收）；站主 2026-11-08 批准 Phase 4、5 时要求一并做进来",
+  "tier": "expressive",
+  "surface": "pomelo-face",
+  "trigger": "2.5 秒里戳柚子 5 下：显示「出错」那张脸的 .pm-pomelo 加 .is-dizzy，旁边的 .pm-cheer 便签加 .is-in；2.2 秒后换回平常",
+  "durationMs": 1100,
+  "reducedMotion": "不转，只换成「出错」的脸，便签直接出现",
+  "use": "柚子那一页的大柚子（问柚子）",
+  "source": "canvases/pomelo-explore/p2-final/logic.js 的 pomeloPoke、b.mjs 的 dizzy（站主 2026-11-05 验收的 Phase 2 定稿）",
+  "requires": [
+    "motion/pomelo-idle/pomelo-idle.css",
+    "motion/pomelo-error/pomelo-error.css",
+    "motion/done-cheer/done-cheer.css"
+  ],
+  "files": {
+    "css": "pomelo-dizzy.css",
+    "html": "pomelo-dizzy.fragment.html"
+  },
+  "capture": {
+    "host": ".dizzy-demo",
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-dizzy",
+        "on": ".dz"
+      },
+      {
+        "at": 0,
+        "add": "is-in"
+      }
+    ],
+    "viewport": [
+      400,
+      290
+    ],
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 400,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0
+  }
+}

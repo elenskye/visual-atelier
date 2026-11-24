@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>动效性格 · 四种 × 三个场景</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Doto:wght@700;900&amp;display=swap">
+<style>
+body{margin:0}
+.mb{width:1280px;height:800px;box-sizing:border-box;padding:30px 36px 34px;background:var(--bg);color:var(--tx);font-family:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;font-size:13px;line-height:1.5;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;display:flex;flex-direction:column;gap:14px}
+.mb.dk{--bg:#0E1114;--sg:#070A0D;--sl:#1A232A;--sc:#0F161B;--tx:#E6EFF3;--tx2:#8A9BA6;--tx3:#56656E;--ok:#3DDC97;--bad:#FF5C6C;--muse:#B79DFF;--grok:#FFB547;--on:#001A1F;--glow:0 0 10px rgba(0,229,255,.7);--ring:rgba(0,229,255,.5);--wf:drop-shadow(0 0 4px rgba(0,229,255,.8))}
+.mb.lt{--bg:#E9EEF0;--sg:#F8FAFB;--sl:#D6DEE2;--sc:#FFFFFF;--tx:#0A1418;--tx2:#52626A;--tx3:#8595A0;--ok:#0F9E66;--bad:#DC3046;--muse:#7556EE;--grok:#B87400;--on:#001A1F;--glow:none;--ring:#0A1418;--wf:none}
+.mb *{box-sizing:border-box}.mb p,.mb h1{margin:0}.mb i,.mb em{font-style:normal}
+.top{display:flex;align-items:baseline;gap:16px}
+.top h1{font-size:20px;font-weight:600;letter-spacing:-.01em}
+.top p{color:var(--tx2)}
+.grid{flex:1;display:grid;grid-template-columns:200px repeat(3,minmax(0,1fr));grid-template-rows:22px repeat(4,minmax(0,1fr));gap:12px 14px;min-height:0}
+.sh{font-size:12.5px;color:var(--tx2);align-self:end}
+.sh b{color:var(--tx);font-weight:600;margin-right:6px}
+.ml{display:flex;flex-direction:column;justify-content:center;gap:4px;padding-right:8px}
+.ml b{font-size:17px;font-weight:600}
+.ml b span{font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:13px;color:var(--tx3);margin-right:8px;font-weight:500}
+.ml p{font-size:12px;color:var(--tx2);line-height:1.55}
+.stg{position:relative;overflow:hidden;border-radius:10px;background:var(--sg);box-shadow:inset 0 0 0 1px var(--sl);font-size:12.5px}
+.rowx{position:absolute;left:14px;right:14px;height:30px;display:flex;align-items:center;gap:9px;padding:0 10px;border-radius:7px;white-space:nowrap}
+.rowx b{font-weight:500;overflow:hidden;text-overflow:ellipsis}
+.rowx em{margin-left:auto;font-size:11.5px;color:var(--tx2);display:flex;align-items:center;gap:4px}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.rd{position:relative;width:9px;height:9px;border-radius:50%;background:#00E5FF;box-shadow:0 0 0 1.5px var(--ring),var(--glow);flex:none}
+.ck{width:9px;height:9px;border-radius:50%;background:var(--ok);flex:none}
+.new{top:12px;background:var(--sc);box-shadow:inset 0 0 0 1px var(--sl)}
+.old{top:48px;color:var(--tx3)}
+.cmp{position:absolute;left:14px;right:14px;bottom:12px;height:34px;border-radius:8px;box-shadow:inset 0 0 0 1px var(--sl);background:var(--sc);display:flex;align-items:center;padding:0 6px 0 12px;overflow:hidden}
+.cmp .txt{color:var(--tx);opacity:0}
+.cmp .snd{margin-left:auto;width:24px;height:24px;border-radius:6px;background:#00E5FF;box-shadow:var(--glow)}
+.fx{position:absolute;pointer-events:none}
+@media (prefers-reduced-motion:reduce){.mb *,.mb *:before,.mb *:after{animation:none!important}.s2.m1 .rowx:after,.s2.m1 .out:after,.s3.m1 .sum:after,.s1 .fx{display:none}}
+
+/* ===== 场景一：发出一句话 ===== */
+.s1 .new,.s1 .cmp .txt{animation:4s infinite both}
+/* M1 扫描 */
+.s1.m1 .cmp .txt{animation-name:s1m1t}
+@keyframes s1m1t{0%,8%{opacity:1}26%,100%{opacity:0}}
+.s1.m1 .cmp:after{content:"";position:absolute;top:0;bottom:0;left:0;width:2px;background:#00E5FF;box-shadow:0 0 12px 2px rgba(0,229,255,.7);opacity:0;animation:s1m1c 4s infinite}
+@keyframes s1m1c{0%,8%{transform:translateX(0);opacity:0}9%{opacity:1}28%{transform:translateX(300px);opacity:1}29%,100%{opacity:0;transform:translateX(300px)}}
+.s1.m1 .new{animation-name:s1m1n}
+@keyframes s1m1n{0%,30%{clip-path:inset(0 100% 0 0)}50%,94%{clip-path:inset(0 0 0 0);opacity:1}100%{opacity:0;clip-path:inset(0 0 0 0)}}
+.s1.m1 .scan{left:14px;top:8px;width:2px;height:38px;background:#00E5FF;box-shadow:0 0 14px 3px rgba(0,229,255,.75);opacity:0;animation:s1m1s 4s infinite}
+@keyframes s1m1s{0%,30%{transform:translateX(0);opacity:0}31%{opacity:1}50%{transform:translateX(300px);opacity:1}51%,100%{opacity:0;transform:translateX(300px)}}
+/* M2 示波 */
+.s1.m2 .cmp .txt{animation-name:s1m2t}
+@keyframes s1m2t{0%,10%{opacity:1}20%,100%{opacity:0}}
+.s1.m2 .trace{inset:0;width:100%;height:100%}
+.s1.m2 .trace path{fill:none;stroke:#00E5FF;stroke-width:1.6;stroke-linejoin:round;filter:var(--wf);stroke-dasharray:520;stroke-dashoffset:520;animation:s1m2p 4s infinite}
+@keyframes s1m2p{0%,14%{stroke-dashoffset:520;opacity:1}44%{stroke-dashoffset:0;opacity:1}58%,100%{stroke-dashoffset:0;opacity:0}}
+.s1.m2 .new{animation-name:s1m2n}
+@keyframes s1m2n{0%,42%{opacity:0}54%,94%{opacity:1}100%{opacity:0}}
+.s1.m2 .new .rd:after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1.5px solid #00E5FF;opacity:0;animation:s1m2r 4s infinite}
+@keyframes s1m2r{0%,44%{transform:scale(1);opacity:0}45%{opacity:1}62%,100%{transform:scale(3.4);opacity:0}}
+/* M3 弹扣 */
+.s1.m3 .cmp .txt{animation-name:s1m3t}
+@keyframes s1m3t{0%,10%{opacity:1}13%,100%{opacity:0}}
+.s1.m3 .pill{left:26px;bottom:21px;width:130px;height:16px;border-radius:8px;background:#00E5FF;box-shadow:var(--glow);transform-origin:left center;opacity:0;animation:s1m3p 4s infinite}
+@keyframes s1m3p{0%,10%{opacity:0;transform:translate(0,0) scaleX(1)}12%{opacity:1;transform:translate(0,0) scaleX(1);animation-timing-function:cubic-bezier(.5,0,.2,1)}22%{transform:translate(0,0) scaleX(.18);animation-timing-function:cubic-bezier(.3,1.5,.55,1)}36%{opacity:1;transform:translate(-2px,-92px) scaleX(.18)}38%,100%{opacity:0;transform:translate(-2px,-92px) scaleX(.18)}}
+.s1.m3 .new{transform-origin:left center;animation-name:s1m3n}
+@keyframes s1m3n{0%,35%{opacity:0;transform:scaleX(.12)}36%{opacity:1;transform:scaleX(.12);animation-timing-function:cubic-bezier(.25,1.6,.5,1)}50%,94%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
+/* M4 点阵 */
+.s1.m4 .cmp .txt{animation-name:s1m4t}
+@keyframes s1m4t{0%,10%{opacity:1}22%,100%{opacity:0}}
+.s1.m4 .new{animation-name:s1m4n}
+@keyframes s1m4n{0%,44%{opacity:0}52%,94%{opacity:1}100%{opacity:0}}
+.s1.m4 .dm{left:14px;right:14px;top:12px;height:30px;border-radius:7px;background:radial-gradient(circle,#00E5FF 1.3px,transparent 1.7px) 0 0/6px 6px;-webkit-mask:linear-gradient(90deg,#000 45%,transparent 55%) 0 0/300% 100% no-repeat;mask:linear-gradient(90deg,#000 45%,transparent 55%) 0 0/300% 100% no-repeat;opacity:0;animation:s1m4d 4s infinite}
+@keyframes s1m4d{0%,18%{opacity:1;-webkit-mask-position:100% 0;mask-position:100% 0}42%{opacity:1;-webkit-mask-position:0 0;mask-position:0 0}54%,100%{opacity:0;-webkit-mask-position:0 0;mask-position:0 0}}
+.s1.m4 .cl,.s2.m4 .cl{display:grid;grid-template-columns:repeat(3,3px);gap:1.5px;flex:none}
+.cl i{width:3px;height:3px;background:#00E5FF;box-shadow:0 0 3px rgba(0,229,255,.8);animation:tw 1.2s steps(1) infinite}
+.cl i:nth-child(2){animation-delay:.3s}.cl i:nth-child(4){animation-delay:.6s}.cl i:nth-child(6){animation-delay:.15s}.cl i:nth-child(8){animation-delay:.45s}.cl i:nth-child(9){animation-delay:.9s}
+@keyframes tw{50%{opacity:.15}}
+
+/* ===== 场景二：在跑 ===== */
+.s2 .rowx{top:12px;background:var(--sc);box-shadow:inset 0 0 0 1px var(--sl)}
+.s2 .rowx .tm{margin-left:auto;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:11.5px;color:var(--tx2)}
+.s2 .lo{left:14px;right:14px;top:52px;bottom:12px}
+/* M1 */
+.s2.m1 .rowx{overflow:hidden}
+.s2.m1 .rowx:after{content:"";position:absolute;top:0;bottom:0;left:0;width:60px;background:linear-gradient(90deg,transparent,rgba(0,229,255,.22) 80%,#00E5FF 98%,transparent);animation:s2m1 1.8s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes s2m1{0%{transform:translateX(-70px)}70%,100%{transform:translateX(320px)}}
+.s2.m1 .out{font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:11px;color:var(--tx3);line-height:17px;padding:2px 10px;position:relative;overflow:hidden;border-radius:6px}
+.s2.m1 .out div:last-child{color:var(--tx)}
+.s2.m1 .out:after{content:"";position:absolute;left:0;right:0;height:17px;top:2px;background:linear-gradient(transparent,rgba(0,229,255,.16));border-bottom:1px solid #00E5FF;animation:s2m1o 1.8s steps(3) infinite}
+@keyframes s2m1o{from{transform:translateY(0)}to{transform:translateY(51px)}}
+/* M2 */
+.s2.m2 .lo{overflow:hidden;border-radius:6px;box-shadow:inset 0 0 0 1px var(--sl);background-image:linear-gradient(90deg,var(--sl) 1px,transparent 1px),linear-gradient(var(--sl) 1px,transparent 1px);background-size:30px 100%,100% 14px;background-position:0 0,0 6px}
+.s2.m2 .lo svg{position:absolute;left:0;top:0;width:600px;height:100%;animation:s2m2 3s linear infinite}
+.s2.m2 .lo path{fill:none;stroke:#00E5FF;stroke-width:1.5;stroke-linejoin:round;filter:var(--wf)}
+@keyframes s2m2{to{transform:translateX(-300px)}}
+/* M3 */
+.s2.m3 .nodes{position:absolute;left:30px;right:30px;top:72px;height:20px}
+.s2.m3 .track{position:absolute;left:0;right:0;top:9px;height:2px;background:var(--sl)}
+.s2.m3 .fill{position:absolute;left:0;top:9px;height:2px;width:66.6%;background:#00E5FF;box-shadow:var(--glow);transform-origin:left;animation:s2m3f 4s infinite both}
+@keyframes s2m3f{0%{transform:scaleX(.5)}30%,100%{transform:scaleX(1)}}
+.s2.m3 .nd{position:absolute;top:2px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--sg);box-shadow:inset 0 0 0 1.5px var(--sl)}
+.s2.m3 .nd.ok{background:var(--ok);box-shadow:none}
+.s2.m3 .nd.cur{background:#00E5FF;box-shadow:0 0 0 1.5px var(--ring),var(--glow);animation:s2m3p 1.4s infinite}
+@keyframes s2m3p{0%{transform:scale(1)}18%{transform:scale(1.45);animation-timing-function:cubic-bezier(.3,1.6,.5,1)}40%{transform:scale(.92)}55%,100%{transform:scale(1)}}
+.s2.m3 .lab{position:absolute;left:14px;right:14px;bottom:12px;display:flex;justify-content:space-between;font-size:11px;color:var(--tx3)}
+/* M4 */
+.s2.m4 .rowx .tm{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:17px;color:var(--tx)}
+.s2.m4 .blk{position:absolute;left:14px;right:14px;top:64px;display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:3px}
+.s2.m4 .blk i{height:14px;background:var(--sl)}
+.s2.m4 .blk i.f{background:#00E5FF;box-shadow:var(--glow);animation:s2m4w 1.6s infinite}
+.s2.m4 .blk i.h{background:#00E5FF;animation:blink .7s steps(1) infinite}
+@keyframes s2m4w{0%,100%{filter:brightness(1)}50%{filter:brightness(.55)}}
+.s2.m4 .bl{position:absolute;left:14px;right:14px;bottom:12px;display:flex;justify-content:space-between;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:11px;color:var(--tx3)}
+@keyframes blink{50%{opacity:0}}
+
+/* ===== 场景三：完成 ===== */
+.s3 .sum{position:absolute;left:14px;right:14px;top:50%;height:84px;margin-top:-42px;border-radius:10px;background:var(--sc);box-shadow:inset 0 0 0 1px var(--sl);display:flex;align-items:center;gap:12px;padding:0 16px;overflow:hidden}
+.s3 .ic{position:relative;width:34px;height:34px;flex:none;border-radius:50%;background:#00E5FF;box-shadow:var(--glow);display:flex;align-items:center;justify-content:center}
+.s3 .ic svg{width:20px;height:20px}
+.s3 .ic .chk{fill:none;stroke:var(--on);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.s3 .tx b{display:block;font-size:14px;font-weight:600}
+.s3 .tx span{font-size:11.5px;color:var(--tx2)}
+.s3 .n{margin-left:auto;display:flex;gap:8px;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:15px;font-weight:500;line-height:24px;overflow:hidden;height:24px}
+.s3 .n .a{color:var(--ok)}.s3 .n .d{color:var(--bad)}
+.s3 .n span{display:block}
+/* M1 */
+.s3.m1 .sum:after{content:"";position:absolute;top:0;bottom:0;left:0;width:90px;background:linear-gradient(90deg,transparent,rgba(0,229,255,.25) 70%,#00E5FF 96%,transparent);opacity:0;animation:s3m1b 4s infinite}
+@keyframes s3m1b{0%,10%{transform:translateX(-100px);opacity:1}34%{transform:translateX(330px);opacity:1}35%,100%{opacity:0;transform:translateX(330px)}}
+.s3.m1 .ic,.s3.m1 .tx,.s3.m1 .n{animation:s3m1r 4s infinite both}
+.s3.m1 .tx{animation-name:s3m1r2}.s3.m1 .n{animation-name:s3m1r3}
+@keyframes s3m1r{0%,14%{transform:scale(.4);opacity:0}20%{transform:scale(1);opacity:1}94%{opacity:1}100%{opacity:0}}
+@keyframes s3m1r2{0%,18%{opacity:0;clip-path:inset(0 100% 0 0)}28%,94%{opacity:1;clip-path:inset(0 0 0 0)}100%{opacity:0}}
+@keyframes s3m1r3{0%,28%{opacity:0;clip-path:inset(0 100% 0 0)}35%,94%{opacity:1;clip-path:inset(0 0 0 0)}100%{opacity:0}}
+/* M2 */
+.s3.m2 .ic{background:transparent;box-shadow:inset 0 0 0 1.5px #00E5FF,var(--glow)}
+.s3.m2 .ic .chk{stroke:#00E5FF;stroke-dasharray:24;stroke-dashoffset:0;animation:s3m2c 4s infinite both;filter:var(--wf)}
+.mb.lt .s3.m2 .ic .chk{stroke:var(--tx)}
+@keyframes s3m2c{0%,30%{stroke-dashoffset:24}46%,94%{stroke-dashoffset:0;opacity:1}100%{opacity:0}}
+.s3.m2 .wave{position:absolute;left:0;right:0;top:50%;height:40px;margin-top:-20px;pointer-events:none}
+.s3.m2 .wave path{fill:none;stroke:#00E5FF;stroke-width:1.5;filter:var(--wf);opacity:0;animation:s3m2w 4s infinite both}
+@keyframes s3m2w{0%{opacity:1;transform:scaleY(1)}22%{opacity:1;transform:scaleY(1)}32%{opacity:1;transform:scaleY(.05)}40%,100%{opacity:0;transform:scaleY(.05)}}
+.s3.m2 .tx,.s3.m2 .n{animation:s3m2t 4s infinite both}
+@keyframes s3m2t{0%,38%{opacity:0}50%,94%{opacity:1}100%{opacity:0}}
+/* M3 */
+.s3.m3 .sum{animation:s3m3s 4s infinite both}
+@keyframes s3m3s{0%,6%{transform:translateY(46px) scale(.94);opacity:0;animation-timing-function:cubic-bezier(.25,1.5,.5,1)}24%,94%{transform:translateY(0) scale(1);opacity:1}100%{opacity:0}}
+.s3.m3 .ic{animation:s3m3i 4s infinite both}
+@keyframes s3m3i{0%,22%{transform:scale(0);animation-timing-function:cubic-bezier(.25,1.8,.5,1)}36%,100%{transform:scale(1)}}
+.s3.m3 .n span{animation:s3m3n 4s infinite both}
+.s3.m3 .n .d{animation-delay:.08s}
+@keyframes s3m3n{0%,32%{transform:translateY(24px);animation-timing-function:cubic-bezier(.25,1.6,.5,1)}46%,100%{transform:translateY(0)}}
+/* M4 */
+.s3.m4 .ic{background:transparent;box-shadow:none;border-radius:0;width:34px;height:34px;display:grid;grid-template-columns:repeat(7,4px);grid-auto-rows:4px;gap:1px;align-content:center;justify-content:center}
+.s3.m4 .ic i{width:4px;height:4px;background:var(--sl)}
+.s3.m4 .ic i.on{background:#00E5FF;box-shadow:0 0 4px rgba(0,229,255,.8);animation:s3m4d 4s infinite both}
+@keyframes s3m4d{0%,12%{opacity:0}16%,94%{opacity:1}100%{opacity:0}}
+.s3.m4 .n{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:19px}
+.s3.m4 .tx,.s3.m4 .n{animation:s3m4t 4s infinite both}
+@keyframes s3m4t{0%,40%{opacity:0}41%,44%{opacity:1}45%,47%{opacity:.2}48%,94%{opacity:1}100%{opacity:0}}
+</style>
+</helmet>
+<div class="{{root}}">
+  <div class="top"><h1>动效性格</h1><p>四种性格放进三个真实场景，4 秒一圈；按 Play 看。可以整排挑，也可以按场景挑。</p></div>
+  <div class="grid">
+    <span></span><p class="sh"><b>发出一句话</b>输入框 → 任务列表</p><p class="sh"><b>在跑</b>当前这一步</p><p class="sh"><b>完成</b>总结卡</p>
+    <div class="ml"><b><span>M1</span>扫描</b><p>一道青光扫过去，东西跟着显出来。利落，像仪器。</p></div><div class="stg s1 m1"><div class="rowx old"><i class="ck"></i><b>修 Diff 里的中文乱码</b></div><div class="rowx new"><i class="rd"></i><b>把设置合成一个面板</b><em><i class="dot" style="background:var(--muse)"></i>Muse →<i class="dot" style="background:var(--grok)"></i>Grok</em></div><div class="cmp"><span class="txt">把设置合成一个面板</span><i class="snd"></i></div><i class="fx scan"></i></div><div class="stg s2 m1"><div class="rowx"><i class="rd"></i><b>Grok 跑 pnpm check</b><span class="tm">02:14</span></div><div class="fx lo"><div class="out"><div>&gt; tsc --noEmit</div><div>SettingsSheet.tsx:41 类型不对</div><div>→ 改 SettingsProps，再跑一遍</div></div></div></div><div class="stg s3 m1"><div class="sum"><div class="ic"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="chk" d="M4.5 10.5 L8.5 14 L15.5 6.5"></path></svg></div><div class="tx"><b>做完了</b><span>4 个文件 · 检查通过</span></div><p class="n"><span class="a">+86</span><span class="d">−132</span></p></div></div><div class="ml"><b><span>M2</span>示波</b><p>一条信号线一直在走，有输出就跳；动作都沿着这条线发生。</p></div><div class="stg s1 m2"><div class="rowx old"><i class="ck"></i><b>修 Diff 里的中文乱码</b></div><div class="rowx new"><i class="rd"></i><b>把设置合成一个面板</b><em><i class="dot" style="background:var(--muse)"></i>Muse →<i class="dot" style="background:var(--grok)"></i>Grok</em></div><div class="cmp"><span class="txt">把设置合成一个面板</span><i class="snd"></i></div><svg class="fx trace" viewBox="0 0 330 150" preserveAspectRatio="none" aria-hidden="true"><path d="M302 112 V96 H230 l5 -9 l5 18 l5 -14 l5 8 l4 -3 H120 l4 -6 l4 12 l4 -6 H27 V32"></path></svg></div><div class="stg s2 m2"><div class="rowx"><i class="rd"></i><b>Grok 跑 pnpm check</b><span class="tm">02:14</span></div><div class="fx lo"><svg viewBox="0 0 600 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 35.0L4 35.3L8 35.9L12 34.3L16 34.1L20 35.1L24 34.9L28 36.7L32 36.9L36 29.9L40 35.6L44 48.2L48 24.9L52 25.6L56 41.5L60 34.6L64 33.6L68 35.5L72 35.6L76 34.4L80 35.3L84 34.9L88 34.7L92 35.5L96 35.2L100 35.8L104 34.8L108 36.8L112 38.1L116 27.1L120 35.3L124 52.1L128 25.5L132 25.9L136 40.2L140 35.2L144 34.6L148 35.8L152 35.5L156 35.8L160 35.4L164 34.6L168 35.6L172 35.5L176 35.8L180 34.9L184 34.8L188 35.3L192 35.4L196 32.9L200 34.9L204 48.7L208 27.1L212 24.9L216 43.8L220 34.9L224 30.8L228 36.0L232 34.7L236 34.2L240 35.9L244 35.4L248 35.6L252 34.1L256 38.4L260 35.5L264 17.1L268 44.3L272 46.0L276 22.1L280 34.3L284 39.0L288 35.2L292 34.4L296 34.3L300 35.0L300 35.0L304 35.3L308 35.9L312 34.3L316 34.1L320 35.1L324 34.9L328 36.7L332 36.9L336 29.9L340 35.6L344 48.2L348 24.9L352 25.6L356 41.5L360 34.6L364 33.6L368 35.5L372 35.6L376 34.4L380 35.3L384 34.9L388 34.7L392 35.5L396 35.2L400 35.8L404 34.8L408 36.8L412 38.1L416 27.1L420 35.3L424 52.1L428 25.5L432 25.9L436 40.2L440 35.2L444 34.6L448 35.8L452 35.5L456 35.8L460 35.4L464 34.6L468 35.6L472 35.5L476 35.8L480 34.9L484 34.8L488 35.3L492 35.4L496 32.9L500 34.9L504 48.7L508 27.1L512 24.9L516 43.8L520 34.9L524 30.8L528 36.0L532 34.7L536 34.2L540 35.9L544 35.4L548 35.6L552 34.1L556 38.4L560 35.5L564 17.1L568 44.3L572 46.0L576 22.1L580 34.3L584 39.0L588 35.2L592 34.4L596 34.3L600 35.0"></path></svg></div></div><div class="stg s3 m2"><div class="sum"><div class="ic"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="chk" d="M4.5 10.5 L8.5 14 L15.5 6.5"></path></svg></div><div class="tx"><b>做完了</b><span>4 个文件 · 检查通过</span></div><p class="n"><span class="a">+86</span><span class="d">−132</span></p><svg class="wave" viewBox="0 0 330 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 20.0L4 20.3L8 19.2L12 19.6L16 19.5L20 20.5L24 19.7L28 19.3L32 19.7L36 18.1L40 19.1L44 26.2L48 11.0L52 12.6L56 26.8L60 21.1L64 18.1L68 21.0L72 20.1L76 19.8L80 19.3L84 21.0L88 19.4L92 20.5L96 20.6L100 19.1L104 20.2L108 20.3L112 19.4L116 20.9L120 20.5L124 22.8L128 18.6L132 17.0L136 33.1L140 20.4L144 14.0L148 22.6L152 22.3L156 18.4L160 20.8L164 21.0L168 20.2L172 21.0L176 20.9L180 19.4L184 20.6L188 20.3L192 20.6L196 20.5L200 19.7L204 20.6L208 19.5L212 19.4L216 20.9L220 19.9L224 11.1L228 23.9L232 26.4L236 10.6L240 19.4L244 22.2L248 19.4L252 19.1L256 20.2L260 19.4L264 19.8L268 20.4L272 19.2L276 19.1L280 20.4L284 21.9L288 17.4L292 15.6L296 32.8L300 20.5L304 12.4L308 22.7L312 20.3L316 18.6L320 20.4L324 20.0L328 20.1"></path></svg></div></div><div class="ml"><b><span>M3</span>弹扣</b><p>东西「啪」地弹到位，带一点回弹。快、准、有手感。</p></div><div class="stg s1 m3"><div class="rowx old"><i class="ck"></i><b>修 Diff 里的中文乱码</b></div><div class="rowx new"><i class="rd"></i><b>把设置合成一个面板</b><em><i class="dot" style="background:var(--muse)"></i>Muse →<i class="dot" style="background:var(--grok)"></i>Grok</em></div><div class="cmp"><span class="txt">把设置合成一个面板</span><i class="snd"></i></div><i class="fx pill"></i></div><div class="stg s2 m3"><div class="rowx"><i class="rd"></i><b>Grok 跑 pnpm check</b><span class="tm">02:14</span></div><div class="nodes"><i class="track"></i><i class="fill"></i><i class="nd ok" style="left:0"></i><i class="nd ok" style="left:33.3%"></i><i class="nd cur" style="left:66.6%"></i><i class="nd" style="left:100%"></i></div><p class="lab"><span>写规范</span><span>改代码</span><span>跑检查</span><span>总结</span></p></div><div class="stg s3 m3"><div class="sum"><div class="ic"><svg viewBox="0 0 20 20" aria-hidden="true"><path class="chk" d="M4.5 10.5 L8.5 14 L15.5 6.5"></path></svg></div><div class="tx"><b>做完了</b><span>4 个文件 · 检查通过</span></div><p class="n"><span class="a">+86</span><span class="d">−132</span></p></div></div><div class="ml"><b><span>M4</span>点阵</b><p>一颗颗点亮，拼成字和图形。最极客的一种。</p></div><div class="stg s1 m4"><div class="rowx old"><i class="ck"></i><b>修 Diff 里的中文乱码</b></div><div class="rowx new"><span class="cl"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><b>把设置合成一个面板</b><em><i class="dot" style="background:var(--muse)"></i>Muse →<i class="dot" style="background:var(--grok)"></i>Grok</em></div><div class="cmp"><span class="txt">把设置合成一个面板</span><i class="snd"></i></div><i class="fx dm"></i></div><div class="stg s2 m4"><div class="rowx"><span class="cl"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><b>Grok 跑 pnpm check</b><span class="tm">02:14</span></div><div class="blk"><i class="f" style="animation-delay:0.00s"></i><i class="f" style="animation-delay:0.06s"></i><i class="f" style="animation-delay:0.12s"></i><i class="f" style="animation-delay:0.18s"></i><i class="f" style="animation-delay:0.24s"></i><i class="f" style="animation-delay:0.30s"></i><i class="f" style="animation-delay:0.36s"></i><i class="f" style="animation-delay:0.42s"></i><i class="f" style="animation-delay:0.48s"></i><i class="f" style="animation-delay:0.54s"></i><i class="f" style="animation-delay:0.60s"></i><i class="f" style="animation-delay:0.66s"></i><i class="h" style="animation-delay:0.72s"></i><i class="" style="animation-delay:0.78s"></i><i class="" style="animation-delay:0.84s"></i><i class="" style="animation-delay:0.90s"></i><i class="" style="animation-delay:0.96s"></i><i class="" style="animation-delay:1.02s"></i><i class="" style="animation-delay:1.08s"></i><i class="" style="animation-delay:1.14s"></i></div><p class="bl"><span>第 3 步，共 4 步</span><span>62%</span></p></div><div class="stg s3 m4"><div class="sum"><div class="ic"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on" style="animation-delay:0.00s"></i><i></i><i></i><i></i><i></i><i></i><i class="on" style="animation-delay:0.08s"></i><i></i><i class="on" style="animation-delay:0.16s"></i><i></i><i></i><i></i><i class="on" style="animation-delay:0.24s"></i><i></i><i></i><i></i><i class="on" style="animation-delay:0.32s"></i><i></i><i class="on" style="animation-delay:0.40s"></i><i></i><i></i><i></i><i></i><i></i><i class="on" style="animation-delay:0.48s"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div class="tx"><b>做完了</b><span>4 个文件 · 检查通过</span></div><p class="n"><span class="a">+86</span><span class="d">−132</span></p></div></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["深色","浅色"],"default":"深色","section":"看"},"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+renderVals() { return { root: 'mb ' + ((this.props.theme ?? '深色') === '深色' ? 'dk' : 'lt') }; }
+}
+</script>
+</body>
+</html>

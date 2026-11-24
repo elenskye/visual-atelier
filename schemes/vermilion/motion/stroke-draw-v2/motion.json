@@ -1,0 +1,28 @@
+{
+  "id": "stroke-draw-v2",
+  "title": "描边绘制 v2（640ms）",
+  "status": "approved",
+  "approved": "站主 2026-11-02 批准（VL1 Phase 7）",
+  "supersedes": "stroke-draw",
+  "tier": "calm",
+  "calmException": "stroke-draw",
+  "trigger": "外层加 .is-playing 时画一次（入场时由片段写上，或进入视口时由使用方加上）",
+  "durationMs": 640,
+  "reducedMotion": "静态终态：图形完整显示",
+  "use": "不在登记表面上的「笔势与纸片」图形：404 插图（not-found-intro）、文末落款（end-mark）",
+  "requires": ["marks/graphic/graphic.css"],
+  "source": { "generator": "tooling/graphic/build.mjs（片段）", "rules": "DESIGN.md §5「calm 零件」与 calm 时长例外" },
+  "files": { "css": "stroke-draw-v2.css", "html": "stroke-draw-v2.fragment.html" },
+  "capture": {
+    "host": ".va-draw-v2",
+    "playClass": "is-playing",
+    "viewport": [160, 160],
+    "scale": 3,
+    "padPx": 8,
+    "fps": 50,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": ["light", "dark"],
+    "loop": 0
+  }
+}

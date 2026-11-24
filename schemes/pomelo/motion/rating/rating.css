@@ -1,0 +1,13 @@
+/* 评分：点一颗，从第一颗到它一颗接一颗弹出来（每颗 0.4 秒，间隔 0.05 秒）；鼠标移上去那颗歪着放大一点。 */
+.pm-rating-star svg { transition: transform .3s cubic-bezier(.3,1.6,.5,1); }
+.pm-rating-star:hover svg, .pm-rating-star.is-hover svg { transform: scale(1.18) rotate(-8deg); }
+.pm-star-fill { transition: opacity .2s; }
+.pm-rating.is-pop .pm-rating-star.is-on svg { animation: pm-star-pop .4s cubic-bezier(.3,1.6,.5,1) both; }
+.pm-rating.is-pop .pm-rating-star:nth-child(2) svg { animation-delay: .05s; }
+.pm-rating.is-pop .pm-rating-star:nth-child(3) svg { animation-delay: .1s; }
+.pm-rating.is-pop .pm-rating-star:nth-child(4) svg { animation-delay: .15s; }
+.pm-rating.is-pop .pm-rating-star:nth-child(5) svg { animation-delay: .2s; }
+@keyframes pm-star-pop { 0% { transform: scale(.3) rotate(-30deg); } 60% { transform: scale(1.25) rotate(8deg); } 100% { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-rating-star svg, .pm-star-fill, .pm-rating.is-pop .pm-rating-star.is-on svg { transition: none !important; animation: none !important; }
+}

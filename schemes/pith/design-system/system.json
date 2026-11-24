@@ -1,0 +1,185 @@
+{
+  "$note": "Design System 的名字、命名空间、资产分组（按 marks/manifest.json 的 id 取图；会长的 Logo 只在动效里用，不放进来）。没有 JS 组件：bundle.js 只声明 window.Pith。",
+  "title": "Pith",
+  "namespace": "Pith",
+  "by": "Elen Skye",
+  "via": "Claude Code · Pith Explore",
+  "assetGroups": [
+    {
+      "name": "Logo",
+      "tile": "l",
+      "assets": [
+        {
+          "id": "logo",
+          "name": "pith-logo.svg"
+        },
+        {
+          "id": "app-icon",
+          "name": "pith-app-icon.svg"
+        }
+      ]
+    },
+    {
+      "name": "TopBar",
+      "tile": "m",
+      "assets": [
+        {
+          "id": "icon-kb",
+          "name": "pith-icon-kb.svg"
+        },
+        {
+          "id": "icon-lib",
+          "name": "pith-icon-lib.svg"
+        },
+        {
+          "id": "icon-set",
+          "name": "pith-icon-set.svg"
+        }
+      ]
+    },
+    {
+      "name": "Interface",
+      "tile": "s",
+      "assets": [
+        {
+          "id": "icon-new",
+          "name": "pith-icon-new.svg"
+        },
+        {
+          "id": "icon-search",
+          "name": "pith-icon-search.svg"
+        },
+        {
+          "id": "icon-send",
+          "name": "pith-icon-send.svg"
+        }
+      ]
+    },
+    {
+      "name": "Records",
+      "tile": "s",
+      "assets": [
+        {
+          "id": "type-full",
+          "name": "pith-type-full.svg"
+        },
+        {
+          "id": "type-excerpt",
+          "name": "pith-type-excerpt.svg"
+        },
+        {
+          "id": "type-note",
+          "name": "pith-type-note.svg"
+        },
+        {
+          "id": "type-web",
+          "name": "pith-type-web.svg"
+        },
+        {
+          "id": "type-file",
+          "name": "pith-type-file.svg"
+        },
+        {
+          "id": "type-scan",
+          "name": "pith-type-scan.svg"
+        },
+        {
+          "id": "type-concept",
+          "name": "pith-type-concept.svg"
+        },
+        {
+          "id": "type-report",
+          "name": "pith-type-report.svg"
+        },
+        {
+          "id": "type-wonder",
+          "name": "pith-type-wonder.svg"
+        },
+        {
+          "id": "type-answer",
+          "name": "pith-type-answer.svg"
+        }
+      ]
+    },
+    {
+      "name": "Stages",
+      "tile": "s",
+      "assets": [
+        {
+          "id": "stage-seed",
+          "name": "pith-stage-seed.svg"
+        },
+        {
+          "id": "stage-sprout",
+          "name": "pith-stage-sprout.svg"
+        },
+        {
+          "id": "stage-evergreen",
+          "name": "pith-stage-evergreen.svg"
+        }
+      ]
+    },
+    {
+      "name": "Agents",
+      "tile": "m",
+      "assets": [
+        {
+          "id": "agent-think",
+          "name": "pith-agent-think.svg"
+        },
+        {
+          "id": "agent-search",
+          "name": "pith-agent-search.svg"
+        },
+        {
+          "id": "agent-read",
+          "name": "pith-agent-read.svg"
+        },
+        {
+          "id": "agent-cite",
+          "name": "pith-agent-cite.svg"
+        },
+        {
+          "id": "agent-lib",
+          "name": "pith-agent-lib.svg"
+        },
+        {
+          "id": "agent-web",
+          "name": "pith-agent-web.svg"
+        },
+        {
+          "id": "agent-compute",
+          "name": "pith-agent-compute.svg"
+        },
+        {
+          "id": "agent-skill",
+          "name": "pith-agent-skill.svg"
+        },
+        {
+          "id": "agent-write",
+          "name": "pith-agent-write.svg"
+        },
+        {
+          "id": "agent-ask",
+          "name": "pith-agent-ask.svg"
+        },
+        {
+          "id": "agent-save",
+          "name": "pith-agent-save.svg"
+        },
+        {
+          "id": "agent-bg",
+          "name": "pith-agent-bg.svg"
+        },
+        {
+          "id": "agent-word",
+          "name": "pith-agent-word.svg"
+        },
+        {
+          "id": "agent-done",
+          "name": "pith-agent-done.svg"
+        }
+      ]
+    }
+  ]
+}

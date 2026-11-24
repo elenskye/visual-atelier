@@ -1,0 +1,5 @@
+/* {{title}} 的组件样式：类名以 {{name}}- 开头，数值都用 tokens 的变量。组件的标准写法在 components/<组件>/preview.html。 */
+.{{name}} { font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); color: var(--color-text); background: var(--color-page); }
+.{{name}}-card { background: var(--color-surface); border-radius: var(--radius-m); box-shadow: var(--shadow-card); padding: var(--space-4); }
+.{{name}}-button { display: inline-flex; align-items: center; gap: var(--space-1); height: 34px; padding: 0 var(--space-4); border: 1px solid var(--color-line); border-radius: var(--radius-s); background: var(--color-surface); color: var(--color-text); font: inherit; cursor: pointer; }
+.{{name}}-button--primary { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-on-accent); }

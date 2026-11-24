@@ -1,0 +1,32 @@
+<!-- @dsCard group="控件" height=250 subtitle="下拉：关着是手画的框；展开是一条纸，选中的那一格画个勾" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Select</title>
+<style>
+  html, body { margin: 0; }
+  .demo { display: flex; gap: 40px; padding: 24px 36px; }
+  .col { width: 180px; }
+  .col .pm-menu { margin-top: 6px; }
+  .col .pm-select { width: 100%; }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="demo">
+  <div class="col">
+    <button class="pm-field pm-select" data-hand="field" data-seed="1395" data-r="10" data-sw="1.5" data-amp="0.55" type="button" aria-haspopup="listbox"><span class="pm-num">2026 年 11 月</span><span data-hand="icon" data-size="16" data-seed="6" data-d="M7 10 L12 15 L17 10"></span></button>
+  </div>
+  <div class="col">
+    <button class="pm-field pm-select" data-hand="field" data-seed="1396" data-r="10" data-sw="1.5" data-amp="0.55" type="button" aria-haspopup="listbox" aria-expanded="true"><span class="pm-num">2026 年 11 月</span><span data-hand="icon" data-size="16" data-seed="7" data-d="M7 14 L12 9 L17 14"></span></button>
+    <div class="pm-menu" role="listbox">
+      <div class="pm-menu-item" role="option" aria-selected="false"><span class="pm-num">9 月</span><span class="pm-menu-check" data-hand="icon" data-size="18" data-seed="8" data-d="M5.5 12.5 L10 17 L18.5 7" style="color: var(--color-pen)"></span></div>
+      <div class="pm-menu-item" role="option" aria-selected="false"><span class="pm-num">10 月</span><span class="pm-menu-check" data-hand="icon" data-size="18" data-seed="9" data-d="M5.5 12.5 L10 17 L18.5 7" style="color: var(--color-pen)"></span></div>
+      <div class="pm-menu-item" role="option" aria-selected="true"><span class="pm-num">11 月</span><span class="pm-menu-check" data-hand="icon" data-size="18" data-seed="10" data-d="M5.5 12.5 L10 17 L18.5 7" style="color: var(--color-pen)"></span></div>
+      <div class="pm-menu-item" role="option" aria-selected="false"><span class="pm-num">12 月</span><span class="pm-menu-check" data-hand="icon" data-size="18" data-seed="11" data-d="M5.5 12.5 L10 17 L18.5 7" style="color: var(--color-pen)"></span></div>
+    </div>
+  </div>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "$note": "动效两档（docs/motion-tiers.md）：calm 是控件的小动静；expressive 只用在登记过的表面。模板的数是占位，换成这套方案自己的。减弱动态效果时只留最后的样子。",
+  "tiers": {
+    "calm": {
+      "use": "控件状态、出现和消失",
+      "stateMs": [120, 180],
+      "enterMs": 240,
+      "enterEasing": "cubic-bezier(.2,.8,.2,1)",
+      "maxMsWithoutSignature": 400,
+      "forbid": ["loop", "parallax", "page-transition"]
+    },
+    "expressive": {
+      "use": "招牌时刻，要登记",
+      "maxSingleMs": 1200,
+      "registeredSurfacesOnly": true,
+      "loopRules": "只有加载能循环；减弱动态效果时停下",
+      "registeredSurfaces": []
+    }
+  }
+}

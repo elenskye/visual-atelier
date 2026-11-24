@@ -1,0 +1,40 @@
+<!-- @dsCard group="纸和卡片" height=270 width=960 subtitle="首页的卡片：白卡、手画的边、一到两条胶带、歪一点" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Card</title>
+<style>
+  html, body { margin: 0; }
+  .stage { position: relative; height: 270px; }
+  .stage > .pm-card { position: absolute; }
+  .brief p { margin: 0; font-size: var(--text-body-lg); line-height: 30px; }
+  .todo .pm-check { min-height: 38.5px; }
+  .day { display: flex; gap: var(--space-2); align-items: baseline; justify-content: space-between; height: 46px; }
+  .day .pm-stat { white-space: nowrap; }
+  .day small { display: block; font-size: var(--text-caption); line-height: 16px; color: var(--color-ink-soft); }
+  .day .pm-stat-num b { position: relative; font-weight: 700; }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="stage">
+  <article class="pm-card brief" data-hand="card" data-seed="501" data-tilt="-1.2" data-tapes="1" data-stitches style="left: 28px; top: 36px; width: 340px; padding-left: 30px">
+    <h3 class="pm-card-title">今日简报<span class="pm-card-meta">重写</span></h3>
+    <p>今天有 3 件事，最急的是<span class="pm-mark" data-hand="marker" data-seed="511">交作业</span>，今晚 12 点截止。</p>
+    <p>这周吃饭花了 ¥486，比上周少 ¥62，继续保持。</p>
+  </article>
+  <article class="pm-card pm-card--lined todo" data-hand="card" data-seed="502" data-tilt="0.8" data-tapes="2" style="left: 400px; top: 28px; width: 250px">
+    <h3 class="pm-card-title">今天的待办<span class="pm-card-meta pm-num">1 / 3</span></h3>
+    <button class="pm-check" role="checkbox" aria-checked="false" type="button"><span data-hand="check" data-seed="1400"></span><span class="pm-check-text" data-hand="strike" data-seed="1405">交作业</span></button>
+    <button class="pm-check" role="checkbox" aria-checked="true" type="button"><span data-hand="check" data-seed="1401"></span><span class="pm-check-text" data-hand="strike" data-seed="1406">给猫买粮</span></button>
+    <button class="pm-check" role="checkbox" aria-checked="false" type="button"><span data-hand="check" data-seed="1402"></span><span class="pm-check-text" data-hand="strike" data-seed="1407">跑步五公里</span></button>
+  </article>
+  <article class="pm-card" data-hand="card" data-seed="503" data-tilt="1.6" data-tapes="1" style="left: 684px; top: 46px; width: 250px; --pm-card-bg: var(--color-cat-pink-tint)">
+    <h3 class="pm-card-title">快到的日子</h3>
+    <div class="day"><span>小林生日<small>11 月 8 日 · 周日</small></span><span class="pm-stat">还有 <span class="pm-stat-num"><b class="pm-mark" data-hand="marker" data-seed="531" data-sw="10">5</b></span> 天</span></div>
+    <div class="day"><span>护照到期<small>12 月 14 日 · 周一</small></span><span class="pm-stat">还有 <span class="pm-stat-num">41</span> 天</span></div>
+  </article>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

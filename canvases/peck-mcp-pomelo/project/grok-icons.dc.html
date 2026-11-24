@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>前十个模块的图标</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/pomelo/tokens.css">
+<link rel="stylesheet" href="ds/pomelo/components/bundle.css">
+<script src="ds/pomelo/components/bundle.js"></script>
+<script src="./grok-marks.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.root{position:relative;width:1200px;height:500px;overflow:hidden;color:var(--color-ink)}
+.row{position:absolute;left:40px;width:1120px}
+.row.a{top:28px}
+.row.b{top:264px}
+.head{display:flex;align-items:center;gap:12px;height:32px;margin-bottom:12px}
+.tape{position:relative;width:80px;height:26px}
+.tape-bg{position:absolute;inset:0;opacity:.88;background:repeating-linear-gradient(45deg,var(--color-tape-mint-a) 0 7px,var(--color-tape-mint-b) 7px 14px);clip-path:polygon(4% 0,0 10%,4% 20%,0 30%,4% 40%,0 50%,4% 60%,0 70%,4% 80%,0 90%,4% 100%,96% 100%,100% 90%,96% 80%,100% 70%,96% 60%,100% 50%,96% 40%,100% 30%,96% 20%,100% 10%,96% 0)}
+.tape.yuzu .tape-bg{background:repeating-linear-gradient(45deg,var(--color-tape-yuzu-a) 0 7px,var(--color-tape-yuzu-b) 7px 14px)}
+.tape-t{position:relative;display:block;color:#20241F;font-size:15px;font-weight:700;line-height:26px;text-align:center}
+.hint{font-size:13px;line-height:20px;color:var(--color-ink-soft)}
+.cells{display:flex;gap:16px}
+.cell{width:208px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.stk{width:96px;height:96px;display:grid;place-items:center}
+.stk svg{display:block;overflow:visible}
+.nm{font-size:15px;line-height:22px;text-align:center}
+</style>
+</helmet>
+<div class="root pm pm-desk" data-hand="desk" data-seed="1">
+  <div class="row a">
+    <div class="head">
+      <div class="tape"><span class="tape-bg" style="transform:rotate(-5deg)"></span><span class="tape-t">日常</span></div>
+      <span class="hint">薄荷</span>
+    </div>
+    <div class="cells">
+      <div class="cell"><div class="stk" style="transform:rotate(-7deg)" data-mark="todo" data-size="96"></div><div class="nm">一步一步</div></div>
+      <div class="cell"><div class="stk" style="transform:rotate(5deg)" data-mark="notes" data-size="96"></div><div class="nm">念念不忘</div></div>
+      <div class="cell"><div class="stk" style="transform:rotate(-3deg)" data-mark="days" data-size="96"></div><div class="nm">来日方长</div></div>
+      <div class="cell"><div class="stk" style="transform:rotate(8deg)" data-mark="finance" data-size="96"></div><div class="nm">钱来钱往</div></div>
+      <div class="cell"><div class="stk" style="transform:rotate(-6deg)" data-mark="packing" data-size="96"></div><div class="nm">出门走走</div></div>
+    </div>
+  </div>
+  <div class="row b">
+    <div class="head">
+      <div class="tape yuzu"><span class="tape-bg" style="transform:rotate(4deg)"></span><span class="tape-t">兴趣</span></div>
+      <span class="hint">樱粉</span>
+    </div>
+    <div class="cells">
+      <div class="cell"><div class="stk" style="transform:rotate(4deg)" data-mark="books" data-size="96"></div><div class="nm">摸鱼读读</div></div>
+      <div class="cell"><div class="stk" style="transform:rotate(-8deg)" data-mark="films" data-size="96"></div><div class="nm">好奇看看</div></div>
+      <div class="cell"><div class="stk" style="transform:rotate(6deg)" data-mark="drawing" data-size="96"></div><div class="nm">随意画画</div></div>
+      <div class="cell"><div class="stk" style="transform:rotate(-4deg)" data-mark="site" data-size="96"></div><div class="nm">呦呦漫游</div></div>
+      <div class="cell"><div class="stk" style="transform:rotate(7deg)" data-mark="canvas" data-size="96"></div><div class="nm">有板有眼</div></div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":500}}'>
+class Component extends DCLogic {
+  paintMarks() {
+    if (window.GrokMarks) GrokMarks.fill(document.querySelector('.root'));
+    if (this.stop) this.stop();
+    this.stop = Pomelo.paintLive(document.body);
+  }
+  componentDidMount() { this.paintMarks(); }
+  componentDidUpdate() { this.paintMarks(); }
+  componentWillUnmount() { if (this.stop) this.stop(); }
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

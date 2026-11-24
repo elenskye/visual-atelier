@@ -1,0 +1,49 @@
+{
+  "id": "pomelo-surprised",
+  "title": "柚子 · 吓一跳",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "expressive",
+  "surface": "pomelo-face",
+  "trigger": "睡着时被吵醒（换成 data-face=\"surprised\"，放完换回平常）",
+  "durationMs": 500,
+  "loop": false,
+  "reducedMotion": "不跳，直接是惊讶的脸",
+  "use": "顶栏左上角的柚子",
+  "source": "canvases/pomelo-explore/p2-final/css.mjs「柚子：脸、身子的动作」（站主 2026-11-05 验收）",
+  "contract": "<span class=\"pm-pomelo\" data-face=\"surprised\">pomelo-surprised.svg</span>：脸一出现动画就开始，放完停在这张脸上",
+  "requires": [
+    "motion/pomelo-idle/pomelo-idle.css"
+  ],
+  "files": {
+    "css": "pomelo-surprised.css",
+    "html": "pomelo-surprised.fragment.html"
+  },
+  "capture": {
+    "host": ".pomelo-demo",
+    "steps": [
+      {
+        "at": 0,
+        "on": ".pomelo-demo .pm-pomelo",
+        "attr": {
+          "hidden": null
+        }
+      }
+    ],
+    "viewport": [
+      200,
+      190
+    ],
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "skipRest": true,
+    "holdStartMs": 600,
+    "holdEndMs": 1000,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0
+  }
+}

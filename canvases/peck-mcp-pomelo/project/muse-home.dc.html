@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>首页（桌面）</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/pomelo/tokens.css">
+<link rel="stylesheet" href="ds/pomelo/components/bundle.css">
+<script src="ds/pomelo/components/bundle.js"></script>
+</head>
+<body class="pm pm-desk">
+<x-dc>
+<helmet>
+<style>
+html,body{margin:0;padding:0;width:1200px;height:800px;overflow:hidden}
+.stage{position:relative;width:1200px;height:800px;overflow:hidden}
+.topbar{position:absolute;left:0;top:0;width:1200px;height:51px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:var(--color-desk)}
+.top-left,.top-right{display:flex;align-items:center;gap:12px}
+.dot{width:12px;height:12px;border-radius:50%;flex:none}
+.navchev{font-size:20px;color:var(--color-ink-soft);font-weight:700}
+.date-note{display:inline-flex;padding:3px 10px;background:var(--color-paper);border-radius:4px;box-shadow:0 1px 3px var(--color-shadow);transform:rotate(-1.5deg);font-size:13px}
+.tool{display:inline-flex;align-items:center;gap:5px;font-size:13px;color:var(--color-ink)}
+.card{position:absolute;background:var(--color-card);border-radius:14px;box-shadow:0 1px 2px var(--color-shadow),0 10px 22px var(--color-shadow);padding:14px 18px}
+.card h3{margin:0 0 8px;font-size:17px;line-height:24px}
+.meta{float:right;font-size:12px;color:var(--color-ink-soft);font-weight:400}
+p{margin:0}.small{font-size:12px;color:var(--color-ink-soft)}
+.rowline{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:4px 0;font-size:14px}
+.num{font-variant-numeric:tabular-nums;text-align:right}
+.fav{position:absolute;display:flex;align-items:center;gap:18px}
+.fav-item{display:flex;flex-direction:column;align-items:center;gap:2px;width:76px}
+.fav-item span{font-size:12px;white-space:nowrap}
+.tape{display:inline-flex;padding:4px 12px;font-weight:700;font-size:14px;color:var(--color-on-sticky);border-radius:3px;background:repeating-linear-gradient(-45deg,var(--color-tape-mint-a) 0 7px,var(--color-tape-mint-b) 7px 14px);transform:rotate(-2deg);box-shadow:0 1px 2px var(--color-shadow)}
+.book-btn{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;background:var(--color-paper)}
+</style>
+</helmet>
+<div class="stage" data-hand="desk" data-seed="muse-home-desk">
+  <div class="topbar">
+    <div class="top-left">
+      <span style="display:flex;gap:7px"><span class="dot" style="background:#E85D4D"></span><span class="dot" style="background:var(--color-yuzu)"></span><span class="dot" style="background:var(--color-leaf)"></span></span>
+      <span style="display:inline-flex;align-items:center;gap:6px"><svg width="30" height="30" viewBox="3 1 58 60"><path d="M32 12 C42 12 52 22 52 36 C52 50 43 58 32 58 C21 58 12 50 12 36 C12 22 22 12 32 12 Z" fill="var(--color-yuzu)" stroke="var(--color-art-ink)" stroke-width="4" stroke-linejoin="round"/><path d="M32 12 C32 7 36 3 43 3 C44 9 39 13 32 12 Z" fill="var(--color-leaf)" stroke="var(--color-art-ink)" stroke-width="3" stroke-linejoin="round"/><circle cx="26" cy="36" r="2.4" fill="var(--color-art-ink)"/><circle cx="38" cy="36" r="2.4" fill="var(--color-art-ink)"/><path d="M27 44 C30 46 34 46 37 44" fill="none" stroke="var(--color-art-ink)" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="42" r="3.4" fill="var(--color-blush)"/><circle cx="44" cy="42" r="3.4" fill="var(--color-blush)"/></svg><b>柚子</b></span>
+      <span class="navchev">‹</span><span class="navchev">›</span>
+    </div>
+    <div class="top-right">
+      <span class="date-note">11 月 16 日 · 周日</span>
+      <span class="tool"><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M15.5 15.5 L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>找东西</span>
+      <span class="tool"><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.8 L12 5 M12 19 L12 21.2 M2.8 12 L5 12 M19 12 L21.2 12 M5.2 5.2 L6.8 6.8 M17.2 17.2 L18.8 18.8 M18.8 5.2 L17.2 6.8 M6.8 17.2 L5.2 18.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>设置</span>
+    </div>
+  </div>
+  <div style="position:absolute;left:38px;top:68px;width:600px"><div style="font-size:46px;line-height:56px;font-weight:700">下午好 <span style="font-size:22px;color:var(--color-ink-soft);font-weight:400">今天也慢慢来。</span></div></div>
+  <article class="card" data-hand="card" data-seed="muse-brief" data-tilt="-1.1" data-tapes="1" style="left:724px;top:62px;width:440px;height:144px">
+    <h3>今日简报</h3>
+    <p style="font-size:15px;line-height:26px">今天有 4 件事，先把最急的那件做完，剩下的慢慢来。这周吃饭比上周省了一点，晚上可以早点休息。</p>
+    <span style="position:absolute;right:10px;top:-20px;transform:rotate(7deg)" data-nolint><svg width="54" height="54" viewBox="3 1 58 60"><path d="M32 12 C42 12 52 22 52 36 C52 50 43 58 32 58 C21 58 12 50 12 36 C12 22 22 12 32 12 Z" fill="var(--color-art-white)" stroke="var(--color-art-white)" stroke-width="9" stroke-linejoin="round"/><path d="M32 12 C42 12 52 22 52 36 C52 50 43 58 32 58 C21 58 12 50 12 36 C12 22 22 12 32 12 Z" fill="var(--color-yuzu)" transform="translate(1.2 1.5)"/><path d="M32 12.5 C41.5 12.5 51.5 22 51.5 36 C51.5 49.5 42.8 57.5 32 57.5 C21.2 57.5 12.5 49.5 12.5 36 C12.5 22.5 22.5 12.5 32 12.5 Z" fill="none" stroke="var(--color-art-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M32 12 C32 7 36 3 43 3 C44 9 39 13 32 12 Z" fill="var(--color-leaf)" stroke="var(--color-art-ink)" stroke-width="2.6" stroke-linejoin="round"/><circle cx="26" cy="36" r="2.4" fill="var(--color-art-ink)"/><circle cx="38" cy="36" r="2.4" fill="var(--color-art-ink)"/><path d="M27 44 C30 46 34 46 37 44" fill="none" stroke="var(--color-art-ink)" stroke-width="3" stroke-linecap="round"/></svg></span>
+  </article>
+  <article class="card pm-card--lined" data-hand="card" data-seed="muse-todo" data-tilt="0.7" data-tapes="1" style="left:38px;top:142px;width:560px;height:252px;padding-left:34px">
+    <h3>今天的待办 <span class="meta">2 / 5</span></h3>
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <button class="pm-check" role="checkbox" aria-checked="true" type="button"><span data-hand="check" data-seed="muse-ck1"></span><span class="pm-check-text" data-hand="strike" data-seed="muse-st1">把周报发出去</span></button>
+      <button class="pm-check" role="checkbox" aria-checked="true" type="button"><span data-hand="check" data-seed="muse-ck2"></span><span class="pm-check-text" data-hand="strike" data-seed="muse-st2">给绿植浇水</span></button>
+      <button class="pm-check" role="checkbox" aria-checked="false" type="button"><span data-hand="check" data-seed="muse-ck3"></span><span class="pm-check-text" data-hand="strike" data-seed="muse-st3">整理桌面上的票据</span></button>
+      <button class="pm-check" role="checkbox" aria-checked="false" type="button"><span data-hand="check" data-seed="muse-ck4"></span><span class="pm-check-text" data-hand="strike" data-seed="muse-st4">读完手边那本书的第三章</span></button>
+      <button class="pm-check" role="checkbox" aria-checked="false" type="button"><span data-hand="check" data-seed="muse-ck5"></span><span class="pm-check-text" data-hand="strike" data-seed="muse-st5">早点睡，不熬夜</span></button>
+    </div>
+  </article>
+  <article class="card" data-hand="card" data-seed="muse-days" data-tilt="-1.4" data-tapes="1" style="left:622px;top:222px;width:262px;height:160px">
+    <h3>快到的日子</h3>
+    <div class="rowline"><span>妈妈生日</span><b>还有 <span class="pm-mark" data-hand="marker" data-seed="muse-days-mk" data-sw="10">5</span> 天</b></div>
+    <div class="rowline"><span>牙医复查</span><b>12 天</b></div>
+    <div class="rowline"><span>老友聚会</span><b>20 天</b></div>
+  </article>
+  <article class="card" data-hand="card" data-seed="muse-read" data-tilt="1.2" data-tapes="1" style="left:908px;top:222px;width:256px;height:160px">
+    <h3>在读在看</h3>
+    <div class="rowline"><span><span class="dot" style="display:inline-block;background:var(--color-cat-pink);margin-right:6px;width:9px;height:9px"></span>《山茶文具店》</span><span class="small">62%</span></div>
+    <div class="rowline"><span><span class="dot" style="display:inline-block;background:var(--color-cat-pink);margin-right:6px;width:9px;height:9px"></span>《夜航西飞》</span><span class="small">刚开始</span></div>
+    <div class="rowline"><span><span class="dot" style="display:inline-block;background:var(--color-cat-pink);margin-right:6px;width:9px;height:9px"></span>《小森林》</span><span class="small">电影</span></div>
+  </article>
+  <article class="card" data-hand="card" data-seed="muse-receipt" data-tilt="0.9" style="left:622px;top:402px;width:262px;height:186px">
+    <h3>资产小票</h3>
+    <div class="rowline"><span>日常账户</span><b class="num">¥ 3,286</b></div>
+    <div class="rowline"><span>储蓄罐</span><b class="num">¥ 12,400</b></div>
+    <div class="rowline"><span>旅行基金</span><b class="num">¥ 1,850</b></div>
+    <div style="border-top:2px dashed var(--color-line);margin-top:6px;padding-top:6px" class="rowline"><span>合计</span><b class="num">¥ 17,536</b></div>
+  </article>
+  <article class="card" data-hand="note" data-seed="muse-sticky" data-tilt="-1.8" data-tapes="1" style="left:908px;top:402px;width:256px;height:160px;background:var(--color-sticky);color:var(--color-on-sticky)">
+    <h3 style="color:var(--color-on-sticky)">念念不忘</h3>
+    <p style="font-size:15px;line-height:26px">下次去书店，记得看看那本讲植物的画册，封面是绿色的。</p>
+  </article>
+  <div class="fav" style="left:38px;top:622px;width:1126px;height:138px">
+    <span class="tape">常用</span>
+    <div class="fav-item"><span style="transform:rotate(-5deg);display:inline-flex"><svg width="62" height="62" viewBox="3 1 58 60"><path d="M18 9 C24 7 29 12 29 20 C29 28 25 34 19 34 C13 34 10 27 11 19 C12 13 14 10 18 9 Z M38 30 C44 28 49 33 49 41 C49 49 45 55 39 55 C33 55 30 48 31 40 C32 34 34 31 38 30 Z" fill="var(--color-art-white)" stroke="var(--color-art-white)" stroke-width="9" stroke-linejoin="round"/><path d="M18 9 C24 7 29 12 29 20 C29 28 25 34 19 34 C13 34 10 27 11 19 C12 13 14 10 18 9 Z" fill="var(--color-cat-mint-sticker)" transform="translate(1.2 1.5)"/><path d="M18.5 9.5 C23.5 8 28.5 12.5 28.5 20 C28.5 27.5 24.5 33.5 19 33.5 C13.5 33.5 10.8 27 11.5 19.5 C12.2 13.5 14.5 10.5 18.5 9.5 Z M38.5 30.5 C43.5 29 48.5 33.5 48.5 41 C48.5 48.5 44.5 54.5 39 54.5 C33.5 54.5 30.8 48 31.5 40.5 C32.2 34.5 34.5 31.5 38.5 30.5 Z" fill="none" stroke="var(--color-art-ink)" stroke-width="3.4" stroke-linejoin="round"/></svg></span><span>一步一步</span></div>
+    <div class="fav-item"><span style="transform:rotate(4deg);display:inline-flex"><svg width="62" height="62" viewBox="3 1 58 60"><path d="M13 11 L47 9 L53 42 L38 53 L14 49 Z" fill="var(--color-art-white)" stroke="var(--color-art-white)" stroke-width="9" stroke-linejoin="round"/><path d="M13 11 L47 9 L53 42 L38 53 L14 49 Z" fill="var(--color-cat-mint-sticker)" transform="translate(1.2 1.5)"/><path d="M13.5 11.5 L46.5 9.5 L52.5 41.5 L38 52.5 L14.5 48.5 Z M20 22 L44 21 M21 30 L43 29" fill="none" stroke="var(--color-art-ink)" stroke-width="3.2" stroke-linejoin="round"/><circle cx="32" cy="14" r="5" fill="var(--color-yuzu)" stroke="var(--color-art-ink)" stroke-width="2.6"/></svg></span><span>念念不忘</span></div>
+    <div class="fav-item"><span style="transform:rotate(-4deg);display:inline-flex"><svg width="62" height="62" viewBox="3 1 58 60"><path d="M14 44 C20 30 34 16 50 12 C52 28 44 44 30 50 C24 52 16 50 14 44 Z" fill="var(--color-art-white)" stroke="var(--color-art-white)" stroke-width="9" stroke-linejoin="round"/><path d="M14 44 C20 30 34 16 50 12 C52 28 44 44 30 50 C24 52 16 50 14 44 Z" fill="var(--color-cat-grape-sticker)" transform="translate(1.2 1.5)"/><path d="M14.5 43.5 C20.5 30 34 16.5 49.5 12.5 C51.5 28 43.5 43.5 30 49.5 C24.5 51.5 16.5 49.8 14.5 43.5 Z" fill="none" stroke="var(--color-art-ink)" stroke-width="3.2" stroke-linejoin="round"/><circle cx="32" cy="32" r="7" fill="none" stroke="var(--color-art-ink)" stroke-width="2.6"/><circle cx="32" cy="32" r="2.2" fill="var(--color-yuzu)"/></svg></span><span>投石问路</span></div>
+    <div class="fav-item"><span style="transform:rotate(5deg);display:inline-flex"><svg width="62" height="62" viewBox="3 1 58 60"><circle cx="28" cy="28" r="16" fill="var(--color-art-white)" stroke="var(--color-art-white)" stroke-width="9"/><path d="M40 40 L54 54" stroke="var(--color-art-white)" stroke-width="11" stroke-linecap="round"/><circle cx="28" cy="28" r="16" fill="var(--color-cat-grape-sticker)" transform="translate(1.2 1.5)"/><circle cx="28" cy="28" r="16" fill="none" stroke="var(--color-art-ink)" stroke-width="3.2"/><path d="M40 40 L54 54" stroke="var(--color-art-ink)" stroke-width="4" stroke-linecap="round"/><circle cx="23" cy="23" r="2" fill="var(--color-art-ink)"/></svg></span><span>Seeker</span></div>
+    <div class="fav-item"><span style="transform:rotate(-6deg);display:inline-flex"><svg width="62" height="62" viewBox="3 1 58 60"><path d="M32 12 C42 12 52 22 52 36 C52 50 43 58 32 58 C21 58 12 50 12 36 C12 22 22 12 32 12 Z" fill="var(--color-art-white)" stroke="var(--color-art-white)" stroke-width="9" stroke-linejoin="round"/><path d="M32 12 C42 12 52 22 52 36 C52 50 43 58 32 58 C21 58 12 50 12 36 C12 22 22 12 32 12 Z" fill="var(--color-yuzu)" transform="translate(1.2 1.5)"/><path d="M32 12.5 C41.5 12.5 51.5 22 51.5 36 C51.5 49.5 42.8 57.5 32 57.5 C21.2 57.5 12.5 49.5 12.5 36 C12.5 22.5 22.5 12.5 32 12.5 Z" fill="none" stroke="var(--color-art-ink)" stroke-width="3.4" stroke-linejoin="round"/><path d="M32 12 C32 7 36 3 43 3 C44 9 39 13 32 12 Z" fill="var(--color-leaf)" stroke="var(--color-art-ink)" stroke-width="2.6" stroke-linejoin="round"/><circle cx="26" cy="36" r="2.4" fill="var(--color-art-ink)"/><circle cx="38" cy="36" r="2.4" fill="var(--color-art-ink)"/><path d="M27 44 C30 46 34 46 37 44" fill="none" stroke="var(--color-art-ink)" stroke-width="3" stroke-linecap="round"/></svg></span><span>柚子</span></div>
+    <div class="fav-item"><span class="book-btn" data-hand="round" data-seed="muse-book-btn">贴纸簿</span><span>&nbsp;</span></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":800}}'>
+class Component extends DCLogic { componentDidMount(){ if(window.Pomelo) this.stop = Pomelo.paintLive(document.body); } componentDidUpdate(){ if(window.Pomelo) Pomelo.paint(document.body); } componentWillUnmount(){ if(this.stop) this.stop(); } renderVals(){ return {}; } }
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!-- @dsCard group="对话" height=260 width=960 subtitle="交出来（还没存） · 存下以后（「已种下」前面的图标演一遍）" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>DeliveryCard</title>
+<style>
+  html, body { margin: 0; }
+  .demo { padding: 24px 32px; }
+  .lb { margin: 0 0 8px; font: 700 11px/1 var(--font-sans); letter-spacing: .1em; color: var(--color-text-4); }
+  .row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  /* 预览停在长好的样子（App 里是 .once，存下那一刻演一遍） */
+  .pith-deliver-ok .pith-agent--save { --at: 3s; }
+  .pith-deliver-ok .pith-agent--save :is(.sd, .soil, .ss, .sb1, .sb2, .lf1, .lf2, .bd) { animation-iteration-count: 1 !important; animation-fill-mode: both !important; }
+  .pith-deliver-ok .pith-agent--save .spr { animation: none !important; }
+</style>
+</head>
+<body class="pith">
+<div class="demo" style="display:flex;flex-direction:column;gap:14px;width:720px">
+  <article class="pith-deliver"><!-- @include marks/stages/seed.svg --><div><b class="pith-deliver-title" style="font-weight:300">分工受市场范围限制</b><p class="pith-deliver-desc">分工因交换而起，所以受市场范围限制；高地散村和水运两个例子。</p><p class="pith-deliver-meta">概念卡 • 3 处原文 · 1 条摘抄</p></div><a class="pith-link">存进「读《国富论》」 →</a></article>
+  <article class="pith-deliver"><!-- @include marks/stages/sprout.svg --><div><b class="pith-deliver-title" style="font-weight:520">分工受市场范围限制</b><p class="pith-deliver-meta">概念卡 • 3 处原文 · 1 条摘抄</p></div><span class="pith-deliver-ok"><!-- @include marks/agents/save.svg --><span>已种下<br>读《国富论》</span></span></article>
+</div>
+</body>
+</html>

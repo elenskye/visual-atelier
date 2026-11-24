@@ -1,0 +1,249 @@
+/* Pomelo 组件样式（Design System 的 components/bundle.css）。
+ *
+ * 类名都以 pm- 开头；颜色、间距、字号、圆角、阴影都用 tokens.json 生成的变量（--color-*、--space-*、--text-*……）。
+ * 数值取自站主 2026-11-05 验收的 Phase 2 小样（canvases/pomelo-explore/p2-final/），规则见 schemes/pomelo/DESIGN.md。
+ * 手画的框、线、胶带、缝线、勾选框、星星由 components/bundle.js 的 Pomelo.paint() 画：元素写 data-hand，
+ * 画出来的东西放进元素里的一层 [data-hand-painted]（在内容下面）；这里给那一层上底色、圆角和投影。
+ * 另外 4 套配色（紫笔、牛皮纸、柚黄、薄荷）按 data-palette 切换，构建时从 tokens/color.json 生成，插在下面。
+ * 这里只写静态的样子。动效零件在 schemes/pomelo/motion/（Dawn Plan · Phase 5），构建时原样插在文件最后的
+ * / * @generate motion * / 处，不在这里另写一版。
+ */
+
+/* 手札体两个字重分别声明，只写字体族要粗体会被浏览器描粗发糊。只在 Mac 上有。 */
+@font-face { font-family: "Pomelo Hand"; src: local("HannotateSC-W5"); font-weight: 400; }
+@font-face { font-family: "Pomelo Hand"; src: local("HannotateSC-W7"); font-weight: 700; }
+
+/* ---------- 另外 4 套配色（生成） ---------- */
+/* @generate palettes */
+
+/* ---------- 页面 ---------- */
+.pm {
+  font-family: var(--font-hand);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+:where(.pm) *, :where(.pm) *::before, :where(.pm) *::after { box-sizing: border-box; }
+:where(.pm) button { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; text-align: inherit; }
+:where(.pm) input { font: inherit; color: var(--color-ink); background: transparent; border: 0; outline: none; padding: 0; margin: 0; }
+:where(.pm) input::placeholder { color: var(--color-ink-soft); opacity: 1; }
+:where(.pm) ::selection { background: var(--color-marker); color: var(--color-ink); }
+.pm-desk { background: var(--color-desk); }
+.pm-soft { color: var(--color-ink-soft); }
+.pm-num { font-variant-numeric: tabular-nums; }
+.pm-long { font-family: var(--font-long); line-height: var(--leading-loose); }
+.pm-link { color: var(--color-link); text-decoration: underline; text-underline-offset: 3px; }
+/* 柚子链接：[[目标]] 是行内的小卡（模块的贴纸加名字），[[目标|字]] 是带点线的字；列表里大一号 */
+.pm-lk { display: inline; padding: 0 0.32em 0 0.18em; margin: 0 0.06em; border-radius: 7px; color: var(--color-link-pomelo); background: color-mix(in srgb, var(--color-link-pomelo) 9%, transparent); font: inherit; line-height: inherit; white-space: nowrap; cursor: pointer; vertical-align: baseline; text-align: left; }
+.pm-lk:hover { background: color-mix(in srgb, var(--color-link-pomelo) 16%, transparent); }
+.pm-lk .pm-lk-mk { display: inline-block; vertical-align: -0.22em; margin-right: 0.22em; }
+.pm-lk.dead { color: var(--color-ink-soft); background: color-mix(in srgb, var(--color-ink-soft) 8%, transparent); cursor: default; }
+.pm-lk-lg { display: inline-flex; align-items: center; gap: 0.3em; padding: 1px 9px 1px 5px; border-radius: 8px; font-size: 14px; line-height: 1.8; }
+.pm-lk-lg .pm-lk-mk { margin: 0; vertical-align: 0; }
+.pm-lk-d { margin-left: 0.35em; color: var(--color-ink-soft); font-size: 0.85em; }
+.pm-lkw { display: inline; padding: 0; font: inherit; line-height: inherit; color: var(--color-link-pomelo); text-decoration: underline dotted 1.5px; text-underline-offset: 3px; cursor: pointer; text-align: left; }
+/* 提示框（见字如面）：分类色的淡底、左边一道分类色，开头是那一种的图标（和字的中线对齐） */
+.pm-callout { padding: 0.4em 0.9em; border-left: 3px solid; border-radius: 0 10px 10px 0; color: var(--color-ink); font-size: var(--text-body-lg); line-height: 1.75; }
+.pm-callout-head { display: inline-flex; align-items: center; height: 1lh; vertical-align: top; margin-right: 0.45em; }
+.pm-callout.is-note { background: var(--color-cat-sky-tint); border-left-color: var(--color-cat-sky); }
+.pm-callout.is-tip { background: var(--color-cat-mint-tint); border-left-color: var(--color-cat-mint); }
+.pm-callout.is-important { background: var(--color-cat-grape-tint); border-left-color: var(--color-cat-grape); }
+.pm-callout.is-warning { background: var(--color-cat-orange-tint); border-left-color: var(--color-cat-orange); }
+.pm-callout.is-caution { background: var(--color-cat-pink-tint); border-left-color: var(--color-cat-pink); }
+.pm-callout.is-note .pm-callout-head { color: var(--color-cat-sky); }
+.pm-callout.is-tip .pm-callout-head { color: var(--color-cat-mint); }
+.pm-callout.is-important .pm-callout-head { color: var(--color-cat-grape); }
+.pm-callout.is-warning .pm-callout-head { color: var(--color-cat-orange); }
+.pm-callout.is-caution .pm-callout-head { color: var(--color-cat-pink); }
+
+/* ---------- 手画的那一层 ---------- */
+[data-hand] { position: relative; isolation: isolate; }
+/* 纸纹：一小块算好的噪声平铺（tooling/handmade/texture.mjs，数值在 tokens/handmade.json 的 texture） */
+.pm-tex { background-image: url("@texture-data"); opacity: var(--pm-tex-light); }
+[data-theme="dark"] .pm-tex { opacity: var(--pm-tex-dark); }
+[data-theme="dark"] [data-theme="light"] .pm-tex { opacity: var(--pm-tex-light); }
+
+/* ---------- 滚动条：缝线上的一小段墨线 ----------
+   .pm-scroll 写在根元素（或要滚的那一块）上，里面能滚的地方都是这个样子：平时只有一小段淡墨线；鼠标移进这一块，
+   它走的那条缝线（和纸左边的缝线一个意思）显出来、墨线变深；按住拖的时候是整支笔的颜色。系统自带的灰条不出现。 */
+.pm-scroll::-webkit-scrollbar, .pm-scroll ::-webkit-scrollbar { width: 12px; height: 12px; }
+.pm-scroll::-webkit-scrollbar-track, .pm-scroll ::-webkit-scrollbar-track { background: transparent; }
+.pm-scroll::-webkit-scrollbar-corner, .pm-scroll ::-webkit-scrollbar-corner { background: transparent; }
+.pm-scroll::-webkit-scrollbar-thumb, .pm-scroll ::-webkit-scrollbar-thumb {
+  min-width: 36px; min-height: 36px; border: 4px solid transparent; border-radius: 999px;
+  background: color-mix(in srgb, var(--color-pen) 34%, transparent); background-clip: content-box;
+}
+.pm-scroll:hover::-webkit-scrollbar-track:vertical, .pm-scroll :hover::-webkit-scrollbar-track:vertical {
+  background: repeating-linear-gradient(to bottom, color-mix(in srgb, var(--color-pen) 30%, transparent) 0 8px, transparent 8px 18px) center / 2px 100% no-repeat;
+}
+.pm-scroll:hover::-webkit-scrollbar-track:horizontal, .pm-scroll :hover::-webkit-scrollbar-track:horizontal {
+  background: repeating-linear-gradient(to right, color-mix(in srgb, var(--color-pen) 30%, transparent) 0 8px, transparent 8px 18px) center / 100% 2px no-repeat;
+}
+.pm-scroll:hover::-webkit-scrollbar-thumb, .pm-scroll :hover::-webkit-scrollbar-thumb { background-color: color-mix(in srgb, var(--color-pen) 72%, transparent); }
+.pm-scroll::-webkit-scrollbar-thumb:active, .pm-scroll ::-webkit-scrollbar-thumb:active { background-color: var(--color-pen); }
+
+/* ---------- 纸：模块页、简报 ---------- */
+.pm-sheet { position: relative; padding: var(--space-6) var(--space-7) var(--space-7) var(--space-9); }
+.pm-sheet > [data-hand-painted] {
+  background-color: var(--color-paper);
+  background-image: linear-gradient(var(--color-grid) 1px, transparent 1px), linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+  background-size: 22px 22px;
+  border-radius: var(--radius-paper);
+  box-shadow: var(--shadow-sheet);
+}
+.pm-sheet-title { margin: 0; font-size: var(--text-page-title-lg); line-height: 34px; font-weight: 700; }
+.pm-sheet-sub { margin: 0; font-size: var(--text-body); line-height: 22px; color: var(--color-ink-soft); }
+
+/* ---------- 卡片：首页的块、弹出的原记录 ---------- */
+.pm-card { position: relative; padding: var(--space-4) var(--space-5); }
+.pm-card > [data-hand-painted] { background: var(--pm-card-bg, var(--color-card)); border-radius: var(--radius-card); box-shadow: var(--shadow-card); }
+.pm-card--lined > [data-hand-painted] { background-image: repeating-linear-gradient(transparent 0 37px, var(--color-line) 37px 38.5px); background-position: 0 46px; }
+.pm-card-title { display: flex; align-items: center; gap: var(--space-2); margin: 0 0 var(--space-2); font-size: var(--text-card-title); line-height: 24px; font-weight: 700; }
+.pm-card-title .pm-card-meta { margin-left: auto; font-size: var(--text-caption); line-height: 18px; font-weight: 400; color: var(--color-ink-soft); }
+
+/* ---------- 便签 ---------- */
+.pm-note { position: relative; padding: var(--space-4); color: var(--color-on-sticky); }
+/* 便签的纸明暗都是浅色：便签上的字、次要的字、链接都跟便签的墨色走，不用给深色纸配的浅色（APCA：墨 Lc 87，次要的字 Lc 69） */
+.pm-note { --color-ink: var(--color-on-sticky); --color-ink-soft: color-mix(in srgb, var(--color-on-sticky) 72%, var(--color-sticky)); --color-link: var(--color-on-sticky); }
+.pm-note > [data-hand-painted] { background: var(--color-sticky); box-shadow: var(--shadow-note); }
+
+/* ---------- 小票：白纸、锯齿底边、虚线分段、数字右对齐 ---------- */
+.pm-receipt { position: relative; isolation: isolate; padding: var(--space-5) 18px 30px; font-size: var(--text-body-lg); }
+.pm-receipt::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--color-card);
+  box-shadow: 0 0 0 1px var(--color-line) inset;
+  clip-path: polygon(0 0,100% 0,100.00% 100%,97.73% calc(100% - 10px),95.45% 100%,93.18% calc(100% - 10px),90.91% 100%,88.64% calc(100% - 10px),86.36% 100%,84.09% calc(100% - 10px),81.82% 100%,79.55% calc(100% - 10px),77.27% 100%,75.00% calc(100% - 10px),72.73% 100%,70.45% calc(100% - 10px),68.18% 100%,65.91% calc(100% - 10px),63.64% 100%,61.36% calc(100% - 10px),59.09% 100%,56.82% calc(100% - 10px),54.55% 100%,52.27% calc(100% - 10px),50.00% 100%,47.73% calc(100% - 10px),45.45% 100%,43.18% calc(100% - 10px),40.91% 100%,38.64% calc(100% - 10px),36.36% 100%,34.09% calc(100% - 10px),31.82% 100%,29.55% calc(100% - 10px),27.27% 100%,25.00% calc(100% - 10px),22.73% 100%,20.45% calc(100% - 10px),18.18% 100%,15.91% calc(100% - 10px),13.64% 100%,11.36% calc(100% - 10px),9.09% 100%,6.82% calc(100% - 10px),4.55% 100%,2.27% calc(100% - 10px),0.00% 100%);
+}
+.pm-receipt-head, .pm-receipt-foot { text-align: center; font-size: var(--text-caption); line-height: 18px; color: var(--color-ink-soft); }
+.pm-receipt-row { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); min-height: 30px; }
+.pm-receipt-row .pm-num { text-align: right; white-space: nowrap; }
+.pm-receipt-cut { margin: var(--space-3) 0; border-top: 2px dashed var(--color-line); }
+.pm-receipt-total { font-weight: 700; }
+
+/* ---------- 笔迹 ---------- */
+.pm-rule { display: block; height: 8px; }
+.pm-dash { display: block; border-top: 2px dashed var(--color-line); }
+.pm-mark, .pm-strike, .pm-underline { display: inline-block; }
+.pm-strike { color: var(--color-ink-soft); }
+
+/* ---------- 按钮 ---------- */
+.pm-btn {
+  position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 6px; flex: none;
+  height: 34px; padding: 0 15px; font-size: var(--text-body-lg); line-height: 1; white-space: nowrap;
+  color: var(--color-on-primary);
+}
+.pm-btn--plain { color: var(--color-ink); }
+.pm-btn--danger { padding: 0 6px; color: var(--color-danger); }
+.pm-btn--icon { width: 40px; height: 40px; padding: 0; color: var(--color-pen); }
+.pm-btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-button); }
+.pm-btn:disabled, .pm-btn[aria-disabled="true"] { opacity: .45; cursor: default; }
+
+/* ---------- 输入框、下拉：没有多余的方框，聚焦时手画的边描粗 ---------- */
+.pm-field { position: relative; display: flex; align-items: center; gap: var(--space-2); height: 40px; padding: 0 var(--space-3); font-size: var(--text-body-lg); }
+.pm-field input { flex: 1; min-width: 0; caret-color: var(--color-pen); }
+.pm-field input:focus, .pm-field input:focus-visible { outline: none; box-shadow: none; }
+.pm-field > [data-hand-painted] path[stroke] { transition: stroke-width .18s; }
+.pm-field:focus-within > [data-hand-painted] path[stroke], .pm-field.is-focus > [data-hand-painted] path[stroke] { stroke-width: var(--pm-sw-focus); }
+.pm-field-icon { display: flex; color: var(--color-pen); }
+.pm-select { justify-content: space-between; height: 36px; }
+.pm-menu { display: flex; flex-direction: column; }
+.pm-menu-item {
+  display: flex; align-items: center; justify-content: space-between; height: 36px; padding: 0 14px;
+  font-size: var(--text-body-lg); background: var(--color-card);
+  border-left: 1.5px solid var(--color-pen); border-right: 1.5px solid var(--color-pen); border-bottom: 1px dashed var(--color-line);
+}
+.pm-menu-item:first-child { border-top: 1.5px solid var(--color-pen); border-radius: var(--radius-paper) var(--radius-paper) 0 0; }
+.pm-menu-item:last-child { border-bottom: 1.5px solid var(--color-pen); border-radius: 0 0 var(--radius-paper) var(--radius-paper); }
+.pm-menu-item[aria-selected="true"] { background: var(--color-selected); }
+.pm-menu-item:not([aria-selected="true"]) .pm-menu-check { visibility: hidden; }
+/* 右键菜单：同一条纸，矮一点、带一点投影；组的那一格指着时旁边再出一条（pm-menu-sub） */
+.pm-menu--ctx { width: 196px; filter: drop-shadow(0 6px 14px var(--color-shadow)); color: var(--color-ink); }
+.pm-menu--ctx .pm-menu-item { width: 100%; height: 30px; padding: 0 12px; font-size: 14px; text-align: left; }
+.pm-menu--ctx .pm-menu-item:hover, .pm-menu--ctx .pm-menu-item.is-on { background: var(--color-selected); }
+.pm-menu-sub { width: 184px; }
+.pm-menu-lead { font-weight: 700; }
+.pm-menu-lead [data-hand="icon"] { color: var(--color-pen); }
+.pm-menu-keys { flex-shrink: 0; font-size: 12px; color: var(--color-ink-soft); }
+.pm-menu-rule { height: 0; border-left: 1.5px solid var(--color-pen); border-right: 1.5px solid var(--color-pen); border-bottom: 1.5px solid var(--color-pen); background: var(--color-card); }
+
+/* ---------- 分段：选中的一格抹一笔选中色 ---------- */
+.pm-seg { position: relative; display: inline-flex; height: 36px; padding: 3px; }
+.pm-seg-item { position: relative; flex: 1 0 auto; min-width: 57px; height: 30px; padding: 0 var(--space-3); display: flex; align-items: center; justify-content: center; font-size: var(--text-body); }
+.pm-seg-item[aria-pressed="true"] { font-weight: 700; }
+
+/* ---------- 勾选：线描贴纸，勾上时柚黄和勾才出来，那一行划掉 ---------- */
+.pm-check { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 32px; font-size: var(--text-body-lg); }
+.pm-ck-fill { transform: scale(0); transform-box: fill-box; transform-origin: 50% 50%; }
+.pm-ck-tick { stroke-dasharray: 1 2; stroke-dashoffset: 1.01; }
+[aria-checked="true"] .pm-ck-fill, .is-on .pm-ck-fill { transform: scale(1); }
+[aria-checked="true"] .pm-ck-tick, .is-on .pm-ck-tick { stroke-dashoffset: 0; }
+.pm-check[aria-checked="true"] .pm-check-text { color: var(--color-ink-soft); }
+.pm-check:not([aria-checked="true"]) .pm-check-text > [data-hand-painted] { display: none; }
+
+/* ---------- 开关：荧光笔把轨道涂满，圆钮滑过去 ---------- */
+.pm-switch { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); width: 100%; height: 40px; font-size: var(--text-body-lg); }
+.pm-switch [data-hand="switch"] { display: block; flex: none; }
+/* 虚线 1 2、偏移 1.01：关着时线头的圆帽也藏起来（偏移正好 1 会在一端留一个圆点） */
+.pm-sw-fill { stroke-dasharray: 1 2; stroke-dashoffset: 1.01; }
+[aria-checked="true"] .pm-sw-fill { stroke-dashoffset: 0; }
+[aria-checked="true"] .pm-sw-knob { transform: translateX(24px); }
+
+/* ---------- 评分：星星贴纸 ---------- */
+.pm-rating { display: flex; gap: 2px; }
+.pm-rating-star { display: flex; width: 32px; height: 32px; align-items: center; justify-content: center; }
+.pm-star-fill { opacity: .12; }
+.is-on .pm-star-fill, [aria-checked="true"] .pm-star-fill { opacity: 1; }
+
+/* ---------- 标签：分类色的浅底，字是墨色 ---------- */
+.pm-tag { display: inline-flex; align-items: center; gap: 4px; height: 28px; padding: 0 6px 0 12px; border-radius: 999px; background: var(--pm-tag-bg, var(--color-cat-sky-bg)); color: var(--color-ink); font-size: var(--text-body); white-space: nowrap; }
+.pm-tag-x { display: flex; width: 18px; height: 18px; align-items: center; justify-content: center; color: var(--color-ink-soft); }
+.pm-chip { display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 9px; border-radius: var(--radius-tag); background: var(--pm-tag-bg, var(--color-cat-sky-bg)); color: var(--color-ink); font-size: var(--text-small); white-space: nowrap; }
+.pm-chip::before { content: ""; display: block; width: 7px; height: 7px; border-radius: 50%; background: var(--pm-dot, var(--color-cat-sky)); }
+.pm-cat-mint { --pm-tag-bg: var(--color-cat-mint-bg); --pm-dot: var(--color-cat-mint); }
+.pm-cat-sky { --pm-tag-bg: var(--color-cat-sky-bg); --pm-dot: var(--color-cat-sky); }
+.pm-cat-pink { --pm-tag-bg: var(--color-cat-pink-bg); --pm-dot: var(--color-cat-pink); }
+.pm-cat-orange { --pm-tag-bg: var(--color-cat-orange-bg); --pm-dot: var(--color-cat-orange); }
+.pm-cat-grape { --pm-tag-bg: var(--color-cat-grape-bg); --pm-dot: var(--color-cat-grape); }
+.pm-cat-yuzu { --pm-tag-bg: var(--color-yuzu-bg); --pm-dot: var(--color-yuzu); }
+
+/* ---------- 鼠标提示：纸签挂在一根线上 ---------- */
+.pm-tip { display: inline-flex; flex-direction: column; align-items: center; }
+.pm-tip-string { display: block; width: 2px; height: 16px; background: var(--color-ink-soft); }
+.pm-tip-tag { display: flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 4px; background: var(--color-sticky); color: var(--color-on-sticky); font-size: var(--text-small); white-space: nowrap; box-shadow: var(--shadow-note); }
+
+/* ---------- 提示：便签啪地贴上，过一会儿自己撕走 ---------- */
+.pm-toast { position: relative; display: flex; align-items: center; justify-content: center; width: 200px; height: 80px; color: var(--color-on-sticky); font-size: var(--text-card-title); font-weight: 700; }
+.pm-toast > [data-hand-painted] { background: var(--color-sticky); box-shadow: var(--shadow-card); }
+
+/* ---------- 统计数字：手札体粗，数字等宽 ---------- */
+.pm-stat { display: inline-flex; align-items: baseline; gap: 4px; font-size: var(--text-small); color: var(--color-ink-soft); }
+.pm-stat-num { font-size: var(--text-stat); line-height: 28px; font-weight: 700; color: var(--color-ink); font-variant-numeric: tabular-nums; }
+.pm-stat--lg .pm-stat-num { font-size: var(--text-stat-lg); line-height: 1.1; }
+.pm-up { color: var(--color-up); }
+.pm-down { color: var(--color-ink-soft); }
+
+/* ---------- 印出来的东西：票根、信纸（不跟配色和明暗走） ---------- */
+.pm-ticket { position: relative; width: 104px; height: 104px; padding: 7px 12px 0; color: var(--color-print-ink); }
+.pm-ticket > [data-hand-painted] { background: var(--pm-print, var(--color-print-paper)); border-radius: 6px; box-shadow: 0 1px 2px rgba(0, 0, 0, .18); clip-path: polygon(0 0,100% 0,100% 40%,94% 50%,100% 60%,100% 100%,0 100%,0 60%,6% 50%,0 40%); }
+.pm-ticket-tear { position: absolute; left: 8px; right: 8px; top: 30px; border-top: 1.5px dashed var(--color-print-rule); }
+.pm-ticket-kind { font-size: var(--text-caption); line-height: 18px; color: var(--color-print-ink-soft); }
+.pm-ticket-name { padding-top: 10px; font-size: var(--text-small); line-height: 19px; font-weight: 700; white-space: nowrap; }
+.pm-letter {
+  padding: 32px 36px; color: var(--color-print-ink);
+  background-color: var(--color-print-paper);
+  background-image: repeating-linear-gradient(transparent 0 31px, var(--color-print-rule) 31px 32px);
+  background-position: 0 32px;
+  font-family: var(--font-long); font-size: var(--text-body-lg); line-height: 32px;
+  border-radius: 4px; box-shadow: var(--shadow-note);
+}
+.pm-letter p { margin: 0; }
+.pm-letter-sign { text-align: right; font-family: var(--font-hand); font-size: var(--text-card-title); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pm-field > [data-hand-painted] path[stroke] { transition: none; }
+}
+
+/* ---------- 动效零件（生成：schemes/pomelo/motion/） ---------- */
+/* @generate motion */

@@ -1,0 +1,53 @@
+{
+  "id": "sticker-whisper",
+  "title": "小彩蛋 · 撕起柚子贴纸",
+  "status": "approved",
+  "approved": "Phase 2 定稿里的小彩蛋（站主 2026-11-05 验收）；站主 2026-11-08 批准 Phase 4、5 时要求一并做进来",
+  "tier": "expressive",
+  "surface": "easter-egg",
+  "trigger": "点简报角上的柚子贴纸：.pm-whisper-peel 加 .is-up，2.4 秒后换成 .is-falling；拖着撕时界面跟着手写 transform，松手设 --pm-ax --pm-ay --pm-a --pm-origin 再加 .is-falling",
+  "durationMs": 776,
+  "reducedMotion": "点一下直接翻开、过一会儿直接贴回去，不弹",
+  "use": "桌面的今日简报",
+  "source": "canvases/pomelo-explore/p2-final/views.mjs 的 briefInner、logic.js 的 peelUp / peelBack（站主 2026-11-05 验收的 Phase 2 定稿）",
+  "files": {
+    "css": "sticker-whisper.css",
+    "html": "sticker-whisper.fragment.html"
+  },
+  "capture": {
+    "host": ".whisper-demo",
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-up",
+        "on": ".pm-whisper-peel"
+      },
+      {
+        "at": 1500,
+        "remove": "is-up",
+        "add": "is-falling",
+        "style": {
+          "--pm-a": "150",
+          "--pm-ax": "1",
+          "--pm-ay": "0",
+          "--pm-origin": "50% 0"
+        },
+        "on": ".pm-whisper-peel"
+      }
+    ],
+    "viewport": [
+      290,
+      290
+    ],
+    "scale": 1,
+    "padPx": 0,
+    "fps": 15,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id": "segmented",
+  "title": "分段 · 荧光笔拖到新的一格",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "换选中的一格：界面把 .pm-seg-hl 的 --pm-seg-x 设成那一格的 offsetLeft − 3、宽度设成它的宽，再加一次 .is-pop",
+  "durationMs": 420,
+  "reducedMotion": "荧光笔直接到新的一格，不抹",
+  "use": "分段（.pm-seg）：一列里只能选一个的筛选",
+  "source": "canvases/pomelo-explore/p2-final/controls.mjs（站主 2026-11-05 验收的「控件的小动静」）",
+  "files": {
+    "css": "segmented.css",
+    "html": "segmented.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".seg-demo",
+    "viewport": [
+      310,
+      100
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "attr": {
+          "aria-pressed": "false"
+        },
+        "on": ".i0"
+      },
+      {
+        "at": 0,
+        "attr": {
+          "aria-pressed": "true"
+        },
+        "on": ".i2"
+      },
+      {
+        "at": 0,
+        "style": {
+          "--pm-seg-x": "114px"
+        },
+        "add": "is-pop",
+        "on": ".pm-seg-hl"
+      }
+    ]
+  }
+}

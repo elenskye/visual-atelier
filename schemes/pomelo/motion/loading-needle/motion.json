@@ -1,0 +1,37 @@
+{
+  "id": "loading-needle",
+  "title": "加载 · 穿针",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "expressive",
+  "surface": "loading-needle",
+  "trigger": "等待时放进去就一直循环，等完拿掉",
+  "durationMs": 3200,
+  "loop": true,
+  "reducedMotion": "循环停下：12 针都缝好，针停在结旁边",
+  "use": "要等一会儿的地方：导入、导出、柚子在本地模型上跑；按钮里用小的（.pm-needle--mini）",
+  "source": "canvases/pomelo-explore/p2-final/migrate.mjs needle()、loader() 和 MIGRATE_CSS「穿针」（站主 2026-11-05 认了迁移测试）",
+  "files": {
+    "css": "loading-needle.css",
+    "html": "loading-needle.fragment.html"
+  },
+  "capture": {
+    "host": ".needle-demo",
+    "viewport": [
+      490,
+      240
+    ],
+    "scale": 1.5,
+    "padPx": 0,
+    "fps": 25,
+    "skipRest": true,
+    "endMs": 3200,
+    "holdStartMs": 40,
+    "holdEndMs": 40,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0
+  }
+}

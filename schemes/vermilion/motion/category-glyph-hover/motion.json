@@ -1,0 +1,27 @@
+{
+  "id": "category-glyph-hover",
+  "title": "分类图形悬停",
+  "status": "approved",
+  "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+  "tier": "expressive",
+  "surface": "category-glyph-hover",
+  "trigger": "悬停 / 键盘聚焦图形或外层 .va-glyph-trigger（预览与导出用 .is-playing）",
+  "durationMs": 700,
+  "loop": false,
+  "reducedMotion": "静态终态：图形完整，不滑动、不书写；悬停时朱红点直接出现",
+  "requires": ["marks/graphic/graphic.css"],
+  "source": { "generator": "tooling/graphic/build.mjs（片段）", "rules": "DESIGN.md §5「已登记的 expressive 表面」" },
+  "files": { "css": "category-glyph-hover.css", "html": "category-glyph-hover.fragment.html" },
+  "capture": {
+    "host": ".va-glyph-row",
+    "playClass": "is-playing",
+    "viewport": [480, 120],
+    "scale": 3,
+    "padPx": 8,
+    "fps": 50,
+    "holdStartMs": 500,
+    "holdEndMs": 1500,
+    "themes": ["light", "dark"],
+    "loop": 0
+  }
+}

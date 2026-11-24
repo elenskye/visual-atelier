@@ -1,0 +1,24 @@
+{
+  "id": "selection-slide",
+  "title": "选中指示滑移",
+  "status": "approved",
+  "approved": "站主 2026-11-01 批准（VL1 Phase 6）",
+  "tier": "calm",
+  "trigger": "单选项的选中变化（selection-slide.js）；预览与导出用 .is-playing",
+  "durationMs": 220,
+  "reducedMotion": "直接到位：不滑动、不淡入淡出",
+  "use": "首页话题栏。顶部导航是整页跳转，calm 不做页面转场，所以导航不滑",
+  "files": { "css": "selection-slide.css", "html": "selection-slide.fragment.html", "js": "selection-slide.js" },
+  "capture": {
+    "host": ".va-slide-demo",
+    "playClass": "is-playing",
+    "viewport": [300, 100],
+    "scale": 3,
+    "padPx": 8,
+    "fps": 50,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": ["light", "dark"],
+    "loop": 0
+  }
+}

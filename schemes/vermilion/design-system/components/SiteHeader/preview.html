@@ -1,0 +1,36 @@
+<!-- @dsCard group="导航" height=140 width=1100 subtitle="Logo、导航（当前页）、搜索 / 语言 / 明暗按钮" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>SiteHeader</title>
+<style>
+  .vm-demo { padding: 0 0 var(--space-5); }
+</style>
+</head>
+<body class="vm-page">
+<div class="vm-demo">
+<header class="site-header">
+<!-- @include motion/logo-route/logo-route.fragment.html -->
+  <nav class="site-nav" aria-label="主导航">
+    <a class="nav-link is-active" href="#" aria-current="page">呦呦漫游</a>
+    <a class="nav-link" href="#">职业</a>
+    <a class="nav-link" href="#">当下</a>
+    <a class="nav-link" href="#">关于我</a>
+  </nav>
+  <div class="header-actions">
+    <a class="icon-toggle" href="#" aria-label="搜索本站">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+    </a>
+    <a class="icon-toggle" href="#" aria-label="切换语言">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.54 15H17a2 2 0 0 0-2 2v4.54"/><path d="M7 3.34V5a3 3 0 0 0 3 3a2 2 0 0 1 2 2c0 1.1.9 2 2 2a2 2 0 0 0 2-2c0-1.1.9-2 2-2h3.17"/><path d="M11 21.95V18a2 2 0 0 0-2-2a2 2 0 0 1-2-2v-1a2 2 0 0 0-2-2H2.05"/><circle cx="12" cy="12" r="10"/></svg>
+    </a>
+    <button class="icon-toggle theme-toggle" type="button" aria-label="切换颜色模式">
+      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+    </button>
+  </div>
+</header>
+</div>
+</body>
+</html>

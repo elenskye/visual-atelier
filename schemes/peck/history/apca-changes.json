@@ -1,0 +1,44 @@
+[
+  {
+    "role": "text-2",
+    "mode": "dark",
+    "from": "#9AA3CF",
+    "to": "#BEC7F5",
+    "why": "说明字 Lc 53，要 ≥ 70"
+  },
+  {
+    "role": "text-3",
+    "mode": "dark",
+    "from": "#7A84B6",
+    "to": "#9FAADE",
+    "why": "提示小字 Lc 37，要 ≥ 55"
+  },
+  {
+    "role": "bad",
+    "mode": "dark",
+    "from": "#FB7185",
+    "to": "#FE9AA4",
+    "why": "红字 Lc 50，要 ≥ 60"
+  },
+  {
+    "role": "line-strong",
+    "mode": "dark",
+    "from": "#2E3B72",
+    "to": "#43528B",
+    "why": "控件边 Lc 8，要 ≥ 15"
+  },
+  {
+    "role": "warn-line",
+    "mode": "dark",
+    "from": "rgba(255,184,107,.55)",
+    "to": "#9D744F",
+    "why": "琥珀边 Lc 29，要 ≥ 30（不透明度 .55 → .6）"
+  },
+  {
+    "role": "bad-line",
+    "mode": "dark",
+    "from": "rgba(251,113,133,.6)",
+    "to": "#A96977",
+    "why": "红边跟着红字改，不透明度 .6 → .65"
+  }
+]

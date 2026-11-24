@@ -1,0 +1,43 @@
+{
+  "id": "think-line",
+  "title": "柚子在想 · 绕一笔",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "expressive",
+  "surface": "pomelo-think",
+  "trigger": "等柚子回答时放「柚子在想…」，里面的笔迹是 .pm-think-line；回答来了就拿掉",
+  "durationMs": 1600,
+  "loop": true,
+  "reducedMotion": "笔迹画好停住",
+  "use": "问柚子、柚子那一页（和柚子的「在想」表情一起）",
+  "source": "canvases/pomelo-explore/p2-final/views.mjs 的 squiggle、css.mjs 的 dLoop（站主 2026-11-05 验收的 Phase 2 定稿）",
+  "files": {
+    "css": "think-line.css",
+    "html": "think-line.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 40,
+    "holdEndMs": 40,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".think-demo",
+    "viewport": [
+      200,
+      92
+    ],
+    "skipRest": true,
+    "endMs": 1600,
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-live"
+      }
+    ]
+  }
+}

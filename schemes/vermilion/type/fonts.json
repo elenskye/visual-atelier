@@ -1,0 +1,14 @@
+{
+  "$note": "本方案用到的字体清单。字体文件不进本仓库，使用方各自自托管（package 是 npm 上的自托管包）。字体栈见 tokens/scale.json，许可见 docs/licensing.md。outline 表示能否转曲线或打包进产物。",
+  "web": [
+    { "family": "Source Serif 4", "stack": "serif", "use": "标题与长文（拉丁）", "weights": [400, 600], "subset": "latin", "package": "@fontsource/source-serif-4", "license": "OFL-1.1", "outline": true },
+    { "family": "Noto Serif SC", "stack": "serif", "use": "标题与长文（中文）", "weights": [400], "package": "@fontsource/noto-serif-sc", "license": "OFL-1.1", "outline": true },
+    { "family": "Work Sans", "stack": "sans", "use": "界面与正文（拉丁）", "weights": [400, 500], "subset": "latin", "package": "@fontsource/work-sans", "license": "OFL-1.1", "outline": true },
+    { "family": "Noto Sans SC", "stack": "sans", "use": "界面与正文（中文）", "weights": [400], "package": "@fontsource/noto-sans-sc", "license": "OFL-1.1", "outline": true }
+  ],
+  "native": [],
+  "notes": [
+    "字标 logo-lockup.svg 写的是 Noto Serif SC 600，网站只加载了 400。转曲线由 tooling/marks/derive.mjs 从 @fontsource/noto-serif-sc 的 600 字重取字形（2026-10-31，产物 wordmark.svg、logo-lockup-paths.svg；默认分享图的副题用 400）。",
+    "文章分享图的标题用 Source Serif 4 与 Noto Serif SC 的 600 字重，由 tooling/og-card/ 在网站构建时转曲线（VL1 Phase 9）：两个包都是 OFL，字形只进 PNG，不打包字体文件。"
+  ]
+}

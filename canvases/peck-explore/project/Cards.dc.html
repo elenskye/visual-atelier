@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>卡片：ASK、高危确认、要 Key、菜单栏和通知</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+body{margin:0}
+.peck{position:relative;overflow:hidden;box-sizing:border-box;font-family:"IBM Plex Sans", "PingFang SC", "Hiragino Sans GB", ui-sans-serif, system-ui, sans-serif;font-size:14px;line-height:1.55;color:var(--color-text);background:var(--color-page);font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+.peck *{box-sizing:border-box}
+.peck[data-theme="dark"]{--color-page:#0C0F14;--color-panel:#12161C;--color-card:#171C23;--color-raised:#1E242D;--color-code:#0F1318;--color-line:#262D37;--color-line-strong:#35404D;--color-text:#E8EEF4;--color-muted:#B4BEC8;--color-faint:#ADB7C2;--color-accent:#00E5FF;--color-on-accent:#04161B;--color-accent-text:#00E5FF;--color-accent-soft:#0F2A30;--color-accent-line:#00E5FF;--color-muse:#C6B5FF;--color-grok:#FFB454;--color-api:#8CC0FF;--color-success:#3DDC97;--color-warning:#FFC875;--color-danger:#FFA3A3;--color-diff-add:#10301F;--color-diff-del:#3A1A1A;--shadow-card:0 1px 2px rgb(0 0 0 / 0.4), 0 12px 32px rgb(0 0 0 / 0.45);--shadow-sheet:0 24px 64px rgb(0 0 0 / 0.6);--glow:0 0 0 3px rgb(0 229 255 / 0.22), 0 0 24px rgb(0 229 255 / 0.18);color-scheme:dark}
+.peck[data-theme="light"]{--color-page:#F3F5F8;--color-panel:#FAFBFC;--color-card:#FFFFFF;--color-raised:#ECF0F4;--color-code:#F1F4F7;--color-line:#DCE2E9;--color-line-strong:#C3CCD6;--color-text:#15202B;--color-muted:#536273;--color-faint:#66758A;--color-accent:#00E5FF;--color-on-accent:#04161B;--color-accent-text:#007A8A;--color-accent-soft:#DDF8FB;--color-accent-line:#19B8CF;--color-muse:#6B46F0;--color-grok:#B4600A;--color-api:#1D5BD6;--color-success:#0B7A42;--color-warning:#B45309;--color-danger:#C62828;--color-diff-add:#E6F6EC;--color-diff-del:#FBE7E7;--shadow-card:0 1px 2px rgb(21 32 43 / 0.06), 0 8px 24px rgb(21 32 43 / 0.06);--shadow-sheet:0 24px 64px rgb(21 32 43 / 0.18);--glow:0 0 0 3px rgb(0 229 255 / 0.28);color-scheme:light}
+.peck{--color-accent:var(--accent)}
+.peck[data-theme="dark"]{--color-accent-text:var(--accent);--color-accent-line:var(--accent)}
+.peck[data-mood="quiet"]{--glow:0 0 0 0 transparent}
+.peck[data-mood="quiet"] .shine{display:none}
+.mono{font-family:"IBM Plex Mono", "SF Mono", Menlo, ui-monospace, monospace;font-size:12.5px}
+.muted{color:var(--color-muted)}.faint{color:var(--color-faint)}
+.small{font-size:13px}.caption{font-size:12px}
+.h-title{font-size:16px;font-weight:600;line-height:1.35}
+.h-page{font-size:20px;font-weight:600;line-height:1.35}
+.h-display{font-size:28px;font-weight:600;line-height:1.35}
+/* 外壳 */
+.titlebar{height:44px;display:flex;align-items:center;gap:12px;padding:0 14px 0 12px;background:var(--color-panel);border-bottom:1px solid var(--color-line);position:relative}
+.shine{position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--color-accent) 30%,var(--color-accent) 45%,transparent 70%);opacity:.55}
+.lights{display:flex;gap:8px;margin-right:8px}.lights i{width:12px;height:12px;border-radius:50%;background:var(--color-line-strong);display:block}
+.cols{display:flex;height:756px}
+.col{display:flex;flex-direction:column;min-width:0;background:var(--color-panel)}
+.col+.col{border-left:1px solid var(--color-line)}
+.col-side{width:260px}.col-main{flex:1 1 0;background:var(--color-page)}.col-changes{width:380px}
+.colhead{height:44px;display:flex;align-items:center;gap:8px;padding:0 14px;border-bottom:1px solid var(--color-line);flex:none}
+.pill{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;border:1px solid var(--color-line);background:var(--color-card);font-size:13px;color:var(--color-text);white-space:nowrap}
+.pill.ghost{background:transparent}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:32px;padding:0 14px;border-radius:6px;border:1px solid var(--color-line);background:var(--color-card);font-size:13px;font-weight:500;color:var(--color-text);white-space:nowrap}
+.btn.primary{background:var(--color-accent);border-color:transparent;color:var(--color-on-accent);box-shadow:var(--glow)}
+.btn.danger{color:var(--color-danger);border-color:var(--color-danger)}
+.btn.quiet{color:var(--color-muted)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;flex:none}
+.dot.muse{background:var(--color-muse)}.dot.grok{background:var(--color-grok)}.dot.api{background:var(--color-api)}
+.dot.run{background:var(--color-accent);box-shadow:var(--glow)}
+.who{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.who .arrow{color:var(--color-faint);margin:0 1px}
+/* 左栏任务 */
+.task{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid var(--color-line);align-items:flex-start}
+.task.on{background:var(--color-accent-soft)}
+.task .st{width:16px;height:16px;border-radius:50%;flex:none;margin-top:3px;display:flex;align-items:center;justify-content:center}
+.st.run{border:2px solid var(--color-accent);box-shadow:var(--glow)}.st.run i{width:6px;height:6px;border-radius:50%;background:var(--color-accent);display:block}
+.st.ok{background:var(--color-success)}.st.bad{background:var(--color-danger)}.st.todo{border:1.5px solid var(--color-line-strong)}
+.task .t{min-width:0}.task .t p{margin:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* 中栏 */
+.chat{flex:1 1 0;overflow:hidden;padding:20px 24px 0;display:flex;flex-direction:column;gap:14px}
+.me{align-self:flex-end;max-width:70%;background:var(--color-accent-soft);border:1px solid var(--color-line);border-radius:12px 12px 4px 12px;padding:10px 14px}
+.steps{position:relative;padding-left:22px}
+.steps:before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:1px;background:var(--color-line-strong)}
+.step{position:relative;padding:6px 0 6px 0}
+.step .st{position:absolute;left:-22px;top:9px;width:16px;height:16px;border-radius:50%;background:var(--color-page);display:flex;align-items:center;justify-content:center}
+.step .st.ok{background:var(--color-success)}.step .st.run{border:2px solid var(--color-accent);box-shadow:var(--glow);background:var(--color-page)}.step .st.run i{width:6px;height:6px;border-radius:50%;background:var(--color-accent);display:block}.step .st.todo{border:1.5px solid var(--color-line-strong)}
+.step .line{display:flex;align-items:center;gap:8px;min-width:0}
+.step .line b{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step .sub{margin:2px 0 0;color:var(--color-muted);font-size:13px}
+.out{margin-top:8px;background:var(--color-code);border:1px solid var(--color-line);border-radius:8px;padding:10px 12px;color:var(--color-muted);white-space:pre;overflow:hidden;line-height:1.7}
+.out .ok{color:var(--color-success)}.out .hl{color:var(--color-text)}
+.card{background:var(--color-card);border:1px solid var(--color-line);border-radius:12px;box-shadow:var(--shadow-card);padding:16px 18px;position:relative;overflow:hidden}
+.card .shine{top:0;height:2px;opacity:.9}
+.composer{flex:none;margin:12px 24px 20px;background:var(--color-card);border:1px solid var(--color-line);border-radius:12px;box-shadow:var(--shadow-card)}
+.composer.on{border-color:var(--color-accent-line);box-shadow:var(--glow)}
+.composer .in{padding:12px 14px 6px;color:var(--color-faint);min-height:52px}
+.composer .row{display:flex;align-items:center;gap:8px;padding:8px 10px 10px;border-top:1px solid var(--color-line)}
+.composer .row .sp{flex:1}
+.kbd{font-family:"IBM Plex Mono", "SF Mono", Menlo, ui-monospace, monospace;font-size:11px;color:var(--color-faint);border:1px solid var(--color-line);border-radius:4px;padding:1px 5px}
+/* 右栏改动 */
+.file{display:flex;align-items:center;gap:10px;padding:8px 14px;border-bottom:1px solid var(--color-line)}
+.file .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file .pm{white-space:nowrap}.pm .a{color:var(--color-success)}.pm .d{color:var(--color-danger);margin-left:6px}
+.tag{font-size:11px;padding:1px 6px;border-radius:4px;border:1px solid currentColor;line-height:1.4}
+.tag.new{color:var(--color-success)}.tag.del{color:var(--color-danger)}
+.diff{margin:12px 14px 0;background:var(--color-code);border:1px solid var(--color-line);border-radius:8px;overflow:hidden}
+.diff .hd{padding:6px 10px;border-bottom:1px solid var(--color-line);color:var(--color-muted);display:flex;gap:8px}
+.diff .ln{display:flex;line-height:1.6;white-space:pre}
+.diff .ln i{width:34px;flex:none;text-align:right;padding-right:8px;color:var(--color-faint);font-style:normal}
+.diff .ln span{padding-left:8px;flex:1}
+.diff .add{background:var(--color-diff-add)}.diff .add span{color:var(--color-success)}
+.diff .del{background:var(--color-diff-del)}.diff .del span{color:var(--color-danger)}
+/* 卡片 */
+.ask{width:460px;background:var(--color-card);border:1px solid var(--color-warning);border-radius:12px;box-shadow:var(--shadow-sheet);padding:16px 18px}
+.ask.red{border-color:var(--color-danger)}
+.ask .hd{display:flex;align-items:center;gap:8px;color:var(--color-warning);font-weight:500;font-size:13px}
+.ask.red .hd{color:var(--color-danger)}
+.ask h3{margin:8px 0 0;font-size:16px;font-weight:600;line-height:1.4}
+.ask .opts{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.input{height:34px;border:1px solid var(--color-line);border-radius:6px;background:var(--color-raised);padding:0 10px;display:flex;align-items:center;color:var(--color-faint);font-size:13px}
+.input.on{border-color:var(--color-accent-line);box-shadow:var(--glow);color:var(--color-text)}
+/* 开关 */
+.sw{width:34px;height:20px;border-radius:999px;background:var(--color-line-strong);position:relative;flex:none}
+.sw i{position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;display:block}
+.sw.on{background:var(--color-accent)}.sw.on i{left:16px}
+.sw.on{box-shadow:var(--glow)}
+.seg{display:inline-flex;border:1px solid var(--color-line);border-radius:6px;overflow:hidden}
+.seg span{padding:5px 12px;font-size:13px;color:var(--color-muted)}
+.seg span.on{background:var(--color-accent-soft);color:var(--color-accent-text);font-weight:500}
+</style>
+</helmet>
+<div class="peck" data-theme="{{theme}}" data-mood="{{mood}}" style="--accent: {{accent}}; width: 1280px; height: 800px">
+
+<div style="position:absolute;inset:0;padding:40px;display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:32px 40px;align-content:start">
+  <div><p class="caption muted" style="margin:0 0 10px">模型停下来问你（ASK）· 任何模型都能发</p>
+  <div class="ask"><div class="hd"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.5"/><path d="M12 17h.01"/></svg>Grok 停下来问你 · 任务在等</div><h3>设置面板里「花费上限」按每月算，还是按每个任务算？</h3>
+  <p class="small muted" style="margin:8px 0 0">它说：代码里两种都能做，差别是上限提示出现的位置。</p>
+  <div class="opts"><span class="btn primary">每月</span><span class="btn">每个任务</span><span class="btn quiet">两种都要</span></div>
+  <div class="input" style="margin-top:10px">或者打字回答…</div></div></div>
+
+  <div><p class="caption muted" style="margin:0 0 10px">高危操作要你点头 · 权限是「允许改文件和跑命令」也会问</p>
+  <div class="ask red"><div class="hd"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M12 3 2 20h20z"/><path d="M12 9v5M12 17h.01"/></svg>Grok 想删目录</div><h3 class="mono" style="font-size:14px;font-weight:500">rm -rf dist/ node_modules/</h3>
+  <p class="small muted" style="margin:8px 0 0">这个任务的权限：允许改文件和跑命令。删除目录、推送、装依赖、改系统设置要你点头。</p>
+  <div class="opts"><span class="btn">允许这一次</span><span class="btn">这个任务都允许</span><span class="btn danger">拒绝</span></div></div></div>
+
+  <div><p class="caption muted" style="margin:0 0 10px">选了没配 Key 的模型 · 当场要</p>
+  <div class="ask" style="border-color:var(--color-line)"><div class="hd" style="color:var(--color-accent-text)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="8" cy="15" r="4"/><path d="m10.9 12.1 9.1-9.1M16 7l3 3M13 10l3 3"/></svg>DeepSeek 还没有 Key</div><h3>贴一个 DeepSeek 的 API Key，存进钥匙串</h3>
+  <div class="input on" style="margin-top:12px;font-family:"IBM Plex Mono", "SF Mono", Menlo, ui-monospace, monospace">sk-••••••••••••••••••••••••</div>
+  <div class="opts"><span class="btn primary">保存并开始</span><span class="btn quiet">只用这一次，不存</span></div>
+  <p class="caption faint" style="margin:10px 0 0">Key 只在这台 Mac 的钥匙串里，Peck 的记录和导出里都不会出现。</p></div></div>
+
+  <div><p class="caption muted" style="margin:0 0 10px">菜单栏和通知</p>
+  <div class="card" style="padding:0;overflow:hidden"><div style="display:flex;align-items:center;gap:0;height:30px;background:var(--color-raised);border-bottom:1px solid var(--color-line);padding:0 12px;justify-content:flex-end">
+    <span class="caption faint" style="margin-right:auto">菜单栏</span>
+    <span style="display:inline-flex;align-items:center;gap:22px;color:var(--color-text)">
+      <span style="display:inline-flex;align-items:center;gap:4px" title="空闲"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M14 4a5 5 0 0 0-5 5v3l-5 2 5 1v2a4 4 0 0 0 4 4h1V9"/><path d="M14 9h6l-6 2"/><circle cx="12.5" cy="8" r=".8" fill="currentColor"/></svg></span>
+      <span style="display:inline-flex;align-items:flex-start;gap:0;position:relative"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M14 4a5 5 0 0 0-5 5v3l-5 2 5 1v2a4 4 0 0 0 4 4h1V9"/><path d="M14 9h6l-6 2"/><circle cx="12.5" cy="8" r=".8" fill="currentColor"/></svg><span class="dot run" style="width:6px;height:6px;position:absolute;right:-5px;top:-2px"></span></span>
+      <span style="display:inline-flex;align-items:flex-start;position:relative"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M14 4a5 5 0 0 0-5 5v3l-5 2 5 1v2a4 4 0 0 0 4 4h1V9"/><path d="M14 9h6l-6 2"/><circle cx="12.5" cy="8" r=".8" fill="currentColor"/></svg><span style="position:absolute;right:-7px;top:-4px;color:var(--color-warning)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .8-1 1.5"/><path d="M12 17h.01"/></svg></span></span>
+      <span class="caption faint">14:06</span></span></div>
+    <div style="padding:12px 14px;display:flex;gap:8px" class="caption muted"><span>空闲</span><span>·</span><span>在跑（青点呼吸）</span><span>·</span><span>等你回答（问号）</span></div>
+    <div style="margin:4px 14px 14px;background:var(--color-raised);border:1px solid var(--color-line);border-radius:12px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start;box-shadow:var(--shadow-card)">
+      <span style="color:var(--color-accent-text);margin-top:2px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M14 4a5 5 0 0 0-5 5v3l-5 2 5 1v2a4 4 0 0 0 4 4h1V9"/><path d="M14 9h6l-6 2"/><circle cx="12.5" cy="8" r=".8" fill="currentColor"/></svg></span><div style="min-width:0"><p class="small" style="margin:0;font-weight:600">Peck · weather-cli</p><p class="small" style="margin:2px 0 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">做完了：把设置里三个对话框合成一个面板 · +86 −132</p></div><span class="caption faint" style="margin-left:auto;white-space:nowrap">刚刚</span></div></div></div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"dark","section":"外观"},"mood":{"editor":"enum","options":["lively","quiet"],"default":"lively","section":"外观"},"accent":{"editor":"color","options":["#00E5FF","#2FE9FF","#19D3EB"],"default":"#00E5FF","section":"外观"},"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+renderVals() {
+return { theme: this.props.theme ?? 'dark', mood: this.props.mood ?? 'lively', accent: this.props.accent ?? '#00E5FF' };
+}
+}
+</script>
+</body>
+</html>

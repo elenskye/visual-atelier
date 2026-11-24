@@ -1,0 +1,12 @@
+/* 删除：这一行先揉扁、揉成纸团（圆角变圆、颜色变暗），转着往右下丢出去（0.6 秒）；撤销时从那边弹回来（0.45 秒）。
+   下面一行小字「已丢掉 · 撤销」淡入（.pm-undo.is-in，0.25 秒）。 */
+.pm-crumple.is-leaving { animation: pm-crumple .6s cubic-bezier(.5,0,.7,.4) both; pointer-events: none; }
+.pm-crumple.is-back { animation: pm-unball .45s cubic-bezier(.3,1.5,.5,1) both; }
+.pm-undo.is-in { animation: pm-fade-up .25s both; }
+@keyframes pm-crumple { 0% { transform: none; } 30% { transform: scale(.7, .55) rotate(-12deg); border-radius: 30%; filter: brightness(.92); } 55% { transform: translate(20px, -14px) scale(.22) rotate(180deg); border-radius: 50%; filter: brightness(.85); } 100% { transform: translate(170px, 30px) scale(.16) rotate(420deg); border-radius: 50%; opacity: 0; } }
+@keyframes pm-unball { 0% { transform: translate(120px, 20px) scale(.2) rotate(300deg); opacity: 0; } 100% { transform: none; opacity: 1; } }
+@keyframes pm-fade-up { 0% { opacity: 0; transform: translateY(8px); } 100% { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-crumple.is-back, .pm-undo.is-in { animation: none; }
+  .pm-crumple.is-leaving { animation: none; opacity: 0; }
+}

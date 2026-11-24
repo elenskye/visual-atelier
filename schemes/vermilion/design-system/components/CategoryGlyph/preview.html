@@ -1,0 +1,58 @@
+<!-- @dsCard group="图形语言" height=500 width=1100 subtitle="六类分类图形：三笔版（悬停写出）、简笔版、放在无封面卡片里" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>CategoryGlyph</title>
+<style>
+  .vm-demo { display: grid; gap: var(--space-6); padding: var(--space-6); }
+  .vm-demo h3 { margin: 0 0 var(--space-3); font: 400 var(--text-sm)/1.4 var(--font-sans); color: var(--color-muted); }
+  .vm-demo .va-glyph-row { gap: var(--space-5); }
+  .vm-demo .va-glyph, .vm-demo .va-glyph svg { width: 64px; height: 64px; }
+  .vm-demo-row { display: flex; flex-wrap: wrap; gap: var(--space-5); align-items: center; }
+  .vm-demo-row .va-graphic { display: inline-block; }
+  .vm-demo-row svg { width: 24px; height: 24px; display: block; }
+  .vm-demo-names { display: flex; gap: var(--space-5); font-size: var(--text-xs); color: var(--color-muted); }
+  .vm-demo-names span { width: 64px; text-align: center; }
+  /* 无封面卡片换用分类图形：图标栏从 30px 放宽到 44px */
+  .vm-demo .wander-card--plain.vm-glyph-card { grid-template-columns: 44px minmax(0, 1fr); max-width: 360px; }
+  .vm-demo .vm-glyph-card .va-glyph { width: 44px; height: 44px; }
+  .vm-demo .vm-glyph-card .va-glyph svg { width: 44px; height: 44px; }
+  .vm-demo .vm-glyph-card:hover .va-graphic { --va-paper: var(--color-surface-cool); }
+  .vm-demo-cards { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+</style>
+</head>
+<body class="vm-page">
+<div class="vm-demo">
+  <div>
+    <h3>三笔版 · 显示 ≥ 48px · 鼠标移上去看书写</h3>
+<!-- @include motion/category-glyph-hover/category-glyph-hover.fragment.html -->
+    <div class="vm-demo-names"><span>写作</span><span>项目</span><span>画廊</span><span>创作</span><span>游记</span><span>其他</span></div>
+  </div>
+  <div>
+    <h3>简笔版 · 显示 ≤ 32px</h3>
+    <div class="vm-demo-row">
+      <span class="va-graphic"><!-- @include marks/graphic/glyph-write-simple.svg --></span>
+      <span class="va-graphic"><!-- @include marks/graphic/glyph-project-simple.svg --></span>
+      <span class="va-graphic"><!-- @include marks/graphic/glyph-gallery-simple.svg --></span>
+      <span class="va-graphic"><!-- @include marks/graphic/glyph-create-simple.svg --></span>
+      <span class="va-graphic"><!-- @include marks/graphic/glyph-travel-simple.svg --></span>
+      <span class="va-graphic"><!-- @include marks/graphic/glyph-other-simple.svg --></span>
+    </div>
+  </div>
+  <div>
+    <h3>无封面卡片 · 44px · 整张卡悬停时写出</h3>
+    <div class="vm-demo-cards">
+      <a class="wander-card wander-card--plain vm-glyph-card va-glyph-trigger" href="#">
+<!-- @include motion/category-glyph-hover/single/travel.fragment.html -->
+        <div class="wander-card-body">
+          <h2>雾散得比想象中慢</h2>
+          <p>悬停：卡片上浮，纸片换成表面底上的颜色，笔画写出，朱红点抵达。</p>
+          <div class="wander-card-meta"><span class="content-label">游记</span><span>中文</span><span>2026年3月</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

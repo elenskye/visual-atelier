@@ -1,0 +1,199 @@
+{
+  "$note": "Pith 的颜色：两套配色（纸与海是默认，雾与赭），各有明暗。App 里在 设置 › 外观、⌘K 换；画布和 App 默认纸与海（站主 2026-11-23）。值来自 Pith Explore EX8–EX11。珊瑚只当点缀（亮底上 Lc 约 44），不写字。改了跑 npm run qa -- --scheme pith 过 APCA。 最淡的字（text-4）比 EX 里的 faint 深浅各挪了一点点（11-24），好在选中行的淡底上也过 60。",
+  "pageRole": "page",
+  "textRole": "text",
+  "defaultPalette": "paper-sea",
+  "roleDefs": {
+    "page": {
+      "label": "页面底",
+      "group": "底和线",
+      "use": "整页的底（纸）"
+    },
+    "surface": {
+      "label": "面",
+      "group": "底和线",
+      "use": "卡片、输入框、表格的面"
+    },
+    "raised": {
+      "label": "浮起的面",
+      "group": "底和线",
+      "use": "右侧面板、弹层、⌘K"
+    },
+    "tint": {
+      "label": "淡底",
+      "group": "底和线",
+      "use": "悬停时滑进来的那片纸、选中的行"
+    },
+    "line": {
+      "label": "线",
+      "group": "底和线",
+      "use": "分隔线、卡片的边（装饰，不查对比）"
+    },
+    "line-2": {
+      "label": "深一点的线",
+      "group": "底和线",
+      "use": "输入框、按钮的边（装饰，不查对比）"
+    },
+    "text": {
+      "label": "正文",
+      "group": "字",
+      "use": "正文、标题"
+    },
+    "text-2": {
+      "label": "次正文",
+      "group": "字",
+      "use": "回答里的次要段落、引文"
+    },
+    "text-3": {
+      "label": "说明",
+      "group": "字",
+      "use": "说明、提示"
+    },
+    "text-4": {
+      "label": "最淡的字",
+      "group": "字",
+      "use": "日期、计数、注码"
+    },
+    "accent": {
+      "label": "强调",
+      "group": "强调",
+      "use": "叶脉、枝桠、发送按钮的底、选中的环"
+    },
+    "accent-text": {
+      "label": "强调的字",
+      "group": "强调",
+      "use": "链接、编号 [n]、强调色的字"
+    },
+    "on-accent": {
+      "label": "强调上的字",
+      "group": "强调",
+      "use": "发送按钮、主按钮上的字和图标"
+    },
+    "second": {
+      "label": "第二色",
+      "group": "强调",
+      "use": "知识库卡片的类型标签、角色头像"
+    },
+    "coral": {
+      "label": "珊瑚",
+      "group": "点缀",
+      "use": "图标里的芽、种子、+1、悬停最后抵达的点（只点缀，不写字）"
+    },
+    "gold": {
+      "label": "金",
+      "group": "点缀",
+      "use": "少数小徽章的底（混进页面底用）"
+    },
+    "app-ink": {
+      "label": "App 图标底",
+      "group": "App 图标",
+      "use": "App 图标的墨色方块（明暗一样）"
+    },
+    "app-paper": {
+      "label": "App 图标纸",
+      "group": "App 图标",
+      "use": "App 图标上的 Logo"
+    },
+    "app-coral": {
+      "label": "App 图标珊瑚",
+      "group": "App 图标",
+      "use": "App 图标上的果"
+    }
+  },
+  "palettes": {
+    "paper-sea": {
+      "label": "纸与海",
+      "family": "Paper & Sea",
+      "light": {
+        "page": "#f6f5f1",
+        "surface": "#fcfbf7",
+        "raised": "#ffffff",
+        "tint": "#ebe8e3",
+        "line": "#e3e3e0",
+        "line-2": "#d3d3d1",
+        "text": "#353534",
+        "text-2": "#4a4a46",
+        "text-3": "#6b6865",
+        "text-4": "#72706d",
+        "accent": "#04a5bb",
+        "accent-text": "#00758f",
+        "on-accent": "#ffffff",
+        "second": "#960462",
+        "coral": "#f4806b",
+        "gold": "#ffd09c",
+        "app-ink": "#2b2a27",
+        "app-paper": "#fcfbf7",
+        "app-coral": "#ff8a72"
+      },
+      "dark": {
+        "page": "#1d1c1a",
+        "surface": "#252422",
+        "raised": "#2b2a27",
+        "tint": "#33312d",
+        "line": "#36342f",
+        "line-2": "#4a4741",
+        "text": "#efede8",
+        "text-2": "#dcd9d2",
+        "text-3": "#c4c0b8",
+        "text-4": "#bfbbb3",
+        "accent": "#2ec4d8",
+        "accent-text": "#6fdbe9",
+        "on-accent": "#04191d",
+        "second": "#ef9fcc",
+        "coral": "#ff9b86",
+        "gold": "#7a5c33",
+        "app-ink": "#2b2a27",
+        "app-paper": "#fcfbf7",
+        "app-coral": "#ff8a72"
+      }
+    },
+    "mist-ochre": {
+      "label": "雾与赭",
+      "family": "Mist & Ochre",
+      "light": {
+        "page": "#eef0f2",
+        "surface": "#f7f8fa",
+        "raised": "#ffffff",
+        "tint": "#e2e6eb",
+        "line": "#dde1e6",
+        "line-2": "#c8cdd4",
+        "text": "#22272e",
+        "text-2": "#3a414b",
+        "text-3": "#58606b",
+        "text-4": "#656e77",
+        "accent": "#c26a26",
+        "accent-text": "#9a4f14",
+        "on-accent": "#ffffff",
+        "second": "#34558c",
+        "coral": "#de6a55",
+        "gold": "#f0d3a4",
+        "app-ink": "#22272e",
+        "app-paper": "#f7f8fa",
+        "app-coral": "#f08a74"
+      },
+      "dark": {
+        "page": "#191c21",
+        "surface": "#20242a",
+        "raised": "#262b32",
+        "tint": "#2a2f36",
+        "line": "#2d3239",
+        "line-2": "#414851",
+        "text": "#e9ecf0",
+        "text-2": "#d2d7de",
+        "text-3": "#b6bdc7",
+        "text-4": "#b4bbc5",
+        "accent": "#e8a265",
+        "accent-text": "#f0b57e",
+        "on-accent": "#1a1006",
+        "second": "#a3bce8",
+        "coral": "#f59a85",
+        "gold": "#6a5230",
+        "app-ink": "#22272e",
+        "app-paper": "#f7f8fa",
+        "app-coral": "#f08a74"
+      }
+    }
+  },
+  "shared": {},
+  "derive": {}
+}

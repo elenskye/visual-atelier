@@ -1,0 +1,21 @@
+<!-- @dsCard group="操作" height=150 subtitle="描边按钮：常态 / 悬停；链接或按钮元素" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>ButtonLink</title>
+<style>
+  .vm-demo { display: flex; flex-wrap: wrap; gap: var(--space-5); align-items: center; padding: var(--space-6); }
+  /* 静态示意悬停态：与 bundle.css 里 :hover 的声明相同 */
+  .button-link.vm-hover { border-color: var(--color-accent-strong); background: var(--color-accent-soft); color: var(--color-accent-strong); }
+</style>
+</head>
+<body class="vm-page">
+<div class="vm-demo">
+  <a class="button-link" href="#">返回呦呦漫游</a>
+  <a class="button-link vm-hover" href="#">返回呦呦漫游</a>
+  <button class="button-link" type="button">展开全部（64）</button>
+  <a class="button-link" href="#" lang="en">Back to Wander</a>
+</div>
+</body>
+</html>

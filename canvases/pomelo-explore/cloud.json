@@ -1,0 +1,18 @@
+{
+  "kind": "canvas",
+  "title": "Pomelo Explore",
+  "home": "60a5252c-87d9-44a5-8be3-7ca422778730",
+  "targets": {
+    "60a5252c-87d9-44a5-8be3-7ca422778730": {
+      "url": "https://claude.ai/artifact/CwBUdwLqGsRxZz5hKiX143",
+      "type": "Design",
+      "blobs": "same",
+      "lastPublish": {
+        "version": "1793953748-8ea3",
+        "at": "2026-11-06T08:29:21.156Z",
+        "files": 17
+      },
+      "account": "账号一"
+    }
+  }
+}

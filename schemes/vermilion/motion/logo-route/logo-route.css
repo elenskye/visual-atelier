@@ -1,0 +1,104 @@
+/* Logo A 路径延伸 —— calm 档招牌动作：虚线路径延伸到终点圆圈，圆圈在抵达时变为交互色。
+ *
+ * 来源：personal-website/src/styles/global.css 的 .site-mark 规则（Logo A v1.0.0，站主 2026-07-25 批准；
+ * 2026-10-23 迁入）。选择器由 .site-mark 改为 .va-logo-route，数值与行为不变。
+ * 触发：悬停、键盘聚焦，或加上 .is-playing（用于预览与导出）。
+ * 依赖：--color-accent-strong、--color-ember（见 tokens/web.css）。
+ * 同页多个实例时，mask 的 id 需要各自唯一。
+ */
+.va-logo-route {
+  justify-self: start;
+  display: inline-grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  color: var(--color-accent-strong);
+  text-decoration: none;
+  transition: transform 180ms ease;
+}
+
+.va-logo-route svg {
+  width: 34px;
+  height: 34px;
+}
+
+.va-logo-route .logo-route,
+.va-logo-route .logo-destination {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4.4;
+}
+
+.va-logo-route .logo-route {
+  stroke-dasharray: 1 8.8;
+}
+
+.va-logo-route:hover,
+.va-logo-route:focus-visible,
+.va-logo-route.is-playing {
+  transform: translateY(-2px);
+}
+
+/* 路径用 520ms 画出；终点圆圈在行程基本走完（85%）时才变为交互色。 */
+.va-logo-route:hover .logo-route-mask,
+.va-logo-route:focus-visible .logo-route-mask,
+.va-logo-route.is-playing .logo-route-mask {
+  animation: logo-route-reveal 520ms ease-out both;
+}
+
+.va-logo-route:hover .logo-destination,
+.va-logo-route:focus-visible .logo-destination,
+.va-logo-route.is-playing .logo-destination {
+  animation: logo-destination-arrival 520ms linear both;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes logo-route-reveal {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes logo-destination-arrival {
+  0%,
+  84% {
+    stroke: currentColor;
+    transform: scale(1);
+  }
+  85% {
+    stroke: var(--color-ember);
+    transform: scale(1);
+  }
+  100% {
+    stroke: var(--color-ember);
+    transform: scale(1.06);
+  }
+}
+
+/* 减弱动效：显示完成后的静态状态，不画路径、不位移。 */
+@media (prefers-reduced-motion: reduce) {
+  .va-logo-route {
+    transition-duration: 0ms;
+  }
+
+  .va-logo-route:hover,
+  .va-logo-route:focus-visible,
+  .va-logo-route.is-playing {
+    transform: none;
+  }
+
+  .va-logo-route:hover .logo-route-mask,
+  .va-logo-route:focus-visible .logo-route-mask,
+  .va-logo-route.is-playing .logo-route-mask,
+  .va-logo-route:hover .logo-destination,
+  .va-logo-route:focus-visible .logo-destination,
+  .va-logo-route.is-playing .logo-destination {
+    animation: none;
+  }
+}

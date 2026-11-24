@@ -1,0 +1,29 @@
+{
+  "id": "end-mark",
+  "title": "文末落款",
+  "status": "approved",
+  "approved": "站主 2026-11-02 批准（VL1 Phase 7）",
+  "tier": "calm",
+  "calmException": "stroke-draw",
+  "trigger": "end-mark.js 每次打开页面随机挑一版；落款第一次滚进视口时加 .is-playing 写一次。打开页面时已在屏幕里的直接静态显示（预览与导出用 .is-playing）",
+  "durationMs": 640,
+  "reducedMotion": "静态终态：落款直接完整显示，不藏、不写",
+  "use": "网站文章正文结尾，40px，居中；三版（抵达、远山、三点）每次随机一版",
+  "requires": ["marks/graphic/graphic.css", "motion/stroke-draw-v2/stroke-draw-v2.css"],
+  "source": { "generator": "tooling/graphic/build.mjs（片段）", "rules": "DESIGN.md §4、§5 描边绘制" },
+  "files": { "css": "end-mark.css", "html": "end-mark.all.fragment.html", "js": "end-mark.js", "site": "end-mark.fragment.html" },
+  "capture": {
+    "host": ".va-end-mark",
+    "playClass": "is-playing",
+    "playTarget": ".va-draw-v2",
+    "playAll": true,
+    "viewport": [220, 80],
+    "scale": 3,
+    "padPx": 8,
+    "fps": 50,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": ["light", "dark"],
+    "loop": 0
+  }
+}

@@ -1,0 +1,701 @@
+{
+  "$note": "Pomelo 的色板，所有颜色都在这一个文件。5 套配色（palettes）每套明暗各一份；shared 各套共用；derive 由别的角色混出来，mix 的第二项占比是 light / dark。规则见 DESIGN.md §2。改色须过 APCA（contrast.json）。",
+  "pageRole": "desk",
+  "defaultPalette": "blue",
+  "roleDefs": {
+    "desk": {
+      "label": "桌面",
+      "use": "桌子的底色"
+    },
+    "desk-deep": {
+      "label": "桌面暗",
+      "use": "拖动时的投影区"
+    },
+    "paper": {
+      "label": "纸",
+      "use": "模块页的纸"
+    },
+    "grid": {
+      "label": "方格线",
+      "use": "方格纸的线，没有方格的配色是透明"
+    },
+    "card": {
+      "label": "卡面",
+      "use": "白卡、输入框"
+    },
+    "line": {
+      "label": "细线",
+      "use": "纸上的分割、横线"
+    },
+    "ink": {
+      "label": "墨",
+      "use": "正文"
+    },
+    "ink-soft": {
+      "label": "淡墨",
+      "use": "次要文字"
+    },
+    "pen": {
+      "label": "笔",
+      "use": "手画的线条、边框、缝线点、悄悄话"
+    },
+    "primary": {
+      "label": "主色",
+      "use": "按钮"
+    },
+    "on-primary": {
+      "label": "主色上的字"
+    },
+    "selected": {
+      "label": "选中",
+      "use": "选中底色，跟主色走"
+    },
+    "marker": {
+      "label": "荧光笔",
+      "use": "强调的一抹，文字下面"
+    },
+    "link": {
+      "label": "链接"
+    },
+    "link-pomelo": {
+      "label": "柚子链接",
+      "use": "链到 Pomelo 里的东西（[[…|字]]），和普通链接分开"
+    },
+    "danger": {
+      "label": "危险",
+      "use": "删除和截止"
+    },
+    "on-danger": {
+      "label": "危险上的字"
+    },
+    "up": {
+      "label": "涨",
+      "use": "钱涨了"
+    },
+    "top": {
+      "label": "顶栏"
+    },
+    "on-top": {
+      "label": "顶栏上的字"
+    },
+    "tab": {
+      "label": "当前页签"
+    },
+    "on-tab": {
+      "label": "当前页签上的字"
+    },
+    "art-ink": {
+      "label": "贴纸墨线",
+      "use": "图形的墨线；钢笔家族用笔色"
+    },
+    "art-white": {
+      "label": "贴纸白边"
+    },
+    "art-shadow": {
+      "label": "贴纸投影"
+    },
+    "shadow": {
+      "label": "投影",
+      "use": "卡片、纸的投影色"
+    }
+  },
+  "palettes": {
+    "blue": {
+      "label": "蓝笔 · 方格纸",
+      "family": "pen",
+      "light": {
+        "desk": "#ECEDE5",
+        "desk-deep": "#E2E4D9",
+        "paper": "#FBFBF5",
+        "grid": "#E2E8F5",
+        "card": "#FFFFFF",
+        "line": "#DCDDD2",
+        "ink": "#1F2328",
+        "ink-soft": "#5D626A",
+        "pen": "#2340A8",
+        "primary": "#2B4BC0",
+        "on-primary": "#FFFFFF",
+        "selected": "#E1E7FF",
+        "marker": "#FFD23F",
+        "link": "#2B4BC0",
+        "link-pomelo": "#A85210",
+        "danger": "#C8322A",
+        "on-danger": "#FFFFFF",
+        "up": "#1D7A4F",
+        "top": "#ECEDE5",
+        "on-top": "#1F2328",
+        "tab": "#FBFBF5",
+        "on-tab": "#1F2328",
+        "art-ink": "#2340A8",
+        "art-white": "#FFFFFF",
+        "art-shadow": "rgba(38,52,28,.30)",
+        "shadow": "rgba(38,52,28,.16)"
+      },
+      "dark": {
+        "desk": "#13151B",
+        "desk-deep": "#0E1015",
+        "paper": "#1A1D24",
+        "grid": "#222632",
+        "card": "#232731",
+        "line": "#3A404D",
+        "ink": "#ECEEF3",
+        "ink-soft": "#B8BECC",
+        "pen": "#9EB5FF",
+        "primary": "#98AEFF",
+        "on-primary": "#121630",
+        "selected": "#28315C",
+        "marker": "#745C00",
+        "link": "#A6B8FF",
+        "link-pomelo": "#FFB870",
+        "danger": "#FFA291",
+        "on-danger": "#1A0C0A",
+        "up": "#6FD6A0",
+        "top": "#13151B",
+        "on-top": "#ECEEF3",
+        "tab": "#1A1D24",
+        "on-tab": "#ECEEF3",
+        "art-ink": "#2340A8",
+        "art-white": "#F1F3F8",
+        "art-shadow": "rgba(0,0,0,.55)",
+        "shadow": "rgba(0,0,0,.5)"
+      }
+    },
+    "purple": {
+      "label": "紫笔 · 樱粉荧光",
+      "family": "pen",
+      "light": {
+        "desk": "#F1EAF0",
+        "desk-deep": "#E8DEE6",
+        "paper": "#FFFBFC",
+        "grid": "transparent",
+        "card": "#FFFFFF",
+        "line": "#E6DCE4",
+        "ink": "#26202B",
+        "ink-soft": "#655C6B",
+        "pen": "#4A32A6",
+        "primary": "#5B3FC4",
+        "on-primary": "#FFFFFF",
+        "selected": "#FFE1EC",
+        "marker": "#FFBDDF",
+        "link": "#5B3FC4",
+        "link-pomelo": "#A85210",
+        "danger": "#C8322A",
+        "on-danger": "#FFFFFF",
+        "up": "#1D7A4F",
+        "top": "#F1EAF0",
+        "on-top": "#26202B",
+        "tab": "#FFFBFC",
+        "on-tab": "#26202B",
+        "art-ink": "#4A32A6",
+        "art-white": "#FFFFFF",
+        "art-shadow": "rgba(38,52,28,.30)",
+        "shadow": "rgba(38,52,28,.16)"
+      },
+      "dark": {
+        "desk": "#16121A",
+        "desk-deep": "#100D13",
+        "paper": "#1E1823",
+        "grid": "transparent",
+        "card": "#28202E",
+        "line": "#43384B",
+        "ink": "#F2ECF5",
+        "ink-soft": "#C4B9CB",
+        "pen": "#BDABFF",
+        "primary": "#B8A6FF",
+        "on-primary": "#1B1238",
+        "selected": "#4A2238",
+        "marker": "#8E3A5E",
+        "link": "#C4B5FF",
+        "link-pomelo": "#FFB870",
+        "danger": "#FFA291",
+        "on-danger": "#1A0C0A",
+        "up": "#6FD6A0",
+        "top": "#16121A",
+        "on-top": "#F2ECF5",
+        "tab": "#1E1823",
+        "on-tab": "#F2ECF5",
+        "art-ink": "#4A32A6",
+        "art-white": "#F5F1F7",
+        "art-shadow": "rgba(0,0,0,.55)",
+        "shadow": "rgba(0,0,0,.5)"
+      }
+    },
+    "kraft": {
+      "label": "黑笔 · 牛皮纸",
+      "family": "pen",
+      "light": {
+        "desk": "#E1CCA9",
+        "desk-deep": "#D5BE98",
+        "paper": "#FFFDF7",
+        "grid": "transparent",
+        "card": "#FFFFFF",
+        "line": "#E4DAC8",
+        "ink": "#1F1D1A",
+        "ink-soft": "#544D43",
+        "pen": "#1F1D1A",
+        "primary": "#1F1D1A",
+        "on-primary": "#FFFFFF",
+        "selected": "#FFF0A0",
+        "marker": "#FFD23F",
+        "link": "#1F1D1A",
+        "link-pomelo": "#A85210",
+        "danger": "#C8322A",
+        "on-danger": "#FFFFFF",
+        "up": "#1D7A4F",
+        "top": "#E1CCA9",
+        "on-top": "#1F1D1A",
+        "tab": "#FFFDF7",
+        "on-tab": "#1F1D1A",
+        "art-ink": "#1F1D1A",
+        "art-white": "#FFFFFF",
+        "art-shadow": "rgba(38,52,28,.30)",
+        "shadow": "rgba(38,52,28,.16)"
+      },
+      "dark": {
+        "desk": "#3A3024",
+        "desk-deep": "#30271C",
+        "paper": "#1E1B17",
+        "grid": "transparent",
+        "card": "#29251F",
+        "line": "#463E33",
+        "ink": "#F3EEE5",
+        "ink-soft": "#CCC2B4",
+        "pen": "#D9CFBF",
+        "primary": "#FFD23F",
+        "on-primary": "#1F1D1A",
+        "selected": "#4A4019",
+        "marker": "#745C00",
+        "link": "#FFD23F",
+        "link-pomelo": "#FFB870",
+        "danger": "#FFA291",
+        "on-danger": "#1A0C0A",
+        "up": "#6FD6A0",
+        "top": "#3A3024",
+        "on-top": "#F3EEE5",
+        "tab": "#1E1B17",
+        "on-tab": "#F3EEE5",
+        "art-ink": "#20241F",
+        "art-white": "#F1F4EC",
+        "art-shadow": "rgba(0,0,0,.55)",
+        "shadow": "rgba(0,0,0,.5)"
+      }
+    },
+    "yellow": {
+      "label": "柚黄桌面",
+      "family": "block",
+      "light": {
+        "desk": "#FFD23F",
+        "desk-deep": "#F5C629",
+        "paper": "#FFFFFF",
+        "grid": "transparent",
+        "card": "#FFFFFF",
+        "line": "#D9DCD0",
+        "ink": "#20241F",
+        "ink-soft": "#4D5547",
+        "pen": "#20241F",
+        "primary": "#20241F",
+        "on-primary": "#FFD23F",
+        "selected": "#FFEE9E",
+        "marker": "#FFD23F",
+        "link": "#20241F",
+        "link-pomelo": "#A85210",
+        "danger": "#E0362B",
+        "on-danger": "#FFFFFF",
+        "up": "#1D7A4F",
+        "top": "#20241F",
+        "on-top": "#FFFFFF",
+        "tab": "#FFD23F",
+        "on-tab": "#20241F",
+        "art-ink": "#20241F",
+        "art-white": "#FFFFFF",
+        "art-shadow": "rgba(38,52,28,.30)",
+        "shadow": "rgba(38,52,28,.16)"
+      },
+      "dark": {
+        "desk": "#20241F",
+        "desk-deep": "#181C16",
+        "paper": "#2A3127",
+        "grid": "transparent",
+        "card": "#2A3127",
+        "line": "#5A6355",
+        "ink": "#F2F5EC",
+        "ink-soft": "#C6CEBA",
+        "pen": "#D7DECB",
+        "primary": "#FFD23F",
+        "on-primary": "#20241F",
+        "selected": "#5A4D12",
+        "marker": "#745C00",
+        "link": "#FFD23F",
+        "link-pomelo": "#FFB870",
+        "danger": "#FFA291",
+        "on-danger": "#1A0C0A",
+        "up": "#6FD6A0",
+        "top": "#FFD23F",
+        "on-top": "#20241F",
+        "tab": "#20241F",
+        "on-tab": "#FFD23F",
+        "art-ink": "#20241F",
+        "art-white": "#F1F4EC",
+        "art-shadow": "rgba(0,0,0,.55)",
+        "shadow": "rgba(0,0,0,.5)"
+      }
+    },
+    "mint": {
+      "label": "薄荷桌面",
+      "family": "block",
+      "light": {
+        "desk": "#81E5B9",
+        "desk-deep": "#74D9AC",
+        "paper": "#FFFFFF",
+        "grid": "transparent",
+        "card": "#FFFFFF",
+        "line": "#D9DCD0",
+        "ink": "#1E2A24",
+        "ink-soft": "#4D5547",
+        "pen": "#1E2A24",
+        "primary": "#1E2A24",
+        "on-primary": "#81E5B9",
+        "selected": "#D3F5E5",
+        "marker": "#FFD23F",
+        "link": "#1E2A24",
+        "link-pomelo": "#A85210",
+        "danger": "#E0362B",
+        "on-danger": "#FFFFFF",
+        "up": "#1D7A4F",
+        "top": "#1E2A24",
+        "on-top": "#FFFFFF",
+        "tab": "#81E5B9",
+        "on-tab": "#1E2A24",
+        "art-ink": "#20241F",
+        "art-white": "#FFFFFF",
+        "art-shadow": "rgba(38,52,28,.30)",
+        "shadow": "rgba(38,52,28,.16)"
+      },
+      "dark": {
+        "desk": "#1E2A24",
+        "desk-deep": "#16201B",
+        "paper": "#25332C",
+        "grid": "transparent",
+        "card": "#25332C",
+        "line": "#5A6355",
+        "ink": "#F2F5EC",
+        "ink-soft": "#C1C9B6",
+        "pen": "#D7DECB",
+        "primary": "#81E5B9",
+        "on-primary": "#1E2A24",
+        "selected": "#1F4A37",
+        "marker": "#745C00",
+        "link": "#81E5B9",
+        "link-pomelo": "#FFB870",
+        "danger": "#FFA291",
+        "on-danger": "#1A0C0A",
+        "up": "#6FD6A0",
+        "top": "#81E5B9",
+        "on-top": "#1E2A24",
+        "tab": "#1E2A24",
+        "on-tab": "#81E5B9",
+        "art-ink": "#20241F",
+        "art-white": "#F1F4EC",
+        "art-shadow": "rgba(0,0,0,.55)",
+        "shadow": "rgba(0,0,0,.5)"
+      }
+    }
+  },
+  "shared": {
+    "cat-mint": {
+      "label": "分类 · 薄荷",
+      "light": "#3DBE8B",
+      "dark": "#3DBE8B"
+    },
+    "cat-sky": {
+      "label": "分类 · 天蓝",
+      "light": "#4AA8E8",
+      "dark": "#4AA8E8"
+    },
+    "cat-pink": {
+      "label": "分类 · 樱粉",
+      "light": "#F78FB3",
+      "dark": "#F78FB3"
+    },
+    "cat-orange": {
+      "label": "分类 · 橙",
+      "light": "#FF9A3C",
+      "dark": "#FF9A3C"
+    },
+    "cat-grape": {
+      "label": "分类 · 葡萄紫",
+      "light": "#9B87F5",
+      "dark": "#9B87F5"
+    },
+    "yuzu": {
+      "label": "柚黄",
+      "use": "只当底色和点睛，不当文字",
+      "light": "#FFD23F",
+      "dark": "#FFD23F"
+    },
+    "leaf": {
+      "label": "叶子",
+      "light": "#44B56E",
+      "dark": "#44B56E"
+    },
+    "blush": {
+      "label": "腮红",
+      "light": "#FFA3B8",
+      "dark": "#FFA3B8"
+    },
+    "heart": {
+      "label": "爱心",
+      "light": "#FF7A6B",
+      "dark": "#FF7A6B"
+    },
+    "wood": {
+      "label": "木头",
+      "light": "#F1C48C",
+      "dark": "#F1C48C"
+    },
+    "tape-mint-a": {
+      "label": "薄荷胶带 · 浅条",
+      "light": "#C4EDD9",
+      "dark": "#C4EDD9"
+    },
+    "tape-mint-b": {
+      "label": "薄荷胶带 · 深条",
+      "light": "#A6E3C6",
+      "dark": "#A6E3C6"
+    },
+    "tape-yuzu-a": {
+      "label": "柚黄胶带 · 浅条",
+      "light": "#FFE38A",
+      "dark": "#FFE38A"
+    },
+    "tape-yuzu-b": {
+      "label": "柚黄胶带 · 深条",
+      "light": "#FFD23F",
+      "dark": "#FFD23F"
+    },
+    "sticky": {
+      "label": "便签纸",
+      "use": "不跟配色走，深色下也是浅色的纸",
+      "light": "#FFE38A",
+      "dark": "#FFE38A"
+    },
+    "on-sticky": {
+      "label": "便签和贴纸上的字",
+      "light": "#20241F",
+      "dark": "#20241F"
+    },
+    "print-paper": {
+      "label": "印刷 · 纸",
+      "use": "年度小报、票根、信纸，不跟配色走",
+      "light": "#FFFDF6",
+      "dark": "#FFFDF6"
+    },
+    "print-cream": {
+      "label": "印刷 · 奶油纸",
+      "light": "#FFF4D6",
+      "dark": "#FFF4D6"
+    },
+    "print-ink": {
+      "label": "印刷 · 墨",
+      "light": "#22261F",
+      "dark": "#22261F"
+    },
+    "print-ink-soft": {
+      "label": "印刷 · 淡墨",
+      "light": "#5D615A",
+      "dark": "#5D615A"
+    },
+    "print-rule": {
+      "label": "印刷 · 横线",
+      "light": "rgba(70,60,40,.12)",
+      "dark": "rgba(70,60,40,.12)"
+    },
+    "print-line": {
+      "label": "印刷 · 描边",
+      "light": "#2B2F27",
+      "dark": "#2B2F27"
+    },
+    "kraft": {
+      "label": "信封 · 牛皮纸",
+      "light": "#EBD3A4",
+      "dark": "#EBD3A4"
+    },
+    "kraft-inside": {
+      "label": "信封 · 里层",
+      "light": "#D7B67E",
+      "dark": "#D7B67E"
+    },
+    "kraft-flap": {
+      "label": "信封 · 翻盖",
+      "light": "#E2C38B",
+      "dark": "#E2C38B"
+    },
+    "thread-1": {
+      "label": "十字绣 · 一档",
+      "use": "记得越多线越深",
+      "light": "#FFD3B0",
+      "dark": "#FFD3B0"
+    },
+    "thread-2": {
+      "label": "十字绣 · 二档",
+      "light": "#FFB06A",
+      "dark": "#FFB06A"
+    },
+    "thread-3": {
+      "label": "十字绣 · 三档",
+      "light": "#F38A2E",
+      "dark": "#F38A2E"
+    },
+    "thread-4": {
+      "label": "十字绣 · 四档",
+      "light": "#C9621A",
+      "dark": "#C9621A"
+    }
+  },
+  "derive": {
+    "cat-mint-bg": {
+      "label": "薄荷 · 浅底",
+      "mix": [
+        "cat-mint",
+        "card"
+      ],
+      "light": 0.78,
+      "dark": 0.7
+    },
+    "cat-mint-tint": {
+      "label": "薄荷 · 淡底",
+      "mix": [
+        "cat-mint",
+        "paper"
+      ],
+      "light": 0.86,
+      "dark": 0.82
+    },
+    "cat-mint-sticker": {
+      "label": "薄荷 · 贴纸填色",
+      "mix": [
+        "cat-mint",
+        "#ffffff"
+      ],
+      "light": 0.7,
+      "dark": 0.7
+    },
+    "cat-sky-bg": {
+      "label": "天蓝 · 浅底",
+      "mix": [
+        "cat-sky",
+        "card"
+      ],
+      "light": 0.78,
+      "dark": 0.7
+    },
+    "cat-sky-tint": {
+      "label": "天蓝 · 淡底",
+      "mix": [
+        "cat-sky",
+        "paper"
+      ],
+      "light": 0.86,
+      "dark": 0.82
+    },
+    "cat-sky-sticker": {
+      "label": "天蓝 · 贴纸填色",
+      "mix": [
+        "cat-sky",
+        "#ffffff"
+      ],
+      "light": 0.7,
+      "dark": 0.7
+    },
+    "cat-pink-bg": {
+      "label": "樱粉 · 浅底",
+      "mix": [
+        "cat-pink",
+        "card"
+      ],
+      "light": 0.78,
+      "dark": 0.7
+    },
+    "cat-pink-tint": {
+      "label": "樱粉 · 淡底",
+      "mix": [
+        "cat-pink",
+        "paper"
+      ],
+      "light": 0.86,
+      "dark": 0.82
+    },
+    "cat-pink-sticker": {
+      "label": "樱粉 · 贴纸填色",
+      "mix": [
+        "cat-pink",
+        "#ffffff"
+      ],
+      "light": 0.7,
+      "dark": 0.7
+    },
+    "cat-orange-bg": {
+      "label": "橙 · 浅底",
+      "mix": [
+        "cat-orange",
+        "card"
+      ],
+      "light": 0.78,
+      "dark": 0.7
+    },
+    "cat-orange-tint": {
+      "label": "橙 · 淡底",
+      "mix": [
+        "cat-orange",
+        "paper"
+      ],
+      "light": 0.86,
+      "dark": 0.82
+    },
+    "cat-orange-sticker": {
+      "label": "橙 · 贴纸填色",
+      "mix": [
+        "cat-orange",
+        "#ffffff"
+      ],
+      "light": 0.7,
+      "dark": 0.7
+    },
+    "cat-grape-bg": {
+      "label": "葡萄紫 · 浅底",
+      "mix": [
+        "cat-grape",
+        "card"
+      ],
+      "light": 0.78,
+      "dark": 0.7
+    },
+    "cat-grape-tint": {
+      "label": "葡萄紫 · 淡底",
+      "mix": [
+        "cat-grape",
+        "paper"
+      ],
+      "light": 0.86,
+      "dark": 0.82
+    },
+    "cat-grape-sticker": {
+      "label": "葡萄紫 · 贴纸填色",
+      "mix": [
+        "cat-grape",
+        "#ffffff"
+      ],
+      "light": 0.7,
+      "dark": 0.7
+    },
+    "yuzu-bg": {
+      "label": "柚黄 · 浅底",
+      "mix": [
+        "yuzu",
+        "card"
+      ],
+      "light": 0.78,
+      "dark": 0.7
+    }
+  }
+}

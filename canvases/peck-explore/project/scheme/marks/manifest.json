@@ -1,0 +1,184 @@
+{
+  "assets": [
+    {
+      "id": "app-icon-j2",
+      "title": "App 图标 · J2（主图标）",
+      "file": "app-icon/j2.svg",
+      "kind": "svg",
+      "status": "approved",
+      "colorMode": "fixed",
+      "source": {
+        "generator": "Peck Explore 画布的 project/src/s4/icon.mjs",
+        "rules": "DESIGN.md §6",
+        "note": "第 4 步生成，不要手改"
+      },
+      "notes": "32 格的鸟，底板占 7/8（第 1 步的比例）；256、512、1024 用它，一格 7、14、28 像素；加一圈光和底板阴影",
+      "sha256": "633c0ef436b137cd77d76507743cbbce15e0be4faf5b56d548c46665c789a737"
+    },
+    {
+      "id": "app-icon-j2-128",
+      "title": "App 图标 · J2 · 128",
+      "file": "app-icon/j2-128.svg",
+      "kind": "svg",
+      "status": "approved",
+      "colorMode": "fixed",
+      "source": {
+        "generator": "Peck Explore 画布的 project/src/s4/icon.mjs",
+        "rules": "DESIGN.md §6",
+        "note": "第 4 步生成，不要手改"
+      },
+      "notes": "28 格的鸟（照 J2 缩），一格 4 像素；加光和底板阴影",
+      "sha256": "d0db8c3f620b8e0a9271a56b5e949c8a228ca59204425428088bdce5869e9889"
+    },
+    {
+      "id": "app-icon-j2-64",
+      "title": "App 图标 · J2 · 64",
+      "file": "app-icon/j2-64.svg",
+      "kind": "svg",
+      "status": "approved",
+      "colorMode": "fixed",
+      "source": {
+        "generator": "Peck Explore 画布的 project/src/s4/icon.mjs",
+        "rules": "DESIGN.md §6",
+        "note": "第 4 步生成，不要手改"
+      },
+      "notes": "28 格的鸟，一格 2 像素，加光；32@2x 用它",
+      "sha256": "d4001158767c16369bbe4012ba7bc125e842c8048daf5edbd43ac4f196abf63a"
+    },
+    {
+      "id": "app-icon-j2-32",
+      "title": "App 图标 · J2 · 32",
+      "file": "app-icon/j2-32.svg",
+      "kind": "svg",
+      "status": "approved",
+      "colorMode": "fixed",
+      "source": {
+        "generator": "Peck Explore 画布的 project/src/s4/icon.mjs",
+        "rules": "DESIGN.md §6",
+        "note": "第 4 步生成，不要手改"
+      },
+      "notes": "28 格的鸟，一格 1 像素，不加光；32@1x、16@2x 用它",
+      "sha256": "c5656ac1fa09050be4e7daea93004c8d51f6362e74920dec5654944af4c632c8"
+    },
+    {
+      "id": "app-icon-j2-16",
+      "title": "App 图标 · J2 · 16",
+      "file": "app-icon/j2-16.svg",
+      "kind": "svg",
+      "status": "approved",
+      "colorMode": "fixed",
+      "source": {
+        "generator": "Peck Explore 画布的 project/src/s4/icon.mjs",
+        "rules": "DESIGN.md §6",
+        "note": "第 4 步生成，不要手改"
+      },
+      "notes": "14 格的鸟，一格 1 像素，不加光；16@1x 用它",
+      "sha256": "1fe9ea6a34d87112974297f87562b7911a289ed6292ac53d3443fb1d1d8385d5"
+    },
+    {
+      "id": "menubar-idle",
+      "title": "菜单栏 · 空闲",
+      "file": "menubar/idle.svg",
+      "kind": "svg",
+      "status": "approved",
+      "colorMode": "currentColor",
+      "source": {
+        "generator": "Peck Explore 画布的 project/src/s4/icon.mjs",
+        "rules": "DESIGN.md §6",
+        "note": "第 4 步生成，不要手改"
+      },
+      "notes": "模板图，18pt；14 格的鸟（和 16 像素 App 图标同一只），一格 1pt",
+      "sha256": "a9115748aa992c64494566a47af2da57969b548d1f7c5073b762c889d5f6425a"
+    },
+    {
+      "id": "menubar-run-1",
+      "title": "菜单栏 · 在跑 · 1",
+      "file": "menubar/run-1.svg",
+      "kind": "svg",
+      "status": "approved",
+      "colorMode": "currentColor",
+      "source": {
+        "generator": "Peck Explore 画布的 project/src/s4/icon.mjs",
+        "rules": "DESIGN.md §6",
+        "note": "第 4 步生成，不要手改"
+      },
+      "notes": "run-1、run-2、run-3 轮流，每帧 6 格（300ms）",
+      "sha256": "0daefd92402c078719044879a3a292d47496442ed966ea8f2b2148a32f61e43e"
+    },
+    {
+      "id": "menubar-run-2",
+      "title": "菜单栏 · 在跑 · 2",
+      "file": "menubar/run-2.svg",
+      "kind": "svg",
+      "status": "approved",
+      "colorMode": "currentColor",
+      "source": {
+        "generator": "Peck Explore 画布的 project/src/s4/icon.mjs",
+        "rules": "DESIGN.md §6",
+        "note": "第 4 步生成，不要手改"
+      },
+      "notes": "同上",
+      "sha256": "415b87b2524603c1a2ef77a9b49169ddbd5a57838cfcbbbd75cb0451ea008700"
+    },
+    {
+      "id": "menubar-run-3",
+      "title": "菜单栏 · 在跑 · 3",
+      "file": "menubar/run-3.svg",
+      "kind": "svg",
+      "status": "approved",
+      "colorMode": "currentColor",
+      "source": {
+        "generator": "Peck Explore 画布的 project/src/s4/icon.mjs",
+        "rules": "DESIGN.md §6",
+        "note": "第 4 步生成，不要手改"
+      },
+      "notes": "同上",
+      "sha256": "f3b0470f32b3efba382df5e8bfbafd197315e7afeaa07784bbe48dad9289aa09"
+    },
+    {
+      "id": "menubar-wait",
+      "title": "菜单栏 · 等你",
+      "file": "menubar/wait.svg",
+      "kind": "svg",
+      "status": "approved",
+      "colorMode": "currentColor",
+      "source": {
+        "generator": "Peck Explore 画布的 project/src/s4/icon.mjs",
+        "rules": "DESIGN.md §6",
+        "note": "第 4 步生成，不要手改"
+      },
+      "notes": "不动",
+      "sha256": "36f73b33c4b96addb44f812bba0effd7147549cc5e5fda9a968a5149cde1bb95"
+    },
+    {
+      "id": "menubar-count",
+      "title": "菜单栏 · 在跑 N 个",
+      "file": "menubar/count-3.svg",
+      "kind": "svg",
+      "status": "approved",
+      "colorMode": "currentColor",
+      "source": {
+        "generator": "Peck Explore 画布的 project/src/s4/icon.mjs",
+        "rules": "DESIGN.md §6",
+        "note": "第 4 步生成，不要手改"
+      },
+      "notes": "v0.7 起；数字 3×5 像素，2–9",
+      "sha256": "da4c40a87be8e833089109197843b31e9bf0a1466ab9d0534a02f11d5d527267"
+    },
+    {
+      "id": "app-icon-a3",
+      "title": "App 图标 · A3（现在的图标润色）",
+      "file": "raster/a3.png",
+      "kind": "raster",
+      "status": "approved",
+      "colorMode": "fixed",
+      "source": {
+        "generator": "第 1 步第三轮：把现在的图标的鸟从纯色底里分出来，放到深海渐变 + 光 + LED 点阵孔的新底上（画布附件）",
+        "rules": "DESIGN.md §6",
+        "note": "位图，不要手改"
+      },
+      "notes": "1024 见方，底板占 87%；设置里能换成它，只出 Dock 用的 128 以上",
+      "sha256": "066026db29c0da931191fe34e4f58e4e53ede47d5a825f94a72dc87a81409df4"
+    }
+  ]
+}

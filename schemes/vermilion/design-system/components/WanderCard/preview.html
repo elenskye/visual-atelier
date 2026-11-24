@@ -1,0 +1,73 @@
+<!-- @dsCard group="列表与筛选" height=520 width=1100 subtitle="图片卡、无图卡（分类图形，常态 / 悬停），卡片墙" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>WanderCard</title>
+<style>
+  .vm-demo { padding: var(--space-6); }
+  /* 网站的卡片墙用 4px 行高做瀑布流，行数由脚本算；预览里改成自然高度 */
+  .vm-demo .wander-wall { grid-auto-rows: auto; margin-top: 0; }
+  /* 封面图由使用方提供，这里用分区色块示意 16:10 的裁切 */
+  .vm-demo-cover { display: block; width: 100%; aspect-ratio: 16 / 10; background: var(--color-surface-cool); }
+  /* 静态示意悬停态：与 bundle.css 里 :hover 的声明相同 */
+  .wander-card--plain.vm-hover { transform: translateY(-3px); border-color: var(--color-soft-line); background: var(--color-surface); box-shadow: var(--shadow-soft); }
+  .wander-card.vm-hover h2 { color: var(--color-ember); }
+  .wander-card--plain.vm-hover .va-graphic { --va-paper: var(--color-surface-cool); }
+</style>
+</head>
+<body class="vm-page">
+<div class="vm-demo">
+  <section class="wander-wall" aria-label="卡片墙示例">
+    <a class="wander-card wander-card--image" href="#">
+      <figure class="wander-card-media"><span class="vm-demo-cover" role="img" aria-label="封面图"></span></figure>
+      <div class="wander-card-body">
+        <h2>在山城迷路的一天</h2>
+        <p>地图上的直线，到了脚下都变成台阶。</p>
+        <div class="wander-card-meta">
+          <span class="content-label">写作</span>
+          <span>中文</span>
+          <span>2026年7月</span>
+        </div>
+      </div>
+    </a>
+    <a class="wander-card wander-card--plain va-glyph-trigger" href="#">
+<!-- @include motion/category-glyph-hover/single/project.fragment.html -->
+      <div class="wander-card-body">
+        <h2>一个记路线的小工具</h2>
+        <p>把走过的路存成点和线，回头再看。</p>
+        <div class="wander-card-meta">
+          <span class="content-label">项目</span>
+          <span>中文</span>
+          <span>2026年5月</span>
+        </div>
+      </div>
+    </a>
+    <a class="wander-card wander-card--plain va-glyph-trigger vm-hover" href="#">
+<!-- @include motion/category-glyph-hover/single/write.fragment.html -->
+      <div class="wander-card-body">
+        <h2>雾散得比想象中慢</h2>
+        <p>悬停时：上浮 3px，出现表面色与描边，标题变朱红。</p>
+        <div class="wander-card-meta">
+          <span class="content-label">写作</span>
+          <span>中文</span>
+          <span>2026年3月</span>
+        </div>
+      </div>
+    </a>
+    <a class="wander-card wander-card--plain va-glyph-trigger" href="#">
+<!-- @include motion/category-glyph-hover/single/create.fragment.html -->
+      <div class="wander-card-body">
+        <h2>台阶</h2>
+        <p>一首短诗。</p>
+        <div class="wander-card-meta">
+          <span class="content-label">创作</span>
+          <span>中文</span>
+          <span>2026年2月</span>
+        </div>
+      </div>
+    </a>
+  </section>
+</div>
+</body>
+</html>

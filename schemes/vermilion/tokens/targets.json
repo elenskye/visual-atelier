@@ -1,0 +1,29 @@
+{
+  "$note": "同一组语义角色输出成「方言」。web 方言沿用个人网站现用的变量名，复制过去可直接替换。本方案只用于个人网站（2026-10-31 起），原先的 Pomelo 临时映射已移除，Pomelo 在 VL2 另建方案。",
+  "web": {
+    "colorVars": {
+      "page": "--color-page",
+      "surface": "--color-surface",
+      "surface-cool": "--color-surface-cool",
+      "text": "--color-text",
+      "muted": "--color-muted",
+      "line": "--color-line",
+      "soft-line": "--color-soft-line",
+      "accent": "--color-accent",
+      "accent-strong": "--color-accent-strong",
+      "accent-soft": "--color-accent-soft",
+      "ember": "--color-ember"
+    },
+    "aliasVars": {
+      "--color-focus": "var(--color-ember)"
+    },
+    "light": {
+      "selector": ":root",
+      "colorScheme": "light"
+    },
+    "dark": {
+      "selector": ":root[data-theme='dark']",
+      "colorScheme": "dark"
+    }
+  }
+}

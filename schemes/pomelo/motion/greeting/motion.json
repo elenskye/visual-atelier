@@ -1,0 +1,44 @@
+{
+  "id": "greeting",
+  "title": "打开 App 的问候",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "expressive",
+  "surface": "greeting",
+  "trigger": "打开 App、回到桌面时桌面加一次 .is-in",
+  "durationMs": 1700,
+  "reducedMotion": "字、荧光笔、便签直接都在",
+  "use": "首页桌面",
+  "source": "canvases/pomelo-explore/p2-final/b.mjs 的 desk、css.mjs「问候」（站主 2026-11-05 验收的 Phase 2 定稿）",
+  "requires": [
+    "motion/slap-in/slap-in.css"
+  ],
+  "files": {
+    "css": "greeting.css",
+    "html": "greeting.fragment.html"
+  },
+  "capture": {
+    "scale": 1,
+    "padPx": 0,
+    "fps": 15,
+    "holdStartMs": 300,
+    "holdEndMs": 1500,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".greet-demo",
+    "viewport": [
+      570,
+      350
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-in"
+      }
+    ],
+    "skipRest": true
+  }
+}

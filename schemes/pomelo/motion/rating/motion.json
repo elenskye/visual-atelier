@@ -1,0 +1,53 @@
+{
+  "id": "rating",
+  "title": "评分 · 星星一颗接一颗弹出来",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "点一颗星：到它为止的星加 .is-on，评分组加一次 .is-pop（先去掉、读一次宽高、再加）",
+  "durationMs": 600,
+  "reducedMotion": "星星直接涂好，不弹",
+  "use": "书、电影的评分（.pm-rating）",
+  "source": "canvases/pomelo-explore/p2-final/controls.mjs（站主 2026-11-05 验收的「控件的小动静」）",
+  "files": {
+    "css": "rating.css",
+    "html": "rating.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".rate-demo",
+    "viewport": [
+      230,
+      96
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-on",
+        "on": ".pm-rating-star",
+        "all": true
+      },
+      {
+        "at": 0,
+        "attr": {
+          "aria-checked": "true"
+        },
+        "on": ".r4"
+      },
+      {
+        "at": 0,
+        "add": "is-pop",
+        "on": ".pm-rating"
+      }
+    ]
+  }
+}

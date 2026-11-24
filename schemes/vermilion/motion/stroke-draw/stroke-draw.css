@@ -1,0 +1,53 @@
+/* 描边绘制 —— calm。
+ *
+ * 「笔势与纸片」的图形按笔顺画出：纸片淡入（160ms），笔画沿中心线依次写出，整段 320ms；没有朱红点，也不滑动纸片。
+ * 和分类图形悬停（expressive，700ms）用同一种写法，是它安静、短促的版本，给不在登记表面上的图形用
+ * （例如 404 插图、文末落款，VL1 Phase 7）。
+ * 结构：外层 .va-draw 里放带遮罩的内联 SVG（generator 产出的片段：笔势用遮罩里沿中心线的描边写出，.va-mk 带 --i 笔顺），
+ * 外层写 --va-draw-n：笔画数，每笔分到 320ms / 笔画数。
+ * 触发：外层加 .is-playing（例如图形进入视口时由使用方加上）。不加就是静态图。
+ * 依赖：marks/graphic/graphic.css，--color-*（tokens/web.css）。
+ */
+.va-draw {
+  display: block;
+}
+
+.va-draw svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.va-draw.is-playing :is(.va-paper, .va-paper-2) {
+  animation: va-draw-paper 160ms ease-out both;
+}
+
+.va-draw.is-playing .va-mk {
+  animation: va-draw-write calc(320ms / var(--va-draw-n, 1)) cubic-bezier(0.5, 0, 0.2, 1) both;
+  animation-delay: calc((var(--i) - 1) * 320ms / var(--va-draw-n, 1));
+}
+
+@keyframes va-draw-paper {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes va-draw-write {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 减弱动效：直接显示完整图形。 */
+@media (prefers-reduced-motion: reduce) {
+  .va-draw.is-playing :is(.va-paper, .va-paper-2, .va-mk) {
+    animation: none;
+  }
+}

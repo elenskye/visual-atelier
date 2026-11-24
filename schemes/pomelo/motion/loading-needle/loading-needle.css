@@ -1,0 +1,48 @@
+/* 加载 · 穿针（Phase 2 迁移测试「没画过的三样」之二）：针在纸边缝过去，一拍 0.16 秒缝一针，每一针上下扎一下；
+   缝满 12 针打个粉色的结，停一下，一起淡掉，再从头缝。一圈 3.2 秒，等待时一直循环，等完就拿掉。
+   用法：<svg class="pm-needle">…</svg>（gen.mjs 生成的那一份）；小的放进按钮里加 .pm-needle--mini（宽 80、高 20）。 */
+.pm-needle { display: block; overflow: visible; }
+.pm-needle-stitch { opacity: 0; animation: pm-needle-s0 3.2s linear infinite; }
+.pm-needle-knot { transform-box: fill-box; transform-origin: 50% 50%; animation: pm-needle-knot 3.2s cubic-bezier(.3,1.6,.5,1) infinite; }
+.pm-needle-go { animation: pm-needle-go 3.2s linear infinite; }
+.pm-needle-dip { animation: pm-needle-dip .16s ease-in-out infinite alternate; }
+@keyframes pm-needle-knot { 0%, 58% { transform: scale(0); } 64% { transform: scale(1.3); } 70%, 88% { transform: scale(1); } 96%, 100% { transform: scale(0); } }
+@keyframes pm-needle-go {
+  0% { transform: translate(4px, 20px); }
+  60% { transform: translate(272px, 20px); }
+  66%, 88% { transform: translate(276px, 14px) rotate(-20deg); opacity: 1; }
+  96% { opacity: 0; }
+  100% { transform: translate(4px, 20px); opacity: 0; }
+}
+@keyframes pm-needle-dip { 0% { transform: translateY(-3px) rotate(-6deg); } 100% { transform: translateY(3px) rotate(6deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-needle-stitch, .pm-needle-knot, .pm-needle-go, .pm-needle-dip { animation: none !important; }
+  .pm-needle-stitch { opacity: 1; }
+  .pm-needle-go { transform: translate(276px, 14px) rotate(-20deg); }
+}
+
+/* ---- 每一针（gen.mjs 生成） ---- */
+.pm-needle-s0 { animation-name: pm-needle-s0; }
+@keyframes pm-needle-s0 { 0% { opacity: 0; } 2%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+.pm-needle-s1 { animation-name: pm-needle-s1; }
+@keyframes pm-needle-s1 { 0%, 5% { opacity: 0; } 7%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+.pm-needle-s2 { animation-name: pm-needle-s2; }
+@keyframes pm-needle-s2 { 0%, 10% { opacity: 0; } 12%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+.pm-needle-s3 { animation-name: pm-needle-s3; }
+@keyframes pm-needle-s3 { 0%, 15% { opacity: 0; } 17%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+.pm-needle-s4 { animation-name: pm-needle-s4; }
+@keyframes pm-needle-s4 { 0%, 20% { opacity: 0; } 22%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+.pm-needle-s5 { animation-name: pm-needle-s5; }
+@keyframes pm-needle-s5 { 0%, 25% { opacity: 0; } 27%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+.pm-needle-s6 { animation-name: pm-needle-s6; }
+@keyframes pm-needle-s6 { 0%, 30% { opacity: 0; } 32%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+.pm-needle-s7 { animation-name: pm-needle-s7; }
+@keyframes pm-needle-s7 { 0%, 35% { opacity: 0; } 37%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+.pm-needle-s8 { animation-name: pm-needle-s8; }
+@keyframes pm-needle-s8 { 0%, 40% { opacity: 0; } 42%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+.pm-needle-s9 { animation-name: pm-needle-s9; }
+@keyframes pm-needle-s9 { 0%, 45% { opacity: 0; } 47%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+.pm-needle-s10 { animation-name: pm-needle-s10; }
+@keyframes pm-needle-s10 { 0%, 50% { opacity: 0; } 52%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }
+.pm-needle-s11 { animation-name: pm-needle-s11; }
+@keyframes pm-needle-s11 { 0%, 55% { opacity: 0; } 57%, 88% { opacity: 1; } 96%, 100% { opacity: 0; } }

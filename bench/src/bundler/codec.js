@@ -1,0 +1,291 @@
+import zlib from 'node:zlib';
+import path from 'node:path';
+
+export const UUID_REGEX = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi;
+export const EXACT_UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+/**
+ * Checks whether an HTML string is a Claude Design `__bundler` single-file bundle.
+ * @param {string} htmlContent
+ * @returns {boolean}
+ */
+export function isClaudeBundlerHtml(htmlContent) {
+  if (typeof htmlContent !== 'string') return false;
+  return (
+    /<script\s+type=["']__bundler\/manifest["']\s*>/i.test(htmlContent) &&
+    /<script\s+type=["']__bundler\/template["']\s*>/i.test(htmlContent)
+  );
+}
+
+/**
+ * Extracts a `<script type="__bundler/...">` JSON payload from an HTML bundle.
+ * @param {string} htmlContent
+ * @param {string} bundlerType e.g. '__bundler/manifest'
+ * @param {any} defaultVal
+ */
+export function extractScriptJson(htmlContent, bundlerType, defaultVal = null) {
+  const escaped = bundlerType.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const re = new RegExp(
+    `<script\\s+type=["']${escaped}["'][^>]*>([\\s\\S]*?)<\\/script>`,
+    'i'
+  );
+  const match = htmlContent.match(re);
+  if (!match) return defaultVal;
+  return JSON.parse(match[1].trim());
+}
+
+/**
+ * Parses all 4 `<script type="__bundler/*">` blocks and document title from a Claude Design bundle.
+ * @param {string} htmlContent
+ */
+export function extractBundlerBlocks(htmlContent) {
+  const titleMatch = htmlContent.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+  const title = titleMatch ? decodeHtmlEntities(titleMatch[1].trim()) : 'Untitled Bundle';
+
+  const manifest = extractScriptJson(htmlContent, '__bundler/manifest', {});
+  const extResources = extractScriptJson(htmlContent, '__bundler/ext_resources', []);
+  const pageOrder = extractScriptJson(htmlContent, '__bundler/page_order', []);
+  const template = extractScriptJson(htmlContent, '__bundler/template', '');
+
+  return {
+    title,
+    manifest,
+    extResources,
+    pageOrder,
+    template
+  };
+}
+
+export function decodeHtmlEntities(str) {
+  return String(str)
+    .replace(/&hellip;/g, '…')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
+export function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+/**
+ * Decodes a single `__bundler/manifest` entry `{ mime, compressed, data }`.
+ * @param {{ mime: string, compressed?: boolean, data: string }} entry
+ * @returns {{ buffer: Buffer, mime: string, compressed: boolean }}
+ */
+export function decodeManifestEntry(entry) {
+  if (!entry || typeof entry.data !== 'string') {
+    throw new Error('Invalid manifest entry: missing base64 data');
+  }
+  const rawBuffer = Buffer.from(entry.data, 'base64');
+  const buffer = entry.compressed ? zlib.gunzipSync(rawBuffer) : rawBuffer;
+  return {
+    buffer,
+    mime: entry.mime || 'application/octet-stream',
+    compressed: Boolean(entry.compressed)
+  };
+}
+
+/**
+ * Encodes a Buffer into a `__bundler/manifest` entry `{ mime, compressed, data }`.
+ * @param {Buffer | string} input
+ * @param {string} mime
+ * @param {boolean} compress
+ */
+export function encodeManifestEntry(input, mime = 'text/html', compress = true) {
+  const rawBuffer = Buffer.isBuffer(input) ? input : Buffer.from(String(input), 'utf8');
+  const payload = compress ? zlib.gzipSync(rawBuffer) : rawBuffer;
+  return {
+    mime,
+    compressed: Boolean(compress),
+    data: payload.toString('base64')
+  };
+}
+
+const MIME_TO_EXT_MAP = {
+  'text/html': '.html',
+  'text/javascript': '.js',
+  'application/javascript': '.js',
+  'application/x-javascript': '.js',
+  'text/jsx': '.jsx',
+  'text/babel': '.jsx',
+  'text/css': '.css',
+  'application/json': '.json',
+  'image/svg+xml': '.svg',
+  'image/png': '.png',
+  'image/jpeg': '.jpg',
+  'image/webp': '.webp',
+  'image/gif': '.gif',
+  'image/avif': '.avif',
+  'font/woff2': '.woff2',
+  'application/font-woff2': '.woff2',
+  'font/woff': '.woff',
+  'application/font-woff': '.woff',
+  'font/ttf': '.ttf',
+  'application/x-font-ttf': '.ttf',
+  'font/otf': '.otf',
+  'application/x-font-opentype': '.otf'
+};
+
+const EXT_TO_MIME_MAP = Object.fromEntries(
+  Object.entries(MIME_TO_EXT_MAP).map(([mime, ext]) => [ext, mime])
+);
+
+export function mimeToExt(mime = '') {
+  const clean = String(mime).split(';')[0].trim().toLowerCase();
+  return MIME_TO_EXT_MAP[clean] || '.bin';
+}
+
+export function extToMime(filename = '') {
+  const ext = path.extname(filename).toLowerCase();
+  return EXT_TO_MIME_MAP[ext] || 'application/octet-stream';
+}
+
+/**
+ * Strips `integrity` and `crossorigin` attributes on tags whose `src|href|data|poster`
+ * were rewritten from UUIDs to local relative paths.
+ * @param {string} html
+ */
+export function stripSriOnLocalTags(html) {
+  return html.replace(
+    /<([a-zA-Z][\w-]*)(\s[^>]*?\b(?:src|href|data|poster)=["'](?:\.\.?\/|\/)[^"']*["'][^>]*?)>/g,
+    (_full, tag, attrs) =>
+      `<${tag}${attrs
+        .replace(/\s+integrity=(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '')
+        .replace(/\s+crossorigin=(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '')}>`
+  );
+}
+
+/**
+ * Extracts `tweaks` / `data-props` / `EDITMODE` parameters from an HTML string.
+ * Supports:
+ * 1. `<script ... data-dc-script data-props='...'>` (Claude Design `<x-dc>` props & `$preview`)
+ * 2. `/*EDITMODE-BEGIN* / ... /*EDITMODE-END* /`
+ * 3. `window.__tweaks = {...}`
+ * @param {string} htmlContent
+ */
+export function extractTweaksFromHtml(htmlContent) {
+  const result = {
+    propsMeta: null,
+    preview: null,
+    values: {},
+    editModeRaw: null
+  };
+
+  if (typeof htmlContent !== 'string') return result;
+
+  // 1. Check <script ... data-props='...'>
+  const dataPropsMatch = htmlContent.match(
+    /<script\b[^>]*\bdata-props=(?:'([^']*)'|"([^"]*)")[^>]*>/i
+  );
+  if (dataPropsMatch) {
+    const rawProps = decodeHtmlEntities(dataPropsMatch[1] ?? dataPropsMatch[2] ?? '');
+    try {
+      const parsed = JSON.parse(rawProps);
+      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+        const meta = {};
+        for (const [k, v] of Object.entries(parsed)) {
+          if (k === '$preview' && v && typeof v === 'object') {
+            result.preview = v;
+          } else if (!k.startsWith('$')) {
+            meta[k] = v;
+            if (v && typeof v === 'object' && 'default' in v) {
+              result.values[k] = v.default;
+            } else {
+              result.values[k] = v;
+            }
+          }
+        }
+        if (Object.keys(meta).length > 0) {
+          result.propsMeta = meta;
+        }
+      }
+    } catch {
+      // Ignore malformed data-props JSON
+    }
+  }
+
+  // 2. Check /*EDITMODE-BEGIN*/ ... /*EDITMODE-END*/
+  const editModeMatch = htmlContent.match(
+    /\/\*EDITMODE-BEGIN\*\/([\s\S]*?)\/\*EDITMODE-END\*\//
+  );
+  if (editModeMatch) {
+    const block = editModeMatch[1].trim();
+    result.editModeRaw = block;
+    // Try extracting JSON object from const/window assignment or raw JSON
+    const jsonMatch = block.match(/(\{[\s\S]*\})/);
+    if (jsonMatch) {
+      try {
+        const parsed = JSON.parse(jsonMatch[1]);
+        Object.assign(result.values, parsed);
+      } catch {
+        // Ignore non-JSON JS expressions
+      }
+    }
+  }
+
+  return result;
+}
+
+/**
+ * Applies updated `tweaks` values back into an HTML string's `data-props` or `EDITMODE` block.
+ * @param {string} htmlContent
+ * @param {object} tweakValues Key-value map of tweak overrides
+ */
+export function applyTweaksToHtml(htmlContent, tweakValues) {
+  if (!tweakValues || typeof tweakValues !== 'object' || Object.keys(tweakValues).length === 0) {
+    return htmlContent;
+  }
+
+  let updated = htmlContent;
+
+  // 1. Update data-props on <script ... data-props='...'>
+  updated = updated.replace(
+    /(<script\b[^>]*\bdata-props=)(?:'([^']*)'|"([^"]*)")([^>]*>)/i,
+    (full, prefix, singleQuoted, doubleQuoted, suffix) => {
+      const rawProps = decodeHtmlEntities(singleQuoted ?? doubleQuoted ?? '');
+      try {
+        const parsed = JSON.parse(rawProps);
+        let changed = false;
+        for (const [k, val] of Object.entries(tweakValues)) {
+          if (k in parsed && parsed[k] && typeof parsed[k] === 'object' && 'default' in parsed[k]) {
+            if (parsed[k].default !== val) {
+              parsed[k].default = val;
+              changed = true;
+            }
+          }
+        }
+        if (!changed) return full;
+        const serialized = JSON.stringify(parsed).replace(/'/g, '&#39;');
+        return `${prefix}'${serialized}'${suffix}`;
+      } catch {
+        return full;
+      }
+    }
+  );
+
+  // 2. Update /*EDITMODE-BEGIN*/ ... /*EDITMODE-END*/ if present
+  updated = updated.replace(
+    /(\/\*EDITMODE-BEGIN\*\/)([\s\S]*?)(\/\*EDITMODE-END\*\/)/,
+    (full, startTag, body, endTag) => {
+      const jsonMatch = body.match(/(\{[\s\S]*\})/);
+      if (!jsonMatch) return full;
+      try {
+        const parsed = JSON.parse(jsonMatch[1]);
+        Object.assign(parsed, tweakValues);
+        const newBody = body.replace(jsonMatch[1], JSON.stringify(parsed, null, 2));
+        return `${startTag}${newBody}${endTag}`;
+      } catch {
+        return full;
+      }
+    }
+  );
+
+  return updated;
+}

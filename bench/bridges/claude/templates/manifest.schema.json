@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Design Workbench Artifact & Claude Bundler Schema",
+  "type": "object",
+  "required": ["id", "title", "createdAt", "source", "status", "entry", "tweaks"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Artifact unique identifier, e.g. 2026-11-05-pomelo-explore-v1"
+    },
+    "title": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "object",
+      "required": ["model", "origin", "adapter"],
+      "properties": {
+        "model": { "type": "string" },
+        "origin": { "type": "string", "enum": ["claude-design-bundle", "local-cli", "dc-component", "raw-html"] },
+        "adapter": { "type": "string" },
+        "originalFile": { "type": "string" }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["exploring", "candidate", "archived", "handed-off"]
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "entry": {
+      "type": "string",
+      "default": "index.html"
+    },
+    "subpages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["uuid", "slug", "title", "path"],
+        "properties": {
+          "uuid": { "type": "string" },
+          "slug": { "type": "string" },
+          "title": { "type": "string" },
+          "path": { "type": "string" },
+          "width": { "type": "number" },
+          "height": { "type": "number" },
+          "isDcComponent": { "type": "boolean" },
+          "assetUuids": {
+            "type": "object",
+            "additionalProperties": { "type": "string" }
+          }
+        }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "description": "UUID to unpacked relative asset metadata",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "uuid": { "type": "string" },
+          "path": { "type": "string" },
+          "mime": { "type": "string" },
+          "compressed": { "type": "boolean" },
+          "size": { "type": "number" }
+        }
+      }
+    },
+    "tweaks": {
+      "type": "object",
+      "description": "Extracted EDITMODE / data-props parameter values and definitions"
+    },
+    "lineage": {
+      "type": "object",
+      "properties": {
+        "parent": { "type": ["string", "null"] },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,1032 @@
+{
+  "$note": "同步清单：哪些文件复制到哪个消费方的什么位置（规则见 docs/adoption.md）。由 tooling/sync/sync.mjs 按 Git tag 构建后复制；dist 取构建产物（dist/<方案>/ 下）。tokens/ 和 design-system 的 bundle.js 跟着方案本身的状态（scheme.json 的 status）走，marks/ 的资产照清单里自己的状态（approved 才能同步），App 图标用站主挑的方格纸（2026-11-07）。ds.css 是 Design System 的变量加 bundle.css（组件的样子和 approved 的动效零件，Dawn Plan · Phase 4、5）。目标目录整个归同步管，消费方不手改，里面另写 VERSION、SHA256SUMS 与 README.md。 marks/icons/ 是界面小图标（Dawn Plan · Phase 7）。content-icons.json 是 Vermilion 的内容图标清单（from: vermilion），只给「呦呦漫游」的内容图标选择器用。 atlas/ 是 Atlas 的设计快照（atlas/releases/，冻结以后不改）：一条线（版本前两位一样）只留最新的一份，小修替掉旧的那两行，升了前两位是新的定稿、加两行（站主 2026-11-11）；消费方的旧年度总结照同一条线里最新的那份画。",
+  "consumers": {
+    "pomelo": {
+      "root": "~/Documents/GitHub/pomelo",
+      "dir": "src/vendor/pomelo",
+      "files": [
+        {
+          "to": "pomelo.css",
+          "dist": "tokens/pomelo.css"
+        },
+        {
+          "to": "tokens.ts",
+          "dist": "tokens/tokens.ts"
+        },
+        {
+          "to": "handmade.js",
+          "dist": "design-system/project/components/bundle.js"
+        },
+        {
+          "to": "ds.css",
+          "dist": "design-system/consumer.css"
+        },
+        {
+          "to": "marks/pomelo-normal.svg",
+          "src": "marks/pomelo/pomelo-normal.svg"
+        },
+        {
+          "to": "marks/pomelo-think.svg",
+          "src": "marks/pomelo/pomelo-think.svg"
+        },
+        {
+          "to": "marks/pomelo-wink.svg",
+          "src": "marks/pomelo/pomelo-wink.svg"
+        },
+        {
+          "to": "marks/pomelo-sleepy.svg",
+          "src": "marks/pomelo/pomelo-sleepy.svg"
+        },
+        {
+          "to": "marks/pomelo-happy.svg",
+          "src": "marks/pomelo/pomelo-happy.svg"
+        },
+        {
+          "to": "marks/pomelo-error.svg",
+          "src": "marks/pomelo/pomelo-error.svg"
+        },
+        {
+          "to": "marks/pomelo-surprised.svg",
+          "src": "marks/pomelo/pomelo-surprised.svg"
+        },
+        {
+          "to": "marks/pomelo-wow.svg",
+          "src": "marks/pomelo/pomelo-wow.svg"
+        },
+        {
+          "to": "marks/pomelo-worried.svg",
+          "src": "marks/pomelo/pomelo-worried.svg"
+        },
+        {
+          "to": "marks/ai-button.svg",
+          "src": "marks/pomelo/ai-button.svg"
+        },
+        {
+          "to": "marks/app-icon.png",
+          "dist": "marks/png/app-icon-grid@1024-light.png"
+        },
+        {
+          "to": "marks/menu-solid.png",
+          "dist": "marks/png/menu-solid@36-template.png"
+        },
+        {
+          "to": "marks/menu-hollow.png",
+          "dist": "marks/png/menu-hollow@36-template.png"
+        },
+        {
+          "to": "marks/modules/todo.svg",
+          "src": "marks/modules/todo.svg"
+        },
+        {
+          "to": "marks/modules/notes.svg",
+          "src": "marks/modules/notes.svg"
+        },
+        {
+          "to": "marks/modules/articles.svg",
+          "src": "marks/modules/articles.svg"
+        },
+        {
+          "to": "marks/modules/days.svg",
+          "src": "marks/modules/days.svg"
+        },
+        {
+          "to": "marks/modules/finance.svg",
+          "src": "marks/modules/finance.svg"
+        },
+        {
+          "to": "marks/modules/packing.svg",
+          "src": "marks/modules/packing.svg"
+        },
+        {
+          "to": "marks/modules/books.svg",
+          "src": "marks/modules/books.svg"
+        },
+        {
+          "to": "marks/modules/films.svg",
+          "src": "marks/modules/films.svg"
+        },
+        {
+          "to": "marks/modules/games.svg",
+          "src": "marks/modules/games.svg"
+        },
+        {
+          "to": "marks/modules/drawing.svg",
+          "src": "marks/modules/drawing.svg"
+        },
+        {
+          "to": "marks/modules/site.svg",
+          "src": "marks/modules/site.svg"
+        },
+        {
+          "to": "marks/modules/canvas.svg",
+          "src": "marks/modules/canvas.svg"
+        },
+        {
+          "to": "marks/modules/jobs.svg",
+          "src": "marks/modules/jobs.svg"
+        },
+        {
+          "to": "marks/modules/seeker.svg",
+          "src": "marks/modules/seeker.svg"
+        },
+        {
+          "to": "marks/modules/rater.svg",
+          "src": "marks/modules/rater.svg"
+        },
+        {
+          "to": "marks/modules/translate.svg",
+          "src": "marks/modules/translate.svg"
+        },
+        {
+          "to": "marks/modules/pub2md.svg",
+          "src": "marks/modules/pub2md.svg"
+        },
+        {
+          "to": "marks/modules/importer.svg",
+          "src": "marks/modules/importer.svg"
+        },
+        {
+          "to": "marks/modules/atlas.svg",
+          "src": "marks/modules/atlas.svg"
+        },
+        {
+          "to": "marks/modules/vault.svg",
+          "src": "marks/modules/vault.svg"
+        },
+        {
+          "to": "marks/modules/bookmarks.svg",
+          "src": "marks/modules/bookmarks.svg"
+        },
+        {
+          "to": "marks/modules/janitor.svg",
+          "src": "marks/modules/janitor.svg"
+        },
+        {
+          "to": "marks/pomelo-ghost.svg",
+          "src": "marks/pomelo/pomelo-ghost.svg"
+        },
+        {
+          "to": "marks/modules/shapes.svg",
+          "src": "marks/modules/shapes.svg"
+        },
+        {
+          "to": "marks/modules/checklist.svg",
+          "src": "marks/modules/checklist.svg"
+        },
+        {
+          "to": "marks/modules/game.svg",
+          "src": "marks/modules/game.svg"
+        },
+        {
+          "to": "marks/modules/music.svg",
+          "src": "marks/modules/music.svg"
+        },
+        {
+          "to": "marks/modules/headphones.svg",
+          "src": "marks/modules/headphones.svg"
+        },
+        {
+          "to": "marks/modules/camera.svg",
+          "src": "marks/modules/camera.svg"
+        },
+        {
+          "to": "marks/modules/tv.svg",
+          "src": "marks/modules/tv.svg"
+        },
+        {
+          "to": "marks/modules/coffee.svg",
+          "src": "marks/modules/coffee.svg"
+        },
+        {
+          "to": "marks/modules/bowl.svg",
+          "src": "marks/modules/bowl.svg"
+        },
+        {
+          "to": "marks/modules/bag.svg",
+          "src": "marks/modules/bag.svg"
+        },
+        {
+          "to": "marks/modules/gift.svg",
+          "src": "marks/modules/gift.svg"
+        },
+        {
+          "to": "marks/modules/shirt.svg",
+          "src": "marks/modules/shirt.svg"
+        },
+        {
+          "to": "marks/modules/plane.svg",
+          "src": "marks/modules/plane.svg"
+        },
+        {
+          "to": "marks/modules/mountain.svg",
+          "src": "marks/modules/mountain.svg"
+        },
+        {
+          "to": "marks/modules/leaf.svg",
+          "src": "marks/modules/leaf.svg"
+        },
+        {
+          "to": "marks/modules/sprout.svg",
+          "src": "marks/modules/sprout.svg"
+        },
+        {
+          "to": "marks/modules/dumbbell.svg",
+          "src": "marks/modules/dumbbell.svg"
+        },
+        {
+          "to": "marks/modules/heart.svg",
+          "src": "marks/modules/heart.svg"
+        },
+        {
+          "to": "marks/modules/star.svg",
+          "src": "marks/modules/star.svg"
+        },
+        {
+          "to": "marks/modules/grad.svg",
+          "src": "marks/modules/grad.svg"
+        },
+        {
+          "to": "marks/modules/code.svg",
+          "src": "marks/modules/code.svg"
+        },
+        {
+          "to": "marks/modules/puzzle.svg",
+          "src": "marks/modules/puzzle.svg"
+        },
+        {
+          "to": "marks/modules/trophy.svg",
+          "src": "marks/modules/trophy.svg"
+        },
+        {
+          "to": "marks/modules/cat.svg",
+          "src": "marks/modules/cat.svg"
+        },
+        {
+          "to": "marks/modules/flower.svg",
+          "src": "marks/modules/flower.svg"
+        },
+        {
+          "to": "marks/modules/bulb.svg",
+          "src": "marks/modules/bulb.svg"
+        },
+        {
+          "to": "marks/modules/house.svg",
+          "src": "marks/modules/house.svg"
+        },
+        {
+          "to": "marks/modules/pill.svg",
+          "src": "marks/modules/pill.svg"
+        },
+        {
+          "to": "marks/modules/letter.svg",
+          "src": "marks/modules/letter.svg"
+        },
+        {
+          "to": "marks/modules/piggy.svg",
+          "src": "marks/modules/piggy.svg"
+        },
+        {
+          "to": "marks/modules/dice.svg",
+          "src": "marks/modules/dice.svg"
+        },
+        {
+          "to": "marks/modules/moon.svg",
+          "src": "marks/modules/moon.svg"
+        },
+        {
+          "to": "marks/places/settings.svg",
+          "src": "marks/places/settings.svg"
+        },
+        {
+          "to": "marks/places/calendar.svg",
+          "src": "marks/places/calendar.svg"
+        },
+        {
+          "to": "marks/icons/alarm-clock.svg",
+          "src": "marks/icons/alarm-clock.svg"
+        },
+        {
+          "to": "marks/icons/archive-restore.svg",
+          "src": "marks/icons/archive-restore.svg"
+        },
+        {
+          "to": "marks/icons/archive.svg",
+          "src": "marks/icons/archive.svg"
+        },
+        {
+          "to": "marks/icons/arrow-down.svg",
+          "src": "marks/icons/arrow-down.svg"
+        },
+        {
+          "to": "marks/icons/arrow-left-right.svg",
+          "src": "marks/icons/arrow-left-right.svg"
+        },
+        {
+          "to": "marks/icons/arrow-up.svg",
+          "src": "marks/icons/arrow-up.svg"
+        },
+        {
+          "to": "marks/icons/back-desk.svg",
+          "src": "marks/icons/back-desk.svg"
+        },
+        {
+          "to": "marks/icons/bell-ring.svg",
+          "src": "marks/icons/bell-ring.svg"
+        },
+        {
+          "to": "marks/icons/bold.svg",
+          "src": "marks/icons/bold.svg"
+        },
+        {
+          "to": "marks/icons/book-open.svg",
+          "src": "marks/icons/book-open.svg"
+        },
+        {
+          "to": "marks/icons/bookmark.svg",
+          "src": "marks/icons/bookmark.svg"
+        },
+        {
+          "to": "marks/icons/brain.svg",
+          "src": "marks/icons/brain.svg"
+        },
+        {
+          "to": "marks/icons/briefcase.svg",
+          "src": "marks/icons/briefcase.svg"
+        },
+        {
+          "to": "marks/icons/brush-cleaning.svg",
+          "src": "marks/icons/brush-cleaning.svg"
+        },
+        {
+          "to": "marks/icons/calendar-check.svg",
+          "src": "marks/icons/calendar-check.svg"
+        },
+        {
+          "to": "marks/icons/calendar-days.svg",
+          "src": "marks/icons/calendar-days.svg"
+        },
+        {
+          "to": "marks/icons/calendar-heart.svg",
+          "src": "marks/icons/calendar-heart.svg"
+        },
+        {
+          "to": "marks/icons/callout.svg",
+          "src": "marks/icons/callout.svg"
+        },
+        {
+          "to": "marks/icons/camera.svg",
+          "src": "marks/icons/camera.svg"
+        },
+        {
+          "to": "marks/icons/cat.svg",
+          "src": "marks/icons/cat.svg"
+        },
+        {
+          "to": "marks/icons/check-square.svg",
+          "src": "marks/icons/check-square.svg"
+        },
+        {
+          "to": "marks/icons/check.svg",
+          "src": "marks/icons/check.svg"
+        },
+        {
+          "to": "marks/icons/chevron-down.svg",
+          "src": "marks/icons/chevron-down.svg"
+        },
+        {
+          "to": "marks/icons/chevron-left.svg",
+          "src": "marks/icons/chevron-left.svg"
+        },
+        {
+          "to": "marks/icons/chevron-right.svg",
+          "src": "marks/icons/chevron-right.svg"
+        },
+        {
+          "to": "marks/icons/chevron-up.svg",
+          "src": "marks/icons/chevron-up.svg"
+        },
+        {
+          "to": "marks/icons/chevrons-up-down.svg",
+          "src": "marks/icons/chevrons-up-down.svg"
+        },
+        {
+          "to": "marks/icons/circle-check.svg",
+          "src": "marks/icons/circle-check.svg"
+        },
+        {
+          "to": "marks/icons/circle-dot.svg",
+          "src": "marks/icons/circle-dot.svg"
+        },
+        {
+          "to": "marks/icons/circle-question-mark.svg",
+          "src": "marks/icons/circle-question-mark.svg"
+        },
+        {
+          "to": "marks/icons/circle.svg",
+          "src": "marks/icons/circle.svg"
+        },
+        {
+          "to": "marks/icons/clapperboard.svg",
+          "src": "marks/icons/clapperboard.svg"
+        },
+        {
+          "to": "marks/icons/cloud.svg",
+          "src": "marks/icons/cloud.svg"
+        },
+        {
+          "to": "marks/icons/code-block.svg",
+          "src": "marks/icons/code-block.svg"
+        },
+        {
+          "to": "marks/icons/code.svg",
+          "src": "marks/icons/code.svg"
+        },
+        {
+          "to": "marks/icons/coffee.svg",
+          "src": "marks/icons/coffee.svg"
+        },
+        {
+          "to": "marks/icons/compass.svg",
+          "src": "marks/icons/compass.svg"
+        },
+        {
+          "to": "marks/icons/copy.svg",
+          "src": "marks/icons/copy.svg"
+        },
+        {
+          "to": "marks/icons/corner-down-right.svg",
+          "src": "marks/icons/corner-down-right.svg"
+        },
+        {
+          "to": "marks/icons/database-backup.svg",
+          "src": "marks/icons/database-backup.svg"
+        },
+        {
+          "to": "marks/icons/divider.svg",
+          "src": "marks/icons/divider.svg"
+        },
+        {
+          "to": "marks/icons/dumbbell.svg",
+          "src": "marks/icons/dumbbell.svg"
+        },
+        {
+          "to": "marks/icons/ellipsis.svg",
+          "src": "marks/icons/ellipsis.svg"
+        },
+        {
+          "to": "marks/icons/external-link.svg",
+          "src": "marks/icons/external-link.svg"
+        },
+        {
+          "to": "marks/icons/eye-off.svg",
+          "src": "marks/icons/eye-off.svg"
+        },
+        {
+          "to": "marks/icons/eye.svg",
+          "src": "marks/icons/eye.svg"
+        },
+        {
+          "to": "marks/icons/feather.svg",
+          "src": "marks/icons/feather.svg"
+        },
+        {
+          "to": "marks/icons/file-down.svg",
+          "src": "marks/icons/file-down.svg"
+        },
+        {
+          "to": "marks/icons/file-input.svg",
+          "src": "marks/icons/file-input.svg"
+        },
+        {
+          "to": "marks/icons/file-output.svg",
+          "src": "marks/icons/file-output.svg"
+        },
+        {
+          "to": "marks/icons/file-pen.svg",
+          "src": "marks/icons/file-pen.svg"
+        },
+        {
+          "to": "marks/icons/file-plus.svg",
+          "src": "marks/icons/file-plus.svg"
+        },
+        {
+          "to": "marks/icons/file-text.svg",
+          "src": "marks/icons/file-text.svg"
+        },
+        {
+          "to": "marks/icons/file-user.svg",
+          "src": "marks/icons/file-user.svg"
+        },
+        {
+          "to": "marks/icons/fingerprint.svg",
+          "src": "marks/icons/fingerprint.svg"
+        },
+        {
+          "to": "marks/icons/flame.svg",
+          "src": "marks/icons/flame.svg"
+        },
+        {
+          "to": "marks/icons/flip.svg",
+          "src": "marks/icons/flip.svg"
+        },
+        {
+          "to": "marks/icons/flowchart.svg",
+          "src": "marks/icons/flowchart.svg"
+        },
+        {
+          "to": "marks/icons/flower-2.svg",
+          "src": "marks/icons/flower-2.svg"
+        },
+        {
+          "to": "marks/icons/fold.svg",
+          "src": "marks/icons/fold.svg"
+        },
+        {
+          "to": "marks/icons/folder-input.svg",
+          "src": "marks/icons/folder-input.svg"
+        },
+        {
+          "to": "marks/icons/folder-open.svg",
+          "src": "marks/icons/folder-open.svg"
+        },
+        {
+          "to": "marks/icons/folder-plus.svg",
+          "src": "marks/icons/folder-plus.svg"
+        },
+        {
+          "to": "marks/icons/folder.svg",
+          "src": "marks/icons/folder.svg"
+        },
+        {
+          "to": "marks/icons/footnote.svg",
+          "src": "marks/icons/footnote.svg"
+        },
+        {
+          "to": "marks/icons/footprints.svg",
+          "src": "marks/icons/footprints.svg"
+        },
+        {
+          "to": "marks/icons/gamepad-2.svg",
+          "src": "marks/icons/gamepad-2.svg"
+        },
+        {
+          "to": "marks/icons/gift.svg",
+          "src": "marks/icons/gift.svg"
+        },
+        {
+          "to": "marks/icons/globe.svg",
+          "src": "marks/icons/globe.svg"
+        },
+        {
+          "to": "marks/icons/graduation-cap.svg",
+          "src": "marks/icons/graduation-cap.svg"
+        },
+        {
+          "to": "marks/icons/grip-vertical.svg",
+          "src": "marks/icons/grip-vertical.svg"
+        },
+        {
+          "to": "marks/icons/hard-drive.svg",
+          "src": "marks/icons/hard-drive.svg"
+        },
+        {
+          "to": "marks/icons/hash.svg",
+          "src": "marks/icons/hash.svg"
+        },
+        {
+          "to": "marks/icons/heading.svg",
+          "src": "marks/icons/heading.svg"
+        },
+        {
+          "to": "marks/icons/headphones.svg",
+          "src": "marks/icons/headphones.svg"
+        },
+        {
+          "to": "marks/icons/heart-pulse.svg",
+          "src": "marks/icons/heart-pulse.svg"
+        },
+        {
+          "to": "marks/icons/heart.svg",
+          "src": "marks/icons/heart.svg"
+        },
+        {
+          "to": "marks/icons/highlighter.svg",
+          "src": "marks/icons/highlighter.svg"
+        },
+        {
+          "to": "marks/icons/history.svg",
+          "src": "marks/icons/history.svg"
+        },
+        {
+          "to": "marks/icons/hourglass.svg",
+          "src": "marks/icons/hourglass.svg"
+        },
+        {
+          "to": "marks/icons/house.svg",
+          "src": "marks/icons/house.svg"
+        },
+        {
+          "to": "marks/icons/image-off.svg",
+          "src": "marks/icons/image-off.svg"
+        },
+        {
+          "to": "marks/icons/image-plus.svg",
+          "src": "marks/icons/image-plus.svg"
+        },
+        {
+          "to": "marks/icons/italic.svg",
+          "src": "marks/icons/italic.svg"
+        },
+        {
+          "to": "marks/icons/key-round.svg",
+          "src": "marks/icons/key-round.svg"
+        },
+        {
+          "to": "marks/icons/keyboard.svg",
+          "src": "marks/icons/keyboard.svg"
+        },
+        {
+          "to": "marks/icons/languages.svg",
+          "src": "marks/icons/languages.svg"
+        },
+        {
+          "to": "marks/icons/layout-grid.svg",
+          "src": "marks/icons/layout-grid.svg"
+        },
+        {
+          "to": "marks/icons/leaf.svg",
+          "src": "marks/icons/leaf.svg"
+        },
+        {
+          "to": "marks/icons/library-big.svg",
+          "src": "marks/icons/library-big.svg"
+        },
+        {
+          "to": "marks/icons/library.svg",
+          "src": "marks/icons/library.svg"
+        },
+        {
+          "to": "marks/icons/lightbulb.svg",
+          "src": "marks/icons/lightbulb.svg"
+        },
+        {
+          "to": "marks/icons/link-2.svg",
+          "src": "marks/icons/link-2.svg"
+        },
+        {
+          "to": "marks/icons/list-checks.svg",
+          "src": "marks/icons/list-checks.svg"
+        },
+        {
+          "to": "marks/icons/list-ordered.svg",
+          "src": "marks/icons/list-ordered.svg"
+        },
+        {
+          "to": "marks/icons/list-plus.svg",
+          "src": "marks/icons/list-plus.svg"
+        },
+        {
+          "to": "marks/icons/list.svg",
+          "src": "marks/icons/list.svg"
+        },
+        {
+          "to": "marks/icons/lock.svg",
+          "src": "marks/icons/lock.svg"
+        },
+        {
+          "to": "marks/icons/luggage.svg",
+          "src": "marks/icons/luggage.svg"
+        },
+        {
+          "to": "marks/icons/map-pin.svg",
+          "src": "marks/icons/map-pin.svg"
+        },
+        {
+          "to": "marks/icons/maximize-2.svg",
+          "src": "marks/icons/maximize-2.svg"
+        },
+        {
+          "to": "marks/icons/message-circle-question.svg",
+          "src": "marks/icons/message-circle-question.svg"
+        },
+        {
+          "to": "marks/icons/message-circle.svg",
+          "src": "marks/icons/message-circle.svg"
+        },
+        {
+          "to": "marks/icons/message-square.svg",
+          "src": "marks/icons/message-square.svg"
+        },
+        {
+          "to": "marks/icons/minimize-2.svg",
+          "src": "marks/icons/minimize-2.svg"
+        },
+        {
+          "to": "marks/icons/moon.svg",
+          "src": "marks/icons/moon.svg"
+        },
+        {
+          "to": "marks/icons/mountain.svg",
+          "src": "marks/icons/mountain.svg"
+        },
+        {
+          "to": "marks/icons/music.svg",
+          "src": "marks/icons/music.svg"
+        },
+        {
+          "to": "marks/icons/notebook-pen.svg",
+          "src": "marks/icons/notebook-pen.svg"
+        },
+        {
+          "to": "marks/icons/notebook.svg",
+          "src": "marks/icons/notebook.svg"
+        },
+        {
+          "to": "marks/icons/palette.svg",
+          "src": "marks/icons/palette.svg"
+        },
+        {
+          "to": "marks/icons/panel-left-close.svg",
+          "src": "marks/icons/panel-left-close.svg"
+        },
+        {
+          "to": "marks/icons/panel-left-open.svg",
+          "src": "marks/icons/panel-left-open.svg"
+        },
+        {
+          "to": "marks/icons/paperclip.svg",
+          "src": "marks/icons/paperclip.svg"
+        },
+        {
+          "to": "marks/icons/pen-line.svg",
+          "src": "marks/icons/pen-line.svg"
+        },
+        {
+          "to": "marks/icons/pencil.svg",
+          "src": "marks/icons/pencil.svg"
+        },
+        {
+          "to": "marks/icons/pin-off.svg",
+          "src": "marks/icons/pin-off.svg"
+        },
+        {
+          "to": "marks/icons/pin.svg",
+          "src": "marks/icons/pin.svg"
+        },
+        {
+          "to": "marks/icons/plane.svg",
+          "src": "marks/icons/plane.svg"
+        },
+        {
+          "to": "marks/icons/play.svg",
+          "src": "marks/icons/play.svg"
+        },
+        {
+          "to": "marks/icons/plus.svg",
+          "src": "marks/icons/plus.svg"
+        },
+        {
+          "to": "marks/icons/pomelo.svg",
+          "src": "marks/icons/pomelo.svg"
+        },
+        {
+          "to": "marks/icons/puzzle.svg",
+          "src": "marks/icons/puzzle.svg"
+        },
+        {
+          "to": "marks/icons/quote.svg",
+          "src": "marks/icons/quote.svg"
+        },
+        {
+          "to": "marks/icons/refresh-cw.svg",
+          "src": "marks/icons/refresh-cw.svg"
+        },
+        {
+          "to": "marks/icons/repeat.svg",
+          "src": "marks/icons/repeat.svg"
+        },
+        {
+          "to": "marks/icons/rotate-ccw.svg",
+          "src": "marks/icons/rotate-ccw.svg"
+        },
+        {
+          "to": "marks/icons/scan-text.svg",
+          "src": "marks/icons/scan-text.svg"
+        },
+        {
+          "to": "marks/icons/scroll-text.svg",
+          "src": "marks/icons/scroll-text.svg"
+        },
+        {
+          "to": "marks/icons/search.svg",
+          "src": "marks/icons/search.svg"
+        },
+        {
+          "to": "marks/icons/send.svg",
+          "src": "marks/icons/send.svg"
+        },
+        {
+          "to": "marks/icons/settings-2.svg",
+          "src": "marks/icons/settings-2.svg"
+        },
+        {
+          "to": "marks/icons/settings.svg",
+          "src": "marks/icons/settings.svg"
+        },
+        {
+          "to": "marks/icons/shapes.svg",
+          "src": "marks/icons/shapes.svg"
+        },
+        {
+          "to": "marks/icons/shirt.svg",
+          "src": "marks/icons/shirt.svg"
+        },
+        {
+          "to": "marks/icons/shopping-bag.svg",
+          "src": "marks/icons/shopping-bag.svg"
+        },
+        {
+          "to": "marks/icons/sigma.svg",
+          "src": "marks/icons/sigma.svg"
+        },
+        {
+          "to": "marks/icons/sliders-horizontal.svg",
+          "src": "marks/icons/sliders-horizontal.svg"
+        },
+        {
+          "to": "marks/icons/smile.svg",
+          "src": "marks/icons/smile.svg"
+        },
+        {
+          "to": "marks/icons/sparkle.svg",
+          "src": "marks/icons/sparkle.svg"
+        },
+        {
+          "to": "marks/icons/sparkles.svg",
+          "src": "marks/icons/sparkles.svg"
+        },
+        {
+          "to": "marks/icons/sprout.svg",
+          "src": "marks/icons/sprout.svg"
+        },
+        {
+          "to": "marks/icons/square-pen.svg",
+          "src": "marks/icons/square-pen.svg"
+        },
+        {
+          "to": "marks/icons/square.svg",
+          "src": "marks/icons/square.svg"
+        },
+        {
+          "to": "marks/icons/star.svg",
+          "src": "marks/icons/star.svg"
+        },
+        {
+          "to": "marks/icons/stethoscope.svg",
+          "src": "marks/icons/stethoscope.svg"
+        },
+        {
+          "to": "marks/icons/strikethrough.svg",
+          "src": "marks/icons/strikethrough.svg"
+        },
+        {
+          "to": "marks/icons/sun.svg",
+          "src": "marks/icons/sun.svg"
+        },
+        {
+          "to": "marks/icons/table.svg",
+          "src": "marks/icons/table.svg"
+        },
+        {
+          "to": "marks/icons/tag-off.svg",
+          "src": "marks/icons/tag-off.svg"
+        },
+        {
+          "to": "marks/icons/tag.svg",
+          "src": "marks/icons/tag.svg"
+        },
+        {
+          "to": "marks/icons/tags.svg",
+          "src": "marks/icons/tags.svg"
+        },
+        {
+          "to": "marks/icons/target.svg",
+          "src": "marks/icons/target.svg"
+        },
+        {
+          "to": "marks/icons/time-travel.svg",
+          "src": "marks/icons/time-travel.svg"
+        },
+        {
+          "to": "marks/icons/trash-2.svg",
+          "src": "marks/icons/trash-2.svg"
+        },
+        {
+          "to": "marks/icons/trending-up.svg",
+          "src": "marks/icons/trending-up.svg"
+        },
+        {
+          "to": "marks/icons/triangle-alert.svg",
+          "src": "marks/icons/triangle-alert.svg"
+        },
+        {
+          "to": "marks/icons/trophy.svg",
+          "src": "marks/icons/trophy.svg"
+        },
+        {
+          "to": "marks/icons/tv.svg",
+          "src": "marks/icons/tv.svg"
+        },
+        {
+          "to": "marks/icons/underline.svg",
+          "src": "marks/icons/underline.svg"
+        },
+        {
+          "to": "marks/icons/user.svg",
+          "src": "marks/icons/user.svg"
+        },
+        {
+          "to": "marks/icons/users.svg",
+          "src": "marks/icons/users.svg"
+        },
+        {
+          "to": "marks/icons/utensils.svg",
+          "src": "marks/icons/utensils.svg"
+        },
+        {
+          "to": "marks/icons/wallet.svg",
+          "src": "marks/icons/wallet.svg"
+        },
+        {
+          "to": "marks/icons/wand-sparkles.svg",
+          "src": "marks/icons/wand-sparkles.svg"
+        },
+        {
+          "to": "marks/icons/wikilink.svg",
+          "src": "marks/icons/wikilink.svg"
+        },
+        {
+          "to": "marks/icons/wrench.svg",
+          "src": "marks/icons/wrench.svg"
+        },
+        {
+          "to": "marks/icons/x.svg",
+          "src": "marks/icons/x.svg"
+        },
+        {
+          "to": "marks/empty/todo.svg",
+          "src": "marks/empty/todo.svg"
+        },
+        {
+          "to": "marks/empty/notes.svg",
+          "src": "marks/empty/notes.svg"
+        },
+        {
+          "to": "marks/empty/days.svg",
+          "src": "marks/empty/days.svg"
+        },
+        {
+          "to": "marks/empty/packing.svg",
+          "src": "marks/empty/packing.svg"
+        },
+        {
+          "to": "marks/empty/books.svg",
+          "src": "marks/empty/books.svg"
+        },
+        {
+          "to": "marks/empty/films.svg",
+          "src": "marks/empty/films.svg"
+        },
+        {
+          "to": "marks/empty/jobs.svg",
+          "src": "marks/empty/jobs.svg"
+        },
+        {
+          "to": "marks/empty/vault.svg",
+          "src": "marks/empty/vault.svg"
+        },
+        {
+          "to": "content-icons.json",
+          "from": "vermilion",
+          "src": "marks/icons.json"
+        },
+        {
+          "to": "atlas/tabloid-1.0.3/design.js",
+          "src": "atlas/releases/tabloid-1.0.3/design.js"
+        },
+        {
+          "to": "atlas/tabloid-1.0.3/design.json",
+          "src": "atlas/releases/tabloid-1.0.3/design.json"
+        },
+        {
+          "to": "atlas/tabloid-1.1.1/design.js",
+          "src": "atlas/releases/tabloid-1.1.1/design.js"
+        },
+        {
+          "to": "atlas/tabloid-1.1.1/design.json",
+          "src": "atlas/releases/tabloid-1.1.1/design.json"
+        }
+      ]
+    }
+  }
+}

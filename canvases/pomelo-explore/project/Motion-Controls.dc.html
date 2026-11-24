@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>控件的小动静</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/pomelo/tokens.css">
+<link rel="stylesheet" href="ds/pomelo/components/bundle.css">
+<script src="ds/pomelo/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+
+body{margin:0}
+.root{position:relative;overflow:hidden;background:var(--color-desk);color:var(--color-ink)}
+.bhead{position:absolute;left:40px;top:30px;right:40px}
+.btitle{font-size:28px;font-weight:700;line-height:36px}
+.bsub{font-size:14px;line-height:22px;color:var(--color-ink-soft)}
+.cell{position:absolute}
+.cardbg{position:absolute;inset:0;padding:0}
+.chead{position:relative;height:66px;padding:14px 112px 0 18px}
+.cline{display:flex;align-items:center;gap:8px}
+.cname{font-size:17px;font-weight:700;line-height:24px;white-space:nowrap}
+.cdesc{font-size:13px;line-height:20px;color:var(--color-ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip{flex:none;height:22px;padding:0 9px;border-radius:var(--radius-tag);background:var(--color-yuzu-bg);font-size:12px;line-height:22px;white-space:nowrap}
+.again{position:absolute;right:16px;top:14px;height:28px;padding:0 11px;font-size:13px}
+.stage{position:relative;margin:0 18px}
+.empty-cell{cursor:pointer}
+.empty-cell .stage{display:grid;place-items:center}
+
+</style>
+</helmet>
+<div class="pm root" data-palette="{{palette}}" data-theme="{{theme}}" style="width:1280px;height:1236px">
+<div class="bhead"><div class="btitle">控件的小动静</div><div class="bsub">照 Phase 2 定稿：每样碰一下都有回应。能直接点、勾、拖；「再来一次」重放演示。</div></div>
+<section class="cell" data-part="press" style="left:40px;top:110px;width:385px;height:176px">
+<div class="cardbg pm-card" data-hand="card" data-seed="1300" data-tilt="-0.5"></div>
+<header class="chead"><div class="cline"><span class="cname">按钮</span><span class="chip">小动静 · 0.38 秒</span></div><div class="cdesc">按下扁一下</div></header>
+<button type="button" class="again pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1301">再来一次</button>
+<div class="stage" style="width:246px;height:86px"><!-- 按钮：按下「记一笔」再松开 -->
+<div class="press-demo" style="display:flex;gap:10px;padding:10px 12px">
+  <button type="button" class="pm-btn b1" data-hand="button" data-seed="1430"><span data-hand="icon" data-size="16" data-seed="1" data-d="M12 5 L12 19 M5 12 L19 12"></span>记一笔</button>
+  <button type="button" class="pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1431">取消</button>
+</div>
+</div>
+</section>
+<section class="cell" data-part="switch" style="left:447px;top:110px;width:385px;height:170px">
+<div class="cardbg pm-card" data-hand="card" data-seed="1303" data-tilt="0.4"></div>
+<header class="chead"><div class="cline"><span class="cname">开关</span><span class="chip">小动静 · 0.45 秒</span></div><div class="cdesc">圆贴纸滑过去</div></header>
+<button type="button" class="again pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1304">再来一次</button>
+<div class="stage" style="width:286px;height:80px"><!-- 开关：把「发给云端」打开 -->
+<div class="sw-demo" style="width:250px;padding:6px 14px">
+  <button type="button" class="pm-switch s1" role="switch" aria-checked="false"><span>发给云端</span><span data-hand="switch" data-seed="1371"></span></button>
+</div>
+</div>
+</section>
+<section class="cell" data-part="segmented" style="left:854px;top:110px;width:385px;height:166px">
+<div class="cardbg pm-card" data-hand="card" data-seed="1306" data-tilt="-0.3"></div>
+<header class="chead"><div class="cline"><span class="cname">分段</span><span class="chip">小动静 · 0.42 秒</span></div><div class="cdesc">荧光笔拖到新的一格</div></header>
+<button type="button" class="again pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1307">再来一次</button>
+<div class="stage" style="width:286px;height:76px"><!-- 分段：从「全部」换到「生日」（每格 57 宽） -->
+<div class="seg-demo" style="padding:6px 10px">
+  <div class="pm-seg" data-hand="field" data-seed="1390" data-sw="1.5" data-amp="0.55" role="group" aria-label="筛选" style="width:236px">
+    <span class="pm-seg-hl" data-hand="pick" data-seed="1391" style="width:57px"></span>
+    <button type="button" class="pm-seg-item i0" aria-pressed="true" style="width:57px;min-width:0;padding:0">全部</button>
+    <button type="button" class="pm-seg-item i1" aria-pressed="false" style="width:57px;min-width:0;padding:0">纪念日</button>
+    <button type="button" class="pm-seg-item i2" aria-pressed="false" style="width:57px;min-width:0;padding:0">生日</button>
+    <button type="button" class="pm-seg-item i3" aria-pressed="false" style="width:57px;min-width:0;padding:0">证件</button>
+  </div>
+</div>
+</div>
+</section>
+<section class="cell" data-part="select" style="left:854px;top:298px;width:385px;height:336px">
+<div class="cardbg pm-card" data-hand="card" data-seed="1309" data-tilt="0.6"></div>
+<header class="chead"><div class="cline"><span class="cname">下拉</span><span class="chip">小动静 · 0.45 秒</span></div><div class="cdesc">纸条一格格展开</div></header>
+<button type="button" class="again pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1310">再来一次</button>
+<div class="stage" style="width:236px;height:246px"><!-- 下拉：点开选月份 -->
+<div class="dd-demo" style="width:204px;height:214px;padding:6px 12px">
+  <button type="button" class="pm-field pm-select dd" data-hand="field" data-seed="1395" data-r="10" data-sw="1.5" data-amp="0.55" aria-haspopup="listbox" aria-expanded="false" style="width:180px"><span class="pm-num">2026 年 11 月</span><span data-hand="icon" data-size="16" data-seed="6" data-d="M7 10 L12 15 L17 10"></span></button>
+  <div class="pm-menu" role="listbox" style="width:180px;margin-top:6px;visibility:hidden">
+    <div class="pm-menu-item" role="option" aria-selected="false"><span class="pm-num">9 月</span><span class="pm-menu-check" data-hand="icon" data-size="18" data-seed="8" data-d="M5.5 12.5 L10 17 L18.5 7" style="color:var(--color-pen)"></span></div>
+    <div class="pm-menu-item" role="option" aria-selected="false"><span class="pm-num">10 月</span><span class="pm-menu-check" data-hand="icon" data-size="18" data-seed="9" data-d="M5.5 12.5 L10 17 L18.5 7" style="color:var(--color-pen)"></span></div>
+    <div class="pm-menu-item" role="option" aria-selected="true"><span class="pm-num">11 月</span><span class="pm-menu-check" data-hand="icon" data-size="18" data-seed="10" data-d="M5.5 12.5 L10 17 L18.5 7" style="color:var(--color-pen)"></span></div>
+    <div class="pm-menu-item" role="option" aria-selected="false"><span class="pm-num">12 月</span><span class="pm-menu-check" data-hand="icon" data-size="18" data-seed="11" data-d="M5.5 12.5 L10 17 L18.5 7" style="color:var(--color-pen)"></span></div>
+  </div>
+</div>
+</div>
+</section>
+<section class="cell" data-part="check" style="left:447px;top:302px;width:385px;height:196px">
+<div class="cardbg pm-card" data-hand="card" data-seed="1312" data-tilt="0.3"></div>
+<header class="chead"><div class="cline"><span class="cname">勾选</span><span class="chip">小动静 · 0.6 秒</span></div><div class="cdesc">果冻弹、划线自己画出来</div></header>
+<button type="button" class="again pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1313">再来一次</button>
+<div class="stage" style="width:256px;height:106px"><!-- 勾选：勾上「交作业」 -->
+<div class="ck-demo" style="width:220px;padding:6px 14px">
+  <button type="button" class="pm-check c1" role="checkbox" aria-checked="false"><span data-hand="check" data-seed="1400"></span><span class="pm-check-text" data-hand="strike" data-seed="1405">交作业</span></button>
+  <button type="button" class="pm-check" role="checkbox" aria-checked="true"><span data-hand="check" data-seed="1401"></span><span class="pm-check-text" data-hand="strike" data-seed="1406">给猫买粮</span></button>
+</div>
+</div>
+</section>
+<section class="cell" data-part="rating" style="left:40px;top:308px;width:385px;height:162px">
+<div class="cardbg pm-card" data-hand="card" data-seed="1315" data-tilt="-0.5"></div>
+<header class="chead"><div class="cline"><span class="cname">评分</span><span class="chip">小动静 · 0.6 秒</span></div><div class="cdesc">星星一颗接一颗弹出来</div></header>
+<button type="button" class="again pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1316">再来一次</button>
+<div class="stage" style="width:206px;height:72px"><!-- 评分：从一颗星点到五颗 -->
+<div class="rate-demo" style="padding:6px 10px">
+  <div class="pm-rating" role="radiogroup" aria-label="评分">
+    <button type="button" class="pm-rating-star r0 is-on" role="radio" aria-checked="true" aria-label="1 颗星"><span data-hand="star" data-seed="1350"></span></button>
+    <button type="button" class="pm-rating-star r1" role="radio" aria-checked="false" aria-label="2 颗星"><span data-hand="star" data-seed="1351"></span></button>
+    <button type="button" class="pm-rating-star r2" role="radio" aria-checked="false" aria-label="3 颗星"><span data-hand="star" data-seed="1352"></span></button>
+    <button type="button" class="pm-rating-star r3" role="radio" aria-checked="false" aria-label="4 颗星"><span data-hand="star" data-seed="1353"></span></button>
+    <button type="button" class="pm-rating-star r4" role="radio" aria-checked="false" aria-label="5 颗星"><span data-hand="star" data-seed="1354"></span></button>
+  </div>
+</div>
+</div>
+</section>
+<section class="cell" data-part="field" style="left:40px;top:492px;width:385px;height:168px">
+<div class="cardbg pm-card" data-hand="card" data-seed="1318" data-tilt="-0.5"></div>
+<header class="chead"><div class="cline"><span class="cname">输入框</span><span class="chip">小动静 · 0.6 秒</span></div><div class="cdesc">边描粗，笔晃一下</div></header>
+<button type="button" class="again pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1319">再来一次</button>
+<div class="stage" style="width:296px;height:78px"><!-- 输入框：点进去 -->
+<div class="field-demo" style="width:264px;padding:6px 14px">
+  <label class="pm-field f1" data-hand="field" data-seed="1410"><input aria-label="写点什么" placeholder="写点什么…" tabindex="-1"><span class="pm-field-icon" data-hand="icon" data-size="18" data-seed="12" data-d="M5 19 L6 15 L16 5 L19 8 L9 18 Z M14 7 L17 10"></span></label>
+</div>
+</div>
+</section>
+<section class="cell" data-part="toast" style="left:447px;top:520px;width:385px;height:306px">
+<div class="cardbg pm-card" data-hand="card" data-seed="1321" data-tilt="0.4"></div>
+<header class="chead"><div class="cline"><span class="cname">提示</span><span class="chip">小动静 · 0.45 秒</span></div><div class="cdesc">便签啪地贴上，过一会儿撕走</div></header>
+<button type="button" class="again pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1322">再来一次</button>
+<div class="stage" style="width:316px;height:216px"><!-- 提示：便签贴上，再撕走 -->
+<div class="toast-demo" style="width:300px;height:190px;position:relative">
+  <style>.toast-demo .pm-toast:not(.is-in):not(.is-leaving) { visibility: hidden; }</style>
+  <div class="pm-toast t1" data-hand="note" data-seed="1450" data-tilt="-3" data-tapes="1" role="status" style="position:absolute;right:40px;bottom:30px">存好啦</div>
+</div>
+</div>
+</section>
+<section class="cell" data-part="crumple" style="left:854px;top:656px;width:385px;height:286px">
+<div class="cardbg pm-card" data-hand="card" data-seed="1324" data-tilt="-0.3"></div>
+<header class="chead"><div class="cline"><span class="cname">删除</span><span class="chip">小动静 · 0.6 秒</span></div><div class="cdesc">揉成纸团丢出去</div></header>
+<button type="button" class="again pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1325">再来一次</button>
+<div class="stage" style="width:306px;height:196px"><!-- 删除：丢掉「过期的优惠券」 -->
+<div class="del-demo" style="width:290px;height:176px;padding:8px 14px;overflow:hidden">
+  <div class="pm-crumple d0" style="display:flex;align-items:center;justify-content:space-between;width:236px;height:32px;padding:0 10px;margin-bottom:4px;font-size:14px;border-radius:6px;background:var(--color-card)"><span>旧的购物单</span><span style="display:flex;color:var(--color-danger)"><span data-hand="icon" data-size="17" data-seed="20" data-d="M5 7 L19 7 M9.5 7 L9.5 4.5 L14.5 4.5 L14.5 7 M7 7 L8 19.5 L16 19.5 L17 7"></span></span></div>
+  <div class="pm-crumple d1" style="display:flex;align-items:center;justify-content:space-between;width:236px;height:32px;padding:0 10px;margin-bottom:4px;font-size:14px;border-radius:6px;background:var(--color-card)"><span>过期的优惠券</span><span style="display:flex;color:var(--color-danger)"><span data-hand="icon" data-size="17" data-seed="21" data-d="M5 7 L19 7 M9.5 7 L9.5 4.5 L14.5 4.5 L14.5 7 M7 7 L8 19.5 L16 19.5 L17 7"></span></span></div>
+  <div class="pm-crumple d2" style="display:flex;align-items:center;justify-content:space-between;width:236px;height:32px;padding:0 10px;margin-bottom:4px;font-size:14px;border-radius:6px;background:var(--color-card)"><span>草稿 · 第 3 版</span><span style="display:flex;color:var(--color-danger)"><span data-hand="icon" data-size="17" data-seed="22" data-d="M5 7 L19 7 M9.5 7 L9.5 4.5 L14.5 4.5 L14.5 7 M7 7 L8 19.5 L16 19.5 L17 7"></span></span></div>
+  <div class="pm-undo pm-soft" style="font-size:13px;line-height:20px;visibility:hidden">已丢掉 · <span class="pm-link">撤销</span></div>
+</div>
+</div>
+</section>
+<section class="cell" data-part="sort" style="left:40px;top:682px;width:385px;height:242px">
+<div class="cardbg pm-card" data-hand="card" data-seed="1327" data-tilt="0.6"></div>
+<header class="chead"><div class="cline"><span class="cname">拖动排序</span><span class="chip">小动静 · 0.32 秒</span></div><div class="cdesc">拿起来歪一下，别的让开</div></header>
+<button type="button" class="again pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1328">再来一次</button>
+<div class="stage" style="width:280px;height:152px"><!-- 拖动排序：把「摸鱼读读」拿到下面一格 -->
+<div class="sort-demo" style="position:relative;width:264px;height:136px;padding:10px 14px">
+  <div class="pm-sort-item o0" style="position:absolute;left:14px;top:10px;width:236px;height:26px;display:flex;align-items:center;gap:8px;padding:0 10px;font-size:14px;border-radius:8px;background:var(--color-card);box-shadow:0 1px 2px var(--color-shadow)"><span style="display:flex;color:var(--color-ink-soft)"><span data-hand="icon" data-size="16" data-seed="30" data-d="M9 6 L9 6.1 M15 6 L15 6.1 M9 12 L9 12.1 M15 12 L15 12.1 M9 18 L9 18.1 M15 18 L15 18.1"></span></span><span>一步一步</span></div>
+  <div class="pm-sort-item o1" style="position:absolute;left:14px;top:39px;width:236px;height:26px;display:flex;align-items:center;gap:8px;padding:0 10px;font-size:14px;border-radius:8px;background:var(--color-card);box-shadow:0 1px 2px var(--color-shadow)"><span style="display:flex;color:var(--color-ink-soft)"><span data-hand="icon" data-size="16" data-seed="31" data-d="M9 6 L9 6.1 M15 6 L15 6.1 M9 12 L9 12.1 M15 12 L15 12.1 M9 18 L9 18.1 M15 18 L15 18.1"></span></span><span>摸鱼读读</span></div>
+  <div class="pm-sort-item o2" style="position:absolute;left:14px;top:68px;width:236px;height:26px;display:flex;align-items:center;gap:8px;padding:0 10px;font-size:14px;border-radius:8px;background:var(--color-card);box-shadow:0 1px 2px var(--color-shadow)"><span style="display:flex;color:var(--color-ink-soft)"><span data-hand="icon" data-size="16" data-seed="32" data-d="M9 6 L9 6.1 M15 6 L15 6.1 M9 12 L9 12.1 M15 12 L15 12.1 M9 18 L9 18.1 M15 18 L15 18.1"></span></span><span>钱来钱往</span></div>
+  <div class="pm-sort-item o3" style="position:absolute;left:14px;top:97px;width:236px;height:26px;display:flex;align-items:center;gap:8px;padding:0 10px;font-size:14px;border-radius:8px;background:var(--color-card);box-shadow:0 1px 2px var(--color-shadow)"><span style="display:flex;color:var(--color-ink-soft)"><span data-hand="icon" data-size="16" data-seed="33" data-d="M9 6 L9 6.1 M15 6 L15 6.1 M9 12 L9 12.1 M15 12 L15 12.1 M9 18 L9 18.1 M15 18 L15 18.1"></span></span><span>念念不忘</span></div>
+</div>
+</div>
+</section>
+<section class="cell" data-part="tag" style="left:447px;top:848px;width:385px;height:186px">
+<div class="cardbg pm-card" data-hand="card" data-seed="1330" data-tilt="0.3"></div>
+<header class="chead"><div class="cline"><span class="cname">标签</span><span class="chip">小动静 · 0.45 秒</span></div><div class="cdesc">拍上去，撕下来</div></header>
+<button type="button" class="again pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1331">再来一次</button>
+<div class="stage" style="width:349px;height:96px"><!-- 标签：撕掉「海边」，拍上「晚风」 -->
+<div class="tag-demo" style="display:flex;flex-wrap:wrap;gap:6px;width:330px;padding:30px 14px 10px">
+  <style>.tag-demo .t3:not(.is-in) { visibility: hidden; }</style>
+  <span class="pm-tag pm-cat-orange t0">柚子<button type="button" class="pm-tag-x" aria-label="去掉「柚子」"><span data-hand="icon" data-size="13" data-seed="51" data-d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5"></span></button></span>
+  <span class="pm-tag pm-cat-sky t1">海边<button type="button" class="pm-tag-x" aria-label="去掉「海边」"><span data-hand="icon" data-size="13" data-seed="52" data-d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5"></span></button></span>
+  <span class="pm-tag pm-cat-mint t2">周末<button type="button" class="pm-tag-x" aria-label="去掉「周末」"><span data-hand="icon" data-size="13" data-seed="53" data-d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5"></span></button></span>
+  <span class="pm-tag pm-cat-grape t3">晚风<button type="button" class="pm-tag-x" aria-label="去掉「晚风」"><span data-hand="icon" data-size="13" data-seed="54" data-d="M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5"></span></button></span>
+</div>
+</div>
+</section>
+<section class="cell" data-part="tooltip" style="left:40px;top:946px;width:385px;height:246px">
+<div class="cardbg pm-card" data-hand="card" data-seed="1333" data-tilt="-0.5"></div>
+<header class="chead"><div class="cline"><span class="cname">鼠标提示</span><span class="chip">小动静 · 1.1 秒</span></div><div class="cdesc">小签晃两下</div></header>
+<button type="button" class="again pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1334">再来一次</button>
+<div class="stage" style="width:306px;height:156px"><!-- 鼠标提示：三个只有图标的按钮，移到第一个上面 -->
+<div class="tip-demo" style="display:flex;gap:26px;padding:4px 30px 58px">
+  <span class="pm-tip-host t1"><button type="button" class="pm-btn pm-btn--icon" data-hand="round" data-seed="1420" aria-label="找东西"><span data-hand="icon" data-size="20" data-seed="3" data-d="M16 16 L20.5 20.5" data-o="10.5 10.5 6"></span></button><span class="pm-tip" role="tooltip"><span class="pm-tip-string"></span><span class="pm-tip-tag">找东西</span></span></span>
+  <span class="pm-tip-host t2"><button type="button" class="pm-btn pm-btn--icon" data-hand="round" data-seed="1421" aria-label="置顶"><span data-hand="icon" data-size="20" data-seed="4" data-d="M9 4.5 L15 4.5 M10 4.5 L10 10 L7 13.5 L17 13.5 L14 10 L14 4.5 M12 13.5 L12 19.5"></span></button><span class="pm-tip" role="tooltip"><span class="pm-tip-string"></span><span class="pm-tip-tag">置顶</span></span></span>
+  <span class="pm-tip-host t3"><button type="button" class="pm-btn pm-btn--icon" data-hand="round" data-seed="1422" aria-label="丢掉"><span data-hand="icon" data-size="20" data-seed="5" data-d="M5 7 L19 7 M9.5 7 L9.5 4.5 L14.5 4.5 L14.5 7 M7 7 L8 19.5 L16 19.5 L17 7"></span></button><span class="pm-tip" role="tooltip"><span class="pm-tip-string"></span><span class="pm-tip-tag">丢掉</span></span></span>
+</div>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"palette":{"editor":"enum","options":["blue","purple","kraft","yellow","mint"],"default":"blue","section":"配色"},"dark":{"editor":"boolean","default":false,"section":"配色"},"$preview":{"width":1280,"height":1236}}'>
+const CFG = {"parts":{"press":{"html":"<!-- 按钮：按下「记一笔」再松开 -->\n<div class=\"press-demo\" style=\"display:flex;gap:10px;padding:10px 12px\">\n  <button type=\"button\" class=\"pm-btn b1\" data-hand=\"button\" data-seed=\"1430\"><span data-hand=\"icon\" data-size=\"16\" data-seed=\"1\" data-d=\"M12 5 L12 19 M5 12 L19 12\"></span>记一笔</button>\n  <button type=\"button\" class=\"pm-btn pm-btn--plain\" data-hand=\"button\" data-fill=\"card\" data-seed=\"1431\">取消</button>\n</div>\n","steps":[{"at":0,"add":"is-pressed","on":".b1"},{"at":120,"remove":"is-pressed","on":".b1"}],"host":".press-demo","reset":0},"switch":{"html":"<!-- 开关：把「发给云端」打开 -->\n<div class=\"sw-demo\" style=\"width:250px;padding:6px 14px\">\n  <button type=\"button\" class=\"pm-switch s1\" role=\"switch\" aria-checked=\"false\"><span>发给云端</span><span data-hand=\"switch\" data-seed=\"1371\"></span></button>\n</div>\n","steps":[{"at":0,"attr":{"aria-checked":"true"},"add":"is-pop","on":".s1"}],"host":".sw-demo","reset":0},"segmented":{"html":"<!-- 分段：从「全部」换到「生日」（每格 57 宽） -->\n<div class=\"seg-demo\" style=\"padding:6px 10px\">\n  <div class=\"pm-seg\" data-hand=\"field\" data-seed=\"1390\" data-sw=\"1.5\" data-amp=\"0.55\" role=\"group\" aria-label=\"筛选\" style=\"width:236px\">\n    <span class=\"pm-seg-hl\" data-hand=\"pick\" data-seed=\"1391\" style=\"width:57px\"></span>\n    <button type=\"button\" class=\"pm-seg-item i0\" aria-pressed=\"true\" style=\"width:57px;min-width:0;padding:0\">全部</button>\n    <button type=\"button\" class=\"pm-seg-item i1\" aria-pressed=\"false\" style=\"width:57px;min-width:0;padding:0\">纪念日</button>\n    <button type=\"button\" class=\"pm-seg-item i2\" aria-pressed=\"false\" style=\"width:57px;min-width:0;padding:0\">生日</button>\n    <button type=\"button\" class=\"pm-seg-item i3\" aria-pressed=\"false\" style=\"width:57px;min-width:0;padding:0\">证件</button>\n  </div>\n</div>\n","steps":[{"at":0,"attr":{"aria-pressed":"false"},"on":".i0"},{"at":0,"attr":{"aria-pressed":"true"},"on":".i2"},{"at":0,"style":{"--pm-seg-x":"114px"},"add":"is-pop","on":".pm-seg-hl"}],"host":".seg-demo","reset":0},"select":{"html":"<!-- 下拉：点开选月份 -->\n<div class=\"dd-demo\" style=\"width:204px;height:214px;padding:6px 12px\">\n  <button type=\"button\" class=\"pm-field pm-select dd\" data-hand=\"field\" data-seed=\"1395\" data-r=\"10\" data-sw=\"1.5\" data-amp=\"0.55\" aria-haspopup=\"listbox\" aria-expanded=\"false\" style=\"width:180px\"><span class=\"pm-num\">2026 年 11 月</span><span data-hand=\"icon\" data-size=\"16\" data-seed=\"6\" data-d=\"M7 10 L12 15 L17 10\"></span></button>\n  <div class=\"pm-menu\" role=\"listbox\" style=\"width:180px;margin-top:6px;visibility:hidden\">\n    <div class=\"pm-menu-item\" role=\"option\" aria-selected=\"false\"><span class=\"pm-num\">9 月</span><span class=\"pm-menu-check\" data-hand=\"icon\" data-size=\"18\" data-seed=\"8\" data-d=\"M5.5 12.5 L10 17 L18.5 7\" style=\"color:var(--color-pen)\"></span></div>\n    <div class=\"pm-menu-item\" role=\"option\" aria-selected=\"false\"><span class=\"pm-num\">10 月</span><span class=\"pm-menu-check\" data-hand=\"icon\" data-size=\"18\" data-seed=\"9\" data-d=\"M5.5 12.5 L10 17 L18.5 7\" style=\"color:var(--color-pen)\"></span></div>\n    <div class=\"pm-menu-item\" role=\"option\" aria-selected=\"true\"><span class=\"pm-num\">11 月</span><span class=\"pm-menu-check\" data-hand=\"icon\" data-size=\"18\" data-seed=\"10\" data-d=\"M5.5 12.5 L10 17 L18.5 7\" style=\"color:var(--color-pen)\"></span></div>\n    <div class=\"pm-menu-item\" role=\"option\" aria-selected=\"false\"><span class=\"pm-num\">12 月</span><span class=\"pm-menu-check\" data-hand=\"icon\" data-size=\"18\" data-seed=\"11\" data-d=\"M5.5 12.5 L10 17 L18.5 7\" style=\"color:var(--color-pen)\"></span></div>\n  </div>\n</div>\n","steps":[{"at":0,"attr":{"aria-expanded":"true"},"on":".dd"},{"at":0,"add":"is-open","style":{"visibility":"visible"},"on":".pm-menu"}],"host":".dd-demo","reset":0},"check":{"html":"<!-- 勾选：勾上「交作业」 -->\n<div class=\"ck-demo\" style=\"width:220px;padding:6px 14px\">\n  <button type=\"button\" class=\"pm-check c1\" role=\"checkbox\" aria-checked=\"false\"><span data-hand=\"check\" data-seed=\"1400\"></span><span class=\"pm-check-text\" data-hand=\"strike\" data-seed=\"1405\">交作业</span></button>\n  <button type=\"button\" class=\"pm-check\" role=\"checkbox\" aria-checked=\"true\"><span data-hand=\"check\" data-seed=\"1401\"></span><span class=\"pm-check-text\" data-hand=\"strike\" data-seed=\"1406\">给猫买粮</span></button>\n</div>\n","steps":[{"at":0,"attr":{"aria-checked":"true"},"add":"is-pop","on":".c1"}],"host":".ck-demo","reset":0},"rating":{"html":"<!-- 评分：从一颗星点到五颗 -->\n<div class=\"rate-demo\" style=\"padding:6px 10px\">\n  <div class=\"pm-rating\" role=\"radiogroup\" aria-label=\"评分\">\n    <button type=\"button\" class=\"pm-rating-star r0 is-on\" role=\"radio\" aria-checked=\"true\" aria-label=\"1 颗星\"><span data-hand=\"star\" data-seed=\"1350\"></span></button>\n    <button type=\"button\" class=\"pm-rating-star r1\" role=\"radio\" aria-checked=\"false\" aria-label=\"2 颗星\"><span data-hand=\"star\" data-seed=\"1351\"></span></button>\n    <button type=\"button\" class=\"pm-rating-star r2\" role=\"radio\" aria-checked=\"false\" aria-label=\"3 颗星\"><span data-hand=\"star\" data-seed=\"1352\"></span></button>\n    <button type=\"button\" class=\"pm-rating-star r3\" role=\"radio\" aria-checked=\"false\" aria-label=\"4 颗星\"><span data-hand=\"star\" data-seed=\"1353\"></span></button>\n    <button type=\"button\" class=\"pm-rating-star r4\" role=\"radio\" aria-checked=\"false\" aria-label=\"5 颗星\"><span data-hand=\"star\" data-seed=\"1354\"></span></button>\n  </div>\n</div>\n","steps":[{"at":0,"add":"is-on","on":".pm-rating-star","all":true},{"at":0,"attr":{"aria-checked":"true"},"on":".r4"},{"at":0,"add":"is-pop","on":".pm-rating"}],"host":".rate-demo","reset":0},"field":{"html":"<!-- 输入框：点进去 -->\n<div class=\"field-demo\" style=\"width:264px;padding:6px 14px\">\n  <label class=\"pm-field f1\" data-hand=\"field\" data-seed=\"1410\"><input aria-label=\"写点什么\" placeholder=\"写点什么…\" tabindex=\"-1\"><span class=\"pm-field-icon\" data-hand=\"icon\" data-size=\"18\" data-seed=\"12\" data-d=\"M5 19 L6 15 L16 5 L19 8 L9 18 Z M14 7 L17 10\"></span></label>\n</div>\n","steps":[{"at":0,"add":"is-focus","on":".f1"}],"host":".field-demo","reset":0},"toast":{"html":"<!-- 提示：便签贴上，再撕走 -->\n<div class=\"toast-demo\" style=\"width:300px;height:190px;position:relative\">\n  <style>.toast-demo .pm-toast:not(.is-in):not(.is-leaving) { visibility: hidden; }</style>\n  <div class=\"pm-toast t1\" data-hand=\"note\" data-seed=\"1450\" data-tilt=\"-3\" data-tapes=\"1\" role=\"status\" style=\"position:absolute;right:40px;bottom:30px\">存好啦</div>\n</div>\n","steps":[{"at":0,"add":"is-in","on":".t1"},{"at":1300,"remove":"is-in","add":"is-leaving","on":".t1"}],"host":".toast-demo","reset":3000},"crumple":{"html":"<!-- 删除：丢掉「过期的优惠券」 -->\n<div class=\"del-demo\" style=\"width:290px;height:176px;padding:8px 14px;overflow:hidden\">\n  <div class=\"pm-crumple d0\" style=\"display:flex;align-items:center;justify-content:space-between;width:236px;height:32px;padding:0 10px;margin-bottom:4px;font-size:14px;border-radius:6px;background:var(--color-card)\"><span>旧的购物单</span><span style=\"display:flex;color:var(--color-danger)\"><span data-hand=\"icon\" data-size=\"17\" data-seed=\"20\" data-d=\"M5 7 L19 7 M9.5 7 L9.5 4.5 L14.5 4.5 L14.5 7 M7 7 L8 19.5 L16 19.5 L17 7\"></span></span></div>\n  <div class=\"pm-crumple d1\" style=\"display:flex;align-items:center;justify-content:space-between;width:236px;height:32px;padding:0 10px;margin-bottom:4px;font-size:14px;border-radius:6px;background:var(--color-card)\"><span>过期的优惠券</span><span style=\"display:flex;color:var(--color-danger)\"><span data-hand=\"icon\" data-size=\"17\" data-seed=\"21\" data-d=\"M5 7 L19 7 M9.5 7 L9.5 4.5 L14.5 4.5 L14.5 7 M7 7 L8 19.5 L16 19.5 L17 7\"></span></span></div>\n  <div class=\"pm-crumple d2\" style=\"display:flex;align-items:center;justify-content:space-between;width:236px;height:32px;padding:0 10px;margin-bottom:4px;font-size:14px;border-radius:6px;background:var(--color-card)\"><span>草稿 · 第 3 版</span><span style=\"display:flex;color:var(--color-danger)\"><span data-hand=\"icon\" data-size=\"17\" data-seed=\"22\" data-d=\"M5 7 L19 7 M9.5 7 L9.5 4.5 L14.5 4.5 L14.5 7 M7 7 L8 19.5 L16 19.5 L17 7\"></span></span></div>\n  <div class=\"pm-undo pm-soft\" style=\"font-size:13px;line-height:20px;visibility:hidden\">已丢掉 · <span class=\"pm-link\">撤销</span></div>\n</div>\n","steps":[{"at":0,"add":"is-leaving","on":".d1"},{"at":620,"add":"is-in","style":{"visibility":"visible"},"on":".pm-undo"}],"host":".del-demo","reset":2600},"sort":{"html":"<!-- 拖动排序：把「摸鱼读读」拿到下面一格 -->\n<div class=\"sort-demo\" style=\"position:relative;width:264px;height:136px;padding:10px 14px\">\n  <div class=\"pm-sort-item o0\" style=\"position:absolute;left:14px;top:10px;width:236px;height:26px;display:flex;align-items:center;gap:8px;padding:0 10px;font-size:14px;border-radius:8px;background:var(--color-card);box-shadow:0 1px 2px var(--color-shadow)\"><span style=\"display:flex;color:var(--color-ink-soft)\"><span data-hand=\"icon\" data-size=\"16\" data-seed=\"30\" data-d=\"M9 6 L9 6.1 M15 6 L15 6.1 M9 12 L9 12.1 M15 12 L15 12.1 M9 18 L9 18.1 M15 18 L15 18.1\"></span></span><span>一步一步</span></div>\n  <div class=\"pm-sort-item o1\" style=\"position:absolute;left:14px;top:39px;width:236px;height:26px;display:flex;align-items:center;gap:8px;padding:0 10px;font-size:14px;border-radius:8px;background:var(--color-card);box-shadow:0 1px 2px var(--color-shadow)\"><span style=\"display:flex;color:var(--color-ink-soft)\"><span data-hand=\"icon\" data-size=\"16\" data-seed=\"31\" data-d=\"M9 6 L9 6.1 M15 6 L15 6.1 M9 12 L9 12.1 M15 12 L15 12.1 M9 18 L9 18.1 M15 18 L15 18.1\"></span></span><span>摸鱼读读</span></div>\n  <div class=\"pm-sort-item o2\" style=\"position:absolute;left:14px;top:68px;width:236px;height:26px;display:flex;align-items:center;gap:8px;padding:0 10px;font-size:14px;border-radius:8px;background:var(--color-card);box-shadow:0 1px 2px var(--color-shadow)\"><span style=\"display:flex;color:var(--color-ink-soft)\"><span data-hand=\"icon\" data-size=\"16\" data-seed=\"32\" data-d=\"M9 6 L9 6.1 M15 6 L15 6.1 M9 12 L9 12.1 M15 12 L15 12.1 M9 18 L9 18.1 M15 18 L15 18.1\"></span></span><span>钱来钱往</span></div>\n  <div class=\"pm-sort-item o3\" style=\"position:absolute;left:14px;top:97px;width:236px;height:26px;display:flex;align-items:center;gap:8px;padding:0 10px;font-size:14px;border-radius:8px;background:var(--color-card);box-shadow:0 1px 2px var(--color-shadow)\"><span style=\"display:flex;color:var(--color-ink-soft)\"><span data-hand=\"icon\" data-size=\"16\" data-seed=\"33\" data-d=\"M9 6 L9 6.1 M15 6 L15 6.1 M9 12 L9 12.1 M15 12 L15 12.1 M9 18 L9 18.1 M15 18 L15 18.1\"></span></span><span>念念不忘</span></div>\n</div>\n","steps":[{"at":0,"add":"is-held","on":".o1"},{"at":240,"style":{"transform":"translateY(16px)"},"on":".o1"},{"at":320,"style":{"transform":"translateY(29px)"},"on":".o1"},{"at":320,"style":{"transform":"translateY(-29px)"},"on":".o2"},{"at":700,"remove":"is-held","on":".o1"}],"host":".sort-demo","reset":0},"tag":{"html":"<!-- 标签：撕掉「海边」，拍上「晚风」 -->\n<div class=\"tag-demo\" style=\"display:flex;flex-wrap:wrap;gap:6px;width:330px;padding:30px 14px 10px\">\n  <style>.tag-demo .t3:not(.is-in) { visibility: hidden; }</style>\n  <span class=\"pm-tag pm-cat-orange t0\">柚子<button type=\"button\" class=\"pm-tag-x\" aria-label=\"去掉「柚子」\"><span data-hand=\"icon\" data-size=\"13\" data-seed=\"51\" data-d=\"M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5\"></span></button></span>\n  <span class=\"pm-tag pm-cat-sky t1\">海边<button type=\"button\" class=\"pm-tag-x\" aria-label=\"去掉「海边」\"><span data-hand=\"icon\" data-size=\"13\" data-seed=\"52\" data-d=\"M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5\"></span></button></span>\n  <span class=\"pm-tag pm-cat-mint t2\">周末<button type=\"button\" class=\"pm-tag-x\" aria-label=\"去掉「周末」\"><span data-hand=\"icon\" data-size=\"13\" data-seed=\"53\" data-d=\"M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5\"></span></button></span>\n  <span class=\"pm-tag pm-cat-grape t3\">晚风<button type=\"button\" class=\"pm-tag-x\" aria-label=\"去掉「晚风」\"><span data-hand=\"icon\" data-size=\"13\" data-seed=\"54\" data-d=\"M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5\"></span></button></span>\n</div>\n","steps":[{"at":0,"add":"is-leaving","on":".t1"},{"at":500,"add":"is-in","on":".t3"}],"host":".tag-demo","reset":0},"tooltip":{"html":"<!-- 鼠标提示：三个只有图标的按钮，移到第一个上面 -->\n<div class=\"tip-demo\" style=\"display:flex;gap:26px;padding:4px 30px 58px\">\n  <span class=\"pm-tip-host t1\"><button type=\"button\" class=\"pm-btn pm-btn--icon\" data-hand=\"round\" data-seed=\"1420\" aria-label=\"找东西\"><span data-hand=\"icon\" data-size=\"20\" data-seed=\"3\" data-d=\"M16 16 L20.5 20.5\" data-o=\"10.5 10.5 6\"></span></button><span class=\"pm-tip\" role=\"tooltip\"><span class=\"pm-tip-string\"></span><span class=\"pm-tip-tag\">找东西</span></span></span>\n  <span class=\"pm-tip-host t2\"><button type=\"button\" class=\"pm-btn pm-btn--icon\" data-hand=\"round\" data-seed=\"1421\" aria-label=\"置顶\"><span data-hand=\"icon\" data-size=\"20\" data-seed=\"4\" data-d=\"M9 4.5 L15 4.5 M10 4.5 L10 10 L7 13.5 L17 13.5 L14 10 L14 4.5 M12 13.5 L12 19.5\"></span></button><span class=\"pm-tip\" role=\"tooltip\"><span class=\"pm-tip-string\"></span><span class=\"pm-tip-tag\">置顶</span></span></span>\n  <span class=\"pm-tip-host t3\"><button type=\"button\" class=\"pm-btn pm-btn--icon\" data-hand=\"round\" data-seed=\"1422\" aria-label=\"丢掉\"><span data-hand=\"icon\" data-size=\"20\" data-seed=\"5\" data-d=\"M5 7 L19 7 M9.5 7 L9.5 4.5 L14.5 4.5 L14.5 7 M7 7 L8 19.5 L16 19.5 L17 7\"></span></button><span class=\"pm-tip\" role=\"tooltip\"><span class=\"pm-tip-string\"></span><span class=\"pm-tip-tag\">丢掉</span></span></span>\n</div>\n","steps":[{"at":0,"add":"is-hover","on":".tip-demo .t1"}],"host":".tip-demo","reset":0}}};
+// 动效画板的播放（画板脚本，经典 JS；gen.mjs 原样放进每张画板）。
+// 每格放一个动效零件的演示片段（schemes/pomelo/motion/<id>/ 的 fragment），「再来一次」按零件 motion.json 的 capture.steps
+// 在同样的时刻加同样的类名——和导出 GIF、bench 动效台是同一套触发；动效本身在 Design System 的 bundle.css 里。
+// 控件也能直接点：勾选、开关、分段、评分、下拉、标签、删除、信封、小票翻面。
+var PomeloPlay = (function () {
+  function applyStep(stage, s, host) {
+    var sel = s.on || host;
+    var nodes = s.all ? Array.prototype.slice.call(stage.querySelectorAll(sel)) : [stage.querySelector(sel)];
+    nodes.forEach(function (n) {
+      if (!n) return;
+      String(s.add || '').split(/\s+/).filter(Boolean).forEach(function (c) { n.classList.add(c); });
+      String(s.remove || '').split(/\s+/).filter(Boolean).forEach(function (c) { n.classList.remove(c); });
+      Object.keys(s.attr || {}).forEach(function (k) { if (s.attr[k] === null) n.removeAttribute(k); else n.setAttribute(k, s.attr[k]); });
+      Object.keys(s.style || {}).forEach(function (k) { n.style.setProperty(k, s.style[k]); });
+    });
+  }
+  function replay(el, cls) { if (!el) return; el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); }
+
+  function start(cfg) {
+    var timers = {};
+    function play(cell) {
+      var id = cell.dataset.part, part = cfg.parts[id];
+      var stage = cell.querySelector('.stage');
+      (timers[id] || []).forEach(clearTimeout);
+      timers[id] = [];
+      stage.innerHTML = part.html;
+      if (window.Pomelo) Pomelo.paint(stage);
+      // 等画好、字到了再开始（读一次宽高，过渡才有起点）
+      void stage.offsetWidth;
+      timers[id].push(setTimeout(function () {
+        (part.steps || []).forEach(function (s) { timers[id].push(setTimeout(function () { applyStep(stage, s, part.host); void stage.offsetWidth; }, s.at)); });
+      }, 120));
+      // 放完东西就没了的：停一会儿放回开头的样子（不再放动画）
+      if (part.reset) timers[id].push(setTimeout(function () { stage.innerHTML = part.html; if (window.Pomelo) Pomelo.paint(stage); }, part.reset));
+    }
+    var cells = Array.prototype.slice.call(document.querySelectorAll('.cell[data-part]'));
+    cells.forEach(function (cell, i) {
+      cell.querySelector('.again').addEventListener('click', function () { play(cell); });
+      // 打开画板时一格接一格放一遍
+      setTimeout(function () { play(cell); }, 400 + i * 260);
+    });
+
+    // ---------- 控件直接点 ----------
+    document.addEventListener('click', function (e) {
+      var t;
+      if ((t = e.target.closest('.pm-check'))) {
+        var on = t.getAttribute('aria-checked') !== 'true';
+        t.setAttribute('aria-checked', String(on));
+        if (on) replay(t, 'is-pop'); else t.classList.remove('is-pop');
+      } else if ((t = e.target.closest('.pm-switch'))) {
+        t.setAttribute('aria-checked', String(t.getAttribute('aria-checked') !== 'true'));
+        replay(t, 'is-pop');
+      } else if ((t = e.target.closest('.pm-seg-item'))) {
+        var seg = t.closest('.pm-seg'), hl = seg.querySelector('.pm-seg-hl');
+        if (t.getAttribute('aria-pressed') === 'true') return;
+        Array.prototype.forEach.call(seg.querySelectorAll('.pm-seg-item'), function (x) { x.setAttribute('aria-pressed', String(x === t)); });
+        if (hl) { hl.style.width = t.offsetWidth + 'px'; hl.style.setProperty('--pm-seg-x', (t.offsetLeft - 3) + 'px'); replay(hl, 'is-pop'); }
+      } else if ((t = e.target.closest('.pm-rating-star'))) {
+        var stars = Array.prototype.slice.call(t.parentElement.children), k = stars.indexOf(t);
+        stars.forEach(function (x, i) { x.classList.toggle('is-on', i <= k); x.setAttribute('aria-checked', String(i === k)); });
+        replay(t.parentElement, 'is-pop');
+      } else if ((t = e.target.closest('.pm-menu-item'))) {
+        var menu = t.closest('.pm-menu'), btn = menu.parentElement.querySelector('.pm-select');
+        Array.prototype.forEach.call(menu.querySelectorAll('.pm-menu-item'), function (x) { x.setAttribute('aria-selected', String(x === t)); });
+        var lab = btn && btn.querySelector('.pm-num');
+        if (lab) lab.textContent = '2026 年 ' + t.textContent.trim();
+        setTimeout(function () { closeMenu(menu, btn); }, 380);
+      } else if ((t = e.target.closest('.pm-select'))) {
+        var m = t.parentElement.querySelector('.pm-menu');
+        if (!m) return;
+        if (t.getAttribute('aria-expanded') === 'true') return closeMenu(m, t);
+        t.setAttribute('aria-expanded', 'true');
+        m.style.visibility = 'visible'; m.classList.remove('is-closing');
+        if (window.Pomelo) Pomelo.paint(m);
+        replay(m, 'is-open');
+      } else if ((t = e.target.closest('.pm-tag-x'))) {
+        var tag = t.closest('.pm-tag');
+        tag.classList.remove('is-in'); tag.classList.add('is-leaving');
+        setTimeout(function () { tag.style.display = 'none'; }, 380);
+      } else if ((t = e.target.closest('.pm-crumple'))) {
+        var box = t.parentElement, undo = box.querySelector('.pm-undo');
+        replay(t, 'is-leaving');
+        setTimeout(function () { t.style.visibility = 'hidden'; if (undo) { undo.style.visibility = 'visible'; replay(undo, 'is-in'); undo.onclick = function () { t.style.visibility = ''; t.classList.remove('is-leaving'); replay(t, 'is-back'); undo.style.visibility = 'hidden'; }; } }, 620);
+      } else if ((t = e.target.closest('.pm-flip'))) {
+        t.classList.toggle('is-flipped');
+      } else if ((t = e.target.closest('.pm-env'))) {
+        t.classList.toggle('is-open');
+      } else if ((t = e.target.closest('.pm-peel'))) {
+        replay(t, 'is-flyoff');
+        setTimeout(function () { t.classList.remove('is-flyoff'); replay(t, 'is-back'); }, 900);
+      } else if ((t = e.target.closest('.empty-cell'))) {
+        // 空状态：拿掉再放回去，再画一次
+        var e2 = t.querySelector('.pm-empty');
+        var clone = e2.cloneNode(true);
+        e2.parentNode.replaceChild(clone, e2);
+      }
+    });
+    function closeMenu(menu, btn) {
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+      menu.classList.remove('is-open'); menu.classList.add('is-closing');
+      setTimeout(function () { menu.style.visibility = 'hidden'; menu.classList.remove('is-closing'); }, 180);
+    }
+  }
+  return { start: start };
+})();
+
+class Component extends DCLogic {
+  renderVals() { return { palette: this.props.palette ?? 'blue', theme: this.props.dark ? 'dark' : 'light' }; }
+  componentDidMount() { this.stop = Pomelo.paintLive(document.body); PomeloPlay.start(CFG); }
+  componentDidUpdate() { Pomelo.paint(document.body); }
+  componentWillUnmount() { this.stop && this.stop(); }
+}
+</script>
+</body>
+</html>

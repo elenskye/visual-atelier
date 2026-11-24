@@ -1,0 +1,57 @@
+<!-- @dsCard height=320 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Pomelo 柚儿园</title>
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--color-desk); color: var(--color-ink); font-family: var(--font-hand); overflow: hidden; }
+  .cover { position: relative; height: 320px; overflow: hidden; }
+  .art { position: absolute; top: 0; left: 480px; width: 480px; height: 320px; overflow: hidden; }
+  .art svg { display: block; width: 480px; height: 320px; }
+  .yuzu { fill: var(--color-yuzu); }
+  .pen { fill: var(--color-primary); }
+  .mint { fill: var(--color-cat-mint); }
+  .pink { fill: var(--color-cat-pink); }
+  .card { rx: var(--radius-card); }
+  .paper { rx: var(--radius-paper); }
+  .tma { fill: var(--color-tape-mint-a); }
+  .tmb { fill: var(--color-tape-mint-b); }
+  .tya { fill: var(--color-tape-yuzu-a); }
+  .tyb { fill: var(--color-tape-yuzu-b); }
+  .tape { opacity: .88; }
+  .words { position: absolute; left: var(--space-7); bottom: var(--space-7); max-width: 440px; }
+  .name { margin: 0; font-size: 104px; line-height: .95; font-weight: 700; color: var(--color-ink); }
+  .tag { margin: var(--space-3) 0 0 4px; font-size: 14px; line-height: 20px; color: var(--color-ink-soft); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="art" aria-hidden="true">
+<svg viewBox="0 0 480 320" width="480" height="320">
+<!--
+  blocks      color-yuzu 224×200 (柚子本人，最大) · color-primary 160×184 (笔) · color-cat-mint 170×140 bleeding off the right edge · one color-cat-pink disc r=30 (a round sticker) — about two fifths of 960×320
+  arrangement papers scattered on the desk, overlapping and tilted −3° / +2.5° / −2° like the B3 desk collage; the pink sticker sits on the yuzu paper's lower edge
+  pattern     the brand's literal motif, tape: two strips of 45° stripes at a 7px pitch (color-tape-mint-a/b, color-tape-yuzu-a/b), toothed ends, holding the papers down — "胶带两种，薄荷、柚黄；一张卡片最多两条"
+  scales      sides in space multiples (4px grid); corners radius-card 14 and radius-paper 10; disc radius-round; stripe pitch 7 from tokens/handmade.json tape.stripe
+-->
+<defs>
+  <pattern id="pm-cover-tm" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect class="tma" width="14" height="14"/><rect class="tmb" width="7" height="14"/></pattern>
+  <pattern id="pm-cover-ty" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect class="tya" width="14" height="14"/><rect class="tyb" width="7" height="14"/></pattern>
+</defs>
+<rect class="yuzu card" x="40" y="72" width="224" height="200" rx="14" transform="rotate(-3 152 172)"/>
+<rect class="pen paper" x="216" y="24" width="160" height="184" rx="10" transform="rotate(2.5 296 116)"/>
+<rect class="mint card" x="332" y="152" width="170" height="140" rx="14" transform="rotate(-2 417 222)"/>
+<circle class="pink" cx="104" cy="270" r="30"/>
+<polygon class="tape" fill="url(#pm-cover-tm)" points="0,0 5.2,2.6 0,5.2 5.2,7.8 0,10.4 5.2,13 0,15.6 5.2,18.2 0,20.8 5.2,23.4 0,26 104,26 98.8,23.4 104,20.8 98.8,18.2 104,15.6 98.8,13 104,10.4 98.8,7.8 104,5.2 98.8,2.6 104,0" transform="translate(164 52) rotate(-6 52 13)"/>
+<polygon class="tape" fill="url(#pm-cover-ty)" points="0,0 4.6,2.4 0,4.8 4.6,7.2 0,9.6 4.6,12 0,14.4 4.6,16.8 0,19.2 4.6,21.6 0,24 92,24 87.4,21.6 92,19.2 87.4,16.8 92,14.4 87.4,12 92,9.6 87.4,7.2 92,4.8 87.4,2.4 92,0" transform="translate(300 150) rotate(32 46 12)"/>
+</svg>
+</div>
+<div class="words">
+  <h1 class="name">Pomelo<br>柚儿园</h1>
+  <p class="tag">一张摊开的桌面，上面是手账；纸可以歪，字永远是正的。</p>
+</div>
+</div>
+</body>
+</html>

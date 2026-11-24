@@ -1,0 +1,45 @@
+<!-- @dsCard group="搜索与状态" height=520 subtitle="搜索框、状态行、结果卡（常态 / 悬停）" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>SiteSearch</title>
+<style>
+  .vm-demo { padding: var(--space-6); max-width: 820px; }
+  .vm-demo .site-search { margin-top: 0; }
+  /* 静态示意悬停态：与 bundle.css 里 :hover 的声明相同 */
+  .site-search-result a.vm-hover { border-color: var(--color-accent); transform: translateY(-2px); }
+  .site-search-result a.vm-hover h2 { color: var(--color-ember); }
+</style>
+</head>
+<body class="vm-page">
+<div class="vm-demo">
+  <section class="site-search">
+    <form class="site-search-form" role="search" onsubmit="return false">
+      <label for="vm-demo-search">搜索关键词</label>
+      <div class="site-search-controls">
+        <input id="vm-demo-search" type="search" placeholder="例如：机器学习、旅行、绘画">
+        <button class="button-link" type="submit">搜索</button>
+      </div>
+    </form>
+    <p class="site-search-status" aria-live="polite">找到 2 条结果</p>
+    <ol class="site-search-results">
+      <li class="site-search-result">
+        <a href="#">
+          <h2>在山城迷路的一天</h2>
+          <p>地图上的直线，到了脚下都变成台阶。</p>
+          <p class="site-search-result-meta">写作 · 中文</p>
+        </a>
+      </li>
+      <li class="site-search-result">
+        <a class="vm-hover" href="#">
+          <h2>一个记路线的小工具</h2>
+          <p>悬停时：描边变青绿、上浮 2px，标题变朱红。</p>
+          <p class="site-search-result-meta">项目 · 中文</p>
+        </a>
+      </li>
+    </ol>
+  </section>
+</div>
+</body>
+</html>

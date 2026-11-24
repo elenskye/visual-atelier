@@ -1,0 +1,19 @@
+/* 全做完：便签「今天的事都做完啦！」从右上方啪地贴上（0.5 秒），同时从勾完的地方撒一把小贴纸（圆点、方块、星星，分类色），
+   往外飞、往下落、淡掉（1.1 秒）；便签停一会儿自己撕走（.is-leaving，0.38 秒）。
+   小贴纸是 .pm-confetti 里的 <i>：--dx --dy 是飞到哪、--rr 转多少、--pm-d 晚多少（界面随机好写进去）。 */
+.pm-confetti { position: absolute; width: 0; height: 0; pointer-events: none; }
+.pm-confetti > i { position: absolute; left: 0; top: 0; display: block; opacity: 0; }
+.pm-cf-dot { border-radius: 50%; }
+.pm-cf-sq { border-radius: 2px; }
+.pm-cf-star { clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
+.pm-cheer.is-in .pm-cheer-note { animation: pm-cheer-note .5s cubic-bezier(.3,1.4,.5,1) both; }
+.pm-cheer.is-leaving .pm-cheer-note { animation: pm-cheer-out .38s ease-in both; }
+.pm-cheer.is-in .pm-confetti > i { animation: pm-burst 1.1s cubic-bezier(.2, .7, .3, 1) both; animation-delay: var(--pm-d, 0s); }
+@keyframes pm-cheer-note { 0% { opacity: 0; transform: translate(30px, -40px) rotate(16deg) scale(1.3); } 66% { opacity: 1; transform: rotate(-2deg) scale(.96); } 100% { opacity: 1; transform: none; } }
+@keyframes pm-cheer-out { 0% { transform: none; } 100% { opacity: 0; transform: translate(60px, -80px) rotate(24deg); } }
+@keyframes pm-burst { 0% { transform: translate(0, 0) scale(.2) rotate(0); opacity: 1; } 70% { opacity: 1; } 100% { transform: translate(var(--dx), calc(var(--dy) + 120px)) scale(1) rotate(var(--rr)); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-cheer.is-in .pm-cheer-note { animation: none; }
+  .pm-cheer.is-leaving .pm-cheer-note { animation: none; opacity: 0; }
+  .pm-cheer.is-in .pm-confetti > i { animation: none; opacity: 0; }
+}

@@ -1,0 +1,6 @@
+/* 打「柚子」：柚子瓣从现在的角度整整转一圈（0.9 秒，先快后慢）。转的那一层是 .pm-wheel-turn，角度在 --pm-a。 */
+.pm-wheel.is-spin .pm-wheel-turn { animation: pm-spin-once .9s cubic-bezier(.3, .1, .2, 1); }
+@keyframes pm-spin-once { from { transform: rotate(calc(var(--pm-a, 0deg) - 360deg)); } to { transform: rotate(var(--pm-a, 0deg)); } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-wheel.is-spin .pm-wheel-turn { animation: none !important; transition: none !important; }
+}

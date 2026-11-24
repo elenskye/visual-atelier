@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>拿 Design System 搭一屏</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/peck/tokens.css">
+<link rel="stylesheet" href="ds/peck/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@900&amp;family=IBM+Plex+Sans:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+.doc{font-family:var(--font-body);color:var(--color-text)}
+.ft{display:flex;align-items:baseline;gap:18px}
+.ft h1{margin:0;font-size:22px;font-weight:600;white-space:nowrap}
+.ft p{margin:0;font-size:13px;color:var(--color-text-2)}
+.idt{display:inline-flex;align-items:center;height:18px;padding:0 5px;font-family:var(--font-dots);font-weight:900;font-size:12px;letter-spacing:.06em;clip-path:var(--pk-notch);background:var(--color-raised);color:var(--color-text-2)}
+.s4m{width:1280px;height:800px;padding:22px 30px 28px;display:flex;flex-direction:column;gap:16px}
+.top{display:flex;align-items:center;gap:14px;height:44px}
+.brand{display:flex;align-items:center;gap:8px}
+.brand b{font-family:var(--font-dots);font-weight:900;font-size:30px;letter-spacing:.06em;line-height:1}
+.brand .mk{width:12px;height:24px;background:var(--color-cyan-block);box-shadow:var(--shadow-glow-text);animation:pk-blink 1s steps(1) infinite}
+.top .sp{flex:1}
+.grid{display:grid;grid-template-columns:var(--width-left) minmax(0,1fr) var(--width-right);gap:var(--width-gap);height:690px}
+.col{display:flex;flex-direction:column;gap:14px;min-height:0;min-width:0}
+.newt{margin-bottom:10px}
+.newt .pk-btn{width:100%}
+.pj{display:flex;flex-direction:column;gap:2px}
+.pjh{display:flex;align-items:center;gap:8px;height:30px;padding:0 8px;clip-path:var(--pk-clip2)}
+.pjh.on{background:var(--color-cyan-soft)}
+.pjh .pk-i{color:var(--color-text-2)}
+.pjh.on .pk-i{color:var(--color-cyan-text)}
+.pjh span{margin-left:auto;font-size:12px;color:var(--color-text-3)}
+.tsk{display:flex;flex-direction:column;gap:1px;margin:2px 0 6px 24px}
+.tsk p{display:flex;align-items:center;gap:8px;height:22px;font-size:12px;color:var(--color-text-2);white-space:nowrap;overflow:hidden}
+.tsk p.on{color:var(--color-text)}
+.tsk p .pk-i{color:var(--color-ok)}
+.log li{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:8px;align-items:center;padding:4px 0;border-top:1px dotted var(--color-line-strong);font-size:12px;color:var(--color-text-2)}
+.log li:first-child{border-top:0}
+.log li .pk-i{color:var(--color-cyan-text)}
+.log li em{font-family:var(--font-dots);font-weight:900;font-size:12px;color:var(--color-text-3)}
+.task{position:relative;overflow:hidden;flex:1;display:flex;flex-direction:column;min-height:0}
+.task .nm{margin:0 0 10px}
+.st{display:flex;align-items:center;gap:14px}
+.st .pk-readout{margin-left:auto;font-size:40px}
+.task .pk-blocks{margin:14px 0 12px}
+.out{margin-top:10px;padding:10px 14px;font-family:var(--font-code);font-size:var(--text-code);line-height:18px;color:var(--color-text-2)}
+.out p:first-child{color:var(--color-text)}
+.out p.e{color:var(--color-bad)}
+.comp{display:flex;flex-direction:column;gap:10px;padding:14px 16px 12px}
+.crow{display:flex;align-items:center;gap:8px}
+.crow .sp{flex:1}
+.chg{flex:1;display:flex;flex-direction:column;min-height:0}
+.nums{display:flex;align-items:baseline;gap:12px;margin:2px 0 10px}
+.nums span{font-size:12px;color:var(--color-text-3)}
+.snap{display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:10px;border-top:1px dotted var(--color-line-strong);font-size:12px;color:var(--color-text-2)}
+.snap .pk-i{color:var(--color-cyan-text)}
+.chg .foot{margin-top:auto;display:flex;gap:8px}
+.chg .foot .pk-btn{flex:1}
+</style>
+</helmet>
+<div class="pk pk-dots doc s4m" data-theme="{{theme}}">
+  <header class="top"><div class="brand"><b>PECK</b><i class="mk"></i></div><button type="button" class="pk-chip"><i class="pk-i pk-i--folder"></i>WEATHER-CLI</button><div class="pk-seg pk-seg--sm" role="group"><button type="button" class="is-on">CLI</button><button type="button" class="">API</button></div><span class="sp"></span><button type="button" class="pk-btn pk-btn--ghost pk-btn--square" aria-label="设置"><i class="pk-i pk-i--gear"></i></button></header>
+  <div class="grid"><section class="col"><div class="pk-mod"><p class="pk-mod-head"><span class="pk-mod-label">PROJECTS</span><span class="pk-mod-count" style="margin-left:auto">3</span></p>
+      <div class="newt"><button type="button" class="pk-btn"><i class="pk-i pk-i--plus"></i>NEW TASK</button></div><div><div class="pj"><p class="pjh on"><i class="pk-i pk-i--folder"></i><b class="t-name">weather-cli</b><span>在跑</span></p><div class="tsk"><p class="on"><span class="pk-twinkle" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>把设置里三个对话框合成一个面板</span></p><p><i class="pk-i pk-i--check pk-i--12"></i><span>首页的天气卡片加上体感温度</span></p><p><i class="pk-i pk-i--check pk-i--12"></i><span>units.ts 换成 Intl 的写法</span></p></div></div><div class="pj"><p class="pjh"><i class="pk-i pk-i--folder"></i><b class="t-name">notes-sync</b><span>今天 09:12</span></p></div><div class="pj"><p class="pjh"><i class="pk-i pk-i--folder"></i><b class="t-name">pomelo-site</b><span>昨天</span></p></div></div></div>
+    <div class="pk-mod" style="flex:1"><p class="pk-mod-head"><span class="pk-mod-label">LOG</span><span class="pk-mod-note">这个任务</span></p><ul class="log">
+      <li><i class="pk-i pk-i--clock pk-i--12"></i><span>存了快照 · 改之前的样子</span><em>11:02</em></li>
+      <li><i class="pk-i pk-i--shield pk-i--12"></i><span>批了：删 2 个旧文件、跑 pnpm check</span><em>11:02</em></li>
+      <li><i class="pk-i pk-i--ask pk-i--12"></i><span>问了：设置合成一个面板还是两个</span><em>11:04</em></li></ul></div></section><section class="col"><sc-if value="{{run}}" hint-placeholder-val="{{true}}"><section class="pk-mod pk-mod--run task"><span class="pk-scan pk-scan--loop"></span>
+      <p class="pk-mod-head"><span class="pk-mod-label">TASK</span><span class="pk-mod-note"><i class="pk-dot pk-dot--grok"></i> GROK · EDIT</span><span class="pk-mod-count">3/4</span></p>
+      <p class="t-title nm">把设置里三个对话框合成一个面板</p>
+      <div class="st"><span class="pk-state">RUN</span><span class="pk-who" style="font-size:12px;color:var(--color-text-3)">读了 12 个文件 · 改了 4 个</span><b class="pk-readout">02:14</b></div>
+      <div class="pk-blocks" style="--pk-n:28"><i class="is-on" style="animation-delay:0.00s"></i><i class="is-on" style="animation-delay:0.07s"></i><i class="is-on" style="animation-delay:0.14s"></i><i class="is-on" style="animation-delay:0.21s"></i><i class="is-on" style="animation-delay:0.28s"></i><i class="is-on" style="animation-delay:0.35s"></i><i class="is-on" style="animation-delay:0.42s"></i><i class="is-on" style="animation-delay:0.49s"></i><i class="is-on" style="animation-delay:0.56s"></i><i class="is-on" style="animation-delay:0.63s"></i><i class="is-on" style="animation-delay:0.70s"></i><i class="is-on" style="animation-delay:0.77s"></i><i class="is-on" style="animation-delay:0.84s"></i><i class="is-on" style="animation-delay:0.91s"></i><i class="is-on" style="animation-delay:0.98s"></i><i class="is-on" style="animation-delay:1.05s"></i><i class="is-on" style="animation-delay:1.12s"></i><i class="is-head"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+      <ol><li class="pk-step pk-step--ok"><span class="pk-step-node"><i class="pk-i pk-i--check pk-i--12"></i></span><div><p class="pk-step-head"><b class="pk-step-name">Muse 写规范</b><span class="pk-step-time">48s</span></p><p class="pk-step-desc">读了 12 个文件，列出 6 条要改的</p></div></li><li class="pk-step pk-step--ok"><span class="pk-step-node"><i class="pk-i pk-i--check pk-i--12"></i></span><div><p class="pk-step-head"><b class="pk-step-name">Grok 改 Composer.tsx、App.tsx</b><span class="pk-step-time">1:02</span></p><p class="pk-step-desc">新建 SettingsSheet.tsx，删掉两个旧对话框</p></div></li><li class="pk-step pk-step--run"><span class="pk-step-node"><span class="pk-run"></span></span><div><p class="pk-step-head"><b class="pk-step-name">Grok 跑 pnpm check</b><span class="pk-step-time">0:24</span></p><p class="pk-step-desc">第一次有报错，Grok 在改</p></div></li><li class="pk-step pk-step--todo"><span class="pk-step-node"></span><div><p class="pk-step-head"><b class="pk-step-name">验证并总结</b></p></div></li></ol>
+      <div class="pk-mod pk-mod--sunk out"><p class="">> tsc --noEmit</p><p class="e">SettingsSheet.tsx:41  providers 的类型不对</p><p class="">→ 改 SettingsProps，再跑一遍</p></div></section><section class="pk-mod comp"><div class="pk-input"><span class="pk-prompt">›</span><span>跑的时候还能补一句…</span></div><div class="crow"><button type="button" class="pk-chip pk-chip--sm is-on"><i class="pk-i pk-i--check pk-i--12"></i>GROK</button><div class="pk-seg pk-seg--sm" role="group"><button type="button" class="">PLAN</button><button type="button" class="is-on">EDIT</button><button type="button" class="">AUTO</button></div><span class="sp"></span><button type="button" class="pk-btn"><i class="pk-i pk-i--stop"></i>STOP</button></div></section></sc-if><sc-if value="{{wait}}" hint-placeholder-val="{{false}}"><section class="pk-mod pk-mod--wait task">
+      <p class="pk-mod-head"><span class="pk-mod-label">TASK</span><span class="pk-mod-note"><i class="pk-dot pk-dot--grok"></i> GROK 停下来问你</span><span class="pk-mod-count">3/4</span></p>
+      <p class="t-title nm">把设置里三个对话框合成一个面板</p>
+      <div class="st"><span class="pk-state pk-state--wait">WAIT</span><span class="pk-who" style="font-size:12px;color:var(--color-text-3)">读了 12 个文件 · 改了 4 个</span><b class="pk-readout pk-readout--wait">02:14</b></div>
+      <div class="pk-blocks pk-blocks--still" style="--pk-n:28"><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-on"></i><i class="is-wait"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+      <ol><li class="pk-step pk-step--ok"><span class="pk-step-node"><i class="pk-i pk-i--check pk-i--12"></i></span><div><p class="pk-step-head"><b class="pk-step-name">Muse 写规范</b><span class="pk-step-time">48s</span></p><p class="pk-step-desc">读了 12 个文件，列出 6 条要改的</p></div></li><li class="pk-step pk-step--ok"><span class="pk-step-node"><i class="pk-i pk-i--check pk-i--12"></i></span><div><p class="pk-step-head"><b class="pk-step-name">Grok 改 Composer.tsx、App.tsx</b><span class="pk-step-time">1:02</span></p><p class="pk-step-desc">新建 SettingsSheet.tsx，删掉两个旧对话框</p></div></li><li class="pk-step pk-step--wait"><span class="pk-step-node"><i class="pk-i pk-i--ask pk-i--12"></i></span><div><p class="pk-step-head"><b class="pk-step-name">Grok 问你：Tailwind 要不要升</b><span class="pk-step-time">WAIT</span></p><p class="pk-step-desc">跑 pnpm check 前停下来</p></div></li><li class="pk-step pk-step--todo"><span class="pk-step-node"></span><div><p class="pk-step-head"><b class="pk-step-name">验证并总结</b></p></div></li></ol>
+      <div class="pk-mod pk-mod--sunk out"><p class="">> tsc --noEmit</p><p class="e">SettingsSheet.tsx:41  providers 的类型不对</p><p class="">→ 改 SettingsProps，再跑一遍</p></div></section><section class="pk-mod pk-mod--wait pk-ask"><span class="pk-card-edge" aria-hidden="true"><i></i><i></i><i></i><i></i></span><p class="pk-mod-head"><span class="pk-mod-label">ASK</span><span class="pk-who"><i class="pk-dot pk-dot--grok"></i>GROK 停下来问你</span><span class="pk-mod-count" style="margin-left:auto">1/1</span></p><p class="pk-ask-q">Tailwind 要不要一起升到 4.1？</p><p class="pk-ask-d">升级会顺手改 6 个文件的类名；不升也能做完这次任务。</p><div class="pk-ask-opts"><button type="button" class="pk-opt" role="radio" aria-checked="true"><span class="pk-radio"></span><span><b class="pk-opt-name">一起升到 4.1 <em class="pk-tag pk-tag--rec">DEFAULT</em></b><span class="pk-opt-desc">顺手改 6 个文件的类名</span></span><span class="pk-opt-key">1</span></button><button type="button" class="pk-opt" role="radio" aria-checked="false"><span class="pk-radio"></span><span><b class="pk-opt-name">先不升</b><span class="pk-opt-desc">这次任务照样能做完</span></span><span class="pk-opt-key">2</span></button></div><div class="pk-ask-foot"><button type="button" class="pk-btn pk-btn--ghost">LATER</button><span class="pk-sp"></span><button type="button" class="pk-btn pk-btn--primary">SUBMIT</button></div></section></sc-if></section><section class="col"><div class="pk-seg pk-seg--full pk-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" class="is-on">CHANGES<em>4</em></button><button type="button" role="tab" aria-selected="false" class="">ONE SHOT</button><button type="button" role="tab" aria-selected="false" class="">FILES</button><button type="button" role="tab" aria-selected="false" class="">TERM<i class="pk-i pk-i--lock pk-i--12"></i></button></div>
+    <div class="pk-mod chg"><p class="pk-mod-head"><span class="pk-mod-label">CHANGES</span><span class="pk-mod-note">这个任务</span><span class="pk-mod-count">4</span></p><div class="nums"><b class="pk-readout pk-readout--num pk-readout--done">+86</b><b class="pk-readout pk-readout--num" style="color:var(--color-bad);text-shadow:none">−132</b><span>行</span></div>
+      <div class="pk-tree"><button type="button" class="pk-row pk-row--dir"><i class="pk-i pk-i--triD pk-i--12"></i><span class="pk-row-name">settings</span><span></span><span></span><span></span></button><button type="button" class="pk-row is-on"><i class="pk-i pk-i--file pk-i--12"></i><span class="pk-row-name">SettingsSheet.tsx</span><em class="pk-tag pk-tag--new">NEW</em><span class="pk-add">+74</span><span></span></button><button type="button" class="pk-row"><i class="pk-i pk-i--file pk-i--12"></i><span class="pk-row-name">Composer.tsx</span><span></span><span class="pk-add">+9</span><span class="pk-del">−21</span></button><button type="button" class="pk-row"><i class="pk-i pk-i--file pk-i--12"></i><span class="pk-row-name">App.tsx</span><span></span><span class="pk-add">+3</span><span class="pk-del">−18</span></button><button type="button" class="pk-row pk-row--del"><i class="pk-i pk-i--file pk-i--12"></i><span class="pk-row-name">AgentsDialog.tsx</span><em class="pk-tag pk-tag--del">DEL</em><span></span><span class="pk-del">−93</span></button></div>
+      <p class="snap"><i class="pk-i pk-i--clock pk-i--12"></i><span>改之前的快照 · 11:02</span></p>
+      <div class="foot"><button type="button" class="pk-btn pk-btn--sm"><i class="pk-i pk-i--file pk-i--12"></i>DIFF</button><button type="button" class="pk-btn pk-btn--danger pk-btn--sm"><i class="pk-i pk-i--undo pk-i--12"></i>UNDO TASK</button></div></div></section></div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["深色","浅色"],"default":"深色","section":"看"},"moment":{"editor":"enum","options":["在跑","停下来问你"],"default":"在跑","section":"看"},"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+renderVals() {
+  const theme = (this.props.theme ?? '深色') === '浅色' ? 'light' : 'dark';
+  const wait = (this.props.moment ?? '在跑') === '停下来问你'; const v = { run: !wait, wait };
+  return { theme, ...v };
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+/* Pith 的组件样式（花园笔记 × 铅字）。类名以 pith- 开头，数值都用 tokens 的变量；组件的标准写法在 components/<组件>/preview.html。
+   动效零件的 CSS（schemes/pith/motion/ 下每个零件一份）在最后由构建插进来，同一份，不另写。
+   基础：.pith 是一屏的根（纸色底、正文色、无衬线）；读的东西用衬线（.pith-serif、回答、标题）。 */
+.pith { font-family: var(--font-sans); font-size: var(--text-ui); line-height: var(--leading-ui); color: var(--color-text); background: var(--color-page); -webkit-font-smoothing: antialiased; }
+.pith *, .pith *::before, .pith *::after { box-sizing: border-box; }
+.pith :where(h1, h2, h3, h4, p, figure, blockquote, q) { margin: 0; }
+.pith :where(button) { font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0; cursor: pointer; text-align: inherit; }
+.pith-serif { font-family: var(--font-serif); }
+
+/* ---------- 图形：铅字（.so 实心、.st 细线、.co 珊瑚色，一个图标一处珊瑚） ---------- */
+.pith-glyph { overflow: visible; flex: none; }
+.pith-glyph .so { fill: currentColor; }
+.pith-glyph .st { fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
+.pith-glyph .co { fill: var(--color-coral); }
+.pith-type { width: 16px; height: 16px; color: var(--color-second); }
+.pith-stage { width: 28px; height: 28px; color: var(--color-accent); }
+.pith-appicon .ap-bg { fill: var(--color-app-ink); }
+.pith-appicon .ap .so { fill: var(--color-app-paper); }
+.pith-appicon .ap .co { fill: var(--color-app-coral); }
+.pith-wordmark { font: 500 23px/1 var(--font-serif); letter-spacing: .005em; white-space: nowrap; color: var(--color-text); }
+
+/* ---------- 顶栏：左边 Logo（点它回对话），三个图标居中、不写字（悬停出名字） ---------- */
+.pith-topbar { position: relative; display: flex; align-items: center; height: 68px; padding: 0 24px; border-bottom: 1px solid var(--color-line); background: var(--color-page); }
+.pith-brand { display: inline-flex; align-items: center; gap: 10px; color: var(--color-text); }
+.pith-brand .pith-logo { width: 30px; height: 30px; }
+.pith-topbar-nav { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; }
+.pith-iconbtn { position: relative; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; color: var(--color-text-3); transition: color .25s; }
+.pith-iconbtn:hover, .pith-iconbtn.is-hover, .pith-iconbtn.is-current { color: var(--color-text); }
+.pith-iconbtn > .pith-glyph { width: 24px; height: 24px; }
+.pith-tip { position: absolute; top: 46px; left: 50%; padding: 3px 8px; border-radius: 6px; background: var(--color-text); color: var(--color-page); font: 500 12px/1.4 var(--font-sans); white-space: nowrap; opacity: 0; transform: translate(-50%, -4px); pointer-events: none; transition: opacity .2s, transform .25s var(--ease-out, cubic-bezier(.23,1,.32,1)); }
+.pith-iconbtn:hover .pith-tip { opacity: 1; transform: translate(-50%, 0); transition-delay: .35s; }
+.pith-badge { position: absolute; left: 28px; top: -4px; padding: 1px 6px; border-radius: var(--radius-pill); background: var(--color-coral); color: var(--color-app-ink); font: 700 10.5px/1.4 var(--font-sans); }
+
+/* ---------- 输入框：居中，衬线的提示；/ @ # 三个记号；发送是强调色的圆 ---------- */
+.pith-composer { display: flex; align-items: center; gap: 8px; width: 100%; max-width: var(--width-composer); height: 56px; padding: 0 10px 0 18px; border: 1px solid var(--color-line-2); border-radius: var(--radius-m); background: var(--color-surface); box-shadow: var(--shadow-sm); }
+.pith-composer-field { flex: 1; min-width: 0; font: 400 17px/1.3 var(--font-serif); color: var(--color-text); }
+.pith-composer-field:empty::before, .pith-composer-field .ph { color: var(--color-text-4); }
+.pith-chip { display: inline-block; margin-right: 6px; padding: 1px 8px; border-radius: var(--radius-pill); background: var(--color-tint); font: 700 12px/1.6 var(--font-sans); color: var(--color-accent-text); }
+.pith-sig { display: flex; gap: 2px; }
+.pith-sig > button { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; font: 400 15px/1 var(--font-sans); color: var(--color-text-3); }
+.pith-send { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--color-accent); color: var(--color-on-accent); }
+.pith-send > .pith-glyph { width: 19px; height: 19px; }
+
+/* ---------- 状态行：在跑的那一步，前面是会动的 Agent 图标，字上扫过一道光；做完停住、变淡 ---------- */
+.pith-status { display: flex; flex-wrap: wrap; gap: 6px 18px; font: 400 15px/1.4 var(--font-serif); color: var(--color-text-3); }
+.pith-status-step { display: inline-flex; align-items: center; gap: 7px; }
+.pith-status-step > .pith-agent { width: 17px; height: 17px; color: var(--color-text-3); }
+.pith-status-step:not(.is-run) .pith-agent, .pith-status-step:not(.is-run) .pith-agent * { animation-play-state: paused !important; }
+.pith-status-step.is-done { color: var(--color-text-4); }
+.pith-status-step.is-done .pith-agent { color: var(--color-text-4); }
+.pith-thinking { display: inline-flex; align-items: center; gap: 9px; font: 400 16.5px/1 var(--font-serif); }
+.pith-thinking > .pith-agent { width: 22px; height: 22px; color: var(--color-accent); }
+
+/* ---------- 回答：衬线正文、编号 [n]、页边注 ---------- */
+.pith-answer { width: 100%; max-width: var(--width-content); }
+.pith-answer-title { font: 600 var(--text-title)/var(--leading-title) var(--font-serif); letter-spacing: -.01em; }
+.pith-p { position: relative; margin-top: 16px; font: 400 var(--text-body)/var(--leading-body) var(--font-serif); color: var(--color-text); }
+.pith-p.is-quiet { color: var(--color-text-2); }
+.pith-ref { display: inline-block; margin-left: 2px; padding: 0 3px; border-radius: 3px; font: 700 11px/1.3 var(--font-sans); color: var(--color-accent-text); vertical-align: .55em; cursor: pointer; transition: background .2s, color .2s, box-shadow .2s; }
+.pith-ref:hover, .pith-ref.is-hover { box-shadow: 0 0 0 1.5px var(--color-coral); }
+.pith-ref.is-on { background: var(--color-accent); color: var(--color-on-accent); }
+.pith-mark { background: linear-gradient(color-mix(in srgb, var(--color-accent) 40%, transparent), color-mix(in srgb, var(--color-accent) 40%, transparent)) 0 92% / 100% 3px no-repeat; }
+.pith-sidenote { width: var(--width-sidenote); padding-left: 14px; border-left: 1.5px solid var(--color-accent); }
+.pith-sidenote-head { display: flex; align-items: center; gap: 7px; font: 700 11px/1 var(--font-sans); letter-spacing: .06em; color: var(--color-second); }
+.pith-sidenote-head i { display: grid; place-items: center; width: 16px; height: 16px; border-radius: 3px; background: var(--color-accent); color: var(--color-on-accent); font-style: normal; }
+.pith-sidenote q { display: block; margin-top: 8px; font: italic 400 14.5px/1.6 var(--font-serif); color: var(--color-text-2); quotes: none; }
+.pith-sidenote-go { display: flex; gap: 14px; margin-top: 8px; }
+
+/* ---------- 交付卡：生长阶段、标题（字重跟着长）、「存进……」 ---------- */
+.pith-deliver { display: grid; grid-template-columns: 36px 1fr auto; column-gap: 12px; align-items: center; padding: 20px 22px; border: 1px solid var(--color-line); border-radius: var(--radius-m); background: var(--color-surface); box-shadow: var(--shadow-sm); }
+.pith-deliver > .pith-stage { width: 30px; height: 30px; }
+.pith-deliver-title { font: 430 19px/1.25 var(--font-serif); }
+.pith-deliver-desc { margin-top: 6px; font: 400 14px/1.6 var(--font-serif); color: var(--color-text-2); }
+.pith-deliver-meta { margin-top: 6px; font-size: 12px; color: var(--color-text-4); }
+.pith-deliver-ok { display: flex; align-items: center; gap: 8px; font-size: 13.5px; line-height: 1.5; color: var(--color-text-2); text-align: right; }
+.pith-deliver-ok > .pith-agent { width: 24px; height: 24px; color: var(--color-text); }
+
+/* ---------- 知识库卡片：类型标签（第二色）、标题、一句、日期 ---------- */
+.pith-kcard { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border: 1px solid var(--color-line); border-radius: var(--radius-m); background: var(--color-surface); }
+.pith-kcard-label { display: flex; align-items: center; gap: 6px; font: 700 10.5px/1 var(--font-sans); letter-spacing: .08em; color: var(--color-second); }
+.pith-kcard-title { font: 430 18px/1.25 var(--font-serif); color: var(--color-text); }
+.pith-kcard-line { font: 400 14px/1.55 var(--font-serif); color: var(--color-text-2); }
+.pith-kcard-meta { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--color-text-4); }
+.pith-kcard-meta > .pith-stage { width: 15px; height: 15px; }
+
+/* ---------- 文献库：表格的一行（书脊色块、题名、作者、年份），选中是淡底 ---------- */
+.pith-libtable { border-top: 1px solid var(--color-line); }
+.pith-librow { display: grid; grid-template-columns: 12px 1fr 160px 56px; column-gap: 14px; align-items: center; height: 48px; padding: 0 14px; border-bottom: 1px solid var(--color-line); }
+.pith-librow > i { width: 12px; height: 20px; border-radius: 1px 3px 3px 1px; background: var(--color-accent); }
+.pith-librow > b { font: 400 15px/1.3 var(--font-serif); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pith-librow > span { font-size: 12.5px; color: var(--color-text-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pith-librow > em { font-style: normal; font-size: 12.5px; color: var(--color-text-4); text-align: right; }
+.pith-librow.is-current { background: var(--color-tint); }
+
+/* ---------- 枝桠：对话历史和设置的导航（没有底色，一根茎、节点、标签） ---------- */
+.pith-branch { position: relative; padding-left: 26px; }
+.pith-branch::before { content: ""; position: absolute; left: 7px; top: 0; bottom: 0; width: 1.4px; background: var(--color-accent); opacity: .7; }
+.pith-branch-item { position: relative; display: flex; align-items: center; min-height: 32px; font: 400 15.5px/1.35 var(--font-serif); color: var(--color-text-2); --dot-x: -12px; --dot-y: 50%; }
+.pith-branch-item::after { content: ""; position: absolute; left: -23px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; border: 1.4px solid var(--color-accent); background: var(--color-page); }
+.pith-branch-item.is-current { color: var(--color-text); }
+.pith-branch-item.is-current::after { background: var(--color-coral); border-color: var(--color-coral); }
+
+/* ---------- 按钮和链接 ---------- */
+.pith-button { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 16px; border-radius: var(--radius-pill); background: var(--color-accent); color: var(--color-on-accent); font: 700 14px/1 var(--font-sans); }
+.pith-button--quiet { background: transparent; color: var(--color-text-2); box-shadow: inset 0 0 0 1px var(--color-line-2); font-weight: 400; }
+.pith-link { font: 700 13.5px/1.3 var(--font-sans); color: var(--color-accent-text); text-decoration: none; }
+
+/* ---------- 外观：配色的色板（设置 › 外观） ---------- */
+.pith-swatch { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--color-line); border-radius: var(--radius-l); background: var(--color-surface); transition: box-shadow .3s; }
+.pith-swatch > i { width: 34px; height: 34px; border-radius: 50%; background: conic-gradient(var(--color-accent) 0 25%, var(--color-coral) 0 40%, var(--color-page) 0 100%); box-shadow: inset 0 0 0 1px var(--color-line-2); }
+.pith-swatch > b { font: 600 15px/1.2 var(--font-serif); color: var(--color-text); }
+.pith-swatch > span { margin-left: auto; font-size: 12px; color: var(--color-text-4); }
+.pith-swatch.is-on { box-shadow: 0 0 0 2px var(--color-accent); }
+
+/* ---------- 两套配色（非默认的那套，构建插进来） ---------- */
+/* @generate palettes */
+
+/* ---------- 动效零件（schemes/pith/motion/，构建插进来） ---------- */
+/* @generate motion */

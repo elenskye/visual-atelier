@@ -1,0 +1,48 @@
+{
+  "id": "crumple",
+  "title": "删除 · 揉成纸团丢出去",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "丢掉：那一行加 .is-leaving，动画放完（0.6 秒）再拿掉，下面出「已丢掉 · 撤销」（.pm-undo.is-in）；撤销：那一行回来时带 .is-back",
+  "durationMs": 600,
+  "reducedMotion": "直接消失、直接回来",
+  "use": "列表里丢掉一条（.pm-crumple）",
+  "source": "canvases/pomelo-explore/p2-final/controls.mjs（站主 2026-11-05 验收的「控件的小动静」）",
+  "files": {
+    "css": "crumple.css",
+    "html": "crumple.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".del-demo",
+    "viewport": [
+      330,
+      220
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-leaving",
+        "on": ".d1"
+      },
+      {
+        "at": 620,
+        "add": "is-in",
+        "style": {
+          "visibility": "visible"
+        },
+        "on": ".pm-undo"
+      }
+    ]
+  }
+}

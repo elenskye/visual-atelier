@@ -1,0 +1,12 @@
+/* Logo 的生长（expressive，登记的表面 logo-grow，1.74 秒）：脚（地面）先铺开，茎从底下长上去、一口气绕一圈成 P 的碗（不停、不留缝），
+   再往里卷，卷心结出珊瑚色的果（站主 2026-11-24）。App 打开时一次（.is-in，放完拿掉），鼠标放上去再一次。
+   用 marks/logo/pith-grow.svg（茎和碗的前段一个遮罩、碗的后段一个窄遮罩、卷一个遮罩，遮罩里是中心线）。.is-frame 加 --at 定在某一刻。 */
+.is-frame, .is-frame * { animation-play-state: paused !important; }
+.pith-brand:is(:hover, :focus-visible, .is-hover, .is-in, .is-frame) .lgw .ft{transform-box:view-box;transform-origin:15.2px 40.4px;animation:pith-lg-ft .24s cubic-bezier(.3,.7,.3,1) calc(0s - var(--at, 0s)) both}
+.pith-brand:is(:hover, :focus-visible, .is-hover, .is-in, .is-frame) .lgw .m1{stroke-dasharray:1 2;animation:pith-lg-draw .98s cubic-bezier(.42,.08,.4,1) calc(0.1s - var(--at, 0s)) both}
+.pith-brand:is(:hover, :focus-visible, .is-hover, .is-in, .is-frame) .lgw .m2{stroke-dasharray:1 2;animation:pith-lg-draw .32s cubic-bezier(.2,.6,.35,1) calc(1.06s - var(--at, 0s)) both}
+.pith-brand:is(:hover, :focus-visible, .is-hover, .is-in, .is-frame) .lgw .fr{transform-box:fill-box;transform-origin:center;animation:pith-lg-fruit .4s cubic-bezier(.34,1.56,.64,1) calc(1.34s - var(--at, 0s)) both}
+@keyframes pith-lg-ft{from{transform:scaleX(0)}to{transform:none}}
+@keyframes pith-lg-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes pith-lg-fruit{0%{transform:scale(0)}55%{transform:scale(1.4)}100%{transform:none}}
+@media (prefers-reduced-motion: reduce) { .pith-brand:not(.is-frame) .lgw * { animation: none !important; } }

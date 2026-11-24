@@ -1,0 +1,4496 @@
+{
+  "$note": "每个资产一条，都由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成（不要手改 SVG）。status：draft / proposed / approved，只有站主能批准；approved 的不改几何，要改开新版本。colorMode：roles 用颜色角色的变量 var(--pm-角色, var(--color-角色))，Pomelo 和挂了 Design System 的画布都认；currentColor 由使用处上色。category 是模块的分类色。renders 是要导出的 PNG（palette 按哪套配色上色，color 是模板图的颜色）。",
+  "assets": [
+    {
+      "id": "pomelo-normal",
+      "title": "柚子 · 平常",
+      "file": "pomelo/pomelo-normal.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 在 bench 批准（canvases/pomelo-marks 的 Main）",
+      "colorMode": "roles",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "柚子的静态帧，100 格。表情动画在 Phase 5。",
+      "sha256": "33b4d43ca1d5557be941c8bf0f66504e9531955cc1c407d238fcdeb8ba05fdee"
+    },
+    {
+      "id": "pomelo-think",
+      "title": "柚子 · 在想",
+      "file": "pomelo/pomelo-think.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 在 bench 批准（canvases/pomelo-marks 的 Main）",
+      "colorMode": "roles",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "柚子的静态帧，100 格。表情动画在 Phase 5。",
+      "sha256": "8c74aab596652d9a2bf4ede1fcd48d1daee4c592e12572ee27003198169fefc4"
+    },
+    {
+      "id": "pomelo-wink",
+      "title": "柚子 · 眨眼",
+      "file": "pomelo/pomelo-wink.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 在 bench 批准（canvases/pomelo-marks 的 Main）",
+      "colorMode": "roles",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "柚子的静态帧，100 格。表情动画在 Phase 5。",
+      "sha256": "604668de539acc860f3f0a1745893527eb0a4001e031323a390c0038bce9e4ff"
+    },
+    {
+      "id": "pomelo-sleepy",
+      "title": "柚子 · 困了",
+      "file": "pomelo/pomelo-sleepy.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 在 bench 批准（canvases/pomelo-marks 的 Main）",
+      "colorMode": "roles",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "柚子的静态帧，100 格。表情动画在 Phase 5。",
+      "sha256": "065d4177658da6cd6eb4836d6b5fa8691bdbf72ca54b7b72b988b7de38c12591"
+    },
+    {
+      "id": "pomelo-happy",
+      "title": "柚子 · 开心",
+      "file": "pomelo/pomelo-happy.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 在 bench 批准（canvases/pomelo-marks 的 Main）",
+      "colorMode": "roles",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "柚子的静态帧，100 格。表情动画在 Phase 5。",
+      "sha256": "a34a16d139dbf99c0d59c6ed470bdbdf94d9c8afcbfc45a9aac4bc170e4a0ec8"
+    },
+    {
+      "id": "pomelo-error",
+      "title": "柚子 · 出错",
+      "file": "pomelo/pomelo-error.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 在 bench 批准（canvases/pomelo-marks 的 Main）",
+      "colorMode": "roles",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "柚子的静态帧，100 格。表情动画在 Phase 5。",
+      "sha256": "b7be2d9f13992eb6268a3ccaf16e60a5dee3a919f14d6c6b4224566e0caa2ec8"
+    },
+    {
+      "id": "pomelo-surprised",
+      "title": "柚子 · 惊讶",
+      "file": "pomelo/pomelo-surprised.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 在 bench 批准（canvases/pomelo-marks 的 Main）",
+      "colorMode": "roles",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "柚子的静态帧，100 格。表情动画在 Phase 5。",
+      "sha256": "8e0218e8471fd6df2d624a83e6ec83705c20704b8ba72b6766fc503ef350a236"
+    },
+    {
+      "id": "pomelo-wow",
+      "title": "柚子 · 哇",
+      "file": "pomelo/pomelo-wow.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 在 bench 批准（canvases/pomelo-marks 的 Main）",
+      "colorMode": "roles",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "柚子的静态帧，100 格。表情动画在 Phase 5。",
+      "sha256": "63ba7b4103cc5a942800d38aeaaa73c7c124ac87e699a0524a0dc7eed44ecd3d"
+    },
+    {
+      "id": "ai-button",
+      "title": "AI 按钮 · 问柚子",
+      "file": "pomelo/ai-button.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 在 bench 批准（canvases/pomelo-marks 的 Menubar）",
+      "colorMode": "roles",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "顶栏右边的「问柚子」（⌘J），换掉小鸟。",
+      "sha256": "86507d56361fc1ef8e4a9205ef1d44f4967c3d8c4b01bc5ea37fefcbb7b2eb3f"
+    },
+    {
+      "id": "menu-solid",
+      "title": "菜单栏 · 实心（模型就绪）",
+      "file": "pomelo/menu-solid.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 在 bench 批准（canvases/pomelo-marks 的 Menubar）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "renders": [
+        {
+          "size": 36,
+          "suffix": "template",
+          "color": "#000000"
+        }
+      ],
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "macOS 菜单栏的模板图：只用黑和透明，系统按菜单栏的明暗上色。36 像素（18 个点 @2x），柚子占 16 个点高。",
+      "sha256": "1d5c034bef0f371221214d8f706e4585ff8fe0b59a648684d52969a8f096c7c3"
+    },
+    {
+      "id": "menu-hollow",
+      "title": "菜单栏 · 空心（没在运行）",
+      "file": "pomelo/menu-hollow.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 在 bench 批准（canvases/pomelo-marks 的 Menubar）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "renders": [
+        {
+          "size": 36,
+          "suffix": "template",
+          "color": "#000000"
+        }
+      ],
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "macOS 菜单栏的模板图：只用黑和透明，系统按菜单栏的明暗上色。36 像素（18 个点 @2x），柚子占 16 个点高。",
+      "sha256": "6427577f86318489768c0b3d4c0d707c2891a8da7ef4b6f88030da39dfd0a366"
+    },
+    {
+      "id": "app-icon-grid",
+      "title": "App 图标 · 方格纸",
+      "file": "app-icon/app-icon-grid.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 在 bench 批准（canvases/pomelo-marks 的 AppIcon-grid）；正式版用这张",
+      "colorMode": "roles",
+      "renders": [
+        {
+          "size": 1024,
+          "themes": [
+            "light"
+          ],
+          "palette": "blue"
+        }
+      ],
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "1024 源图，macOS 的图标网格（824 连续圆角，四周 100）。颜色按蓝笔浅色定死在 PNG 里。三种底，站主挑一种。",
+      "sha256": "ebe8cb0a864391200044f94af95e0e182530b6a54ad885f3d4abe4c33772b302"
+    },
+    {
+      "id": "app-icon-mint",
+      "title": "App 图标 · 薄荷桌面",
+      "file": "app-icon/app-icon-mint.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 在 bench 批准（canvases/pomelo-marks 的 AppIcon-mint）；正式版用方格纸，这张留着不用",
+      "colorMode": "roles",
+      "renders": [
+        {
+          "size": 1024,
+          "themes": [
+            "light"
+          ],
+          "palette": "blue"
+        }
+      ],
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "1024 源图，macOS 的图标网格（824 连续圆角，四周 100）。颜色按蓝笔浅色定死在 PNG 里。三种底，站主挑一种。",
+      "sha256": "4d2062776c5688cda556b0432d423e823a408f408b0267534ac5230681b9bcef"
+    },
+    {
+      "id": "app-icon-kraft",
+      "title": "App 图标 · 牛皮纸",
+      "file": "app-icon/app-icon-kraft.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 在 bench 批准（canvases/pomelo-marks 的 AppIcon-kraft）；正式版用方格纸，这张留着不用",
+      "colorMode": "roles",
+      "renders": [
+        {
+          "size": 1024,
+          "themes": [
+            "light"
+          ],
+          "palette": "blue"
+        }
+      ],
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "1024 源图，macOS 的图标网格（824 连续圆角，四周 100）。颜色按蓝笔浅色定死在 PNG 里。三种底，站主挑一种。",
+      "sha256": "44a2b031e203e935cd419d745e090ab25ef68e923ed6491c42dc2a7354907f20"
+    },
+    {
+      "id": "module-todo",
+      "title": "模块 · 一步一步",
+      "file": "modules/todo.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "日常 · mint；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "1485bbf2efd7fbb3e138b7d0d92ac7be0deaf7024306567796f30bc8d32aed93"
+    },
+    {
+      "id": "module-notes",
+      "title": "模块 · 念念不忘",
+      "file": "modules/notes.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "日常 · mint；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "8855cbbe11aaa27ba8bf024805f9cbe0268d17feaad9c512abb1396dc7698977"
+    },
+    {
+      "id": "module-days",
+      "title": "模块 · 来日方长",
+      "file": "modules/days.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "日常 · mint；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "d416b7c9de82a10d78b68254177e426da086ae6d5fdb310e4b36f6de6f0b623b"
+    },
+    {
+      "id": "module-finance",
+      "title": "模块 · 钱来钱往",
+      "file": "modules/finance.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "日常 · mint；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "246bed096f111d2d303882a95f4113d9c7762f69616151a8cdee7e2d8be6e794"
+    },
+    {
+      "id": "module-packing",
+      "title": "模块 · 出门走走",
+      "file": "modules/packing.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "日常 · mint；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "3341b7cb8d1663698da898412fe6c020ae6e4c7c97eb5655b00b082fdc1ae3d3"
+    },
+    {
+      "id": "module-books",
+      "title": "模块 · 摸鱼读读",
+      "file": "modules/books.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "兴趣 · pink；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "f712a6b09b3de5ae95c309963c648e9fe462d483c4f7447395164fabc0ab9bd2"
+    },
+    {
+      "id": "module-films",
+      "title": "模块 · 好奇看看",
+      "file": "modules/films.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "兴趣 · pink；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "4dd3236f1d32d434cf652ef84ea8c6610547e78411e987ad3deb7ead3fb8dc0b"
+    },
+    {
+      "id": "module-drawing",
+      "title": "模块 · 随意画画",
+      "file": "modules/drawing.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "兴趣 · pink；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "16212191d3a4fec20390d60f2f422b7ddd0c6fa1820b70c446dd3174d1223ebe"
+    },
+    {
+      "id": "module-site",
+      "title": "模块 · 呦呦漫游",
+      "file": "modules/site.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "兴趣 · pink；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "4fd949e7ac396512ec045e5902c6ebce725445b4a015c2bce52b532fb601d680"
+    },
+    {
+      "id": "module-canvas",
+      "title": "模块 · 有板有眼",
+      "file": "modules/canvas.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）；2026-11-13 名字从「看画布」改成「有板有眼」（只改 aria-label，几何不变，v1.0 Phase 1）",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "兴趣 · pink；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "b4dfd50f89bcd631a9b77c4168bf0cd759634c56d4fbc45b034927527988df9e"
+    },
+    {
+      "id": "module-jobs",
+      "title": "模块 · 投石问路",
+      "file": "modules/jobs.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "grape",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "求职 · grape；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "21d3c000baf8f648c3264688e923dcd05985b11d7cfe9400a2b3f19ae2db0692"
+    },
+    {
+      "id": "module-seeker",
+      "title": "模块 · Seeker",
+      "file": "modules/seeker.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "grape",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "求职 · grape；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "7bb24e22d19e92dc621c598f3736c11361d38207c36bb1c8d6380fe294601a22"
+    },
+    {
+      "id": "module-rater",
+      "title": "模块 · Rater",
+      "file": "modules/rater.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "grape",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "求职 · grape；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "bf68e7d6fb40e8050e3fa643abfe98487140103e3624f0c23625b740e39879a2"
+    },
+    {
+      "id": "module-translate",
+      "title": "模块 · Translator",
+      "file": "modules/translate.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "orange",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "柚子 · orange；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "dd55b60744318034cce14344841efbf4f70622ccba5676e5902daabed7c1bdee"
+    },
+    {
+      "id": "module-pub2md",
+      "title": "模块 · Pub2MD",
+      "file": "modules/pub2md.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "orange",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "柚子 · orange；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "478fb6a044e89ab52e8c14812ef7789d153d0bdf9117144460fe6d289d14dd43"
+    },
+    {
+      "id": "module-importer",
+      "title": "模块 · Importer",
+      "file": "modules/importer.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "orange",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "柚子 · orange；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "29645cf2e89301227c4ad5ba077e41b0fa69cb8cbc976bb5a20c956485874b64"
+    },
+    {
+      "id": "module-atlas",
+      "title": "模块 · Atlas",
+      "file": "modules/atlas.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "orange",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "柚子 · orange；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "bed669c53867b57be5ec423f4a5d763cca7b7ed139f68645b009dbe1cea53340"
+    },
+    {
+      "id": "module-vault",
+      "title": "模块 · 芝麻开门",
+      "file": "modules/vault.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "sky",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "工具 · sky；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "2e3a5f35319b86307f1d4407c7ada6899dfed883409f558f31ff25b46446afce"
+    },
+    {
+      "id": "module-bookmarks",
+      "title": "模块 · 一网打尽",
+      "file": "modules/bookmarks.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "sky",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "工具 · sky；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "d56d4a26fbacb2285b549c7a304c4957e0bdf6d1c089597283c18eb553381777"
+    },
+    {
+      "id": "module-janitor",
+      "title": "模块 · DevJanitor",
+      "file": "modules/janitor.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-07 批准（兴趣和工具的颜色互换后，pomelo-marks 的 Modules、Dock）",
+      "colorMode": "roles",
+      "category": "sky",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "工具 · sky；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "6c92c4444a600c9509ce80d308f496c08bc8471d293175042e5212846798e34e"
+    },
+    {
+      "id": "module-shapes",
+      "title": "贴纸 · 形状",
+      "file": "modules/shapes.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认日常色（mint）；任何模块都能选，颜色能换",
+      "sha256": "09caaa523f08894d2f65f56711eb7e8684a8377b9a180adaef07a8fa5e8da67d"
+    },
+    {
+      "id": "module-checklist",
+      "title": "贴纸 · 清单",
+      "file": "modules/checklist.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认日常色（mint）；任何模块都能选，颜色能换",
+      "sha256": "fca6912b4473960204327b8eeff7154b75078c3ac7a23122d4143e8d9cca2ee1"
+    },
+    {
+      "id": "module-game",
+      "title": "贴纸 · 游戏",
+      "file": "modules/game.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认兴趣色（pink）；任何模块都能选，颜色能换",
+      "sha256": "ecd01926eeb230928f3e21c6b990e4df5ba7ceb371ac421620bee9847596b8b7"
+    },
+    {
+      "id": "module-music",
+      "title": "贴纸 · 音乐",
+      "file": "modules/music.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认兴趣色（pink）；任何模块都能选，颜色能换",
+      "sha256": "d0a2268fcd03127cc2c94d011856fb82de2e4e31c4fa7c5da4f59b6991caa490"
+    },
+    {
+      "id": "module-headphones",
+      "title": "贴纸 · 耳机",
+      "file": "modules/headphones.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "sky",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认工具色（sky）；任何模块都能选，颜色能换",
+      "sha256": "655c13b2b9d131629866bcb8fb763e0f121a1eb0ddce7a297398d660e1cce75d"
+    },
+    {
+      "id": "module-camera",
+      "title": "贴纸 · 相机",
+      "file": "modules/camera.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "sky",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认工具色（sky）；任何模块都能选，颜色能换",
+      "sha256": "f43647e4f150924e1d12ad61fd9e4fa997f316c109955039ccfd3e896a1fa7a0"
+    },
+    {
+      "id": "module-tv",
+      "title": "贴纸 · 电视",
+      "file": "modules/tv.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认兴趣色（pink）；任何模块都能选，颜色能换",
+      "sha256": "0150b17aad03d3b914cb68571d1b8298a5aa17e4d0318bdfcff5a5c18b0ef905"
+    },
+    {
+      "id": "module-coffee",
+      "title": "贴纸 · 咖啡",
+      "file": "modules/coffee.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "orange",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认柚子色（orange）；任何模块都能选，颜色能换",
+      "sha256": "4ac74b10361bc5100fb0d75028d3b9047e749cbdac3bf4310d84b526f558364f"
+    },
+    {
+      "id": "module-bowl",
+      "title": "贴纸 · 饭碗",
+      "file": "modules/bowl.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "orange",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认柚子色（orange）；任何模块都能选，颜色能换",
+      "sha256": "435a326bc345334671f58aa93fd372c8d03a785c289b4ecf082f0420a818d02a"
+    },
+    {
+      "id": "module-bag",
+      "title": "贴纸 · 购物袋",
+      "file": "modules/bag.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认日常色（mint）；任何模块都能选，颜色能换",
+      "sha256": "876d3837662147744d9186f8caabd0ba5a474af1a97d48d40c384de78f2d615a"
+    },
+    {
+      "id": "module-gift",
+      "title": "贴纸 · 礼物",
+      "file": "modules/gift.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认兴趣色（pink）；任何模块都能选，颜色能换",
+      "sha256": "47c699118ccdab98efc688da4a4d19e38ed2bb9a0e6e91ec8bb5021f2ccb94ee"
+    },
+    {
+      "id": "module-shirt",
+      "title": "贴纸 · T 恤",
+      "file": "modules/shirt.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "sky",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认工具色（sky）；任何模块都能选，颜色能换",
+      "sha256": "87d00e13cef202682bacc902e690124939a494070fb71bd080eda11a4d311eff"
+    },
+    {
+      "id": "module-plane",
+      "title": "贴纸 · 飞机",
+      "file": "modules/plane.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "sky",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认工具色（sky）；任何模块都能选，颜色能换",
+      "sha256": "03dab97ff16e5b9320e40e8d02ee00c3e1e8e422a79dce84677b9d797068daff"
+    },
+    {
+      "id": "module-mountain",
+      "title": "贴纸 · 山",
+      "file": "modules/mountain.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认日常色（mint）；任何模块都能选，颜色能换",
+      "sha256": "ee75ff6e7ac8bf90345385c64c7767a43f99898293d999d0c07e54dc9af7e945"
+    },
+    {
+      "id": "module-leaf",
+      "title": "贴纸 · 叶子",
+      "file": "modules/leaf.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认日常色（mint）；任何模块都能选，颜色能换",
+      "sha256": "cc2c107d51ce98ed597f3f89a874c255ab26db09219705090ec95e715ac427f0"
+    },
+    {
+      "id": "module-sprout",
+      "title": "贴纸 · 发芽",
+      "file": "modules/sprout.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认日常色（mint）；任何模块都能选，颜色能换",
+      "sha256": "587b345536729a0aa2188096fcc72d97e8033b4c6b12610f25dadb4bae2a6921"
+    },
+    {
+      "id": "module-dumbbell",
+      "title": "贴纸 · 哑铃",
+      "file": "modules/dumbbell.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "grape",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认求职色（grape）；任何模块都能选，颜色能换",
+      "sha256": "fc4eae1a50d5af6e4e6f4bb4fe65bbd8618c9ef5f34f9e37fe54ed63ddfeb5a3"
+    },
+    {
+      "id": "module-heart",
+      "title": "贴纸 · 爱心",
+      "file": "modules/heart.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认兴趣色（pink）；任何模块都能选，颜色能换",
+      "sha256": "442f8014bdc89274ca25405d52ccb8b7f88562bd89a7de917f130c119aba687f"
+    },
+    {
+      "id": "module-star",
+      "title": "贴纸 · 星星",
+      "file": "modules/star.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "orange",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认柚子色（orange）；任何模块都能选，颜色能换",
+      "sha256": "c246a514aec919f5cbdc72a149107ea3959181128de56d161bd0f6485faf45dd"
+    },
+    {
+      "id": "module-grad",
+      "title": "贴纸 · 学士帽",
+      "file": "modules/grad.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "grape",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认求职色（grape）；任何模块都能选，颜色能换",
+      "sha256": "dfa3068f3e6a6c68a5aca9486120e95c158117336bc8bc90c92fb9b0c61c1382"
+    },
+    {
+      "id": "module-code",
+      "title": "贴纸 · 代码",
+      "file": "modules/code.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "sky",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认工具色（sky）；任何模块都能选，颜色能换",
+      "sha256": "c1acedec044436f5d07c40cc872d8bf289167ad9406b8cc14316fd4bfcf1cc4a"
+    },
+    {
+      "id": "module-puzzle",
+      "title": "贴纸 · 拼图",
+      "file": "modules/puzzle.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "grape",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认求职色（grape）；任何模块都能选，颜色能换",
+      "sha256": "6c519b69d378129c00dc0cdbf71f517e755056eb0a8bf3d1bae95cf05fc9d99e"
+    },
+    {
+      "id": "module-trophy",
+      "title": "贴纸 · 奖杯",
+      "file": "modules/trophy.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "orange",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认柚子色（orange）；任何模块都能选，颜色能换",
+      "sha256": "f821231696c89d5d96d74a2ace5b0163d621dd6aa1f927459e3652abda28d1f5"
+    },
+    {
+      "id": "module-cat",
+      "title": "贴纸 · 猫咪",
+      "file": "modules/cat.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "orange",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认柚子色（orange）；任何模块都能选，颜色能换",
+      "sha256": "afff0b7f3bd56d513584f8d9cc38d40c3f2df481a887a5e410d6d2b0449a4b18"
+    },
+    {
+      "id": "module-flower",
+      "title": "贴纸 · 小花",
+      "file": "modules/flower.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认兴趣色（pink）；任何模块都能选，颜色能换",
+      "sha256": "9575faa64a947463f70342fd807aeeaee6b9f5f508d51674102582eb23b5f0a2"
+    },
+    {
+      "id": "module-bulb",
+      "title": "贴纸 · 灵感",
+      "file": "modules/bulb.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "orange",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认柚子色（orange）；任何模块都能选，颜色能换",
+      "sha256": "2f95601d0941d8c8c538dd989e54b6071c73561d65a8401eec33dcc18e59cb68"
+    },
+    {
+      "id": "module-house",
+      "title": "贴纸 · 小家",
+      "file": "modules/house.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认日常色（mint）；任何模块都能选，颜色能换",
+      "sha256": "60b47e7c90d1279430dbc16fc283cd763b66fecdc137205432b49a327ad0c169"
+    },
+    {
+      "id": "module-pill",
+      "title": "贴纸 · 健康",
+      "file": "modules/pill.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "sky",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认工具色（sky）；任何模块都能选，颜色能换",
+      "sha256": "900db7b9e22cfb2fadc3e70c8d1218ff41b09b90f819fe7c12ed2201a968e4f8"
+    },
+    {
+      "id": "module-letter",
+      "title": "贴纸 · 信封",
+      "file": "modules/letter.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认兴趣色（pink）；任何模块都能选，颜色能换",
+      "sha256": "aaf59afa8f0ab41a3bc1723b3b9811170f43b7ba27927053682bbfd6cff64bfb"
+    },
+    {
+      "id": "module-piggy",
+      "title": "贴纸 · 存钱",
+      "file": "modules/piggy.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认兴趣色（pink）；任何模块都能选，颜色能换",
+      "sha256": "b5c62cbf8a3df7349a117c5208232edbcf08aac00e465647b7a19a05708995ab"
+    },
+    {
+      "id": "module-dice",
+      "title": "贴纸 · 骰子",
+      "file": "modules/dice.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "grape",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认求职色（grape）；任何模块都能选，颜色能换",
+      "sha256": "517163e78333fc2698569013fb1a250ee0418706078dc7487a057b7275dbccd8"
+    },
+    {
+      "id": "module-moon",
+      "title": "贴纸 · 月亮",
+      "file": "modules/moon.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Library、Colors、Picker",
+      "colorMode": "roles",
+      "category": "grape",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "通用贴纸，默认求职色（grape）；任何模块都能选，颜色能换",
+      "sha256": "712708bce1a0dcfd994da88bfac4d483c43eb5a79b4a82d1f0b1aadf329f4f0d"
+    },
+    {
+      "id": "empty-todo",
+      "title": "空状态 · 一步一步",
+      "file": "empty/todo.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Empty、pomelo-motion 的 Empty",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "一步一步还空着时：「今天没有安排，喝杯茶吧」。动效零件 motion/empty-state 一笔笔画出来、再一样样弹一下。",
+      "sha256": "595bd09cc880cfa0f0a7b2e6e77c2a546725b361c8729025bdd206fa9643520a"
+    },
+    {
+      "id": "empty-notes",
+      "title": "空状态 · 念念不忘",
+      "file": "empty/notes.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Empty、pomelo-motion 的 Empty",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "念念不忘还空着时：「念念不忘，必有回响」。动效零件 motion/empty-state 一笔笔画出来、再一样样弹一下。",
+      "sha256": "ffc8969e453f651cfa9a8a778b4a5c05b7789f746f02257bd629711f5f02c9eb"
+    },
+    {
+      "id": "empty-days",
+      "title": "空状态 · 来日方长",
+      "file": "empty/days.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Empty、pomelo-motion 的 Empty",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "来日方长还空着时：「来日方长，日子还空着」。动效零件 motion/empty-state 一笔笔画出来、再一样样弹一下。",
+      "sha256": "6cb5f361ae11b1f370b59123a0762a324f70d3e5853cdb909ab9b8003d7fc650"
+    },
+    {
+      "id": "empty-packing",
+      "title": "空状态 · 出门走走",
+      "file": "empty/packing.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Empty、pomelo-motion 的 Empty",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "出门走走还空着时：「行李箱还空着」。动效零件 motion/empty-state 一笔笔画出来、再一样样弹一下。",
+      "sha256": "d5e0b91a458df256f38c4a8bc7e8a21911dc1d183a5ad885ed433fafff4e35cd"
+    },
+    {
+      "id": "empty-books",
+      "title": "空状态 · 摸鱼读读",
+      "file": "empty/books.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Empty、pomelo-motion 的 Empty",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "摸鱼读读还空着时：「书架空空，去摸会儿鱼吧」。动效零件 motion/empty-state 一笔笔画出来、再一样样弹一下。",
+      "sha256": "fdbd097696b636e2303dae66f8e925e49a0efd616ee029a18f2dd6f84f363eed"
+    },
+    {
+      "id": "empty-films",
+      "title": "空状态 · 好奇看看",
+      "file": "empty/films.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Empty、pomelo-motion 的 Empty",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "好奇看看还空着时：「还没看什么，挑一部吧」。动效零件 motion/empty-state 一笔笔画出来、再一样样弹一下。",
+      "sha256": "55070534cb2d4ed79bef7a63a77b5275232dc8681eeda094569d7d99f7a6258b"
+    },
+    {
+      "id": "empty-jobs",
+      "title": "空状态 · 投石问路",
+      "file": "empty/jobs.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Empty、pomelo-motion 的 Empty",
+      "colorMode": "roles",
+      "category": "grape",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "投石问路还空着时：「路还没开始问」。动效零件 motion/empty-state 一笔笔画出来、再一样样弹一下。",
+      "sha256": "4b959e3f4f9a473ea280be03a6ab5e45a0f5f43ac345cce18f9e0b27142377d4"
+    },
+    {
+      "id": "empty-vault",
+      "title": "空状态 · 芝麻开门",
+      "file": "empty/vault.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-marks 的 Empty、pomelo-motion 的 Empty",
+      "colorMode": "roles",
+      "category": "sky",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "芝麻开门还空着时：「芝麻还没开过门」。动效零件 motion/empty-state 一笔笔画出来、再一样样弹一下。",
+      "sha256": "463e55f67fa3d06e3ad27b4dd47c8b5786147c4eae89735a29e9ca01c65de72d"
+    },
+    {
+      "id": "pomelo-ghost",
+      "title": "柚子 · 撕起来以后的印子",
+      "file": "pomelo/pomelo-ghost.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "Phase 2 定稿里的小彩蛋（站主 2026-11-05 验收）；站主 2026-11-08 批准 Phase 4、5 时要求一并做进来",
+      "colorMode": "roles",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "小彩蛋：简报角上的柚子贴纸撕起来，底下是这块印子，悄悄话写在印子上（界面写字）。和柚子 100 格一样大，贴纸盖住时看不见。照 Phase 2 定稿。",
+      "sha256": "5eecc6098a42a8ab4821a38cabaca61af422b0dddcf4aa23ff68835544ccf379"
+    },
+    {
+      "id": "pomelo-worried",
+      "title": "柚子 · 担心",
+      "file": "pomelo/pomelo-worried.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-08 在 bench 批准（canvases/pomelo-motion 的 Worried），说「批了，发 0.4.1」",
+      "colorMode": "roles",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "第 9 张脸（站主 2026-11-08 要的）：Pomelo 的心情「担心」（今日简报说有烦心事）。出错那张去掉红色「!」。",
+      "sha256": "f203eeafd7a87396986cd8e9ad5287e904306bd1985e634956a36de6264052a2"
+    },
+    {
+      "id": "place-settings",
+      "title": "贴纸 · 设置",
+      "file": "places/settings.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-marks 的 Places），对话里选「都批准」",
+      "colorMode": "roles",
+      "category": "sky",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "设置不是模块，没有「图标和颜色」；叠在桌上、列在「桌上开着」时用这张（工具色）",
+      "sha256": "3d7dbae33b1a5f3baf6f79334e78052fefa54c14da007560d5ac7ccd0f953df2"
+    },
+    {
+      "id": "place-calendar",
+      "title": "贴纸 · 日历",
+      "file": "places/calendar.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-marks 的 Places），对话里选「都批准」",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "日历不是模块，没有「图标和颜色」；叠在桌上、列在「桌上开着」时用这张（日常色）",
+      "sha256": "aebb95f1d69087b21ba16aa62b557315c92af9f95ac35f048c4d1e1dc29beb46"
+    },
+    {
+      "id": "icon-plus",
+      "title": "图标 · 加",
+      "file": "icons/plus.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Plus",
+      "sha256": "0b0eed657cc8b4304c3d7136ac4a5474c3cb81e5fa249821ef89252a2c6dd5db"
+    },
+    {
+      "id": "icon-x",
+      "title": "图标 · 关",
+      "file": "icons/x.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 X",
+      "sha256": "ff7ffdfc8d058bb7058e8d5af3b898169a39337bde568739ae2de6605dd199af"
+    },
+    {
+      "id": "icon-check",
+      "title": "图标 · 勾",
+      "file": "icons/check.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Check",
+      "sha256": "d2a3129710cd9a88d2f00bfc215731f837848ce64a985a5e4785efe6b9359da1"
+    },
+    {
+      "id": "icon-chevron-right",
+      "title": "图标 · 往右",
+      "file": "icons/chevron-right.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ChevronRight",
+      "sha256": "4d06182f707f78038212c01f39027e0e748d70a51e3c82dd5bf791ccffed335b"
+    },
+    {
+      "id": "icon-chevron-left",
+      "title": "图标 · 往左",
+      "file": "icons/chevron-left.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ChevronLeft",
+      "sha256": "4d0b2f157ae49b7280c59edd7ded890b9ac968eb25cacc63914050275678130a"
+    },
+    {
+      "id": "icon-chevron-down",
+      "title": "图标 · 往下",
+      "file": "icons/chevron-down.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ChevronDown",
+      "sha256": "d3f2d47b7f726d1008c470b7e1c1c6a7806859e662eb2f70e6b1896b32bda528"
+    },
+    {
+      "id": "icon-chevron-up",
+      "title": "图标 · 往上",
+      "file": "icons/chevron-up.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ChevronUp",
+      "sha256": "4a8561425069c7391c6036e92f2f431cd1802254ac99dc5e479a9d5d1bb1c79d"
+    },
+    {
+      "id": "icon-chevrons-up-down",
+      "title": "图标 · 上下挑",
+      "file": "icons/chevrons-up-down.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ChevronsUpDown",
+      "sha256": "68bade391c572b89fe99958d12e7f517345d23f21c91134c6230779162eb3a57"
+    },
+    {
+      "id": "icon-arrow-up",
+      "title": "图标 · 箭头 · 上",
+      "file": "icons/arrow-up.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ArrowUp",
+      "sha256": "ba28ee4af01e2b5fe8ad290cc90f0c79e400518985f06e7396866b9b40d22d7a"
+    },
+    {
+      "id": "icon-arrow-down",
+      "title": "图标 · 箭头 · 下",
+      "file": "icons/arrow-down.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ArrowDown",
+      "sha256": "2e41b4bab6429456393460e8ad64c4c3226339148c55ec9e388d068949d5511d"
+    },
+    {
+      "id": "icon-arrow-left-right",
+      "title": "图标 · 对调",
+      "file": "icons/arrow-left-right.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ArrowLeftRight",
+      "sha256": "ce96bf9019a42ac6c6e0214118a23af2bab0d8e540f405209c3d09d7d372c3ce"
+    },
+    {
+      "id": "icon-corner-down-right",
+      "title": "图标 · 接着",
+      "file": "icons/corner-down-right.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 CornerDownRight",
+      "sha256": "4a950214435e8432db299a9135ebd297a38a5799be72c0aa8e316922243f4c17"
+    },
+    {
+      "id": "icon-back-desk",
+      "title": "图标 · 回桌面",
+      "file": "icons/back-desk.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；外框自己的",
+      "sha256": "c6fa58477fc00ac8be8bfc2ee7c35ac8364a4fd30ac1f8f6d1351a39563bd229"
+    },
+    {
+      "id": "icon-flip",
+      "title": "图标 · 翻面",
+      "file": "icons/flip.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；外框自己的",
+      "sha256": "da9cdf1ac1c48124ee0954df4060061e33b610c2751fdd757ac20d4ad2902404"
+    },
+    {
+      "id": "icon-refresh-cw",
+      "title": "图标 · 刷新",
+      "file": "icons/refresh-cw.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 RefreshCw",
+      "sha256": "4663e0e0fcb6159362316c47eab4dfb71753fb96802447af40b893539dbd5d2e"
+    },
+    {
+      "id": "icon-rotate-ccw",
+      "title": "图标 · 重来",
+      "file": "icons/rotate-ccw.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 RotateCcw",
+      "sha256": "40863d2e6827ac3ac57bdabfbf740b23682e48fd58025367496aff52b33ae92a"
+    },
+    {
+      "id": "icon-history",
+      "title": "图标 · 历史",
+      "file": "icons/history.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 History",
+      "sha256": "7a6e7f1a3c7dc77934968a38fd5052d4586d0133961966ae46dbbde1f2962bbe"
+    },
+    {
+      "id": "icon-repeat",
+      "title": "图标 · 重复",
+      "file": "icons/repeat.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Repeat",
+      "sha256": "7aff9a4fa57f1a31e2f628f5343122721e9f9de5ec58a0277659162ed8b40e1d"
+    },
+    {
+      "id": "icon-maximize-2",
+      "title": "图标 · 放大",
+      "file": "icons/maximize-2.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Maximize2",
+      "sha256": "10e5a3568d9c0b8281d13e053e50278499b606f847dd2f0878306688b88708bf"
+    },
+    {
+      "id": "icon-external-link",
+      "title": "图标 · 打开",
+      "file": "icons/external-link.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ExternalLink",
+      "sha256": "34d1f23f8953b7c4d378495327f446edbf44a2b63ea90173cf1907e37008b2b8"
+    },
+    {
+      "id": "icon-search",
+      "title": "图标 · 找",
+      "file": "icons/search.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Search",
+      "sha256": "5a11329a9c18e1ebe84247022d313374375059a6b6d6092c1ee4f63d6c28e511"
+    },
+    {
+      "id": "icon-ellipsis",
+      "title": "图标 · 更多",
+      "file": "icons/ellipsis.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Ellipsis、MoreHorizontal",
+      "sha256": "03cd95185224d30f871758af8eccabbadf0ffeb5507f2f836443657b59f1de16"
+    },
+    {
+      "id": "icon-grip-vertical",
+      "title": "图标 · 拖动",
+      "file": "icons/grip-vertical.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 GripVertical",
+      "sha256": "69d574e7e3c8f53ead30d5aa3221b9ab8aafc5bb90b441771dd1a50c30513c99"
+    },
+    {
+      "id": "icon-trash-2",
+      "title": "图标 · 删",
+      "file": "icons/trash-2.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Trash2",
+      "sha256": "8c319d7a4540f22721a63057234a586c30844a3d901c8da4d03b2d0b15301285"
+    },
+    {
+      "id": "icon-pencil",
+      "title": "图标 · 改",
+      "file": "icons/pencil.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Pencil",
+      "sha256": "73b7064b35b571df01402bcf3c1689b0a510955737c2d4cbcfbbb9de3c47fd04"
+    },
+    {
+      "id": "icon-pen-line",
+      "title": "图标 · 写",
+      "file": "icons/pen-line.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 PenLine",
+      "sha256": "44fc01f667c5b4b2a34563a1de6b3b32e82847b4ba6e08450784b105a44eddf0"
+    },
+    {
+      "id": "icon-square-pen",
+      "title": "图标 · 新写一篇",
+      "file": "icons/square-pen.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 SquarePen",
+      "sha256": "967f2b56808f2ed1788fcec0d0da00297e79e671fa34ad8898875583c14c2cb6"
+    },
+    {
+      "id": "icon-copy",
+      "title": "图标 · 复制",
+      "file": "icons/copy.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Copy",
+      "sha256": "cf7b3f36643bc233c7c1df96dae1dc34ae66afa16a8208cf2e9a25503b7a44af"
+    },
+    {
+      "id": "icon-send",
+      "title": "图标 · 发",
+      "file": "icons/send.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Send",
+      "sha256": "76a7dd35b2deb717a3960aa6fbe1d4c0c00c41aa7cd2dc0bae2efc5da46d0b3c"
+    },
+    {
+      "id": "icon-play",
+      "title": "图标 · 开始",
+      "file": "icons/play.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Play",
+      "sha256": "c17b2ad9c0a149665a4f666e00c8cc6b8164fe8d01cfea580a60d5726134a815"
+    },
+    {
+      "id": "icon-square",
+      "title": "图标 · 方块 · 停",
+      "file": "icons/square.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Square",
+      "sha256": "22de567ea55548865a5413b868e27fa9b2befee82b1f164e7fbae0983bd9ca16"
+    },
+    {
+      "id": "icon-check-square",
+      "title": "图标 · 勾选框",
+      "file": "icons/check-square.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 CheckSquare",
+      "sha256": "ae860ac21a8e55c725e4351cb2ab56a01bff730daeb1ad72d68d3feb0647ffe9"
+    },
+    {
+      "id": "icon-circle",
+      "title": "图标 · 圆",
+      "file": "icons/circle.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Circle",
+      "sha256": "e828cc6758ba61c036e145357f6166f18fb795a455e9004aeab77b174c65b8ed"
+    },
+    {
+      "id": "icon-circle-check",
+      "title": "图标 · 做完",
+      "file": "icons/circle-check.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 CircleCheck、CheckCircle2",
+      "sha256": "82e758e87de480220b54b24c688a989ce1eb9d16c4b290ffdb213b79758d9a1c"
+    },
+    {
+      "id": "icon-circle-dot",
+      "title": "图标 · 在做",
+      "file": "icons/circle-dot.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 CircleDot",
+      "sha256": "fae689f2189136cd5677e1d630783d918552181cc5e860f7a7132a3e83fb1760"
+    },
+    {
+      "id": "icon-circle-question-mark",
+      "title": "图标 · 是什么",
+      "file": "icons/circle-question-mark.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 CircleQuestionMark",
+      "sha256": "293dc25109bd2f8930edf9ddd9297bae082dc9cf686542150e51b13abf1f2df9"
+    },
+    {
+      "id": "icon-triangle-alert",
+      "title": "图标 · 当心",
+      "file": "icons/triangle-alert.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-16 要重画（感叹号的点看不见）；方案 0.9.0 换了几何，名字不变，打 tag 前在 bench「R3」过目",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 TriangleAlert",
+      "sha256": "6d0f1a5037760098b4642be8dc20c1eb3b08da602d92752421b7b9096d281e8a"
+    },
+    {
+      "id": "icon-pin",
+      "title": "图标 · 置顶",
+      "file": "icons/pin.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Pin",
+      "sha256": "0a91095788abfa9f3d90dd253319e883b67684d08206e01186216d3d6f263cbe"
+    },
+    {
+      "id": "icon-pin-off",
+      "title": "图标 · 取消置顶",
+      "file": "icons/pin-off.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 PinOff",
+      "sha256": "45ee34ca747159c2c8edd84090f36e5fbdecb5abfa015a03638aa069ee262fe7"
+    },
+    {
+      "id": "icon-eye",
+      "title": "图标 · 显示",
+      "file": "icons/eye.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Eye",
+      "sha256": "285751dc497157e572f1224d7511d3877d97ae3684517956e7f42c86a9ad16b9"
+    },
+    {
+      "id": "icon-eye-off",
+      "title": "图标 · 隐藏",
+      "file": "icons/eye-off.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 EyeOff",
+      "sha256": "d864643fba0935e9bc179ffd7317d6d37008bfdcd35b6b0d62f34fe5418abf12"
+    },
+    {
+      "id": "icon-lock",
+      "title": "图标 · 锁",
+      "file": "icons/lock.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Lock",
+      "sha256": "bb2b7ccbec955308da7c2e304b32201ee80f4462f86c31518d84be9a49166e38"
+    },
+    {
+      "id": "icon-link-2",
+      "title": "图标 · 链接",
+      "file": "icons/link-2.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Link2",
+      "sha256": "10ae3416e1fcf1fdedd90171e94c2176abe36ca8f34abad3ffe3e1ffe76eb5bc"
+    },
+    {
+      "id": "icon-paperclip",
+      "title": "图标 · 附件",
+      "file": "icons/paperclip.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Paperclip",
+      "sha256": "534abbaf8a3d6879c7e9b5b3a8e308779f3ae893ed0f884d9284ba116d754448"
+    },
+    {
+      "id": "icon-hash",
+      "title": "图标 · 井号",
+      "file": "icons/hash.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Hash",
+      "sha256": "8da327cbc6ab017ba03253eca7d490e86cf7a60904237b8beca89cd346a04e75"
+    },
+    {
+      "id": "icon-quote",
+      "title": "图标 · 引用",
+      "file": "icons/quote.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Quote",
+      "sha256": "b65de0d28dff4294ac191af22ec8bf20254ab0870ec62115c4c13f814ea50fc9"
+    },
+    {
+      "id": "icon-file-text",
+      "title": "图标 · 文件",
+      "file": "icons/file-text.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 FileText",
+      "sha256": "6c6be686fb981dce220e85605ec082d64787e93eff2c4f964ea6d0380b211329"
+    },
+    {
+      "id": "icon-file-down",
+      "title": "图标 · 存成文件",
+      "file": "icons/file-down.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 FileDown",
+      "sha256": "fddf4ea5757d95f9e7de0a809407c679c9d375c9c16b37ecb152175b6c2d20ad"
+    },
+    {
+      "id": "icon-file-plus",
+      "title": "图标 · 新文件",
+      "file": "icons/file-plus.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 FilePlus、FilePlus2",
+      "sha256": "2e6cccf131e9f1b043623a28a789a0555a259896ea20549bd4ae7d38776d9657"
+    },
+    {
+      "id": "icon-file-input",
+      "title": "图标 · 读进来",
+      "file": "icons/file-input.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 FileInput",
+      "sha256": "f98811c660ad74361fd1d127c98b3a6978e2230c6f48c59c3e5fbf55dc246677"
+    },
+    {
+      "id": "icon-file-output",
+      "title": "图标 · 导出去",
+      "file": "icons/file-output.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 FileOutput",
+      "sha256": "f4c94e27cf8835544378100e4e0b0cf0598c656c6884b95b49143e5feb2ef2ad"
+    },
+    {
+      "id": "icon-file-pen",
+      "title": "图标 · 改文件",
+      "file": "icons/file-pen.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 FilePen",
+      "sha256": "d1ab97c8d099a489dd7a3496141832a1d55fed9699fa00fd07d28ed8a1f89742"
+    },
+    {
+      "id": "icon-file-user",
+      "title": "图标 · 简历",
+      "file": "icons/file-user.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 FileUser",
+      "sha256": "e561b34d7140b6ac82c0be3bf9bf5712d5afb8c343bee8a386e199ce25cfa4d0"
+    },
+    {
+      "id": "icon-folder",
+      "title": "图标 · 文件夹",
+      "file": "icons/folder.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Folder",
+      "sha256": "ee61b8e47da09404332cdc73edd7963a82c7fe520bae4bb7ef5be605f8ac26ef"
+    },
+    {
+      "id": "icon-folder-open",
+      "title": "图标 · 打开的文件夹",
+      "file": "icons/folder-open.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 FolderOpen",
+      "sha256": "90b261b79db963701506cf9f0e42895e43d02e62bc82332e366963a120d0ee66"
+    },
+    {
+      "id": "icon-folder-plus",
+      "title": "图标 · 新文件夹",
+      "file": "icons/folder-plus.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 FolderPlus",
+      "sha256": "b427db26b84456e06dc3ba1ae270f90289eebb306ec8405ab71d85b3581ee619"
+    },
+    {
+      "id": "icon-folder-input",
+      "title": "图标 · 放进文件夹",
+      "file": "icons/folder-input.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 FolderInput",
+      "sha256": "4ecb23827eba36294e3b9b437b9c0f1f7ab021ab3bae01a7e57cad970a989c01"
+    },
+    {
+      "id": "icon-archive",
+      "title": "图标 · 归档",
+      "file": "icons/archive.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Archive",
+      "sha256": "e58e1e9d9a28b1412f7a3afc4bb81b8f721d39936c64ecd2b4fd0af3ca1d76f5"
+    },
+    {
+      "id": "icon-archive-restore",
+      "title": "图标 · 恢复",
+      "file": "icons/archive-restore.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ArchiveRestore",
+      "sha256": "a844090c6c68739c03e8c179664d94220549db0613d6e9477d8fbfcc770c3a65"
+    },
+    {
+      "id": "icon-image-plus",
+      "title": "图标 · 加图片",
+      "file": "icons/image-plus.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ImagePlus",
+      "sha256": "8d2b9a82bfc07335f6fc25951b7d34bfee473af4842476e02fb6eb4f277cf096"
+    },
+    {
+      "id": "icon-image-off",
+      "title": "图标 · 图片没了",
+      "file": "icons/image-off.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ImageOff",
+      "sha256": "7d4a049656deb13014694defbd5c02b2e074d22095ceb77cdd410209fc46fdeb"
+    },
+    {
+      "id": "icon-list-plus",
+      "title": "图标 · 加一条",
+      "file": "icons/list-plus.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ListPlus",
+      "sha256": "a56554a500b705997ae5c587c1d0a80393935d5be9e59d1b4e25223b5ec52f14"
+    },
+    {
+      "id": "icon-list-checks",
+      "title": "图标 · 清单",
+      "file": "icons/list-checks.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ListChecks",
+      "sha256": "36e2c7e81507dbf4b1b76d8acf13119dd2437793724cdd882e2494bff0f95d31"
+    },
+    {
+      "id": "icon-panel-left-open",
+      "title": "图标 · 展开左栏",
+      "file": "icons/panel-left-open.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 PanelLeftOpen",
+      "sha256": "3861654a6dea80cde3e00b7407f08464cf9a511ac00842116512fb12e1dcc9c9"
+    },
+    {
+      "id": "icon-panel-left-close",
+      "title": "图标 · 收起左栏",
+      "file": "icons/panel-left-close.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 PanelLeftClose",
+      "sha256": "f0161e7c3e2049899f216ad9aed73d2db79d76b9362a0725ef93c7a2322ef62d"
+    },
+    {
+      "id": "icon-layout-grid",
+      "title": "图标 · 格子",
+      "file": "icons/layout-grid.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 LayoutGrid",
+      "sha256": "005a741a7b3fc5f46f9c5a116fb52912d40ecb5e91690256cfd9261d6a66fea5"
+    },
+    {
+      "id": "icon-settings",
+      "title": "图标 · 设置",
+      "file": "icons/settings.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Settings",
+      "sha256": "ecc42a3f631880dae7f239ecd12d8187549ff12461c50997ad7aed02f81b7774"
+    },
+    {
+      "id": "icon-settings-2",
+      "title": "图标 · 管理",
+      "file": "icons/settings-2.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Settings2",
+      "sha256": "14dddbde268cfe068bc4c00282c94248b9d3410a52df1bb82776e2e7f37afe88"
+    },
+    {
+      "id": "icon-sliders-horizontal",
+      "title": "图标 · 筛选",
+      "file": "icons/sliders-horizontal.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 SlidersHorizontal",
+      "sha256": "efdc20495c9c70f34d373aaa9c2dd57daa57ffa521c41e896a21b393a75c8404"
+    },
+    {
+      "id": "icon-sparkle",
+      "title": "图标 · 一颗星",
+      "file": "icons/sparkle.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；外框自己的",
+      "sha256": "c3d1dee180cee776970d71343e662cd51da81ad36f9163c809123ada4b1cd127"
+    },
+    {
+      "id": "icon-sparkles",
+      "title": "图标 · 柚子帮忙",
+      "file": "icons/sparkles.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Sparkles",
+      "sha256": "8b6188f22ee75062a894791407d7b3e9d97e846ab07c4fcfce7da3b9d907b389"
+    },
+    {
+      "id": "icon-wand-sparkles",
+      "title": "图标 · 变一下",
+      "file": "icons/wand-sparkles.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 WandSparkles",
+      "sha256": "ab49e6c4e109c722b8ee049e00a74c2c587816a355d723aeec89a16e356e3d5a"
+    },
+    {
+      "id": "icon-message-square",
+      "title": "图标 · 对话",
+      "file": "icons/message-square.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 MessageSquare",
+      "sha256": "30e40a84ca6fb37c4777ee45f21acd4833730150bd8737bbd766fdeb751ea6b2"
+    },
+    {
+      "id": "icon-message-circle",
+      "title": "图标 · 聊",
+      "file": "icons/message-circle.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 MessageCircle",
+      "sha256": "87ad0bcdc117a9f736667fa06453da01e1cd5c2a523a3e5902c9c92af34c7a5a"
+    },
+    {
+      "id": "icon-message-circle-question",
+      "title": "图标 · 问我",
+      "file": "icons/message-circle-question.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 MessageCircleQuestion",
+      "sha256": "a8abdaed66daf87f0abf2886f3a534c5d111b21066bf5265fc1030a5aa054296"
+    },
+    {
+      "id": "icon-globe",
+      "title": "图标 · 联网",
+      "file": "icons/globe.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Globe",
+      "sha256": "5522866b0129e218d48229db2cde0fceef405e573c8ef9ed9dae752686e4a53a"
+    },
+    {
+      "id": "icon-cloud",
+      "title": "图标 · 云端",
+      "file": "icons/cloud.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Cloud",
+      "sha256": "79c486024255c1b13e48bfbd06fcdc60b96116a7be3138979d99f669af64940e"
+    },
+    {
+      "id": "icon-lightbulb",
+      "title": "图标 · 思考",
+      "file": "icons/lightbulb.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Lightbulb",
+      "sha256": "eff192941b7c6dd54d44989cdeef6097aa4905afef0e4ead8ea3cd28ece48119"
+    },
+    {
+      "id": "icon-keyboard",
+      "title": "图标 · 打字",
+      "file": "icons/keyboard.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 Keyboard",
+      "sha256": "cbbb3afabe99f03d2ce4a8e56d602c567fba909fe8f44633257c4664cc33ddbb"
+    },
+    {
+      "id": "icon-scan-text",
+      "title": "图标 · 认字",
+      "file": "icons/scan-text.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 ScanText",
+      "sha256": "eb31785ad9e3f3d31375e83d718eaf34d7e3465d8f81200d5cea1c371801e480"
+    },
+    {
+      "id": "icon-trending-up",
+      "title": "图标 · 走势",
+      "file": "icons/trending-up.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Main）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 1 批；替换 Lucide 的 TrendingUp",
+      "sha256": "347007a9fcfd799f05146289b950c53c2600d8f3ed50a5da14983d8f01096ceb"
+    },
+    {
+      "id": "icon-pomelo",
+      "title": "图标 · 柚子",
+      "file": "icons/pomelo.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Bird、Citrus",
+      "sha256": "a73255dbefb49c5cc68e0412bb781f4a7affe4a74a203db6c2bcb7ac2c6f7779"
+    },
+    {
+      "id": "icon-house",
+      "title": "图标 · 首页",
+      "file": "icons/house.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 House",
+      "sha256": "2930504700ceda84511d15f5e049334f436a0134b265bfa9c38543d34b645836"
+    },
+    {
+      "id": "icon-footprints",
+      "title": "图标 · 一步一步",
+      "file": "icons/footprints.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Footprints",
+      "sha256": "59e5a09ebaf2e5abd1bf7d38bfaf594b10974d07682051187900442014df0aa0"
+    },
+    {
+      "id": "icon-feather",
+      "title": "图标 · 念念不忘",
+      "file": "icons/feather.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Feather",
+      "sha256": "b9ddb37a177294514cc8e572bd96f204d277216856ef525118fcba5972605345"
+    },
+    {
+      "id": "icon-calendar-days",
+      "title": "图标 · 日历",
+      "file": "icons/calendar-days.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 CalendarDays",
+      "sha256": "897fd31678ca4637aaf94cd9787a21813bdc44c3a98603a72cbaecf58def66d4"
+    },
+    {
+      "id": "icon-calendar-heart",
+      "title": "图标 · 来日方长",
+      "file": "icons/calendar-heart.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 CalendarHeart",
+      "sha256": "7f2a328dbe6bcf7d70cd10b733f3228b5d67a3a6fea03de83d0e290c78912fe7"
+    },
+    {
+      "id": "icon-calendar-check",
+      "title": "图标 · 到期",
+      "file": "icons/calendar-check.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 CalendarCheck",
+      "sha256": "e0d024ed111aace6e9b59bad79006e43adc53d65242d1d8f725c7f0f71b666f6"
+    },
+    {
+      "id": "icon-wallet",
+      "title": "图标 · 钱来钱往",
+      "file": "icons/wallet.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Wallet",
+      "sha256": "6fa7cd043cb6167eaea6f3ed6c90cad990751541c0b971c2d0c9bedfe6037cb4"
+    },
+    {
+      "id": "icon-luggage",
+      "title": "图标 · 出门走走",
+      "file": "icons/luggage.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Luggage",
+      "sha256": "fdc7e00b83e5644c2ad35541055e81db7ec3c24a4c3f52b80569f52ba790d833"
+    },
+    {
+      "id": "icon-book-open",
+      "title": "图标 · 摸鱼读读",
+      "file": "icons/book-open.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 BookOpen",
+      "sha256": "2f91d91346bab398c391ff302d728efdff247910fb21a349b215143ceda799d9"
+    },
+    {
+      "id": "icon-clapperboard",
+      "title": "图标 · 好奇看看",
+      "file": "icons/clapperboard.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Clapperboard",
+      "sha256": "87b3a06beea547bdc9e53ca57b2b41ff20833dbf7b69df7520d866daa5a22650"
+    },
+    {
+      "id": "icon-palette",
+      "title": "图标 · 随意画画",
+      "file": "icons/palette.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Palette",
+      "sha256": "19e71da291cc01174fcb10ee0264717e19776297dde612d4bcfc1516799789f0"
+    },
+    {
+      "id": "icon-compass",
+      "title": "图标 · 呦呦漫游",
+      "file": "icons/compass.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Compass",
+      "sha256": "c7027b6b32f191dc6b08777506773b9e23c34791eeffa7e99559a4618418bb7c"
+    },
+    {
+      "id": "icon-briefcase",
+      "title": "图标 · 投石问路",
+      "file": "icons/briefcase.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Briefcase",
+      "sha256": "8452620341d3a2c75bf49091769ba4d06e782a301526afbfd6a98b62cff8e987"
+    },
+    {
+      "id": "icon-target",
+      "title": "图标 · 目标",
+      "file": "icons/target.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Target",
+      "sha256": "036295455e8778d495c0646f4d311a45862dd31f867a32ba7ae70d9a241ce0bb"
+    },
+    {
+      "id": "icon-key-round",
+      "title": "图标 · 芝麻开门",
+      "file": "icons/key-round.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 KeyRound",
+      "sha256": "bec7e204b04bd21fcb5f977d75c556eab1f328a07f9eefd42948805bad107376"
+    },
+    {
+      "id": "icon-fingerprint",
+      "title": "图标 · 指纹",
+      "file": "icons/fingerprint.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Fingerprint",
+      "sha256": "0533f452d7a6662d90990ac6e13ba377f54b1537bac1d5a61f2bd82e2d1be52b"
+    },
+    {
+      "id": "icon-bookmark",
+      "title": "图标 · 一网打尽",
+      "file": "icons/bookmark.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Bookmark",
+      "sha256": "e28f9e31fb2c7701bc7f8d799184dfb6ca65e2ae77c4ee7e410e7a02097fa681"
+    },
+    {
+      "id": "icon-brush-cleaning",
+      "title": "图标 · DevJanitor",
+      "file": "icons/brush-cleaning.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 BrushCleaning",
+      "sha256": "49eeb54cd607ecf515613cdca630079931586fe947a9dade6a71af1677f7986f"
+    },
+    {
+      "id": "icon-hard-drive",
+      "title": "图标 · 磁盘",
+      "file": "icons/hard-drive.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 HardDrive",
+      "sha256": "c30c9cb088fde813c5488b5be71e6d73cfb56b32a8f94c22034a6f6e08ca84df"
+    },
+    {
+      "id": "icon-database-backup",
+      "title": "图标 · 备份",
+      "file": "icons/database-backup.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 DatabaseBackup",
+      "sha256": "805aa83e3ee79c522893d7a75f6456b98cd291b11a793d6a0fe0c8735d53ebf1"
+    },
+    {
+      "id": "icon-stethoscope",
+      "title": "图标 · 体检",
+      "file": "icons/stethoscope.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Stethoscope",
+      "sha256": "0b03337ae27897d61e4faed74b09459ac01ced30323090cb6ae3b1fead860d6f"
+    },
+    {
+      "id": "icon-languages",
+      "title": "图标 · 翻译",
+      "file": "icons/languages.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Languages",
+      "sha256": "b8d1ae210fd5497a202c851c9bcabc20fce9efb51f3429fa07de8d3ad1815e2b"
+    },
+    {
+      "id": "icon-brain",
+      "title": "图标 · 记忆",
+      "file": "icons/brain.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Brain",
+      "sha256": "2789d69cd549251eff055fae7143f13609394f9e0111a8458d7460e39ed27d75"
+    },
+    {
+      "id": "icon-library",
+      "title": "图标 · 资料",
+      "file": "icons/library.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Library",
+      "sha256": "fbb20fb5c1f86017ee61a1a4e3c2bfdbac03af9293a5a33305732f7984de4149"
+    },
+    {
+      "id": "icon-library-big",
+      "title": "图标 · 知识库",
+      "file": "icons/library-big.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 LibraryBig",
+      "sha256": "8ceb29861bb9be714c5cc48b88e960c3205db72d96d66ae59471a38d25ed1b80"
+    },
+    {
+      "id": "icon-puzzle",
+      "title": "图标 · 插件",
+      "file": "icons/puzzle.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Puzzle",
+      "sha256": "22da7529d6a6064d489fd1b52be2644cbfb24ed55e08a480e821c47997285520"
+    },
+    {
+      "id": "icon-alarm-clock",
+      "title": "图标 · 定时",
+      "file": "icons/alarm-clock.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 AlarmClock",
+      "sha256": "ac709f29e8b4e0e84a42cbaec119a6c3d86a7c8ce593cdec82ed79b976dba1c2"
+    },
+    {
+      "id": "icon-bell-ring",
+      "title": "图标 · 提醒",
+      "file": "icons/bell-ring.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 BellRing",
+      "sha256": "6676a75cf9d302e68335f7de9e37901cbbeab8ad5d613709a097824400f67b95"
+    },
+    {
+      "id": "icon-hourglass",
+      "title": "图标 · 等一等",
+      "file": "icons/hourglass.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Hourglass",
+      "sha256": "6fd7a823ffc950d06b25bb4ab33025a45506fc68bacc39ef9f31ac510b0fb50e"
+    },
+    {
+      "id": "icon-sun",
+      "title": "图标 · 太阳",
+      "file": "icons/sun.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Sun",
+      "sha256": "8c29f9943a2ef3dcce603eba1515f4447cefb96883633cec77197886a8556e99"
+    },
+    {
+      "id": "icon-moon",
+      "title": "图标 · 月亮",
+      "file": "icons/moon.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Moon",
+      "sha256": "9b7d0473ec74666f88ba480bb4f98d50b01b385ab3b7785e41915703ab44a212"
+    },
+    {
+      "id": "icon-map-pin",
+      "title": "图标 · 地点",
+      "file": "icons/map-pin.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 MapPin",
+      "sha256": "09de770db19ebf060ed282b5ef19a4658136ff0c0a6b0292c2963f72bcdf8328"
+    },
+    {
+      "id": "icon-tag",
+      "title": "图标 · 标签",
+      "file": "icons/tag.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Tag",
+      "sha256": "d0a965ca463878de14b23ff7afa2a5cda98317d7d3736683fd1256afb07ec8b2"
+    },
+    {
+      "id": "icon-tags",
+      "title": "图标 · 几个标签",
+      "file": "icons/tags.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Tags",
+      "sha256": "5affcdee7a5b61e158f5e4cf076c9cbd10e3b10643dbd1d93e09c8a9adf503c4"
+    },
+    {
+      "id": "icon-notebook",
+      "title": "图标 · 本子",
+      "file": "icons/notebook.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Notebook",
+      "sha256": "ef298663066d1be5f8f2e91915b125a74243cc7fe07eb51c0e29cb239ccf561c"
+    },
+    {
+      "id": "icon-notebook-pen",
+      "title": "图标 · 记在本子上",
+      "file": "icons/notebook-pen.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 NotebookPen",
+      "sha256": "888a80c40bf702d0dc3f80f4cf597cb0520e091e9d2f33a78f6d24fad6fc5e46"
+    },
+    {
+      "id": "icon-scroll-text",
+      "title": "图标 · 长文",
+      "file": "icons/scroll-text.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 ScrollText",
+      "sha256": "c053e347f78ff9c80e79300c700a5a02433d11e2bbbba770da38c28460f88580"
+    },
+    {
+      "id": "icon-user",
+      "title": "图标 · 一个人",
+      "file": "icons/user.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 User",
+      "sha256": "e35eed578e76a223cc97f274cf321f9547900a672c60cb32403b1a06bfefa8bf"
+    },
+    {
+      "id": "icon-users",
+      "title": "图标 · 几个人",
+      "file": "icons/users.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Users",
+      "sha256": "bc448f2c09ede6bf274b26b779e6eaca235ab95ecb8b9e924bd653c68ba6ce1c"
+    },
+    {
+      "id": "icon-smile",
+      "title": "图标 · 笑脸",
+      "file": "icons/smile.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Smile",
+      "sha256": "64d19ced999316777767ff39429dec5e63c3e5979851d3413b599e70e5eb2c0e"
+    },
+    {
+      "id": "icon-heart",
+      "title": "图标 · 心",
+      "file": "icons/heart.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Heart",
+      "sha256": "57cd4c4aed409282f473a2315a94e9ba279a7a7b7a1b5de12c9e362d13006877"
+    },
+    {
+      "id": "icon-heart-pulse",
+      "title": "图标 · 身体",
+      "file": "icons/heart-pulse.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 HeartPulse",
+      "sha256": "28be2cb04d20767ec2948d01fec1665fcad09b0b817036e8c7d61cafba42e2cb"
+    },
+    {
+      "id": "icon-star",
+      "title": "图标 · 星星",
+      "file": "icons/star.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Star",
+      "sha256": "ae76686e247afbe37b4a61f73b705ea38ebf795541003aad310be3d9fbefb4d5"
+    },
+    {
+      "id": "icon-flame",
+      "title": "图标 · 火",
+      "file": "icons/flame.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Flame",
+      "sha256": "3437c628099d6f7eb97871ea2c50736552b68a4be8c312ed03a8b2e85dd59b9e"
+    },
+    {
+      "id": "icon-flower-2",
+      "title": "图标 · 花",
+      "file": "icons/flower-2.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Flower2",
+      "sha256": "eec9b09ca530b1763fa1c8e225f00aacda286880348d9e347c5591a9353280ed"
+    },
+    {
+      "id": "icon-leaf",
+      "title": "图标 · 叶子",
+      "file": "icons/leaf.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Leaf",
+      "sha256": "229edcca3ca8c98b2ded47d278ad633b9ed148c1e461b4cdf04d16e10691975a"
+    },
+    {
+      "id": "icon-sprout",
+      "title": "图标 · 小苗",
+      "file": "icons/sprout.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Sprout",
+      "sha256": "c3ab7458646d18e5675f63195f8ab286151f08b15c2bea8429b6a94bb7af7c2c"
+    },
+    {
+      "id": "icon-mountain",
+      "title": "图标 · 山",
+      "file": "icons/mountain.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Mountain",
+      "sha256": "6d070f6811359d3c547928b7a2059f0e83c909c246d5afc79d438a7b3834e49c"
+    },
+    {
+      "id": "icon-plane",
+      "title": "图标 · 飞机",
+      "file": "icons/plane.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Plane",
+      "sha256": "c67195e0af51f86318cd60768f90eed21802b435cd205ea2d06de297d602bce8"
+    },
+    {
+      "id": "icon-cat",
+      "title": "图标 · 猫",
+      "file": "icons/cat.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Cat",
+      "sha256": "c099d683dc8b2444b75499ae0adcd19e39f8b315bf1650ef85f448414fe98821"
+    },
+    {
+      "id": "icon-camera",
+      "title": "图标 · 相机",
+      "file": "icons/camera.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Camera",
+      "sha256": "1d39db2d26163417a8867f63d19a839f5e5dd013620ba42cc9cf51a3db7ec165"
+    },
+    {
+      "id": "icon-music",
+      "title": "图标 · 音乐",
+      "file": "icons/music.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Music",
+      "sha256": "13b65dd0127fa8624691c7d2de2410446269e9917d20cf578bb01bee11cc2ceb"
+    },
+    {
+      "id": "icon-headphones",
+      "title": "图标 · 耳机",
+      "file": "icons/headphones.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Headphones",
+      "sha256": "b44cd7cb291c293006713604c03246ded5199a07e00e7c4bbd12dd618875f1a8"
+    },
+    {
+      "id": "icon-tv",
+      "title": "图标 · 电视",
+      "file": "icons/tv.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Tv",
+      "sha256": "171305d9c10cd6557fe9f387f5a9290a7f0577c61dfdcf0a9f8e4b681ac75496"
+    },
+    {
+      "id": "icon-gamepad-2",
+      "title": "图标 · 游戏",
+      "file": "icons/gamepad-2.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Gamepad2",
+      "sha256": "9e9a148d616ace810e7492b0a7edf626111a75dd76f6622456a72efb8c6b32e7"
+    },
+    {
+      "id": "icon-coffee",
+      "title": "图标 · 咖啡",
+      "file": "icons/coffee.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Coffee",
+      "sha256": "354827828cedf8b72f6ecdf87463b5948938e0e76583bc861ec561302800b316"
+    },
+    {
+      "id": "icon-utensils",
+      "title": "图标 · 吃饭",
+      "file": "icons/utensils.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Utensils",
+      "sha256": "282ce6d005ef57fb477ee01884ce0b3823dadd11edc934f3b65cdb4b61d23049"
+    },
+    {
+      "id": "icon-shopping-bag",
+      "title": "图标 · 买东西",
+      "file": "icons/shopping-bag.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 ShoppingBag",
+      "sha256": "30f874bea37283f6fe5faea3dc3341c21b76a968545802f7dca9d4c9ea69e801"
+    },
+    {
+      "id": "icon-gift",
+      "title": "图标 · 礼物",
+      "file": "icons/gift.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Gift",
+      "sha256": "18f5e07599e7892ec10d484b18b0bd4e9133866e6861b4302541cc61bab36517"
+    },
+    {
+      "id": "icon-shirt",
+      "title": "图标 · 衣服",
+      "file": "icons/shirt.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Shirt",
+      "sha256": "1f07cfcf2b9fc045df863a49169f3f3832a8f7171e8cdaf1a5ef03c14d396b3c"
+    },
+    {
+      "id": "icon-dumbbell",
+      "title": "图标 · 运动",
+      "file": "icons/dumbbell.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Dumbbell",
+      "sha256": "449a7846119f2701b8bad7f4039cfd24434deadf0992ef54e9ed3b416efc419a"
+    },
+    {
+      "id": "icon-graduation-cap",
+      "title": "图标 · 上学",
+      "file": "icons/graduation-cap.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 GraduationCap",
+      "sha256": "2fdde6b9871de6fc5e682ff6c954ddee359e308519d3be4a8de49c61d9a5d6d9"
+    },
+    {
+      "id": "icon-code",
+      "title": "图标 · 代码",
+      "file": "icons/code.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Code",
+      "sha256": "c88e9711a1191ff0a058567776e9ba3b989d23d7ee400d11e737526151037044"
+    },
+    {
+      "id": "icon-wrench",
+      "title": "图标 · 工具",
+      "file": "icons/wrench.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Wrench",
+      "sha256": "dce0cd2992362baceb46b89041fa8bbad71d3a2339a85d4bc62c9d76e8c31ad2"
+    },
+    {
+      "id": "icon-trophy",
+      "title": "图标 · 奖杯",
+      "file": "icons/trophy.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Trophy",
+      "sha256": "9c184489211d01b117c08e05d8dfd3ebc7a120f5b00baa61ce723a28ff5848ee"
+    },
+    {
+      "id": "icon-shapes",
+      "title": "图标 · 形状",
+      "file": "icons/shapes.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-09 在 bench 批准（canvases/pomelo-icons 的 Batch2）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；替换 Lucide 的 Shapes",
+      "sha256": "cdf646ff211873de949f26539dc3af3e477c40180b0d8ee34a7be3abc3cbcd8d"
+    },
+    {
+      "id": "icon-time-travel",
+      "title": "图标 · 时间穿梭",
+      "file": "icons/time-travel.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-11 在对话里看图批准（Atlas 的优化）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 2 批；外框自己的",
+      "sha256": "3d97b46b9b6df3393182e3704c99d9e29a86e0fcfaedc7f64c7783d7fae479d8"
+    },
+    {
+      "id": "module-articles",
+      "title": "模块 · 见字如面",
+      "file": "modules/articles.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-13 在云端画布「见字如面」上挑的（Marks-Sticker 三个方案里的 B 纸飞机，v1.0 Phase 1）",
+      "colorMode": "roles",
+      "category": "mint",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "日常 · mint；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "583c934a5dcb2e0fa29088d0130833f4134781a3ffd224de4c4848fe64f89682"
+    },
+    {
+      "id": "icon-heading",
+      "title": "图标 · 标题",
+      "file": "icons/heading.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-13 在云端画布「见字如面」上批准（Marks-Toolbar，v1.0 Phase 1）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 Heading",
+      "sha256": "6318c5c4e1597887823c9691a55f0c463f42f6b9ae7d1650e908347ef4502aa4"
+    },
+    {
+      "id": "icon-bold",
+      "title": "图标 · 加粗",
+      "file": "icons/bold.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-13 在云端画布「见字如面」上批准（Marks-Toolbar，v1.0 Phase 1）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 Bold",
+      "sha256": "79c05d024c687c970d2872ce4ae05804010f0d81f2536e49e99d4a244bc80d75"
+    },
+    {
+      "id": "icon-italic",
+      "title": "图标 · 斜体",
+      "file": "icons/italic.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-13 在云端画布「见字如面」上批准（Marks-Toolbar，v1.0 Phase 1）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 Italic",
+      "sha256": "f990794b15f2deb513e5cad5da4be3acef3eab78043bc4549b6be101a58c2c15"
+    },
+    {
+      "id": "icon-underline",
+      "title": "图标 · 下划线",
+      "file": "icons/underline.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-13 在云端画布「见字如面」上批准（Marks-Toolbar，v1.0 Phase 1）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 Underline",
+      "sha256": "9ed13356c11fd1be414f2ea34a1f2c5ebd528670075d5a6643bedb4367a3a21d"
+    },
+    {
+      "id": "icon-strikethrough",
+      "title": "图标 · 删除线",
+      "file": "icons/strikethrough.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-16 在 Phase 4 三家并排的格式条图标里挑的（Codex b28c553，history/v1-phase4.md）；方案 0.9.0 换了几何，名字不变",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 Strikethrough",
+      "sha256": "cfa06a49f928c3abbf7ea9512f04db865c603560e63f0ee0fca2518763101f39"
+    },
+    {
+      "id": "icon-highlighter",
+      "title": "图标 · 高亮",
+      "file": "icons/highlighter.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-16 在 Phase 4 三家并排的格式条图标里挑的（Argon 6e7bb6c，history/v1-phase4.md）；方案 0.9.0 换了几何，名字不变",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 Highlighter",
+      "sha256": "4a43fd3a6afa1adf22f39fd275550adcc87f8c7df359b44823276c8dfabc2780"
+    },
+    {
+      "id": "icon-code-block",
+      "title": "图标 · 代码块",
+      "file": "icons/code-block.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-13 在云端画布「见字如面」上批准（Marks-Toolbar，v1.0 Phase 1）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 SquareCode",
+      "sha256": "acf9dacb35300b8f9cd65cf542d19db73f417595cb1f235903b02d6138481a6d"
+    },
+    {
+      "id": "icon-list",
+      "title": "图标 · 列表",
+      "file": "icons/list.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-13 在云端画布「见字如面」上批准（Marks-Toolbar，v1.0 Phase 1）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 List",
+      "sha256": "c0818165d66fc001f5659973390b46ae3e132cf894ab9126812d4c4bc2481ea4"
+    },
+    {
+      "id": "icon-list-ordered",
+      "title": "图标 · 编号",
+      "file": "icons/list-ordered.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-16 在 Phase 4 三家并排的格式条图标里挑的（Argon 6e7bb6c，history/v1-phase4.md）；方案 0.9.0 换了几何，名字不变",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 ListOrdered",
+      "sha256": "5c3c4d382c1ebdaeae9803a904215871dc8a7aa0a7c4214756669ca50782a326"
+    },
+    {
+      "id": "icon-callout",
+      "title": "图标 · 提示框",
+      "file": "icons/callout.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-16 在 Phase 4 三家并排的格式条图标里挑的（Argon 6e7bb6c，history/v1-phase4.md）；方案 0.9.0 换了几何，名字不变",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 MessageSquareWarning",
+      "sha256": "670d346433d51b0b91808c4790c93cd4685d5afda3c7a7e6b688ce31f5b6b73b"
+    },
+    {
+      "id": "icon-divider",
+      "title": "图标 · 分隔线",
+      "file": "icons/divider.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-16 在 Phase 4 三家并排的格式条图标里挑的（Codex b28c553，history/v1-phase4.md）；方案 0.9.0 换了几何，名字不变",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 SeparatorHorizontal",
+      "sha256": "39d2d998750ad91cc68cc60215e2630720551ef422c786250b12485c4703feac"
+    },
+    {
+      "id": "icon-wikilink",
+      "title": "图标 · 互链",
+      "file": "icons/wikilink.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-16 在 Phase 4 三家并排的格式条图标里挑的（Codex b28c553，history/v1-phase4.md）；方案 0.9.0 换了几何，名字不变",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 Brackets",
+      "sha256": "65813ae0516388cfe8d0e5981e4b609a4cb0be2250f884f19da609db62bc4d5e"
+    },
+    {
+      "id": "icon-table",
+      "title": "图标 · 表格",
+      "file": "icons/table.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-13 在云端画布「见字如面」上批准（Marks-Toolbar，v1.0 Phase 1）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 Table",
+      "sha256": "7aacca9a61f9ba85c640c5bd814629047fe9ffb06c3f8d3c533f335e1953ba4f"
+    },
+    {
+      "id": "icon-sigma",
+      "title": "图标 · 公式",
+      "file": "icons/sigma.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-13 在云端画布「见字如面」上批准（Marks-Toolbar，v1.0 Phase 1）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 Sigma",
+      "sha256": "8666b296c9d31f5f66563e56f15f4732a3a5de630eff6e9fb34177252f146d7a"
+    },
+    {
+      "id": "icon-flowchart",
+      "title": "图标 · 流程图",
+      "file": "icons/flowchart.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-16 在 Phase 4 三家并排的格式条图标里挑的（Argon 6e7bb6c，history/v1-phase4.md）；方案 0.9.0 换了几何，名字不变",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 Workflow",
+      "sha256": "ee3efbde2318f4a9730e5d7e84cf0fd4332edb4de4ba07a522f5dae7a9e43289"
+    },
+    {
+      "id": "icon-footnote",
+      "title": "图标 · 脚注",
+      "file": "icons/footnote.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-13 在云端画布「见字如面」上批准（Marks-Toolbar，v1.0 Phase 1）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 Superscript",
+      "sha256": "fa1c498d0f2cabf6a4589a98e01dbe757107c65a918901203ded0d3b5e9c03e9"
+    },
+    {
+      "id": "icon-fold",
+      "title": "图标 · 折叠",
+      "file": "icons/fold.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-16 在 Phase 4 三家并排的格式条图标里挑的（Codex b28c553，history/v1-phase4.md）；方案 0.9.0 换了几何，名字不变",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 ListCollapse",
+      "sha256": "000cf454695cb5574f1202c3aa49819123ac381f8ea85d9440c3037ba697b8e1"
+    },
+    {
+      "id": "icon-tag-off",
+      "title": "图标 · 没标签",
+      "file": "icons/tag-off.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-13 在云端画布「见字如面」上批准（Marks-Toolbar，v1.0 Phase 1）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 TagOff",
+      "sha256": "aafe3991c17450485d8be664f14f28d9415b7ff9d2b263fabce38f49ce9d33d1"
+    },
+    {
+      "id": "icon-minimize-2",
+      "title": "图标 · 缩小",
+      "file": "icons/minimize-2.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-13 在云端画布「见字如面」上批准（Marks-Toolbar，v1.0 Phase 1）",
+      "colorMode": "currentColor",
+      "colorRole": "ink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "界面小图标，第 3 批；替换 Lucide 的 Minimize2",
+      "sha256": "14beb40722e9692622fe575ab0ea2d84362ee1057dbf516e3efedaf7194baca9"
+    },
+    {
+      "id": "module-games",
+      "title": "模块 · 玩物有志",
+      "file": "modules/games.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-15 批准（画布「Pomelo · 联动和玩物有志」的 Games-Sticker，三个方案里挑了 B 掌机）",
+      "colorMode": "roles",
+      "category": "pink",
+      "source": {
+        "generator": "tooling/handmade/marks.mjs",
+        "art": "marks/art.mjs",
+        "rules": "DESIGN.md §4、§6",
+        "note": "由 tooling/handmade/marks.mjs 按 marks/art.mjs 生成，不要手改"
+      },
+      "notes": "兴趣 · pink；外面设 --mark-color、--mark-color-soft 能换成别的分类色",
+      "sha256": "0ac99186ab74b0d1f4627bd32430c390f9a7826f59d13a3cee1ba8c71c3b5f6c"
+    }
+  ]
+}

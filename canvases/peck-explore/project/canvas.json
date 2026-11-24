@@ -1,0 +1,763 @@
+{
+  "v": 3,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-08T11:08:50Z"
+  },
+  "title": "Peck Explore",
+  "launch": {
+    "view": "canvas",
+    "page": "s4r1"
+  },
+  "pages": [
+    {
+      "id": "v0",
+      "name": "EX1：初版（11/08，整版退回）"
+    },
+    {
+      "id": "s1r1",
+      "name": "EX2：配色、动效、图标"
+    },
+    {
+      "id": "s1r2",
+      "name": "EX3：主样板、四个细节、ASK 卡片、图标"
+    },
+    {
+      "id": "s1r3",
+      "name": "EX4：界面字体、浅色的青、像素角、图标"
+    },
+    {
+      "id": "s2r4",
+      "name": "R1：右栏模块、ONE SHOT、规则第三版"
+    },
+    {
+      "id": "s2r2",
+      "name": "R2：外框小样"
+    },
+    {
+      "id": "s3r1",
+      "name": "R3：色板、对比度、控件、字和尺寸、图标、动效"
+    },
+    {
+      "id": "s4r1",
+      "name": "R4：Design System"
+    }
+  ],
+  "boards": {
+    "Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "主界面 · 任务进行中（深色）",
+      "radius": 12,
+      "page": "v0"
+    },
+    "Main-Light.dc.html": {
+      "x": 1360,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "主界面 · 任务进行中（浅色）",
+      "radius": 12,
+      "page": "v0"
+    },
+    "Done.dc.html": {
+      "x": 0,
+      "y": 920,
+      "w": 1280,
+      "h": 800,
+      "title": "主界面 · 任务完成（默认留着，撤销在右上）",
+      "radius": 12,
+      "page": "v0"
+    },
+    "Home.dc.html": {
+      "x": 1360,
+      "y": 920,
+      "w": 1280,
+      "h": 800,
+      "title": "项目列表（打开第一眼）",
+      "radius": 12,
+      "page": "v0"
+    },
+    "Cards.dc.html": {
+      "x": 0,
+      "y": 1840,
+      "w": 1280,
+      "h": 800,
+      "title": "卡片：ASK、高危确认、要 Key、菜单栏和通知",
+      "radius": 12,
+      "page": "v0"
+    },
+    "Settings.dc.html": {
+      "x": 1360,
+      "y": 1840,
+      "w": 1280,
+      "h": 800,
+      "title": "设置：一个面板替掉三个对话框（浅色）",
+      "radius": 12,
+      "page": "v0"
+    },
+    "Tokens.dc.html": {
+      "x": 0,
+      "y": 2760,
+      "w": 1280,
+      "h": 1100,
+      "title": "色板、字体、控件、动效（左深右浅）",
+      "radius": 12,
+      "page": "v0"
+    },
+    "S1-A.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "方向 A · 精密仪器",
+      "page": "s1r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1-B.dc.html": {
+      "x": 1360,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "方向 B · 冷白编辑",
+      "page": "s1r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1-C.dc.html": {
+      "x": 2720,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "方向 C · 点阵终端",
+      "page": "s1r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1-Color.dc.html": {
+      "x": 0,
+      "y": 920,
+      "w": 1280,
+      "h": 800,
+      "title": "配色 · P1–P4（上浅下深）",
+      "page": "s1r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1-Motion.dc.html": {
+      "x": 1360,
+      "y": 920,
+      "w": 1280,
+      "h": 800,
+      "title": "动效性格 · M1–M4 × 三个场景",
+      "page": "s1r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1-Icon.dc.html": {
+      "x": 2720,
+      "y": 920,
+      "w": 1280,
+      "h": 800,
+      "title": "App 图标 · I1–I6",
+      "page": "s1r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1b-Run.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "C × P3 · 在跑",
+      "page": "s1r2",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1b-Wait.dc.html": {
+      "x": 1360,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "C × P3 · 停下来问你",
+      "page": "s1r2",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1b-Dims.dc.html": {
+      "x": 2720,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "还没定的四个细节 · 角、底纹、发光、点阵字",
+      "page": "s1r2",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1b-Ask.dc.html": {
+      "x": 0,
+      "y": 920,
+      "w": 1280,
+      "h": 800,
+      "title": "ASK 卡片 · 学 Claude Code（能点）",
+      "page": "s1r2",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1b-Motion.dc.html": {
+      "x": 1360,
+      "y": 920,
+      "w": 1280,
+      "h": 800,
+      "title": "动效融合 · M4 为主，M3、M1 点缀",
+      "page": "s1r2",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1b-Icon.dc.html": {
+      "x": 2720,
+      "y": 920,
+      "w": 1280,
+      "h": 800,
+      "title": "App 图标 · J1–J5（都从现在的图标出发）",
+      "page": "s1r2",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1c-Run.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "在跑 · 第三版",
+      "page": "s1r3",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1c-Wait.dc.html": {
+      "x": 1360,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "停下来问你 · 第三版",
+      "page": "s1r3",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1c-Font.dc.html": {
+      "x": 2720,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "界面字体 · F1–F3",
+      "page": "s1r3",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1c-Cyan.dc.html": {
+      "x": 0,
+      "y": 920,
+      "w": 1280,
+      "h": 800,
+      "title": "浅色里的青 · L1–L3",
+      "page": "s1r3",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1c-Parts.dc.html": {
+      "x": 1360,
+      "y": 920,
+      "w": 1280,
+      "h": 800,
+      "title": "零件 · 像素角（左深右浅）",
+      "page": "s1r3",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S1c-Icon.dc.html": {
+      "x": 2720,
+      "y": 920,
+      "w": 1280,
+      "h": 800,
+      "title": "App 图标 · J2 + 现在的图标（润色）",
+      "page": "s1r3",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S2-Flow.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1760,
+      "h": 800,
+      "title": "流程一览 · 8 个时刻（静止）",
+      "page": "s2r2",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S2b-Anatomy.dc.html": {
+      "x": 1840,
+      "y": 0,
+      "w": 1760,
+      "h": 1000,
+      "title": "外框解剖 · 小样上标出规则",
+      "page": "s2r2",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S2b-Settings.dc.html": {
+      "x": 0,
+      "y": 1120,
+      "w": 1280,
+      "h": 800,
+      "title": "迁移测试 1 · 设置（左边导航能点）",
+      "page": "s2r2",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S2b-Api.dc.html": {
+      "x": 1360,
+      "y": 1120,
+      "w": 1280,
+      "h": 800,
+      "title": "迁移测试 2 · API 模式（点 MORE 看填 Key）",
+      "page": "s2r2",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S2b-States.dc.html": {
+      "x": 2720,
+      "y": 1120,
+      "w": 1280,
+      "h": 800,
+      "title": "迁移测试 3 · 空、加载、出错（Tweaks 里切状态）",
+      "page": "s2r2",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S2b-StatesFlow.dc.html": {
+      "x": 0,
+      "y": 2040,
+      "w": 1760,
+      "h": 800,
+      "title": "迁移测试 3、4 · 7 个状态一览",
+      "page": "s2r2",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S2d-Side.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "右栏四个模块 · 能点的小样（ONE SHOT 选谁来答、终端会锁）",
+      "page": "s2r4",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S2d-Wide.dc.html": {
+      "x": 1360,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "展开到宽栏 · 任务停下来问你，你在 ONE SHOT 里查（Tweaks 里换模块）",
+      "page": "s2r4",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S2d-Report.dc.html": {
+      "x": 2720,
+      "y": 0,
+      "w": 1280,
+      "h": 860,
+      "title": "第四轮结果 · 要你定的 3 件事",
+      "page": "s2r4",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S2d-SideFlow.dc.html": {
+      "x": 0,
+      "y": 1000,
+      "w": 1760,
+      "h": 1380,
+      "title": "右栏 · 12 个时刻（静止）",
+      "page": "s2r4",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S2d-Rules.dc.html": {
+      "x": 1840,
+      "y": 1000,
+      "w": 1760,
+      "h": 1480,
+      "title": "外框规则 · 第三版 · 66 条",
+      "page": "s2r4",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S3-Color.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1760,
+      "h": 1140,
+      "title": "色板 · 34 个角色的明暗定值",
+      "page": "s3r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S3-Contrast.dc.html": {
+      "x": 1840,
+      "y": 0,
+      "w": 1280,
+      "h": 900,
+      "title": "对比度 · 36 对都过 APCA",
+      "page": "s3r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S3-Controls.dc.html": {
+      "x": 0,
+      "y": 1200,
+      "w": 1760,
+      "h": 1300,
+      "title": "控件全套 · 14 种控件 × 6 个状态",
+      "page": "s3r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S3-Scale.dc.html": {
+      "x": 1840,
+      "y": 1200,
+      "w": 1280,
+      "h": 900,
+      "title": "字和尺寸 · 字的角色、控件尺寸、间距、角、发光",
+      "page": "s3r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S3-Motion.dc.html": {
+      "x": 1840,
+      "y": 2300,
+      "w": 1760,
+      "h": 940,
+      "title": "动效 · 一格 50ms，15 个动作现场演",
+      "page": "s3r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S3-Icon.dc.html": {
+      "x": 3200,
+      "y": 1200,
+      "w": 1280,
+      "h": 1000,
+      "title": "图标定稿 · App 图标各尺寸、菜单栏四个状态",
+      "page": "s3r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S3-Report.dc.html": {
+      "x": 3200,
+      "y": 0,
+      "w": 1280,
+      "h": 860,
+      "title": "第 3 步 · 第一轮结果 · 要你定的 3 件事",
+      "page": "s3r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S4-Kit.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1760,
+      "h": 1300,
+      "title": "挂上画布 · 控件全套（只用 Design System）",
+      "page": "s4r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S4-Main.dc.html": {
+      "x": 1840,
+      "y": 0,
+      "w": 1280,
+      "h": 800,
+      "title": "拿 Design System 搭一屏 · 在跑 / 停下来问你（Tweaks 切）",
+      "page": "s4r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S4-Report.dc.html": {
+      "x": 3200,
+      "y": 0,
+      "w": 1280,
+      "h": 960,
+      "title": "第 4 步 · 第一轮结果 · 要你定 1 件事",
+      "page": "s4r1",
+      "is_interactive": true,
+      "radius": 12
+    },
+    "S4-Icon.dc.html": {
+      "x": 1840,
+      "y": 920,
+      "w": 1280,
+      "h": 1000,
+      "title": "图标 · 底板用第 1 步的比例，小尺寸重画",
+      "page": "s4r1",
+      "is_interactive": true,
+      "radius": 12
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Main-Light.dc.html",
+    "Done.dc.html",
+    "Home.dc.html",
+    "Cards.dc.html",
+    "Settings.dc.html",
+    "Tokens.dc.html",
+    "S1-A.dc.html",
+    "S1-B.dc.html",
+    "S1-C.dc.html",
+    "S1-Color.dc.html",
+    "S1-Motion.dc.html",
+    "S1-Icon.dc.html",
+    "S1b-Run.dc.html",
+    "S1b-Wait.dc.html",
+    "S1b-Dims.dc.html",
+    "S1b-Ask.dc.html",
+    "S1b-Motion.dc.html",
+    "S1b-Icon.dc.html",
+    "S1c-Run.dc.html",
+    "S1c-Wait.dc.html",
+    "S1c-Font.dc.html",
+    "S1c-Cyan.dc.html",
+    "S1c-Parts.dc.html",
+    "S1c-Icon.dc.html",
+    "S2d-Side.dc.html",
+    "S2d-Wide.dc.html",
+    "S2d-Report.dc.html",
+    "S2d-SideFlow.dc.html",
+    "S2d-Rules.dc.html",
+    "S2-Flow.dc.html",
+    "S2b-Anatomy.dc.html",
+    "S2b-Settings.dc.html",
+    "S2b-Api.dc.html",
+    "S2b-States.dc.html",
+    "S2b-StatesFlow.dc.html",
+    "S3-Color.dc.html",
+    "S3-Contrast.dc.html",
+    "S3-Report.dc.html",
+    "S3-Controls.dc.html",
+    "S3-Scale.dc.html",
+    "S3-Icon.dc.html",
+    "S3-Motion.dc.html",
+    "S4-Kit.dc.html",
+    "S4-Main.dc.html",
+    "S4-Report.dc.html",
+    "S4-Icon.dc.html"
+  ],
+  "notes": {
+    "title": {
+      "x": 0,
+      "y": -300,
+      "text": "Peck Explore · 初版（2026-11-08，已退回）",
+      "kind": "title1",
+      "maxW": 2640,
+      "page": "v0"
+    },
+    "how": {
+      "x": 2720,
+      "y": 0,
+      "w": 360,
+      "text": "怎么看\n\n每张板右上角 Tweaks 里有三个开关：明暗、mood（lively 有光晕和青底，quiet 没有）、强调色三选一。挑好的告诉我，我写进 schemes/peck/。\n\n要改的直接在板上评论。批了以后 Phase 3 才开始做新外壳。",
+      "fill": "teal",
+      "page": "v0"
+    },
+    "rules": {
+      "x": 2720,
+      "y": 420,
+      "w": 360,
+      "text": "定了的（问卷）\n\n三栏：项目和任务 · 对话 · 改动\n打开先看项目列表\n发任务 = 一句话 + 谁来干\n跑完默认留着，撤销是整个任务一键\n权限三档 + 高危弹卡片 + 所有模型能 ASK\nIBM Plex，舒适的疏密，跟随系统明暗\n青色保留做主强调色，更灵动、有动效、颜色层次略丰富",
+      "fill": "gray",
+      "page": "v0"
+    },
+    "s1r1-title": {
+      "x": 0,
+      "y": -300,
+      "text": "第 1 步 · 图形语言 · 第一轮",
+      "kind": "title1",
+      "maxW": 4000,
+      "page": "s1r1"
+    },
+    "s1r1-how": {
+      "x": 4080,
+      "y": 0,
+      "w": 380,
+      "fill": "teal",
+      "page": "s1r1",
+      "text": "怎么看\n\n上排：三个方向摆同一套内容（项目、正在做、改动、ASK、控件、输入框）。每张右上角 Tweaks 能切深色 / 浅色。\n\n下排：配色四套（上浅下深）、动效四种性格 × 三个场景、App 图标六个方向。\n\n要动的按 Play 看（信号线、荧光笔、点阵、计时都在动）。"
+    },
+    "s1r1-pick": {
+      "x": 4080,
+      "y": 560,
+      "w": 380,
+      "fill": "orange",
+      "page": "s1r1",
+      "text": "这一轮请你挑\n\n1. 方向：A / B / C，可以混（比如 C 的点阵数字 + B 的冷白纸面）\n2. 配色：P1–P4\n3. 动效：M1–M4，可以按场景挑\n4. 图标：I1–I6，留一两个往下画\n\n不喜欢的直接说哪里不对，下一轮按你的话改。"
+    },
+    "s1r1-why": {
+      "x": 4080,
+      "y": 1100,
+      "w": 380,
+      "fill": "gray",
+      "page": "s1r1",
+      "text": "这一轮怎么避开「像 VSCode」\n\n· 不再一层层灰面板 + 满屏等宽字\n· 底色有性格：点阵网格 / 冰白 / 纯黑\n· 青色只用纯 #00E5FF，是全屏唯一会发光的颜色\n· 浅色里青色不当字，当荧光笔底色配墨色字\n· 辅助色只用浅而干净的那几种"
+    },
+    "s1r2-title": {
+      "x": 0,
+      "y": -300,
+      "text": "第 1 步 · 图形语言 · 第二轮",
+      "kind": "title1",
+      "maxW": 4000,
+      "page": "s1r2"
+    },
+    "s1r2-took": {
+      "x": 4080,
+      "y": 0,
+      "w": 380,
+      "fill": "teal",
+      "page": "s1r2",
+      "text": "第一轮你定的\n\n· 方向 C 点阵终端\n· 配色 P3 深海\n· 动效 M4 点阵为主，留 M3 的「在跑」、M1 的扫描做点缀\n· 图标重新来一轮，其中一个只把现在的图标像素化\n· ASK 学 Claude Code：一张卡装得下很多信息，有选择题和判断题；权限一次放进一张卡\n\n上排：两张主样板（在跑 / 停下来问你，Tweaks 切明暗）和还没定的四个细节。\n下排：ASK 卡片（能点）、动效怎么融合、新图标。按 Play 看动的。"
+    },
+    "s1r2-pick": {
+      "x": 4080,
+      "y": 620,
+      "w": 380,
+      "fill": "orange",
+      "page": "s1r2",
+      "text": "这一轮请你定\n\n1. 主样板认不认（哪里不对直接说）\n2. 四个细节各挑一格：角、底纹、发光、点阵字用到哪（中间那格是我推荐的）\n3. ASK 卡片：问题卡和权限卡的样子、信息量够不够\n4. 动效融合：五个场景里哪个过了、哪个太多\n5. 图标：J1–J5 留一到两个\n\n认了就进第 2 步：做能点的三栏小样。"
+    },
+    "s1r3-title": {
+      "x": 0,
+      "y": -300,
+      "text": "第 1 步 · 图形语言 · 第三轮",
+      "kind": "title1",
+      "maxW": 4000,
+      "page": "s1r3"
+    },
+    "s1r3-took": {
+      "x": 4080,
+      "y": 0,
+      "w": 380,
+      "fill": "teal",
+      "page": "s1r3",
+      "text": "第二轮你定的\n\n· 主样板、ASK 卡片、动效都认了\n· 角：像素阶梯角；底纹：LED 点阵孔\n· 发光：强\n· 点阵字：标签和按钮也用（改英文大写）\n· 图标：J2，同时留现在的图标（润色背景），设置里能换\n\n这一轮新做的\n· 浅色里的青色调了三种\n· 界面字体三种\n· 分段的选中块、标签这些青色小块也切成像素角\n\n两张主样板的 Tweaks 能切明暗、字体、浅色的青，默认是我推荐的。"
+    },
+    "s1r3-pick": {
+      "x": 4080,
+      "y": 700,
+      "w": 380,
+      "fill": "orange",
+      "page": "s1r3",
+      "text": "这一轮请你定\n\n1. 界面字体：F1 光滑 / F2 像素名字 / F3 全像素\n2. 浅色的青：L1 柔青 / L2 深青 / L3 墨底青光\n3. 零件的像素角认不认（放大 4 倍那格看得清）\n4. 现在的图标润色哪一版：A1 / A2 / A3\n5. 设置里换图标的样子\n\n中间那格是我推荐的。都认了，第 1 步就收尾，进第 2 步：做能点的三栏小样。"
+    },
+    "s2r4-title": {
+      "x": 0,
+      "y": -300,
+      "text": "第 2 步 · 外框小样 · 第四轮：ONE SHOT 选谁来答、终端会锁 + 规则第三版",
+      "kind": "title1",
+      "maxW": 3600,
+      "page": "s2r4"
+    },
+    "s2r4-took": {
+      "x": 4080,
+      "y": 0,
+      "w": 400,
+      "fill": "teal",
+      "page": "s2r4",
+      "text": "你回的三件事都落了：\n\n1. 单次请求挪进 ONE SHOT，API 模式的「谁来干」只剩单模型干活、规划 + 实施。\n2. ONE SHOT 用 Muse、Grok 和 API 模型都能答（左下的选项片弹菜单）；能读整个项目，回答上写读了哪些文件；不改文件、不跑命令。\n3. 模型在跑任务时终端锁着：从发出到做完，等你批、等你答、撤销的时候都算。做完解锁，之后你改的文件不算进任务。\n\n左上那张能点：任务照样从头跑到尾；跑的时候去 TERM 点输入行试试锁。旁边是 ONE SHOT 展开的样子，下面摆出 12 个时刻。\n\n规则板标 NEW / CHG，共 66 条。"
+    },
+    "s2r4-pick": {
+      "x": 4080,
+      "y": 860,
+      "w": 400,
+      "fill": "orange",
+      "page": "s2r4",
+      "text": "这一轮请你看\n\n1. ONE SHOT 的菜单和「读了哪些文件」、终端锁着的样子对不对\n2. 规则第三版认不认\n3. 结果板上 3 件要你定的事：发任务时终端还有命令在跑怎么办、ONE SHOT 默认谁来答、PLAN 档也锁不锁\n\n认了，第 2 步就收尾：权限三档、四个模块、ONE SHOT、终端锁一起写进 Peck 的 design.md 和 roadmap，然后进第 3 步「方案」。"
+    },
+    "s3r1-title": {
+      "x": 0,
+      "y": -300,
+      "text": "第 3 步 · 方案 · 第一轮：颜色过 APCA、控件全套、动效数值、图标定稿",
+      "kind": "title1",
+      "maxW": 3600,
+      "page": "s3r1"
+    },
+    "s3r1-took": {
+      "x": 4560,
+      "y": 0,
+      "w": 400,
+      "fill": "teal",
+      "page": "s3r1",
+      "text": "第 2 步收尾了：你回的三件都按推荐落了，权限三档、右栏四个模块、ONE SHOT、终端锁写进了 Peck 的 design.md 和 roadmap。\n\n这一页是方案：\n· 色板和对比度：34 个角色，36 对都过 APCA\n· 字和尺寸\n· 控件全套：14 种 × 6 个状态（能指、能按、能 Tab）\n· 动效：一格 50ms，15 个现场演（REPLAY）\n· 图标：J2 各尺寸、菜单栏 4 个状态\n\n同一份值写成了 project/scheme/，导入 visual-atelier 时就是 schemes/peck/。"
+    },
+    "s3r1-pick": {
+      "x": 4560,
+      "y": 760,
+      "w": 400,
+      "fill": "orange",
+      "page": "s3r1",
+      "text": "这一轮请你看\n\n1. 深色里说明字、提示字、红字、控件边亮了一档，认不认（对比度板右下有对照）\n2. 图标的底板：照 Apple 的格子（鸟大一点、每个尺寸都清楚），还是保留第 1 步的比例\n3. 键盘焦点画成控件里面一圈青点线，认不认\n\n认了就进第 4 步：云端新建 Peck 的 Design System。"
+    },
+    "s4r1-title": {
+      "x": 0,
+      "y": -300,
+      "text": "第 4 步 · Design System · 第一轮：云端建好「Peck」，挂到画布上对一遍",
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "s4r1"
+    },
+    "s4r1-took": {
+      "x": 4560,
+      "y": 0,
+      "w": 400,
+      "fill": "teal",
+      "page": "s4r1",
+      "text": "第 3 步收尾了：深色亮一档、键盘焦点按第 3 步的落了；图标底板换回第 1 步的比例（S4-Icon）。\n\n这一页是 Design System：\n· 云端「Peck」：https://claude.ai/artifact/KpUihg5AHn6cw1ggNTx6s1——说明、18 个组件带预览、封面、35 个颜色深浅两套、26 个图标\n· 挂到这块画布（project/ds/peck/），S4-Kit、S4-Main 只用它搭\n· S4-Kit 和第 3 步的控件板逐格对过，结果在 S4-Report"
+    },
+    "s4r1-pick": {
+      "x": 4560,
+      "y": 760,
+      "w": 400,
+      "fill": "orange",
+      "page": "s4r1",
+      "text": "这一轮请你看\n\nDesign System 认不认：云端打开「Peck」看说明、组件、封面（右上角能切深浅）；画布上 S4-Main 能在 Tweaks 里切「在跑 / 停下来问你」。\n\n认了就收尾：画布、方案、Design System 一起导入 visual-atelier。"
+    },
+    "s2r2-title": {
+      "x": 0,
+      "y": -300,
+      "text": "外框小样：只在前两轮画过的（流程一览、外框解剖、迁移测试）",
+      "kind": "title1",
+      "maxW": 3600,
+      "page": "s2r2"
+    },
+    "s2r2-how": {
+      "x": 3680,
+      "y": 0,
+      "w": 400,
+      "fill": "teal",
+      "page": "s2r2",
+      "text": "这一页是什么\n\n第 2 步外框小样做了四轮。规则、右栏能点的小样、右栏 12 个时刻、结果板都以第四轮为准（上一页），前三轮的那几张删了（Git 历史里有）。\n\n这里留下只在前两轮画过的：\n· 流程一览（第一轮）：同一份界面停在 8 个时刻\n· 外框解剖（第二轮）：在第一轮小样上标规则，标的是规则第一版\n· 迁移测试（第二轮）：只照规则画的设置、API 模式、空 / 加载 / 出错\n\n每轮定了什么、淘汰了什么：project/peck-explore-brief.md。"
+    }
+  },
+  "designSystems": [
+    {
+      "title": "Peck",
+      "namespace": "peck",
+      "artifact": "https://claude.ai/artifact/KpUihg5AHn6cw1ggNTx6s1",
+      "version": "1794298985-1c1e",
+      "copiedAt": "2026-11-10T09:29:04Z"
+    }
+  ]
+}

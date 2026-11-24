@@ -1,0 +1,236 @@
+{
+  "v": 3,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-26T07:56:31Z"
+  },
+  "title": "Vermilion Explore",
+  "launch": {
+    "view": "canvas",
+    "page": "x1"
+  },
+  "pages": [
+    {
+      "id": "x1",
+      "name": "EX1：五个方向（A 一笔、B 流线、C 涟漪、D 剪纸、E 笔势）"
+    },
+    {
+      "id": "x2",
+      "name": "EX2：深挖笔势，融合剪纸"
+    },
+    {
+      "id": "x3",
+      "name": "EX3：规则成文、迁移测试"
+    },
+    {
+      "id": "x4",
+      "name": "EX4：飞白、大图的墨感"
+    }
+  ],
+  "boards": {
+    "X1-Overview-light.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 1100,
+      "title": "五个方向 · 浅色",
+      "page": "x1"
+    },
+    "X1-Overview-dark.dc.html": {
+      "x": 1520,
+      "y": 0,
+      "w": 1440,
+      "h": 1100,
+      "title": "五个方向 · 暗色",
+      "page": "x1"
+    },
+    "X1-A-one-line.dc.html": {
+      "x": 0,
+      "y": 1500,
+      "w": 1440,
+      "h": 1560,
+      "title": "A 一笔 · 放进网站",
+      "is_interactive": true,
+      "page": "x1"
+    },
+    "X1-B-flow.dc.html": {
+      "x": 1520,
+      "y": 1500,
+      "w": 1440,
+      "h": 1560,
+      "title": "B 流线 · 放进网站",
+      "is_interactive": true,
+      "page": "x1"
+    },
+    "X1-C-ripple.dc.html": {
+      "x": 3040,
+      "y": 1500,
+      "w": 1440,
+      "h": 1560,
+      "title": "C 涟漪 · 放进网站",
+      "is_interactive": true,
+      "page": "x1"
+    },
+    "X1-D-paper.dc.html": {
+      "x": 4560,
+      "y": 1500,
+      "w": 1440,
+      "h": 1560,
+      "title": "D 剪纸 · 放进网站",
+      "is_interactive": true,
+      "page": "x1"
+    },
+    "X1-E-brush.dc.html": {
+      "x": 6080,
+      "y": 1500,
+      "w": 1440,
+      "h": 1560,
+      "title": "E 笔势 · 放进网站",
+      "is_interactive": true,
+      "page": "x1"
+    },
+    "X2-Dimensions.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 1260,
+      "title": "笔势的三个维度",
+      "page": "x2"
+    },
+    "X2-Fusion.dc.html": {
+      "x": 1520,
+      "y": 0,
+      "w": 1440,
+      "h": 1000,
+      "title": "笔势 × 剪纸 · 明暗",
+      "page": "x2"
+    },
+    "X2-Site-light.dc.html": {
+      "x": 3040,
+      "y": 0,
+      "w": 1440,
+      "h": 1560,
+      "title": "融合放进网站 · 浅色",
+      "is_interactive": true,
+      "page": "x2"
+    },
+    "X2-Site-dark.dc.html": {
+      "x": 4560,
+      "y": 0,
+      "w": 1440,
+      "h": 1560,
+      "title": "融合放进网站 · 暗色",
+      "is_interactive": true,
+      "page": "x2"
+    },
+    "X3-Icons.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 900,
+      "title": "图标 · 全部带纸片",
+      "page": "x3"
+    },
+    "X3-PPT.dc.html": {
+      "x": 1520,
+      "y": 0,
+      "w": 2000,
+      "h": 1300,
+      "title": "迁移测试 · PPT",
+      "page": "x3"
+    },
+    "X3-Pomelo.dc.html": {
+      "x": 3600,
+      "y": 0,
+      "w": 1440,
+      "h": 1180,
+      "title": "迁移测试 · Pomelo 图标",
+      "page": "x3"
+    },
+    "X3-Loading.dc.html": {
+      "x": 5120,
+      "y": 0,
+      "w": 1200,
+      "h": 640,
+      "title": "迁移测试 · 加载动画",
+      "page": "x3"
+    },
+    "X4-Ink.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 2400,
+      "h": 2860,
+      "title": "大图的墨感 · 五种处理",
+      "page": "x4"
+    }
+  },
+  "order": [
+    "X1-Overview-light.dc.html",
+    "X1-Overview-dark.dc.html",
+    "X1-A-one-line.dc.html",
+    "X1-B-flow.dc.html",
+    "X1-C-ripple.dc.html",
+    "X1-D-paper.dc.html",
+    "X1-E-brush.dc.html",
+    "X2-Dimensions.dc.html",
+    "X2-Fusion.dc.html",
+    "X2-Site-light.dc.html",
+    "X2-Site-dark.dc.html",
+    "X3-Icons.dc.html",
+    "X3-PPT.dc.html",
+    "X3-Pomelo.dc.html",
+    "X3-Loading.dc.html",
+    "X4-Ink.dc.html"
+  ],
+  "notes": {
+    "t1": {
+      "x": 0,
+      "y": -300,
+      "text": "第一轮 · 五个方向并排",
+      "kind": "title1",
+      "maxW": 2960,
+      "page": "x1"
+    },
+    "t2": {
+      "x": 0,
+      "y": 1220,
+      "text": "放进网站里看 · 悬停分类图形和第一张卡片看动效",
+      "kind": "title1",
+      "maxW": 7520,
+      "page": "x1"
+    },
+    "t3": {
+      "x": 0,
+      "y": -280,
+      "text": "第二轮 · 深挖笔势，融合剪纸",
+      "kind": "title1",
+      "maxW": 6000,
+      "page": "x2"
+    },
+    "t4": {
+      "x": 0,
+      "y": -280,
+      "text": "第三轮 · 规则成文与迁移测试",
+      "kind": "title1",
+      "maxW": 6320,
+      "page": "x3"
+    },
+    "t5": {
+      "x": 0,
+      "y": -260,
+      "text": "第三轮补充 · 飞白怎么办",
+      "kind": "title1",
+      "maxW": 2400,
+      "page": "x4"
+    }
+  },
+  "designSystems": [
+    {
+      "title": "Vermilion 朱红",
+      "namespace": "vermilion",
+      "artifact": "https://claude.ai/code/artifact/d18f5ec3-0d04-4d27-a13a-71149db5e739",
+      "version": "1792999662-be28",
+      "copiedAt": "2026-10-26T07:56:31Z"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "kind": "canvas",
+  "title": "Pomelo Fold",
+  "targets": {
+    "db96dee7-45be-4e00-b26f-fb3544851783": {
+      "url": "https://claude.ai/artifact/U7ieNnEjrX3dEdF2427atr",
+      "account": "现用账号",
+      "blobs": {},
+      "lastPublish": {
+        "version": "1795487697-bc57",
+        "at": "2026-11-24T02:35:05.470Z",
+        "files": 6
+      }
+    }
+  },
+  "home": "db96dee7-45be-4e00-b26f-fb3544851783"
+}

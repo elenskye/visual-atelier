@@ -1,0 +1,64 @@
+{
+  "$note": "非颜色 token：间距、圆角、宽度、字号、字体栈、阴影。4 像素一格。字用 px，因为字要落在整像素上。规则见 DESIGN.md §3。",
+  "space": {
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "5": "20px",
+    "6": "24px",
+    "7": "32px",
+    "8": "40px",
+    "9": "48px"
+  },
+  "radius": {
+    "tag": "8px",
+    "paper": "10px",
+    "button": "10px",
+    "card": "14px",
+    "round": "50%"
+  },
+  "width": {
+    "desk": "1280px",
+    "sheet": "1140px"
+  },
+  "text": {
+    "caption": "12px",
+    "small": "13px",
+    "body": "14px",
+    "body-lg": "15px",
+    "card-title": "17px",
+    "page-title": "22px",
+    "page-title-lg": "26px",
+    "stat": "20px",
+    "stat-lg": "30px",
+    "greeting": "46px"
+  },
+  "leading": {
+    "tight": "1.45",
+    "body": "1.6",
+    "loose": "1.75"
+  },
+  "font": {
+    "hand": "\"Pomelo Hand\", \"Hannotate SC\", \"PingFang SC\", sans-serif",
+    "long": "\"PingFang SC\", -apple-system, sans-serif"
+  },
+  "shadow": {
+    "note": {
+      "light": "0 1px 2px rgba(38,52,28,.16), 0 4px 8px rgba(38,52,28,.16)",
+      "dark": "0 1px 2px rgba(0,0,0,.5), 0 4px 8px rgba(0,0,0,.5)"
+    },
+    "card": {
+      "light": "0 1px 2px rgba(38,52,28,.16), 0 10px 22px rgba(38,52,28,.16)",
+      "dark": "0 1px 2px rgba(0,0,0,.5), 0 10px 22px rgba(0,0,0,.5)"
+    },
+    "sheet": {
+      "light": "0 2px 4px rgba(38,52,28,.16), 0 18px 40px rgba(38,52,28,.16)",
+      "dark": "0 2px 4px rgba(0,0,0,.5), 0 18px 40px rgba(0,0,0,.5)"
+    },
+    "lift": {
+      "light": "0 2px 4px rgba(38,52,28,.16), 0 22px 34px rgba(38,52,28,.16)",
+      "dark": "0 2px 4px rgba(0,0,0,.5), 0 22px 34px rgba(0,0,0,.5)"
+    }
+  }
+}

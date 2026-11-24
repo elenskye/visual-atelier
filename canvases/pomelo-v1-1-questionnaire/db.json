@@ -1,0 +1,72 @@
+{
+  "survey/answers": {
+    "answers": {
+      "next": "backup",
+      "L2": "later",
+      "L1": "later",
+      "L3": "later",
+      "L4": "later",
+      "phases": "usb_first",
+      "size": "big",
+      "kinds": [
+        "media",
+        "docs",
+        "design"
+      ],
+      "change": "some",
+      "drive": "unknown",
+      "windows": "unsure",
+      "edit_dest": "no",
+      "now_cloud": [
+        "pikpak_app"
+      ],
+      "other_dest": [
+        "hdd"
+      ],
+      "note2": "Google Drive 、U 盘备份的比较少，一般是代码库、项目库。\nPikPak 和移动硬盘是完整的备份"
+    },
+    "summary": {
+      "next 1.1.0 做什么": "只做文件备份",
+      "L1 小报的音乐": "留在「以后」",
+      "L2 一个月的小结（Atlas）": "留在「以后」",
+      "L3 一次旅行的回顾（Atlas）": "留在「以后」",
+      "L4 Old Timer（和小拾聊天）": "留在「以后」",
+      "phases 文件备份怎么分 Phase": "先 U 盘，再云端",
+      "size 要备份的一共多大": "1 TB 以上",
+      "kinds 主要是什么文件": "照片、视频；文档、表格、PDF；设计稿、素材",
+      "change 两次备份之间大概改多少": "一部分",
+      "drive U 盘是什么格式": "不知道",
+      "windows U 盘上的备份要在 Windows 上打开吗": "说不准",
+      "edit_dest 会直接在 U 盘或云端上改备份吗": "不会，只当备份用",
+      "now_cloud 现在怎么往云端传": "PikPak 的 App",
+      "other_dest 除了 U 盘、Google Drive、PikPak，还会备到": "移动硬盘",
+      "mode 备份方式": "（未答）",
+      "per_task 每个任务能自己选方式吗": "（未答）",
+      "keep 「旧版」留多久": "（未答）",
+      "compare 怎么判断文件变没变": "（未答）",
+      "rename 改了名、挪了位置的文件": "（未答）",
+      "exclude 默认不备份的": "（未答）",
+      "trigger 什么时候开始": "（未答）",
+      "engine 云端怎么接": "（未答）",
+      "usb_engine U 盘那边": "（未答）",
+      "pikpak_use PikPak 主要放什么": "（未答）",
+      "encrypt 云端的文件要不要加密": "（未答）",
+      "net 后台往云端传的时候": "（未答）",
+      "show 模块里想看到": "（未答）",
+      "notify 提醒": "（未答）",
+      "history 每次备份的记录留多少": "（未答）",
+      "restore 从备份拿回文件": "（未答）",
+      "youzi 柚子管到哪": "（未答）",
+      "store 数据怎么存": "（未答）",
+      "name 模块叫什么": "（未答）",
+      "name_own 自己起的名字": "（未答）",
+      "cat 贴纸簿里放哪一类": "（未答）",
+      "pin 放进桌面的「常用」吗": "（未答）",
+      "sticker 模块的贴纸": "（未答）",
+      "第 2 页补充": "Google Drive 、U 盘备份的比较少，一般是代码库、项目库。\nPikPak 和移动硬盘是完整的备份"
+    },
+    "submitted": false,
+    "submittedAt": null,
+    "updatedAt": "2026-11-24T07:37:49.186Z"
+  }
+}

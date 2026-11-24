@@ -1,0 +1,41 @@
+{
+  "id": "pomelo-think",
+  "title": "柚子 · 在想",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "expressive",
+  "surface": "pomelo-think",
+  "trigger": "等柚子回答的时候（换成 data-face=\"think\"）",
+  "durationMs": 1600,
+  "loop": true,
+  "reducedMotion": "不动：停在在想的脸，泡泡不浮",
+  "use": "问柚子、柚子那一页等回答时",
+  "source": "canvases/pomelo-explore/p2-final/css.mjs「柚子：脸、身子的动作」（站主 2026-11-05 验收）",
+  "contract": "<span class=\"pm-pomelo\" data-face=\"think\">pomelo-think.svg</span>：脸一出现动画就开始，一直循环",
+  "requires": [
+    "motion/pomelo-idle/pomelo-idle.css"
+  ],
+  "files": {
+    "css": "pomelo-think.css",
+    "html": "pomelo-think.fragment.html"
+  },
+  "capture": {
+    "host": ".pomelo-demo",
+    "viewport": [
+      200,
+      190
+    ],
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "skipRest": true,
+    "endMs": 1600,
+    "holdStartMs": 40,
+    "holdEndMs": 40,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0
+  }
+}

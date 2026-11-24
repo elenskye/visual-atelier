@@ -1,0 +1,10 @@
+{
+  "$note": "非颜色 token：字、间距、圆角、宽、阴影。模板的数是占位，换成这套方案自己的。",
+  "width": { "content": "720px" },
+  "space": { "1": "4px", "2": "8px", "3": "12px", "4": "16px", "5": "24px", "6": "32px", "7": "48px" },
+  "radius": { "s": "6px", "m": "10px" },
+  "font": { "body": "-apple-system, \"PingFang SC\", sans-serif" },
+  "text": { "small": "13px", "body": "15px", "title": "22px" },
+  "leading": { "body": "1.6" },
+  "shadow": { "card": { "light": "0 1px 3px rgb(20 20 30 / 0.10)", "dark": "0 1px 3px rgb(0 0 0 / 0.45)", "use": "卡片、弹层" } }
+}

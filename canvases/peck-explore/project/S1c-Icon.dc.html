@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>App 图标 · 第三轮</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Doto:wght@700;900&amp;display=swap">
+<style>
+body{margin:0}
+@font-face{font-family:"Fusion Pixel 12";src:url(/_blob/3cac2eac4c813b222f13d0c459436aa1) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Departure Mono";src:url(/_blob/13ad4bc2c335a5fe439f1dd23f0a7087) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+
+.pk{position:relative;box-sizing:border-box;overflow:hidden;font-family:var(--f-body);font-size:var(--fs-body);line-height:1.55;color:var(--tx);background:var(--bg);-webkit-font-smoothing:antialiased;font-synthesis:none;font-variant-numeric:tabular-nums;--clip:polygon(0 6px,3px 6px,3px 3px,6px 3px,6px 0,calc(100% - 6px) 0,calc(100% - 6px) 3px,calc(100% - 3px) 3px,calc(100% - 3px) 6px,100% 6px,100% calc(100% - 6px),calc(100% - 3px) calc(100% - 6px),calc(100% - 3px) calc(100% - 3px),calc(100% - 6px) calc(100% - 3px),calc(100% - 6px) 100%,6px 100%,6px calc(100% - 3px),3px calc(100% - 3px),3px calc(100% - 6px),0 calc(100% - 6px));--clip2:polygon(0 4px,2px 4px,2px 2px,4px 2px,4px 0,calc(100% - 4px) 0,calc(100% - 4px) 2px,calc(100% - 2px) 2px,calc(100% - 2px) 4px,100% 4px,100% calc(100% - 4px),calc(100% - 2px) calc(100% - 4px),calc(100% - 2px) calc(100% - 2px),calc(100% - 4px) calc(100% - 2px),calc(100% - 4px) 100%,4px 100%,4px calc(100% - 2px),2px calc(100% - 2px),2px calc(100% - 4px),0 calc(100% - 4px));--notch:polygon(0 2px,2px 2px,2px 0,calc(100% - 2px) 0,calc(100% - 2px) 2px,100% 2px,100% calc(100% - 2px),calc(100% - 2px) calc(100% - 2px),calc(100% - 2px) 100%,2px 100%,2px calc(100% - 2px),0 calc(100% - 2px))}
+.dots{background-image:radial-gradient(circle at 1.5px 1.5px,var(--grid) 1.1px,transparent 1.6px);background-size:8px 8px}
+.pk *{box-sizing:border-box}
+:where(.pk) :where(p,h1,h2,h3,ul,ol,figure){margin:0;padding:0}
+:where(.pk) :where(ul,ol){list-style:none}
+:where(.pk) button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0;text-align:left}
+:where(.pk) :where(i,em){font-style:normal}
+.px{width:16px;height:16px;fill:currentColor;flex:none;display:block}
+.px.s12{width:12px;height:12px}.px.s24{width:24px;height:24px}
+.nm{font-family:var(--f-name);font-weight:var(--fw-name);font-size:var(--fs-name)}
+.code{font-family:var(--f-code);font-size:var(--fs-code)}
+/* 模块：外层是边线色，:before 是面板色，两层都切成像素阶梯角 */
+.mod{position:relative;isolation:isolate;clip-path:var(--clip);background:var(--mline,var(--line));padding:14px 18px 16px;min-width:0}
+.mod:before{content:"";position:absolute;inset:1px;clip-path:var(--clip);background:var(--mbg,var(--pane));z-index:-1}
+.mod.run{--mline:var(--cy-line)}
+.mod.wait{--mline:var(--warn-line)}
+.ml{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--tx3);margin-bottom:12px;white-space:nowrap}
+.ml .l{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.08em;color:var(--tx2)}
+.ml .l:before{content:"[ ";color:var(--tx3)}.ml .l:after{content:" ]";color:var(--tx3)}
+.ml .r{margin-left:auto}
+.ml .n{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:17px;line-height:1;color:var(--tx2)}
+.lbl{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;letter-spacing:.1em;color:var(--tx3);margin-bottom:6px}
+.dot{display:inline-block;width:7px;height:7px;flex:none}
+.dot.muse{background:var(--muse)}.dot.grok{background:var(--grok)}.dot.api{background:var(--api)}
+.who{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.who .arr{color:var(--tx3)}
+/* 3×3 点阵转圈 */
+.tw{display:inline-grid;grid-template-columns:repeat(3,3px);gap:1.5px;flex:none}
+.tw i{width:3px;height:3px;background:var(--cy-blk);box-shadow:var(--dglow);animation:tw 1.2s steps(1) infinite}
+.tw i:nth-child(2){animation-delay:.3s}.tw i:nth-child(4){animation-delay:.6s}.tw i:nth-child(6){animation-delay:.15s}.tw i:nth-child(8){animation-delay:.45s}.tw i:nth-child(9){animation-delay:.9s}
+.lt .tw i{box-shadow:inset 0 0 0 .5px var(--blk-ol)}
+/* 按钮：点阵字、英文大写 */
+.btn{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:34px;padding:0 14px;clip-path:var(--clip2);background:var(--line2);font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.08em;white-space:nowrap;color:var(--tx)}
+.btn:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.btn.pri{background:var(--cy-ol);color:var(--on-cy);text-shadow:var(--on-glow)}
+.btn.pri:before{background:var(--cy-fill)}
+.btn.danger{background:var(--bad-line);color:var(--bad)}
+.btn.warn{background:var(--warn);color:var(--on-warn,#02101A)}.btn.warn:before{display:none}
+.lt .btn.warn{--on-warn:#FFFFFF}
+.btn.ghost{background:transparent;color:var(--tx2)}.btn.ghost:before{display:none}
+.btn .k{font-size:12px;opacity:.7}
+/* 开关 */
+.tg{display:flex;align-items:center;gap:10px;font-size:13px}
+.tgt{position:relative;isolation:isolate;width:34px;height:18px;flex:none;clip-path:var(--clip2);background:var(--cy-ol)}
+.tgt:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--cy-fill);z-index:-1}
+.tgt i{position:absolute;top:3px;left:19px;width:12px;height:12px;background:var(--on-cy);clip-path:var(--notch)}
+.tgt.off{background:var(--line2)}.tgt.off:before{background:var(--pane)}.tgt.off i{left:3px;background:var(--line2)}
+/* 分段：选中的那块也切成像素角 */
+.seg{display:inline-flex;gap:3px;padding:3px;clip-path:var(--clip2);background:var(--line2);position:relative;isolation:isolate}
+.seg:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.seg button{position:relative;isolation:isolate;height:28px;padding:0 12px;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.08em;color:var(--tx2);display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;clip-path:var(--clip2)}
+.seg button.on{background:var(--cy-ol);color:var(--on-cy);text-shadow:var(--on-glow)}
+.seg button.on:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--cy-fill);z-index:-1}
+.seg.full{display:flex;width:100%}.seg.full button{flex:1 1 0}
+.seg.ink button.on{background:var(--tx);color:var(--bg);text-shadow:none}
+.seg.ink button.on:before{display:none}
+/* 选项片 */
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;clip-path:var(--clip2);background:var(--line2);font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;letter-spacing:.06em;color:var(--tx2);white-space:nowrap}
+.chip:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.chip.on{background:var(--cy-ol);color:var(--tx)}
+/* 标签：一级台阶角 */
+.tag{position:relative;isolation:isolate;display:inline-flex;align-items:center;height:19px;padding:0 6px;clip-path:var(--notch);font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:12.5px;letter-spacing:.06em;line-height:1;white-space:nowrap;vertical-align:middle}
+.tag.new{background:var(--ok);color:var(--bg)}.tag.del{background:var(--bad);color:var(--bg)}
+.tag.rec{background:var(--cy-ol);color:var(--on-cy);text-shadow:var(--on-glow)}
+.tag.rec:before{content:"";position:absolute;inset:1px;clip-path:var(--notch);background:var(--cy-fill);z-index:-1}
+.tag.mid{background:var(--warn-line);color:var(--warn)}
+.tag.mid:before{content:"";position:absolute;inset:1px;clip-path:var(--notch);background:var(--warn-soft);z-index:-1}
+.tag.hi{background:var(--bad);color:var(--bg)}
+.tag.lo{background:var(--raise);color:var(--tx2)}
+/* 单选、多选：像素圆和像素方 */
+.rb{position:relative;isolation:isolate;width:16px;height:16px;flex:none;clip-path:var(--clip2);background:var(--line2)}
+.rb:before{content:"";position:absolute;inset:2px;clip-path:var(--notch);background:var(--pane);z-index:-1}
+.on>.rb,.rb.on{background:var(--cy-tx)}
+.on>.rb:after,.rb.on:after{content:"";position:absolute;left:5px;top:5px;width:6px;height:6px;background:var(--cy-tx)}
+.cb{position:relative;isolation:isolate;width:16px;height:16px;flex:none;display:flex;align-items:center;justify-content:center;clip-path:var(--notch);background:var(--line2);color:transparent}
+.cb:before{content:"";position:absolute;inset:2px;background:var(--pane);z-index:-1}
+.cb .px{width:12px;height:12px}
+.on>.cb,.cb.on{background:var(--cy-ol);color:var(--on-cy)}
+.on>.cb:before,.cb.on:before{inset:1px;background:var(--cy-fill)}
+/* 输入框 */
+.field{display:flex;align-items:center;height:38px;padding:0 12px;clip-path:var(--clip2);background:var(--cy-ol);position:relative;isolation:isolate;font-size:13px;color:var(--tx3)}
+.field:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane2);z-index:-1}
+.field .pr{font-family:var(--f-code);font-size:13px;color:var(--cy-tx);margin-right:8px}
+.caret{display:inline-block;width:8px;height:15px;background:var(--cy-blk);box-shadow:var(--dglow);margin-left:2px;vertical-align:middle;animation:blink 1.05s steps(1) infinite}
+.lt .caret{box-shadow:inset 0 0 0 1px var(--blk-ol)}
+.kbd{font-family:var(--f-code);font-size:11.5px;color:var(--tx3)}
+/* 方块进度 */
+.blocks{display:grid;grid-template-columns:repeat(28,minmax(0,1fr));gap:3px}
+.blocks i{display:block;height:14px;background:var(--off)}
+.blocks i.f{background:var(--cy-blk);box-shadow:var(--bglow);animation:wave 2.4s ease-in-out infinite}
+.blocks i.h{background:var(--cy-blk);box-shadow:var(--bglow);animation:blink .8s steps(1) infinite}
+.lt .blocks i.f,.lt .blocks i.h{box-shadow:inset 0 0 0 1px var(--blk-ol)}
+.meter{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:3px}
+.meter i{height:10px;background:var(--off)}
+.meter i.f{background:var(--cy-blk);box-shadow:var(--dglow)}
+.lt .meter i.f{box-shadow:inset 0 0 0 1px var(--blk-ol)}
+/* 点阵勾 */
+.dck{display:inline-grid;grid-template-columns:repeat(7,4px);grid-auto-rows:4px;gap:1px;flex:none}
+.dck i{width:4px;height:4px;background:var(--off)}
+.dck i.on{background:var(--cy-blk);box-shadow:var(--dglow)}
+.lt .dck i.on{background:var(--cy-tx)}
+@keyframes blink{50%{opacity:0}}
+@keyframes tw{50%{opacity:.18}}
+@keyframes wave{0%,100%{filter:brightness(1)}50%{filter:brightness(.62)}}
+@keyframes bounce{0%{transform:scale(1)}18%{transform:scale(1.5);animation-timing-function:cubic-bezier(.3,1.6,.5,1)}40%{transform:scale(.9)}55%,100%{transform:scale(1)}}
+@keyframes ring{0%,10%{transform:scale(1);opacity:0}14%{opacity:.9}60%,100%{transform:scale(2.6);opacity:0}}
+@keyframes scanx{0%{left:-90px}62%,100%{left:100%}}
+@media (prefers-reduced-motion:reduce){.pk *,.pk *:before,.pk *:after{animation:none!important;transition:none!important}.pk .scan-fx{display:none}}
+
+.dk{--bg:#050816;--grid:rgba(120,140,255,.085);--pane:#0A0F24;--pane2:#0F1630;--raise:#172040;--line:#1E2850;--line2:#2E3B72;--tx:#E8ECFF;--tx2:#9AA3CF;--tx3:#7A84B6;--cy-fill:#00E5FF;--cy-ol:#00E5FF;--on-cy:#02101A;--cy-tx:#00E5FF;--cy-blk:#00E5FF;--blk-ol:transparent;--cy-line:rgba(0,229,255,.6);--cy-soft:rgba(0,229,255,.10);--cy-scan:rgba(0,229,255,.22);--muse:#A78BFA;--grok:#FFB86B;--api:#60A5FA;--ok:#4ADE80;--warn:#FFB86B;--bad:#FB7185;--warn-soft:rgba(255,184,107,.10);--bad-soft:rgba(251,113,133,.10);--ok-soft:rgba(74,222,128,.10);--warn-line:rgba(255,184,107,.55);--bad-line:rgba(251,113,133,.6);--glow:0 0 16px rgba(0,229,255,.85);--tglow:0 0 26px rgba(0,229,255,.75),0 0 6px rgba(0,229,255,1);--dglow:0 0 8px rgba(0,229,255,1);--bglow:0 0 12px rgba(0,229,255,.85);--on-glow:0 0 6px rgba(0,229,255,.9);--hglow:0 0 8px rgba(232,236,255,.35);--off:#141C3C;color-scheme:dark}
+.lt{--bg:#F2F4FC;--grid:rgba(40,50,130,.10);--pane:#FFFFFF;--pane2:#F5F7FD;--raise:#E7EBF8;--line:#DAE0F0;--line2:#B4BDDB;--tx:#0B1030;--tx2:#4E567A;--tx3:#646C92;--muse:#6D4AE8;--grok:#A35E00;--api:#2563EB;--ok:#12804C;--warn:#A35E00;--bad:#E11D48;--warn-soft:#FFF3E2;--bad-soft:#FFE9EE;--ok-soft:#E3F5EC;--warn-line:#A35E00;--bad-line:#E11D48;--glow:none;--tglow:none;--dglow:none;--bglow:none;--hglow:none;--off:#E1E6F5;--cy-fill:#007A94;--cy-ol:#007A94;--on-cy:#FFFFFF;--cy-tx:#007A94;--cy-blk:#0099B8;--blk-ol:transparent;--cy-line:#0099B8;--cy-soft:#E2F4F8;--cy-scan:rgba(0,153,184,.24);--on-glow:none;color-scheme:light}
+.lt.c1{--cy-fill:#A6ECF7;--cy-ol:#0089A6;--on-cy:#0B1030;--cy-tx:#00758C;--cy-blk:#4DD3E8;--blk-ol:#0089A6;--cy-line:#0089A6;--cy-soft:#E3F8FB;--cy-scan:rgba(0,180,208,.30);--on-glow:none}
+.lt.c3{--cy-fill:#0B1030;--cy-ol:#0B1030;--on-cy:#00E5FF;--cy-tx:#00758C;--cy-blk:#00D8F0;--blk-ol:#0B1030;--cy-line:#0B1030;--cy-soft:#E3F8FB;--cy-scan:rgba(0,229,255,.35);--on-glow:0 0 6px rgba(0,229,255,.7)}
+.pk{--f-name:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-name:400;--fs-name:12px;--f-title:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-title:400;--fs-title:18px;--f-body:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fs-body:12.5px;--f-code:"Departure Mono","Fusion Pixel 12","PingFang SC",monospace;--fs-code:11px}
+.ff1{--f-name:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fw-name:600;--fs-name:13.5px;--f-title:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fw-title:600;--fs-title:17px;--f-body:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fs-body:12.5px;--f-code:"IBM Plex Mono","PingFang SC",monospace;--fs-code:12px}
+.ff2{--f-name:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-name:400;--fs-name:12px;--f-title:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-title:400;--fs-title:18px;--f-body:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fs-body:12.5px;--f-code:"Departure Mono","Fusion Pixel 12","PingFang SC",monospace;--fs-code:11px}
+.ff3{--f-name:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-name:400;--fs-name:12px;--f-title:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-title:400;--fs-title:18px;--f-body:"Fusion Pixel 12","PingFang SC",sans-serif;--fs-body:12px;--f-code:"Departure Mono","Fusion Pixel 12","PingFang SC",monospace;--fs-code:11px}
+
+.pk.ib{width:1280px;height:800px;padding:24px 32px 26px;display:flex;flex-direction:column;gap:14px;font-family:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif}
+.defs{position:absolute;width:0;height:0;overflow:hidden}
+.top{display:flex;align-items:baseline;gap:16px}
+.top h1{font-size:20px;font-weight:600}
+.top p{font-size:13px;color:var(--tx2)}
+.g3{flex:1;display:grid;grid-template-columns:316px minmax(0,1fr) 334px;gap:14px;min-height:0}
+.cl{display:flex;flex-direction:column;gap:10px;min-height:0}
+.ih{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.ih .k{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:18px;color:var(--cy-tx);text-shadow:var(--dglow)}
+.ih b{font-size:15px;font-weight:600}
+.ih .tag{margin-left:auto}
+.nt{font-size:12px;line-height:1.55;color:var(--tx2)}
+.big{width:196px;height:196px;display:block;align-self:center;margin:4px 0}
+.strip{display:flex;align-items:center;gap:16px;height:80px;padding:0 14px;background:#050816}
+.strip.lite{background:#EEF1F8}
+.strip .lb{margin-left:auto;font-size:11px;color:#7A84B6}
+.strip.lite .lb{color:#646C92}
+.s64{width:64px;height:64px;display:block}.s32{width:32px;height:32px;display:block}.s16{width:16px;height:16px;display:block}
+.mbar{display:flex;align-items:center;gap:18px;height:30px;padding:0 12px;font-size:11px}
+.mbar.ml{background:#E4E8F2;color:#0B1030}
+.mbar.md{background:#161C33;color:#E8ECFF}
+.mbar .st{display:flex;align-items:center;gap:5px}
+.mbar .t{width:18px;height:18px;display:block}
+.mbar .ex{display:inline-flex;align-items:center;gap:2px}
+.mbar .ex i{width:3px;height:3px;background:currentColor;animation:tw 1.2s steps(1) infinite}
+.mbar .ex i:nth-child(2){animation-delay:.3s}.mbar .ex i:nth-child(3){animation-delay:.6s}
+.mbar .ex.q{font-weight:700;font-size:12px;line-height:1}
+.mbar .lb{margin-left:auto;opacity:.65}
+.vs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.vs figure{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 6px 8px;clip-path:var(--clip2)}
+.vs figure.on{background:var(--cy-soft)}
+.vs img{width:104px;height:104px;display:block}
+.vs figcaption{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;white-space:nowrap}
+.vs figcaption .k{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:15px;color:var(--cy-tx)}
+.vs figcaption .tag{margin-left:2px}
+.vs .d{font-size:11.5px;color:var(--tx3);text-align:center;line-height:1.45;font-weight:400}
+.vs .ref .k{color:var(--tx3)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.zz{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:auto}
+.zc{position:relative;height:176px;overflow:hidden;background:#050816}
+.zc img{position:absolute;width:512px;height:512px;left:-176px;top:-100px;max-width:none}
+.zc span{position:absolute;left:8px;bottom:6px;font-size:11px;color:#9AA3CF;background:#050816;padding:0 4px}
+/* 设置 */
+.set{display:flex;flex-direction:column;gap:12px}
+.set .ml{margin-bottom:2px}
+.srow{display:flex;justify-content:space-between;align-items:baseline}
+.srow b{font-size:13.5px;font-weight:600}
+.srow span{font-size:11.5px;color:var(--tx3)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 8px 12px;clip-path:var(--clip2);background:var(--line2)}
+.tile:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.tile.on{background:var(--cy-ol)}
+.tile.on:before{inset:2px;background:linear-gradient(var(--cy-soft),var(--cy-soft)),var(--pane)}
+.tile .ti{width:104px;height:104px;display:block}
+.tile .tl{display:flex;align-items:center;gap:8px;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.08em}
+.tile .tl .rb{width:14px;height:14px}
+.tile .tl .rb:after{left:4px;top:4px;width:6px;height:6px}
+.tile .td{font-size:11.5px;color:var(--tx3)}
+.dock{display:flex;align-items:flex-end;justify-content:center;gap:8px;padding:12px 10px 8px;background:rgba(160,175,220,.16);box-shadow:inset 0 0 0 1px var(--line2);clip-path:var(--clip2)}
+.dock .ap{position:relative;width:52px;height:52px;display:flex;align-items:center;justify-content:center}
+.dock .ap i{width:44px;height:44px;border-radius:11px;background:var(--raise);box-shadow:inset 0 0 0 1px var(--line2)}
+.dock .ap .di{width:52px;height:52px;display:block}
+.dock .ap.run:after{content:"";position:absolute;bottom:-5px;left:24px;width:4px;height:4px;background:var(--tx2)}
+.dl{display:flex;justify-content:space-between;font-size:11.5px;color:var(--tx3)}
+.ul{display:flex;flex-direction:column;gap:6px;font-size:12px;line-height:1.5;color:var(--tx2)}
+.ul li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:8px}
+.ul li .px{width:12px;height:12px;margin-top:4px;color:var(--cy-tx)}
+.ul li.w .px{color:var(--warn)}
+</style>
+</helmet>
+<div class="{{root}}"><svg class="defs" width="0" height="0" aria-hidden="true"><defs>
+    <linearGradient id="gb3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#16214A"></stop><stop offset="1" stop-color="#050816"></stop></linearGradient>
+    <filter id="gl3" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow in="SourceGraphic" dx="0" dy="0" stdDeviation="0.6" flood-color="#00E5FF" flood-opacity=".55"></feDropShadow></filter>
+  </defs>
+  <symbol id="j2" viewBox="0 0 32 32"><rect width="32" height="32" rx="7.17" fill="url(#gb3)"></rect><g filter="url(#gl3)"><rect x="6" y="6" width="1" height="1" fill="#A8F6FF"></rect><rect x="6" y="7" width="1" height="1" fill="#00E5FF"></rect><rect x="7" y="7" width="2" height="1" fill="#A8F6FF"></rect><rect x="6" y="8" width="2" height="1" fill="#00E5FF"></rect><rect x="8" y="8" width="8" height="1" fill="#A8F6FF"></rect><rect x="6" y="9" width="4" height="1" fill="#00E5FF"></rect><rect x="10" y="9" width="8" height="1" fill="#A8F6FF"></rect><rect x="7" y="10" width="11" height="1" fill="#00E5FF"></rect><rect x="18" y="10" width="1" height="1" fill="#A8F6FF"></rect><rect x="8" y="11" width="12" height="1" fill="#00E5FF"></rect><rect x="20" y="11" width="1" height="1" fill="#A8F6FF"></rect><rect x="9" y="12" width="8" height="1" fill="#00E5FF"></rect><rect x="19" y="12" width="4" height="1" fill="#00E5FF"></rect><rect x="10" y="13" width="7" height="1" fill="#00E5FF"></rect><rect x="19" y="13" width="2" height="1" fill="#00E5FF"></rect><rect x="22" y="13" width="3" height="1" fill="#00E5FF"></rect><rect x="10" y="14" width="11" height="1" fill="#00E5FF"></rect><rect x="24" y="14" width="3" height="1" fill="#00E5FF"></rect><rect x="10" y="15" width="10" height="1" fill="#00E5FF"></rect><rect x="22" y="15" width="3" height="1" fill="#00E5FF"></rect><rect x="9" y="16" width="13" height="1" fill="#00E5FF"></rect><rect x="9" y="17" width="9" height="1" fill="#00E5FF"></rect><rect x="8" y="18" width="8" height="1" fill="#00E5FF"></rect><rect x="8" y="19" width="7" height="1" fill="#00E5FF"></rect><rect x="8" y="20" width="7" height="1" fill="#00E5FF"></rect><rect x="9" y="21" width="6" height="1" fill="#00E5FF"></rect><rect x="10" y="22" width="5" height="1" fill="#00E5FF"></rect><rect x="11" y="23" width="4" height="1" fill="#00E5FF"></rect><rect x="12" y="24" width="3" height="1" fill="#00E5FF"></rect><rect x="13" y="25" width="2" height="1" fill="#00E5FF"></rect></g></symbol>
+  <symbol id="j2f" viewBox="-2.35 -2.35 36.7 36.7"><rect width="32" height="32" rx="7.17" fill="url(#gb3)"></rect><g filter="url(#gl3)"><rect x="6" y="6" width="1" height="1" fill="#A8F6FF"></rect><rect x="6" y="7" width="1" height="1" fill="#00E5FF"></rect><rect x="7" y="7" width="2" height="1" fill="#A8F6FF"></rect><rect x="6" y="8" width="2" height="1" fill="#00E5FF"></rect><rect x="8" y="8" width="8" height="1" fill="#A8F6FF"></rect><rect x="6" y="9" width="4" height="1" fill="#00E5FF"></rect><rect x="10" y="9" width="8" height="1" fill="#A8F6FF"></rect><rect x="7" y="10" width="11" height="1" fill="#00E5FF"></rect><rect x="18" y="10" width="1" height="1" fill="#A8F6FF"></rect><rect x="8" y="11" width="12" height="1" fill="#00E5FF"></rect><rect x="20" y="11" width="1" height="1" fill="#A8F6FF"></rect><rect x="9" y="12" width="8" height="1" fill="#00E5FF"></rect><rect x="19" y="12" width="4" height="1" fill="#00E5FF"></rect><rect x="10" y="13" width="7" height="1" fill="#00E5FF"></rect><rect x="19" y="13" width="2" height="1" fill="#00E5FF"></rect><rect x="22" y="13" width="3" height="1" fill="#00E5FF"></rect><rect x="10" y="14" width="11" height="1" fill="#00E5FF"></rect><rect x="24" y="14" width="3" height="1" fill="#00E5FF"></rect><rect x="10" y="15" width="10" height="1" fill="#00E5FF"></rect><rect x="22" y="15" width="3" height="1" fill="#00E5FF"></rect><rect x="9" y="16" width="13" height="1" fill="#00E5FF"></rect><rect x="9" y="17" width="9" height="1" fill="#00E5FF"></rect><rect x="8" y="18" width="8" height="1" fill="#00E5FF"></rect><rect x="8" y="19" width="7" height="1" fill="#00E5FF"></rect><rect x="8" y="20" width="7" height="1" fill="#00E5FF"></rect><rect x="9" y="21" width="6" height="1" fill="#00E5FF"></rect><rect x="10" y="22" width="5" height="1" fill="#00E5FF"></rect><rect x="11" y="23" width="4" height="1" fill="#00E5FF"></rect><rect x="12" y="24" width="3" height="1" fill="#00E5FF"></rect><rect x="13" y="25" width="2" height="1" fill="#00E5FF"></rect></g></symbol>
+  <symbol id="j2s" viewBox="0 0 16 16"><rect width="16" height="16" rx="3.58" fill="url(#gb3)"></rect><rect x="3" y="3" width="1" height="1" fill="#A8F6FF"></rect><rect x="3" y="4" width="1" height="1" fill="#00E5FF"></rect><rect x="4" y="4" width="5" height="1" fill="#A8F6FF"></rect><rect x="4" y="5" width="6" height="1" fill="#00E5FF"></rect><rect x="10" y="5" width="1" height="1" fill="#A8F6FF"></rect><rect x="5" y="6" width="3" height="1" fill="#00E5FF"></rect><rect x="9" y="6" width="3" height="1" fill="#00E5FF"></rect><rect x="5" y="7" width="6" height="1" fill="#00E5FF"></rect><rect x="12" y="7" width="2" height="1" fill="#00E5FF"></rect><rect x="5" y="8" width="5" height="1" fill="#00E5FF"></rect><rect x="11" y="8" width="1" height="1" fill="#00E5FF"></rect><rect x="4" y="9" width="7" height="1" fill="#00E5FF"></rect><rect x="4" y="10" width="4" height="1" fill="#00E5FF"></rect><rect x="4" y="11" width="4" height="1" fill="#00E5FF"></rect><rect x="5" y="12" width="3" height="1" fill="#00E5FF"></rect><rect x="6" y="13" width="2" height="1" fill="#00E5FF"></rect></symbol>
+  <symbol id="t2" viewBox="0 0 16 16"><rect x="3" y="3" width="1" height="1" fill="currentColor"></rect><rect x="3" y="4" width="6" height="1" fill="currentColor"></rect><rect x="4" y="5" width="7" height="1" fill="currentColor"></rect><rect x="5" y="6" width="3" height="1" fill="currentColor"></rect><rect x="9" y="6" width="3" height="1" fill="currentColor"></rect><rect x="5" y="7" width="6" height="1" fill="currentColor"></rect><rect x="12" y="7" width="2" height="1" fill="currentColor"></rect><rect x="5" y="8" width="5" height="1" fill="currentColor"></rect><rect x="11" y="8" width="1" height="1" fill="currentColor"></rect><rect x="4" y="9" width="7" height="1" fill="currentColor"></rect><rect x="4" y="10" width="4" height="1" fill="currentColor"></rect><rect x="4" y="11" width="4" height="1" fill="currentColor"></rect><rect x="5" y="12" width="3" height="1" fill="currentColor"></rect><rect x="6" y="13" width="2" height="1" fill="currentColor"></rect></symbol>
+  </svg>
+  <div class="top"><h1>App 图标 · 第三轮</h1><p>J2 定成主图标；现在的图标留着，只润色背景。设置里能在两个之间换。</p></div>
+  <div class="g3"><section class="mod cl"><p class="ih"><span class="k">J2</span><b>像素重绘 · 主图标</b><em class="tag rec">DEFAULT</em></p>
+    <svg class="big" aria-hidden="true" shape-rendering="crispEdges"><use href="#j2"></use></svg>
+    <div class="strip"><svg class="s64" aria-hidden="true" shape-rendering="crispEdges"><use href="#j2"></use></svg><svg class="s32" aria-hidden="true" shape-rendering="crispEdges"><use href="#j2"></use></svg><svg class="s16" aria-hidden="true" shape-rendering="crispEdges"><use href="#j2s"></use></svg><span class="lb">64 · 32 · 16</span></div>
+    <div class="strip lite"><svg class="s64" aria-hidden="true" shape-rendering="crispEdges"><use href="#j2"></use></svg><svg class="s32" aria-hidden="true" shape-rendering="crispEdges"><use href="#j2"></use></svg><svg class="s16" aria-hidden="true" shape-rendering="crispEdges"><use href="#j2s"></use></svg><span class="lb">浅底</span></div>
+    <div class="mbar ml"><span class="st"><svg class="t" aria-hidden="true" shape-rendering="crispEdges"><use href="#t2"></use></svg></span><span class="st"><svg class="t" aria-hidden="true" shape-rendering="crispEdges"><use href="#t2"></use></svg><span class="ex"><i></i><i></i><i></i></span></span><span class="st"><svg class="t" aria-hidden="true" shape-rendering="crispEdges"><use href="#t2"></use></svg><span class="ex q">!</span></span><span class="lb">菜单栏：空闲 · 在跑 · 等你</span></div>
+    <div class="mbar md"><span class="st"><svg class="t" aria-hidden="true" shape-rendering="crispEdges"><use href="#t2"></use></svg></span><span class="st"><svg class="t" aria-hidden="true" shape-rendering="crispEdges"><use href="#t2"></use></svg><span class="ex"><i></i><i></i><i></i></span></span><span class="st"><svg class="t" aria-hidden="true" shape-rendering="crispEdges"><use href="#t2"></use></svg><span class="ex q">!</span></span><span class="lb">深色菜单栏</span></div>
+    <p class="nt">第二轮的 J2 原样定稿：32 格，眼睛 2×2，底是深海渐变，鸟带一圈光。16 号用手画的 16 格。</p>
+  </section><section class="mod cl"><p class="ih"><span class="k">A</span><b>现在的图标 · 润色背景</b></p>
+    <p class="nt">鸟一个像素都没动：轮廓、冠羽高光、眼睛都是原图的，只换了底。中间那版的光和 J2 一样，两个图标放在一起是一家。</p>
+    <div class="vs"><figure class="ref"><img class="" src="/_blob/b44f0fb53fca08297a47e3b734091ffe" alt="Peck 现在的 App 图标"><figcaption><span class="k">原图</span></figcaption><p class="d">现在的图标，纯色底</p></figure><figure class=""><img class="" src="/_blob/75a5360474c891aa75cb5f152074d9bf" alt="现在的图标 · A1"><figcaption><span class="k">A1</span>渐变</figcaption><p class="d">底换成深海渐变</p></figure><figure class="on"><img class="" src="/_blob/2e8a78b18342a6243fca97ebf01de654" alt="现在的图标 · A2"><figcaption><span class="k">A2</span>加光<em class="tag rec">PICK</em></figcaption><p class="d">再加和 J2 一样的光，顶边一道细高光</p></figure><figure class=""><img class="" src="/_blob/b2b77dcfff116af6d452687ca80848d9" alt="现在的图标 · A3"><figcaption><span class="k">A3</span>点阵孔</figcaption><p class="d">再加一层很淡的 LED 点阵孔</p></figure></div>
+    <div class="pair">
+      <div class="strip"><img class="s64" src="/_blob/2e8a78b18342a6243fca97ebf01de654" alt=""><img class="s32" src="/_blob/2e8a78b18342a6243fca97ebf01de654" alt=""><img class="s16" src="/_blob/2e8a78b18342a6243fca97ebf01de654" alt=""><span class="lb">A2</span></div>
+      <div class="strip lite"><img class="s64" src="/_blob/2e8a78b18342a6243fca97ebf01de654" alt=""><img class="s32" src="/_blob/2e8a78b18342a6243fca97ebf01de654" alt=""><img class="s16" src="/_blob/2e8a78b18342a6243fca97ebf01de654" alt=""><span class="lb">浅底</span></div>
+    </div>
+    <div class="pair">
+      <div class="strip"><img class="s64" src="/_blob/b44f0fb53fca08297a47e3b734091ffe" alt=""><img class="s32" src="/_blob/b44f0fb53fca08297a47e3b734091ffe" alt=""><img class="s16" src="/_blob/b44f0fb53fca08297a47e3b734091ffe" alt=""><span class="lb">原图</span></div>
+      <div class="strip lite"><img class="s64" src="/_blob/b44f0fb53fca08297a47e3b734091ffe" alt=""><img class="s32" src="/_blob/b44f0fb53fca08297a47e3b734091ffe" alt=""><img class="s16" src="/_blob/b44f0fb53fca08297a47e3b734091ffe" alt=""><span class="lb">浅底</span></div>
+    </div>
+    <div class="zz"><div class="zc"><img class="" src="/_blob/b44f0fb53fca08297a47e3b734091ffe" alt=""><span>原图 · 放大看</span></div><div class="zc"><img class="" src="/_blob/2e8a78b18342a6243fca97ebf01de654" alt=""><span>A2 · 同一块</span></div></div>
+  </section><section class="mod cl set"><p class="ml"><span class="l">APPEARANCE</span><span class="r">设置 · 外观（点两个图标试试）</span></p>
+    <p class="srow"><b>App 图标</b><span>换了马上生效</span></p>
+    <div class="tiles">
+      <button type="button" class="tile {{c0}}" onClick="{{p0}}"><svg class="ti" aria-hidden="true" shape-rendering="crispEdges"><use href="#j2f"></use></svg><span class="tl"><i class="rb {{r0}}"></i>PIXEL</span><span class="td">像素 J2 · 默认</span></button>
+      <button type="button" class="tile {{c1}}" onClick="{{p1}}"><img class="ti" src="/_blob/2e8a78b18342a6243fca97ebf01de654" alt=""><span class="tl"><i class="rb {{r1}}"></i>CLASSIC</span><span class="td">现在的图标 · 润色版</span></button>
+    </div>
+    <div class="dock"><span class="ap"><i></i></span><span class="ap"><i></i></span><span class="ap run">
+      <sc-if value="{{isJ2}}" hint-placeholder-val="{{true}}"><svg class="di" aria-hidden="true" shape-rendering="crispEdges"><use href="#j2f"></use></svg></sc-if>
+      <sc-if value="{{isA}}" hint-placeholder-val="{{false}}"><img class="di" src="/_blob/2e8a78b18342a6243fca97ebf01de654" alt="Dock 里的 Peck"></sc-if>
+    </span><span class="ap"><i></i></span><span class="ap"><i></i></span></div>
+    <p class="dl"><span>Dock 预览</span><span>{{pickName}}</span></p>
+    <ul class="ul">
+      <li><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg><span>App 开着时，Dock、⌘Tab 切换器、关于窗口里马上换。</span></li>
+      <li><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg><span>菜单栏两种都用 16 格的像素小鸟，最小的地方像素最清楚。</span></li>
+      <li class="w"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="3" y="0" width="2" height="1"></rect><rect x="3" y="1" width="2" height="1"></rect><rect x="3" y="2" width="2" height="1"></rect><rect x="3" y="3" width="2" height="1"></rect><rect x="3" y="4" width="2" height="1"></rect><rect x="3" y="6" width="2" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg><span>App 没开时，Dock 和 Finder 里显示打包时的那个（J2）。要它们也跟着换得改 App 包本身，先不做。</span></li>
+      <li><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg><span>外框保持系统的圆角方块，不切像素角：新版 macOS 会把别的形状装进一个灰框里。</span></li>
+    </ul>
+  </section></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["深色","浅色"],"default":"深色","section":"看"},"lc":{"editor":"enum","options":["L1 柔青","L2 深青","L3 墨底青光"],"default":"L2 深青","section":"看"},"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { pick: 0 }; }
+  renderVals() {
+    const dark = (this.props.theme ?? '深色') === '深色';
+    const lc = 'c' + ((this.props.lc ?? 'L2').slice(1, 2));
+    const s = this.state;
+    return {
+      root: 'pk ib dots ' + (dark ? 'dk' : 'lt') + ' ' + lc,
+      c0: s.pick === 0 ? 'on' : '', c1: s.pick === 1 ? 'on' : '',
+      r0: s.pick === 0 ? 'on' : '', r1: s.pick === 1 ? 'on' : '',
+      p0: () => this.setState({ pick: 0 }), p1: () => this.setState({ pick: 1 }),
+      isJ2: s.pick === 0, isA: s.pick === 1,
+      pickName: s.pick === 0 ? 'PIXEL · 像素 J2' : 'CLASSIC · 现在的图标',
+    };
+  }
+}
+</script>
+</body>
+</html>

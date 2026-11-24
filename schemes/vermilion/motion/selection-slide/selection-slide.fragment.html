@@ -1,0 +1,9 @@
+<!-- 选中指示滑移的演示：四个等宽的选项，下划线在第一项下；加上 is-playing 滑到第三项。网站里位置由 selection-slide.js 量出来写进 --va-slide-x / --va-slide-w，这里为了导出写死。 -->
+<div class="va-slide va-slide-demo" style="display:flex;gap:16px;font-family:var(--font-sans);font-size:1rem;line-height:1;color:var(--color-text)">
+  <span style="display:inline-flex;width:56px;min-height:44px;align-items:center;justify-content:center">游记</span>
+  <span style="display:inline-flex;width:56px;min-height:44px;align-items:center;justify-content:center">诗歌</span>
+  <span style="display:inline-flex;width:56px;min-height:44px;align-items:center;justify-content:center">故事</span>
+  <span style="display:inline-flex;width:56px;min-height:44px;align-items:center;justify-content:center">随笔</span>
+  <span class="va-slide-indicator is-on" aria-hidden="true" style="--va-slide-x:12;--va-slide-w:32"></span>
+  <style>.va-slide-demo.is-playing .va-slide-indicator { --va-slide-x: 156 !important; }</style>
+</div>

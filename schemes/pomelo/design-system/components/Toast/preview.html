@@ -1,0 +1,19 @@
+<!-- @dsCard group="控件" height=160 subtitle="提示：一张便签啪地贴在右下角，过一会儿自己撕走" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Toast</title>
+<style>
+  html, body { margin: 0; }
+  .demo { display: flex; gap: 48px; padding: 36px 44px; }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="demo">
+  <div class="pm-toast" data-hand="note" data-seed="1450" data-tilt="-3" data-tapes="1" role="status">存好啦</div>
+  <div class="pm-toast" data-hand="note" data-seed="1451" data-tilt="2" data-tapes="1" role="status">已丢掉 ·&nbsp;<span class="pm-link" style="color: var(--color-on-sticky)">撤销</span></div>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

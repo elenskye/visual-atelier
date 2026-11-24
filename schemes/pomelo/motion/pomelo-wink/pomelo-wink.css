@@ -1,0 +1,6 @@
+/* 柚子眨眼：歪一下头再回来（到桌上、打开 App 时）。0.7 秒。 */
+.pm-pomelo[data-face="wink"] > svg { animation: pm-pomelo-tilt .7s cubic-bezier(.3,1.6,.5,1) both; }
+@keyframes pm-pomelo-tilt { 0% { transform: rotate(0); } 45% { transform: rotate(-12deg) scale(1.06); } 100% { transform: rotate(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-pomelo[data-face="wink"] > svg { animation: none; }
+}

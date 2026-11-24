@@ -1,0 +1,59 @@
+{
+  "id": "palette-lake",
+  "title": "换配色 · 湖面波纹",
+  "status": "approved",
+  "approved": "站主 2026-11-24 验收 Pith Explore EX11（「验收完毕，开始做优化页、建 schemes/pith/」）",
+  "tier": "expressive",
+  "surface": "palette-lake",
+  "trigger": "设置 › 外观、⌘K 换配色：根换 data-palette、加 .is-lake（1.45 秒后拿掉）；点的位置放 .pith-lake 加 .is-in；滤镜调 beginElement()",
+  "durationMs": 2300,
+  "reducedMotion": "颜色直接换，不漾、不晃",
+  "use": "整个 App（根元素 .pith-smooth）",
+  "source": "canvases/pith-explore EX10、EX11（站主 11-23、11-24 定的动效）",
+  "requires": [
+    "design-system/bundle.css"
+  ],
+  "files": {
+    "css": "palette-lake.css",
+    "html": "palette-lake.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 300,
+    "holdEndMs": 600,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".pl-demo",
+    "viewport": [
+      520,
+      220
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "attr": {
+          "data-palette": "mist-ochre"
+        },
+        "on": "html"
+      },
+      {
+        "at": 0,
+        "add": "is-lake"
+      },
+      {
+        "at": 0,
+        "add": "is-in",
+        "on": ".k"
+      },
+      {
+        "at": 1450,
+        "remove": "is-lake"
+      }
+    ]
+  }
+}

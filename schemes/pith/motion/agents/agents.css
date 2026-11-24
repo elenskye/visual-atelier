@@ -1,0 +1,97 @@
+/* Pith 在想：Agent 行为的动态图标（expressive，登记的表面 agent-status，循环，一圈 1.2–2.6 秒，登记最长的 2.6 秒）。
+   像 Claude Code：Agent 调一个工具，状态行那一步前面就是对应的图标在动，字上扫过一道光（.pith-shimmer）；那一步做完，图标停住、字变淡（Design System 的 .pith-status-step）。
+   十四个：在想、检索知识库、读原文、引用、查文献库、联网、计算、加载技能、写回答、问你、存进知识库、后台任务、改 Word、完成。图形在 marks/agents/。
+   「存进知识库」（站主 2026-11-24）：珊瑚色的种子落下、顿一下、埋进土里，土鼓一下，长出一根小枝丫，顶上的芽还是珊瑚色；.once 只演一遍、停在长好的样子（交付卡的「已种下」）。
+   .is-frame 加 --at 定在某一刻（只「存进知识库」用，它的时间都在关键帧里）。减弱动态效果：停在一帧看得懂的样子。
+   开发：图标跟着工具调用的事件换，不要按时间假装。 */
+:is(.pith-agent--think g,.pith-agent--search .s1,.pith-agent--search .s2,.pith-agent--search .s3,.pith-agent--cite .nb,.pith-agent--lib .pull,.pith-agent--lib .tilt,.pith-agent--skill .tip,.pith-agent--ask .bob,.pith-agent--save .sd,.pith-agent--save .bd,.pith-agent--save .soil,.pith-agent--done .bloom,.pith-agent--done .core,.pith-agent--read .hi,.pith-agent--bg .arc){transform-box:fill-box;transform-origin:center}
+/* 在想：一点 → 四瓣 → 八瓣，像 Claude Code 的星号，慢慢转 */
+.pith-agent--think{animation:pith-ag-spin 7.2s linear infinite}
+.pith-agent--think g{opacity:0;animation:pith-ag-ph 1.8s infinite}
+.pith-agent--think .f1{animation-delay:.6s}.pith-agent--think .f2{animation-delay:1.2s}
+@keyframes pith-ag-ph{0%{opacity:0;transform:scale(.7)}8%,30%{opacity:1;transform:none}40%,100%{opacity:0;transform:scale(1.1)}}
+@keyframes pith-ag-spin{to{transform:rotate(360deg)}}
+/* 检索：放大镜从左扫到右，扫过的种子变珊瑚色 */
+.pith-agent--search .lp{animation:pith-ag-sweep 1.6s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes pith-ag-sweep{0%{transform:translateX(-4px)}50%{transform:translateX(24px)}100%{transform:translateX(-4px)}}
+.pith-agent--search .s1{animation:pith-ag-lit 1.6s infinite}.pith-agent--search .s2{animation:pith-ag-lit 1.6s .2s infinite}.pith-agent--search .s3{animation:pith-ag-lit 1.6s .4s infinite}
+@keyframes pith-ag-lit{0%,10%,60%,100%{fill:currentColor;transform:none}25%,40%{fill:var(--color-coral);transform:scale(1.3)}}
+/* 读原文：一行一行被读到，珊瑚色的一道扫过 */
+.pith-agent--read .hi{fill:var(--color-coral);opacity:.55;transform-origin:0 50%;transform:scaleX(0);animation:pith-ag-hl 2s infinite}
+.pith-agent--read .l1 .hi{animation-delay:.5s}.pith-agent--read .l2 .hi{animation-delay:1s}.pith-agent--read .l3 .hi{animation-delay:1.5s}
+@keyframes pith-ag-hl{0%{transform:scaleX(0);opacity:.55}20%{transform:scaleX(1);opacity:.55}30%,100%{transform:scaleX(1);opacity:0}}
+/* 引用：编号蹦出来，一根细线连到页边 */
+.pith-agent--cite .nb{animation:pith-ag-pop 1.6s cubic-bezier(.34,1.56,.64,1) infinite}
+.pith-agent--cite .pp{fill:none;stroke:var(--color-page);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+@keyframes pith-ag-pop{0%,8%{transform:scale(0)}24%,80%{transform:none}92%,100%{transform:scale(0)}}
+.pith-agent--cite .cl{stroke-dasharray:1 2;animation:pith-ag-draw 1.6s infinite}
+@keyframes pith-ag-draw{0%,24%{stroke-dashoffset:1}50%,82%{stroke-dashoffset:0}94%,100%{stroke-dashoffset:-1}}
+.pith-agent--cite .edge{opacity:.45}
+/* 查文献库：中间那本被抽出来又放回去，右边那本晃一下 */
+.pith-agent--lib .pull{animation:pith-ag-pull 1.8s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes pith-ag-pull{0%,15%,85%,100%{transform:none}40%,60%{transform:translateY(-6px)}}
+.pith-agent--lib .tilt{transform-origin:100% 100%;animation:pith-ag-tilt 1.8s infinite}
+@keyframes pith-ag-tilt{0%,55%,100%{transform:rotate(0)}68%{transform:rotate(12deg)}80%{transform:rotate(6deg)}}
+/* 联网：经线转动，一颗珊瑚点沿赤道绕 */
+.pith-agent--web .mer{fill:none;stroke:currentColor;animation:pith-ag-mer 2s ease-in-out infinite}
+@keyframes pith-ag-mer{0%,100%{rx:12}50%{rx:1.5}}
+.pith-agent--web .orb{transform-box:view-box;transform-origin:24px 24px;animation:pith-ag-orb 2s linear infinite}
+@keyframes pith-ag-orb{0%{transform:scaleX(1) translateX(0)}25%{transform:translateX(-13.6px)}50%{transform:translateX(-27.2px)}75%{transform:translateX(-13.6px)}100%{transform:translateX(0)}}
+/* 计算：算盘珠依次拨过去 */
+.pith-agent--compute .b1{animation:pith-ag-b 1.6s infinite}.pith-agent--compute .b2{animation:pith-ag-b 1.6s .25s infinite}.pith-agent--compute .b3{animation:pith-ag-b 1.6s .5s infinite}
+@keyframes pith-ag-b{0%,10%{transform:none}35%,70%{transform:translateX(16px)}95%,100%{transform:none}}
+/* 加载技能：一卷蕨芽从书脊旁边展开 */
+.pith-agent--skill .uf{stroke-dasharray:1 2;animation:pith-ag-unf 1.8s cubic-bezier(.3,.6,.3,1) infinite}
+@keyframes pith-ag-unf{0%{stroke-dashoffset:1}55%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:0;opacity:0}}
+.pith-agent--skill .tip{animation:pith-ag-tipa 1.8s infinite}
+@keyframes pith-ag-tipa{0%,50%{transform:scale(0)}62%{transform:scale(1.35)}70%,85%{transform:none}100%{transform:none;opacity:0}}
+/* 写：笔尖往右走，后面拖出一行字（波浪线） */
+.pith-agent--write .wv{stroke-dasharray:1 2;animation:pith-ag-wv 1.8s linear infinite}
+@keyframes pith-ag-wv{0%{stroke-dashoffset:1}80%,90%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+.pith-agent--write .nib{transform-box:view-box;animation:pith-ag-nib 1.8s linear infinite}
+@keyframes pith-ag-nib{0%{transform:translate(-22px,0)}20%{transform:translate(-16px,-3px)}40%{transform:translate(-10px,1px)}60%{transform:translate(-4px,-3px)}80%,90%{transform:translate(2px,0)}100%{transform:translate(2px,0);opacity:0}}
+/* 问你：问号下面那颗点一直轻轻跳 */
+.pith-agent--ask .bob{animation:pith-ag-bob 1.2s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes pith-ag-bob{0%,100%{transform:none}45%{transform:translateY(-4px) scale(1.1)}60%{transform:translateY(0) scaleX(1.15) scaleY(.85)}}
+/* 存进知识库（站主 11-24）：一颗珊瑚色的种子落下来、在土上顿一下、埋进土里；土鼓一下；一根小枝丫从土里长出来，先茎、再左右两根枝和叶，顶上的芽是珊瑚色。
+   时间都在关键帧里（没有 delay），--at 能把它定在某一刻；.once 只演一遍、停在长好的样子（App 里交付卡的「已种下」用）。 */
+.pith-agent--save .sd{animation:pith-sv-seed 2.6s infinite}
+@keyframes pith-sv-seed{0%{transform:translateY(0) scale(.5);opacity:0;animation-timing-function:ease-out}5%{transform:translateY(0);opacity:1;animation-timing-function:cubic-bezier(.55,0,.9,.45)}20%{transform:translateY(23px);opacity:1}23%{transform:translateY(23.6px) scale(1.18,.78)}27%{transform:translateY(23px);animation-timing-function:cubic-bezier(.5,0,.4,1)}40%,100%{transform:translateY(31.5px);opacity:1}}
+.pith-agent--save .soil{transform-origin:50% 100%;animation:pith-sv-soil 2.6s infinite}
+@keyframes pith-sv-soil{0%,38%{transform:none}44%{transform:scale(1.04,1.14)}52%,100%{transform:none}}
+.pith-agent--save .ss{stroke-dasharray:1 2;animation:pith-sv-ss 2.6s infinite}
+@keyframes pith-sv-ss{0%,42%{stroke-dashoffset:1;animation-timing-function:cubic-bezier(.3,.6,.3,1)}62%,100%{stroke-dashoffset:0}}
+.pith-agent--save .sb1{stroke-dasharray:1 2;animation:pith-sv-b1 2.6s infinite}.pith-agent--save .sb2{stroke-dasharray:1 2;animation:pith-sv-b2 2.6s infinite}
+@keyframes pith-sv-b1{0%,52%{stroke-dashoffset:1}61%,100%{stroke-dashoffset:0}}
+@keyframes pith-sv-b2{0%,57%{stroke-dashoffset:1}66%,100%{stroke-dashoffset:0}}
+.pith-agent--save :is(.lf1,.lf2){transform-box:view-box}
+.pith-agent--save .lf1{transform-origin:18.6px 27px;animation:pith-sv-l1 2.6s infinite}.pith-agent--save .lf2{transform-origin:29.2px 21px;animation:pith-sv-l2 2.6s infinite}
+@keyframes pith-sv-l1{0%,59%{transform:rotate(30deg) scale(0);animation-timing-function:cubic-bezier(.34,1.56,.64,1)}72%,100%{transform:none}}
+@keyframes pith-sv-l2{0%,64%{transform:rotate(-30deg) scale(0);animation-timing-function:cubic-bezier(.34,1.56,.64,1)}77%,100%{transform:none}}
+.pith-agent--save .bd{animation:pith-sv-bud 2.6s infinite}
+@keyframes pith-sv-bud{0%,72%{transform:scale(0)}78%{transform:scale(1.45)}83%,100%{transform:none}}
+.pith-agent--save .spr{animation:pith-sv-out 2.6s infinite}
+@keyframes pith-sv-out{0%,90%{opacity:1}97%,100%{opacity:0}}
+.pith-agent--save.pith-agent--save :is(.sd,.soil,.ss,.sb1,.sb2,.lf1,.lf2,.bd,.spr){animation-delay:calc(-1 * var(--at, 0s))}
+.pith-agent--save.once :is(.sd,.soil,.ss,.sb1,.sb2,.lf1,.lf2,.bd){animation-iteration-count:1;animation-fill-mode:both}.pith-agent--save.once .spr{animation:none}
+.pith-agent.is-frame,.pith-agent.is-frame *{animation-play-state:paused!important}
+/* 后台任务：一圈慢慢画满，头上一颗珊瑚点跟着走 */
+.pith-agent--bg .trk{opacity:.22}
+.pith-agent--bg .arc{stroke-dasharray:1 2;transform:rotate(-90deg);animation:pith-ag-arc 2.4s cubic-bezier(.4,0,.2,1) infinite}
+@keyframes pith-ag-arc{0%{stroke-dashoffset:1}90%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:0;opacity:0}}
+.pith-agent--bg .head{transform-box:view-box;transform-origin:24px 24px;animation:pith-ag-head 2.4s cubic-bezier(.4,0,.2,1) infinite}
+@keyframes pith-ag-head{0%{transform:rotate(0)}90%{transform:rotate(360deg);opacity:1}100%{transform:rotate(360deg);opacity:0}}
+/* 改 Word：一行被划掉，珊瑚色的插入点在闪 */
+.pith-agent--word .strike{stroke-dasharray:1 2;animation:pith-ag-strike 1.6s infinite}
+@keyframes pith-ag-strike{0%,10%{stroke-dashoffset:1}40%,100%{stroke-dashoffset:0}}
+.pith-agent--word .caret{animation:pith-ag-blink 1.6s steps(1) infinite}
+@keyframes pith-ag-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+/* 完成：开成一朵八瓣，芯是珊瑚色 */
+.pith-agent--done .bloom{animation:pith-ag-bloom 2.4s cubic-bezier(.34,1.56,.64,1) infinite}
+@keyframes pith-ag-bloom{0%{transform:scale(0) rotate(-45deg)}30%,85%{transform:none}100%{transform:none;opacity:0}}
+.pith-agent--done .core{animation:pith-ag-core 2.4s infinite}
+@keyframes pith-ag-core{0%{transform:scale(1)}15%{transform:scale(1.5)}30%,100%{transform:none}}
+/* 状态行的字：一道光从左往右扫过（Claude Code 那种） */
+.pith-shimmer{background:linear-gradient(90deg,var(--color-text-3) 0 38%,var(--color-text) 50%,var(--color-text-3) 62% 100%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:pith-ag-shim 1.8s linear infinite}
+@keyframes pith-ag-shim{from{background-position:100% 0}to{background-position:0 0}}
+@media (prefers-reduced-motion: reduce){.pith-agent:not(.is-frame),.pith-agent:not(.is-frame) *,.pith-shimmer{animation:none!important}.pith-agent--think .f2{opacity:1}.pith-agent--skill .uf,.pith-agent--cite .cl{stroke-dashoffset:0}.pith-agent--save:not(.is-frame) .sd{opacity:0}.pith-agent--bg .arc{stroke-dashoffset:.3}.pith-agent--read .hi{transform:none;opacity:.4}}

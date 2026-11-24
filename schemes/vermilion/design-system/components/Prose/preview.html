@@ -1,0 +1,46 @@
+<!-- @dsCard group="内容" height=1180 subtitle="文章头、段落、链接、标题、引用、列表、表格、代码、分隔线" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Prose</title>
+<style>
+  .vm-demo { padding: var(--space-6); }
+</style>
+</head>
+<body class="vm-page">
+<div class="vm-demo">
+  <article class="wander-article">
+    <div class="wander-article-meta">
+      <span class="content-label">写作</span>
+      <span>中文</span>
+      <span>2026年7月</span>
+    </div>
+    <h1>在山城迷路的一天</h1>
+    <p class="wander-article-summary">一篇关于方向感的随笔：地图上的直线，到了脚下都变成台阶。</p>
+    <div class="wander-article-body prose">
+      <p>山城的路没有平的。导航说向前两百米，实际要先下三层楼梯，再穿过一家面馆的后门。后来我不再看地图，只记<a href="#">路口的小店</a>。</p>
+      <h2>一段路的开头</h2>
+      <p>迷路的时候，先停下来。把走过的路在纸上画一遍，往往就能看见自己绕了哪一圈。</p>
+      <blockquote><p>路不是用来走直的。</p></blockquote>
+      <h3>路上的笔记</h3>
+      <ul>
+        <li>早上的雾比想象中散得慢。</li>
+        <li>坡越陡，台阶越窄。</li>
+      </ul>
+      <table>
+        <thead><tr><th>地点</th><th>步行</th><th>台阶</th></tr></thead>
+        <tbody><tr><td>码头</td><td>12 分钟</td><td>140</td></tr><tr><td>老街</td><td>8 分钟</td><td>36</td></tr></tbody>
+      </table>
+      <p>行内代码写成 <code>route.length</code>，代码块如下：</p>
+      <pre><code>const steps = route.filter((s) =&gt; s.isStair);</code></pre>
+      <hr>
+      <p>完。</p>
+    </div>
+    <div class="wander-article-end">
+      <!-- @include motion/end-mark/end-mark.fragment.html -->
+    </div>
+  </article>
+</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+{
+  "$note": "由已批准资产派生的资产，由 tooling/marks/derive.mjs 生成，不手改生成的 SVG。outline：把 from 里的 <text> 转成曲线（字体按 font-family 与 font-weight 从 type/fonts.json 登记的 npm 包里取，只用 OFL 字体）；keep 为 text 时只留文字，viewBox 为输出的取景框。og：分享图底图（base）+ 字标（标志取 markRole，文字取 textRole）+ 一行副题，颜色都写成角色变量。og-card：文章分享图的模板，底图与字标按 theme 上好色，标题的排法写在 headline 里（字段见 tooling/og-card/card.mjs）；samples 是目录页与质量检查用的示例标题，不用真实文章。watermark：作品水印的模板，字标转曲线，墨色取 inkRole 的明暗值，其余参数原样写进模板（字段见 tooling/watermark/watermark.mjs）；fakeImages 是目录页用的假图，站主的作品不进本仓库。",
+  "assets": [
+    {
+      "id": "wordmark",
+      "title": "字标 · 名字（转曲线）",
+      "kind": "outline",
+      "from": "logo-lockup.svg",
+      "keep": "text",
+      "file": "wordmark.svg",
+      "viewBox": [64, 0, 228, 64],
+      "colorRole": "text",
+      "use": "网站页头：放在内联的 Logo A 标志右侧，两者同高，拼起来就是 logo-lockup 的排法"
+    },
+    {
+      "id": "logo-lockup-paths",
+      "title": "Logo A · 标志加字标（转曲线）",
+      "kind": "outline",
+      "from": "logo-lockup.svg",
+      "keep": "all",
+      "file": "logo-lockup-paths.svg",
+      "colorRole": "text",
+      "renders": [{ "width": 584, "height": 128, "themes": ["light", "dark"] }],
+      "use": "需要单个文件的字标处（幻灯片、文档、位图）"
+    },
+    {
+      "id": "og-default-v3",
+      "title": "默认分享图 v3（笔势与纸片）",
+      "kind": "og",
+      "base": "graphic/og-graphic.svg",
+      "file": "illustrations/og/default-v3.svg",
+      "lockup": { "from": "logo-lockup.svg", "x": 88, "y": 172, "height": 120, "markRole": "accent-strong", "textRole": "text" },
+      "tagline": { "text": "呦呦漫游 · Wander", "family": "Noto Serif SC", "weight": 400, "size": 38, "x": 234, "baseline": 352, "role": "muted" },
+      "renders": [{ "width": 1200, "height": 630, "themes": ["light"] }],
+      "use": "网站默认分享图（没有自己题图的页面）"
+    },
+    {
+      "id": "og-card",
+      "title": "文章分享图模板（低山）",
+      "kind": "og-card",
+      "version": 1,
+      "theme": "light",
+      "base": "graphic/og-card-graphic.svg",
+      "file": "og-card/template.json",
+      "lockup": { "from": "logo-lockup.svg", "x": 88, "y": 62, "height": 58, "markRole": "accent-strong", "textRole": "text" },
+      "headline": {
+        "role": "text",
+        "families": ["Source Serif 4", "Noto Serif SC"],
+        "weight": 600,
+        "x": 92,
+        "maxWidth": 1016,
+        "baseline": 430,
+        "lineHeight": { "cjk": 1.32, "latin": 1.16 },
+        "sizes": [{ "size": 88, "maxLines": 1 }, { "size": 74, "maxLines": 2 }, { "size": 62, "maxLines": 3 }, { "size": 52, "maxLines": 3 }]
+      },
+      "samples": [
+        "走到地图之外",
+        "一个方法：把很长的标题好好放进分享图里面",
+        "Excel 与 AI：怎样在两周内把写作练起来",
+        "Walking Past the Edge of the Map",
+        "One Method to Fit a Long English Title into a Share Image Without Shrinking It",
+        "「引号」（括号）开头：标点不能落在行首，也不能落在行尾，这样能放下吗？！",
+        "一个特别特别长的中文标题，用来测试在分享图上换行和截断的时候到底会发生什么，以及它最后会不会好好地停在省略号上面，而不是直接从画面右边跑出去，再多写几个字也要截得住才行"
+      ],
+      "use": "每篇文章的分享图：网站构建时把标题交给 og-card/card.mjs，按这份模板生成 1200 × 630 PNG"
+    },
+    {
+      "id": "watermark",
+      "title": "作品水印模板（字标）",
+      "kind": "watermark",
+      "version": 1,
+      "from": "logo-lockup.svg",
+      "file": "watermark/template.json",
+      "inkRole": "text",
+      "heightRatio": 0.034,
+      "minHeight": 18,
+      "marginRatio": 0.028,
+      "minShortSide": 480,
+      "opacity": 0.82,
+      "halo": { "opacity": 0.32, "blurRatio": 0.05 },
+      "busyBias": 1.5,
+      "maxBytes": 1572864,
+      "quality": [90, 86, 82, 78, 74],
+      "fakeImages": ["sky", "night", "texture", "painting", "crowded"],
+      "use": "画作与摄影上线时加在角落的水印：网站构建时交给 watermark/watermark.mjs，按这份模板生成带水印的图，资源库里的原图不动"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "$note": "Peck 用到的字体。四个都是 OFL，可以打包进 App、可以转曲线；苹方是系统字体，只作中文后备。",
+  "web": [
+    {
+      "family": "Fusion Pixel 12",
+      "name": "缝合像素 12",
+      "stack": "name",
+      "use": "名字：任务名、步骤名、问题、选项、项目名；标题",
+      "sizes": [
+        12,
+        18,
+        24
+      ],
+      "license": "OFL-1.1",
+      "outline": true,
+      "note": "只用 12 的整数倍字号"
+    },
+    {
+      "family": "IBM Plex Sans",
+      "name": "Plex Sans",
+      "stack": "body",
+      "use": "说明、正文、提示（中文退到苹方）",
+      "weights": [
+        400,
+        600
+      ],
+      "license": "OFL-1.1",
+      "outline": true
+    },
+    {
+      "family": "Departure Mono",
+      "name": "Departure Mono",
+      "stack": "code",
+      "use": "代码、路径、命令、文件名",
+      "sizes": [
+        11,
+        22
+      ],
+      "license": "OFL-1.1",
+      "outline": true,
+      "note": "11 号是「字号不小于 12」唯一的例外（站主 2026-11-10 定）"
+    },
+    {
+      "family": "Doto",
+      "name": "Doto",
+      "stack": "dots",
+      "use": "数字、标签、按钮、模块头：英文大写",
+      "weights": [
+        900
+      ],
+      "license": "OFL-1.1",
+      "outline": true
+    }
+  ],
+  "native": [
+    {
+      "family": "PingFang SC",
+      "name": "苹方",
+      "use": "Plex Sans、缝合像素没有的字",
+      "license": "macOS 系统字体，授权归 Apple",
+      "outline": false
+    }
+  ],
+  "notes": [
+    "缝合像素 12 和 Departure Mono 的文件在 visual-atelier 方案的 type/fonts/（带 OFL 许可原文；画布附件里是同一份），登记在 visual-atelier 的 docs/licensing.md。"
+  ]
+}

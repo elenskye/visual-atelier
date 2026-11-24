@@ -1,0 +1,31 @@
+{
+  "$note": "本方案用到的字体清单。两个都是 macOS 系统字体，只作原生运行时字体：不转曲线、不进产物、不打包。字体栈见 tokens/scale.json，许可见 docs/licensing.md。",
+  "web": [],
+  "native": [
+    {
+      "family": "Hannotate SC",
+      "name": "手札体",
+      "alias": "Pomelo Hand",
+      "faces": { "400": "HannotateSC-W5", "700": "HannotateSC-W7" },
+      "stack": "hand",
+      "use": "界面、标题、钱和统计数字",
+      "weights": [400, 700],
+      "license": "macOS 系统字体，授权归 Apple",
+      "outline": false
+    },
+    {
+      "family": "PingFang SC",
+      "name": "苹方",
+      "stack": "long",
+      "use": "柚子的长回答和来信",
+      "weights": [400, 600],
+      "license": "macOS 系统字体，授权归 Apple",
+      "outline": false
+    }
+  ],
+  "notes": [
+    "手札体的两个字重在字体文件里都写 400，只写字体族要粗体会被浏览器描粗发糊。要用 @font-face 按 local(\"HannotateSC-W5\")、local(\"HannotateSC-W7\") 分别声明成 Pomelo Hand 的 400 和 700（Pomelo 的 src/index.css 也是这样做的）。",
+    "手札体的数字等宽，金额右对齐就齐了，表格里不用换字体。",
+    "其他设备没有手札体，会退到苹方再退到系统无衬线。样稿要在 Mac 上看。"
+  ]
+}

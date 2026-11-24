@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>展开到宽栏</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Doto:wght@700;900&amp;display=swap">
+<style>
+body{margin:0}
+@font-face{font-family:"Fusion Pixel 12";src:url(/_blob/3cac2eac4c813b222f13d0c459436aa1) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Departure Mono";src:url(/_blob/13ad4bc2c335a5fe439f1dd23f0a7087) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+
+.pk{position:relative;box-sizing:border-box;overflow:hidden;font-family:var(--f-body);font-size:var(--fs-body);line-height:1.55;color:var(--tx);background:var(--bg);-webkit-font-smoothing:antialiased;font-synthesis:none;font-variant-numeric:tabular-nums;--clip:polygon(0 6px,3px 6px,3px 3px,6px 3px,6px 0,calc(100% - 6px) 0,calc(100% - 6px) 3px,calc(100% - 3px) 3px,calc(100% - 3px) 6px,100% 6px,100% calc(100% - 6px),calc(100% - 3px) calc(100% - 6px),calc(100% - 3px) calc(100% - 3px),calc(100% - 6px) calc(100% - 3px),calc(100% - 6px) 100%,6px 100%,6px calc(100% - 3px),3px calc(100% - 3px),3px calc(100% - 6px),0 calc(100% - 6px));--clip2:polygon(0 4px,2px 4px,2px 2px,4px 2px,4px 0,calc(100% - 4px) 0,calc(100% - 4px) 2px,calc(100% - 2px) 2px,calc(100% - 2px) 4px,100% 4px,100% calc(100% - 4px),calc(100% - 2px) calc(100% - 4px),calc(100% - 2px) calc(100% - 2px),calc(100% - 4px) calc(100% - 2px),calc(100% - 4px) 100%,4px 100%,4px calc(100% - 2px),2px calc(100% - 2px),2px calc(100% - 4px),0 calc(100% - 4px));--notch:polygon(0 2px,2px 2px,2px 0,calc(100% - 2px) 0,calc(100% - 2px) 2px,100% 2px,100% calc(100% - 2px),calc(100% - 2px) calc(100% - 2px),calc(100% - 2px) 100%,2px 100%,2px calc(100% - 2px),0 calc(100% - 2px))}
+.dots{background-image:radial-gradient(circle at 1.5px 1.5px,var(--grid) 1.1px,transparent 1.6px);background-size:8px 8px}
+.pk *{box-sizing:border-box}
+:where(.pk) :where(p,h1,h2,h3,ul,ol,figure){margin:0;padding:0}
+:where(.pk) :where(ul,ol){list-style:none}
+:where(.pk) button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0;text-align:left}
+:where(.pk) :where(i,em){font-style:normal}
+.px{width:16px;height:16px;fill:currentColor;flex:none;display:block}
+.px.s12{width:12px;height:12px}.px.s24{width:24px;height:24px}
+.nm{font-family:var(--f-name);font-weight:var(--fw-name);font-size:var(--fs-name)}
+.code{font-family:var(--f-code);font-size:var(--fs-code)}
+/* 模块：外层是边线色，:before 是面板色，两层都切成像素阶梯角 */
+.mod{position:relative;isolation:isolate;clip-path:var(--clip);background:var(--mline,var(--line));padding:14px 18px 16px;min-width:0}
+.mod:before{content:"";position:absolute;inset:1px;clip-path:var(--clip);background:var(--mbg,var(--pane));z-index:-1}
+.mod.run{--mline:var(--cy-line)}
+.mod.wait{--mline:var(--warn-line)}
+.ml{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--tx3);margin-bottom:12px;white-space:nowrap}
+.ml .l{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.08em;color:var(--tx2)}
+.ml .l:before{content:"[ ";color:var(--tx3)}.ml .l:after{content:" ]";color:var(--tx3)}
+.ml .r{margin-left:auto}
+.ml .n{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:17px;line-height:1;color:var(--tx2)}
+.lbl{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;letter-spacing:.1em;color:var(--tx3);margin-bottom:6px}
+.dot{display:inline-block;width:7px;height:7px;flex:none}
+.dot.muse{background:var(--muse)}.dot.grok{background:var(--grok)}.dot.api{background:var(--api)}
+.who{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.who .arr{color:var(--tx3)}
+/* 3×3 点阵转圈 */
+.tw{display:inline-grid;grid-template-columns:repeat(3,3px);gap:1.5px;flex:none}
+.tw i{width:3px;height:3px;background:var(--cy-blk);box-shadow:var(--dglow);animation:tw 1.2s steps(1) infinite}
+.tw i:nth-child(2){animation-delay:.3s}.tw i:nth-child(4){animation-delay:.6s}.tw i:nth-child(6){animation-delay:.15s}.tw i:nth-child(8){animation-delay:.45s}.tw i:nth-child(9){animation-delay:.9s}
+.lt .tw i{box-shadow:inset 0 0 0 .5px var(--blk-ol)}
+/* 按钮：点阵字、英文大写 */
+.btn{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:34px;padding:0 14px;clip-path:var(--clip2);background:var(--line2);font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.08em;white-space:nowrap;color:var(--tx)}
+.btn:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.btn.pri{background:var(--cy-ol);color:var(--on-cy);text-shadow:var(--on-glow)}
+.btn.pri:before{background:var(--cy-fill)}
+.btn.danger{background:var(--bad-line);color:var(--bad)}
+.btn.warn{background:var(--warn);color:var(--on-warn,#02101A)}.btn.warn:before{display:none}
+.lt .btn.warn{--on-warn:#FFFFFF}
+.btn.ghost{background:transparent;color:var(--tx2)}.btn.ghost:before{display:none}
+.btn .k{font-size:12px;opacity:.7}
+/* 开关 */
+.tg{display:flex;align-items:center;gap:10px;font-size:13px}
+.tgt{position:relative;isolation:isolate;width:34px;height:18px;flex:none;clip-path:var(--clip2);background:var(--cy-ol)}
+.tgt:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--cy-fill);z-index:-1}
+.tgt i{position:absolute;top:3px;left:19px;width:12px;height:12px;background:var(--on-cy);clip-path:var(--notch)}
+.tgt.off{background:var(--line2)}.tgt.off:before{background:var(--pane)}.tgt.off i{left:3px;background:var(--line2)}
+/* 分段：选中的那块也切成像素角 */
+.seg{display:inline-flex;gap:3px;padding:3px;clip-path:var(--clip2);background:var(--line2);position:relative;isolation:isolate}
+.seg:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.seg button{position:relative;isolation:isolate;height:28px;padding:0 12px;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.08em;color:var(--tx2);display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap;clip-path:var(--clip2)}
+.seg button.on{background:var(--cy-ol);color:var(--on-cy);text-shadow:var(--on-glow)}
+.seg button.on:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--cy-fill);z-index:-1}
+.seg.full{display:flex;width:100%}.seg.full button{flex:1 1 0}
+.seg.ink button.on{background:var(--tx);color:var(--bg);text-shadow:none}
+.seg.ink button.on:before{display:none}
+/* 选项片 */
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;clip-path:var(--clip2);background:var(--line2);font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;letter-spacing:.06em;color:var(--tx2);white-space:nowrap}
+.chip:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.chip.on{background:var(--cy-ol);color:var(--tx)}
+/* 标签：一级台阶角 */
+.tag{position:relative;isolation:isolate;display:inline-flex;align-items:center;height:19px;padding:0 6px;clip-path:var(--notch);font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:12.5px;letter-spacing:.06em;line-height:1;white-space:nowrap;vertical-align:middle}
+.tag.new{background:var(--ok);color:var(--bg)}.tag.del{background:var(--bad);color:var(--bg)}
+.tag.rec{background:var(--cy-ol);color:var(--on-cy);text-shadow:var(--on-glow)}
+.tag.rec:before{content:"";position:absolute;inset:1px;clip-path:var(--notch);background:var(--cy-fill);z-index:-1}
+.tag.mid{background:var(--warn-line);color:var(--warn)}
+.tag.mid:before{content:"";position:absolute;inset:1px;clip-path:var(--notch);background:var(--warn-soft);z-index:-1}
+.tag.hi{background:var(--bad);color:var(--bg)}
+.tag.lo{background:var(--raise);color:var(--tx2)}
+/* 单选、多选：像素圆和像素方 */
+.rb{position:relative;isolation:isolate;width:16px;height:16px;flex:none;clip-path:var(--clip2);background:var(--line2)}
+.rb:before{content:"";position:absolute;inset:2px;clip-path:var(--notch);background:var(--pane);z-index:-1}
+.on>.rb,.rb.on{background:var(--cy-tx)}
+.on>.rb:after,.rb.on:after{content:"";position:absolute;left:5px;top:5px;width:6px;height:6px;background:var(--cy-tx)}
+.cb{position:relative;isolation:isolate;width:16px;height:16px;flex:none;display:flex;align-items:center;justify-content:center;clip-path:var(--notch);background:var(--line2);color:transparent}
+.cb:before{content:"";position:absolute;inset:2px;background:var(--pane);z-index:-1}
+.cb .px{width:12px;height:12px}
+.on>.cb,.cb.on{background:var(--cy-ol);color:var(--on-cy)}
+.on>.cb:before,.cb.on:before{inset:1px;background:var(--cy-fill)}
+/* 输入框 */
+.field{display:flex;align-items:center;height:38px;padding:0 12px;clip-path:var(--clip2);background:var(--cy-ol);position:relative;isolation:isolate;font-size:13px;color:var(--tx3)}
+.field:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane2);z-index:-1}
+.field .pr{font-family:var(--f-code);font-size:13px;color:var(--cy-tx);margin-right:8px}
+.caret{display:inline-block;width:8px;height:15px;background:var(--cy-blk);box-shadow:var(--dglow);margin-left:2px;vertical-align:middle;animation:blink 1.05s steps(1) infinite}
+.lt .caret{box-shadow:inset 0 0 0 1px var(--blk-ol)}
+.kbd{font-family:var(--f-code);font-size:11.5px;color:var(--tx3)}
+/* 方块进度 */
+.blocks{display:grid;grid-template-columns:repeat(28,minmax(0,1fr));gap:3px}
+.blocks i{display:block;height:14px;background:var(--off)}
+.blocks i.f{background:var(--cy-blk);box-shadow:var(--bglow);animation:wave 2.4s ease-in-out infinite}
+.blocks i.h{background:var(--cy-blk);box-shadow:var(--bglow);animation:blink .8s steps(1) infinite}
+.lt .blocks i.f,.lt .blocks i.h{box-shadow:inset 0 0 0 1px var(--blk-ol)}
+.meter{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:3px}
+.meter i{height:10px;background:var(--off)}
+.meter i.f{background:var(--cy-blk);box-shadow:var(--dglow)}
+.lt .meter i.f{box-shadow:inset 0 0 0 1px var(--blk-ol)}
+/* 点阵勾 */
+.dck{display:inline-grid;grid-template-columns:repeat(7,4px);grid-auto-rows:4px;gap:1px;flex:none}
+.dck i{width:4px;height:4px;background:var(--off)}
+.dck i.on{background:var(--cy-blk);box-shadow:var(--dglow)}
+.lt .dck i.on{background:var(--cy-tx)}
+@keyframes blink{50%{opacity:0}}
+@keyframes tw{50%{opacity:.18}}
+@keyframes wave{0%,100%{filter:brightness(1)}50%{filter:brightness(.62)}}
+@keyframes bounce{0%{transform:scale(1)}18%{transform:scale(1.5);animation-timing-function:cubic-bezier(.3,1.6,.5,1)}40%{transform:scale(.9)}55%,100%{transform:scale(1)}}
+@keyframes ring{0%,10%{transform:scale(1);opacity:0}14%{opacity:.9}60%,100%{transform:scale(2.6);opacity:0}}
+@keyframes scanx{0%{left:-90px}62%,100%{left:100%}}
+@media (prefers-reduced-motion:reduce){.pk *,.pk *:before,.pk *:after{animation:none!important;transition:none!important}.pk .scan-fx{display:none}}
+
+.dk{--bg:#050816;--grid:rgba(120,140,255,.085);--pane:#0A0F24;--pane2:#0F1630;--raise:#172040;--line:#1E2850;--line2:#2E3B72;--tx:#E8ECFF;--tx2:#9AA3CF;--tx3:#7A84B6;--cy-fill:#00E5FF;--cy-ol:#00E5FF;--on-cy:#02101A;--cy-tx:#00E5FF;--cy-blk:#00E5FF;--blk-ol:transparent;--cy-line:rgba(0,229,255,.6);--cy-soft:rgba(0,229,255,.10);--cy-scan:rgba(0,229,255,.22);--muse:#A78BFA;--grok:#FFB86B;--api:#60A5FA;--ok:#4ADE80;--warn:#FFB86B;--bad:#FB7185;--warn-soft:rgba(255,184,107,.10);--bad-soft:rgba(251,113,133,.10);--ok-soft:rgba(74,222,128,.10);--warn-line:rgba(255,184,107,.55);--bad-line:rgba(251,113,133,.6);--glow:0 0 16px rgba(0,229,255,.85);--tglow:0 0 26px rgba(0,229,255,.75),0 0 6px rgba(0,229,255,1);--dglow:0 0 8px rgba(0,229,255,1);--bglow:0 0 12px rgba(0,229,255,.85);--on-glow:0 0 6px rgba(0,229,255,.9);--hglow:0 0 8px rgba(232,236,255,.35);--off:#141C3C;color-scheme:dark}
+.lt{--bg:#F2F4FC;--grid:rgba(40,50,130,.10);--pane:#FFFFFF;--pane2:#F5F7FD;--raise:#E7EBF8;--line:#DAE0F0;--line2:#B4BDDB;--tx:#0B1030;--tx2:#4E567A;--tx3:#646C92;--muse:#6D4AE8;--grok:#A35E00;--api:#2563EB;--ok:#12804C;--warn:#A35E00;--bad:#E11D48;--warn-soft:#FFF3E2;--bad-soft:#FFE9EE;--ok-soft:#E3F5EC;--warn-line:#A35E00;--bad-line:#E11D48;--glow:none;--tglow:none;--dglow:none;--bglow:none;--hglow:none;--off:#E1E6F5;--cy-fill:#007A94;--cy-ol:#007A94;--on-cy:#FFFFFF;--cy-tx:#007A94;--cy-blk:#0099B8;--blk-ol:transparent;--cy-line:#0099B8;--cy-soft:#E2F4F8;--cy-scan:rgba(0,153,184,.24);--on-glow:none;color-scheme:light}
+.lt.c1{--cy-fill:#A6ECF7;--cy-ol:#0089A6;--on-cy:#0B1030;--cy-tx:#00758C;--cy-blk:#4DD3E8;--blk-ol:#0089A6;--cy-line:#0089A6;--cy-soft:#E3F8FB;--cy-scan:rgba(0,180,208,.30);--on-glow:none}
+.lt.c3{--cy-fill:#0B1030;--cy-ol:#0B1030;--on-cy:#00E5FF;--cy-tx:#00758C;--cy-blk:#00D8F0;--blk-ol:#0B1030;--cy-line:#0B1030;--cy-soft:#E3F8FB;--cy-scan:rgba(0,229,255,.35);--on-glow:0 0 6px rgba(0,229,255,.7)}
+.pk{--f-name:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-name:400;--fs-name:12px;--f-title:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-title:400;--fs-title:18px;--f-body:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fs-body:12.5px;--f-code:"Departure Mono","Fusion Pixel 12","PingFang SC",monospace;--fs-code:11px}
+.ff1{--f-name:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fw-name:600;--fs-name:13.5px;--f-title:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fw-title:600;--fs-title:17px;--f-body:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fs-body:12.5px;--f-code:"IBM Plex Mono","PingFang SC",monospace;--fs-code:12px}
+.ff2{--f-name:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-name:400;--fs-name:12px;--f-title:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-title:400;--fs-title:18px;--f-body:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;--fs-body:12.5px;--f-code:"Departure Mono","Fusion Pixel 12","PingFang SC",monospace;--fs-code:11px}
+.ff3{--f-name:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-name:400;--fs-name:12px;--f-title:"Fusion Pixel 12","PingFang SC",sans-serif;--fw-title:400;--fs-title:18px;--f-body:"Fusion Pixel 12","PingFang SC",sans-serif;--fs-body:12px;--f-code:"Departure Mono","Fusion Pixel 12","PingFang SC",monospace;--fs-code:11px}
+
+.pk.pr{width:1280px;height:800px;padding:22px 30px 28px}
+/* 顶栏：品牌、项目、模式、设置 */
+.hd{height:44px;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.brand{display:flex;align-items:center;gap:8px}
+.brand b{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:30px;letter-spacing:.06em;line-height:1}
+.brand .mk{width:12px;height:24px;background:var(--cy-blk);box-shadow:var(--glow);animation:blink 1.05s steps(1) infinite}
+.lt .brand .mk{box-shadow:inset 0 0 0 1px var(--blk-ol)}
+.proj{display:flex;align-items:center;gap:8px;padding-left:14px;border-left:1px solid var(--line2);white-space:nowrap}
+.proj .px{color:var(--tx2)}
+.proj em{font-family:var(--f-code);font-size:var(--fs-code);color:var(--tx3)}
+.hd .sp{flex:1}
+.ib{position:relative;isolation:isolate;width:34px;height:34px;display:flex;align-items:center;justify-content:center;clip-path:var(--clip2);background:var(--line2);color:var(--tx2)}
+.ib:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.rs{height:30px;padding:0 10px;font-size:12.5px;color:var(--tx3)}
+.rs .px{width:12px;height:12px}
+.grid{display:grid;grid-template-columns:288px minmax(0,1fr) 336px;gap:16px;height:690px}
+.col{display:flex;flex-direction:column;gap:16px;min-height:0;min-width:0}
+.grow{flex:1 1 0;min-height:0}
+.band{position:absolute;top:0;bottom:0;width:28px;background:radial-gradient(circle,var(--cy-blk) 1.2px,transparent 1.7px) 0 0/5px 5px;pointer-events:none;opacity:0}
+.sweep{position:absolute;top:0;bottom:0;left:-80px;width:76px;pointer-events:none;background:linear-gradient(90deg,transparent,var(--cy-scan) 78%,var(--cy-blk) 97%,transparent);opacity:0}
+/* 左栏：项目和任务 */
+.lp{flex:none}
+.pj{padding:6px 0;border-top:1px dotted var(--line2)}
+.pj:first-of-type{border-top:0;padding-top:0}
+.pjh{display:flex;align-items:center;gap:8px;height:26px;white-space:nowrap}
+.pjh .px{color:var(--tx2)}
+.pjh em{margin-left:auto;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:17px;color:var(--tx2)}
+.pj.on .pjh .px{color:var(--cy-tx)}
+.tl{display:flex;flex-direction:column;gap:1px;margin:4px 0 2px}
+.tr{position:relative;display:grid;grid-template-columns:16px minmax(0,1fr);gap:9px;align-items:start;width:100%;padding:5px 8px;clip-path:var(--clip2);overflow:hidden}
+.tr .si{height:18px;display:flex;align-items:center;justify-content:center;color:var(--tx3)}
+.tr .tt{min-width:0}
+.tr .tt b{display:block;font-family:var(--f-name);font-weight:var(--fw-name);font-size:var(--fs-name);line-height:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tr .tt em{display:block;font-size:11.5px;color:var(--tx3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tr.old .si{color:var(--ok)}
+.tr.nt{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;letter-spacing:.08em;color:var(--tx2);align-items:center}
+.tr.nt .si{color:var(--cy-tx)}
+.tr.nt.on{background:var(--cy-soft);color:var(--tx)}
+.tr.cur{background:var(--pane2)}
+.tr.cur .si > span{display:none}
+.st-run .s-run,.st-wait .s-wait,.st-ok .s-ok,.st-undo .s-undo{display:flex!important}
+.st-wait .si{color:var(--warn)}
+.st-ok .si{color:var(--ok)}
+.st-undo .si{color:var(--tx3)}
+.st-undo .tt b{color:var(--tx2);text-decoration:line-through;text-decoration-color:var(--tx3)}
+.st-wait .tt em{color:var(--warn)}
+.last{display:flex;gap:9px;align-items:center;padding:2px 8px 0 24px;font-size:11.5px;color:var(--tx3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.last .px{width:12px;height:12px;color:var(--ok);flex:none}
+.lfoot{margin-top:6px;font-size:11.5px;color:var(--tx3);line-height:1.5}
+.log ul{display:flex;flex-direction:column;gap:5px}
+.kbd{font-family:var(--f-body)}
+.log li{display:grid;grid-template-columns:40px minmax(0,1fr);gap:8px}
+.log .t{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;color:var(--tx3);padding-top:1px}
+.log b{display:block;line-height:18px}
+.log li span.a{display:block;font-size:11.5px;color:var(--tx2);line-height:1.45}
+.empty{font-size:12px;line-height:1.55;color:var(--tx3)}
+/* 中栏：新任务 */
+.home{display:flex;flex-direction:column;gap:14px}
+.hero{font-family:var(--f-title);font-weight:var(--fw-title);font-size:24px;line-height:1.3;text-shadow:var(--hglow)}
+.lead{font-size:13px;line-height:1.6;color:var(--tx2);max-width:460px}
+.fl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.fl li{position:relative;isolation:isolate;display:flex;flex-direction:column;gap:6px;padding:12px 12px 14px;clip-path:var(--clip2);background:var(--line)}
+.fl li:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane2);z-index:-1}
+.fl li p{display:flex;align-items:center;gap:7px}
+.fl li .k{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;color:var(--tx3)}
+.fl li span{font-size:12px;line-height:1.5;color:var(--tx2)}
+.fl.one{grid-template-columns:minmax(0,1fr)}
+.acc{display:flex;flex-direction:column;gap:6px}
+.acc .lbl{margin:0}
+.acc p.ad{font-size:12.5px;line-height:1.55;color:var(--tx2)}
+.acc p.ad b{font-weight:600;color:var(--tx)}
+.comp{padding:14px 16px 12px;display:flex;flex-direction:column;gap:10px}
+.cin{position:relative;display:flex;align-items:center;width:100%;height:30px;padding:0 2px;font-size:13.5px;color:var(--tx3);overflow:hidden}
+.cin .pr{font-family:var(--f-code);color:var(--cy-tx);margin-right:8px}
+.cin .tx{position:relative;color:var(--tx)}
+.cin .dz{position:absolute;top:4px;bottom:4px;left:22px;width:240px;pointer-events:none}
+.crow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.crow .sp{flex:1}
+.comp .chip{padding:0 9px;font-size:12.5px;letter-spacing:.04em;gap:5px}
+.seg.sm button{height:26px;padding:0 10px;font-size:13px}
+.btn.off{background:var(--line2);color:var(--tx3);text-shadow:none}
+.btn.off:before{background:var(--pane2)}
+.comp.idle .cin{cursor:default}
+/* 中栏：任务 */
+.msg{display:flex;align-items:center;gap:10px;height:34px;padding:0 14px;clip-path:var(--clip2);background:var(--pane2);white-space:nowrap;flex:none}
+.msg .me{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;letter-spacing:.1em;color:var(--on-cy);background:var(--cy-fill);padding:2px 6px 1px;clip-path:var(--notch);text-shadow:var(--on-glow)}
+.msg .mt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.msg .mm{font-size:11.5px;color:var(--tx3)}
+.task{position:relative;overflow:hidden}
+.ttl{font-family:var(--f-title);font-weight:var(--fw-title);font-size:var(--fs-title);line-height:1.35;padding-right:200px;text-shadow:var(--hglow)}
+.meta{display:flex;align-items:center;gap:12px;margin-top:6px;font-family:var(--f-code);font-size:var(--fs-code);color:var(--tx2);padding-right:200px;white-space:nowrap}
+.readout{position:absolute;right:18px;top:36px;text-align:right}
+.rl{display:inline-block;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:15px;letter-spacing:.14em;line-height:1.2;color:var(--cy-tx);text-shadow:var(--tglow)}
+.lt .rl{background:var(--cy-fill);color:var(--on-cy);text-shadow:var(--on-glow);padding:2px 6px 1px;clip-path:var(--notch)}
+.rv{display:block;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:54px;line-height:.95;color:var(--cy-tx);text-shadow:var(--tglow)}
+.task.wait{--mline:var(--warn-line)}
+.task.wait .rl,.task.wait .rv{color:var(--warn);text-shadow:none}
+.lt .task.wait .rl{background:var(--warn-soft);color:var(--warn)}
+.task.done .rl,.task.done .rv{color:var(--ok);text-shadow:none}
+.lt .task.done .rl{background:var(--ok-soft);color:var(--ok)}
+.task.off .rl,.task.off .rv{color:var(--tx3);text-shadow:none}
+.lt .task.off .rl{background:var(--raise);color:var(--tx2)}
+.task .blocks{display:grid;grid-template-columns:repeat(28,minmax(0,1fr));gap:3px;margin:22px 0 8px}
+.task .blocks i{display:block;height:14px;background:var(--off)}
+.task .blocks i.f{background:var(--cy-blk);box-shadow:var(--bglow);animation:wave 2.4s ease-in-out infinite}
+.task .blocks i.h{background:var(--cy-blk);box-shadow:var(--bglow);animation:blink .8s steps(1) infinite}
+.task .blocks i.w{background:var(--warn);animation:wq 1s steps(1) 1 both}
+.lt .task .blocks i.f,.lt .task .blocks i.h{box-shadow:inset 0 0 0 1px var(--blk-ol)}
+.task.wait .blocks i.f{animation:none}
+.task.done .blocks i.f{animation:none}
+.ph-done .task .blocks{animation:flash .9s steps(1) 1}
+.task .blocks i.lof{background:var(--off);box-shadow:none;animation:lof .05s steps(1) both}
+.bmeta{display:flex;justify-content:space-between;font-size:12px;color:var(--tx3)}
+.bmeta b{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:15px;color:var(--tx2)}
+.steps{position:relative;margin-top:10px;display:flex;flex-direction:column;gap:1px}
+.steps:before{content:"";position:absolute;left:7px;top:12px;bottom:12px;border-left:2px dotted var(--line2)}
+.step{position:relative;display:grid;grid-template-columns:16px minmax(0,1fr);gap:12px;padding:3px 0}
+.nd{position:relative;width:16px;height:16px;margin-top:1px;display:flex;align-items:center;justify-content:center;background:var(--pane)}
+.nd > span{display:none}
+.step.ok .i-ok{display:flex;color:var(--ok)}
+.step.wq .i-wq{display:flex;color:var(--warn);animation:blink 1.6s steps(1) infinite}
+.step.run .nd:before{content:"";width:10px;height:10px;background:var(--cy-blk);box-shadow:var(--glow);animation:bounce 1.4s infinite}
+.lt .step.run .nd:before{box-shadow:inset 0 0 0 1px var(--blk-ol)}
+.step.run .nd:after{content:"";position:absolute;left:3px;top:3px;width:10px;height:10px;box-shadow:inset 0 0 0 1.5px var(--cy-blk);opacity:0;animation:ring 1.4s infinite}
+.step.todo .nd:before{content:"";width:10px;height:10px;box-shadow:inset 0 0 0 1.5px var(--line2)}
+.step.dim{opacity:.55}
+.step.dim .i-ok{display:flex;color:var(--tx3)}
+.sb{position:relative;min-width:0;overflow:hidden}
+.sl{display:flex;align-items:baseline;gap:10px;min-width:0;line-height:20px}
+.sl b{flex:0 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.step.run .sl b{text-shadow:var(--hglow)}
+.sl .lead{flex:1 1 20px;min-width:20px;border-bottom:1px dotted var(--line2);transform:translateY(-4px)}
+.tm{flex:none;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:15px;line-height:1;color:var(--tx3)}
+.step.run .tm{color:var(--cy-tx);text-shadow:var(--dglow)}
+.step.wq .tm,.step.wq .sl b{color:var(--warn)}
+.step.todo{color:var(--tx3)}
+.sx{font-size:var(--fs-body);color:var(--tx3);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sx:empty{display:none}
+.step .scan-fx{display:none}
+.step.run .scan-fx{display:block;position:absolute;top:0;left:-90px;width:84px;height:22px;pointer-events:none;background:linear-gradient(90deg,transparent,var(--cy-scan) 78%,var(--cy-blk) 97%,transparent);animation:scanx 2.8s cubic-bezier(.45,0,.55,1) infinite}
+.out{position:relative;margin-top:4px;padding:2px 0 2px 12px;font-family:var(--f-code);font-size:var(--fs-code);line-height:19px;color:var(--tx2);white-space:nowrap;overflow:hidden;background:linear-gradient(var(--cy-blk) 50%,transparent 0) 0 0/2px 4px repeat-y}
+.out div{overflow:hidden;text-overflow:ellipsis;animation:lin .3s steps(4,end) both}
+.out .o3{color:var(--tx)}
+.out .ok{color:var(--ok)}
+.out .w{color:var(--warn)}
+.task.wait .out{background-image:linear-gradient(var(--warn) 50%,transparent 0)}
+.sum{position:relative;margin-top:12px;padding:12px 14px;clip-path:var(--clip);background:var(--pane2);overflow:hidden}
+.sum .s1{display:flex;align-items:center;gap:14px}
+.sum .s1 b{display:block;font-family:var(--f-title);font-weight:var(--fw-title);font-size:var(--fs-title);line-height:1.3}
+.sum .s1 span.u{font-size:12px;color:var(--tx2)}
+.sum .n4{margin-left:auto;display:flex;gap:10px;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:24px;line-height:1}
+.sum .n4 .a{color:var(--ok)}.sum .n4 .d{color:var(--bad)}
+.sum .st{margin-top:8px;font-size:12.5px;line-height:1.6;color:var(--tx2)}
+.sum .ver{margin-top:6px;display:flex;flex-direction:column;gap:2px;font-family:var(--f-code);font-size:var(--fs-code);color:var(--tx2)}
+.sum .ver p{display:flex;align-items:center;gap:8px}
+.sum .ver .px{color:var(--ok);width:12px;height:12px}
+.sum .keep{margin-top:6px;font-size:11.5px;color:var(--tx3)}
+.ph-done .sum .dck i.on{animation:dotOn .1s steps(1) both}
+.ph-done .sum .n4,.ph-done .sum .s1 b{animation:flick .6s steps(1) .5s both}
+.ph-done .sum .sweep{animation:sweepOnce 1s .7s both}
+.back{display:flex;align-items:center;gap:10px;margin-top:12px;height:42px;padding:0 14px;clip-path:var(--clip2);background:var(--pane2);overflow:hidden;font-weight:600}
+.back .px{color:var(--cy-tx)}
+.back span.n{margin-left:auto;font-size:11.5px;font-weight:400;color:var(--tx3)}
+.back > *{animation:revealX .6s steps(8,end) both}
+.ph-undoing .task .rsweep{position:absolute;top:0;bottom:0;right:-80px;width:76px;pointer-events:none;background:linear-gradient(270deg,transparent,var(--cy-scan) 78%,var(--cy-blk) 97%,transparent);animation:rsweep .9s .5s both}
+/* 卡片：高危权限、ASK */
+.card{position:relative;flex:none;padding:12px 16px 12px}
+.card .e{position:absolute;background:var(--warn);z-index:2}
+.card .et{left:0;top:0;width:100%;height:2px;transform-origin:left;animation:eX .3s steps(8,end) both}
+.card .er{right:0;top:0;width:2px;height:100%;transform-origin:top;animation:eY .2s .3s steps(5,end) both}
+.card .eb{right:0;bottom:0;width:100%;height:2px;transform-origin:right;animation:eX .3s .5s steps(8,end) both}
+.card .el{left:0;bottom:0;width:2px;height:100%;transform-origin:bottom;animation:eY .2s .8s steps(5,end) both}
+.card .e{opacity:0;animation-name:none}
+.card.fx .e{opacity:1}
+.card.fx .et,.card.fx .eb{animation-name:eX}.card.fx .er,.card.fx .el{animation-name:eY}
+.card.fx .e{animation-fill-mode:both}
+@keyframes eOut{to{opacity:0}}
+.card .in{position:relative;animation:revealY .4s .8s steps(6,end) both}
+.card .bandv{position:absolute;left:0;right:0;top:0;height:14px;background:radial-gradient(circle,var(--warn) 1.2px,transparent 1.7px) 0 0/5px 5px;pointer-events:none;opacity:0;animation:bandY .4s .8s steps(6,end) both}
+.card .sweep{animation:sweepOnce .9s 1.2s both}
+.ah{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.aq{width:26px;height:26px;display:flex;align-items:center;justify-content:center;background:var(--warn);color:var(--pane);flex:none;clip-path:var(--clip2)}
+.ah b{white-space:nowrap}
+.ah .sub{font-size:var(--fs-body);color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ah .r{margin-left:auto;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:18px;color:var(--warn);white-space:nowrap}
+.pl2{display:flex;flex-direction:column;gap:2px}
+.pi{display:grid;grid-template-columns:16px 16px minmax(0,1fr) auto;gap:10px;align-items:start;width:100%;padding:6px 8px;clip-path:var(--clip2)}
+.pi.on{background:var(--cy-soft)}
+.pi .cb{margin-top:2px}
+.pi > .px{margin-top:2px;color:var(--tx2)}
+.pi .tx b{display:block;line-height:20px}
+.pi .tx span{display:block;font-size:12px;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pi .tx .ok2{display:none;color:var(--bad);font-weight:600}
+.pi.hi.on .tx .ok2{display:block}
+.pi.hi.on .tx .dd{display:none}
+.pi .tag{margin-top:1px}
+.pa{display:flex;align-items:center;gap:8px;margin-top:10px}
+.pa .sp{flex:1}
+.pa .scope{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--tx3);white-space:nowrap}
+.q{font-family:var(--f-title);font-weight:var(--fw-title);font-size:var(--fs-title);line-height:1.35;margin-bottom:6px}
+.opts{display:flex;flex-direction:column;gap:1px}
+.opt{display:grid;grid-template-columns:16px minmax(0,1fr) 16px;gap:12px;align-items:start;width:100%;padding:3px 10px;clip-path:var(--clip2)}
+.opt.on{background:var(--cy-soft)}
+.opt .rb{margin-top:2px}
+.opt b{display:flex;align-items:center;gap:8px;line-height:20px}
+.opt span.d{display:block;font-size:12px;color:var(--tx2)}
+.opt .k{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;color:var(--tx3);text-align:right;padding-top:2px}
+.keys{display:flex;gap:14px;font-size:11.5px;color:var(--tx3);white-space:nowrap}
+.keys b{font-family:var(--f-code);font-weight:400;color:var(--tx2)}
+/* 右栏：改动 */
+.rc{display:flex;flex-direction:column}
+.snap{position:relative;display:flex;align-items:center;gap:8px;height:30px;padding:0 10px;margin-bottom:10px;clip-path:var(--clip2);background:var(--pane2);font-size:12px;color:var(--tx2);white-space:nowrap;overflow:hidden}
+.snap .px{width:12px;height:12px;color:var(--cy-tx);flex:none}
+.snap.no{color:var(--tx3)}.snap.no .px{color:var(--tx3)}
+.snap.fx .band{animation:bandX .5s steps(10,end) both}
+.snap.fx > span{animation:revealX .5s steps(10,end) both}
+.sum2{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900}
+.sum2 .cnt{position:relative;display:inline-block;height:42px;overflow:hidden;font-size:42px;line-height:42px}
+.sum2 .u{font-family:var(--f-body);font-weight:400;font-size:12px;color:var(--tx2);margin-right:auto}
+.sum2 .plus,.sum2 .minus{font-size:22px;line-height:1}
+.sum2 .plus{color:var(--ok)}.sum2 .minus{color:var(--bad)}
+.roll{display:block}
+.roll > span{display:block;animation:roll .9s steps(var(--n),end) both}
+.roll i{display:block;height:42px;line-height:42px}
+@keyframes roll{from{transform:translateY(0)}to{transform:translateY(calc(var(--n) * -42px))}}
+.files li{display:grid;grid-template-columns:16px minmax(0,1fr) auto 32px 36px;gap:8px;align-items:center;height:30px;border-top:1px dotted var(--line2);animation:revealX .35s steps(6,end) both}
+.files .px{color:var(--tx3)}
+.fp{font-family:var(--f-code);font-size:calc(var(--fs-code) + .5px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fa,.fd{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;text-align:right}
+.fa{color:var(--ok)}.fd{color:var(--bad)}
+.files .tag.none{visibility:hidden}
+.files li.col{animation:colX .3s steps(6,end) both}
+.diff{margin-top:6px;padding-top:8px;border-top:1px dotted var(--line2);font-family:var(--f-code);font-size:var(--fs-code);line-height:19px;overflow:hidden;animation:revealY .4s steps(5,end) both}
+.diff .dh{display:flex;justify-content:space-between;color:var(--tx3);padding-bottom:4px}
+.diff .ln{display:grid;grid-template-columns:26px 14px minmax(0,1fr);white-space:nowrap}
+.diff .ln span{overflow:hidden;text-overflow:ellipsis}
+.diff .n{color:var(--tx3);text-align:right;padding-right:6px}
+.diff .ln.a{background:var(--ok-soft);color:var(--ok)}.diff .ln.d{background:var(--bad-soft);color:var(--bad)}
+.diff .ln .n{color:var(--tx3)}
+.rfoot{margin-top:auto;padding-top:12px}
+.wide{width:100%}
+.note{margin-top:8px;font-size:11.5px;line-height:1.5;color:var(--tx3)}
+.cfm{position:relative;isolation:isolate;padding:12px 14px;clip-path:var(--clip2);background:var(--bad-line)}
+.cfm:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.cfm .ct{display:flex;align-items:center;gap:8px;color:var(--bad)}
+.cfm .cd{margin:4px 0 10px;font-size:12px;line-height:1.55;color:var(--tx2)}
+.cfm .row{display:flex;gap:8px}
+.btn.fill{background:var(--bad);color:var(--bg)}.btn.fill:before{display:none}
+.lt .btn.fill{color:#FFFFFF}
+.back2{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--tx2)}
+.back2 .px{color:var(--cy-tx)}
+/* 发出时的一包点、提示条 */
+.pkt{position:absolute;left:400px;top:706px;display:grid;grid-template-columns:repeat(3,4px);gap:2px;z-index:5;pointer-events:none;animation:pkt .55s .35s steps(6,end) both}
+.pkt i{width:4px;height:4px;background:var(--cy-blk);box-shadow:var(--dglow)}
+.ph-sending .cin .tx{animation:dissolve .4s steps(8,end) both}
+.ph-sending .cin .dz .band{animation:bandX2 .4s steps(8,end) both}
+.ph-typed .cin .tx{animation:revealX .5s steps(12,end) both}
+.tr.cur.fx{animation:revealX .5s steps(10,end) both}
+.tr.cur.fx .band{animation:bandX .5s steps(10,end) both}
+.tr.cur.fx .sweep{animation:sweepOnce .8s .5s both}
+.toast{position:absolute;left:50%;bottom:34px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;max-width:640px;padding:9px 14px;clip-path:var(--clip2);background:var(--tx);color:var(--bg);font-size:12.5px;z-index:6;white-space:nowrap;animation:revealY .25s steps(4,end) both}
+.toast .px{width:12px;height:12px;flex:none}
+@keyframes revealX{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes revealY{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes colX{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 100% 0 0)}}
+@keyframes dissolve{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 0 100%)}}
+@keyframes bandX{0%{left:0;opacity:1}99%{left:calc(100% - 28px);opacity:1}100%{left:calc(100% - 28px);opacity:0}}
+@keyframes bandX2{0%{left:0;opacity:1}99%{left:212px;opacity:1}100%{left:212px;opacity:0}}
+@keyframes bandY{0%{top:0;opacity:1}99%{top:calc(100% - 14px);opacity:1}100%{top:calc(100% - 14px);opacity:0}}
+@keyframes sweepOnce{0%{left:-80px;opacity:1}99%{left:100%;opacity:1}100%{left:100%;opacity:0}}
+@keyframes rsweep{0%{right:-80px;opacity:1}99%{right:100%;opacity:1}100%{right:100%;opacity:0}}
+@keyframes eX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes eY{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes pkt{0%{transform:translate(0,0);opacity:1}99%{transform:translate(-340px,-528px);opacity:1}100%{transform:translate(-340px,-528px);opacity:0}}
+@keyframes flash{0%,100%{filter:none}15%,30%{filter:brightness(1.7)}45%,60%{filter:brightness(1.7)}}
+@keyframes flick{0%{opacity:0}20%{opacity:1}40%{opacity:.25}60%,100%{opacity:1}}
+@keyframes dotOn{from{opacity:0}to{opacity:1}}
+@keyframes lof{from{background:var(--cy-blk)}to{background:var(--off)}}
+@keyframes wq{0%{background:var(--cy-blk)}30%{opacity:0}60%,100%{background:var(--warn);opacity:1}}
+@keyframes lin{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@media (prefers-reduced-motion:reduce){.pkt,.band,.bandv,.sweep,.rsweep,.toast{display:none!important}.card .e{display:none}}
+/* 流程一览里摆成静止的样子：不动、没有提示条 */
+.still *,.still *:before,.still *:after{animation:none!important}
+.still .pkt,.still .toast,.still .band,.still .bandv,.still .sweep,.still .rsweep,.still .card .e{display:none!important}
+
+/* T5：字号不小于 12（把第一轮里 11.5 的都提到 12） */
+.tr .tt em,.last,.lfoot,.log li span.a,.msg .mm,.keys,.note,.snap,.empty{font-size:12px}
+/* 顶栏：额度与花费的入口（L3） */
+.qb{position:relative;isolation:isolate;display:flex;align-items:center;gap:7px;height:34px;padding:0 10px;clip-path:var(--clip2);background:var(--line2);color:var(--tx2);font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.04em}
+.qb:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.qb.on,.ib.on{background:var(--cy-ol);color:var(--cy-tx)}
+.qb.on:before,.ib.on:before{background:linear-gradient(var(--cy-soft),var(--cy-soft)),var(--pane)}
+/* 宽栏（L6） */
+.grid.wide{grid-template-columns:288px minmax(0,1fr)}
+.ml .cl{margin-left:12px;height:26px;padding:0 8px;font-size:13px}
+.ml .cl .px{width:12px;height:12px}
+/* 设置：页内导航（K8）和设置行（K7） */
+.sg{display:grid;grid-template-columns:176px minmax(0,1fr);gap:22px;flex:1;min-height:0}
+.nav{display:flex;flex-direction:column;gap:2px}
+.nav button{display:flex;flex-direction:column;gap:1px;padding:7px 10px;clip-path:var(--clip2);color:var(--tx2)}
+.nav button b{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.08em;line-height:1.3}
+.nav button span{font-size:12px;color:var(--tx3)}
+.nav button.on{background:var(--cy-soft);color:var(--tx)}
+.nav button.on b{color:var(--cy-tx)}
+.pane{display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden}
+.ph2{font-family:var(--f-title);font-weight:var(--fw-title);font-size:18px;line-height:1.35}
+.pd{margin-top:4px;font-size:12.5px;line-height:1.6;color:var(--tx2);max-width:560px}
+.rows{margin-top:14px;display:flex;flex-direction:column}
+.srow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:11px 0;border-top:1px dotted var(--line2)}
+.srow:last-child{border-bottom:1px dotted var(--line2)}
+.srow .sn{display:flex;align-items:center;gap:8px}
+.srow .sn .code{color:var(--tx3)}
+.srow .sd{display:block;margin-top:2px;font-size:12px;color:var(--tx2)}
+.srow .sc{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.srow.off .sn b,.srow.off .sd{color:var(--tx3)}
+.tag.ok{background:var(--ok-soft);color:var(--ok);box-shadow:inset 0 0 0 1px var(--ok)}
+.lt .tag.ok{background:var(--ok-soft)}
+.code{font-family:var(--f-code);font-size:var(--fs-code)}
+.big2{display:flex;align-items:baseline;gap:12px;margin-top:16px;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900}
+.big2 b{font-size:54px;line-height:1;color:var(--cy-tx);text-shadow:var(--tglow)}
+.big2 span{font-size:24px;color:var(--tx2)}
+.big2 em{font-family:var(--f-body);font-weight:400;font-size:12.5px;color:var(--tx2);margin-left:6px}
+.meter.lg i{height:14px}
+.fld{display:flex;align-items:center;height:34px;width:120px;padding:0 10px;clip-path:var(--clip2);background:var(--cy-ol);position:relative;isolation:isolate;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:15px}
+.fld:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane2);z-index:-1}
+.ac{display:flex;flex-direction:column;gap:2px;margin-top:14px}
+.ac button{display:grid;grid-template-columns:16px minmax(0,1fr) auto;gap:12px;align-items:start;padding:9px 10px;clip-path:var(--clip2)}
+.ac button.on{background:var(--cy-soft)}
+.ac button .rb{margin-top:2px}
+.ac button b{display:flex;align-items:center;gap:8px;line-height:20px}
+.ac button b .k{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.08em;color:var(--tx2)}
+.ac button span.d{display:block;font-size:12px;color:var(--tx2)}
+.hr{margin-top:16px;padding-top:12px;border-top:1px dotted var(--line2)}
+.hr .lbl{margin-bottom:8px}
+.hl{display:flex;flex-wrap:wrap;gap:6px}
+.hl span{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;clip-path:var(--clip2);background:var(--pane2);font-size:12.5px;color:var(--tx2)}
+.hl span .px{width:12px;height:12px;color:var(--bad)}
+.tiles2{display:grid;grid-template-columns:repeat(2,168px);gap:12px}
+.tile2{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 8px 12px;clip-path:var(--clip2);background:var(--line2)}
+.tile2:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.tile2.on{background:var(--cy-ol)}
+.tile2.on:before{inset:2px;background:linear-gradient(var(--cy-soft),var(--cy-soft)),var(--pane)}
+.tile2 .ti{width:72px;height:72px;display:block}
+.tile2 .tl{display:flex;align-items:center;gap:8px;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;letter-spacing:.08em}
+.tile2 .tl .rb{width:14px;height:14px}
+.tile2 .tl .rb:after{left:4px;top:4px;width:6px;height:6px}
+.tile2 .td{font-size:12px;color:var(--tx3)}
+.defs{position:absolute;width:0;height:0;overflow:hidden}
+/* 出错模块（M3、S3） */
+.mod.err{--mline:var(--bad-line)}
+.task.err .rl,.task.err .rv{color:var(--bad);text-shadow:none}
+.lt .task.err .rl{background:var(--bad-soft);color:var(--bad)}
+.eb{position:relative;margin-top:12px;padding:12px 14px;clip-path:var(--clip2);background:var(--bad-soft)}
+.eb .e1{display:flex;align-items:center;gap:8px;color:var(--bad)}
+.eb .e2{margin-top:4px;font-size:12.5px;line-height:1.6;color:var(--tx2)}
+.eb .row{display:flex;gap:8px;margin-top:10px;align-items:center;flex-wrap:wrap}
+.raw{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:12px;color:var(--tx3)}
+.raw .code{color:var(--tx3)}
+.raw .px{width:12px;height:12px;transform:rotate(-90deg)}
+.task.err .blocks i.f{animation:none}
+.step.fail .nd{color:var(--bad)}
+.step.fail .sl b,.step.fail .tm{color:var(--bad)}
+.step.fail .i-x{display:flex}
+.nd .i-x{display:none}
+.tr.cur.st-fail .si{color:var(--bad)}
+.st-fail .s-fail{display:flex!important}
+.st-fail .tt em{color:var(--bad)}
+/* 加载、空（S1、S2） */
+.ld{display:flex;flex-direction:column;gap:2px;margin-top:14px}
+.ld li{display:grid;grid-template-columns:16px minmax(0,1fr) auto;gap:12px;align-items:center;padding:9px 0;border-top:1px dotted var(--line2)}
+.ld li:last-child{border-bottom:1px dotted var(--line2)}
+.ld li .s{display:flex;align-items:center;justify-content:center;color:var(--ok)}
+.ld li .s.w{color:var(--tx3)}
+.ld li .s.bad{color:var(--bad)}
+.ld li b{display:block}
+.ld li span.d{display:block;font-size:12px;color:var(--tx2)}
+.ld li em{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:14px;color:var(--tx3)}
+.e0{display:flex;flex-direction:column;gap:12px;padding:6px 0 4px}
+.e0 p{font-size:12.5px;line-height:1.6;color:var(--tx2)}
+.e0 .row{display:flex;gap:8px;align-items:center}
+.e0 .row span{font-size:12px;color:var(--tx3)}
+.hero2{font-family:var(--f-title);font-weight:var(--fw-title);font-size:24px;line-height:1.3;text-shadow:var(--hglow)}
+.wait2{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--tx2)}
+.cin.dim{color:var(--tx3);cursor:default}
+.cin.dim .caret{display:none}
+.chip.no{color:var(--tx3);background:var(--line);box-shadow:none}
+.chip.no:before{background:var(--pane2)}
+
+
+.hide{display:none!important}
+/* 右栏：页签（R1、R2） */
+.col.rcol{gap:8px}
+.rtabs{flex:none}
+.rtabs button{flex:1 1 auto;padding:0 7px;font-size:13px;letter-spacing:.05em;gap:5px}
+.rtabs em{font-style:normal;color:var(--cy-tx)}
+.rtabs button.on em{color:var(--on-cy)}
+.rtabs .tw{transform:scale(.8)}
+.rtabs .bd{display:block;width:6px;height:6px;background:var(--cy-blk);box-shadow:var(--dglow);flex:none}
+.rtabs .bd.ok{background:var(--ok);box-shadow:none}
+.rtabs .bd.bad{background:var(--bad);box-shadow:none}
+/* 模块头和预览头的小按钮（K9） */
+.btn.sm2{height:26px;padding:0 8px;font-size:13px;gap:6px}
+.btn.sm2 .px{width:12px;height:12px}
+.ml .sm2{margin-left:2px}
+.ml .r + .sm2{margin-left:10px}
+.ml .xp{width:26px;padding:0}
+.xp .i-co{display:none}
+.grid.wx .xp .i-ex{display:none}
+.grid.wx .xp .i-co{display:block}
+/* 宽栏（R3、L6） */
+.grid.wx{grid-template-columns:288px minmax(0,1fr)}
+.grid.wx > section:nth-child(2){display:none}
+.grid.wx .rtabs{align-self:flex-start;display:inline-flex;width:auto}
+.grid.wx .rtabs button{flex:none;padding:0 14px}
+.rwb{position:relative;isolation:isolate;flex:none;display:flex;align-items:center;gap:10px;height:44px;padding:0 5px 0 14px;clip-path:var(--clip2);background:var(--warn-line);font-size:12.5px}
+.rwb:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:linear-gradient(var(--warn-soft),var(--warn-soft)),var(--pane);z-index:-1}
+.rwb .px{color:var(--warn)}
+.rwb .sp{flex:1}
+/* 空的时候（S1） */
+.rem{display:flex;flex-direction:column;gap:6px;padding:2px 0}
+.rem p{font-size:12.5px;line-height:1.6;color:var(--tx2)}
+.rem p.s{font-size:12px;color:var(--tx3)}
+.rem p.t{font-family:var(--f-name);font-size:var(--fs-name);color:var(--tx)}
+.rem .row{display:flex;align-items:center;gap:10px;margin-top:6px}
+.rem .row span{font-size:12px;color:var(--tx3)}
+/* ONE SHOT（R4、R5） */
+.ros{display:flex;flex-direction:column}
+.rth{flex:1 1 0;min-height:0;display:flex;flex-direction:column;justify-content:flex-end;gap:12px;overflow:hidden}
+.rqa{display:flex;flex-direction:column;gap:5px}
+.rqa .qh{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.rqa .who{display:flex;align-items:center;gap:6px;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;letter-spacing:.08em;color:var(--tx3)}
+.rqa.a .who{color:var(--tx2)}
+.rqa.a .who:before{content:"";width:7px;height:7px;background:var(--api)}
+.rqa.a.muse .who:before{background:var(--muse)}.rqa.a.grok .who:before{background:var(--grok)}
+.rqa .qm{margin-left:auto;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;color:var(--tx3)}
+.rqa .qt{font-size:12.5px;line-height:1.6;color:var(--tx)}
+.rqa.q .qt{font-family:var(--f-name);font-size:var(--fs-name);line-height:18px}
+.rqa .qat{font-size:12px;color:var(--tx3)}
+.rqa .qt2{font-size:12.5px;line-height:1.6;color:var(--tx2)}
+.rqa .qc{padding:6px 10px;clip-path:var(--clip2);background:var(--pane2);font-family:var(--f-code);font-size:var(--fs-code);line-height:18px;white-space:pre;overflow:hidden;text-overflow:ellipsis;color:var(--tx)}
+.rqx{display:flex;gap:2px;margin:-6px 0 0 -8px}
+.rqth{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--tx2)}
+.roc{flex:none;display:flex;flex-direction:column;gap:8px;margin-top:12px;padding-top:12px;border-top:1px dotted var(--line2)}
+.ratt{display:flex;gap:6px;flex-wrap:wrap}
+.ratt .chip{height:26px;padding:0 8px;font-size:12.5px;gap:5px}
+.ratt .chip .px{width:12px;height:12px}
+.ratt .chip .code{text-transform:none;letter-spacing:0}
+.ratt .chip.on .px{color:var(--cy-tx)}
+.roc .crow .chip{height:28px;padding:0 9px;font-size:12.5px}
+.caret.off,.foc-side .comp .caret{display:none}
+/* FILES（R6、R7） */
+.rfs{display:flex;flex-direction:column}
+.rfb{flex:1 1 0;min-height:0;display:flex;flex-direction:column}
+.rtw{flex:none}
+.rtree{display:flex;flex-direction:column}
+.rtree button{display:grid;grid-template-columns:12px minmax(0,1fr) auto auto auto;gap:6px;align-items:center;width:100%;height:23px;padding-right:6px;clip-path:var(--clip2);text-align:left}
+.rtree .px{width:12px;height:12px;color:var(--tx3)}
+.rtree .fn{font-family:var(--f-code);font-size:var(--fs-code);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--tx)}
+.rtree li.dir .fn{color:var(--tx2)}
+.rtree li.on button{background:var(--cy-soft)}
+.rtree li.on .px{color:var(--cy-tx)}
+.rtree li.del .fn{color:var(--tx3);text-decoration:line-through}
+.rtree li.gone{display:none}
+.rtree .tag{height:17px;padding:0 5px;font-size:12px}
+.rtree .fa,.rtree .fd{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:12px}
+.rtree .fa{color:var(--ok)}.rtree .fd{color:var(--bad)}
+.rign{padding:3px 0 0 6px;font-size:12px;color:var(--tx3)}
+.rpv{flex:1 1 0;min-height:0;display:flex;flex-direction:column;gap:6px;margin-top:8px;padding-top:9px;border-top:1px dotted var(--line2)}
+.rpv .pvh{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.rpv .pvh .code{min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--tx)}
+.rpv .pvh .pm{margin-left:auto;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;color:var(--tx2)}
+.rpv .pn{font-size:12px;line-height:1.5;color:var(--tx2)}
+.rpl{flex:1 1 0;min-height:0;overflow:hidden;font-family:var(--f-code);font-size:var(--fs-code);line-height:18px}
+.rpl > div{display:grid;grid-template-columns:2px 22px minmax(0,1fr);gap:0 7px}
+.rpl .mk.a{background:var(--ok)}
+.rpl .n{color:var(--tx3);text-align:right}
+.rpl span:last-child{white-space:pre;overflow:hidden;text-overflow:ellipsis;color:var(--tx)}
+.rpl span.cm{color:var(--tx3)!important}
+.rpl.dim span:last-child{color:var(--tx3)}
+.rpa{flex:none;display:flex;gap:2px;margin:0 0 -4px -8px}
+.grid.wx .rfb{flex-direction:row}
+.grid.wx .rtw{width:320px;padding-right:16px}
+.grid.wx .rpv{margin-top:0;padding-top:0;border-top:0;padding-left:18px;border-left:1px dotted var(--line2)}
+/* TERM（R8、R9） */
+.rterm{display:flex;flex-direction:column}
+.rtsb{flex:1 1 0;min-height:0;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;font-family:var(--f-code);font-size:var(--fs-code);line-height:18px;color:var(--tx2)}
+.rtsb > div:not(.rem){white-space:pre;overflow:hidden;text-overflow:ellipsis}
+.rtsb .rem{font-family:var(--f-body);white-space:normal}
+.rtsb .cmd{color:var(--tx);margin-top:8px}
+.rtsb .cmd:first-of-type{margin-top:0}
+.rtsb .cmd .tp{color:var(--cy-tx);margin-right:7px}
+.rtsb .ok{color:var(--ok)}.rtsb .bad{color:var(--bad)}.rtsb .dim{color:var(--tx3)}
+.rtst{position:relative;isolation:isolate;flex:none;display:flex;align-items:center;gap:8px;height:30px;margin-top:10px;padding:0 2px 0 10px;clip-path:var(--clip2);background:var(--ok-soft);white-space:nowrap}
+.rtst.bad{background:var(--bad-soft)}
+.rtst b{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;letter-spacing:.06em;color:var(--ok)}
+.rtst.bad b{color:var(--bad)}
+.rtst .code{min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--tx2)}
+.rtst .sp{flex:1}
+.rti{flex:none;display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:10px;border-top:1px dotted var(--line2)}
+.rti .tp{font-family:var(--f-code);font-size:var(--fs-code);color:var(--cy-tx);white-space:nowrap}
+.rti .cin{flex:1;min-width:0;font-family:var(--f-code);font-size:var(--fs-code)}
+.rti .cin .tx{color:var(--tx)}
+.rti.dim .tp{color:var(--tx3)}
+.rti .kbd{font-family:var(--f-body)}
+.rtn{flex:none;margin-top:8px;font-size:12px;line-height:1.5;color:var(--tx3)}
+/* ONE SHOT 读了哪些文件、CLI 的额度（R4、R5） */
+.rqa .qm.tx{font-family:var(--f-body);font-weight:400;font-size:12px;letter-spacing:0}
+.rqa .qrd{display:flex;gap:6px;font-size:12px;line-height:1.5;color:var(--tx3);white-space:nowrap;min-width:0}
+.rqa .qrd .code{min-width:0;overflow:hidden;text-overflow:ellipsis;color:var(--tx2)}
+/* 谁来答的菜单（K10） */
+.roc{position:relative}
+.roc .crow .chip .px{width:12px;height:12px;color:var(--tx3)}
+.roc .crow .chip.on .px{color:var(--cy-tx)}
+.rmenu{position:absolute;left:0;right:0;bottom:36px;z-index:5;isolation:isolate;display:flex;flex-direction:column;padding:8px 6px 6px;clip-path:var(--clip2);background:var(--cy-line)}
+.rmenu:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane2);z-index:-1}
+.rmenu .mg{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:12px;letter-spacing:.1em;color:var(--tx3);padding:2px 8px 4px}
+.rmenu .sep{margin:5px 4px 6px;border-top:1px dotted var(--line2)}
+.rmenu .mi{display:grid;grid-template-columns:7px minmax(0,1fr) auto;align-items:center;gap:8px;width:100%;height:30px;padding:0 8px;clip-path:var(--clip2);text-align:left}
+.rmenu .mi b{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;letter-spacing:.06em;color:var(--tx);white-space:nowrap}
+.rmenu .mi span{font-size:12px;color:var(--tx3);white-space:nowrap}
+.rmenu .mi.on{background:var(--cy-soft)}
+.rmenu .mi.on b{color:var(--cy-tx)}
+.rmenu .ma{display:flex;align-items:center;gap:8px;width:100%;height:30px;padding:0 8px;clip-path:var(--clip2);text-align:left;font-size:12.5px;color:var(--tx2);white-space:nowrap}
+.rmenu .ma .px{width:12px;height:12px;color:var(--cy-tx)}
+.rmenu .ma em{margin-left:auto;font-style:normal;font-size:12px;color:var(--tx3)}
+/* 终端锁着（R2、R11） */
+.rtabs .lk{display:block;flex:none}
+.rtabs .lk .px{width:12px;height:12px;color:var(--tx3)}
+.rtabs button.on .lk .px{color:var(--on-cy)}
+.rti .lkt{display:flex;align-items:center;gap:6px;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:13px;letter-spacing:.06em;color:var(--tx3);white-space:nowrap}
+.rti .lkt .px{width:12px;height:12px}
+.rti.lock .cin{cursor:default}
+.rti.lock .cin span{color:var(--tx3)}
+</style>
+</helmet>
+<div class="{{w.m.root}}">
+  <header class="hd">
+    <div class="brand"><b>PECK</b><i class="mk"></i></div>
+    <span class="proj"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="3" height="1"></rect><rect x="0" y="1" width="1" height="1"></rect><rect x="2" y="1" width="5" height="1"></rect><rect x="0" y="2" width="1" height="1"></rect><rect x="7" y="2" width="1" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="7" y="3" width="1" height="1"></rect><rect x="0" y="4" width="1" height="1"></rect><rect x="7" y="4" width="1" height="1"></rect><rect x="0" y="5" width="1" height="1"></rect><rect x="7" y="5" width="1" height="1"></rect><rect x="0" y="6" width="8" height="1"></rect></svg><b class="nm">weather-cli</b><em>~/code/weather-cli</em></span>
+    <i class="sp"></i>
+    <div class="seg"><button type="button" class="on">CLI</button><button type="button" class="" onClick="{{w.m.api}}">API</button></div>
+    <button type="button" class="qb " aria-label="额度与花费" onClick="{{w.quota}}"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="6" y="0" width="2" height="1"></rect><rect x="6" y="1" width="2" height="1"></rect><rect x="3" y="2" width="2" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="3" y="3" width="2" height="1"></rect><rect x="6" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="3" y="4" width="2" height="1"></rect><rect x="6" y="4" width="2" height="1"></rect><rect x="0" y="5" width="2" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="6" y="5" width="2" height="1"></rect><rect x="0" y="6" width="2" height="1"></rect><rect x="3" y="6" width="2" height="1"></rect><rect x="6" y="6" width="2" height="1"></rect><rect x="0" y="7" width="8" height="1"></rect></svg>$3.20</button>
+    <button type="button" class="ib " aria-label="设置" onClick="{{w.m.gear}}"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="3" y="0" width="2" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="3" y="1" width="2" height="1"></rect><rect x="6" y="1" width="1" height="1"></rect><rect x="2" y="2" width="4" height="1"></rect><rect x="0" y="3" width="3" height="1"></rect><rect x="5" y="3" width="3" height="1"></rect><rect x="0" y="4" width="3" height="1"></rect><rect x="5" y="4" width="3" height="1"></rect><rect x="2" y="5" width="4" height="1"></rect><rect x="1" y="6" width="1" height="1"></rect><rect x="3" y="6" width="2" height="1"></rect><rect x="6" y="6" width="1" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg></button>
+  <button type="button" class="btn ghost rs" onClick="{{w.reset}}"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="1" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="0" y="2" width="7" height="1"></rect><rect x="1" y="3" width="2" height="1"></rect><rect x="7" y="3" width="1" height="1"></rect><rect x="2" y="4" width="1" height="1"></rect><rect x="7" y="4" width="1" height="1"></rect><rect x="7" y="5" width="1" height="1"></rect><rect x="3" y="6" width="4" height="1"></rect></svg>RESET</button>
+  </header>
+  <main class="grid {{w.gx}}"><section class="col">
+    <div class="mod lp"><p class="ml"><span class="l">PROJECTS</span><span class="r n">3</span></p>
+      <div class="pj on"><p class="pjh"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="3" height="1"></rect><rect x="0" y="1" width="1" height="1"></rect><rect x="2" y="1" width="5" height="1"></rect><rect x="0" y="2" width="1" height="1"></rect><rect x="7" y="2" width="1" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="7" y="3" width="1" height="1"></rect><rect x="0" y="4" width="1" height="1"></rect><rect x="7" y="4" width="1" height="1"></rect><rect x="0" y="5" width="1" height="1"></rect><rect x="7" y="5" width="1" height="1"></rect><rect x="0" y="6" width="8" height="1"></rect></svg><b class="nm">weather-cli</b><em>{{w.m.ntask}}</em></p>
+        <ul class="tl">
+          <li><button type="button" class="tr nt {{w.m.newOn}}" onClick="{{w.m.newTask}}"><span class="si"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="3" y="0" width="2" height="1"></rect><rect x="3" y="1" width="2" height="1"></rect><rect x="3" y="2" width="2" height="1"></rect><rect x="0" y="3" width="8" height="1"></rect><rect x="0" y="4" width="8" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="3" y="6" width="2" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg></span><span>NEW TASK</span></button></li>
+          <sc-if value="{{w.m.hasNew}}" hint-placeholder-val="{{true}}"><li class="tr cur {{w.m.curC}}"><span class="si"><span class="s-run"><span class="tw"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></span><span class="s-wait"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="4" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="5" y="1" width="2" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="4" y="3" width="2" height="1"></rect><rect x="3" y="4" width="2" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg></span><span class="s-ok"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg></span><span class="s-undo"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="1" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="0" y="2" width="7" height="1"></rect><rect x="1" y="3" width="2" height="1"></rect><rect x="7" y="3" width="1" height="1"></rect><rect x="2" y="4" width="1" height="1"></rect><rect x="7" y="4" width="1" height="1"></rect><rect x="7" y="5" width="1" height="1"></rect><rect x="3" y="6" width="4" height="1"></rect></svg></span></span><span class="tt"><b>把设置里三个对话框合成一个面板</b><em>{{w.m.curMeta}}</em></span><i class="band"></i><i class="sweep"></i></li></sc-if>
+          <li class="tr old"><span class="si"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg></span><span class="tt"><b>修 Diff 里的中文乱码</b><em>今天 09:12 · 3 个文件</em></span></li>
+          <li class="tr old"><span class="si"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg></span><span class="tt"><b>加 --json 输出</b><em>昨天 · 2 个文件</em></span></li>
+        </ul>
+      </div>
+      <div class="pj"><p class="pjh"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="3" height="1"></rect><rect x="0" y="1" width="1" height="1"></rect><rect x="2" y="1" width="5" height="1"></rect><rect x="0" y="2" width="1" height="1"></rect><rect x="7" y="2" width="1" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="7" y="3" width="1" height="1"></rect><rect x="0" y="4" width="1" height="1"></rect><rect x="7" y="4" width="1" height="1"></rect><rect x="0" y="5" width="1" height="1"></rect><rect x="7" y="5" width="1" height="1"></rect><rect x="0" y="6" width="8" height="1"></rect></svg><b class="nm">notes-sync</b><em>31</em></p><p class="last"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg>导出加一个 Markdown 选项 · 今天</p></div>
+      <div class="pj"><p class="pjh"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="3" height="1"></rect><rect x="0" y="1" width="1" height="1"></rect><rect x="2" y="1" width="5" height="1"></rect><rect x="0" y="2" width="1" height="1"></rect><rect x="7" y="2" width="1" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="7" y="3" width="1" height="1"></rect><rect x="0" y="4" width="1" height="1"></rect><rect x="7" y="4" width="1" height="1"></rect><rect x="0" y="5" width="1" height="1"></rect><rect x="7" y="5" width="1" height="1"></rect><rect x="0" y="6" width="8" height="1"></rect></svg><b class="nm">pomelo-site</b><em>8</em></p><p class="last"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg>首页图片改成懒加载 · 昨天</p></div>
+      <p class="lfoot">同一个项目一次跑一个任务</p>
+    </div>
+    <div class="mod grow log"><p class="ml"><span class="l">LOG</span><span class="r">这个任务</span></p>
+      <sc-if value="{{w.m.logEmpty}}" hint-placeholder-val="{{true}}"><p class="empty">发任务以后，存快照、批过的、问过的、做完、撤销都记在这里。</p></sc-if>
+      <ul><sc-for list="{{w.m.log}}" as="g" hint-placeholder-count="2"><li><span class="t">{{g.t}}</span><span><b class="nm">{{g.b}}</b><span class="a">{{g.a}}</span></span></li></sc-for></ul>
+    </div>
+  </section><section class="col"><sc-if value="{{w.m.isHome}}" hint-placeholder-val="{{true}}"><div class="mod grow home"><p class="ml"><span class="l">NEW TASK</span><span class="r">weather-cli</span></p>
+      <h2 class="hero">weather-cli 要做什么？</h2>
+      <p class="lead">一句话说清楚，再选谁来干。开始前先存一份快照，做完默认留着；不满意，一键撤销整个任务。</p>
+      <div><p class="lbl">{{w.m.whoLbl}}</p><ol class="fl {{w.m.flC}}"><sc-for list="{{w.m.whoFlow}}" as="f" hint-placeholder-count="3"><li><p><span class="k">{{f.k}}</span><i class="dot {{f.c}}"></i><b class="nm">{{f.a}}</b></p><span>{{f.t}}</span></li></sc-for></ol></div>
+      <div class="acc"><p class="lbl">ACCESS · {{w.m.accName}}</p><p class="ad">{{w.m.accD}}</p></div>
+    </div>
+    <div class="mod comp">
+      <button type="button" class="cin" onClick="{{w.m.type}}"><span class="pr">›</span><sc-if value="{{w.m.typedOn}}" hint-placeholder-val="{{false}}"><span class="tx">把设置里三个对话框合成一个面板</span><i class="dz"><i class="band"></i></i></sc-if><sc-if value="{{w.m.typedOff}}" hint-placeholder-val="{{true}}"><span>一句话说要做什么…（点这里）</span></sc-if><i class="caret"></i></button>
+      <div class="crow"><button type="button" class="chip {{w.m.w0}}" onClick="{{w.m.pw0}}"><i class="dot muse"></i>MUSE</button><button type="button" class="chip {{w.m.w1}}" onClick="{{w.m.pw1}}"><i class="dot grok"></i>GROK</button><button type="button" class="chip {{w.m.w2}}" onClick="{{w.m.pw2}}"><i class="dot muse"></i>MUSE→<i class="dot grok"></i>GROK</button><button type="button" class="chip {{w.m.w3}}" onClick="{{w.m.pw3}}"><i class="dot grok"></i>GROK→<i class="dot muse"></i>MUSE</button></div>
+      <div class="crow"><div class="seg sm"><button type="button" class="{{w.m.a0}}" onClick="{{w.m.pa0}}">PLAN</button><button type="button" class="{{w.m.a1}}" onClick="{{w.m.pa1}}">EDIT</button><button type="button" class="{{w.m.a2}}" onClick="{{w.m.pa2}}">AUTO</button></div><i class="sp"></i><span class="kbd">⌘↵</span><button type="button" class="btn pri {{w.m.sendC}}" onClick="{{w.m.send}}">SEND<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button></div>
+    </div></sc-if><sc-if value="{{w.m.isTask}}" hint-placeholder-val="{{false}}"><div class="msg"><span class="me">YOU</span><span class="mt nm">把设置里三个对话框合成一个面板</span><span class="mm">14:02 · {{w.m.whoChip}} · EDIT</span></div>
+    <div class="mod task grow {{w.m.taskC}}"><p class="ml"><span class="l">NOW</span><span class="r">weather-cli</span></p>
+      <h2 class="ttl">把设置里三个对话框合成一个面板</h2>
+      <div class="meta"><span>{{w.m.whoChip}}</span><span>EDIT</span><span>14:02 开始</span></div>
+      <div class="readout"><span class="rl">{{w.m.rl}}</span><span class="rv">{{w.m.clock}}</span></div>
+      <div class="blocks"><sc-for list="{{w.m.blk}}" as="b" hint-placeholder-count="28"><i class="{{b.c}}" style="animation-delay:{{b.d}}"></i></sc-for></div>
+      <div class="bmeta"><span>{{w.m.bm}}</span><b>{{w.m.pct}}</b></div>
+      <ol class="steps"><li class="step {{w.m.sc0}}"><i class="nd"><span class="i-ok"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg></span><span class="i-wq"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="4" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="5" y="1" width="2" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="4" y="3" width="2" height="1"></rect><rect x="3" y="4" width="2" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg></span></i><div class="sb"><p class="sl"><b class="nm">{{w.m.sn0}}</b><i class="lead"></i><span class="tm">{{w.m.stm0}}</span></p><p class="sx">{{w.m.sd0}}</p><i class="scan-fx"></i></div></li><li class="step {{w.m.sc1}}"><i class="nd"><span class="i-ok"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg></span><span class="i-wq"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="4" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="5" y="1" width="2" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="4" y="3" width="2" height="1"></rect><rect x="3" y="4" width="2" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg></span></i><div class="sb"><p class="sl"><b class="nm">{{w.m.sn1}}</b><i class="lead"></i><span class="tm">{{w.m.stm1}}</span></p><p class="sx">{{w.m.sd1}}</p><i class="scan-fx"></i></div></li><li class="step {{w.m.sc2}}"><i class="nd"><span class="i-ok"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg></span><span class="i-wq"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="4" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="5" y="1" width="2" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="4" y="3" width="2" height="1"></rect><rect x="3" y="4" width="2" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg></span></i><div class="sb"><p class="sl"><b class="nm">{{w.m.sn2}}</b><i class="lead"></i><span class="tm">{{w.m.stm2}}</span></p><p class="sx">{{w.m.sd2}}</p><sc-if value="{{w.m.showOut}}" hint-placeholder-val="{{false}}"><div class="out"><sc-for list="{{w.m.out}}" as="o" hint-placeholder-count="2"><div class="{{o.c}}">{{o.t}}</div></sc-for></div></sc-if><i class="scan-fx"></i></div></li><li class="step {{w.m.sc3}}"><i class="nd"><span class="i-ok"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg></span><span class="i-wq"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="4" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="5" y="1" width="2" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="4" y="3" width="2" height="1"></rect><rect x="3" y="4" width="2" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg></span></i><div class="sb"><p class="sl"><b class="nm">{{w.m.sn3}}</b><i class="lead"></i><span class="tm">{{w.m.stm3}}</span></p><p class="sx">{{w.m.sd3}}</p><i class="scan-fx"></i></div></li></ol>
+      <sc-if value="{{w.m.showSum}}" hint-placeholder-val="{{false}}"><div class="sum"><div class="s1"><span class="dck"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="on" style="animation-delay:0.00s"></i><i></i><i></i><i></i><i></i><i></i><i class="on" style="animation-delay:0.07s"></i><i></i><i class="on" style="animation-delay:0.14s"></i><i></i><i></i><i></i><i class="on" style="animation-delay:0.21s"></i><i></i><i></i><i></i><i class="on" style="animation-delay:0.28s"></i><i></i><i class="on" style="animation-delay:0.35s"></i><i></i><i></i><i></i><i></i><i></i><i class="on" style="animation-delay:0.42s"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><div><b>做完了</b><span class="u">{{w.m.nfiles}} 个文件 · 检查通过</span></div><p class="n4"><span class="a">+{{w.m.adds}}</span><span class="d">−{{w.m.dels}}</span></p></div>
+        <p class="st">三个设置对话框合成了一个 SettingsSheet；Composer 和 App 改成打开它；旧的两个对话框删了。{{w.m.sumX}}</p>
+        <div class="ver"><p><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg>pnpm check 通过</p><p><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg>pnpm test · 42 项通过</p></div>
+        <p class="keep">默认留着。不满意，在右边撤销整个任务。</p><i class="sweep"></i></div></sc-if>
+      <sc-if value="{{w.m.showBack}}" hint-placeholder-val="{{false}}"><div class="back"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="1" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="0" y="2" width="7" height="1"></rect><rect x="1" y="3" width="2" height="1"></rect><rect x="7" y="3" width="1" height="1"></rect><rect x="2" y="4" width="1" height="1"></rect><rect x="7" y="4" width="1" height="1"></rect><rect x="7" y="5" width="1" height="1"></rect><rect x="3" y="6" width="4" height="1"></rect></svg><span>已回到 14:02 开始前的样子</span><span class="n">你的 Git 没动</span></div></sc-if>
+      <i class="rsweep"></i>
+    </div>
+    <sc-if value="{{w.m.slotRun}}" hint-placeholder-val="{{false}}"><div class="mod comp idle"><button type="button" class="cin" onClick="{{w.m.busy}}"><span class="pr">›</span><span>下一句话…（这个任务跑完再发）</span><i class="caret"></i></button>
+      <div class="crow"><span class="chip on">{{w.m.whoUp}}</span><span class="chip">EDIT</span><i class="sp"></i><button type="button" class="btn danger" onClick="{{w.m.stop}}">STOP</button></div></div></sc-if><sc-if value="{{w.m.slotPerm}}" hint-placeholder-val="{{false}}"><div class="mod wait card {{w.m.cardFx}}"><i class="e et"></i><i class="e er"></i><i class="e eb"></i><i class="e el"></i>
+      <div class="in">
+        <div class="ah"><span class="aq"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="0" width="6" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="6" y="1" width="1" height="1"></rect><rect x="1" y="2" width="1" height="1"></rect><rect x="3" y="2" width="2" height="1"></rect><rect x="6" y="2" width="1" height="1"></rect><rect x="1" y="3" width="1" height="1"></rect><rect x="3" y="3" width="2" height="1"></rect><rect x="6" y="3" width="1" height="1"></rect><rect x="1" y="4" width="1" height="1"></rect><rect x="6" y="4" width="1" height="1"></rect><rect x="2" y="5" width="1" height="1"></rect><rect x="5" y="5" width="1" height="1"></rect><rect x="3" y="6" width="2" height="1"></rect></svg></span><b class="nm">开始改之前，一次批这几件事</b><span class="sub">规范里有 3 件高危的事</span><span class="r">{{w.m.np}}/3</span></div>
+        <div class="pl2">
+          <button type="button" class="pi {{w.m.pc0}}" onClick="{{w.m.pp0}}"><span class="cb"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg></span><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="4" height="1"></rect><rect x="0" y="1" width="8" height="1"></rect><rect x="1" y="2" width="1" height="1"></rect><rect x="6" y="2" width="1" height="1"></rect><rect x="1" y="3" width="1" height="1"></rect><rect x="3" y="3" width="2" height="1"></rect><rect x="6" y="3" width="1" height="1"></rect><rect x="1" y="4" width="1" height="1"></rect><rect x="3" y="4" width="2" height="1"></rect><rect x="6" y="4" width="1" height="1"></rect><rect x="1" y="5" width="1" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="6" y="5" width="1" height="1"></rect><rect x="2" y="6" width="4" height="1"></rect></svg><span class="tx"><b class="nm">删 2 个旧文件</b><span class="dd">AgentsDialog.tsx、ApiDialog.tsx · 撤销整个任务时能放回来</span></span><em class="tag hi">HIGH</em></button>
+          <button type="button" class="pi {{w.m.pc1}}" onClick="{{w.m.pp1}}"><span class="cb"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg></span><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="4" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="3" y="1" width="2" height="1"></rect><rect x="6" y="1" width="1" height="1"></rect><rect x="0" y="2" width="1" height="1"></rect><rect x="3" y="2" width="2" height="1"></rect><rect x="7" y="2" width="1" height="1"></rect><rect x="0" y="3" width="8" height="1"></rect><rect x="0" y="4" width="1" height="1"></rect><rect x="3" y="4" width="2" height="1"></rect><rect x="7" y="4" width="1" height="1"></rect><rect x="1" y="5" width="1" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="6" y="5" width="1" height="1"></rect><rect x="2" y="6" width="4" height="1"></rect></svg><span class="tx"><b class="nm">联网装依赖</b><span class="dd">pnpm add · 只在要升级依赖时用到</span></span><em class="tag mid">MED</em></button>
+          <button type="button" class="pi hi {{w.m.pc2}}" onClick="{{w.m.pp2}}"><span class="cb"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg></span><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="6" y="0" width="1" height="1"></rect><rect x="5" y="1" width="3" height="1"></rect><rect x="4" y="2" width="3" height="1"></rect><rect x="3" y="3" width="3" height="1"></rect><rect x="2" y="4" width="3" height="1"></rect><rect x="1" y="5" width="3" height="1"></rect><rect x="1" y="6" width="2" height="1"></rect><rect x="0" y="7" width="1" height="1"></rect></svg><span class="tx"><b class="nm">改项目外的文件</b><span class="dd">~/.npmrc 加一行镜像地址 · 默认不勾</span><span class="ok2">你确认允许这一项：它不在任务快照里</span></span><em class="tag hi">HIGH</em></button>
+        </div>
+        <div class="pa"><span class="scope">批到哪<span class="seg sm"><button type="button" onClick="{{w.m.scope}}">ONCE</button><button type="button" class="on">TASK</button><button type="button" onClick="{{w.m.scope}}">PROJECT</button></span></span><i class="sp"></i><button type="button" class="btn ghost" onClick="{{w.m.deny}}">NO</button><button type="button" class="btn pri" onClick="{{w.m.allow}}">ALLOW {{w.m.np}}</button></div>
+      </div><i class="bandv"></i><i class="sweep"></i></div></sc-if><sc-if value="{{w.m.slotAsk}}" hint-placeholder-val="{{false}}"><div class="mod wait card {{w.m.cardFx}}"><i class="e et"></i><i class="e er"></i><i class="e eb"></i><i class="e el"></i>
+      <div class="in">
+        <div class="ah"><span class="aq"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="4" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="5" y="1" width="2" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="4" y="3" width="2" height="1"></rect><rect x="3" y="4" width="2" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg></span><b class="nm">{{w.m.doer}} 停下来问你</b><span class="sub">1 个问题，答完它接着跑</span><span class="r">1/1</span></div>
+        <p class="q">Tailwind 要不要一起升到 4.1？</p>
+        <div class="opts">
+          <button type="button" class="opt {{w.m.o0}}" onClick="{{w.m.po0}}"><i class="rb"></i><span><b class="nm">一起升<em class="tag rec">PICK</em></b><span class="d">多改 package.json 一行；要联网装依赖，开始前已经批过</span></span><span class="k">1</span></button>
+          <button type="button" class="opt {{w.m.o1}}" onClick="{{w.m.po1}}"><i class="rb"></i><span><b class="nm">先不升</b><span class="d">把配置改回 4.0 的写法，升级以后另开任务</span></span><span class="k">2</span></button>
+          <button type="button" class="opt {{w.m.o2}}" onClick="{{w.m.po2}}"><i class="rb"></i><span><b class="nm">其他…</b><span class="d">直接告诉 {{w.m.doer}} 怎么做</span></span><span class="k">3</span></button>
+        </div>
+        <div class="pa"><p class="keys"><span><b>1–3</b> 选</span><span><b>⏎</b> 提交</span><span><b>esc</b> 先放着</span></p><i class="sp"></i><button type="button" class="btn ghost" onClick="{{w.m.later}}">LATER</button><button type="button" class="btn pri" onClick="{{w.m.submit}}">SUBMIT</button></div>
+      </div><i class="bandv"></i><i class="sweep"></i></div></sc-if><sc-if value="{{w.m.slotDone}}" hint-placeholder-val="{{false}}"><div class="mod comp idle"><button type="button" class="cin" onClick="{{w.m.again}}"><span class="pr">›</span><span>下一句话…</span><i class="caret"></i></button>
+      <div class="crow"><span class="chip on">{{w.m.whoUp}}</span><span class="chip">EDIT</span><i class="sp"></i><span class="kbd">⌘↵</span><button type="button" class="btn pri off">SEND<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button></div></div></sc-if></sc-if></section><section class="col rcol"><sc-if value="{{w.wbar}}" hint-placeholder-val="{{false}}"><div class="rwb"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="4" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="5" y="1" width="2" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="4" y="3" width="2" height="1"></rect><rect x="3" y="4" width="2" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg><span>{{w.wbarT}}</span><i class="sp"></i><button type="button" class="btn warn" onClick="{{w.collapse}}">BACK</button></div></sc-if><div class="seg full rtabs">
+      <button type="button" class="{{w.tb0}}" onClick="{{w.go0}}">CHANGES<em class="{{w.bd0C}}">{{w.bd0}}</em></button>
+      <button type="button" class="{{w.tb1}}" onClick="{{w.go1}}">ONE SHOT<span class="tw {{w.bt1C}}"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><i class="bd {{w.bd1C}}"></i></button>
+      <button type="button" class="{{w.tb2}}" onClick="{{w.go2}}">FILES</button>
+      <button type="button" class="{{w.tb3}}" onClick="{{w.go3}}">TERM<span class="lk {{w.lk3C}}" aria-label="锁着"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="4" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="6" y="1" width="1" height="1"></rect><rect x="1" y="2" width="1" height="1"></rect><rect x="6" y="2" width="1" height="1"></rect><rect x="0" y="3" width="8" height="1"></rect><rect x="0" y="4" width="3" height="1"></rect><rect x="5" y="4" width="3" height="1"></rect><rect x="0" y="5" width="3" height="1"></rect><rect x="5" y="5" width="3" height="1"></rect><rect x="0" y="6" width="8" height="1"></rect></svg></span><span class="tw {{w.bt3C}}"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><i class="bd {{w.bd3C}}"></i></button>
+    </div>
+    <sc-if value="{{w.isC}}" hint-placeholder-val="{{true}}"><div class="mod grow rc"><p class="ml"><span class="l">CHANGES</span><span class="r">直接写进项目</span><button type="button" class="btn ghost sm2 xp" aria-label="展开到宽栏" onClick="{{w.wideT}}"><svg class="px i-ex" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="3" height="1"></rect><rect x="5" y="0" width="3" height="1"></rect><rect x="0" y="1" width="2" height="1"></rect><rect x="6" y="1" width="2" height="1"></rect><rect x="0" y="2" width="1" height="1"></rect><rect x="2" y="2" width="1" height="1"></rect><rect x="5" y="2" width="1" height="1"></rect><rect x="7" y="2" width="1" height="1"></rect><rect x="0" y="5" width="1" height="1"></rect><rect x="2" y="5" width="1" height="1"></rect><rect x="5" y="5" width="1" height="1"></rect><rect x="7" y="5" width="1" height="1"></rect><rect x="0" y="6" width="2" height="1"></rect><rect x="6" y="6" width="2" height="1"></rect><rect x="0" y="7" width="3" height="1"></rect><rect x="5" y="7" width="3" height="1"></rect></svg><svg class="px i-co" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"></rect><rect x="2" y="0" width="1" height="1"></rect><rect x="5" y="0" width="1" height="1"></rect><rect x="7" y="0" width="1" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="5" y="1" width="2" height="1"></rect><rect x="0" y="2" width="3" height="1"></rect><rect x="5" y="2" width="3" height="1"></rect><rect x="0" y="5" width="3" height="1"></rect><rect x="5" y="5" width="3" height="1"></rect><rect x="1" y="6" width="2" height="1"></rect><rect x="5" y="6" width="2" height="1"></rect><rect x="0" y="7" width="1" height="1"></rect><rect x="2" y="7" width="1" height="1"></rect><rect x="5" y="7" width="1" height="1"></rect><rect x="7" y="7" width="1" height="1"></rect></svg></button></p>
+      <p class="snap {{w.m.snapC}}"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="4" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="6" y="1" width="1" height="1"></rect><rect x="0" y="2" width="1" height="1"></rect><rect x="3" y="2" width="1" height="1"></rect><rect x="7" y="2" width="1" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="3" y="3" width="1" height="1"></rect><rect x="7" y="3" width="1" height="1"></rect><rect x="0" y="4" width="1" height="1"></rect><rect x="3" y="4" width="3" height="1"></rect><rect x="7" y="4" width="1" height="1"></rect><rect x="0" y="5" width="1" height="1"></rect><rect x="7" y="5" width="1" height="1"></rect><rect x="1" y="6" width="1" height="1"></rect><rect x="6" y="6" width="1" height="1"></rect><rect x="2" y="7" width="4" height="1"></rect></svg><span>{{w.m.snapT}}</span><i class="band"></i></p>
+      <div class="sum2"><span class="cnt" data-nolint=""><sc-if value="{{w.m.rolling}}" hint-placeholder-val="{{false}}"><span class="roll" style="--n:{{w.m.nfiles}}" data-nolint=""><span><sc-for list="{{w.m.rollL}}" as="d" hint-placeholder-count="6"><i>{{d.n}}</i></sc-for></span></span></sc-if><sc-if value="{{w.m.notRolling}}" hint-placeholder-val="{{true}}"><b>{{w.m.nshow}}</b></sc-if></span><span class="u">个文件</span><span class="plus">+{{w.m.addsShow}}</span><span class="minus">−{{w.m.delsShow}}</span></div>
+      <ul class="files"><sc-for list="{{w.m.files}}" as="f" hint-placeholder-count="3"><li class="{{f.c}}" style="animation-delay:{{f.dl}}"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="0" width="4" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="1" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="1" y="3" width="1" height="1"></rect><rect x="6" y="3" width="1" height="1"></rect><rect x="1" y="4" width="1" height="1"></rect><rect x="6" y="4" width="1" height="1"></rect><rect x="1" y="5" width="1" height="1"></rect><rect x="6" y="5" width="1" height="1"></rect><rect x="1" y="6" width="6" height="1"></rect></svg><span class="fp">{{f.p}}</span><em class="tag {{f.tc}}">{{f.tag}}</em><span class="fa">+{{f.a}}</span><span class="fd">−{{f.d}}</span></li></sc-for></ul>
+      <sc-if value="{{w.m.showEmpty}}" hint-placeholder-val="{{true}}"><p class="empty" style="margin-top:6px">{{w.m.emptyT}}</p></sc-if>
+      <sc-if value="{{w.m.showDiff}}" hint-placeholder-val="{{false}}"><div class="diff"><p class="dh"><span>Composer.tsx</span><span>+9 −21</span></p><div class="ln d"><span class="n">42</span><span class="m">−</span><span>const [agentsOpen, setAgentsOpen] = useState(false)</span></div><div class="ln d"><span class="n">43</span><span class="m">−</span><span>const [apiOpen, setApiOpen] = useState(false)</span></div><div class="ln a"><span class="n">42</span><span class="m">+</span><span>const [settingsOpen, setSettingsOpen] = useState(false)</span></div><div class="ln d"><span class="n">58</span><span class="m">−</span><span>&lt;AgentsDialog open={agentsOpen} /&gt;</span></div><div class="ln a"><span class="n">57</span><span class="m">+</span><span>&lt;SettingsSheet open={settingsOpen} /&gt;</span></div></div></sc-if>
+      <div class="rfoot">
+        <sc-if value="{{w.m.showUndo}}" hint-placeholder-val="{{false}}"><button type="button" class="btn danger wide" onClick="{{w.m.undo}}"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="1" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="0" y="2" width="7" height="1"></rect><rect x="1" y="3" width="2" height="1"></rect><rect x="7" y="3" width="1" height="1"></rect><rect x="2" y="4" width="1" height="1"></rect><rect x="7" y="4" width="1" height="1"></rect><rect x="7" y="5" width="1" height="1"></rect><rect x="3" y="6" width="4" height="1"></rect></svg>UNDO TASK</button><p class="note">回到 14:02 开始前的样子，你的 Git 不动。</p></sc-if>
+        <sc-if value="{{w.m.showConfirm}}" hint-placeholder-val="{{false}}"><div class="cfm"><p class="ct"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="1" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="0" y="2" width="7" height="1"></rect><rect x="1" y="3" width="2" height="1"></rect><rect x="7" y="3" width="1" height="1"></rect><rect x="2" y="4" width="1" height="1"></rect><rect x="7" y="4" width="1" height="1"></rect><rect x="7" y="5" width="1" height="1"></rect><rect x="3" y="6" width="4" height="1"></rect></svg><b class="nm">撤销这个任务？</b></p><p class="cd">{{w.cdT}}</p><div class="row"><button type="button" class="btn fill" onClick="{{w.m.doUndo}}">UNDO {{w.m.nfiles}} FILES</button><button type="button" class="btn" onClick="{{w.m.cancelUndo}}">CANCEL</button></div></div></sc-if>
+        <sc-if value="{{w.m.showBack2}}" hint-placeholder-val="{{false}}"><p class="back2"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="7" y="1" width="1" height="1"></rect><rect x="6" y="2" width="2" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="5" y="3" width="2" height="1"></rect><rect x="0" y="4" width="2" height="1"></rect><rect x="4" y="4" width="2" height="1"></rect><rect x="1" y="5" width="4" height="1"></rect><rect x="2" y="6" width="2" height="1"></rect></svg>已撤销。要再做一次，点左边 NEW TASK。</p></sc-if>
+      </div>
+    </div></sc-if><sc-if value="{{w.isO}}" hint-placeholder-val="{{false}}"><div class="mod grow ros"><p class="ml"><span class="l">ONE SHOT</span><span class="r">只读</span><button type="button" class="btn ghost sm2" onClick="{{w.oClear}}">CLEAR</button><button type="button" class="btn ghost sm2 xp" aria-label="展开到宽栏" onClick="{{w.wideT}}"><svg class="px i-ex" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="3" height="1"></rect><rect x="5" y="0" width="3" height="1"></rect><rect x="0" y="1" width="2" height="1"></rect><rect x="6" y="1" width="2" height="1"></rect><rect x="0" y="2" width="1" height="1"></rect><rect x="2" y="2" width="1" height="1"></rect><rect x="5" y="2" width="1" height="1"></rect><rect x="7" y="2" width="1" height="1"></rect><rect x="0" y="5" width="1" height="1"></rect><rect x="2" y="5" width="1" height="1"></rect><rect x="5" y="5" width="1" height="1"></rect><rect x="7" y="5" width="1" height="1"></rect><rect x="0" y="6" width="2" height="1"></rect><rect x="6" y="6" width="2" height="1"></rect><rect x="0" y="7" width="3" height="1"></rect><rect x="5" y="7" width="3" height="1"></rect></svg><svg class="px i-co" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"></rect><rect x="2" y="0" width="1" height="1"></rect><rect x="5" y="0" width="1" height="1"></rect><rect x="7" y="0" width="1" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="5" y="1" width="2" height="1"></rect><rect x="0" y="2" width="3" height="1"></rect><rect x="5" y="2" width="3" height="1"></rect><rect x="0" y="5" width="3" height="1"></rect><rect x="5" y="5" width="3" height="1"></rect><rect x="1" y="6" width="2" height="1"></rect><rect x="5" y="6" width="2" height="1"></rect><rect x="0" y="7" width="1" height="1"></rect><rect x="2" y="7" width="1" height="1"></rect><rect x="5" y="7" width="1" height="1"></rect><rect x="7" y="7" width="1" height="1"></rect></svg></button></p>
+      <div class="rth">
+        <sc-if value="{{w.osEmpty}}" hint-placeholder-val="{{true}}"><div class="rem"><p>边干活边问，不打断任务。它能读整个项目，但不改文件、不跑命令；任务进度和终端输出它看不到，用下面的 + 带上。</p><p class="s">Muse、Grok 用它们的订阅额度；API 模型按次算钱，算进花费上限。</p></div></sc-if>
+        <sc-for list="{{w.osRows}}" as="oq" hint-placeholder-count="1"><div class="rqa {{oq.c}}"><p class="qh"><span class="who">{{oq.who}}</span><span class="qm {{oq.mC}}">{{oq.meta}}</span></p><p class="qrd {{oq.rdC}}"><span>{{oq.rdL}}</span><span class="code">{{oq.rd}}</span></p><p class="qt">{{oq.t}}</p><p class="qat {{oq.atC}}">{{oq.at}}</p><div class="qc {{oq.codeC}}">{{oq.code}}</div><p class="qt2 {{oq.t2C}}">{{oq.t2}}</p></div></sc-for>
+        <sc-if value="{{w.osThink}}" hint-placeholder-val="{{false}}"><p class="rqth"><span class="tw"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span>{{w.osThinkT}}</span></p></sc-if>
+        <sc-if value="{{w.osActs}}" hint-placeholder-val="{{false}}"><div class="rqx"><button type="button" class="btn ghost sm2" onClick="{{w.copy}}">COPY</button><button type="button" class="btn ghost sm2" onClick="{{w.toTask}}">TO TASK</button></div></sc-if>
+      </div>
+      <div class="roc"><sc-if value="{{w.menu}}" hint-placeholder-val="{{false}}"><div class="rmenu" role="menu">
+          <p class="mg">CLI</p><button type="button" class="mi {{w.mi0}}" onClick="{{w.pm0}}"><i class="dot muse"></i><b>MUSE</b><span>订阅额度 · 只读</span></button><button type="button" class="mi {{w.mi1}}" onClick="{{w.pm1}}"><i class="dot grok"></i><b>GROK</b><span>订阅额度 · 只读</span></button>
+          <i class="sep"></i><p class="mg">API</p>
+          <sc-if value="{{w.hasKey}}" hint-placeholder-val="{{true}}"><button type="button" class="mi {{w.mi2}}" onClick="{{w.pm2}}"><i class="dot api"></i><b>DEEPSEEK FLASH</b><span>按次算钱 · 只读</span></button><button type="button" class="mi {{w.mi3}}" onClick="{{w.pm3}}"><i class="dot api"></i><b>CLAUDE OPUS 5.5</b><span>按次算钱 · 只读</span></button></sc-if>
+          <sc-if value="{{w.noKey}}" hint-placeholder-val="{{false}}"><button type="button" class="ma" onClick="{{w.addKey}}"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="3" y="0" width="2" height="1"></rect><rect x="3" y="1" width="2" height="1"></rect><rect x="3" y="2" width="2" height="1"></rect><rect x="0" y="3" width="8" height="1"></rect><rect x="0" y="4" width="8" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="3" y="6" width="2" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg>配 Key 用 API 模型<em>当场填</em></button></sc-if>
+        </div></sc-if>
+        <div class="ratt"><button type="button" class="chip {{w.at0}}" onClick="{{w.pat0}}"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="3" y="0" width="2" height="1"></rect><rect x="3" y="1" width="2" height="1"></rect><rect x="3" y="2" width="2" height="1"></rect><rect x="0" y="3" width="8" height="1"></rect><rect x="0" y="4" width="8" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="3" y="6" width="2" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg>TASK</button><button type="button" class="chip {{w.at1}}" onClick="{{w.pat1}}"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="3" y="0" width="2" height="1"></rect><rect x="3" y="1" width="2" height="1"></rect><rect x="3" y="2" width="2" height="1"></rect><rect x="0" y="3" width="8" height="1"></rect><rect x="0" y="4" width="8" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="3" y="6" width="2" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg><span class="code">{{w.atFile}}</span></button><button type="button" class="chip {{w.at2}}" onClick="{{w.pat2}}"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="3" y="0" width="2" height="1"></rect><rect x="3" y="1" width="2" height="1"></rect><rect x="3" y="2" width="2" height="1"></rect><rect x="0" y="3" width="8" height="1"></rect><rect x="0" y="4" width="8" height="1"></rect><rect x="3" y="5" width="2" height="1"></rect><rect x="3" y="6" width="2" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg>TERM</button></div>
+        <button type="button" class="cin" onClick="{{w.oType}}"><span class="pr">›</span><span class="{{w.odC}}">{{w.odT}}</span><i class="caret {{w.ocC}}"></i></button>
+        <div class="crow"><button type="button" class="chip {{w.mnC}}" aria-haspopup="menu" onClick="{{w.model}}"><i class="dot {{w.modelDot}}"></i>{{w.modelName}}<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="2" width="5" height="1"></rect><rect x="2" y="3" width="3" height="1"></rect><rect x="3" y="4" width="1" height="1"></rect></svg></button><i class="sp"></i><span class="kbd">⌘↵</span><button type="button" class="btn {{w.oSendC}}" onClick="{{w.oSend}}">SEND<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button></div>
+      </div>
+    </div></sc-if><sc-if value="{{w.isF}}" hint-placeholder-val="{{false}}"><div class="mod grow rfs"><p class="ml"><span class="l">FILES</span><span class="r">只看，不改</span><button type="button" class="btn ghost sm2 xp" aria-label="展开到宽栏" onClick="{{w.wideT}}"><svg class="px i-ex" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="3" height="1"></rect><rect x="5" y="0" width="3" height="1"></rect><rect x="0" y="1" width="2" height="1"></rect><rect x="6" y="1" width="2" height="1"></rect><rect x="0" y="2" width="1" height="1"></rect><rect x="2" y="2" width="1" height="1"></rect><rect x="5" y="2" width="1" height="1"></rect><rect x="7" y="2" width="1" height="1"></rect><rect x="0" y="5" width="1" height="1"></rect><rect x="2" y="5" width="1" height="1"></rect><rect x="5" y="5" width="1" height="1"></rect><rect x="7" y="5" width="1" height="1"></rect><rect x="0" y="6" width="2" height="1"></rect><rect x="6" y="6" width="2" height="1"></rect><rect x="0" y="7" width="3" height="1"></rect><rect x="5" y="7" width="3" height="1"></rect></svg><svg class="px i-co" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"></rect><rect x="2" y="0" width="1" height="1"></rect><rect x="5" y="0" width="1" height="1"></rect><rect x="7" y="0" width="1" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="5" y="1" width="2" height="1"></rect><rect x="0" y="2" width="3" height="1"></rect><rect x="5" y="2" width="3" height="1"></rect><rect x="0" y="5" width="3" height="1"></rect><rect x="5" y="5" width="3" height="1"></rect><rect x="1" y="6" width="2" height="1"></rect><rect x="5" y="6" width="2" height="1"></rect><rect x="0" y="7" width="1" height="1"></rect><rect x="2" y="7" width="1" height="1"></rect><rect x="5" y="7" width="1" height="1"></rect><rect x="7" y="7" width="1" height="1"></rect></svg></button></p>
+      <div class="rfb">
+        <div class="rtw"><ul class="rtree"><li class="{{w.tc0}}"><button type="button" onClick="{{w.fo0}}" style="padding-left:6px"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="2" width="5" height="1"></rect><rect x="2" y="3" width="3" height="1"></rect><rect x="3" y="4" width="1" height="1"></rect></svg><span class="fn">src</span><em class="tag {{w.tt0}}">{{w.tg0}}</em><span class="fa">{{w.ta0}}</span><span class="fd">{{w.td0}}</span></button></li><li class="{{w.tc1}}"><button type="button" onClick="{{w.fo1}}" style="padding-left:20px"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="2" width="5" height="1"></rect><rect x="2" y="3" width="3" height="1"></rect><rect x="3" y="4" width="1" height="1"></rect></svg><span class="fn">chat</span><em class="tag {{w.tt1}}">{{w.tg1}}</em><span class="fa">{{w.ta1}}</span><span class="fd">{{w.td1}}</span></button></li><li class="{{w.tc2}}"><button type="button" onClick="{{w.fo2}}" style="padding-left:34px"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="0" width="4" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="1" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="1" y="3" width="1" height="1"></rect><rect x="6" y="3" width="1" height="1"></rect><rect x="1" y="4" width="1" height="1"></rect><rect x="6" y="4" width="1" height="1"></rect><rect x="1" y="5" width="1" height="1"></rect><rect x="6" y="5" width="1" height="1"></rect><rect x="1" y="6" width="6" height="1"></rect></svg><span class="fn">Composer.tsx</span><em class="tag {{w.tt2}}">{{w.tg2}}</em><span class="fa">{{w.ta2}}</span><span class="fd">{{w.td2}}</span></button></li><li class="{{w.tc3}}"><button type="button" onClick="{{w.fo3}}" style="padding-left:20px"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="2" width="5" height="1"></rect><rect x="2" y="3" width="3" height="1"></rect><rect x="3" y="4" width="1" height="1"></rect></svg><span class="fn">settings</span><em class="tag {{w.tt3}}">{{w.tg3}}</em><span class="fa">{{w.ta3}}</span><span class="fd">{{w.td3}}</span></button></li><li class="{{w.tc4}}"><button type="button" onClick="{{w.fo4}}" style="padding-left:34px"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="0" width="4" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="1" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="1" y="3" width="1" height="1"></rect><rect x="6" y="3" width="1" height="1"></rect><rect x="1" y="4" width="1" height="1"></rect><rect x="6" y="4" width="1" height="1"></rect><rect x="1" y="5" width="1" height="1"></rect><rect x="6" y="5" width="1" height="1"></rect><rect x="1" y="6" width="6" height="1"></rect></svg><span class="fn">SettingsSheet.tsx</span><em class="tag {{w.tt4}}">{{w.tg4}}</em><span class="fa">{{w.ta4}}</span><span class="fd">{{w.td4}}</span></button></li><li class="{{w.tc5}}"><button type="button" onClick="{{w.fo5}}" style="padding-left:34px"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="0" width="4" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="1" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="1" y="3" width="1" height="1"></rect><rect x="6" y="3" width="1" height="1"></rect><rect x="1" y="4" width="1" height="1"></rect><rect x="6" y="4" width="1" height="1"></rect><rect x="1" y="5" width="1" height="1"></rect><rect x="6" y="5" width="1" height="1"></rect><rect x="1" y="6" width="6" height="1"></rect></svg><span class="fn">AgentsDialog.tsx</span><em class="tag {{w.tt5}}">{{w.tg5}}</em><span class="fa">{{w.ta5}}</span><span class="fd">{{w.td5}}</span></button></li><li class="{{w.tc6}}"><button type="button" onClick="{{w.fo6}}" style="padding-left:34px"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="0" width="4" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="1" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="1" y="3" width="1" height="1"></rect><rect x="6" y="3" width="1" height="1"></rect><rect x="1" y="4" width="1" height="1"></rect><rect x="6" y="4" width="1" height="1"></rect><rect x="1" y="5" width="1" height="1"></rect><rect x="6" y="5" width="1" height="1"></rect><rect x="1" y="6" width="6" height="1"></rect></svg><span class="fn">ApiDialog.tsx</span><em class="tag {{w.tt6}}">{{w.tg6}}</em><span class="fa">{{w.ta6}}</span><span class="fd">{{w.td6}}</span></button></li><li class="{{w.tc7}}"><button type="button" onClick="{{w.fo7}}" style="padding-left:20px"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="0" width="4" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="1" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="1" y="3" width="1" height="1"></rect><rect x="6" y="3" width="1" height="1"></rect><rect x="1" y="4" width="1" height="1"></rect><rect x="6" y="4" width="1" height="1"></rect><rect x="1" y="5" width="1" height="1"></rect><rect x="6" y="5" width="1" height="1"></rect><rect x="1" y="6" width="6" height="1"></rect></svg><span class="fn">App.tsx</span><em class="tag {{w.tt7}}">{{w.tg7}}</em><span class="fa">{{w.ta7}}</span><span class="fd">{{w.td7}}</span></button></li><li class="{{w.tc8}}"><button type="button" onClick="{{w.fo8}}" style="padding-left:20px"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="0" width="4" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="1" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="1" y="3" width="1" height="1"></rect><rect x="6" y="3" width="1" height="1"></rect><rect x="1" y="4" width="1" height="1"></rect><rect x="6" y="4" width="1" height="1"></rect><rect x="1" y="5" width="1" height="1"></rect><rect x="6" y="5" width="1" height="1"></rect><rect x="1" y="6" width="6" height="1"></rect></svg><span class="fn">units.ts</span><em class="tag {{w.tt8}}">{{w.tg8}}</em><span class="fa">{{w.ta8}}</span><span class="fd">{{w.td8}}</span></button></li><li class="{{w.tc9}}"><button type="button" onClick="{{w.fo9}}" style="padding-left:6px"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="1" width="1" height="1"></rect><rect x="2" y="2" width="2" height="1"></rect><rect x="2" y="3" width="3" height="1"></rect><rect x="2" y="4" width="2" height="1"></rect><rect x="2" y="5" width="1" height="1"></rect></svg><span class="fn">tests</span><em class="tag {{w.tt9}}">{{w.tg9}}</em><span class="fa">{{w.ta9}}</span><span class="fd">{{w.td9}}</span></button></li><li class="{{w.tc10}}"><button type="button" onClick="{{w.fo10}}" style="padding-left:6px"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="0" width="4" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="1" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="1" y="3" width="1" height="1"></rect><rect x="6" y="3" width="1" height="1"></rect><rect x="1" y="4" width="1" height="1"></rect><rect x="6" y="4" width="1" height="1"></rect><rect x="1" y="5" width="1" height="1"></rect><rect x="6" y="5" width="1" height="1"></rect><rect x="1" y="6" width="6" height="1"></rect></svg><span class="fn">package.json</span><em class="tag {{w.tt10}}">{{w.tg10}}</em><span class="fa">{{w.ta10}}</span><span class="fd">{{w.td10}}</span></button></li><li class="{{w.tc11}}"><button type="button" onClick="{{w.fo11}}" style="padding-left:6px"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="0" width="4" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="1" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="1" y="3" width="1" height="1"></rect><rect x="6" y="3" width="1" height="1"></rect><rect x="1" y="4" width="1" height="1"></rect><rect x="6" y="4" width="1" height="1"></rect><rect x="1" y="5" width="1" height="1"></rect><rect x="6" y="5" width="1" height="1"></rect><rect x="1" y="6" width="6" height="1"></rect></svg><span class="fn">README.md</span><em class="tag {{w.tt11}}">{{w.tg11}}</em><span class="fa">{{w.ta11}}</span><span class="fd">{{w.td11}}</span></button></li><li class="{{w.tc12}}"><button type="button" onClick="{{w.fo12}}" style="padding-left:6px"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="0" width="4" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="1" height="1"></rect><rect x="5" y="2" width="2" height="1"></rect><rect x="1" y="3" width="1" height="1"></rect><rect x="6" y="3" width="1" height="1"></rect><rect x="1" y="4" width="1" height="1"></rect><rect x="6" y="4" width="1" height="1"></rect><rect x="1" y="5" width="1" height="1"></rect><rect x="6" y="5" width="1" height="1"></rect><rect x="1" y="6" width="6" height="1"></rect></svg><span class="fn">tailwind.config.ts</span><em class="tag {{w.tt12}}">{{w.tg12}}</em><span class="fa">{{w.ta12}}</span><span class="fd">{{w.td12}}</span></button></li></ul><p class="rign">藏了 2 个忽略的文件夹：node_modules、dist</p></div>
+        <div class="rpv">
+          <p class="pvh"><span class="code">{{w.pvPath}}</span><span class="pm">{{w.pvMeta}}</span></p>
+          <p class="pn {{w.pvNoteC}}">{{w.pvNote}}</p>
+          <div class="rpl {{w.pvC}}"><sc-for list="{{w.pvLines}}" as="pl" hint-placeholder-count="8"><div><i class="mk {{pl.mc}}"></i><span class="n">{{pl.n}}</span><span class="{{pl.tc}}">{{pl.t}}</span></div></sc-for></div>
+          <div class="rpa"><button type="button" class="btn ghost sm2" onClick="{{w.pvAsk}}"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="8" height="1"></rect><rect x="0" y="1" width="1" height="1"></rect><rect x="7" y="1" width="1" height="1"></rect><rect x="0" y="2" width="1" height="1"></rect><rect x="2" y="2" width="2" height="1"></rect><rect x="5" y="2" width="1" height="1"></rect><rect x="7" y="2" width="1" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="7" y="3" width="1" height="1"></rect><rect x="0" y="4" width="8" height="1"></rect><rect x="2" y="5" width="2" height="1"></rect><rect x="2" y="6" width="1" height="1"></rect></svg>ONE SHOT</button><button type="button" class="btn ghost sm2 {{w.pvDiffC}}" onClick="{{w.pvDiff}}">DIFF</button><button type="button" class="btn ghost sm2" onClick="{{w.pvOpen}}">OPEN</button></div>
+        </div>
+      </div>
+    </div></sc-if><sc-if value="{{w.isT}}" hint-placeholder-val="{{false}}"><div class="mod grow rterm"><p class="ml"><span class="l">TERM</span><span class="r">你自己的终端</span><button type="button" class="btn ghost sm2" onClick="{{w.tClear}}">CLEAR</button><button type="button" class="btn ghost sm2 xp" aria-label="展开到宽栏" onClick="{{w.wideT}}"><svg class="px i-ex" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="3" height="1"></rect><rect x="5" y="0" width="3" height="1"></rect><rect x="0" y="1" width="2" height="1"></rect><rect x="6" y="1" width="2" height="1"></rect><rect x="0" y="2" width="1" height="1"></rect><rect x="2" y="2" width="1" height="1"></rect><rect x="5" y="2" width="1" height="1"></rect><rect x="7" y="2" width="1" height="1"></rect><rect x="0" y="5" width="1" height="1"></rect><rect x="2" y="5" width="1" height="1"></rect><rect x="5" y="5" width="1" height="1"></rect><rect x="7" y="5" width="1" height="1"></rect><rect x="0" y="6" width="2" height="1"></rect><rect x="6" y="6" width="2" height="1"></rect><rect x="0" y="7" width="3" height="1"></rect><rect x="5" y="7" width="3" height="1"></rect></svg><svg class="px i-co" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="1" height="1"></rect><rect x="2" y="0" width="1" height="1"></rect><rect x="5" y="0" width="1" height="1"></rect><rect x="7" y="0" width="1" height="1"></rect><rect x="1" y="1" width="2" height="1"></rect><rect x="5" y="1" width="2" height="1"></rect><rect x="0" y="2" width="3" height="1"></rect><rect x="5" y="2" width="3" height="1"></rect><rect x="0" y="5" width="3" height="1"></rect><rect x="5" y="5" width="3" height="1"></rect><rect x="1" y="6" width="2" height="1"></rect><rect x="5" y="6" width="2" height="1"></rect><rect x="0" y="7" width="1" height="1"></rect><rect x="2" y="7" width="1" height="1"></rect><rect x="5" y="7" width="1" height="1"></rect><rect x="7" y="7" width="1" height="1"></rect></svg></button></p>
+      <div class="rtsb">
+        <sc-if value="{{w.tEmpty}}" hint-placeholder-val="{{true}}"><div class="rem"><p>你自己的终端，开在 ~/code/weather-cli。</p><p class="s">不经过权限三档，也不进模型上下文；Agent 跑的命令在中间的步骤里看。</p></div></sc-if>
+        <sc-for list="{{w.tLines}}" as="tq" hint-placeholder-count="1"><div class="{{tq.c}}"><span class="tp">{{tq.p}}</span><span>{{tq.t}}</span></div></sc-for>
+      </div>
+      <sc-if value="{{w.tSt}}" hint-placeholder-val="{{false}}"><div class="rtst {{w.tStC}}"><b>{{w.tStT}}</b><span class="code">{{w.tStCmd}}</span><i class="sp"></i><sc-if value="{{w.tStAsk}}" hint-placeholder-val="{{false}}"><button type="button" class="btn ghost sm2" onClick="{{w.tAsk}}"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="0" y="0" width="8" height="1"></rect><rect x="0" y="1" width="1" height="1"></rect><rect x="7" y="1" width="1" height="1"></rect><rect x="0" y="2" width="1" height="1"></rect><rect x="2" y="2" width="2" height="1"></rect><rect x="5" y="2" width="1" height="1"></rect><rect x="7" y="2" width="1" height="1"></rect><rect x="0" y="3" width="1" height="1"></rect><rect x="7" y="3" width="1" height="1"></rect><rect x="0" y="4" width="8" height="1"></rect><rect x="2" y="5" width="2" height="1"></rect><rect x="2" y="6" width="1" height="1"></rect></svg>ONE SHOT</button></sc-if></div></sc-if>
+      <div class="rti {{w.tiC}}"><span class="tp">weather-cli $</span><button type="button" class="cin" onClick="{{w.tType}}"><span class="{{w.tDraftC}}">{{w.tDraft}}</span><i class="caret {{w.tcC}}"></i></button><sc-if value="{{w.tRunning}}" hint-placeholder-val="{{false}}"><button type="button" class="btn danger" onClick="{{w.tStop}}"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="1" y="1" width="6" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="6" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="1" y="5" width="6" height="1"></rect><rect x="1" y="6" width="6" height="1"></rect></svg>STOP</button></sc-if><sc-if value="{{w.tLock}}" hint-placeholder-val="{{false}}"><span class="lkt"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="2" y="0" width="4" height="1"></rect><rect x="1" y="1" width="1" height="1"></rect><rect x="6" y="1" width="1" height="1"></rect><rect x="1" y="2" width="1" height="1"></rect><rect x="6" y="2" width="1" height="1"></rect><rect x="0" y="3" width="8" height="1"></rect><rect x="0" y="4" width="3" height="1"></rect><rect x="5" y="4" width="3" height="1"></rect><rect x="0" y="5" width="3" height="1"></rect><rect x="5" y="5" width="3" height="1"></rect><rect x="0" y="6" width="8" height="1"></rect></svg>LOCKED</span></sc-if><sc-if value="{{w.tIdle}}" hint-placeholder-val="{{true}}"><span class="kbd">⏎</span><button type="button" class="btn {{w.tRunC}}" onClick="{{w.tRun}}">RUN</button></sc-if></div>
+      <p class="rtn">{{w.tNote}}</p>
+    </div></sc-if>
+  </section>
+  </main>
+  <sc-if value="{{w.m.isSending}}" hint-placeholder-val="{{false}}"><span class="pkt"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span></sc-if>
+  <sc-if value="{{w.m.toastOn}}" hint-placeholder-val="{{false}}"><div class="toast"><svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="3" y="0" width="2" height="1"></rect><rect x="3" y="1" width="2" height="1"></rect><rect x="3" y="2" width="2" height="1"></rect><rect x="3" y="3" width="2" height="1"></rect><rect x="3" y="4" width="2" height="1"></rect><rect x="3" y="6" width="2" height="1"></rect><rect x="3" y="7" width="2" height="1"></rect></svg><span>{{w.m.toast}}</span></div></sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["深色","浅色"],"default":"深色","section":"看"},"mod":{"editor":"enum","options":["CHANGES","ONE SHOT","FILES","TERM"],"default":"ONE SHOT","section":"看"},"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+renderVals() {
+    const V = function V(s, dark) {
+  const ORDER = ['home', 'typed', 'sending', 'plan', 'perm', 'edit', 'check', 'ask', 'check2', 'verify', 'done', 'confirm', 'undoing', 'undone'];
+  const ph = s.ph, at = (x) => ORDER.indexOf(ph) >= ORDER.indexOf(x);
+  const pad = (n) => String(n).padStart(2, '0');
+  const mm = (t) => pad(Math.floor(t / 60)) + ':' + pad(t % 60);
+  const hm = (t) => '14:' + pad(2 + Math.floor(t / 60));
+  const WHO = [
+    { chip: 'Muse', lbl: 'MUSE · 一个人做完', a: ['Muse', 'Muse', 'Muse', 'Muse'], flow: [['Muse', 'muse', '读代码、写规范、改、跑检查，最后自己验收']] },
+    { chip: 'Grok', lbl: 'GROK · 一个人做完', a: ['Grok', 'Grok', 'Grok', 'Grok'], flow: [['Grok', 'grok', '读代码、写规范、改、跑检查，最后自己验收']] },
+    { chip: 'Muse → Grok', lbl: 'MUSE→GROK · 先写规范再实施', a: ['Muse', 'Grok', 'Grok', 'Muse'], flow: [['Muse', 'muse', '读代码，写一份规范'], ['Grok', 'grok', '照规范改，跑检查'], ['Muse', 'muse', '验证，写总结']] },
+    { chip: 'Grok → Muse', lbl: 'GROK→MUSE · 先写规范再实施', a: ['Grok', 'Muse', 'Muse', 'Grok'], flow: [['Grok', 'grok', '读代码，写一份规范'], ['Muse', 'muse', '照规范改，跑检查'], ['Grok', 'grok', '验证，写总结']] },
+  ];
+  const ACC = [
+    ['只读', '只看不改：读代码、回答问题、写规范，不碰文件。'],
+    ['改前问我', '每改一个文件、跑一条命令前都先问你。'],
+    ['直接改', '改文件、跑命令都不问；<b>删文件、联网、改项目外的文件</b>这类高危的事，开始前一张卡一次批。'],
+  ];
+  const w = WHO[s.who], A = w.a;
+  const isHome = ['home', 'typed', 'sending'].includes(ph);
+  const running = ['plan', 'edit', 'check', 'check2', 'verify'].includes(ph);
+  const waiting = ph === 'perm' || ph === 'ask';
+  const fin = ['done', 'confirm'].includes(ph);
+  const undoing = ph === 'undoing', undone = ph === 'undone';
+  const up = s.ans === 0;
+  // 文件：改的时候一个个出现；答了「一起升」多一个 package.json
+  const ALL = [
+    ['settings/SettingsSheet.tsx', 'NEW', 'new', 74, 0], ['chat/Composer.tsx', '', 'none', 9, 21], ['App.tsx', '', 'none', 3, 18],
+    ['settings/AgentsDialog.tsx', 'DEL', 'del', 0, 93], ['settings/ApiDialog.tsx', 'DEL', 'del', 0, 58],
+  ];
+  if (up) ALL.push(['package.json', '', 'none', 1, 1]);
+  const shown = undone ? 0 : (at('check') ? ALL.length : (ph === 'edit' ? s.nf : 0));
+  const files = ALL.slice(0, Math.min(shown, ALL.length)).map((f, i, arr) => ({
+    p: f[0].split('/').pop(), tag: f[1] || '·', tc: f[2], a: f[3], d: f[4],
+    c: undoing ? 'col' : '', dl: undoing ? ((arr.length - 1 - i) * 0.09).toFixed(2) + 's' : '0s',
+  }));
+  const sumA = (n) => ALL.slice(0, n).reduce((x, f) => x + f[3], 0), sumD = (n) => ALL.slice(0, n).reduce((x, f) => x + f[4], 0);
+  const nfiles = ALL.length;
+  // 进度块：28 格
+  let fill = 0, head = -1;
+  if (ph === 'plan') { fill = 3; head = 3; }
+  if (ph === 'perm') { fill = 6; head = 6; }
+  if (ph === 'edit') { fill = 6 + Math.round(s.nf * 1.6); head = fill; }
+  if (ph === 'check') { fill = 15 + s.no * 2; head = fill; }
+  if (ph === 'ask') { fill = 19; head = 19; }
+  if (ph === 'check2') { fill = 19 + (s.no - 2) * 1; head = fill; }
+  if (ph === 'verify') { fill = 25; head = 25; }
+  if (fin || undoing) { fill = 28; head = -1; }
+  const blk = Array.from({ length: 28 }, (_, i) => {
+    if (undoing) return { c: i < fill ? 'lof' : '', d: (((27 - i) * 0.035) + 0.2).toFixed(3) + 's' };
+    if (undone) return { c: '', d: '0s' };
+    if (i < fill) return { c: 'f', d: (i * 0.07).toFixed(2) + 's' };
+    if (i === head && head < 28) return { c: waiting ? 'w' : 'h', d: '0s' };
+    return { c: '', d: '0s' };
+  });
+  // 步骤
+  const stIdx = { plan: 0, perm: 1, edit: 1, check: 2, ask: 2, check2: 2, verify: 3 }[ph];
+  const sc = [0, 1, 2, 3].map((i) => {
+    if (isHome) return 'todo';
+    if (undoing || undone) return 'ok dim';
+    if (fin) return 'ok';
+    if (i < stIdx) return 'ok';
+    if (i === stIdx) return waiting ? 'wq' : 'run';
+    return 'todo';
+  });
+  const T = s.ts || [];
+  const stm = [0, 1, 2, 3].map((i) => (sc[i].startsWith('ok') && T[i] != null ? mm(T[i]) : (sc[i] === 'run' || sc[i] === 'wq' ? mm(s.t) : '')));
+  const sn = [A[0] + ' 写规范', A[1] + ' 改 5 个文件', A[2] + ' 跑 pnpm check', A[3] + ' 验证并总结'];
+  const sd = [
+    ph === 'plan' ? '在读代码，看哪些地方要动…' : (ph === 'perm' ? '读了 12 个文件，列出 6 条要改的' : ''),
+    ph === 'perm' ? '等你批 2 件高危的事再动手' : (ph === 'edit' ? '改到第 ' + Math.max(1, s.nf) + ' 个，右边一个个出现' : ''),
+    '',
+    ph === 'verify' ? '跑 pnpm test，读一遍改动，写总结' : (fin ? '' : ''),
+  ];
+  const OUT1 = [['&gt; pnpm check', ''], ['tailwind：配置写的 4.1，装的是 4.0', 'w']];
+  const OUT2 = up ? [['&gt; pnpm add -D tailwindcss@4.1', ''], ['&gt; pnpm check', ''], ['0 个错误', 'ok']] : [['→ 配置改回 4.0 的写法', ''], ['&gt; pnpm check', ''], ['0 个错误', 'ok']];
+  let out = [];
+  if (ph === 'check') out = OUT1.slice(0, s.no);
+  if (ph === 'ask') out = OUT1;
+  if (ph === 'check2') out = OUT1.concat(OUT2.slice(0, s.no - 2));
+  out = out.map(([t, c]) => ({ t: t.replace('&gt;', '>'), c }));
+  // 记录
+  const log = [];
+  if (at('plan')) log.push({ t: '14:02', b: '存了任务前快照', a: '撤销就回到这一刻' });
+  if (at('edit') && s.permOk) log.push({ t: hm(T[0] || 4), b: '批了 ' + s.permN + ' 件事', a: s.permTxt });
+  if (at('check2')) log.push({ t: hm(T[2] || 14), b: A[2] + ' 问：Tailwind 升不升到 4.1？', a: '你答：' + (up ? '一起升' : '先不升') });
+  if (at('done') && !undoing && !undone) log.push({ t: hm(T[3] || 20), b: '做完了', a: nfiles + ' 个文件 · 检查通过 · 默认留着' });
+  if (at('done') && (undoing || undone)) log.push({ t: hm(T[3] || 20), b: '做完了', a: nfiles + ' 个文件 · 检查通过' });
+  if (undone) log.push({ t: hm((T[3] || 20) + 30), b: '撤销了', a: '回到 14:02 开始前的样子' });
+  log.reverse();
+  const rl = running ? 'RUNNING' : waiting ? 'WAITING' : fin ? 'DONE' : undoing ? 'UNDO' : 'UNDONE';
+  const permN = (s.perm || []).filter(Boolean).length;
+  return {
+    root: 'pk pr dots ' + (dark ? 'dk' : 'lt') + ' ph-' + ph + (s.still ? ' still' : ''),
+    isHome, isTask: !isHome, isSending: ph === 'sending',
+    typedOn: ph !== 'home', typedOff: ph === 'home',
+    w0: s.who === 0 ? 'on' : '', w1: s.who === 1 ? 'on' : '', w2: s.who === 2 ? 'on' : '', w3: s.who === 3 ? 'on' : '',
+    a0: s.acc === 0 ? 'on' : '', a1: s.acc === 1 ? 'on' : '', a2: s.acc === 2 ? 'on' : '',
+    accName: ACC[s.acc][0], accD: ACC[s.acc][1].replace(/<\/?b>/g, ''),
+    whoLbl: w.lbl, whoChip: w.chip, whoUp: w.chip.replace(/ /g, '').toUpperCase(), flC: w.flow.length === 1 ? 'one' : '',
+    whoFlow: w.flow.map(([a, c, t], i) => ({ a, c, t, k: String(i + 1) })),
+    sendC: ph === 'home' ? 'off' : '',
+    newOn: (ph === 'home' || ph === 'typed') ? 'on' : '',
+    hasNew: at('plan'), ntask: at('plan') ? 13 : 12,
+    curC: 'st-' + (running ? 'run' : waiting ? 'wait' : (fin || undoing) ? 'ok' : 'undo') + (ph === 'plan' && !s.still ? ' fx' : ''),
+    curMeta: running ? '在跑 · ' + mm(s.t) : ph === 'perm' ? '等你批权限' : ph === 'ask' ? '等你回答' : (fin || undoing) ? '做完 · 刚才 · ' + nfiles + ' 个文件' : '已撤销 · 回到 14:02',
+    log, logEmpty: log.length === 0,
+    taskC: running ? 'run' : waiting ? 'wait' : fin ? 'done' : 'off', rl, clock: mm(s.t),
+    blk, bm: isHome ? '' : (fin ? '4 步都做完了' : undoing || undone ? '撤销了，改动都退回去' : waiting ? '第 ' + (stIdx + 1) + ' 步停下来等你' : '第 ' + (stIdx + 1) + ' 步，共 4 步'),
+    pct: undone ? '0%' : Math.round(fill / 28 * 100) + '%',
+    sc0: sc[0], sc1: sc[1], sc2: sc[2], sc3: sc[3], sn0: sn[0], sn1: sn[1], sn2: sn[2], sn3: sn[3],
+    sd0: sd[0], sd1: sd[1], sd2: sd[2], sd3: sd[3], stm0: stm[0], stm1: stm[1], stm2: stm[2], stm3: stm[3],
+    showOut: out.length > 0, out,
+    showSum: fin, showBack: undone, sumX: up ? 'Tailwind 一起升到了 4.1。' : 'Tailwind 留在 4.0。', nfiles, adds: sumA(nfiles), dels: sumD(nfiles),
+    slotRun: running, slotPerm: ph === 'perm', slotAsk: ph === 'ask', slotDone: fin || undoing || undone,
+    cardFx: s.still ? '' : 'fx', doer: A[2],
+    np: permN, pc0: s.perm && s.perm[0] ? 'on' : '', pc1: s.perm && s.perm[1] ? 'on' : '', pc2: s.perm && s.perm[2] ? 'on' : '',
+    o0: s.q === 0 ? 'on' : '', o1: s.q === 1 ? 'on' : '', o2: s.q === 2 ? 'on' : '',
+    snapC: (at('plan') ? (ph === 'plan' && !s.still ? 'fx' : '') : 'no'),
+    snapT: at('plan') ? (undone ? '回到了任务前快照 · 14:02' : '任务前快照 · 14:02 · 存好了') : '发任务时先存一份快照',
+    rolling: undoing, notRolling: !undoing, rollL: Array.from({ length: nfiles + 1 }, (_, i) => ({ n: String(nfiles - i) })),
+    nshow: undone ? 0 : shown, addsShow: undone ? 0 : sumA(shown), delsShow: undone ? 0 : sumD(shown),
+    files, showEmpty: shown === 0 && !undoing,
+    emptyT: isHome ? '还没开始。改的文件会一个个出现在这里。' : undone ? '没有改动了：' + nfiles + ' 个文件都回到了 14:02 的样子。' : '规范写好、权限批了，' + A[1] + ' 才开始改。',
+    showDiff: !undone && !undoing && shown >= 2, showUndo: ph === 'done', showConfirm: ph === 'confirm', showBack2: undone,
+    toastOn: !!s.toast && !s.still, toast: s.toast || '',
+  };
+};
+    const M2 = function M2(m, s) {
+  const T = [['PLAN', '只读：读代码、写计划，不改文件、不跑命令。要动手，换 EDIT 再发。'], ['EDIT', '改文件、跑命令都不问；删文件、联网装依赖、改项目外的文件，开始前一张卡一次批。'], ['AUTO', '装依赖、联网也不问；删文件、改项目外的文件（推送也算）照样一张卡批。']];
+  const ti = s.tier == null ? 1 : s.tier;
+  m.a0 = ti === 0 ? 'on' : ''; m.a1 = ti === 1 ? 'on' : ''; m.a2 = ti === 2 ? 'on' : '';
+  m.accName = T[ti][0]; m.accD = T[ti][1];
+  if (s.focus && s.focus !== 'task') { m.sendC = 'off'; m.root += ' foc-side'; }
+  if (s.after && s.ph === 'confirm') m.showDiff = false; // 确认要多一句话，Diff 先收起
+  return m;
+};
+    const R = function R(s, m, D) {
+  const ph = s.ph;
+  const busy = ['plan', 'perm', 'edit', 'check', 'ask', 'check2', 'verify'].includes(ph);
+  const waiting = ph === 'perm' || ph === 'ask';
+  // 模型在跑任务时终端锁着（R11）：从发出到做完，等你批、等你答、撤销的时候都算
+  const lock = busy || ph === 'sending' || ph === 'undoing';
+  const tab = s.tab || 0, foc = s.focus || 'task';
+  const th = s.th || [], tl = s.tl || [], att = s.att || [false, false, false];
+  const last = th[th.length - 1];
+  const v = {};
+  for (let i = 0; i < 4; i++) v['tb' + i] = tab === i ? 'on' : '';
+  v.isC = tab === 0; v.isO = tab === 1; v.isF = tab === 2; v.isT = tab === 3;
+  v.gx = s.wide ? 'wx' : '';
+  // 页签上的提示（R2）
+  v.bd0 = String(m.nshow); v.bd0C = m.nshow > 0 ? '' : 'hide';
+  v.bt1C = last && last.k < 3 && tab !== 1 ? '' : 'hide';
+  v.bd1C = s.unread && tab !== 1 ? '' : 'hide';
+  v.bt3C = s.trun && tab !== 3 ? '' : 'hide';
+  v.bd3C = s.tun && tab !== 3 ? s.tun : 'hide';
+  v.lk3C = lock ? '' : 'hide';
+  // 展开时任务停下来等你（R3）
+  v.wbar = !!s.wide && waiting;
+  v.wbarT = ph === 'perm' ? '任务 13 停下来等你：开始改之前，一次批这几件事' : '任务 13 停下来问你：Tailwind 要不要一起升到 4.1？';
+  // 撤销确认：做完以后你在终端改的不动（R12）
+  v.cdT = m.nfiles + ' 个文件回到 14:02 开始前的样子，删掉的 2 个放回来。' + (s.after ? '做完以后你在终端改的 README.md 不动。' : '') + '你的 Git 不动。';
+  // ONE SHOT（R4、R5、K10）
+  const base = (p) => p.split('/').pop();
+  v.hasKey = !s.nokey; v.noKey = !!s.nokey;
+  const rows = [];
+  th.slice(-1).forEach((t) => {
+    rows.push({ c: 'q', who: 'YOU', meta: '刚才', mC: '', rd: '', rdL: '', rdC: 'hide', t: t.q, at: t.at ? '带上：' + t.at : '', atC: t.at ? '' : 'hide', code: '', codeC: 'hide', t2: '', t2C: 'hide' });
+    if (t.k >= 1) rows.push({ c: 'a ' + (t.dot || 'api'), who: t.who, meta: t.k >= 3 ? t.cost : '在写…', mC: t.k >= 3 && t.cost.charAt(0) === '$' ? '' : 'tx', rd: t.rd.map(base).join(' · '), rdL: '读了 ' + t.rd.length + ' 个文件', rdC: t.rd.length ? '' : 'hide', t: t.t1, at: '', atC: 'hide', code: t.code, codeC: t.k >= 2 && t.code ? '' : 'hide', t2: t.t2, t2C: t.k >= 3 && t.t2 ? '' : 'hide' });
+  });
+  v.osRows = rows; v.osEmpty = rows.length === 0 && !s.menu; // 菜单开着时，空的那段说明先收起
+  v.osThink = !!last && last.k === 0;
+  v.osThinkT = last ? (last.rd.length ? last.whoN + ' 在读 ' + base(last.rd[0]) + '…' : last.whoN + ' 在想…') : '';
+  v.osActs = !!last && last.k >= 3;
+  const marks = {};
+  (m.files || []).forEach((f) => { marks[f.p] = f; });
+  let sel = s.fsel == null ? 2 : s.fsel;
+  if (D.tree[sel].only && !marks[D.tree[sel].n]) sel = 2;
+  v.at0 = att[0] ? 'on' : ''; v.at1 = att[1] ? 'on' : ''; v.at2 = att[2] ? 'on' : (tl.length ? '' : 'no');
+  v.atFile = D.tree[sel].n;
+  const typed = s.od != null && s.od >= 0;
+  v.odT = typed ? D.qa[s.od].q : '问一句…（点这里）'; v.odC = typed ? 'tx' : '';
+  v.ocC = foc === 'os' && !s.menu ? '' : 'off';
+  v.oSendC = typed && foc === 'os' ? 'pri' : 'pri off';
+  const mi = s.model || 0, md = D.models[mi];
+  v.modelName = md[0]; v.modelDot = md[3];
+  v.menu = !!s.menu; v.mnC = s.menu ? 'on' : '';
+  for (let i = 0; i < D.models.length; i++) v['mi' + i] = mi === i ? 'on' : '';
+  // FILES（R6、R7）
+  D.tree.forEach((f, i) => {
+    const mk = f.k === 'file' ? marks[f.n] : null;
+    let c = f.k;
+    if (f.only && !mk) c += ' gone';
+    if (mk && mk.tc === 'del') c += ' del';
+    if (i === sel) c += ' on';
+    v['tc' + i] = c;
+    const tg = mk && (mk.tc === 'new' || mk.tc === 'del');
+    v['tg' + i] = tg ? mk.tag : ''; v['tt' + i] = tg ? mk.tc : 'hide';
+    v['ta' + i] = mk && mk.tc !== 'del' && mk.a ? '+' + mk.a : '';
+    v['td' + i] = mk && mk.tc !== 'del' && mk.d ? '−' + mk.d : '';
+  });
+  const f = D.tree[sel], pv = D.pv[f.n], mk = marks[f.n];
+  const del = !!mk && mk.tc === 'del', nw = !!mk && mk.tc === 'new', mod = !!mk && !del && !nw;
+  v.pvPath = f.path;
+  v.pvMeta = nw ? 'NEW +' + mk.a : del ? 'DEL' : mod ? '+' + mk.a + ' −' + mk.d : f.size;
+  v.pvLines = (mod && pv.mod ? pv.mod : pv.old).map((l) => ({ n: String(l[0]), t: l[1], mc: mod && l[2] === 'a' ? 'a' : '', tc: l[1].trim().indexOf('//') === 0 ? 'cm' : '' }));
+  v.pvNote = del ? '这个任务删了它。预览的是删之前的样子；撤销整个任务能放回来。' : nw ? '新文件，整份都是这个任务写的。' : mod ? '改过的行左边一条绿；完整的 Diff 在 CHANGES。' : '';
+  v.pvNoteC = v.pvNote ? '' : 'hide';
+  v.pvC = del ? 'dim' : '';
+  v.pvDiffC = mk ? '' : 'hide';
+  // TERM（R8、R9、R11）
+  const lines = [];
+  tl.forEach((r) => {
+    lines.push({ c: 'cmd', p: 'weather-cli $', t: D.cmds[r.i].c });
+    r.out.slice(0, r.n).forEach((o) => lines.push({ c: o[1] || '', p: '', t: o[0] }));
+    if (r.st === 'stop') lines.push({ c: 'dim', p: '', t: '^C' });
+  });
+  v.tLines = lines.slice(-22); v.tEmpty = lines.length === 0;
+  const lr = tl[tl.length - 1];
+  v.tSt = !!lr && lr.st !== 'run';
+  v.tStC = lr && lr.exit === 0 ? 'ok' : 'bad';
+  v.tStT = lr ? 'EXIT ' + lr.exit + ' · ' + lr.sec : '';
+  v.tStCmd = lr ? D.cmds[lr.i].c : '';
+  v.tStAsk = !!lr && lr.st !== 'run' && lr.exit !== 0;
+  v.tRunning = !!s.trun; v.tLock = lock && !s.trun; v.tIdle = !s.trun && !lock;
+  const tt = !lock && s.td != null && s.td >= 0;
+  v.tDraft = lock ? '任务在跑，终端锁着' : tt ? D.cmds[s.td].c : (s.trun ? '' : '点这里打一条命令');
+  v.tDraftC = tt ? 'tx' : '';
+  v.tcC = foc === 'term' && !s.trun && !lock ? '' : 'off';
+  v.tiC = lock ? 'dim lock' : s.trun ? 'dim' : '';
+  v.tRunC = tt && foc === 'term' ? 'pri' : 'off';
+  v.tNote = lock ? (s.trun ? '发任务前就在跑的命令接着跑，STOP 一直能点；跑完以后输入行锁着，任务做完才解锁。' : '模型在跑任务，终端先锁着：做完、STOP 或撤销完就解锁。输出照样能看、能带去 ONE SHOT。') : '在 ~/code/weather-cli 里跑；Agent 跑的命令在中间的步骤里看。';
+  return v;
+};
+    const D = {"tree":[{"k":"dir","n":"src","path":"src/","d":0},{"k":"dir","n":"chat","path":"src/chat/","d":1},{"k":"file","n":"Composer.tsx","path":"src/chat/Composer.tsx","d":2,"size":"2.1 KB"},{"k":"dir","n":"settings","path":"src/settings/","d":1},{"k":"file","n":"SettingsSheet.tsx","path":"src/settings/SettingsSheet.tsx","d":2,"size":"2.6 KB","only":true},{"k":"file","n":"AgentsDialog.tsx","path":"src/settings/AgentsDialog.tsx","d":2,"size":"3.4 KB"},{"k":"file","n":"ApiDialog.tsx","path":"src/settings/ApiDialog.tsx","d":2,"size":"2.2 KB"},{"k":"file","n":"App.tsx","path":"src/App.tsx","d":1,"size":"1.6 KB"},{"k":"file","n":"units.ts","path":"src/units.ts","d":1,"size":"0.4 KB"},{"k":"dir","n":"tests","path":"tests/","d":0,"closed":true},{"k":"file","n":"package.json","path":"package.json","d":0,"size":"0.9 KB"},{"k":"file","n":"README.md","path":"README.md","d":0,"size":"1.2 KB"},{"k":"file","n":"tailwind.config.ts","path":"tailwind.config.ts","d":0,"size":"0.3 KB"}],"pv":{"Composer.tsx":{"old":[[40,"  const send = useSend()"],[41,""],[42,"  const [agentsOpen, setAgentsOpen] = useState(false)"],[43,"  const [apiOpen, setApiOpen] = useState(false)"],[44,""],[45,"  return ("],[46,"    <div className=\"composer\">"],[47,"      <Input value={text} onChange={setText} />"],[48,"      <Send onClick={send} />"],[49,"    </div>"]],"mod":[[40,"  const send = useSend()"],[41,""],[42,"  const [settingsOpen, setSettingsOpen] = useState(false)","a"],[43,""],[44,"  return ("],[45,"    <div className=\"composer\">"],[46,"      <Input value={text} onChange={setText} />"],[47,"      <Gear onClick={() => setSettingsOpen(true)} />","a"],[48,"      <Send onClick={send} />"],[49,"    </div>"]],"about":"输入框和「谁来干」的那一块。这个任务把打开两个旧对话框的状态，换成了打开设置面板。"},"SettingsSheet.tsx":{"old":[[1,"// 一个设置面板：供应商、Key、花费上限、权限、CLI 检测"],[2,"import { Sheet } from '../ui/Sheet'"],[3,""],[4,"export function SettingsSheet({ open }) {"],[5,"  return ("],[6,"    <Sheet open={open} title=\"设置\">"],[7,"      <Providers />"],[8,"      <SpendLimit />"],[9,"      <Access />"],[10,"      <CliCheck />"]],"about":"这个任务新写的设置面板：供应商、Key、花费上限、权限和 CLI 检测放在一起，替掉原来的两个对话框。"},"AgentsDialog.tsx":{"old":[[1,"// 旧的 Agent 配置对话框"],[2,"import { Dialog } from '../ui/Dialog'"],[3,""],[4,"export function AgentsDialog({ open }) {"],[5,"  return ("],[6,"    <Dialog open={open} title=\"Agent 配置\">"],[7,"      <WorkerPicker />"],[8,"      <SupervisorPicker />"],[9,"    </Dialog>"],[10,"  )"]],"about":"旧的 Agent 配置对话框。这个任务把它删了，里面的东西搬进了 SettingsSheet。"},"ApiDialog.tsx":{"old":[[1,"// 旧的 API 工作台"],[2,"import { Dialog } from '../ui/Dialog'"],[3,""],[4,"export function ApiDialog({ open }) {"],[5,"  return ("],[6,"    <Dialog open={open} title=\"API 工作台\">"],[7,"      <KeyList />"],[8,"      <BudgetFields />"],[9,"    </Dialog>"],[10,"  )"]],"about":"旧的 API 工作台对话框。这个任务把它删了，Key 和花费上限搬进了 SettingsSheet。"},"App.tsx":{"old":[[1,"import { Composer } from './chat/Composer'"],[2,"import { AgentsDialog } from './settings/AgentsDialog'"],[3,"import { ApiDialog } from './settings/ApiDialog'"],[4,"import { Layout } from './ui/Layout'"],[5,""],[6,"export function App() {"],[7,"  const [dlg, setDlg] = useState(null)"],[8,"  return ("],[9,"    <Layout onOpen={setDlg}>"],[10,"      <Composer />"]],"mod":[[1,"import { Composer } from './chat/Composer'"],[2,"import { Layout } from './ui/Layout'"],[3,""],[4,"export function App() {"],[5,"  return ("],[6,"    <Layout>","a"],[7,"      <Composer />"],[8,"    </Layout>"],[9,"  )"],[10,"}"]],"about":"应用的外壳：摆好 Layout 和 Composer。这个任务去掉了打开两个旧对话框的状态。"},"units.ts":{"old":[[1,"// 温度和风速的格式"],[2,"export function formatTemp(n: number) {"],[3,"  return `${n}°C`"],[4,"}"],[5,""],[6,"export function formatWind(kmh: number) {"],[7,"  return `${kmh} km/h`"],[8,"}"]],"about":"温度和风速的格式。formatTemp 现在写成 21°C，数字和单位中间没有空格。"},"package.json":{"old":[[1,"{"],[2,"  \"name\": \"weather-cli\","],[3,"  \"version\": \"0.4.0\","],[4,"  \"scripts\": {"],[5,"    \"test\": \"vitest run\","],[6,"    \"format\": \"prettier --write .\""],[7,"  },"],[8,"  \"devDependencies\": {"],[9,"    \"tailwindcss\": \"4.0.2\","],[10,"    \"vitest\": \"2.1.4\""]],"mod":[[1,"{"],[2,"  \"name\": \"weather-cli\","],[3,"  \"version\": \"0.4.0\","],[4,"  \"scripts\": {"],[5,"    \"test\": \"vitest run\","],[6,"    \"format\": \"prettier --write .\""],[7,"  },"],[8,"  \"devDependencies\": {"],[9,"    \"tailwindcss\": \"4.1.0\",","a"],[10,"    \"vitest\": \"2.1.4\""]],"about":"依赖和脚本：test 跑 vitest，format 跑 prettier。"},"README.md":{"old":[[1,"# weather-cli"],[2,""],[3,"在终端里看天气：weather-cli 上海"],[4,""],[5,"## 安装"],[6,""],[7,"pnpm install"],[8,"pnpm link --global"],[9,""],[10,"## 用法"]],"mod":[[1,"# weather-cli"],[2,""],[3,"在终端里看天气：weather-cli 上海"],[4,""],[5,"## 安装"],[6,""],[7,"```sh","a"],[8,"pnpm install"],[9,"pnpm link --global"],[10,"```","a"]],"about":"项目说明：怎么装、怎么用。"},"tailwind.config.ts":{"old":[[1,"import type { Config } from 'tailwindcss'"],[2,""],[3,"export default {"],[4,"  content: ['./src/**/*.tsx'],"],[5,"  theme: {"],[6,"    extend: { colors: { cyan: '#00E5FF' } },"],[7,"  },"],[8,"} satisfies Config"]],"about":"Tailwind 的配置。升到 4.1 的话，theme 这一段要搬进 CSS。"}},"qa":[{"q":"Tailwind 4.1 和 4.0 的配置写法差在哪？","rd":["tailwind.config.ts","package.json"],"t1":"4.1 把主题挪进了 CSS：颜色、字号用 @theme 写在样式表里，tailwind.config 只剩插件和扫描路径。","code":"@theme { --color-cyan: #00E5FF; }","t2":"要是一起升，tailwind.config.ts 里 theme 那段要搬进 index.css；先不升就不用动。"},{"q":"这个报错是什么意思？","rd":["src/units.ts","tests/units.test.ts"],"t1":"units.test.ts 期望 21 °C（数字和单位中间有空格），formatTemp 返回的是 21°C。","code":"return `${n} °C`","t2":"这条和正在跑的任务无关，之前就是这样。要修，可以写成下一个任务。"},{"q":"settingsOpen 在哪里打开？","rd":["src/chat/Composer.tsx","src/settings/SettingsSheet.tsx"],"t1":"第 42 行新加了 settingsOpen；齿轮按钮的 onClick 把它设成 true，下面的 SettingsSheet 跟着打开。","code":"onClick={() => setSettingsOpen(true)}","t2":"原来的 agentsOpen、apiOpen 都删了。"},{"q":"现在做到哪了？","rd":[],"t1":"","code":"","t2":""},{"q":"这个文件是做什么的？","rd":[],"t1":"","code":"","t2":""}],"models":[["MUSE","Muse","cli","muse",null],["GROK","Grok","cli","grok",null],["DEEPSEEK FLASH","DeepSeek Flash","api","api",["$0.003","$0.002","$0.004","$0.001","$0.002"]],["CLAUDE OPUS 5.5","Claude Opus 5.5","api","api",["$0.021","$0.018","$0.030","$0.009","$0.015"]]],"cmds":[{"c":"pnpm test","exit":1,"sec":"2.4s","out":[["> weather-cli@0.4.0 test","dim"],["> vitest run","dim"],[" PASS  tests/forecast.test.ts (12)","ok"],[" PASS  tests/cli.test.ts (29)","ok"],[" FAIL  tests/units.test.ts (1)","bad"],["   expected '21°C' to be '21 °C'","bad"],[" Tests  1 failed | 41 passed","bad"]]},{"c":"pnpm format","exit":0,"sec":"0.6s","out":[["> prettier --write .","dim"],["README.md 14ms",""],["src/units.ts 3ms (unchanged)","dim"]]},{"c":"git diff --stat","exit":0,"sec":"0.1s","out":[]}],"paths":{"Composer.tsx":"src/chat/Composer.tsx","SettingsSheet.tsx":"src/settings/SettingsSheet.tsx","AgentsDialog.tsx":"src/settings/AgentsDialog.tsx","ApiDialog.tsx":"src/settings/ApiDialog.tsx","App.tsx":"src/App.tsx","units.ts":"src/units.ts","package.json":"package.json","README.md":"README.md","tailwind.config.ts":"tailwind.config.ts"}};
+    const dark = (this.props.theme ?? '深色') === '深色';
+    const noop = () => {};
+    const HM = ["type","send","pw0","pw1","pw2","pw3","pa0","pa1","pa2","newTask","pp0","pp1","pp2","allow","deny","scope","po0","po1","po2","submit","later","busy","stop","again","undo","cancelUndo","doUndo","reset","api","gear"], HR = ["go0","go1","go2","go3","wideT","collapse","quota","reset","pat0","pat1","pat2","oType","oSend","copy","toTask","model","oClear","addKey","pvAsk","pvDiff","pvOpen","tType","tRun","tStop","tAsk","tClear","pm0","pm1","pm2","pm3","fo0","fo1","fo2","fo3","fo4","fo5","fo6","fo7","fo8","fo9","fo10","fo11","fo12"];
+    const F = [["w",{"tab":1,"wide":true,"focus":"task","att":[false,false,false],"od":-1,"th":[{"q":"Tailwind 4.1 和 4.0 的配置写法差在哪？","at":"","who":"MUSE","whoN":"Muse","dot":"muse","cost":"订阅额度","rd":["tailwind.config.ts","package.json"],"t1":"4.1 把主题挪进了 CSS：颜色、字号用 @theme 写在样式表里，tailwind.config 只剩插件和扫描路径。","code":"@theme { --color-cyan: #00E5FF; }","t2":"要是一起升，tailwind.config.ts 里 theme 那段要搬进 index.css；先不升就不用动。","k":3}],"unread":false,"model":0,"menu":false,"fsel":2,"tl":[{"i":0,"out":[["> weather-cli@0.4.0 test","dim"],["> vitest run","dim"],[" PASS  tests/forecast.test.ts (12)","ok"],[" PASS  tests/cli.test.ts (29)","ok"],[" FAIL  tests/units.test.ts (1)","bad"],["   expected '21°C' to be '21 °C'","bad"],[" Tests  1 failed | 41 passed","bad"]],"n":7,"st":"end","exit":1,"sec":"2.4s"}],"td":-1,"tnext":0,"trun":false,"tun":"","after":false,"tier":1,"still":true,"perm":[true,true,false],"ts":[4,10],"ans":-1,"permN":2,"permTxt":"删 2 个旧文件 · 联网装依赖","ph":"ask","who":2,"acc":2,"t":15,"nf":5,"no":2,"q":0,"permOk":true}]];
+    const out = {};
+    const pick = this.props.mod != null ? ["CHANGES","ONE SHOT","FILES","TERM"].indexOf(this.props.mod) : -1;
+    F.forEach(([k, s0]) => {
+      const s = Object.assign({}, s0);
+      if (pick >= 0) s.tab = pick;
+      const m = M2(V(s, dark), s);
+      HM.forEach((x) => { m[x] = noop; });
+      const r = R(s, m, D);
+      HR.forEach((x) => { r[x] = noop; });
+      r.m = m;
+      out[k] = r;
+    });
+    return out;
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>方向 C · 点阵终端</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Doto:wght@700;900&amp;display=swap">
+<style>
+body{margin:0}
+.pk{position:relative;width:1280px;height:800px;overflow:hidden;box-sizing:border-box;padding:28px 36px 36px;font-family:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;font-size:14px;line-height:1.55;color:var(--tx);background:var(--bg);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+.pk *{box-sizing:border-box}
+.pk p,.pk h2,.pk ul,.pk ol{margin:0;padding:0}
+.pk ul,.pk ol{list-style:none}
+.pk button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+.pk i,.pk em{font-style:normal}
+.pk .btn{padding:0 14px}
+.hd{position:relative;z-index:1;height:44px;display:flex;align-items:center;gap:18px;margin-bottom:20px}
+.brand{display:flex;align-items:center;gap:10px;white-space:nowrap}
+.dirname{font-size:13px;color:var(--tx2);white-space:nowrap}
+.kw{font-size:12.5px;color:var(--tx3);white-space:nowrap}
+.hd .seg{margin-left:auto}
+.grid{position:relative;z-index:1;display:grid;grid-template-columns:300px minmax(0,1fr) 340px;gap:20px;height:672px}
+.col{display:flex;flex-direction:column;gap:20px;min-height:0;min-width:0}
+.mod{position:relative;min-width:0}
+.proj{flex:none}.ctl{flex:1 1 0}.task{flex:1 1 0;min-height:0}.comp{flex:none}.chg{flex:1 1 0}.ask{flex:none}
+.prow{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:10px;align-items:start}
+.prow b{display:block;font-weight:600;white-space:nowrap}
+.prow span{display:block;font-size:12.5px;color:var(--tx2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prow em{font-style:normal;font-size:12px;color:var(--tx3)}
+.ttl{font-size:17px;font-weight:600;line-height:1.35}
+.meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:6px;font-size:12.5px;color:var(--tx2)}
+.who{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.who .arr{font-style:normal;color:var(--tx3)}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;flex:none}
+.dot.muse{background:var(--muse)}.dot.grok{background:var(--grok)}.dot.api{background:var(--api)}
+.sl{display:flex;align-items:baseline;gap:10px;min-width:0}
+.sl b{font-weight:500;flex:1 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tm{flex:none;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:12px;color:var(--tx3)}
+.sx{font-size:12.5px;color:var(--tx2);margin-top:1px}
+.out{margin-top:8px;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:12px;line-height:1.75;white-space:nowrap;overflow:hidden}
+.out div{overflow:hidden;text-overflow:ellipsis}
+.cur{display:inline-block;width:7px;height:13px;background:var(--cy);vertical-align:-2px;margin-left:4px;animation:blink 1.05s steps(1) infinite}
+.files li{display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;gap:8px;align-items:center}
+.fp{font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fa{font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:12px;color:var(--ok);min-width:28px;text-align:right}
+.fd{font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:12px;color:var(--bad);min-width:32px;text-align:right}
+.tag{font-style:normal;font-size:11px;line-height:18px;padding:0 6px;border-radius:4px;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:34px;padding:0 14px;font-size:13px;font-weight:500;white-space:nowrap}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:5px;height:28px;padding:0 10px;font-size:12.5px;white-space:nowrap}
+.tg{display:flex;align-items:center;gap:10px;font-size:13px}
+.tgt{position:relative;width:34px;height:20px;flex:none}
+.tgt i{position:absolute;top:3px;left:17px;width:14px;height:14px}
+.seg,.seg3{display:inline-flex}
+.seg3{width:100%}
+.seg3 button{flex:1 1 0}
+.field{display:flex;align-items:center;height:38px;padding:0 12px;font-size:13px;color:var(--tx3)}
+.caret{display:inline-block;width:1.5px;height:16px;background:var(--cy);margin-left:2px;animation:blink 1.05s steps(1) infinite}
+.cin{font-size:13.5px;color:var(--tx3)}
+.crow{display:flex;align-items:center;gap:8px}
+.crow .sp{flex:1}
+.kbd{font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:11.5px;color:var(--tx3)}
+.ctl .stack{display:flex;flex-direction:column;gap:14px}
+.ctl .lbl{font-size:12px;color:var(--tx3);margin-bottom:6px}
+.note{font-size:12px;color:var(--tx3)}
+.diff{margin-top:12px;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:11.5px;line-height:19px;overflow:hidden}
+.diff .dh{display:flex;justify-content:space-between;color:var(--tx3);font-size:11px;padding:0 0 4px}
+.diff .ln{display:grid;grid-template-columns:28px 14px minmax(0,1fr);white-space:nowrap}
+.diff .ln span{overflow:hidden;text-overflow:ellipsis}
+.diff .n{color:var(--tx3);text-align:right;padding-right:8px}
+.diff .ln.a{background:var(--da);}.diff .ln.d{background:var(--dd)}
+.diff .ln.a .m{color:var(--ok)}.diff .ln.d .m{color:var(--bad)}
+.budget .bt{display:flex;justify-content:space-between;align-items:baseline;font-size:12px;color:var(--tx3);margin-bottom:6px}
+.budget .bt b{font-family:"IBM Plex Mono","PingFang SC",monospace;font-weight:500;font-size:12.5px;color:var(--tx)}
+.bar{position:relative;height:8px;overflow:hidden}
+.bar i{position:absolute;left:0;top:0;bottom:0;width:16%}
+.q{font-size:15px;font-weight:600;line-height:1.4}
+.qd{font-size:12.5px;margin-top:4px}
+.acts{display:flex;gap:8px;margin-top:14px}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.pk *,.pk *:before,.pk *:after{animation:none!important;transition:none!important}}
+
+.C.dk{--bg:#020303;--pane:#060809;--line:#161B1D;--line2:#2B3235;--tx:#E7EFF0;--tx2:#82908F;--tx3:#505C5E;--cy:#00E5FF;--cy-tx:#00E5FF;--on-cy:#001316;--ok:#A8FF4F;--bad:#FF4F6D;--warn:#FFC24D;--muse:#C5A9FF;--grok:#FFC24D;--api:#6CC5FF;--scan:rgba(255,255,255,.018);--tglow:0 0 16px rgba(0,229,255,.55),0 0 2px rgba(0,229,255,.9);--bglow:0 0 8px rgba(0,229,255,.6);--blk-ln:transparent;--da:transparent;--dd:transparent;color-scheme:dark}
+.C.lt{--bg:#EBEEED;--pane:#F7F9F8;--line:#D1D7D5;--line2:#A9B3B0;--tx:#040606;--tx2:#495453;--tx3:#7A8584;--cy:#00E5FF;--cy-tx:#040606;--on-cy:#001316;--ok:#2B8C10;--bad:#D42B4A;--warn:#A06400;--muse:#6E4EE0;--grok:#A06400;--api:#2266C2;--scan:rgba(0,0,0,.014);--tglow:none;--bglow:none;--blk-ln:#040606;--da:transparent;--dd:transparent;color-scheme:light}
+
+.C:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:repeating-linear-gradient(0deg,var(--scan) 0 1px,transparent 1px 3px)}
+.C .brand b{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:28px;letter-spacing:.08em;line-height:1}
+.C .brand .mk{display:inline-block;width:12px;height:22px;background:var(--cy);box-shadow:var(--bglow);animation:blink 1.05s steps(1) infinite}
+.C .dirname{font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:12px;padding-left:14px;border-left:1px solid var(--line2)}
+.C .kw{font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:11.5px}
+.C .seg{border:1px solid var(--line2);padding:3px;gap:3px}
+.C .seg button{height:28px;padding:0 12px;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:12px;color:var(--tx2);display:flex;align-items:center;gap:6px}
+.C .seg button i{display:none}
+.C .seg button.on{background:var(--cy);color:var(--on-cy);font-weight:600}
+.C .mod{background:var(--pane);border:1px solid var(--line);border-radius:2px;padding:14px 18px 16px}
+.C .tk{position:absolute;width:10px;height:10px;border:0 solid var(--line2)}
+.C .tk.tl{left:-1px;top:-1px;border-left-width:2px;border-top-width:2px}
+.C .tk.tr{right:-1px;top:-1px;border-right-width:2px;border-top-width:2px}
+.C .tk.bl{left:-1px;bottom:-1px;border-left-width:2px;border-bottom-width:2px}
+.C .tk.br{right:-1px;bottom:-1px;border-right-width:2px;border-bottom-width:2px}
+.C .task .tk{border-color:var(--cy)}
+.C .ask .tk{border-color:var(--warn)}
+.C .mlabel{display:flex;justify-content:space-between;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:11px;letter-spacing:.06em;color:var(--tx3);margin-bottom:12px;white-space:nowrap}
+.C .mlabel .l:before{content:"[ "}.C .mlabel .l:after{content:" ]"}
+.C .plist{display:flex;flex-direction:column}
+.C .prow{padding:9px 0;border-top:1px dotted var(--line2);grid-template-columns:14px minmax(0,1fr) auto}
+.C .prow:first-child{border-top:0;padding-top:2px}
+.C .prow b{font-family:"IBM Plex Mono","PingFang SC",monospace;font-weight:600;font-size:13.5px}
+.C .prow .st{width:8px;height:8px;margin-top:6px;background:var(--ok)}
+.C .prow .st.run{background:var(--cy);box-shadow:var(--bglow);animation:blink 1.05s steps(1) infinite}
+.C .prow em{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:20px;line-height:1;color:var(--tx2)}
+.C .ttl{font-size:16px;padding-right:170px}
+.C .readout{position:absolute;right:18px;top:34px;text-align:right}
+.C .rl{display:block;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:15px;letter-spacing:.14em;color:var(--cy-tx);text-shadow:var(--tglow)}
+.C .rv{display:block;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:56px;line-height:.95;color:var(--cy-tx);text-shadow:var(--tglow)}
+.C .meta{font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:12px}
+.C .blocks{display:grid;grid-template-columns:repeat(28,minmax(0,1fr));gap:3px;margin:20px 0 10px}
+.C .blocks i{display:block;height:14px;background:var(--line)}
+.C .blocks i.f{background:var(--cy);box-shadow:var(--bglow), inset 0 0 0 1px var(--blk-ln)}
+.C .blocks i.h{background:var(--cy);box-shadow:var(--bglow), inset 0 0 0 1px var(--blk-ln);animation:blink .8s steps(1) infinite}
+.C .bmeta{display:flex;justify-content:space-between;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:11px;color:var(--tx3);margin-bottom:8px}
+.C .step{display:grid;grid-template-columns:34px minmax(0,1fr);gap:4px;padding:6px 0;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:13px}
+.C .sd{color:var(--tx3);white-space:nowrap}
+.C .sd:before{content:"[ ]"}
+.C .step.ok .sd{color:var(--ok)}.C .step.ok .sd:before{content:"[✓]"}
+.C .step.run .sd{color:var(--cy-tx)}.C .step.run .sd:before{content:"[▸]"}
+.C .step.todo{color:var(--tx3)}
+.C .sl b{font-weight:500}
+.C .sl .lead{flex:1 1 20px;min-width:20px;border-bottom:1px dotted var(--line2);transform:translateY(-4px)}
+.C .sl b{flex:0 1 auto}
+.C .step.run .tm{color:var(--cy-tx)}
+.C .sx{font-family:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;font-size:12px;color:var(--tx3)}
+.C .out{border-left:2px solid var(--cy);padding:2px 0 2px 12px;color:var(--tx2)}
+.C .out .o3{color:var(--tx)}
+.C .sum{display:flex;align-items:baseline;gap:10px;margin-bottom:12px;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900}
+.C .sum b{font-size:40px;line-height:1}
+.C .sum .u{font-family:"IBM Plex Mono","PingFang SC",monospace;font-weight:400;font-size:12px;color:var(--tx2);margin-right:auto}
+.C .sum .plus,.C .sum .minus{font-size:24px;line-height:1}
+.C .sum .plus{color:var(--ok)}.C .sum .minus{color:var(--bad)}
+.C .files li{padding:8px 0;border-top:1px dotted var(--line2);grid-template-columns:minmax(0,1fr) auto}
+.C .files .meter{display:none}
+.C .files .nums{display:flex;gap:6px;align-items:center}
+.C .tag{font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:10.5px;border-radius:0;padding:0 4px}
+.C .tag.new{background:var(--ok);color:var(--bg)}.C .tag.del{background:var(--bad);color:var(--bg)}
+.C .btn{border-radius:2px;border:1px solid var(--line2);font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:12.5px}
+.C .btn.pri{background:var(--cy);border-color:var(--cy);color:var(--on-cy);font-weight:600;box-shadow:var(--bglow)}
+.C .btn.danger{color:var(--bad);border-color:var(--bad)}
+.C .btn.ghost{border-color:transparent;color:var(--tx2)}
+.C .chg .btn.danger{width:100%;margin-top:14px}
+.C .chg .note{margin-top:8px;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:11px}
+.C .chip{border:1px dashed var(--line2);font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:12px;color:var(--tx2)}
+.C .chip.on{border-style:solid;border-color:var(--cy);color:var(--tx)}
+.C .tgt{background:var(--cy);box-shadow:var(--bglow)}
+.C .tgt i{background:var(--on-cy)}
+.C .seg3{border:1px solid var(--line2);padding:3px;gap:3px}
+.C .seg3 button{height:28px;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:12px;color:var(--tx2)}
+.C .seg3 button.on{background:var(--tx);color:var(--bg)}
+.C .field{border:1px solid var(--cy);font-family:"IBM Plex Mono","PingFang SC",monospace;color:var(--tx);box-shadow:var(--bglow)}
+.C .field:before{content:"› ";color:var(--cy-tx);white-space:pre}
+.C .caret{width:8px;height:15px}
+.C .comp{padding:14px 16px 12px}
+.C .comp .cin{font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:13px;padding:0 2px 12px}
+.C .comp .cin:before{content:"› ";color:var(--cy-tx)}
+.C .diff{border-top:1px dotted var(--line2);padding-top:8px}
+.C .diff .ln.a span:last-child{color:var(--ok)}.C .diff .ln.d span:last-child{color:var(--bad)}
+.C .budget .bar{height:auto;display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:3px}
+.C .budget .bar i{position:static;width:auto;height:10px;background:var(--line)}
+.C .budget .bar i.f{background:var(--cy);box-shadow:var(--bglow), inset 0 0 0 1px var(--blk-ln)}
+.C .budget .bt{font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:11px}
+.C .ask .mlabel .l{color:var(--warn)}
+.C .ask .asktag{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:22px;line-height:1;color:var(--warn)}
+.C .ask .qd{color:var(--tx2)}
+</style>
+</helmet>
+<div class="{{root}}">
+  <header class="hd">
+    <div class="brand"><b>PECK</b><i class="mk"></i><span class="dirname">C · 点阵终端</span></div>
+    <p class="kw">纯黑 · 点阵数字 · 方块进度 · 方括号</p>
+    <div class="seg"><button type="button" class="on" aria-pressed="true"><i></i>CLI 模式</button><button type="button" aria-pressed="false"><i></i>API 模式</button></div>
+  </header>
+  <main class="grid">
+    <section class="col">
+      <div class="mod proj"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="mlabel"><span class="l">项目</span><span>3</span></p><ul class="plist"><li class="prow on"><i class="st run"></i><div><b>weather-cli</b><span>在跑 · 把设置里三个对话框合成一个面板</span></div><em>12</em></li><li class="prow"><i class="st ok"></i><div><b>notes-sync</b><span>今天 09:12 · 导出加一个 Markdown 选项</span></div><em>31</em></li><li class="prow"><i class="st ok"></i><div><b>pomelo-site</b><span>昨天 · 首页图片改成懒加载</span></div><em>8</em></li></ul></div>
+      <div class="mod ctl"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="mlabel"><span class="l">控件</span><span></span></p>
+        <div class="stack">
+          <div class="row"><button type="button" class="btn pri">开始任务</button><button type="button" class="btn">取消</button><button type="button" class="btn ghost">稍后</button></div>
+          <label class="tg"><span class="tgt"><i></i></span>完成后通知我</label>
+          <div><p class="lbl">权限</p><div class="seg3"><button type="button">只读</button><button type="button">改前问我</button><button type="button" class="on">直接改</button></div></div>
+          <div><p class="lbl">谁来干</p><div class="chips"><span class="chip"><i class="dot muse"></i>Muse</span><span class="chip on"><i class="dot muse"></i>Muse → <i class="dot grok"></i>Grok</span><span class="chip"><i class="dot api"></i>API</span></div></div>
+          <div class="field">给任务起个名字<i class="caret"></i></div>
+          <div class="budget"><p class="bt"><span>API 本月花费</span><b>$3.20 / $20</b></p><div class="bar"><i class="f"></i><i class="f"></i><i class="f"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div></div>
+        </div>
+      </div>
+    </section>
+    <section class="col">
+      <div class="mod task"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="mlabel"><span class="l">正在做</span><span>weather-cli</span></p>
+        <h2 class="ttl">把设置里三个对话框合成一个面板</h2>
+        <div class="meta"><span class="who"><i class="dot muse"></i>Muse<i class="arr">→</i><i class="dot grok"></i>Grok</span><span>直接改</span><span>14:02 开始</span></div>
+        <div class="readout"><span class="rl">RUNNING</span><span class="rv">{{clock}}</span></div><div class="blocks"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="h"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div><div class="bmeta"><span>第 3 步，共 4 步</span><span>62%</span></div>
+        <ol class="steps"><li class="step ok"><i class="sd"></i><div><p class="sl"><b>Muse 写规范</b><i class="lead"></i><span class="tm">48s</span></p><p class="sx">读了 12 个文件，列出 6 条要改的</p></div></li><li class="step ok"><i class="sd"></i><div><p class="sl"><b>Grok 改 Composer.tsx、App.tsx</b><i class="lead"></i><span class="tm">1:02</span></p><p class="sx">新建 SettingsSheet.tsx，删掉两个旧对话框</p></div></li><li class="step run"><i class="sd"></i><div><p class="sl"><b>Grok 跑 pnpm check</b><i class="lead"></i><span class="tm">{{clock}}</span></p><div class="out"><div>> tsc --noEmit</div><div>SettingsSheet.tsx:41  providers 的类型不对</div><div class="o3">→ 改 SettingsProps，再跑一遍<i class="cur"></i></div></div></div></li><li class="step todo"><i class="sd"></i><div><p class="sl"><b>验证并总结</b><i class="lead"></i></p></div></li></ol>
+      </div>
+      <div class="mod comp"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i>
+        <p class="cin">下一句话…（这个任务跑完再发）</p>
+        <div class="crow"><span class="chip on"><span class="who"><i class="dot muse"></i>Muse<i class="arr">→</i><i class="dot grok"></i>Grok</span></span><span class="chip">直接改</span><i class="sp"></i><span class="kbd">⌘↵</span><button type="button" class="btn pri">发送</button></div>
+      </div>
+    </section>
+    <section class="col">
+      <div class="mod chg"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="mlabel"><span class="l">改动</span><span></span></p>
+        <div class="sum"><b>4</b><span class="u">个文件</span><span class="plus">+86</span><span class="minus">−132</span></div>
+        <ul class="files"><li><span class="fp">SettingsSheet.tsx</span><span class="nums"><em class="tag new">新</em><span class="fa">+74</span><span class="fd">−0</span></span></li><li><span class="fp">Composer.tsx</span><span class="nums"><span class="fa">+9</span><span class="fd">−21</span></span></li><li><span class="fp">App.tsx</span><span class="nums"><span class="fa">+3</span><span class="fd">−18</span></span></li><li><span class="fp">AgentsDialog.tsx</span><span class="nums"><em class="tag del">删</em><span class="fa">+0</span><span class="fd">−93</span></span></li></ul>
+        <div class="diff"><p class="dh"><span>Composer.tsx</span><span>+9 −21</span></p><div class="ln d"><span class="n">42</span><span class="m">−</span><span>const [agentsOpen, setAgentsOpen] = useState(false)</span></div><div class="ln d"><span class="n">43</span><span class="m">−</span><span>const [apiOpen, setApiOpen] = useState(false)</span></div><div class="ln a"><span class="n">42</span><span class="m">+</span><span>const [settingsOpen, setSettingsOpen] = useState(false)</span></div></div>
+        <button type="button" class="btn danger">撤销整个任务</button>
+        <p class="note">回到 14:02 开始前的样子，你的 Git 不动。</p>
+      </div>
+      <div class="mod ask"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="mlabel"><span class="l">ASK · Grok 停下来问你</span><span class="asktag">?</span></p>
+        <p class="q">Tailwind 要不要一起升到 4.1？</p>
+        <p class="qd">升级会顺手改 6 个文件的类名；不升也能做完这次任务。</p>
+        <div class="acts"><button type="button" class="btn pri">一起升</button><button type="button" class="btn">先不升</button><button type="button" class="btn ghost">我来说…</button></div>
+      </div>
+    </section>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["深色","浅色"],"default":"深色","section":"看"},"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+constructor(p) { super(p); this.state = { t: 134 }; }
+  componentDidMount() { this.iv = setInterval(() => this.setState({ t: this.state.t + 1 }), 1000); }
+  componentWillUnmount() { clearInterval(this.iv); }
+  clock() { const t = this.state.t; return String(Math.floor(t / 60)).padStart(2, '0') + ':' + String(t % 60).padStart(2, '0'); }
+  renderVals() {
+    const dark = (this.props.theme ?? '深色') === '深色';
+    return { root: 'pk C ' + (dark ? 'dk' : 'lt'), clock: this.clock() };
+  }
+}
+</script>
+</body>
+</html>

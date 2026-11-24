@@ -1,0 +1,8 @@
+{
+  "$note": "Design System 的名字、命名空间（JS 标识符）、资产分组（按 marks/manifest.json 的 id 取图）。发布到 Claude 以后的地址和上传记录写在 published.json（发布时才有）。",
+  "title": "{{title}}",
+  "namespace": "{{Name}}",
+  "by": "Elen Skye",
+  "via": "Claude Code · {{title}} Explore",
+  "assetGroups": []
+}

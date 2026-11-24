@@ -1,0 +1,33 @@
+{
+  "id": "logo-route",
+  "title": "Logo A 路径延伸",
+  "status": "approved",
+  "approved": "Logo A v1.0.0 与其悬停动效，站主 2026-07-25 批准；2026-10-23 站主确认「动效很好」",
+  "tier": "calm",
+  "signature": true,
+  "trigger": "悬停 / 键盘聚焦（预览与导出用 .is-playing）",
+  "durationMs": 520,
+  "reducedMotion": "静态终态：路径完整、圆圈保持基础色、不位移",
+  "origin": { "repo": "personal-website", "path": "src/styles/global.css（.site-mark 规则）与 src/components/SiteHeader.astro（内联 SVG）", "importedAt": "2026-10-23" },
+  "files": { "css": "logo-route.css", "html": "logo-route.fragment.html" },
+  "parity": {
+    "siteCss": "src/styles/global.css",
+    "siteMarkup": { "file": "src/components/SiteHeader.astro", "pattern": "<a class=\"site-mark\"[\\s\\S]*?</a>" },
+    "host": ".va-logo-route",
+    "siteHost": ".site-mark",
+    "trigger": "hover",
+    "clip": "> svg",
+    "times": [0, 40, 100, 180, 260, 340, 400, 440, 442, 450, 480, 520]
+  },
+  "capture": {
+    "host": ".va-logo-route",
+    "playClass": "is-playing",
+    "scale": 6,
+    "padPx": 6,
+    "fps": 50,
+    "holdStartMs": 500,
+    "holdEndMs": 1500,
+    "themes": ["light", "dark"],
+    "loop": 0
+  }
+}

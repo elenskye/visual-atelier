@@ -1,0 +1,8 @@
+{
+  "file": "dc-runtime.js",
+  "sha256": "c4929939a4fa0ff409afd395a75cd87a7a7412d26bf4cf34d7292a94c05ea482",
+  "size": 197599,
+  "source": "Claude 的 Design（画布）类型自带的 artifact-type/dc-runtime.js",
+  "checkedAt": "2026-11-22",
+  "checkedAgainst": "Design 类型 release 1795227355-bde3（Pith Explore 画布的 artifact-type/dc-runtime.js，版本 1795331680-50f4）"
+}

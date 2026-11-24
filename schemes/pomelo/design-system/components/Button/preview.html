@@ -1,0 +1,25 @@
+<!-- @dsCard group="控件" height=150 width=960 subtitle="主按钮、普通、危险、圆的图标按钮、不能点" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Button</title>
+<style>
+  html, body { margin: 0; }
+  .demo { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; padding: 28px 36px; }
+  .label { width: 100%; font-size: var(--text-small); color: var(--color-ink-soft); margin-bottom: -8px; }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="demo">
+  <button class="pm-btn" data-hand="button" data-seed="1430" type="button"><span data-hand="icon" data-size="16" data-seed="1" data-d="M12 5 L12 19 M5 12 L19 12"></span>记一笔</button>
+  <button class="pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1431" type="button">取消</button>
+  <button class="pm-btn" data-hand="button" data-seed="1432" type="button"><span data-hand="icon" data-size="16" data-seed="2" data-d="M5.5 12.5 L10 17 L18.5 7"></span>存一下</button>
+  <button class="pm-btn pm-btn--danger" type="button"><span data-hand="icon" data-size="17" data-seed="3" data-d="M5 7 L19 7 M9.5 7 L9.5 4.5 L14.5 4.5 L14.5 7 M7 7 L8 20 L16 20 L17 7"></span>丢掉</button>
+  <button class="pm-btn pm-btn--icon" data-hand="round" data-seed="1420" type="button" aria-label="找东西"><span data-hand="icon" data-size="20" data-seed="4" data-d="M16 16 L20.5 20.5" data-o="10.5 10.5 6"></span></button>
+  <button class="pm-btn pm-btn--icon" data-hand="round" data-seed="1421" type="button" aria-label="置顶"><span data-hand="icon" data-size="20" data-seed="5" data-d="M9 4.5 L15 4.5 M10 4.5 L10 10 L7 14 L17 14 L14 10 L14 4.5 M12 14 L12 20"></span></button>
+  <button class="pm-btn" data-hand="button" data-seed="1433" type="button" disabled>不能点</button>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

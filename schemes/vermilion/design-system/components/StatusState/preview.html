@@ -1,0 +1,39 @@
+<!-- @dsCard group="搜索与状态" height=1260 subtitle="空状态框；404 页（双语、插图、返回按钮）" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>StatusState</title>
+<style>
+  .vm-demo { padding: var(--space-6); max-width: 820px; }
+  .vm-demo .wander-empty { margin-top: 0; }
+  .vm-demo .not-found { min-height: 0; padding-bottom: 0; margin-top: var(--space-8); }
+  /* 网站把插图内联并给 svg 本身加 status-illustration 的类；预览里包一层，尺寸写在这里 */
+  .vm-empty svg { display: block; width: 100%; max-width: 320px; height: auto; margin-inline: auto; }
+</style>
+</head>
+<body class="vm-page">
+<div class="vm-demo">
+  <section class="wander-empty" role="status">
+    <span class="va-graphic va-on-surface vm-empty"><!-- @include marks/graphic/empty-graphic.svg --></span>
+    <p>没有符合当前筛选的内容。</p>
+  </section>
+  <div class="not-found">
+    <p class="page-eyebrow">404</p>
+    <h1>走到了地图之外</h1>
+    <p class="page-intro">这里暂时没有路径，回到漫游的起点吧</p>
+    <figure class="status-illustration status-illustration--404" aria-hidden="true">
+      <!-- @include motion/not-found-intro/not-found-intro.fragment.html -->
+    </figure>
+    <div class="not-found-en" lang="en">
+      <h2>Beyond the edge of the map</h2>
+      <p>This path does not exist yet. Let’s return to the beginning.</p>
+    </div>
+    <nav class="not-found-actions" aria-label="返回首页 · Return home">
+      <a class="button-link" href="#">返回呦呦漫游</a>
+      <a class="button-link" href="#" lang="en">Back to Wander</a>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

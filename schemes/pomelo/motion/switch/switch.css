@@ -1,0 +1,10 @@
+/* 开关：圆贴纸弹着滑过去（0.45 秒），荧光笔晚一点把轨道涂满（0.3 秒）；点的那一下（.is-pop）圆钮压扁再弹。
+   界面每次点都先去掉 .is-pop、读一次宽高、再加上，动画才会重来。 */
+.pm-sw-knob { transition: transform .45s cubic-bezier(.3,1.6,.5,1); }
+.pm-sw-fill { transition: stroke-dashoffset .2s ease-in; }
+[aria-checked="true"] .pm-sw-fill { transition: stroke-dashoffset .3s .08s ease-out; }
+.pm-switch.is-pop .pm-sw-knob > svg { animation: pm-knob-squash .45s ease-out; }
+@keyframes pm-knob-squash { 0% { transform: scale(1); } 30% { transform: scale(1.3, .8); } 60% { transform: scale(.92, 1.08); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-sw-knob, .pm-sw-fill, .pm-switch.is-pop .pm-sw-knob > svg { transition: none !important; animation: none !important; }
+}

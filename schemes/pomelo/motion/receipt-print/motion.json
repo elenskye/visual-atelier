@@ -1,0 +1,45 @@
+{
+  "id": "receipt-print",
+  "title": "找东西 · 小票打出来、撕下来",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "打开：.pm-printer 加 .is-open；结果每一行出现时自己印出来（--pm-i 是第几行）；选中一行：小票加 .is-tear，放完再去那里；收起：.is-closing",
+  "durationMs": 550,
+  "reducedMotion": "小票直接在那里，选中直接过去",
+  "use": "找东西（⌘K）",
+  "source": "canvases/pomelo-explore/p2-final/search.mjs（站主 2026-11-05 验收的 Phase 2 定稿）",
+  "files": {
+    "css": "receipt-print.css",
+    "html": "receipt-print.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".print-demo",
+    "viewport": [
+      360,
+      290
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-open"
+      },
+      {
+        "at": 900,
+        "add": "is-tear",
+        "on": ".pm-print-paper"
+      }
+    ],
+    "skipRest": true
+  }
+}

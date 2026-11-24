@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>R2 · 笔势 × 剪纸 · 明暗</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&amp;family=Noto+Serif+SC:wght@400&amp;family=Source+Serif+4:opsz,wght@8..60,400&amp;family=Work+Sans:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#28625d}a:hover{color:#bf2929}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1000px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); font-family: 'Work Sans', 'Noto Sans SC', sans-serif">
+  <sc-for list="{{themes}}" as="t" hint-placeholder-count="2">
+    <div style="box-sizing: border-box; padding: 64px 56px; display: flex; flex-direction: column; gap: 36px; background: {{t.page}}; color: {{t.text}}">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="font-size: 13px; line-height: 1.6; color: {{t.accent}}; text-transform: uppercase">{{t.eyebrow}}</div>
+        <h2 style="margin: 0; font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-weight: 400; font-size: 44px; line-height: 1.1">{{t.title}}</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <div style="display: flex; gap: 32px">
+          <sc-for list="{{t.icons}}" as="src" hint-placeholder-count="6">
+            <img src="{{src}}" alt="" style="width: 64px; height: 64px; display: block">
+          </sc-for>
+        </div>
+        <div style="display: flex; gap: 72px; padding-left: 20px">
+          <sc-for list="{{t.icons}}" as="src" hint-placeholder-count="6">
+            <img src="{{src}}" alt="" style="width: 24px; height: 24px; display: block">
+          </sc-for>
+        </div>
+      </div>
+      <img src="{{t.deco}}" alt="" style="width: 560px; height: 220px; display: block">
+      <div style="display: flex; gap: 24px; align-items: flex-start">
+        <div style="width: 320px; height: 168px; border: 1px solid {{t.soft}}; border-radius: 8px; overflow: hidden; box-sizing: border-box"><img src="{{t.og}}" alt="" style="width: 318px; height: 166px; display: block"></div>
+        <div style="width: 240px; height: 168px; background: {{t.surface}}; border-radius: 8px; display: flex; align-items: center; justify-content: center"><img src="{{t.empty}}" alt="" style="width: 224px; height: 140px; display: block"></div>
+      </div>
+    </div>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      themes: [
+        { eyebrow: 'Brush × Paper · Light', title: '笔势做骨，纸片做底', page: '#f6efe2', surface: '#fdf9f0', text: '#1b1d1c', accent: '#2d6f6a', soft: '#e6dfd3',
+          icons: ['/_blob/9b501b4fadaa469f102d18fe97144ff0', '/_blob/68024edf1da930c80e5cd7d2f2aa3142', '/_blob/405e9938d92e5117faad7029ae133128', '/_blob/96adcdc58ff64535be20801dc837e9ae', '/_blob/7f19855ca8bbb92753a1bd01fe8101e3', '/_blob/0195d9c0375b8047d1b26492767a21d7'],
+          deco: '/_blob/dd4fd405b26dc2b2b9dc10ddd06e1d27', og: '/_blob/01020ed9519d9de6ccc9a91f729843b8', empty: '/_blob/134339eccf5d3521c5edabe4ab3f578e' },
+        { eyebrow: 'Brush × Paper · Dark', title: '暗色：纸片改用表面色', page: '#14201f', surface: '#233230', text: '#f2ece0', accent: '#77c8c2', soft: '#343e3b',
+          icons: ['/_blob/45b6fcd60ee2852cacc5195bad6b3cbf', '/_blob/14da4dfc5792363e63f577f351266cf7', '/_blob/e8e534eea0f153ea16d52e19ca6dfb9d', '/_blob/a7fda50cd932c91c1bfeeb4df77198ba', '/_blob/35d1005d93087e2d1b4b9fc9ccd242c3', '/_blob/47dbd4e730c807152d585e261a451940'],
+          deco: '/_blob/b90950f6e626e007998307e549153c9d', og: '/_blob/bcc5d196492b829b0a36783a809c3c18', empty: '/_blob/54501c0d5c84fc1c8c6603b87b7e23c6' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

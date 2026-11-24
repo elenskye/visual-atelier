@@ -1,0 +1,1177 @@
+{
+  "$note": "Design System 的名字、命名空间、资产分组和打包。资产取自本方案 marks/（按 manifest 的 id；贴纸和插图用 build:marks 按蓝笔浅色上好色的 themed 版，App 图标和菜单栏用导出的 PNG，界面小图标用源文件）。bundle：把 tooling/ 里手画零件的模块原样打包成 components/bundle.js（站主 2026-11-07 定），params 是画法的数值。上传记录在 published.json。",
+  "title": "Pomelo 柚儿园",
+  "namespace": "Pomelo",
+  "by": "Elen Skye",
+  "via": "Claude Code · visual-atelier",
+  "bundle": {
+    "modules": [
+      "tooling/handmade/line.mjs",
+      "tooling/handmade/frame.mjs",
+      "tooling/handmade/sticker.mjs",
+      "tooling/handmade/paint.mjs"
+    ],
+    "params": "tokens/handmade.json",
+    "$presets": "框的预设：data-hand 写名字就按它画（Pomelo.paint）。数值取自 Phase 2 小样（canvases/pomelo-explore/p2-final/），圆角跟 tokens 的 radius-*：卡片 14、纸 10、按钮 9–10、输入框 11。",
+    "presets": {
+      "frame": {},
+      "card": {
+        "r": 14,
+        "amp": 0.95,
+        "sw": 1.9,
+        "tex": true
+      },
+      "sheet": {
+        "r": 10,
+        "amp": 1.1,
+        "sw": 1.9,
+        "tex": true,
+        "stitches": true
+      },
+      "note": {
+        "r": 4,
+        "stroke": "none"
+      },
+      "desk": {
+        "r": 0,
+        "stroke": "none",
+        "tex": true
+      },
+      "button": {
+        "r": 9,
+        "amp": 0.55,
+        "sw": 1.6,
+        "pad": 4,
+        "fill": "primary"
+      },
+      "field": {
+        "r": 11,
+        "amp": 0.6,
+        "sw": 1.6,
+        "pad": 4,
+        "fill": "card"
+      },
+      "round": {
+        "r": "half",
+        "amp": 0.6,
+        "sw": 1.5,
+        "pad": 4,
+        "fill": "card"
+      },
+      "cell": {
+        "r": 12,
+        "amp": 0.8,
+        "sw": 1.6
+      },
+      "pick": {
+        "r": 9,
+        "amp": 0.8,
+        "pad": 0,
+        "stroke": "none",
+        "fill": "selected"
+      },
+      "ticket": {
+        "r": 6,
+        "stroke": "none"
+      }
+    }
+  },
+  "assetGroups": [
+    {
+      "name": "Pomelo",
+      "tile": "m",
+      "assets": [
+        {
+          "id": "pomelo-normal",
+          "themed": "light",
+          "name": "pomelo-normal.svg"
+        },
+        {
+          "id": "pomelo-think",
+          "themed": "light",
+          "name": "pomelo-think.svg"
+        },
+        {
+          "id": "pomelo-wink",
+          "themed": "light",
+          "name": "pomelo-wink.svg"
+        },
+        {
+          "id": "pomelo-sleepy",
+          "themed": "light",
+          "name": "pomelo-sleepy.svg"
+        },
+        {
+          "id": "pomelo-happy",
+          "themed": "light",
+          "name": "pomelo-happy.svg"
+        },
+        {
+          "id": "pomelo-error",
+          "themed": "light",
+          "name": "pomelo-error.svg"
+        },
+        {
+          "id": "pomelo-surprised",
+          "themed": "light",
+          "name": "pomelo-surprised.svg"
+        },
+        {
+          "id": "pomelo-wow",
+          "themed": "light",
+          "name": "pomelo-wow.svg"
+        },
+        {
+          "id": "ai-button",
+          "themed": "light",
+          "name": "ai-button.svg"
+        }
+      ]
+    },
+    {
+      "name": "App",
+      "tile": "l",
+      "assets": [
+        {
+          "id": "app-icon-grid",
+          "render": "app-icon-grid@1024-light.png",
+          "name": "app-icon.png"
+        },
+        {
+          "id": "menu-solid",
+          "render": "menu-solid@36-template.png",
+          "name": "menu-solid.png"
+        },
+        {
+          "id": "menu-hollow",
+          "render": "menu-hollow@36-template.png",
+          "name": "menu-hollow.png"
+        }
+      ]
+    },
+    {
+      "name": "Modules",
+      "tile": "s",
+      "assets": [
+        {
+          "id": "module-todo",
+          "themed": "light",
+          "name": "todo.svg"
+        },
+        {
+          "id": "module-notes",
+          "themed": "light",
+          "name": "notes.svg"
+        },
+        {
+          "id": "module-articles",
+          "themed": "light",
+          "name": "articles.svg"
+        },
+        {
+          "id": "module-days",
+          "themed": "light",
+          "name": "days.svg"
+        },
+        {
+          "id": "module-finance",
+          "themed": "light",
+          "name": "finance.svg"
+        },
+        {
+          "id": "module-packing",
+          "themed": "light",
+          "name": "packing.svg"
+        },
+        {
+          "id": "module-books",
+          "themed": "light",
+          "name": "books.svg"
+        },
+        {
+          "id": "module-films",
+          "themed": "light",
+          "name": "films.svg"
+        },
+        {
+          "id": "module-games",
+          "themed": "light",
+          "name": "games.svg"
+        },
+        {
+          "id": "module-drawing",
+          "themed": "light",
+          "name": "drawing.svg"
+        },
+        {
+          "id": "module-site",
+          "themed": "light",
+          "name": "site.svg"
+        },
+        {
+          "id": "module-canvas",
+          "themed": "light",
+          "name": "canvas.svg"
+        },
+        {
+          "id": "module-jobs",
+          "themed": "light",
+          "name": "jobs.svg"
+        },
+        {
+          "id": "module-seeker",
+          "themed": "light",
+          "name": "seeker.svg"
+        },
+        {
+          "id": "module-rater",
+          "themed": "light",
+          "name": "rater.svg"
+        },
+        {
+          "id": "module-translate",
+          "themed": "light",
+          "name": "translate.svg"
+        },
+        {
+          "id": "module-pub2md",
+          "themed": "light",
+          "name": "pub2md.svg"
+        },
+        {
+          "id": "module-importer",
+          "themed": "light",
+          "name": "importer.svg"
+        },
+        {
+          "id": "module-atlas",
+          "themed": "light",
+          "name": "atlas.svg"
+        },
+        {
+          "id": "module-vault",
+          "themed": "light",
+          "name": "vault.svg"
+        },
+        {
+          "id": "module-bookmarks",
+          "themed": "light",
+          "name": "bookmarks.svg"
+        },
+        {
+          "id": "module-janitor",
+          "themed": "light",
+          "name": "janitor.svg"
+        }
+      ]
+    },
+    {
+      "name": "Stickers",
+      "tile": "s",
+      "assets": [
+        {
+          "id": "module-shapes",
+          "themed": "light",
+          "name": "shapes.svg"
+        },
+        {
+          "id": "module-checklist",
+          "themed": "light",
+          "name": "checklist.svg"
+        },
+        {
+          "id": "module-game",
+          "themed": "light",
+          "name": "game.svg"
+        },
+        {
+          "id": "module-music",
+          "themed": "light",
+          "name": "music.svg"
+        },
+        {
+          "id": "module-headphones",
+          "themed": "light",
+          "name": "headphones.svg"
+        },
+        {
+          "id": "module-camera",
+          "themed": "light",
+          "name": "camera.svg"
+        },
+        {
+          "id": "module-tv",
+          "themed": "light",
+          "name": "tv.svg"
+        },
+        {
+          "id": "module-coffee",
+          "themed": "light",
+          "name": "coffee.svg"
+        },
+        {
+          "id": "module-bowl",
+          "themed": "light",
+          "name": "bowl.svg"
+        },
+        {
+          "id": "module-bag",
+          "themed": "light",
+          "name": "bag.svg"
+        },
+        {
+          "id": "module-gift",
+          "themed": "light",
+          "name": "gift.svg"
+        },
+        {
+          "id": "module-shirt",
+          "themed": "light",
+          "name": "shirt.svg"
+        },
+        {
+          "id": "module-plane",
+          "themed": "light",
+          "name": "plane.svg"
+        },
+        {
+          "id": "module-mountain",
+          "themed": "light",
+          "name": "mountain.svg"
+        },
+        {
+          "id": "module-leaf",
+          "themed": "light",
+          "name": "leaf.svg"
+        },
+        {
+          "id": "module-sprout",
+          "themed": "light",
+          "name": "sprout.svg"
+        },
+        {
+          "id": "module-dumbbell",
+          "themed": "light",
+          "name": "dumbbell.svg"
+        },
+        {
+          "id": "module-heart",
+          "themed": "light",
+          "name": "heart.svg"
+        },
+        {
+          "id": "module-star",
+          "themed": "light",
+          "name": "star.svg"
+        },
+        {
+          "id": "module-grad",
+          "themed": "light",
+          "name": "grad.svg"
+        },
+        {
+          "id": "module-code",
+          "themed": "light",
+          "name": "code.svg"
+        },
+        {
+          "id": "module-puzzle",
+          "themed": "light",
+          "name": "puzzle.svg"
+        },
+        {
+          "id": "module-trophy",
+          "themed": "light",
+          "name": "trophy.svg"
+        },
+        {
+          "id": "module-cat",
+          "themed": "light",
+          "name": "cat.svg"
+        },
+        {
+          "id": "module-flower",
+          "themed": "light",
+          "name": "flower.svg"
+        },
+        {
+          "id": "module-bulb",
+          "themed": "light",
+          "name": "bulb.svg"
+        },
+        {
+          "id": "module-house",
+          "themed": "light",
+          "name": "house.svg"
+        },
+        {
+          "id": "module-pill",
+          "themed": "light",
+          "name": "pill.svg"
+        },
+        {
+          "id": "module-letter",
+          "themed": "light",
+          "name": "letter.svg"
+        },
+        {
+          "id": "module-piggy",
+          "themed": "light",
+          "name": "piggy.svg"
+        },
+        {
+          "id": "module-dice",
+          "themed": "light",
+          "name": "dice.svg"
+        },
+        {
+          "id": "module-moon",
+          "themed": "light",
+          "name": "moon.svg"
+        },
+        {
+          "id": "place-settings",
+          "themed": "light",
+          "name": "settings.svg"
+        },
+        {
+          "id": "place-calendar",
+          "themed": "light",
+          "name": "calendar.svg"
+        }
+      ]
+    },
+    {
+      "name": "Empty",
+      "tile": "m",
+      "assets": [
+        {
+          "id": "empty-todo",
+          "themed": "light",
+          "name": "todo.svg"
+        },
+        {
+          "id": "empty-notes",
+          "themed": "light",
+          "name": "notes.svg"
+        },
+        {
+          "id": "empty-days",
+          "themed": "light",
+          "name": "days.svg"
+        },
+        {
+          "id": "empty-packing",
+          "themed": "light",
+          "name": "packing.svg"
+        },
+        {
+          "id": "empty-books",
+          "themed": "light",
+          "name": "books.svg"
+        },
+        {
+          "id": "empty-films",
+          "themed": "light",
+          "name": "films.svg"
+        },
+        {
+          "id": "empty-jobs",
+          "themed": "light",
+          "name": "jobs.svg"
+        },
+        {
+          "id": "empty-vault",
+          "themed": "light",
+          "name": "vault.svg"
+        }
+      ]
+    },
+    {
+      "name": "Icons",
+      "tile": "s",
+      "assets": [
+        {
+          "id": "icon-plus",
+          "name": "plus.svg"
+        },
+        {
+          "id": "icon-x",
+          "name": "x.svg"
+        },
+        {
+          "id": "icon-check",
+          "name": "check.svg"
+        },
+        {
+          "id": "icon-chevron-right",
+          "name": "chevron-right.svg"
+        },
+        {
+          "id": "icon-chevron-left",
+          "name": "chevron-left.svg"
+        },
+        {
+          "id": "icon-chevron-down",
+          "name": "chevron-down.svg"
+        },
+        {
+          "id": "icon-chevron-up",
+          "name": "chevron-up.svg"
+        },
+        {
+          "id": "icon-chevrons-up-down",
+          "name": "chevrons-up-down.svg"
+        },
+        {
+          "id": "icon-arrow-up",
+          "name": "arrow-up.svg"
+        },
+        {
+          "id": "icon-arrow-down",
+          "name": "arrow-down.svg"
+        },
+        {
+          "id": "icon-arrow-left-right",
+          "name": "arrow-left-right.svg"
+        },
+        {
+          "id": "icon-corner-down-right",
+          "name": "corner-down-right.svg"
+        },
+        {
+          "id": "icon-back-desk",
+          "name": "back-desk.svg"
+        },
+        {
+          "id": "icon-flip",
+          "name": "flip.svg"
+        },
+        {
+          "id": "icon-refresh-cw",
+          "name": "refresh-cw.svg"
+        },
+        {
+          "id": "icon-rotate-ccw",
+          "name": "rotate-ccw.svg"
+        },
+        {
+          "id": "icon-history",
+          "name": "history.svg"
+        },
+        {
+          "id": "icon-repeat",
+          "name": "repeat.svg"
+        },
+        {
+          "id": "icon-maximize-2",
+          "name": "maximize-2.svg"
+        },
+        {
+          "id": "icon-external-link",
+          "name": "external-link.svg"
+        },
+        {
+          "id": "icon-search",
+          "name": "search.svg"
+        },
+        {
+          "id": "icon-ellipsis",
+          "name": "ellipsis.svg"
+        },
+        {
+          "id": "icon-grip-vertical",
+          "name": "grip-vertical.svg"
+        },
+        {
+          "id": "icon-trash-2",
+          "name": "trash-2.svg"
+        },
+        {
+          "id": "icon-pencil",
+          "name": "pencil.svg"
+        },
+        {
+          "id": "icon-pen-line",
+          "name": "pen-line.svg"
+        },
+        {
+          "id": "icon-square-pen",
+          "name": "square-pen.svg"
+        },
+        {
+          "id": "icon-copy",
+          "name": "copy.svg"
+        },
+        {
+          "id": "icon-send",
+          "name": "send.svg"
+        },
+        {
+          "id": "icon-play",
+          "name": "play.svg"
+        },
+        {
+          "id": "icon-square",
+          "name": "square.svg"
+        },
+        {
+          "id": "icon-check-square",
+          "name": "check-square.svg"
+        },
+        {
+          "id": "icon-circle",
+          "name": "circle.svg"
+        },
+        {
+          "id": "icon-circle-check",
+          "name": "circle-check.svg"
+        },
+        {
+          "id": "icon-circle-dot",
+          "name": "circle-dot.svg"
+        },
+        {
+          "id": "icon-circle-question-mark",
+          "name": "circle-question-mark.svg"
+        },
+        {
+          "id": "icon-triangle-alert",
+          "name": "triangle-alert.svg"
+        },
+        {
+          "id": "icon-pin",
+          "name": "pin.svg"
+        },
+        {
+          "id": "icon-pin-off",
+          "name": "pin-off.svg"
+        },
+        {
+          "id": "icon-eye",
+          "name": "eye.svg"
+        },
+        {
+          "id": "icon-eye-off",
+          "name": "eye-off.svg"
+        },
+        {
+          "id": "icon-lock",
+          "name": "lock.svg"
+        },
+        {
+          "id": "icon-link-2",
+          "name": "link-2.svg"
+        },
+        {
+          "id": "icon-paperclip",
+          "name": "paperclip.svg"
+        },
+        {
+          "id": "icon-hash",
+          "name": "hash.svg"
+        },
+        {
+          "id": "icon-quote",
+          "name": "quote.svg"
+        },
+        {
+          "id": "icon-file-text",
+          "name": "file-text.svg"
+        },
+        {
+          "id": "icon-file-down",
+          "name": "file-down.svg"
+        },
+        {
+          "id": "icon-file-plus",
+          "name": "file-plus.svg"
+        },
+        {
+          "id": "icon-file-input",
+          "name": "file-input.svg"
+        },
+        {
+          "id": "icon-file-output",
+          "name": "file-output.svg"
+        },
+        {
+          "id": "icon-file-pen",
+          "name": "file-pen.svg"
+        },
+        {
+          "id": "icon-file-user",
+          "name": "file-user.svg"
+        },
+        {
+          "id": "icon-folder",
+          "name": "folder.svg"
+        },
+        {
+          "id": "icon-folder-open",
+          "name": "folder-open.svg"
+        },
+        {
+          "id": "icon-folder-plus",
+          "name": "folder-plus.svg"
+        },
+        {
+          "id": "icon-folder-input",
+          "name": "folder-input.svg"
+        },
+        {
+          "id": "icon-archive",
+          "name": "archive.svg"
+        },
+        {
+          "id": "icon-archive-restore",
+          "name": "archive-restore.svg"
+        },
+        {
+          "id": "icon-image-plus",
+          "name": "image-plus.svg"
+        },
+        {
+          "id": "icon-image-off",
+          "name": "image-off.svg"
+        },
+        {
+          "id": "icon-list-plus",
+          "name": "list-plus.svg"
+        },
+        {
+          "id": "icon-list-checks",
+          "name": "list-checks.svg"
+        },
+        {
+          "id": "icon-panel-left-open",
+          "name": "panel-left-open.svg"
+        },
+        {
+          "id": "icon-panel-left-close",
+          "name": "panel-left-close.svg"
+        },
+        {
+          "id": "icon-layout-grid",
+          "name": "layout-grid.svg"
+        },
+        {
+          "id": "icon-settings",
+          "name": "settings.svg"
+        },
+        {
+          "id": "icon-settings-2",
+          "name": "settings-2.svg"
+        },
+        {
+          "id": "icon-sliders-horizontal",
+          "name": "sliders-horizontal.svg"
+        },
+        {
+          "id": "icon-sparkle",
+          "name": "sparkle.svg"
+        },
+        {
+          "id": "icon-sparkles",
+          "name": "sparkles.svg"
+        },
+        {
+          "id": "icon-wand-sparkles",
+          "name": "wand-sparkles.svg"
+        },
+        {
+          "id": "icon-message-square",
+          "name": "message-square.svg"
+        },
+        {
+          "id": "icon-message-circle",
+          "name": "message-circle.svg"
+        },
+        {
+          "id": "icon-message-circle-question",
+          "name": "message-circle-question.svg"
+        },
+        {
+          "id": "icon-globe",
+          "name": "globe.svg"
+        },
+        {
+          "id": "icon-cloud",
+          "name": "cloud.svg"
+        },
+        {
+          "id": "icon-lightbulb",
+          "name": "lightbulb.svg"
+        },
+        {
+          "id": "icon-keyboard",
+          "name": "keyboard.svg"
+        },
+        {
+          "id": "icon-scan-text",
+          "name": "scan-text.svg"
+        },
+        {
+          "id": "icon-trending-up",
+          "name": "trending-up.svg"
+        },
+        {
+          "id": "icon-pomelo",
+          "name": "pomelo.svg"
+        },
+        {
+          "id": "icon-house",
+          "name": "house.svg"
+        },
+        {
+          "id": "icon-footprints",
+          "name": "footprints.svg"
+        },
+        {
+          "id": "icon-feather",
+          "name": "feather.svg"
+        },
+        {
+          "id": "icon-calendar-days",
+          "name": "calendar-days.svg"
+        },
+        {
+          "id": "icon-calendar-heart",
+          "name": "calendar-heart.svg"
+        },
+        {
+          "id": "icon-calendar-check",
+          "name": "calendar-check.svg"
+        },
+        {
+          "id": "icon-wallet",
+          "name": "wallet.svg"
+        },
+        {
+          "id": "icon-luggage",
+          "name": "luggage.svg"
+        },
+        {
+          "id": "icon-book-open",
+          "name": "book-open.svg"
+        },
+        {
+          "id": "icon-clapperboard",
+          "name": "clapperboard.svg"
+        },
+        {
+          "id": "icon-palette",
+          "name": "palette.svg"
+        },
+        {
+          "id": "icon-compass",
+          "name": "compass.svg"
+        },
+        {
+          "id": "icon-briefcase",
+          "name": "briefcase.svg"
+        },
+        {
+          "id": "icon-target",
+          "name": "target.svg"
+        },
+        {
+          "id": "icon-key-round",
+          "name": "key-round.svg"
+        },
+        {
+          "id": "icon-fingerprint",
+          "name": "fingerprint.svg"
+        },
+        {
+          "id": "icon-bookmark",
+          "name": "bookmark.svg"
+        },
+        {
+          "id": "icon-brush-cleaning",
+          "name": "brush-cleaning.svg"
+        },
+        {
+          "id": "icon-hard-drive",
+          "name": "hard-drive.svg"
+        },
+        {
+          "id": "icon-database-backup",
+          "name": "database-backup.svg"
+        },
+        {
+          "id": "icon-stethoscope",
+          "name": "stethoscope.svg"
+        },
+        {
+          "id": "icon-languages",
+          "name": "languages.svg"
+        },
+        {
+          "id": "icon-brain",
+          "name": "brain.svg"
+        },
+        {
+          "id": "icon-library",
+          "name": "library.svg"
+        },
+        {
+          "id": "icon-library-big",
+          "name": "library-big.svg"
+        },
+        {
+          "id": "icon-puzzle",
+          "name": "puzzle.svg"
+        },
+        {
+          "id": "icon-alarm-clock",
+          "name": "alarm-clock.svg"
+        },
+        {
+          "id": "icon-bell-ring",
+          "name": "bell-ring.svg"
+        },
+        {
+          "id": "icon-hourglass",
+          "name": "hourglass.svg"
+        },
+        {
+          "id": "icon-time-travel",
+          "name": "time-travel.svg"
+        },
+        {
+          "id": "icon-sun",
+          "name": "sun.svg"
+        },
+        {
+          "id": "icon-moon",
+          "name": "moon.svg"
+        },
+        {
+          "id": "icon-map-pin",
+          "name": "map-pin.svg"
+        },
+        {
+          "id": "icon-tag",
+          "name": "tag.svg"
+        },
+        {
+          "id": "icon-tags",
+          "name": "tags.svg"
+        },
+        {
+          "id": "icon-notebook",
+          "name": "notebook.svg"
+        },
+        {
+          "id": "icon-notebook-pen",
+          "name": "notebook-pen.svg"
+        },
+        {
+          "id": "icon-scroll-text",
+          "name": "scroll-text.svg"
+        },
+        {
+          "id": "icon-user",
+          "name": "user.svg"
+        },
+        {
+          "id": "icon-users",
+          "name": "users.svg"
+        },
+        {
+          "id": "icon-smile",
+          "name": "smile.svg"
+        },
+        {
+          "id": "icon-heart",
+          "name": "heart.svg"
+        },
+        {
+          "id": "icon-heart-pulse",
+          "name": "heart-pulse.svg"
+        },
+        {
+          "id": "icon-star",
+          "name": "star.svg"
+        },
+        {
+          "id": "icon-flame",
+          "name": "flame.svg"
+        },
+        {
+          "id": "icon-flower-2",
+          "name": "flower-2.svg"
+        },
+        {
+          "id": "icon-leaf",
+          "name": "leaf.svg"
+        },
+        {
+          "id": "icon-sprout",
+          "name": "sprout.svg"
+        },
+        {
+          "id": "icon-mountain",
+          "name": "mountain.svg"
+        },
+        {
+          "id": "icon-plane",
+          "name": "plane.svg"
+        },
+        {
+          "id": "icon-cat",
+          "name": "cat.svg"
+        },
+        {
+          "id": "icon-camera",
+          "name": "camera.svg"
+        },
+        {
+          "id": "icon-music",
+          "name": "music.svg"
+        },
+        {
+          "id": "icon-headphones",
+          "name": "headphones.svg"
+        },
+        {
+          "id": "icon-tv",
+          "name": "tv.svg"
+        },
+        {
+          "id": "icon-gamepad-2",
+          "name": "gamepad-2.svg"
+        },
+        {
+          "id": "icon-coffee",
+          "name": "coffee.svg"
+        },
+        {
+          "id": "icon-utensils",
+          "name": "utensils.svg"
+        },
+        {
+          "id": "icon-shopping-bag",
+          "name": "shopping-bag.svg"
+        },
+        {
+          "id": "icon-gift",
+          "name": "gift.svg"
+        },
+        {
+          "id": "icon-shirt",
+          "name": "shirt.svg"
+        },
+        {
+          "id": "icon-dumbbell",
+          "name": "dumbbell.svg"
+        },
+        {
+          "id": "icon-graduation-cap",
+          "name": "graduation-cap.svg"
+        },
+        {
+          "id": "icon-code",
+          "name": "code.svg"
+        },
+        {
+          "id": "icon-wrench",
+          "name": "wrench.svg"
+        },
+        {
+          "id": "icon-trophy",
+          "name": "trophy.svg"
+        },
+        {
+          "id": "icon-shapes",
+          "name": "shapes.svg"
+        },
+        {
+          "id": "icon-heading",
+          "name": "heading.svg"
+        },
+        {
+          "id": "icon-bold",
+          "name": "bold.svg"
+        },
+        {
+          "id": "icon-italic",
+          "name": "italic.svg"
+        },
+        {
+          "id": "icon-underline",
+          "name": "underline.svg"
+        },
+        {
+          "id": "icon-strikethrough",
+          "name": "strikethrough.svg"
+        },
+        {
+          "id": "icon-highlighter",
+          "name": "highlighter.svg"
+        },
+        {
+          "id": "icon-code-block",
+          "name": "code-block.svg"
+        },
+        {
+          "id": "icon-list",
+          "name": "list.svg"
+        },
+        {
+          "id": "icon-list-ordered",
+          "name": "list-ordered.svg"
+        },
+        {
+          "id": "icon-callout",
+          "name": "callout.svg"
+        },
+        {
+          "id": "icon-divider",
+          "name": "divider.svg"
+        },
+        {
+          "id": "icon-wikilink",
+          "name": "wikilink.svg"
+        },
+        {
+          "id": "icon-table",
+          "name": "table.svg"
+        },
+        {
+          "id": "icon-sigma",
+          "name": "sigma.svg"
+        },
+        {
+          "id": "icon-flowchart",
+          "name": "flowchart.svg"
+        },
+        {
+          "id": "icon-footnote",
+          "name": "footnote.svg"
+        },
+        {
+          "id": "icon-fold",
+          "name": "fold.svg"
+        },
+        {
+          "id": "icon-tag-off",
+          "name": "tag-off.svg"
+        },
+        {
+          "id": "icon-minimize-2",
+          "name": "minimize-2.svg"
+        }
+      ]
+    }
+  ],
+  "consumer": {
+    "$note": "给 Pomelo 的样式 dist/pomelo/design-system/consumer.css（Design System 的变量 + bundle.css，只放 approved 的动效）；去掉和 Pomelo 的 Tailwind 同名的变量",
+    "css": true,
+    "omitVars": [
+      "leading-tight",
+      "leading-loose"
+    ]
+  }
+}

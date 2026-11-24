@@ -1,0 +1,31 @@
+/* 柚子的表情动画（Phase 2「柚子：脸、身子的动作」）。
+   用法：<span class="pm-pomelo" data-face="平常的名字">放这张脸的 SVG</span>（schemes/pomelo/marks/pomelo/pomelo-<脸>.svg，原样放进来）。
+   换表情就换 data-face 和里面的 SVG（或叠着几张、只显示一张）：脸一出现动画就开始，循环的一直放、一次的放完停在脸上。
+   身子整个动（SVG 本身，以脚下为轴）；眼睛、嘴、想法泡泡、小星星、z、「!」是 SVG 里带类名的 .pt 组，各动各的；
+   脸外面的东西（想法泡泡、小星星、z、「!」）底下有一层白边（.wb 里对应的那条），跟着一起动。
+   这里放大家共用的：外层、轴心、共用的关键帧；其余的表情各自一份，requires 这一份。 */
+.pm-pomelo { display: inline-block; line-height: 0; vertical-align: middle; }
+.pm-pomelo[hidden] { display: none; }
+.pm-pomelo > svg { display: block; overflow: visible; transform-origin: 50% 90%; }
+.pm-pomelo .pt, .pm-pomelo .wb > path { transform-box: fill-box; transform-origin: 50% 50%; }
+
+/* 平常：慢慢呼吸（一下 2.6 秒），一圈 5.2 秒里看右、看左、眨一下眼 */
+.pm-pomelo[data-face="normal"] > svg { animation: pm-pomelo-breathe 2.6s ease-in-out infinite; }
+.pm-pomelo[data-face="normal"] .eyes { animation: pm-pomelo-look-idle 5.2s ease-in-out infinite; }
+
+@keyframes pm-pomelo-breathe { 0%, 100% { transform: scale(1, 1); } 50% { transform: scale(1.035, .97); } }
+@keyframes pm-pomelo-look-idle {
+  0%, 26% { transform: translateX(0) scaleY(1); }
+  32%, 46% { transform: translateX(3px) scaleY(1); }
+  52%, 64% { transform: translateX(-2px) scaleY(1); }
+  70%, 84% { transform: translateX(0) scaleY(1); }
+  87.5% { transform: translateX(0) scaleY(.12); }
+  91%, 100% { transform: translateX(0) scaleY(1); }
+}
+/* 共用：跳一下（哇、惊讶）、小星星闪一闪（开心、哇） */
+@keyframes pm-pomelo-jump { 0% { transform: translateY(0); } 40% { transform: translateY(-14%) scale(1.06); } 70% { transform: translateY(0) scale(1.05, .95); } 100% { transform: none; } }
+@keyframes pm-pomelo-twinkle { 0%, 100% { transform: scale(1) rotate(0); } 25% { transform: scale(1.35) rotate(20deg); } 50% { transform: scale(.8) rotate(0); } 75% { transform: scale(1.2) rotate(-15deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pm-pomelo > svg, .pm-pomelo .pt, .pm-pomelo .wb > path { animation: none !important; }
+}

@@ -1,0 +1,18 @@
+{
+  "kind": "canvas",
+  "title": "Vermilion Explore",
+  "home": "894a9621-fd42-454e-9d34-1a57bd3efb9a",
+  "targets": {
+    "8759cf86-4c2c-4b29-8159-66be7379a958": {
+      "url": "https://claude.ai/artifact/HiPsn6vm1nLTknV2witmCb",
+      "type": "Design",
+      "blobs": "same",
+      "account": "旧账号"
+    },
+    "894a9621-fd42-454e-9d34-1a57bd3efb9a": {
+      "url": "https://claude.ai/artifact/HxHyVFMZPgwcjpXQrAoDbP",
+      "account": "现用账号",
+      "blobs": "same"
+    }
+  }
+}

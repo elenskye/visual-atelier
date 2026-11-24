@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "dw": {
+      "command": "/bin/sh",
+      "args": ["-c", "exec \"$(git rev-parse --show-toplevel)/bench/bin/dw-mcp.sh\""],
+      "cwd": "."
+    }
+  }
+}

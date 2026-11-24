@@ -1,0 +1,12 @@
+/* 啪地贴上：便签、贴纸从右上方落下来，压一下再弹平（0.5 秒，弹性）。--pm-delay 错开一张张落下。
+   用 translate、scale、rotate 这几个单独的属性，和元素自己的 transform（拖动、歪）不打架。 */
+.pm-slap-in.is-in { animation: pm-slap-in .5s cubic-bezier(.3,1.5,.5,1) both; animation-delay: var(--pm-delay, 0s); }
+@keyframes pm-slap-in {
+  0% { opacity: 0; translate: 26px -36px; scale: 1.4; rotate: 18deg; }
+  55% { opacity: 1; translate: 0 0; scale: .94; rotate: -3deg; }
+  78% { scale: 1.03; rotate: 1deg; }
+  100% { opacity: 1; translate: 0 0; scale: 1; rotate: 0deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pm-slap-in.is-in { animation: none !important; transition: none !important; }
+}

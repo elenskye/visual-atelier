@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>侧栏展开（待批）</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/pomelo/tokens.css">
+<link rel="stylesheet" href="ds/pomelo/components/bundle.css">
+<script src="ds/pomelo/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+.root{position:relative;overflow:hidden;background:var(--color-desk);color:var(--color-ink)}
+.bhead{position:absolute;left:40px;top:30px;right:40px}
+.btitle{font-size:28px;font-weight:700;line-height:36px}
+.bsub{font-size:14px;line-height:22px;color:var(--color-ink-soft)}
+.again{position:absolute;right:40px;top:34px;height:30px;padding:0 12px;font-size:13px}
+.col{position:absolute;top:118px;width:300px}
+.cname{font-size:16px;font-weight:700;line-height:24px;margin:0 0 2px 4px}
+.cdesc{font-size:13px;line-height:20px;color:var(--color-ink-soft);margin:0 0 10px 4px}
+.side{position:relative;padding:10px 8px 14px}
+.side>.pm-card{position:absolute;inset:0}
+.lab{position:relative;padding:12px 10px 4px;font-size:12px;color:var(--color-ink-soft)}
+.row{position:relative;isolation:isolate;display:flex;align-items:center;gap:8px;height:34px;padding:0 6px 0 calc(8px + var(--d, 0) * 16px);border-radius:9px;font-size:15px;cursor:default;user-select:none;white-space:nowrap}
+.row:hover{background:color-mix(in srgb,var(--color-selected) 55%,transparent)}
+.row.on{font-weight:700}
+.row .pk{position:absolute;inset:1px 0;z-index:-1}
+.row .ic{width:18px;display:flex;justify-content:center;color:var(--color-ink-soft)}
+.row .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis}
+.row .n{font-size:12px;color:var(--color-ink-soft);font-variant-numeric:tabular-nums}
+.row .chev{width:18px;height:18px;display:grid;place-items:center;color:var(--color-ink-soft)}
+.row[aria-expanded="false"] .pm-fold-chev{transform:rotate(-90deg)}
+.pm-fold[hidden]{display:none}
+
+/* ---------- 提议的零件：motion/fold（calm，最长 0.57 秒） ----------
+   侧栏的树、分组展开：子项一行接一行从上一行底下滑出来，落到位弹一下、歪一点再摆正（每行 0.32 秒，间隔 28 毫秒，最多晚 0.25 秒）；
+   整块的高度跟着长（0.3 秒，带一点弹），下面的行顺着让开。收起倒着一行行收回去（每行 0.16 秒，间隔 16 毫秒），高度跟着缩。
+   箭头 .pm-fold-chev 弹着转过去（0.3 秒）。
+   用法：子项包在 .pm-fold 里，每个子项写 --pm-i（从上往下第几个）、--pm-r（从下往上第几个）；用户点开的那一刻加 .is-open、
+   收起加 .is-closing，放完拿掉（页面刚打开时展开着的不放）；高度由界面量了写在 style 上（展开 0 → scrollHeight，收起反过来）。
+   动的时候用 clip-path 只裁上下（不用 overflow：外边距照样合并、歪着的纸条和焦点框不被左右裁掉）。 */
+.pm-fold{transition:height .3s cubic-bezier(.3,1.25,.5,1)}
+.pm-fold.is-open,.pm-fold.is-closing{clip-path:inset(0 -100vw)}
+.pm-fold.is-open>*{animation:pm-fold-in .32s cubic-bezier(.3,1.6,.5,1) both;animation-delay:calc(min(var(--pm-i,0),9) * 28ms)}
+.pm-fold.is-closing>*{animation:pm-fold-out .16s ease-in both;animation-delay:calc(min(var(--pm-r,0),9) * 16ms)}
+.pm-fold-chev{transition:transform .3s cubic-bezier(.3,1.6,.5,1),rotate .3s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pm-fold-in{0%{opacity:0;transform:translateY(-80%) rotate(-1.5deg)}50%{opacity:1}100%{opacity:1;transform:none}}
+@keyframes pm-fold-out{100%{opacity:0;transform:translateY(-50%) scale(.96)}}
+@media (prefers-reduced-motion:reduce){.pm-fold,.pm-fold.is-open>*,.pm-fold.is-closing>*,.pm-fold-chev{transition:none !important;animation:none !important}}
+</style>
+</helmet>
+<div class="pm root" data-palette="{{palette}}" data-theme="{{theme}}" style="width:1040px;height:880px">
+<div class="bhead"><div class="btitle">侧栏展开 · 一行接一行滑下来</div><div class="bsub">Bear 的节奏加柚儿园的弹：子项一行接一行滑出来，落到位弹一下；下面的行顺着让开，收起倒着收回去。点有箭头的行试，「再来一次」全部收起再展开。</div></div>
+<button type="button" class="again pm-btn pm-btn--plain" data-hand="button" data-fill="card" data-seed="1901">再来一次</button>
+
+<section class="col" style="left:40px">
+<div class="cname">标签树</div><div class="cdesc">念念不忘、见字如面</div>
+<div class="side"><div class="pm-card" data-hand="card" data-seed="1910" data-tilt="-0.4"></div><div class="tree" data-tree="tags"></div></div>
+</section>
+
+<section class="col" style="left:370px">
+<div class="cname">文件夹</div><div class="cdesc">一网打尽、有板有眼</div>
+<div class="side"><div class="pm-card" data-hand="card" data-seed="1911" data-tilt="0.3"></div><div class="tree" data-tree="folders"></div></div>
+</section>
+
+<section class="col" style="left:700px">
+<div class="cname">分组</div><div class="cdesc">一步一步、柚子的对话</div>
+<div class="side"><div class="pm-card" data-hand="card" data-seed="1912" data-tilt="-0.2"></div><div class="tree" data-tree="groups"></div></div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"palette":{"editor":"enum","options":["blue","purple","kraft","yellow","mint"],"default":"blue","section":"配色"},"dark":{"editor":"boolean","default":false,"section":"配色"},"$preview":{"width":1040,"height":880}}'>
+var FoldDemo = (function () {
+  var CHEV = '<span class="pm-fold-chev" data-hand="icon" data-size="14" data-seed="7" data-d="M7 10 L12 15 L17 10"></span>';
+  var HASH = '#';
+  var FOLDER = '<span data-hand="icon" data-size="16" data-seed="9" data-d="M4 7 L4 18 L20 18 L20 9 L11 9 L9.5 7 Z"></span>';
+  var TREES = {
+    tags: [
+      { lab: '置顶' },
+      { n: '财富', c: 15 },
+      { n: '创作', c: 17, on: true, k: [{ n: '故事', c: 3 }, { n: '诗歌', c: 3 }, { n: '随笔', c: 4 }, { n: '杂记', c: 7 }] },
+      { n: '课程', c: 52, k: [{ n: '机器学习', c: 18, k: [{ n: '参考', c: 9 }, { n: '作业', c: 5 }, { n: '笔记', c: 4 }] }, { n: '统计', c: 6 }, { n: '项目', c: 5 }, { n: '编程', c: 4 }, { n: '数据库', c: 4 }] },
+      { lab: '标签' },
+      { n: '科技', c: 8 }, { n: '历史', c: 5 }, { n: '心理学', c: 6 }
+    ],
+    folders: [
+      { n: '常用', c: 12, f: 1, k: [{ n: '工作', c: 5, f: 1 }, { n: '学习', c: 4, f: 1, k: [{ n: '课程', c: 2, f: 1 }, { n: '论文', c: 2, f: 1 }] }, { n: '工具', c: 3, f: 1 }] },
+      { n: '画画', c: 9, f: 1, k: [{ n: '教程', c: 4, f: 1 }, { n: '素材', c: 3, f: 1 }, { n: '灵感', c: 2, f: 1 }] },
+      { n: '阅读', c: 6, f: 1 }, { n: '旅行', c: 4, f: 1 }
+    ],
+    groups: [
+      { n: '最近', c: 6, k: [{ n: '周末去哪', c: '' }, { n: '读书笔记整理', c: '' }, { n: '面试准备', c: '' }, { n: '猫粮比价', c: '' }] },
+      { n: '项目', c: 2, k: [{ n: '毕业论文', c: '', f: 1, k: [{ n: '第三章', c: '' }, { n: '参考文献', c: '' }] }, { n: '搬家', c: '', f: 1 }] },
+      { n: '归档', c: 18 }
+    ]
+  };
+  var seed = 1920;
+  function rows(list, d) {
+    return list.map(function (t) {
+      if (t.lab) return '<div class="lab">' + t.lab + '</div>';
+      var ic = t.f ? FOLDER : HASH;
+      var row = '<div class="row' + (t.on ? ' on' : '') + '" style="--d:' + d + '"' + (t.k ? ' aria-expanded="false"' : '') + '>' +
+        (t.on ? '<span class="pk" data-hand="pick" data-seed="' + (seed++) + '"></span>' : '') +
+        '<span class="ic">' + ic + '</span><span class="nm">' + t.n + '</span><span class="n">' + t.c + '</span><span class="chev">' + (t.k ? CHEV : '') + '</span></div>';
+      if (!t.k) return '<div class="node">' + row + '</div>';
+      var kids = t.k.map(function (k, i) { return '<div class="node" style="--pm-i:' + i + ';--pm-r:' + (t.k.length - 1 - i) + '">' + rows([k], d + 1).replace(/^<div class="node">|<\/div>$/g, '') + '</div>'; }).join('');
+      return '<div class="node">' + row + '<div class="pm-fold" hidden>' + kids + '</div></div>';
+    }).join('');
+  }
+  function toggle(row, open) {
+    var box = row.nextElementSibling;
+    if (open === undefined) open = row.getAttribute('aria-expanded') !== 'true';
+    clearTimeout(box._t); box.ontransitionend = null;
+    row.setAttribute('aria-expanded', String(open));
+    if (open) {
+      box.hidden = false;
+      box.classList.remove('is-closing', 'is-open');
+      var from = box.getBoundingClientRect().height;
+      box.style.height = 'auto';
+      var to = box.scrollHeight;
+      box.style.height = from + 'px';
+      void box.offsetWidth;
+      box.classList.add('is-open');
+      requestAnimationFrame(function () { box.style.height = to + 'px'; });
+      box._t = setTimeout(function () { box.style.height = ''; box.classList.remove('is-open'); }, 620);
+    } else {
+      box.style.height = box.getBoundingClientRect().height + 'px';
+      box.classList.remove('is-open');
+      void box.offsetWidth;
+      box.classList.add('is-closing');
+      var lag = Math.min(box.children.length - 1, 9) * 10;
+      box._t = setTimeout(function () {
+        box.style.height = '0px';
+        box._t = setTimeout(function () { box.hidden = true; box.style.height = ''; box.classList.remove('is-closing'); }, 320);
+      }, lag);
+    }
+  }
+  function start() {
+    Array.prototype.forEach.call(document.querySelectorAll('.tree'), function (el) { el.innerHTML = rows(TREES[el.dataset.tree], 0); });
+    document.addEventListener('click', function (e) {
+      var r = e.target.closest('.row[aria-expanded]');
+      if (r) toggle(r);
+      if (e.target.closest('.again')) replay();
+    });
+    setTimeout(openTop, 500);
+  }
+  function tops() { return Array.prototype.slice.call(document.querySelectorAll('.tree > .node > .row[aria-expanded]')); }
+  function openTop() { tops().forEach(function (r, i) { setTimeout(function () { toggle(r, true); }, i * 180); }); }
+  function replay() {
+    var open = Array.prototype.slice.call(document.querySelectorAll('.row[aria-expanded="true"]')).reverse();
+    open.forEach(function (r) { toggle(r, false); });
+    setTimeout(openTop, open.length ? 520 : 0);
+  }
+  return { start: start };
+})();
+
+class Component extends DCLogic {
+  renderVals() { return { palette: this.props.palette ?? 'blue', theme: this.props.dark ? 'dark' : 'light' }; }
+  componentDidMount() { FoldDemo.start(); this.stop = Pomelo.paintLive(document.body); }
+  componentDidUpdate() { Pomelo.paint(document.body); }
+  componentWillUnmount() { this.stop && this.stop(); }
+}
+</script>
+</body>
+</html>

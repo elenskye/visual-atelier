@@ -1,0 +1,262 @@
+{
+  "$note": "Design System 的 tokens.json 由构建生成：颜色、字、间距、宽、发光取自方案的 tokens/，这里只写每个 token 的用途和字体样式。themes：第一主题是深色。fonts：有文件的两个字体。控件尺寸（size-*）和像素角（step-*）取自方案 scale.json 的 size、step（scaleGroups）。fonts 的源文件在方案的 type/<file>。",
+  "themes": [
+    {
+      "id": "dark",
+      "name": "深色"
+    },
+    {
+      "id": "light",
+      "name": "浅色"
+    }
+  ],
+  "fonts": [
+    {
+      "family": "Fusion Pixel 12",
+      "file": "fonts/fusion-pixel-12.woff2",
+      "weight": "400",
+      "style": "normal"
+    },
+    {
+      "family": "Departure Mono",
+      "file": "fonts/departure-mono.woff2",
+      "weight": "400",
+      "style": "normal"
+    }
+  ],
+  "scaleGroups": {
+    "size": {},
+    "step": {
+      "field": "size"
+    }
+  },
+  "usage": {
+    "color-page": "页面底：整页的底，上面是 LED 点阵孔。放在 color-ok、color-bad 上（APCA Lc ≥ 60，深浅都过）。上面能放 color-text、color-text-3、color-cyan-text。",
+    "color-grid": "点阵孔：页面底上 8 格一颗的孔（半透明，只当图案）。",
+    "color-panel": "模块面：模块、卡片、菜单的面。上面能放 color-text、color-text-2、color-text-3、color-cyan-text、color-ok、color-warn、color-bad。",
+    "color-panel-2": "内凹：输入框、代码块、预览的底。上面能放 color-text、color-text-2、color-text-3。",
+    "color-raised": "抬起：悬停的底、灰标签、计数小块。上面能放 color-text、color-text-2。",
+    "color-line": "模块外框：模块的外层（装饰，靠面和点阵分开，不查对比）。",
+    "color-line-strong": "控件边：按钮、选项片、分段、开关的边；模块里的点线。放在 color-panel 上（APCA Lc ≥ 15，深浅都过）。",
+    "color-block-off": "没亮的格：进度块、点阵勾里没亮的格。",
+    "color-text": "正文：名字、正文、代码。放在 color-page、color-panel、color-panel-2、color-raised、color-cyan-soft 上（APCA Lc ≥ 90，深浅都过）。",
+    "color-text-2": "说明：说明、次要的话、没选中的标签。放在 color-panel、color-panel-2、color-raised 上（APCA Lc ≥ 70，深浅都过）。",
+    "color-text-3": "提示：提示小字、时间、占位、模块头右边的话。放在 color-page、color-panel、color-panel-2 上（APCA Lc ≥ 55，深浅都过）。",
+    "color-cyan": "青块：主按钮、选中的分段、开着的开关。上面能放 color-on-cyan。深色里会发光（shadow-glow-*），浅色不发光。",
+    "color-cyan-hover": "青块悬停：主按钮、开关在悬停时。上面能放 color-on-cyan。",
+    "color-on-cyan": "青块上的字：青块上的字和图标。放在 color-cyan、color-cyan-hover 上（APCA Lc ≥ 75，深浅都过）。",
+    "color-cyan-text": "青字：选中、链接、在发生；键盘焦点的点线。放在 color-page、color-panel、color-cyan-soft 上（APCA Lc ≥ 60，深浅都过）。深色里会发光（shadow-glow-*），浅色不发光。",
+    "color-cyan-block": "青格：进度块、光标、点阵。放在 color-panel 上（APCA Lc ≥ 45，深浅都过）。深色里会发光（shadow-glow-*），浅色不发光。",
+    "color-cyan-line": "青线：在跑的模块边；悬停时控件的边。放在 color-panel 上（APCA Lc ≥ 30，深浅都过）。",
+    "color-cyan-soft": "青底：选中的行、带上的选项片。上面能放 color-text、color-cyan-text。",
+    "color-cyan-scan": "扫描光：扫描光带（半透明，叠在任何底上）。",
+    "color-ok": "完成：完成、通过、新增。放在 color-panel、color-ok-soft 上（APCA Lc ≥ 60，深浅都过）。上面能放 color-page。",
+    "color-ok-soft": "完成底：通过的状态条。上面能放 color-ok。",
+    "color-warn": "等你：等你批、等你答。放在 color-panel、color-warn-soft 上（APCA Lc ≥ 60，深浅都过）。上面能放 color-on-warn。",
+    "color-warn-hover": "琥珀悬停：琥珀按钮在悬停时。上面能放 color-on-warn。",
+    "color-warn-soft": "等你底：等你的提示条。上面能放 color-warn。",
+    "color-warn-line": "等你的边：等你的模块、卡片的边。放在 color-panel 上（APCA Lc ≥ 30，深浅都过）。",
+    "color-on-warn": "琥珀上的字：琥珀按钮上的字。放在 color-warn、color-warn-hover 上（APCA Lc ≥ 60，深浅都过）。",
+    "color-bad": "出错：删除、出错、失败、危险。放在 color-panel、color-bad-soft 上（APCA Lc ≥ 60，深浅都过）。上面能放 color-on-bad、color-page。",
+    "color-bad-hover": "红悬停：红底按钮在悬停时。上面能放 color-on-bad。",
+    "color-bad-soft": "出错底：失败的状态条。上面能放 color-bad。",
+    "color-bad-line": "出错的边：出错的模块、危险按钮的边。放在 color-panel 上（APCA Lc ≥ 30，深浅都过）。",
+    "color-on-bad": "红底上的字：真要删的那一下（红底按钮）上的字。放在 color-bad、color-bad-hover 上（APCA Lc ≥ 60，深浅都过）。",
+    "color-muse": "Muse：Muse 的色点。放在 color-panel 上（APCA Lc ≥ 45，深浅都过）。",
+    "color-grok": "Grok：Grok 的色点。放在 color-panel 上（APCA Lc ≥ 45，深浅都过）。",
+    "color-api": "API：API 模型的色点。放在 color-panel 上（APCA Lc ≥ 45，深浅都过）。",
+    "color-focus": "键盘焦点：控件里面内缩 3 像素一圈 1 像素点线的颜色，就是 color-cyan-text。青块、琥珀、红底上的焦点用块上的字色（color-on-cyan、color-on-warn、color-on-bad）。",
+    "space-1": "2px：台阶角的一级、图标和边之间。间距只用这 12 档。",
+    "space-2": "4px：图标和字之间的最小间距、标签上下。间距只用这 12 档。",
+    "space-3": "6px：选项片里图标和字、分段里几格之间。间距只用这 12 档。",
+    "space-4": "8px：模块头里几样东西之间、按钮里图标和字。间距只用这 12 档。",
+    "space-5": "10px：提示条里图标和字、选项之间。间距只用这 12 档。",
+    "space-6": "12px：输入框左右内边距、卡片里块之间。间距只用这 12 档。",
+    "space-7": "14px：按钮左右内边距、模块之间。间距只用这 12 档。",
+    "space-8": "16px：栏间、模块内边距（下）。间距只用这 12 档。",
+    "space-9": "18px：模块内边距（左右）。间距只用这 12 档。",
+    "space-10": "22px：窗口上边距。间距只用这 12 档。",
+    "space-11": "28px：窗口下边距。间距只用这 12 档。",
+    "space-12": "30px：窗口左右边距。间距只用这 12 档。",
+    "width-left": "288px：左栏（项目和任务）宽。",
+    "width-right": "336px：右栏（改动 / ONE SHOT / 文件 / 终端）宽。",
+    "width-gap": "16px：三栏之间。",
+    "width-pad-top": "22px：窗口上边距。",
+    "width-pad-x": "30px：窗口左右边距。",
+    "width-pad-bottom": "28px：窗口下边距。",
+    "text-hero": "首页大标题的字号 24px（缝合像素 12）：首页「weather-cli 要做什么？」。",
+    "leading-hero": "首页大标题的行高 30px。",
+    "text-title": "标题的字号 18px（缝合像素 12）：模块里的大标题、任务名。",
+    "leading-title": "标题的行高 24px。",
+    "text-name": "名字的字号 12px（缝合像素 12）：任务名、步骤名、问题、选项、项目名。",
+    "leading-name": "名字的行高 18px。",
+    "text-body": "正文的字号 12.5px（Plex Sans + 苹方）：说明、回答、总结。",
+    "leading-body": "正文的行高 19px。",
+    "text-small": "小字的字号 12px（Plex Sans + 苹方）：提示、时间、模块头右边的话。",
+    "leading-small": "小字的行高 18px。",
+    "text-code": "代码的字号 11px（Departure Mono）：代码、路径、命令、文件名（字号不小于 12 的唯一例外）。",
+    "leading-code": "代码的行高 18px。",
+    "text-label": "标签的字号 13px（Doto 900）：标签、选项片、小按钮：英文大写。",
+    "leading-label": "标签的行高 16px。",
+    "text-button": "按钮的字号 14px（Doto 900）：按钮、分段、模块头 [ LABEL ]。",
+    "leading-button": "按钮的行高 16px。",
+    "text-count": "计数的字号 17px（Doto 900）：模块头右边的数。",
+    "leading-count": "计数的行高 17px。",
+    "text-num": "数字的字号 26px（Doto 900）：改动的文件数、进度百分比。",
+    "leading-num": "数字的行高 26px。",
+    "text-timer": "计时的字号 54px（Doto 900）：在跑的计时。",
+    "leading-timer": "计时的行高 54px。",
+    "shadow-glow-dot": "发光 · 点阵、光标、进度块的点：只在深色里有，浅色是 none。只给青色（和白字的微光）。",
+    "shadow-glow-block": "发光 · 进度块：只在深色里有，浅色是 none。只给青色（和白字的微光）。",
+    "shadow-glow-text": "发光 · 大号青字：只在深色里有，浅色是 none。只给青色（和白字的微光）。",
+    "shadow-glow-timer": "发光 · 计时数字：只在深色里有，浅色是 none。只给青色（和白字的微光）。",
+    "shadow-glow-on-cyan": "发光 · 青块上的字：只在深色里有，浅色是 none。只给青色（和白字的微光）。",
+    "shadow-glow-ink": "发光 · 白字微光：只在深色里有，浅色是 none。只给青色（和白字的微光）。",
+    "size-button": "按钮高：主按钮、普通按钮、危险按钮（pk-btn）。",
+    "size-button-sm": "小按钮高：模块头、预览头里的小按钮（pk-btn--sm；EXPAND 是 26 见方）。",
+    "size-chip": "选项片高（pk-chip；带上的小选项片 26）。",
+    "size-seg": "分段、页签里一格的高（pk-seg）。",
+    "size-input": "输入行高：中栏、ONE SHOT 底下那一行（pk-input）。",
+    "size-field": "输入框高：填 Key 这类单独的一格（pk-field）。",
+    "size-row": "列表行高：文件树、改动列表（pk-row）。",
+    "size-menu-row": "菜单行高（pk-menu-item）。",
+    "size-tag": "标签高（pk-tag；文件树里 17）。",
+    "size-check": "单选、多选的格（pk-radio、pk-check）。",
+    "size-switch-w": "开关宽（pk-switch-track）。",
+    "size-switch-h": "开关高。",
+    "size-icon": "图标：8×8 像素格，一格 2 像素。",
+    "size-icon-sm": "小图标：列表行、小按钮、提示条里。",
+    "size-icon-lg": "大图标：空状态。",
+    "size-header": "顶栏高。",
+    "step-module": "模块、卡片、菜单：切 2 级台阶，每级 3px（bundle.css 的 --pk-clip）。没有圆角。",
+    "step-control": "按钮、选项片、分段、输入框：切 2 级台阶，每级 2px（bundle.css 的 --pk-clip2）。没有圆角。",
+    "step-small": "标签、单选多选、开关的钮：切 1 级台阶，每级 2px（bundle.css 的 --pk-notch）。没有圆角。"
+  },
+  "typeGroups": [
+    {
+      "name": "名字和标题 · 缝合像素 12",
+      "family": "name",
+      "styles": [
+        {
+          "name": "t-hero",
+          "family": "name",
+          "fontSize": "24px",
+          "lineHeight": "30px",
+          "fontWeight": 400,
+          "sample": "weather-cli 要做什么？",
+          "usage": "首页大标题：首页「weather-cli 要做什么？」"
+        },
+        {
+          "name": "t-title",
+          "family": "name",
+          "fontSize": "18px",
+          "lineHeight": "24px",
+          "fontWeight": 400,
+          "sample": "把设置里三个对话框合成一个面板",
+          "usage": "标题：模块里的大标题、任务名"
+        },
+        {
+          "name": "t-name",
+          "family": "name",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": 400,
+          "sample": "Grok 跑 pnpm check",
+          "usage": "名字：任务名、步骤名、问题、选项、项目名"
+        }
+      ]
+    },
+    {
+      "name": "说明 · Plex Sans + 苹方",
+      "family": "body",
+      "styles": [
+        {
+          "name": "t-body",
+          "family": "body",
+          "fontSize": "12.5px",
+          "lineHeight": "19px",
+          "fontWeight": 400,
+          "sample": "第一次有报错，Grok 在改。升级会顺手改 6 个文件的类名。",
+          "usage": "正文：说明、回答、总结"
+        },
+        {
+          "name": "t-small",
+          "family": "body",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": 400,
+          "sample": "订阅额度 · 只读 · 2 分钟前",
+          "usage": "小字：提示、时间、模块头右边的话"
+        }
+      ]
+    },
+    {
+      "name": "代码 · Departure Mono",
+      "family": "code",
+      "styles": [
+        {
+          "name": "t-code",
+          "family": "code",
+          "fontSize": "11px",
+          "lineHeight": "18px",
+          "fontWeight": 400,
+          "sample": "settings/SettingsSheet.tsx",
+          "usage": "代码：代码、路径、命令、文件名（字号不小于 12 的唯一例外）"
+        }
+      ]
+    },
+    {
+      "name": "点阵字 · Doto（英文大写和数字）",
+      "family": "dots",
+      "styles": [
+        {
+          "name": "t-label",
+          "family": "dots",
+          "fontSize": "13px",
+          "lineHeight": "16px",
+          "fontWeight": 900,
+          "letterSpacing": ".06em",
+          "sample": "NEW DEL 2/3",
+          "usage": "标签：标签、选项片、小按钮：英文大写"
+        },
+        {
+          "name": "t-button",
+          "family": "dots",
+          "fontSize": "14px",
+          "lineHeight": "16px",
+          "fontWeight": 900,
+          "letterSpacing": ".08em",
+          "sample": "SEND UNDO TASK",
+          "usage": "按钮：按钮、分段、模块头 [ LABEL ]"
+        },
+        {
+          "name": "t-count",
+          "family": "dots",
+          "fontSize": "17px",
+          "lineHeight": "17px",
+          "fontWeight": 900,
+          "sample": "12",
+          "usage": "计数：模块头右边的数"
+        },
+        {
+          "name": "t-num",
+          "family": "dots",
+          "fontSize": "26px",
+          "lineHeight": "26px",
+          "fontWeight": 900,
+          "sample": "+86 −132",
+          "usage": "数字：改动的文件数、进度百分比"
+        },
+        {
+          "name": "t-timer",
+          "family": "dots",
+          "fontSize": "54px",
+          "lineHeight": "54px",
+          "fontWeight": 900,
+          "sample": "02:14",
+          "usage": "计时：在跑的计时"
+        }
+      ]
+    }
+  ]
+}

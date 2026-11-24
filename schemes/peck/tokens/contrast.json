@@ -1,0 +1,221 @@
+{
+  "$note": "要通过的 APCA 对比度（Lc 绝对值）。Peck 的字只有 12–12.5 号，门槛比 Vermilion 高：名字和正文 ≥ 90；青块上的字 ≥ 75；说明 ≥ 70；青字、状态字、按钮上的字 ≥ 60；提示小字 ≥ 55；进度块、身份色点 ≥ 45；在跑、等你、出错的边 ≥ 30；控件的边 ≥ 15。模块外框 line 是装饰，不查。",
+  "pairs": [
+    {
+      "fg": "text",
+      "bg": "page",
+      "min": 90,
+      "use": "正文 / page"
+    },
+    {
+      "fg": "text",
+      "bg": "panel",
+      "min": 90,
+      "use": "正文 / panel"
+    },
+    {
+      "fg": "text",
+      "bg": "panel-2",
+      "min": 90,
+      "use": "正文 / panel-2"
+    },
+    {
+      "fg": "text",
+      "bg": "raised",
+      "min": 90,
+      "use": "正文 / raised"
+    },
+    {
+      "fg": "text",
+      "bg": "cyan-soft",
+      "min": 90,
+      "use": "正文 / cyan-soft"
+    },
+    {
+      "fg": "text-2",
+      "bg": "panel",
+      "min": 70,
+      "use": "说明 / panel"
+    },
+    {
+      "fg": "text-2",
+      "bg": "panel-2",
+      "min": 70,
+      "use": "说明 / panel-2"
+    },
+    {
+      "fg": "text-2",
+      "bg": "raised",
+      "min": 70,
+      "use": "说明 / raised"
+    },
+    {
+      "fg": "text-3",
+      "bg": "page",
+      "min": 55,
+      "use": "提示小字 / page"
+    },
+    {
+      "fg": "text-3",
+      "bg": "panel",
+      "min": 55,
+      "use": "提示小字 / panel"
+    },
+    {
+      "fg": "text-3",
+      "bg": "panel-2",
+      "min": 55,
+      "use": "提示小字 / panel-2"
+    },
+    {
+      "fg": "cyan-text",
+      "bg": "page",
+      "min": 60,
+      "use": "青字 / page"
+    },
+    {
+      "fg": "cyan-text",
+      "bg": "panel",
+      "min": 60,
+      "use": "青字 / panel"
+    },
+    {
+      "fg": "cyan-text",
+      "bg": "cyan-soft",
+      "min": 60,
+      "use": "青字 / cyan-soft"
+    },
+    {
+      "fg": "on-cyan",
+      "bg": "cyan",
+      "min": 75,
+      "use": "主按钮的字 / cyan"
+    },
+    {
+      "fg": "on-cyan",
+      "bg": "cyan-hover",
+      "min": 75,
+      "use": "主按钮的字 / cyan-hover"
+    },
+    {
+      "fg": "ok",
+      "bg": "panel",
+      "min": 60,
+      "use": "完成的字 / panel"
+    },
+    {
+      "fg": "ok",
+      "bg": "ok-soft",
+      "min": 60,
+      "use": "完成的字 / ok-soft"
+    },
+    {
+      "fg": "warn",
+      "bg": "panel",
+      "min": 60,
+      "use": "等你的字 / panel"
+    },
+    {
+      "fg": "warn",
+      "bg": "warn-soft",
+      "min": 60,
+      "use": "等你的字 / warn-soft"
+    },
+    {
+      "fg": "bad",
+      "bg": "panel",
+      "min": 60,
+      "use": "出错的字 / panel"
+    },
+    {
+      "fg": "bad",
+      "bg": "bad-soft",
+      "min": 60,
+      "use": "出错的字 / bad-soft"
+    },
+    {
+      "fg": "on-warn",
+      "bg": "warn",
+      "min": 60,
+      "use": "琥珀按钮的字 / warn"
+    },
+    {
+      "fg": "on-warn",
+      "bg": "warn-hover",
+      "min": 60,
+      "use": "琥珀按钮的字 / warn-hover"
+    },
+    {
+      "fg": "on-bad",
+      "bg": "bad",
+      "min": 60,
+      "use": "红底按钮的字 / bad"
+    },
+    {
+      "fg": "on-bad",
+      "bg": "bad-hover",
+      "min": 60,
+      "use": "红底按钮的字 / bad-hover"
+    },
+    {
+      "fg": "page",
+      "bg": "ok",
+      "min": 60,
+      "use": "NEW / DEL 标签的字 / ok"
+    },
+    {
+      "fg": "page",
+      "bg": "bad",
+      "min": 60,
+      "use": "NEW / DEL 标签的字 / bad"
+    },
+    {
+      "fg": "cyan-block",
+      "bg": "panel",
+      "min": 45,
+      "use": "进度块 / panel"
+    },
+    {
+      "fg": "muse",
+      "bg": "panel",
+      "min": 45,
+      "use": "身份色点 / panel"
+    },
+    {
+      "fg": "grok",
+      "bg": "panel",
+      "min": 45,
+      "use": "身份色点 / panel"
+    },
+    {
+      "fg": "api",
+      "bg": "panel",
+      "min": 45,
+      "use": "身份色点 / panel"
+    },
+    {
+      "fg": "cyan-line",
+      "bg": "panel",
+      "min": 30,
+      "use": "在跑的边 / panel"
+    },
+    {
+      "fg": "warn-line",
+      "bg": "panel",
+      "min": 30,
+      "use": "等你的边 / panel"
+    },
+    {
+      "fg": "bad-line",
+      "bg": "panel",
+      "min": 30,
+      "use": "出错的边 / panel"
+    },
+    {
+      "fg": "line-strong",
+      "bg": "panel",
+      "min": 15,
+      "use": "控件的边 / panel"
+    }
+  ]
+}

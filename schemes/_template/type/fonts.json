@@ -1,0 +1,7 @@
+{
+  "$note": "{{title}} 用到的字体。web：能打包、能转曲线的（OFL 等，登记在 docs/licensing.md）；native：系统字体，只作运行时字体，不转曲线、不进产物。",
+  "web": [],
+  "native": [
+    { "family": "PingFang SC", "name": "苹方", "use": "中文", "license": "macOS 系统字体，授权归 Apple", "outline": false }
+  ]
+}

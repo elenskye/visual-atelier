@@ -1,0 +1,46 @@
+{
+  "id": "toast",
+  "title": "提示 · 便签啪地贴上，过一会儿撕走",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "出现时带 .is-in；2.6 秒后换成 .is-leaving，动画放完（0.38 秒）再拿掉",
+  "durationMs": 450,
+  "reducedMotion": "直接出现、直接消失",
+  "use": "存好了、已丢掉之类的提示（.pm-toast），贴在右下角",
+  "source": "canvases/pomelo-explore/p2-final/controls.mjs（站主 2026-11-05 验收的「控件的小动静」）",
+  "files": {
+    "css": "toast.css",
+    "html": "toast.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 300,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".toast-demo",
+    "viewport": [
+      340,
+      240
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-in",
+        "on": ".t1"
+      },
+      {
+        "at": 1300,
+        "remove": "is-in",
+        "add": "is-leaving",
+        "on": ".t1"
+      }
+    ]
+  }
+}

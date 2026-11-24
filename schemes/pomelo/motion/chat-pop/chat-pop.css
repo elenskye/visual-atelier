@@ -1,0 +1,12 @@
+/* 问柚子：小窗从顶栏右上角的柚子那里长出来（0.42 秒，纸的回弹）：先小小地歪着，长过头一点再落平；
+   收起时缩回柚子那里（.is-closing，0.2 秒，放完再拿掉）。--pm-chat-from 是从哪儿长出来（相对小窗自己，
+   默认右上角外面一点：顶栏的「问柚子」）。 */
+.pm-chat-pop { transform-origin: var(--pm-chat-from, calc(100% - 26px) -30px); }
+.pm-chat-pop.is-open { animation: pm-chat-pop .42s cubic-bezier(.25, 1.2, .5, 1) both; }
+.pm-chat-pop.is-closing { animation: pm-chat-away .2s cubic-bezier(.5, 0, .75, 0) both; pointer-events: none; }
+@keyframes pm-chat-pop { 0% { opacity: 0; transform: scale(.24, .16) rotate(7deg); } 40% { opacity: 1; } 100% { opacity: 1; transform: none; } }
+@keyframes pm-chat-away { 0% { opacity: 1; transform: none; } 100% { opacity: 0; transform: scale(.24, .16) rotate(7deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-chat-pop.is-open { animation: none !important; }
+  .pm-chat-pop.is-closing { animation: none !important; opacity: 0; }
+}

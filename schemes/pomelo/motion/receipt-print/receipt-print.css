@@ -1,0 +1,17 @@
+/* 找东西：出纸口落下来（0.3 秒），小票一格一格打出来（0.45 秒），结果一行行印出来（每行 0.2 秒，间隔 0.05 秒，最多晚 0.3 秒）；
+   选中一行，小票先往下一拽、再撕下来往右上飞走（.is-tear，0.38 秒）；收起时小票缩回出纸口（.is-closing，0.25 秒）。 */
+.pm-printer.is-open .pm-print-slot { animation: pm-slot-in .3s cubic-bezier(.3,1.5,.5,1) both; }
+.pm-printer.is-open .pm-print-paper { animation: pm-print .45s .1s steps(9, end) both; }
+.pm-print-row { animation: pm-print-row .2s steps(3, end) both; animation-delay: calc(min(var(--pm-i, 0), 6) * 50ms); }
+.pm-printer .pm-print-paper.is-tear { animation: pm-tear .38s cubic-bezier(.5, 0, .8, .4) both; pointer-events: none; }
+.pm-printer.is-closing .pm-print-paper { animation: pm-unprint .25s ease-in both; }
+.pm-printer.is-closing .pm-print-slot { animation: pm-slot-out .2s .08s ease-in both; }
+@keyframes pm-slot-in { 0% { transform: translateY(-40px); } 100% { transform: none; } }
+@keyframes pm-slot-out { 0% { transform: none; } 100% { transform: translateY(-40px); opacity: 0; } }
+@keyframes pm-print { 0% { transform: translateY(-100%); } 100% { transform: none; } }
+@keyframes pm-unprint { 0% { transform: none; } 100% { transform: translateY(-100%); } }
+@keyframes pm-print-row { 0% { clip-path: inset(0 0 100% 0); transform: translateY(-6px); } 100% { clip-path: inset(0); transform: none; } }
+@keyframes pm-tear { 0% { transform: none; } 25% { transform: translateY(6px) rotate(1deg); } 100% { transform: translate(260px, -420px) rotate(24deg); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-printer.is-open .pm-print-slot, .pm-printer.is-open .pm-print-paper, .pm-print-row, .pm-printer .pm-print-paper.is-tear, .pm-printer.is-closing .pm-print-paper, .pm-printer.is-closing .pm-print-slot { animation: none !important; transition: none !important; }
+}

@@ -1,0 +1,9 @@
+/* 柚子出错：摇头，红色的「!」弹出来。0.9 秒。
+   白边（.wb）的第 10–12 条是「!」的（圆、竖、点）。 */
+.pm-pomelo[data-face="error"] > svg { animation: pm-pomelo-shake .9s ease-in-out both; }
+.pm-pomelo[data-face="error"] .bang, .pm-pomelo[data-face="error"] .wb > path:nth-child(n+10) { animation: pm-pomelo-bang .5s cubic-bezier(.3,1.6,.5,1) both; }
+@keyframes pm-pomelo-shake { 0% { transform: rotate(0); } 14% { transform: rotate(-9deg); } 30% { transform: rotate(8deg); } 46% { transform: rotate(-7deg); } 62% { transform: rotate(5deg); } 78%, 100% { transform: rotate(0); } }
+@keyframes pm-pomelo-bang { 0% { transform: scale(0); } 60% { transform: scale(1.35); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-pomelo[data-face="error"] > svg, .pm-pomelo[data-face="error"] .pt, .pm-pomelo[data-face="error"] .wb > path { animation: none !important; }
+}

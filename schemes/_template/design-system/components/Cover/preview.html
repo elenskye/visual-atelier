@@ -1,0 +1,23 @@
+<!-- @dsCard height=320 -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>{{title}}</title>
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--color-page); color: var(--color-text); font-family: var(--font-body); overflow: hidden; }
+  .cover { height: 320px; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 40px 36px; box-sizing: border-box; }
+  .name { margin: 0; font-size: 72px; line-height: 1; font-weight: 600; }
+  .tag { margin: 12px 0 0; font-size: var(--text-body); color: var(--color-text-2); }
+  .bar { width: 64px; height: 8px; margin-bottom: 20px; border-radius: 4px; background: var(--color-accent); }
+</style>
+</head>
+<body>
+<div class="cover">
+  <div class="bar"></div>
+  <p class="name">{{title}}</p>
+  <p class="tag">一句话：这套方案给谁用、是什么样子。</p>
+</div>
+</body>
+</html>

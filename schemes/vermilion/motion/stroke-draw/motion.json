@@ -1,0 +1,27 @@
+{
+  "id": "stroke-draw",
+  "title": "描边绘制",
+  "status": "approved",
+  "approved": "站主 2026-11-01 批准（VL1 Phase 6）",
+  "supersededBy": "stroke-draw-v2（640ms，站主 2026-11-01 选定，VL1 Phase 7）；本版 320ms 留档，网站没有用过",
+  "tier": "calm",
+  "trigger": "外层加 .is-playing 时画一次（例如进入视口时由使用方加上）",
+  "durationMs": 320,
+  "reducedMotion": "静态终态：图形完整显示",
+  "use": "不在登记表面上的「笔势与纸片」图形：VL1 Phase 7 的 404 插图与文末落款先用",
+  "requires": ["marks/graphic/graphic.css"],
+  "source": { "generator": "tooling/graphic/build.mjs（片段）", "rules": "DESIGN.md §5" },
+  "files": { "css": "stroke-draw.css", "html": "stroke-draw.fragment.html" },
+  "capture": {
+    "host": ".va-draw",
+    "playClass": "is-playing",
+    "viewport": [160, 160],
+    "scale": 3,
+    "padPx": 8,
+    "fps": 50,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": ["light", "dark"],
+    "loop": 0
+  }
+}

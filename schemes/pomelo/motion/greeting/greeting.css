@@ -1,0 +1,13 @@
+/* 打开 App 的问候：桌上的便签一张张落下来（每张晚 0.09 秒），「下午好呀」一笔一笔写出来（1 秒），荧光笔从底下划过（0.5 秒），
+   小字淡入；最后柚子眨一下眼（柚子的表情 pomelo-wink：界面把柚子的 data-face 换成 wink）。
+   桌面加 .is-in 放一次；问候的字写 .pm-greet-word（荧光笔是里面的 .pm-mark），小字 .pm-greet-sub，便签 .pm-greet-note（--pm-i 是第几张）。 */
+.pm-greet.is-in .pm-greet-note { animation: pm-slap-in .55s cubic-bezier(.3,1.5,.5,1) both; animation-delay: calc(var(--pm-i, 0) * 90ms + 50ms); }
+.pm-greet.is-in .pm-greet-word { animation: pm-greet-write 1s .15s steps(14, end) both; }
+.pm-greet.is-in .pm-greet-word .pm-mark > [data-hand-painted] path { stroke-dasharray: 1 2; animation: pm-greet-mark .5s 1.05s ease-out both; }
+.pm-greet.is-in .pm-greet-sub { animation: pm-greet-sub .5s 1.2s both; }
+@keyframes pm-greet-write { 0% { clip-path: inset(-30% 100% -60% -6%); } 100% { clip-path: inset(-30% -6% -60% -6%); } }
+@keyframes pm-greet-mark { 0% { stroke-dashoffset: 1.01; } 100% { stroke-dashoffset: 0; } }
+@keyframes pm-greet-sub { 0% { opacity: 0; transform: translateY(8px); } 100% { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-greet.is-in .pm-greet-note, .pm-greet.is-in .pm-greet-word, .pm-greet.is-in .pm-greet-word .pm-mark > [data-hand-painted] path, .pm-greet.is-in .pm-greet-sub { animation: none !important; transition: none !important; }
+}

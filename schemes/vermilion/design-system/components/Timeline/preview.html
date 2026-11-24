@@ -1,0 +1,46 @@
+<!-- @dsCard group="列表与筛选" height=760 subtitle="月度时间轴（虚线）与履历时间线（实线）" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Timeline</title>
+<style>
+  .vm-demo { display: grid; gap: var(--space-8); padding: var(--space-6); max-width: 820px; }
+  .vm-demo .now-timeline { margin-top: 0; }
+</style>
+</head>
+<body class="vm-page">
+<div class="vm-demo">
+  <section class="now-timeline" aria-label="月度时间轴">
+    <article class="now-entry">
+      <span class="now-marker" aria-hidden="true"></span>
+      <h2>2026 年 9 月</h2>
+      <div class="now-entry-body prose">
+        <p>这个月在读两本关于城市的书，也在给旧游记补地图。</p>
+      </div>
+    </article>
+    <article class="now-entry">
+      <span class="now-marker" aria-hidden="true"></span>
+      <h2>2026 年 8 月</h2>
+      <div class="now-entry-body prose">
+        <p>把一年的照片按地点整理了一遍。</p>
+      </div>
+    </article>
+  </section>
+  <ol class="about-timeline">
+    <li>
+      <span class="about-marker" aria-hidden="true"></span>
+      <h3 class="about-role">研究助理 · <span class="about-org">某实验室</span></h3>
+      <p class="about-period">2024 — 2026</p>
+      <p class="about-desc">一句话写清做了什么。</p>
+    </li>
+    <li>
+      <span class="about-marker" aria-hidden="true"></span>
+      <h3 class="about-role">学生 · <span class="about-org">某大学</span></h3>
+      <p class="about-period">2020 — 2024</p>
+      <p class="about-desc">一句话写清学了什么。</p>
+    </li>
+  </ol>
+</div>
+</body>
+</html>

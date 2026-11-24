@@ -1,0 +1,58 @@
+{
+  "id": "page-stack",
+  "title": "开着的页 · 叠在右边、抽出来、换到最前",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "换页：页的 transform 变（外框自己的样式写叠几层）；新开的页带一次 .is-in；鼠标移到叠着的页上（:hover，演示用 .is-hover）",
+  "durationMs": 500,
+  "reducedMotion": "换页直接到位，叠着的页不往外抽",
+  "use": "模块页（开着的页就是页签）、子页的纸签",
+  "source": "canvases/pomelo-explore/p2-final/b.mjs 的 stack（站主 2026-11-05 验收的 Phase 2 定稿）",
+  "files": {
+    "css": "page-stack.css",
+    "html": "page-stack.fragment.html"
+  },
+  "capture": {
+    "scale": 1,
+    "padPx": 0,
+    "fps": 20,
+    "holdStartMs": 300,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".stack-demo",
+    "viewport": [
+      470,
+      300
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-hover",
+        "on": ".p1"
+      },
+      {
+        "at": 600,
+        "remove": "is-hover is-stacked",
+        "style": {
+          "transform": "none",
+          "z-index": "10"
+        },
+        "on": ".p1"
+      },
+      {
+        "at": 600,
+        "add": "is-stacked",
+        "style": {
+          "transform": "translate(22px, 0px) rotate(0.6deg)",
+          "z-index": "9"
+        },
+        "on": ".p0"
+      }
+    ]
+  }
+}

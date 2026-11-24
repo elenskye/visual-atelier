@@ -1,0 +1,26 @@
+<!-- @dsCard group="控件" height=110 subtitle="评分：星星贴纸，选中的填柚黄" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Rating</title>
+<style>
+  html, body { margin: 0; }
+  .demo { padding: 20px 36px; }
+  .note { margin-top: 6px; font-size: var(--text-small); line-height: 20px; }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="demo">
+  <div class="pm-rating" role="radiogroup" aria-label="评分">
+    <button class="pm-rating-star is-on" role="radio" aria-checked="false" aria-label="1 颗星" type="button"><span data-hand="star" data-seed="1350"></span></button>
+    <button class="pm-rating-star is-on" role="radio" aria-checked="false" aria-label="2 颗星" type="button"><span data-hand="star" data-seed="1351"></span></button>
+    <button class="pm-rating-star is-on" role="radio" aria-checked="true" aria-label="3 颗星" type="button"><span data-hand="star" data-seed="1352"></span></button>
+    <button class="pm-rating-star" role="radio" aria-checked="false" aria-label="4 颗星" type="button"><span data-hand="star" data-seed="1353"></span></button>
+    <button class="pm-rating-star" role="radio" aria-checked="false" aria-label="5 颗星" type="button"><span data-hand="star" data-seed="1354"></span></button>
+  </div>
+  <div class="note pm-soft">三颗星，挺好</div>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

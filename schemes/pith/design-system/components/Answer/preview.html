@@ -1,0 +1,25 @@
+<!-- @dsCard group="对话" height=330 width=1000 subtitle="标题、两段回答、编号（一个点开了）、页边注" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Answer</title>
+<style>
+  html, body { margin: 0; }
+  .demo { padding: 24px 32px; }
+  .lb { margin: 0 0 8px; font: 700 11px/1 var(--font-sans); letter-spacing: .1em; color: var(--color-text-4); }
+  .row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+
+</style>
+</head>
+<body class="pith">
+<div class="demo" style="display:grid;grid-template-columns:var(--width-content) var(--width-sidenote);gap:30px">
+  <div class="pith-answer">
+    <h2 class="pith-answer-title" style="font-size:26px">斯密为什么说分工受市场范围限制</h2>
+    <p class="pith-p">斯密的推理只有一步：分工是因为能交换才出现的，所以分工能有多细，就看能交换多少，也就是<span class="pith-mark">市场有多大</span><b class="pith-ref is-on">1</b>。</p>
+    <p class="pith-p is-quiet">市场太小，一个人就没法只干一件事：苏格兰高地的散村，农夫得给自家当屠夫、面包师和酿酒人<b class="pith-ref">2</b>。</p>
+  </div>
+  <aside class="pith-sidenote" style="margin-top:58px"><span class="pith-sidenote-head"><i>1</i>全文 · 《国富论》 I.iii.1</span><q>…so the extent of this division must always be limited by the extent of the power of exchanging, or, in other words, by the extent of the market.</q><span class="pith-sidenote-go"><a class="pith-link">知识库里这一段</a><a class="pith-link">文献库那一条</a></span></aside>
+</div>
+</body>
+</html>

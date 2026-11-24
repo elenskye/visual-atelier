@@ -1,0 +1,4 @@
+{
+  "$note": "本目录的生成脚本是 CommonJS；仓库根 package.json 是 ESM，这里单独声明。",
+  "type": "commonjs"
+}

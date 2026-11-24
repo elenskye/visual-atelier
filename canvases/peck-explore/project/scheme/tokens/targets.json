@@ -1,0 +1,53 @@
+{
+  "$note": "网页方言（Peck 是 Tauri，界面就是网页）。明暗跟随系统：Peck 按系统的明暗在根上写 data-theme。",
+  "web": {
+    "colorVars": {
+      "page": "--color-page",
+      "grid": "--color-grid",
+      "panel": "--color-panel",
+      "panel-2": "--color-panel-2",
+      "raised": "--color-raised",
+      "line": "--color-line",
+      "line-strong": "--color-line-strong",
+      "block-off": "--color-block-off",
+      "text": "--color-text",
+      "text-2": "--color-text-2",
+      "text-3": "--color-text-3",
+      "cyan": "--color-cyan",
+      "cyan-hover": "--color-cyan-hover",
+      "on-cyan": "--color-on-cyan",
+      "cyan-text": "--color-cyan-text",
+      "cyan-block": "--color-cyan-block",
+      "cyan-line": "--color-cyan-line",
+      "cyan-soft": "--color-cyan-soft",
+      "cyan-scan": "--color-cyan-scan",
+      "ok": "--color-ok",
+      "ok-soft": "--color-ok-soft",
+      "warn": "--color-warn",
+      "warn-hover": "--color-warn-hover",
+      "warn-soft": "--color-warn-soft",
+      "warn-line": "--color-warn-line",
+      "on-warn": "--color-on-warn",
+      "bad": "--color-bad",
+      "bad-hover": "--color-bad-hover",
+      "bad-soft": "--color-bad-soft",
+      "bad-line": "--color-bad-line",
+      "on-bad": "--color-on-bad",
+      "muse": "--color-muse",
+      "grok": "--color-grok",
+      "api": "--color-api"
+    },
+    "aliasVars": {
+      "--color-focus": "var(--color-cyan-text)"
+    },
+    "light": {
+      "selector": ":root",
+      "colorScheme": "light"
+    },
+    "dark": {
+      "selector": ":root[data-theme='dark']",
+      "colorScheme": "dark"
+    }
+  },
+  "pending": []
+}

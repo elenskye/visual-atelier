@@ -1,0 +1,29 @@
+{
+  "id": "pomelo-worried",
+  "title": "柚子 · 担心",
+  "status": "approved",
+  "approved": "站主 2026-11-08 在 bench 批准（canvases/pomelo-motion 的 Worried），说「批了，发 0.4.1」",
+  "tier": "expressive",
+  "surface": "pomelo-idle",
+  "trigger": "今日简报说有烦心事的那一小时，顶栏的柚子换成「担心」的脸（.pm-pomelo[data-face=worried]）",
+  "durationMs": 5200,
+  "loop": true,
+  "reducedMotion": "不动，只是担心的脸",
+  "use": "顶栏的柚子",
+  "source": "Pomelo 的心情「担心」（docs/requirements.md「界面外框 · 柚子」）；脸是站主 2026-11-08 要画的第 9 张",
+  "requires": ["motion/pomelo-idle/pomelo-idle.css"],
+  "files": { "css": "pomelo-worried.css", "html": "pomelo-worried.fragment.html" },
+  "capture": {
+    "host": ".pomelo-demo",
+    "viewport": [200, 190],
+    "scale": 2,
+    "padPx": 0,
+    "fps": 20,
+    "skipRest": true,
+    "endMs": 5200,
+    "holdStartMs": 50,
+    "holdEndMs": 50,
+    "themes": ["light", "dark"],
+    "loop": 0
+  }
+}

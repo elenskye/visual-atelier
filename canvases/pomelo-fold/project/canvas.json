@@ -1,0 +1,34 @@
+{
+  "v": 3,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-24T02:21:03Z"
+  },
+  "title": "Pomelo Fold",
+  "launch": {
+    "view": "canvas"
+  },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1040,
+      "h": 880,
+      "title": "侧栏展开（待批）"
+    }
+  },
+  "order": [
+    "Main.dc.html"
+  ],
+  "notes": {},
+  "designSystems": [
+    {
+      "title": "Pomelo 柚儿园",
+      "namespace": "pomelo",
+      "artifact": "https://claude.ai/artifact/5uaouHwXAXihjxhh9g4vb3",
+      "version": null,
+      "copiedAt": "2026-11-24T02:21:03Z"
+    }
+  ]
+}

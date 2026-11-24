@@ -1,0 +1,55 @@
+<!-- @dsCard group="内容" height=560 width=1000 subtitle="24 个内容图标：正文里、按钮里、24px 一览" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>ContentIcon</title>
+<style>
+  .vm-demo { display: grid; gap: var(--space-5); padding: var(--space-6); max-width: 960px; }
+  .vm-demo h3 { margin: 0; font: 400 var(--text-sm)/1.4 var(--font-sans); color: var(--color-muted); }
+  .vm-demo .prose p { margin: 0 0 var(--space-3); }
+  .vm-grid { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-5); }
+  .vm-grid figure { display: grid; justify-items: center; gap: var(--space-1); width: 44px; margin: 0; }
+  .vm-grid .va-icon { width: 24px; height: 24px; margin: 0; }
+  .vm-grid figcaption { font: 400 var(--text-xs)/1.2 var(--font-sans); color: var(--color-muted); }
+</style>
+</head>
+<body class="vm-page">
+<div class="vm-demo">
+  <h3>正文里（Markdown 写 :名字:）</h3>
+  <div class="prose">
+    <p><span class="va-icon va-graphic" role="img" aria-label="提示"><!-- @include marks/graphic/icon-tip.svg --></span>中文页面简历仍在完善中。下次约在<span class="va-icon va-graphic" role="img" aria-label="地点"><!-- @include marks/graphic/icon-place.svg --></span>解放碑，<span class="va-icon va-graphic" role="img" aria-label="时间"><!-- @include marks/graphic/icon-time.svg --></span>下午三点；带上那本<span class="va-icon va-graphic" role="img" aria-label="读书"><!-- @include marks/graphic/icon-book.svg --></span>书，翻到<span class="va-icon va-graphic" role="img" aria-label="喜欢"><!-- @include marks/graphic/icon-heart.svg --></span>最喜欢的那一章。</p>
+    <p><span class="va-icon va-graphic" role="img" aria-label="完成"><!-- @include marks/graphic/icon-done.svg --></span>第一章已经写完，<span class="va-icon va-graphic" role="img" aria-label="进行中"><!-- @include marks/graphic/icon-wip.svg --></span>第二章还在进行中；<span class="va-icon va-graphic" role="img" aria-label="链接"><!-- @include marks/graphic/icon-link.svg --></span><a href="#">原文链接</a>。</p>
+  </div>
+  <h3>按钮里</h3>
+  <p><a class="button-link" href="#"><span class="va-icon va-graphic" role="img" aria-label="提示"><!-- @include marks/graphic/icon-tip.svg --></span>中文页面简历仍在完善中</a></p>
+  <h3>24px 一览</h3>
+  <div class="vm-grid">
+    <figure><span class="va-icon va-graphic" role="img" aria-label="提示"><!-- @include marks/graphic/icon-tip.svg --></span><figcaption>提示</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="注意"><!-- @include marks/graphic/icon-caution.svg --></span><figcaption>注意</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="想法"><!-- @include marks/graphic/icon-idea.svg --></span><figcaption>想法</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="完成"><!-- @include marks/graphic/icon-done.svg --></span><figcaption>完成</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="进行中"><!-- @include marks/graphic/icon-wip.svg --></span><figcaption>进行中</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="疑问"><!-- @include marks/graphic/icon-question.svg --></span><figcaption>疑问</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="链接"><!-- @include marks/graphic/icon-link.svg --></span><figcaption>链接</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="地点"><!-- @include marks/graphic/icon-place.svg --></span><figcaption>地点</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="时间"><!-- @include marks/graphic/icon-time.svg --></span><figcaption>时间</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="日期"><!-- @include marks/graphic/icon-date.svg --></span><figcaption>日期</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="邮件"><!-- @include marks/graphic/icon-mail.svg --></span><figcaption>邮件</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="下载"><!-- @include marks/graphic/icon-download.svg --></span><figcaption>下载</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="读书"><!-- @include marks/graphic/icon-book.svg --></span><figcaption>读书</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="音乐"><!-- @include marks/graphic/icon-music.svg --></span><figcaption>音乐</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="影视"><!-- @include marks/graphic/icon-film.svg --></span><figcaption>影视</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="摄影"><!-- @include marks/graphic/icon-photo.svg --></span><figcaption>摄影</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="绘画"><!-- @include marks/graphic/icon-paint.svg --></span><figcaption>绘画</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="美食"><!-- @include marks/graphic/icon-food.svg --></span><figcaption>美食</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="喜欢"><!-- @include marks/graphic/icon-heart.svg --></span><figcaption>喜欢</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="推荐"><!-- @include marks/graphic/icon-star.svg --></span><figcaption>推荐</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="代码"><!-- @include marks/graphic/icon-code.svg --></span><figcaption>代码</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="出行"><!-- @include marks/graphic/icon-trip.svg --></span><figcaption>出行</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="目标"><!-- @include marks/graphic/icon-flag.svg --></span><figcaption>目标</figcaption></figure>
+    <figure><span class="va-icon va-graphic" role="img" aria-label="写作"><!-- @include marks/graphic/icon-pen.svg --></span><figcaption>写作</figcaption></figure>
+  </div>
+</div>
+</body>
+</html>

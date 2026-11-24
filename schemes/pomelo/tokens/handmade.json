@@ -1,0 +1,59 @@
+{
+  "$note": "手作零件的参数，给 tooling/handmade/ 用（生成器只有算法，数值都在这里）。图形按 64 格、界面小图标按 24 格。取自站主验收的 Phase 2 小样，规则见 DESIGN.md §4。",
+  "sticker": {
+    "grid": 64,
+    "outline": true,
+    "line": 3.3,
+    "amp": 0.75,
+    "fillAmp": 0.4,
+    "off": [1.4, 1.8],
+    "border": 4.2,
+    "shadow": true,
+    "tiltDeg": 8
+  },
+  "uiIcon": {
+    "grid": 24,
+    "line": 2,
+    "amp": 0.32,
+    "wave": 7,
+    "sp": 0.6,
+    "keep": 2,
+    "over": 0.05
+  },
+  "frame": {
+    "amp": 0.9,
+    "wave": 26,
+    "sp": 3,
+    "over": 0.03,
+    "drift": 1.2,
+    "lineWidth": [1.6, 1.9],
+    "focusLineWidth": 2.8
+  },
+  "rule": { "amp": 0.8, "wave": 22, "lineWidth": 1.6 },
+  "marker": { "amp": 1.2, "wave": 20, "lineWidth": 12, "opacity": 0.9 },
+  "strike": { "amp": 0.8, "wave": 14, "lineWidth": 2 },
+  "stitch": { "gap": 20, "len": 9, "amp": 0.35, "wave": 6, "lineWidth": 2, "opacity": 0.55 },
+  "tape": {
+    "kinds": [["tape-mint-a", "tape-mint-b"], ["tape-yuzu-a", "tape-yuzu-b"]],
+    "stripe": 7,
+    "opacity": 0.88,
+    "teeth": 5,
+    "toothDepth": 5,
+    "firstRotDeg": -4,
+    "firstJitterDeg": 3,
+    "secondRotDeg": 30,
+    "maxPerCard": 2
+  },
+  "tilt": {
+    "cardDeg": [-2.2, 2],
+    "stickerDeg": [-8, 8]
+  },
+  "texture": {
+    "baseFrequency": 0.85,
+    "numOctaves": 3,
+    "tile": 128,
+    "scale": 2,
+    "levels": 32,
+    "opacity": { "light": 0.38, "dark": 0.22 }
+  }
+}

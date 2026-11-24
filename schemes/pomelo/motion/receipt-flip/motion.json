@@ -1,0 +1,40 @@
+{
+  "id": "receipt-flip",
+  "title": "小票翻面",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "点「翻面」：.pm-flip 切换 .is-flipped",
+  "durationMs": 600,
+  "reducedMotion": "直接换成另一面",
+  "use": "桌上的资产小票（翻过来看曲线）",
+  "source": "canvases/pomelo-explore/p2-final/b.mjs 的 receipt（站主 2026-11-05 验收的 Phase 2 定稿）",
+  "files": {
+    "css": "receipt-flip.css",
+    "html": "receipt-flip.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".flip-demo",
+    "viewport": [
+      240,
+      240
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-flipped",
+        "on": ".pm-flip"
+      }
+    ]
+  }
+}

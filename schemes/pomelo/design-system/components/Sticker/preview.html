@@ -1,0 +1,36 @@
+<!-- @dsCard group="笔迹和贴纸" height=260 width=960 subtitle="贴纸的画法：墨线 → 填色错开 → 白边 → 轻投影、歪着贴；纸星星" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Sticker</title>
+<style>
+  html, body { margin: 0; }
+  .steps { display: flex; gap: 36px; padding: 24px 40px 8px; }
+  .step { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 120px; font-size: var(--text-small); color: var(--color-ink-soft); text-align: center; }
+  .stars { display: flex; align-items: center; gap: 18px; padding: 16px 40px; }
+  .stars .k { font-size: var(--text-small); color: var(--color-ink-soft); margin-right: 6px; }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="steps">
+  <div class="step"><span data-hand="sticker" data-stage="line" data-seed="901"></span>手画的墨线 3.3</div>
+  <div class="step"><span data-hand="sticker" data-stage="fill" data-seed="902"></span>填色错开 (1.4, 1.8)</div>
+  <div class="step"><span data-hand="sticker" data-stage="white" data-seed="903"></span>白边 4.2</div>
+  <div class="step"><span data-hand="sticker" data-seed="904" data-tilt="-8"></span>轻投影，歪着贴</div>
+  <div class="step"><span data-hand="sticker" data-cat="sky" data-seed="905" data-tilt="6"></span>分类色：天蓝</div>
+  <div class="step"><span data-hand="sticker" data-cat="pink" data-seed="906" data-tilt="-4"></span>分类色：樱粉</div>
+</div>
+<div class="stars">
+  <span class="k">纸星星</span>
+  <span data-hand="pstar" data-size="26" data-seed="911" style="color: var(--color-cat-mint-sticker); transform: rotate(-12deg)"></span>
+  <span data-hand="pstar" data-size="26" data-seed="912" style="color: var(--color-cat-sky-sticker); transform: rotate(8deg)"></span>
+  <span data-hand="pstar" data-size="26" data-seed="913" style="color: var(--color-cat-pink-sticker); transform: rotate(-4deg)"></span>
+  <span data-hand="pstar" data-size="26" data-seed="914" style="color: var(--color-cat-orange-sticker); transform: rotate(14deg)"></span>
+  <span data-hand="pstar" data-size="26" data-seed="915" style="color: var(--color-cat-grape-sticker); transform: rotate(-9deg)"></span>
+  <span class="k" style="margin-left: 16px">金星</span>
+  <span data-hand="pstar" data-gold data-size="32" data-seed="916" style="transform: rotate(6deg)"></span>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

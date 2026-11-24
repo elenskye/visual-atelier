@@ -1,0 +1,21 @@
+<!-- @dsCard group="框架" height=250 width=960 subtitle="平时 · 悬停文献库 · 存卡落下时（知识库晃一下、+1）" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>TopBar</title>
+<style>
+  html, body { margin: 0; }
+  .demo { padding: 24px 32px; }
+  .lb { margin: 0 0 8px; font: 700 11px/1 var(--font-sans); letter-spacing: .1em; color: var(--color-text-4); }
+  .row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+
+</style>
+</head>
+<body class="pith">
+<div class="demo" style="display:flex;flex-direction:column;gap:14px">
+  <header class="pith-topbar"><span class="pith-brand"><!-- @include marks/logo/pith.svg --><span class="pith-wordmark">Pith</span></span><nav class="pith-topbar-nav"><span class="pith-iconbtn pith-ink is-current"><!-- @include marks/icons/kb.svg --></span><span class="pith-iconbtn pith-ink"><!-- @include marks/icons/lib.svg --></span><span class="pith-iconbtn pith-ink"><!-- @include marks/icons/set.svg --></span></nav></header>
+  <header class="pith-topbar"><span class="pith-brand"><!-- @include marks/logo/pith.svg --><span class="pith-wordmark">Pith</span></span><nav class="pith-topbar-nav"><span class="pith-iconbtn pith-ink"><!-- @include marks/icons/kb.svg --><span class="pith-badge" style="opacity:1">+1</span></span><span class="pith-iconbtn pith-ink is-hover" style="color:var(--color-text)"><!-- @include marks/icons/lib.svg --><span class="pith-tip" style="opacity:1;transform:translate(-50%,0)">文献库</span></span><span class="pith-iconbtn pith-ink"><!-- @include marks/icons/set.svg --></span></nav></header>
+</div>
+</body>
+</html>

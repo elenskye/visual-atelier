@@ -1,0 +1,46 @@
+{
+  "id": "agents",
+  "title": "Pith 在想 · Agent 图标",
+  "status": "approved",
+  "approved": "站主 2026-11-24 验收 Pith Explore EX11（「验收完毕，开始做优化页、建 schemes/pith/」）",
+  "tier": "expressive",
+  "surface": "agent-status",
+  "trigger": "Agent 调一个工具时，状态行那一步换成对应的图标（在跑的那一步动，做完停住）",
+  "durationMs": 2600,
+  "loop": true,
+  "reducedMotion": "停在一帧看得懂的样子，字上的光不扫",
+  "use": "对话的状态行（.pith-status-step）、输入框里的「在想」（.pith-thinking）、交付卡的「已种下」（存进知识库 .once）",
+  "source": "canvases/pith-explore EX10、EX11（站主 11-23、11-24 定的动效）",
+  "requires": [
+    "design-system/bundle.css"
+  ],
+  "files": {
+    "css": "agents.css",
+    "html": "agents.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 40,
+    "holdEndMs": 40,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".ag-demo",
+    "viewport": [
+      520,
+      200
+    ],
+    "skipRest": true,
+    "endMs": 2600,
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-live"
+      }
+    ]
+  }
+}

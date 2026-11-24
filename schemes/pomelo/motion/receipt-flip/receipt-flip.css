@@ -1,0 +1,8 @@
+/* 小票翻面：绕竖轴翻过去（0.6 秒，翻到头带一点回弹）。两面是 .pm-flip-face，背面再加 .pm-flip-back；外面一层给 perspective。 */
+.pm-flip { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .6s cubic-bezier(.3, 1.35, .5, 1); }
+.pm-flip.is-flipped { transform: rotateY(180deg); }
+.pm-flip-face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.pm-flip-back { transform: rotateY(180deg); }
+@media (prefers-reduced-motion: reduce) {
+  .pm-flip { animation: none !important; transition: none !important; }
+}

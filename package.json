@@ -1,0 +1,48 @@
+{
+  "name": "visual-atelier",
+  "private": true,
+  "version": "1.0.0",
+  "description": "个人视觉仓库：多套视觉方案、共用工具、画布和看画布的引擎",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "dw": "./bench/bin/dw.js"
+  },
+  "scripts": {
+    "dw": "node bench/bin/dw.js",
+    "serve": "node bench/bin/dw.js serve",
+    "test": "node --test bench/test/*.test.js",
+    "build:graphic": "node tooling/graphic/build.mjs",
+    "build:derived": "node tooling/marks/derive.mjs",
+    "build:pith": "node tooling/pith/build.mjs",
+    "build:tokens": "node tooling/tokens/build.mjs",
+    "build:handmade": "node tooling/handmade/build.mjs && node tooling/handmade/marks.mjs",
+    "build:marks": "node tooling/render/marks.mjs",
+    "build:motion": "node tooling/render/motion.mjs",
+    "build:catalog": "node tooling/catalog/build.mjs",
+    "build:ds": "node tooling/design-system/build.mjs",
+    "build:atlas": "node tooling/atlas/build.mjs",
+    "check:atlas": "node tooling/atlas/build.mjs --check",
+    "check:ds": "node tooling/design-system/check.mjs",
+    "build": "npm run build:tokens && npm run build:handmade && npm run build:derived && npm run build:marks && npm run build:motion && npm run build:ds && npm run build:atlas && npm run build:catalog",
+    "qa": "node tooling/qa/check.mjs",
+    "qa:determinism": "node tooling/qa/determinism.mjs",
+    "qa:parity": "node tooling/qa/motion-parity.mjs",
+    "qa:watermark": "node tooling/qa/watermark.mjs",
+    "all": "node tooling/qa/all.mjs",
+    "sync": "node tooling/sync/sync.mjs"
+  },
+  "dependencies": {
+    "@fontsource/noto-serif-sc": "^5.2.9",
+    "@fontsource/source-serif-4": "^5.3.0",
+    "@resvg/resvg-wasm": "^2.6.2",
+    "apca-w3": "^0.1.9",
+    "fontkit": "^2.0.4",
+    "gifenc": "^1.0.3",
+    "playwright-core": "^1.64.1",
+    "pngjs": "^7.0.0",
+    "sharp": "^0.35.3"
+  }
+}

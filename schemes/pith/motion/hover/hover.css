@@ -1,0 +1,35 @@
+/* 悬停「上墨」（calm，≤ 520 毫秒）：借 Vermilion 的做法（纸片滑入、笔画写出、点抵达；链接下划线从两端收拢），数值和颜色是 Pith 自己的。
+   触发：:hover、:focus-visible，或 .is-hover（演示、导出用）。顶栏的知识库、文献库、设置和 Logo 有自己的生长（topbar-grow、logo-grow），这里让开。 */
+/* 图标按钮：一片淡底从左下滑进来，细线重写一遍，实心的铅字像印上纸一样压一下，珊瑚色最后抵达 */
+.pith-ink { position: relative; isolation: isolate; }
+.pith-ink::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; background: var(--color-tint); opacity: 0; transform: translate(-3px, 3px); transition: opacity .2s, transform .2s cubic-bezier(.3,.6,.2,1); }
+.pith-ink:is(:hover, :focus-visible, .is-hover)::before { opacity: 1; transform: none; }
+:is(.pith-ink, .pith-lift, .pith-row):is(:hover, :focus-visible, .is-hover) .pith-glyph:not(.pith-icon--kb, .pith-icon--lib, .pith-icon--set, .pith-agent) > .t .st { stroke-dasharray: 1 2; animation: pith-write .3s cubic-bezier(.5,0,.2,1) both; }
+:is(.pith-ink, .pith-lift, .pith-row):is(:hover, :focus-visible, .is-hover) .pith-glyph:not(.pith-icon--kb, .pith-icon--lib, .pith-icon--set, .pith-agent) > .t .so { transform-box: fill-box; transform-origin: center; animation: pith-press .32s cubic-bezier(.34,1.56,.64,1) both; }
+:is(.pith-ink, .pith-lift, .pith-row):is(:hover, :focus-visible, .is-hover) .pith-glyph:not(.pith-icon--kb, .pith-icon--lib, .pith-icon--set, .pith-agent) > .t .co { transform-box: fill-box; transform-origin: center; animation: pith-arrive .52s linear both; }
+@keyframes pith-write { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes pith-press { 0% { transform: scale(.86); opacity: .55; } 100% { transform: none; opacity: 1; } }
+@keyframes pith-arrive { 0%, 68% { transform: scale(.2); opacity: 0; } 84% { transform: scale(1.35); opacity: 1; } 100% { transform: none; opacity: 1; } }
+/* 链接：上浮 1px，珊瑚色的下划线从两端收拢 */
+.pith-link { position: relative; top: 0; background-image: linear-gradient(var(--color-coral), var(--color-coral)), linear-gradient(var(--color-coral), var(--color-coral)); background-repeat: no-repeat; background-position: left 100%, right 100%; background-size: 0% 1.5px, 0% 1.5px; transition: background-size .22s ease, top .16s ease; }
+.pith-link:is(:hover, :focus-visible, .is-hover) { top: -1px; background-size: 50.5% 1.5px, 50.5% 1.5px; }
+/* 列表行（枝桠、表格）：节点上落一颗珊瑚点，字往右让 3px。点的位置用 --dot-x、--dot-y 给 */
+.pith-row { position: relative; }
+.pith-row > :is(b, span:first-child) { transition: transform .22s cubic-bezier(.3,.6,.2,1); }
+.pith-row::before { content: ""; position: absolute; left: var(--dot-x, -12px); top: var(--dot-y, 50%); z-index: 1; width: 7px; height: 7px; margin: -3.5px 0 0 -3.5px; border-radius: 50%; background: var(--color-coral); opacity: 0; transform: scale(.2); pointer-events: none; }
+.pith-row:is(:hover, :focus-visible, .is-hover)::before { animation: pith-arrive .4s linear both; }
+.pith-row:is(:hover, :focus-visible, .is-hover) > :is(b, span:first-child) { transform: translateX(3px); }
+/* 卡片：上浮 3px、影子加深，卡上的图标也上一次墨 */
+.pith-lift { transition: transform .3s cubic-bezier(.23,1,.32,1), box-shadow .3s; }
+.pith-lift:is(:hover, :focus-visible, .is-hover) { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+/* 按钮：一道亮光从左扫过，箭头往前挪 2px */
+.pith-sweep { position: relative; overflow: hidden; isolation: isolate; }
+.pith-sweep::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(100deg, transparent 30%, color-mix(in srgb, white 34%, transparent) 50%, transparent 70%) 0 0 / 250% 100% no-repeat; background-position: 120% 0; pointer-events: none; }
+.pith-sweep:is(:hover, :focus-visible, .is-hover)::after { animation: pith-sweep .6s ease-out both; }
+@keyframes pith-sweep { from { background-position: 120% 0; } to { background-position: -20% 0; } }
+.pith-sweep :is(.pith-glyph, .ar) { display: inline-block; transition: transform .22s cubic-bezier(.34,1.56,.64,1); }
+.pith-sweep:is(:hover, :focus-visible, .is-hover) :is(.pith-glyph, .ar) { transform: translateX(2px); }
+@media (prefers-reduced-motion: reduce) {
+  :is(.pith-ink, .pith-lift, .pith-row, .pith-sweep, .pith-link):not(.is-frame) *, :is(.pith-ink, .pith-row, .pith-sweep, .pith-link)::before, :is(.pith-ink, .pith-row, .pith-sweep, .pith-link)::after { animation: none !important; transition: none !important; }
+  .pith-row:is(:hover, :focus-visible, .is-hover)::before { opacity: 1; transform: none; }
+}

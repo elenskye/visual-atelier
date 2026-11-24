@@ -1,0 +1,7 @@
+/* 柚子「哇」：跳一下，三颗小星星闪一闪（打开柚子瓣、贴纸簿、拆信封时）。1.2 秒。
+   白边（.wb）的第 9–11 条是三颗星星的。 */
+.pm-pomelo[data-face="wow"] > svg { animation: pm-pomelo-jump .6s cubic-bezier(.3,1.6,.5,1) both; }
+.pm-pomelo[data-face="wow"] .st1, .pm-pomelo[data-face="wow"] .st2, .pm-pomelo[data-face="wow"] .wb > path:nth-child(n+9) { animation: pm-pomelo-twinkle 1.2s ease-in-out both; }
+@media (prefers-reduced-motion: reduce) {
+  .pm-pomelo[data-face="wow"] > svg, .pm-pomelo[data-face="wow"] .pt, .pm-pomelo[data-face="wow"] .wb > path { animation: none !important; }
+}

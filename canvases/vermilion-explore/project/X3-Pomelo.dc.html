@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>R3 迁移测试 · Pomelo 图标</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&amp;family=Noto+Serif+SC:wght@400&amp;family=Source+Serif+4:opsz,wght@8..60,400&amp;family=Work+Sans:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#28625d}a:hover{color:#bf2929}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1180px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); font-family: 'Work Sans', 'Noto Sans SC', sans-serif">
+  <sc-for list="{{themes}}" as="t" hint-placeholder-count="2">
+    <div style="box-sizing: border-box; padding: 56px; display: flex; flex-direction: column; gap: 36px; background: {{t.page}}; color: {{t.text}}">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="font-size: 13px; line-height: 1.6; color: {{t.accent}}; text-transform: uppercase">{{t.eyebrow}}</div>
+        <h2 style="margin: 0; font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-weight: 400; font-size: 40px; line-height: 1.1">Pomelo · 柚儿园</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="font-size: 13px; color: {{t.muted}}">App 图标 · 1024 源图，256 / 64 / 32 显示</div>
+        <div style="display: flex; gap: 32px; align-items: flex-end">
+          <div style="width: 200px; height: 200px; border-radius: 45px; overflow: hidden; background: {{t.tile}}; box-shadow: {{t.shadow}}"><img src="{{t.app}}" alt="Pomelo App 图标" style="width: 200px; height: 200px; display: block"></div>
+          <div style="width: 64px; height: 64px; border-radius: 14px; overflow: hidden; background: {{t.tile}}; box-shadow: {{t.shadow}}"><img src="{{t.app}}" alt="" style="width: 64px; height: 64px; display: block"></div>
+          <div style="width: 32px; height: 32px; border-radius: 7px; overflow: hidden; background: {{t.tile}}; box-shadow: {{t.shadow}}"><img src="{{t.app}}" alt="" style="width: 32px; height: 32px; display: block"></div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <div style="font-size: 13px; color: {{t.muted}}">菜单栏小鸟 · 模板图，左空闲（只有笔势）右就绪（纸片剪影）</div>
+        <div style="height: 30px; border-radius: 6px; background: {{t.bar}}; display: flex; align-items: center; justify-content: flex-end; gap: 18px; padding: 0 16px; font-size: 13px; color: {{t.barText}}">
+          <img src="/_blob/36c1a220bbd7c1571e3174385199ec03" alt="小拾：空闲" style="width: 18px; height: 18px; display: block; filter: {{t.tpl}}">
+          <img src="/_blob/82a64d82e949fe63b86627f6c8df7ea9" alt="小拾：就绪" style="width: 18px; height: 18px; display: block; filter: {{t.tpl}}">
+          <span>10月26日 周一 14:20</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 40px; align-items: flex-start">
+        <div style="width: 220px; display: flex; flex-direction: column; gap: 2px; padding: 12px; border-radius: 8px; background: {{t.side}}">
+          <sc-for list="{{t.mods}}" as="m" hint-placeholder-count="6">
+            <div style="display: flex; align-items: center; gap: 10px; height: 36px; padding: 0 10px; border-radius: 6px; background: {{m.bg}}; font-size: 14px; color: {{m.fg}}">
+              <img src="{{m.src}}" alt="" style="width: 20px; height: 20px; display: block">
+              <span>{{m.label}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 28px">
+          <sc-for list="{{t.mods}}" as="m" hint-placeholder-count="6">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 8px">
+              <img src="{{m.src}}" alt="" style="width: 64px; height: 64px; display: block">
+              <span style="font-size: 13px; color: {{t.muted}}">{{m.label}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1180}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const mods = (ids, sel, fg) => [
+      ['一步一步', ids[0]], ['摸鱼读读', ids[1]], ['钱来钱往', ids[2]], ['念念不忘', ids[3]], ['来日方长', ids[4]], ['小拾', ids[5]]
+    ].map(([label, src], i) => ({ label, src, bg: i === 5 ? sel : 'transparent', fg }));
+    return {
+      themes: [
+        { eyebrow: 'Migration · Light', page: '#f6efe2', text: '#1b1d1c', muted: '#686359', accent: '#2d6f6a', tile: '#fdf9f0', shadow: '0 1px 0 #e6dfd3, 0 18px 42px rgba(27,29,28,.08)', bar: '#ebe4d6', barText: '#1b1d1c', tpl: 'none', side: '#ece0cb',
+          app: '/_blob/a450b27b5de15f67a80a5f4978564f68',
+          mods: mods(['/_blob/db643db51bc43148d715543fa640c5fb', '/_blob/89e5452badafcba0956cd499c5d9bd57', '/_blob/fcea693e165975e65ea8eeaa3a21c16a', '/_blob/7e8b6e4435e4ed064399f022061fa17f', '/_blob/e2a47250ccfbf37e6e2b5cdd4b34ea6a', '/_blob/c471dd8967e8fbbd0badd2b12c315c1f'], '#daddd1', '#1b1d1c') },
+        { eyebrow: 'Migration · Dark', page: '#14201f', text: '#f2ece0', muted: '#c1b9ac', accent: '#77c8c2', tile: '#1d2b29', shadow: '0 1px 0 #343e3b, 0 18px 42px rgba(0,0,0,.4)', bar: '#1d2b29', barText: '#f2ece0', tpl: 'invert(1)', side: '#1d2b29',
+          app: '/_blob/f9397a75a36178643a990598eb608ff7',
+          mods: mods(['/_blob/4373554eacb3d1ba2137746a16216114', '/_blob/ad9810900264173054ba42a207705b06', '/_blob/e3885707b262d77bb5c195b981718c3b', '/_blob/c8d66ab93af1b7d2a5a009e97075e5b2', '/_blob/25b1254c6dfdf56846f5b323a246369e', '/_blob/febd3f12e9650e80753f4c6814a92e49'], '#263e3c', '#f2ece0') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

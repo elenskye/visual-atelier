@@ -1,0 +1,50 @@
+{
+  "id": "select",
+  "title": "下拉 · 纸条一格格展开",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "打开：aria-expanded=\"true\"，菜单加 .is-open；收起：菜单换成 .is-closing，动画放完再拿掉；选中的那格 aria-selected",
+  "durationMs": 450,
+  "reducedMotion": "菜单直接出现、直接收起，勾直接画好",
+  "use": "下拉（.pm-select + .pm-menu）",
+  "source": "canvases/pomelo-explore/p2-final/controls.mjs（站主 2026-11-05 验收的「控件的小动静」）",
+  "files": {
+    "css": "select.css",
+    "html": "select.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".dd-demo",
+    "viewport": [
+      260,
+      270
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "attr": {
+          "aria-expanded": "true"
+        },
+        "on": ".dd"
+      },
+      {
+        "at": 0,
+        "add": "is-open",
+        "style": {
+          "visibility": "visible"
+        },
+        "on": ".pm-menu"
+      }
+    ]
+  }
+}

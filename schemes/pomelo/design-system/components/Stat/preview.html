@@ -1,0 +1,24 @@
+<!-- @dsCard group="数字" height=170 width=960 subtitle="统计数字：手札体粗、数字等宽；要紧的一个数垫一笔荧光笔" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Stat</title>
+<style>
+  html, body { margin: 0; }
+  .demo { display: flex; align-items: flex-end; gap: 48px; padding: 28px 40px; }
+  .col { display: flex; flex-direction: column; gap: 2px; }
+  .k { font-size: var(--text-caption); line-height: 18px; color: var(--color-ink-soft); }
+  .greet { font-size: var(--text-greeting); line-height: 1.1; font-weight: 700; }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="demo">
+  <div class="col"><span class="k">问候</span><span class="greet"><span class="pm-mark" data-hand="marker" data-seed="1501" data-sw="14">下午好呀</span></span></div>
+  <div class="col"><span class="k">资产</span><span class="pm-stat pm-stat--lg"><span class="pm-stat-num">¥186,420.55</span></span><span class="pm-stat"><span class="pm-up">+¥1,280.00</span>&nbsp;比上月</span></div>
+  <div class="col"><span class="k">倒数</span><span class="pm-stat">还有 <span class="pm-stat-num"><span class="pm-mark" data-hand="marker" data-seed="1502" data-sw="10">5</span></span> 天</span><span class="pm-stat">还有 <span class="pm-stat-num">41</span> 天</span></div>
+  <div class="col"><span class="k">这周吃饭</span><span class="pm-stat"><span class="pm-stat-num">¥486</span></span><span class="pm-stat"><span class="pm-down">比上周少 ¥62</span></span></div>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

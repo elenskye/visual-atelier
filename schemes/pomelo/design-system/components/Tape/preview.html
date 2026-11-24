@@ -1,0 +1,22 @@
+<!-- @dsCard group="纸和卡片" height=230 width=960 subtitle="胶带两种：薄荷、柚黄；一张卡片最多两条" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Tape</title>
+<style>
+  html, body { margin: 0; }
+  .stage { display: flex; gap: 56px; padding: 44px 48px; }
+  .pm-card { width: 240px; height: 130px; }
+  .pm-card p { margin: 0; font-size: var(--text-small); line-height: 20px; color: var(--color-ink-soft); }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="stage">
+  <div class="pm-card" data-hand="card" data-seed="701" data-tilt="-1" data-tapes="1"><h3 class="pm-card-title">一条</h3><p>薄荷胶带贴在上边居中附近，歪 −4° 上下 3°。</p></div>
+  <div class="pm-card" data-hand="card" data-seed="702" data-tilt="1.2" data-tapes="2"><h3 class="pm-card-title">两条</h3><p>第二条是柚黄胶带，斜贴一个角，约 ±30°。</p></div>
+  <div class="pm-card" data-hand="card" data-seed="709" data-tilt="-0.6" data-tapes="2"><h3 class="pm-card-title">换个种子</h3><p>种子决定贴在哪个角；同一个种子永远贴在同一个地方。</p></div>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

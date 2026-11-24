@@ -1,0 +1,81 @@
+{
+  "v": 3,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-17T03:04:20Z"
+  },
+  "title": "Pith Explore",
+  "launch": {
+    "view": "canvas",
+    "page": "r1"
+  },
+  "pages": [
+    {
+      "id": "r1",
+      "name": "R1：Pith 定稿（App、Logo、顶栏、Pith 在想、图标）"
+    }
+  ],
+  "boards": {
+    "Pith-Notes.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 2720,
+      "h": 620,
+      "title": "先看这张 · 这一页是什么、方案在哪、怎么用",
+      "page": "r1"
+    },
+    "Pith-App.dc.html": {
+      "x": 0,
+      "y": 740,
+      "w": 1280,
+      "h": 800,
+      "title": "App · 能点的原型（对话、知识库、文献库、设置）",
+      "is_interactive": true,
+      "page": "r1"
+    },
+    "Pith-Logo.dc.html": {
+      "x": 1360,
+      "y": 740,
+      "w": 1600,
+      "h": 860,
+      "title": "Logo：蕨芽从底下长出来，结一颗果",
+      "is_interactive": true,
+      "page": "r1"
+    },
+    "Pith-Topbar.dc.html": {
+      "x": 3040,
+      "y": 740,
+      "w": 1280,
+      "h": 960,
+      "title": "顶栏：三个图标各自长出来",
+      "is_interactive": true,
+      "page": "r1"
+    },
+    "Pith-Agents.dc.html": {
+      "x": 4400,
+      "y": 740,
+      "w": 1280,
+      "h": 1390,
+      "title": "Pith 在想：Agent 行为的动态图标",
+      "page": "r1"
+    },
+    "Pith-Icons.dc.html": {
+      "x": 5760,
+      "y": 740,
+      "w": 1280,
+      "h": 960,
+      "title": "图标：铅字 × 数字花园",
+      "page": "r1"
+    }
+  },
+  "order": [
+    "Pith-Notes.dc.html",
+    "Pith-App.dc.html",
+    "Pith-Logo.dc.html",
+    "Pith-Topbar.dc.html",
+    "Pith-Agents.dc.html",
+    "Pith-Icons.dc.html"
+  ],
+  "notes": {},
+  "designSystems": []
+}

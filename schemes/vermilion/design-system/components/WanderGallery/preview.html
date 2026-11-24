@@ -1,0 +1,51 @@
+<!-- @dsCard group="图片" height=700 width=1100 subtitle="三联画（侧图淡出）、计数；放大态" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>WanderGallery</title>
+<style>
+  .vm-demo { display: grid; gap: var(--space-6); padding: var(--space-6); }
+  .vm-demo .wander-gallery { margin: 0; }
+  /* 预览里把舞台压矮一些；网站上是 clamp(360px, 65svh, 720px) */
+  .vm-demo .gallery-frame { height: 300px; }
+  .vm-demo .gallery-preview--page { height: 220px; }
+  /* 图片由使用方提供，这里用色块示意「完整等比显示、不裁切」：竖图两侧留出页面色 */
+  .vm-demo-photo { display: block; height: 100%; margin: 0 auto; background: var(--color-surface-cool); }
+  .vm-demo-photo--portrait { width: 34%; }
+  .vm-demo-photo--landscape { width: 100%; }
+  .gallery-preview .vm-demo-photo { width: 100%; background: var(--color-line); }
+  .gallery-preview--prev .vm-demo-photo { -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 42%); mask-image: linear-gradient(to right, transparent 0%, #000 42%); }
+  .gallery-preview--next .vm-demo-photo { -webkit-mask-image: linear-gradient(to left, transparent 0%, #000 42%); mask-image: linear-gradient(to left, transparent 0%, #000 42%); }
+  /* 放大态在网站上铺满视口（position: fixed）；这里放进一个框里静态示意 */
+  .vm-demo .gallery-lightbox { position: relative; inset: auto; z-index: auto; height: 240px; border: 1px dashed var(--color-line); }
+  .vm-demo .gallery-lightbox-close { position: absolute; }
+  .vm-demo-label { color: var(--color-muted); font-size: var(--text-xs); }
+</style>
+</head>
+<body class="vm-page">
+<div class="vm-demo">
+  <section class="wander-gallery" aria-label="作品集">
+    <div class="gallery-stage">
+      <button class="gallery-preview gallery-preview--page gallery-preview--prev" type="button" aria-label="上一张"><span class="vm-demo-photo"></span></button>
+      <div class="gallery-frame">
+        <figure class="gallery-slide">
+          <button class="gallery-zoom" type="button" aria-label="放大查看"><span class="vm-demo-photo vm-demo-photo--portrait" role="img" aria-label="竖图"></span></button>
+        </figure>
+      </div>
+      <button class="gallery-preview gallery-preview--page gallery-preview--next" type="button" aria-label="下一张"><span class="vm-demo-photo"></span></button>
+    </div>
+    <p class="gallery-counter" aria-live="polite">2 / 5</p>
+  </section>
+  <p class="vm-demo-label">放大态（网站上铺满整个视口）</p>
+  <div class="gallery-lightbox">
+    <div class="gallery-lightbox-inner" role="dialog" aria-label="作品集">
+      <div class="gallery-lightbox-media"><span class="vm-demo-photo vm-demo-photo--landscape" role="img" aria-label="横图"></span></div>
+      <button class="gallery-lightbox-close" type="button" aria-label="关闭放大查看">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

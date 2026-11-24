@@ -1,0 +1,4 @@
+{
+  "name": "dw",
+  "description": "visual-atelier 的画布工具（bench）的 MCP 服务：列画布、写画板、自检、导出、挂 Design System、读写问卷答案。连的是打开的这个仓库（或 worktree）自己的 dw。"
+}

@@ -1,0 +1,38 @@
+{
+  "$note": "Design System 的 tokens.json 由构建从 tokens/ 生成，这里只写每个 token 的用途（写清能放在哪些底上）和字体样式。加了 token 就在 usage 里加一条，不然构建报错。",
+  "usage": {
+    "color-page": "页面底。上面能放 color-text、color-text-2、color-accent。",
+    "color-surface": "面：卡片、弹层、输入框。上面能放 color-text、color-text-2。",
+    "color-line": "线：分隔线、控件的边（装饰，不查对比）。",
+    "color-text": "正文、标题。放在 color-page、color-surface 上（APCA Lc ≥ 75）。",
+    "color-text-2": "说明、次要的字。放在 color-page、color-surface 上（APCA Lc ≥ 60）。",
+    "color-accent": "强调：主按钮的底、链接、选中。当字时放在 color-page 上（APCA Lc ≥ 60）。",
+    "color-on-accent": "主按钮上的字和图标，放在 color-accent 上（APCA Lc ≥ 60）。",
+    "space-1": "4px：图标和字之间。",
+    "space-2": "8px：控件里面。",
+    "space-3": "12px：相关的两样之间。",
+    "space-4": "16px：卡片的内边距。",
+    "space-5": "24px：块和块之间。",
+    "space-6": "32px：区和区之间。",
+    "space-7": "48px：页面的上下留白。",
+    "radius-s": "控件的圆角。",
+    "radius-m": "卡片、弹层的圆角。",
+    "shadow-card": "卡片、弹层的影子。",
+    "width-content": "正文栏的宽。",
+    "text-small": "说明、标签。",
+    "text-body": "正文。",
+    "text-title": "标题。",
+    "leading-body": "正文的行高。"
+  },
+  "typeGroups": [
+    {
+      "name": "字",
+      "family": "body",
+      "styles": [
+        { "name": "t-title", "family": "body", "fontSize": "22px", "lineHeight": "30px", "fontWeight": 600, "sample": "{{title}}", "usage": "标题" },
+        { "name": "t-body", "family": "body", "fontSize": "15px", "lineHeight": "24px", "fontWeight": 400, "sample": "一段正文的样子。", "usage": "正文" },
+        { "name": "t-small", "family": "body", "fontSize": "13px", "lineHeight": "20px", "fontWeight": 400, "sample": "说明和标签", "usage": "说明、标签" }
+      ]
+    }
+  ]
+}

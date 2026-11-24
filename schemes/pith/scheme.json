@@ -1,0 +1,12 @@
+{
+  "$note": "Pith 的 App 方案。0.1.0：站主 2026-11-24 验收 Pith Explore EX11 后建（Logo、图标、Agent 图标、六个动效零件已批；logo-grow 待批）。",
+  "name": "pith",
+  "title": "Pith",
+  "status": "proposed",
+  "version": "0.1.0",
+  "motion": {
+    "default": "calm",
+    "expressive": "registered-surfaces-only"
+  },
+  "consumers": []
+}

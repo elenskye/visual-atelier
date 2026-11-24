@@ -1,0 +1,9 @@
+/* 柚子睡着了：呼吸慢下来（一下 5.2 秒），z 一个接一个往上飘、淡掉。一圈 5.2 秒。
+   白边（.wb）的第 8、9 条是两个 z 的。 */
+.pm-pomelo[data-face="sleepy"] > svg { animation: pm-pomelo-breathe 5.2s ease-in-out infinite; }
+.pm-pomelo[data-face="sleepy"] .zz, .pm-pomelo[data-face="sleepy"] .wb > path:nth-child(8) { animation: pm-pomelo-zz 2.6s ease-in-out infinite; }
+.pm-pomelo[data-face="sleepy"] .zz ~ .zz, .pm-pomelo[data-face="sleepy"] .wb > path:nth-child(9) { animation: pm-pomelo-zz 2.6s ease-in-out -1.3s infinite; }
+@keyframes pm-pomelo-zz { 0% { transform: translateY(4px); opacity: 0; } 35% { opacity: 1; } 75% { opacity: 1; } 100% { transform: translateY(-8px); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-pomelo[data-face="sleepy"] > svg, .pm-pomelo[data-face="sleepy"] .pt, .pm-pomelo[data-face="sleepy"] .wb > path { animation: none !important; }
+}

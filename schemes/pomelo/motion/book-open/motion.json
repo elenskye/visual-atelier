@@ -1,0 +1,46 @@
+{
+  "id": "book-open",
+  "title": "贴纸簿 · 从下面滑上来",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "打开：贴纸簿和底下那层加 .is-open；收起：换成 .is-closing，动画放完（0.32 秒）再藏起来",
+  "durationMs": 600,
+  "reducedMotion": "直接出现、直接收起",
+  "use": "贴纸簿（模块坞）、顶栏「＋」新开一页",
+  "source": "canvases/pomelo-explore/p2-final/b.mjs 的 book（站主 2026-11-05 验收的 Phase 2 定稿）",
+  "files": {
+    "css": "book-open.css",
+    "html": "book-open.fragment.html"
+  },
+  "capture": {
+    "scale": 1.5,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".book-demo",
+    "viewport": [
+      420,
+      280
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-open",
+        "on": ".pm-scrim"
+      },
+      {
+        "at": 0,
+        "add": "is-open",
+        "on": ".pm-book"
+      }
+    ],
+    "skipRest": true
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "id": "sort",
+  "title": "拖动排序 · 拿起来歪一下，别的让开",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "按住拿起：那一行加 .is-held，跟着手走（界面设 transform）；别的行改 transform 让开；松手去掉 .is-held，落到位",
+  "durationMs": 320,
+  "reducedMotion": "拿起时不歪、不放大，让开和落下直接到位",
+  "use": "模块排序、清单排序（.pm-sort-item）",
+  "source": "canvases/pomelo-explore/p2-final/controls.mjs（站主 2026-11-05 验收的「控件的小动静」）",
+  "files": {
+    "css": "sort.css",
+    "html": "sort.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".sort-demo",
+    "viewport": [
+      304,
+      176
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-held",
+        "on": ".o1"
+      },
+      {
+        "at": 240,
+        "style": {
+          "transform": "translateY(16px)"
+        },
+        "on": ".o1"
+      },
+      {
+        "at": 320,
+        "style": {
+          "transform": "translateY(29px)"
+        },
+        "on": ".o1"
+      },
+      {
+        "at": 320,
+        "style": {
+          "transform": "translateY(-29px)"
+        },
+        "on": ".o2"
+      },
+      {
+        "at": 700,
+        "remove": "is-held",
+        "on": ".o1"
+      }
+    ]
+  }
+}

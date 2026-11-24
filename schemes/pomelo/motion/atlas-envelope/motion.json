@@ -1,0 +1,42 @@
+{
+  "id": "atlas-envelope",
+  "title": "拆年度小报的信封",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "expressive",
+  "surface": "atlas-envelope",
+  "trigger": "点桌上的信封（加 .is-open）",
+  "durationMs": 1220,
+  "loop": false,
+  "reducedMotion": "不飞不翻：封口贴纸直接不见，翻盖已经翻到后面，小报已经升起来",
+  "use": "新年第一周桌上的信封（Atlas 年度总结的入口）；拆开以后小报放大成一本书是 Atlas 页面的事",
+  "source": "canvases/pomelo-explore/p2-final/zine.mjs envelope() 和 ZINE_CSS「桌上的信封」、logic.js openEnv（站主 2026-11-05 验收）",
+  "files": {
+    "css": "atlas-envelope.css",
+    "html": "atlas-envelope.fragment.html"
+  },
+  "capture": {
+    "host": ".env-demo",
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-open",
+        "on": ".env-demo .pm-env"
+      }
+    ],
+    "viewport": [
+      480,
+      400
+    ],
+    "scale": 1.5,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 700,
+    "holdEndMs": 1400,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0
+  }
+}

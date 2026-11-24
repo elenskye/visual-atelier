@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>第 4 步 · 第一轮结果</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/peck/tokens.css">
+<link rel="stylesheet" href="ds/peck/components/bundle.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@900&amp;family=IBM+Plex+Sans:wght@400;600&amp;display=swap">
+<style>
+body{margin:0}
+.doc{font-family:var(--font-body);color:var(--color-text)}
+.ft{display:flex;align-items:baseline;gap:18px}
+.ft h1{margin:0;font-size:22px;font-weight:600;white-space:nowrap}
+.ft p{margin:0;font-size:13px;color:var(--color-text-2)}
+.idt{display:inline-flex;align-items:center;height:18px;padding:0 5px;font-family:var(--font-dots);font-weight:900;font-size:12px;letter-spacing:.06em;clip-path:var(--pk-notch);background:var(--color-raised);color:var(--color-text-2)}
+.s4r{width:1280px;height:960px;padding:26px 32px 28px;display:flex;flex-direction:column;gap:14px}
+.r1{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:14px;min-height:0;flex:1}
+.cc{display:flex;flex-direction:column;gap:14px;min-width:0;min-height:0}
+.box{padding:12px 16px 14px}
+.box .pk-mod-head{margin-bottom:8px}
+.dn li{display:grid;grid-template-columns:76px minmax(0,1fr);gap:10px;padding:7px 0;border-top:1px dotted var(--color-line-strong)}
+.dn li:first-child{border-top:0}
+.dn b{font-size:13px;font-weight:600}
+.dn p{margin:0;font-size:12.5px;line-height:1.55;color:var(--color-text-2)}
+.dn p em{display:block;margin-top:2px;font-style:normal;font-family:var(--font-code);font-size:var(--text-code);color:var(--color-cyan-text)}
+.cmp2{display:flex;gap:18px;align-items:baseline;margin-bottom:6px}
+.cmp2 b{font-family:var(--font-dots);font-weight:900;font-size:26px;line-height:1;color:var(--color-ok)}
+.cmp2 span{font-size:12px;color:var(--color-text-3)}
+.df li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px;padding:3px 0;font-size:12px;line-height:1.5;color:var(--color-text-2);border-top:1px dotted var(--color-line-strong)}
+.df li:first-child{border-top:0}
+.df li span:first-child{color:var(--color-text)}
+.im li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:8px;padding:3px 0;font-size:12.5px;line-height:1.55;color:var(--color-text-2)}
+.im li .n{font-family:var(--font-dots);font-weight:900;font-size:14px;color:var(--color-text-3)}
+.qs li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;padding:8px 0;border-top:1px dotted var(--color-line-strong)}
+.qs li:first-child{border-top:0}
+.qs .n{font-family:var(--font-dots);font-weight:900;font-size:18px;color:var(--color-warn)}
+.qs b{display:block;font-size:13px;font-weight:600;margin-bottom:2px}
+.qs p{margin:0;font-size:12.5px;line-height:1.6;color:var(--color-text-2)}
+.nx p{margin:0;font-size:12.5px;line-height:1.6;color:var(--color-text-2)}
+.lk{font-family:var(--font-code);font-size:var(--text-code);color:var(--color-cyan-text);word-break:break-all}
+</style>
+</helmet>
+<div class="pk pk-dots doc s4r" data-theme="{{theme}}"><div class="ft"><h1>第 4 步 · 第一轮结果</h1><p>在云端建了 Peck 的 Design System，挂到这块画布上，拿它重搭了控件全套和一屏主界面，和第 3 步逐格对过。</p></div>
+    <div class="r1"><div class="cc"><div class="pk-mod box"><p class="pk-mod-head"><span class="pk-mod-label">DONE</span><span class="pk-mod-note">这一轮做的</span></p><ul class="dn"><li><b>Design System</b><p>云端「Peck」：说明（README 九节）、颜色 35 个（深浅两套，第一主题深色）、字体样式 11 个、其余 token 65 个（间距、宽、字号、行高、尺寸、像素角、发光）、组件 18 个带预览、封面、图标 26 个、资产 12 个（App 图标 6、菜单栏 6）、两个字体文件。<em>https://claude.ai/artifact/KpUihg5AHn6cw1ggNTx6s1</em></p></li><li><b>挂上画布</b><p>照 Design 画布的做法：project/ds/peck/ 放 tokens.json、tokens.css、bundle.css、bundle.js 和两个字体文件，canvas.json 记了一条。这一页的四张板都只引它，没有自己的控件样式。<em>ds/peck/ · S4-Kit · S4-Main · S4-Icon</em></p></li><li><b>对一遍</b><p>控件全套和第 3 步的控件板一格一格截图对：深色 64 / 76 格一样，浅色 64 / 76 格一样。主界面「在跑」「停下来问你」两个时刻也拿它搭了一屏。<em>S4-Kit · S4-Main</em></p></li><li><b>三个回答</b><p>深色亮一档、键盘焦点都按第 3 步的落了；图标的底板换回第 1 步的比例（占 7/8）；小尺寸的鸟照 J2 缩下来重画（你说第一版脸太臃肿），每个尺寸一格都是整像素。<em>S4-Icon · scheme/DESIGN.md §6</em></p></li></ul></div>
+        <div class="pk-mod box" style="flex:1"><p class="pk-mod-head"><span class="pk-mod-label">DIFF</span><span class="pk-mod-note">和第 3 步控件板不一样的格</span></p><div class="cmp2"><b>128/152</b><span>深浅一共 152 格，截图逐像素比（错开 1 像素以内，不一样的点不到 2% 算一样）</span></div><ul class="df"><li><span>单选</span><span>选项的名字用缝合像素（DESIGN.md：名字包括选项）；第 3 步控件板写成了正文字</span></li><li><span>多选</span><span>同上</span></li></ul>
+          <p class="pk-mod-head" style="margin:12px 0 6px"><span class="pk-mod-label">FIXED</span><span class="pk-mod-note">对出来改了的</span></p><ul class="df"><li><span>红底、琥珀按钮</span><span>键盘焦点的点线画成了青色（选择器权重不够），改回块上的字色</span></li><li><span>选中的选项片</span><span>图标被染成青字；第 3 步是白的，照第 3 步</span></li><li><span>模块套模块</span><span>里面那块跟着外面描了彩边（变量从外层继承），边和面改成写在模块自己身上</span></li><li><span>键盘焦点</span><span>组件样式里一开始漏写了焦点的点线，补上</span></li></ul></div></div>
+      <div class="cc"><div class="pk-mod pk-mod--wait box qs"><p class="pk-mod-head"><span class="pk-mod-label">QUESTIONS</span><span class="pk-mod-note">要你定</span></p><ul><li><span class="n">1</span><div><b>Design System 认不认？</b><p>云端打开「Peck」看说明、组件、封面；画布上 S4-Kit、S4-Main 是挂上以后搭的。认了方案状态改 approved，进收尾。</p></div></li></ul></div>
+        <div class="pk-mod box"><p class="pk-mod-head"><span class="pk-mod-label">IMPORT</span><span class="pk-mod-note">收尾时 visual-atelier 要补的</span></p><ul class="im"><li><span class="n">1</span><span>第一主题是深色（Pomelo 的是浅色先）：build:ds 要能按 tokens.config.json 的 themes 排。</span></li><li><span class="n">2</span><span>两个字体文件放进 Design System 的 fonts/，tokens.json 的 type.fonts 列出来。</span></li><li><span class="n">3</span><span>控件尺寸 size-* 和像素角 step-* 两组 token（取自 scale.json）；没有圆角就不出 radius。</span></li><li><span class="n">4</span><span>scheme/ 整个复制成 schemes/peck/（含 design-system/），画布复制成 canvases/peck-explore/。</span></li></ul></div>
+        <div class="pk-mod box nx"><p class="pk-mod-head"><span class="pk-mod-label">NEXT</span><span class="pk-mod-note">收尾</span></p><p>认了就收尾：画布、方案、Design System 一起导入 visual-atelier；你打 tag 以后同步进 Peck，Peck 的 Phase 2 完成。</p></div></div></div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["深色","浅色"],"default":"深色","section":"看"},"$preview":{"width":1280,"height":960}}'>
+class Component extends DCLogic {
+renderVals() {
+  const theme = (this.props.theme ?? '深色') === '浅色' ? 'light' : 'dark';
+  
+  return { theme,  };
+}
+}
+</script>
+</body>
+</html>

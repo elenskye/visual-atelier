@@ -1,0 +1,6 @@
+# Codex 的项目级配置（进 Git，和 Claude Code 的 .mcp.json、Antigravity 的 .agents/mcp_config.json 一样）。
+# Codex 只在这个目录被设为「信任」时才读它（第一次在这里开 Codex 时点同意，或用户配置里 trust_level = "trusted"）。
+# 从仓库（或 worktree）里任何一层目录起都能找到自己那份 dw：用 git 找根目录，再跑 bench/bin/dw-mcp.sh。
+[mcp_servers.dw]
+command = "/bin/sh"
+args = ["-c", "exec \"$(git rev-parse --show-toplevel)/bench/bin/dw-mcp.sh\""]

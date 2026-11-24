@@ -1,0 +1,60 @@
+{
+  "id": "unfold",
+  "title": "舒展 · 回答和页边注",
+  "status": "approved",
+  "approved": "站主 2026-11-24 验收 Pith Explore EX11（「验收完毕，开始做优化页、建 schemes/pith/」）",
+  "tier": "expressive",
+  "surface": "answer-unfold",
+  "trigger": "回答写出来时每段加 .is-in（--d 错开）；点编号 [n]：编号加 .is-on，引的那几个字 .pith-mark 加 .is-in，页边注加 .is-open",
+  "durationMs": 1400,
+  "reducedMotion": "直接显示，不展开",
+  "use": "对话里的回答（.pith-unfold）、页边注（.pith-sidenote.pith-unfold-note）",
+  "source": "canvases/pith-explore EX10、EX11（站主 11-23、11-24 定的动效）",
+  "requires": [
+    "design-system/bundle.css"
+  ],
+  "files": {
+    "css": "unfold.css",
+    "html": "unfold.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 300,
+    "holdEndMs": 900,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".uf-demo",
+    "viewport": [
+      700,
+      200
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-in",
+        "on": ".pith-unfold",
+        "all": true
+      },
+      {
+        "at": 900,
+        "add": "is-on",
+        "on": ".r"
+      },
+      {
+        "at": 900,
+        "add": "is-open",
+        "on": ".n"
+      },
+      {
+        "at": 900,
+        "add": "is-in",
+        "on": ".m"
+      }
+    ]
+  }
+}

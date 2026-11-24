@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>第一轮总览 · 暗色</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500&amp;family=Noto+Serif+SC:wght@400&amp;family=Source+Serif+4:opsz,wght@8..60,400&amp;family=Work+Sans:wght@400;500&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#87cfc9}a:hover{color:#ffa196}
+</style>
+</helmet>
+<div style="width: 1440px; height: 1100px; box-sizing: border-box; padding: 72px; background: #14201f; color: #f2ece0; font-family: 'Work Sans', 'Noto Sans SC', sans-serif; display: flex; flex-direction: column; gap: 48px">
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <div style="font-size: 13px; line-height: 1.6; color: #77c8c2; text-transform: uppercase">Round 1 · Dark</div>
+    <h1 style="margin: 0; font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-weight: 400; font-size: 56px; line-height: 1.05">同一套内容，暗色模式</h1>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 8px">
+    <div style="display: grid; grid-template-columns: 150px repeat(6, 64px) 240px 200px 150px; column-gap: 16px; font-size: 13px; color: #c1b9ac; padding-bottom: 8px">
+      <span>方向</span><span style="text-align: center">写作</span><span style="text-align: center">项目</span><span style="text-align: center">画廊</span><span style="text-align: center">创作</span><span style="text-align: center">游记</span><span style="text-align: center">其他</span><span>分区装饰</span><span>分享图</span><span>空状态</span>
+    </div>
+    <sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
+      <div style="display: grid; grid-template-columns: 150px repeat(6, 64px) 240px 200px 150px; column-gap: 16px; align-items: center; height: 136px">
+        <div style="display: flex; flex-direction: column; gap: 4px">
+          <div style="font-family: 'Source Serif 4', 'Noto Serif SC', serif; font-size: 26px; line-height: 1.2">{{r.name}}</div>
+          <div style="font-size: 13px; color: #c1b9ac">{{r.tag}}</div>
+        </div>
+        <sc-for list="{{r.icons}}" as="src" hint-placeholder-count="6">
+          <img src="{{src}}" alt="" style="width: 64px; height: 64px; display: block">
+        </sc-for>
+        <div style="width: 240px; height: 94px; background: #233230; border-radius: 8px; overflow: hidden"><img src="{{r.deco}}" alt="" style="width: 240px; height: 94px; display: block"></div>
+        <div style="width: 200px; height: 105px; background: #14201f; border: 1px solid #343e3b; border-radius: 8px; overflow: hidden; box-sizing: border-box"><img src="{{r.og}}" alt="" style="width: 198px; height: 103px; display: block"></div>
+        <div style="width: 150px; height: 94px; background: #233230; border-radius: 8px; overflow: hidden"><img src="{{r.empty}}" alt="" style="width: 150px; height: 94px; display: block"></div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      rows: [
+        { name: 'A 一笔', tag: '一根线画到底', icons: ['/_blob/a50f2ee8b71affd1daff9072c6a2c737', '/_blob/5a51929bed2b118b4c8bf5a36374af6c', '/_blob/64fa78ce716e460aef3cb9a1b73a0ec3', '/_blob/286ebf0aa8bb70e3e488b4cfbb801c1d', '/_blob/f2e323909b50d3905085c1038fdf99bd', '/_blob/5c3d62f6bd8e1b1bf6e6064b2914dcab'], deco: '/_blob/1a5b395696aa46c54ef119466ff6308d', og: '/_blob/77de91647c3b30ee78dd98e0aa5c691f', empty: '/_blob/9dd42bc3707f705140aae7c469d4ed4a' },
+        { name: 'B 流线', tag: '一束顺着形体的线', icons: ['/_blob/354ad798807aab12561dbd7230b0600e', '/_blob/01c202212466bebbc83efe6fda24ee38', '/_blob/771322ef39163f55e67152898ffc6407', '/_blob/a6e5bda7137cef32549a7604903f03ec', '/_blob/787aaa32501919c801538d47e6686833', '/_blob/360ce3665b8461c81efb84d1fb5b6345'], deco: '/_blob/9b702929ec446a14ef55d16093777bdd', og: '/_blob/d0c5e74eb121dd3cae8146fdbee016e1', empty: '/_blob/3db9b9727a7851cf7f0377d670b79ee0' },
+        { name: 'C 涟漪', tag: '一圈圈往外走', icons: ['/_blob/faeda5ae369e6391d6134930996ff2d8', '/_blob/26da7f565d79c89df28f86da35105138', '/_blob/e31c43080aa741648410459526d15f46', '/_blob/d6fb307bc97896984ee3ba79f9d6faaa', '/_blob/6094b237402fe54b9647062ce7e8366e', '/_blob/60901d790a999a15f6d8d9f801e552f4'], deco: '/_blob/e633023f354ed827740e16bdeff6c5e8', og: '/_blob/f0e9022ed063bd6f72e65205cdf46c84', empty: '/_blob/0e1d8030000f90fe44a998a04ad77ff3' },
+        { name: 'D 剪纸', tag: '纸片叠出的柔软形', icons: ['/_blob/5212c77b891f0e6c713d79a04f2c59c0', '/_blob/0dff22b65fb06020433e483befa86fea', '/_blob/95360a1750dd7c930abc07bbf1f98664', '/_blob/f13ab5fd31ce54480b6ca837dab11acf', '/_blob/36d0055ee603ee7cb8666eb29f8136c6', '/_blob/d666b4a88241a5e2c8446525709bafb1'], deco: '/_blob/00d151340b2d1a913f22630a573601d6', og: '/_blob/0ed6fbd992d83327c4f0d0e96ebb2db7', empty: '/_blob/33cee6e289b0b2a357146c0e2843f5af' },
+        { name: 'E 笔势', tag: '两头收尖的扫笔', icons: ['/_blob/87fd1a42dd2fb2e21f6dfe4499db9ef3', '/_blob/fe78b821837cb3278938c582b7d13bd5', '/_blob/76b9667f5e8e5e9b94011243eee89a59', '/_blob/f7f610ad8d0ad6f5e39710d52d878893', '/_blob/a4f6bad615a0cfa4448048f4893246b0', '/_blob/f560160f0ee6cea4f452885b28d4839d'], deco: '/_blob/b1fa9f13db1a6354ed5e1f1c7114628b', og: '/_blob/6e0fb2bcbe423163fe6deaa5aa03f8c8', empty: '/_blob/e9dc5b19e473a3ef48acdac6c5c6fb0c' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

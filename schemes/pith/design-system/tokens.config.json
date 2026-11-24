@@ -1,0 +1,148 @@
+{
+  "$note": "Design System 的 tokens.json 由构建从 tokens/ 生成，这里只写每个 token 的用途（写清能放在哪些底上）和字体样式。加了 token 就在 usage 里加一条，不然构建报错。",
+  "usage": {
+    "color-page": "页面底（纸）。上面能放所有的字和 color-accent-text、color-second。",
+    "color-surface": "卡片、输入框、表格的面。上面能放 color-text 到 color-text-4、color-accent-text、color-second。",
+    "color-raised": "浮起的面：右侧面板、弹层、⌘K。上面放 color-text。",
+    "color-tint": "淡底：悬停时滑进来的纸片、选中的行。上面能放 color-text、color-text-4（Lc ≥ 60）。",
+    "color-line": "分隔线、卡片的边（装饰，不查对比）。",
+    "color-line-2": "输入框、次要按钮的边（装饰，不查对比）。",
+    "color-text": "正文、标题。放在 page、surface、raised 上（APCA Lc ≥ 75）。",
+    "color-text-2": "回答里的次正文、引文、交付卡的一句话。放在 page 上（Lc ≥ 75）。",
+    "color-text-3": "说明、提示、没选中的图标。放在 page、surface 上（Lc ≥ 60）。",
+    "color-text-4": "最淡的字：日期、计数、注码、输入框的提示。放在 page、surface、tint 上（Lc ≥ 60）。",
+    "color-accent": "强调色：叶脉、枝桠、发送按钮和主按钮的底、选中的环、编号填色。当底时上面放 color-on-accent。",
+    "color-accent-text": "强调色的字：链接、编号 [n]、「存进……」。放在 page、surface 上（Lc ≥ 60）。",
+    "color-on-accent": "强调色底上的字和图标（Lc ≥ 60）。",
+    "color-second": "第二色：知识库卡片的类型标签、页边注的出处、角色头像。放在 page、surface 上（Lc ≥ 60）。",
+    "color-coral": "珊瑚：只点缀——图标里的芽和种子、+1、悬停最后抵达的点、当前那条的节点、湖面波纹的暖圈。亮底上 Lc 约 44，不写字。",
+    "color-gold": "金：混进 page 做少数小徽章的底（color-mix），不单独写字。",
+    "color-app-ink": "App 图标的墨色方块（每套配色一个值，明暗一样）。",
+    "color-app-paper": "App 图标上的 Logo。",
+    "color-app-coral": "App 图标上的果。",
+    "width-content": "回答正文栏的宽（640px）。",
+    "width-sidenote": "页边注的宽（270px），在正文右边。",
+    "width-composer": "输入框最宽（720px）。",
+    "space-1": "4px：图标和字之间。",
+    "space-2": "8px：控件里面。",
+    "space-3": "12px：相关的两样之间。",
+    "space-4": "16px：卡片的内边距。",
+    "space-5": "24px：块和块之间。",
+    "space-6": "32px：区和区之间。",
+    "space-7": "48px：页面的上下留白。",
+    "radius-s": "小控件、编号的圆角。",
+    "radius-m": "卡片、输入框的圆角（8px，比较方，像纸）。",
+    "radius-l": "色板、大块的圆角。",
+    "radius-pill": "主按钮、标签、+1 的胶囊。",
+    "font-serif": "读的东西：回答、标题、问候、卡片标题、字标（Newsreader，中文 Noto Serif SC）。",
+    "font-sans": "界面的字：按钮、标签、编号、提示（Lato，中文 Noto Sans SC，后备苹方）。",
+    "font-mono": "代码、路径。",
+    "text-tiny": "11px：标签、编号（大写、加字距）。",
+    "text-small": "12.5px：日期、计数、说明。",
+    "text-ui": "13.5px：界面的字。",
+    "text-body": "17px：回答正文。",
+    "text-lead": "24px：问候下面那句。",
+    "text-title": "32px：对话标题。",
+    "text-display": "60px：首页的问候「今天想弄清什么？」。",
+    "leading-body": "回答正文的行高（1.9，舒展）。",
+    "leading-ui": "界面的行高。",
+    "leading-title": "标题的行高。",
+    "shadow-sm": "卡片、输入框的影子（很淡，纸贴在纸上）。",
+    "shadow-lg": "右侧面板、弹层、⌘K、悬停抬起的卡片。"
+  },
+  "typeGroups": [
+    {
+      "name": "读的字（衬线）",
+      "family": "serif",
+      "styles": [
+        {
+          "name": "t-display",
+          "family": "serif",
+          "fontSize": "60px",
+          "lineHeight": "65px",
+          "fontWeight": 600,
+          "sample": "今天想弄清什么？",
+          "usage": "首页的问候（打开时字重从细长到粗）"
+        },
+        {
+          "name": "t-title",
+          "family": "serif",
+          "fontSize": "32px",
+          "lineHeight": "37px",
+          "fontWeight": 600,
+          "sample": "斯密为什么说分工受市场范围限制",
+          "usage": "对话标题"
+        },
+        {
+          "name": "t-lead",
+          "family": "serif",
+          "fontSize": "24px",
+          "lineHeight": "34px",
+          "fontWeight": 300,
+          "sample": "问一个问题。/ 叫一个技能，@ 请一个角色，# 选知识库。",
+          "usage": "问候下面那句"
+        },
+        {
+          "name": "t-body",
+          "family": "serif",
+          "fontSize": "17px",
+          "lineHeight": "32px",
+          "fontWeight": 400,
+          "sample": "市场太小，一个人就没法只干一件事。",
+          "usage": "回答正文"
+        },
+        {
+          "name": "t-card",
+          "family": "serif",
+          "fontSize": "18px",
+          "lineHeight": "23px",
+          "fontWeight": 430,
+          "sample": "看不见的手",
+          "usage": "知识库卡片、交付卡的标题（字重跟着生长阶段：300 → 430 → 640）"
+        },
+        {
+          "name": "t-quote",
+          "family": "serif",
+          "fontSize": "14.5px",
+          "lineHeight": "23px",
+          "fontWeight": 400,
+          "sample": "…limited by the extent of the market.",
+          "usage": "页边注里的原文（斜体）"
+        }
+      ]
+    },
+    {
+      "name": "界面的字（无衬线）",
+      "family": "sans",
+      "styles": [
+        {
+          "name": "t-ui",
+          "family": "sans",
+          "fontSize": "13.5px",
+          "lineHeight": "20px",
+          "fontWeight": 400,
+          "sample": "设置 › 外观",
+          "usage": "界面的字"
+        },
+        {
+          "name": "t-link",
+          "family": "sans",
+          "fontSize": "13.5px",
+          "lineHeight": "18px",
+          "fontWeight": 700,
+          "sample": "存进「读《国富论》」 →",
+          "usage": "链接、「存进……」"
+        },
+        {
+          "name": "t-label",
+          "family": "sans",
+          "fontSize": "10.5px",
+          "lineHeight": "14px",
+          "fontWeight": 700,
+          "sample": "概念卡",
+          "usage": "卡片的类型标签（加字距 .08em）"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+/* 分区装饰入场 —— expressive 已登记表面 section-deco-intro（DESIGN.md §5，tokens/motion.json）。
+ *
+ * 页面载入时写一次，之后静止；每屏只此一处。纸片每张 420ms、相隔 140ms 升起；笔画每笔 520ms、相隔 170ms 写出；
+ * 整段 1030ms（上限 1200ms）。没有朱红点。
+ * 触发：外层 .va-section-deco 带 .is-playing（片段里已写上，载入即播放一次）。去掉它则直接显示静态终态。
+ * 每次打开网站只写一次：页面 <head> 里先运行 section-deco-intro.once.js；同一次访问里第二次起根元素带
+ * data-va-visited，这里让装饰直接显示终态。
+ * 依赖：marks/graphic/graphic.css，--color-*（tokens/web.css）。
+ */
+.va-section-deco {
+  display: block;
+  width: min(100%, 420px);
+}
+
+.va-section-deco svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.va-section-deco.is-playing :is(.va-paper, .va-paper-2) {
+  animation: va-deco-paper 420ms cubic-bezier(0.3, 0.6, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 140ms);
+}
+
+.va-section-deco.is-playing .va-mk {
+  animation: va-deco-write 520ms cubic-bezier(0.5, 0, 0.2, 1) both;
+  animation-delay: calc(var(--i) * 170ms);
+}
+
+@keyframes va-deco-paper {
+  from {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes va-deco-write {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* 同一次访问里已经写过：直接显示终态。 */
+:root[data-va-visited] .va-section-deco.is-playing :is(.va-paper, .va-paper-2, .va-mk) {
+  animation: none;
+}
+
+/* 减弱动效：直接显示终态。 */
+@media (prefers-reduced-motion: reduce) {
+  .va-section-deco.is-playing :is(.va-paper, .va-paper-2, .va-mk) {
+    animation: none;
+  }
+}

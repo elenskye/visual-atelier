@@ -1,0 +1,45 @@
+{
+  "id": "press",
+  "title": "按钮 · 按下扁一下",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "按下（:active，演示和导出用 .is-pressed）",
+  "durationMs": 380,
+  "reducedMotion": "不缩不弹，按下没有形变",
+  "use": "所有按钮（.pm-btn）和只有图标的小按钮（.pm-press）",
+  "source": "canvases/pomelo-explore/p2-final/controls.mjs（站主 2026-11-05 验收的「控件的小动静」）",
+  "files": {
+    "css": "press.css",
+    "html": "press.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".press-demo",
+    "viewport": [
+      270,
+      110
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-pressed",
+        "on": ".b1"
+      },
+      {
+        "at": 120,
+        "remove": "is-pressed",
+        "on": ".b1"
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "pomelo-error",
+  "title": "柚子 · 出错",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "expressive",
+  "surface": "pomelo-face",
+  "trigger": "出错的时候（换成 data-face=\"error\"）",
+  "durationMs": 900,
+  "loop": false,
+  "reducedMotion": "不摇头，「!」直接在",
+  "use": "出错提示、柚子回答不了时",
+  "source": "canvases/pomelo-explore/p2-final/css.mjs「柚子：脸、身子的动作」（站主 2026-11-05 验收）",
+  "contract": "<span class=\"pm-pomelo\" data-face=\"error\">pomelo-error.svg</span>：脸一出现动画就开始，放完停在这张脸上",
+  "requires": [
+    "motion/pomelo-idle/pomelo-idle.css"
+  ],
+  "files": {
+    "css": "pomelo-error.css",
+    "html": "pomelo-error.fragment.html"
+  },
+  "capture": {
+    "host": ".pomelo-demo",
+    "steps": [
+      {
+        "at": 0,
+        "on": ".pomelo-demo .pm-pomelo",
+        "attr": {
+          "hidden": null
+        }
+      }
+    ],
+    "viewport": [
+      200,
+      190
+    ],
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "skipRest": true,
+    "holdStartMs": 600,
+    "holdEndMs": 1000,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0
+  }
+}

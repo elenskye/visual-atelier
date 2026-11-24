@@ -1,0 +1,8 @@
+/* 拖动排序：拿起的那行歪 −2°、放大一点、影子变深，跟着手走；别的行弹着让开（0.32 秒）；松手弹回到位。
+   位置由界面写在 transform 里，歪和放大用 rotate、scale，两边不打架。 */
+.pm-sort-item { transition: transform .32s cubic-bezier(.3,1.4,.5,1), rotate .2s cubic-bezier(.3,1.6,.5,1), scale .2s cubic-bezier(.3,1.6,.5,1), box-shadow .2s; }
+.pm-sort-item.is-held { z-index: 5; rotate: -2deg; scale: 1.03; box-shadow: 0 6px 14px var(--color-shadow); cursor: grabbing; transition: transform 60ms linear, rotate .2s cubic-bezier(.3,1.6,.5,1), scale .2s cubic-bezier(.3,1.6,.5,1), box-shadow .2s; }
+@media (prefers-reduced-motion: reduce) {
+  .pm-sort-item, .pm-sort-item.is-held { transition: none !important; animation: none !important; }
+}
+@media (prefers-reduced-motion: reduce) { .pm-sort-item.is-held { rotate: none; scale: none; } }

@@ -1,0 +1,22 @@
+<!-- @dsCard group="知识库" height=230 width=960 subtitle="三种记录：摘抄、概念卡、存下的回答（悬停那张抬起来）" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>KnowledgeCard</title>
+<style>
+  html, body { margin: 0; }
+  .demo { padding: 24px 32px; }
+  .lb { margin: 0 0 8px; font: 700 11px/1 var(--font-sans); letter-spacing: .1em; color: var(--color-text-4); }
+  .row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .pith-kcard-label .pith-glyph { width: 16px; height: 16px; color: var(--color-second); } .pith-kcard-meta .pith-glyph { width: 15px; height: 15px; color: var(--color-accent); }
+</style>
+</head>
+<body class="pith">
+<div class="demo" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+  <div class="pith-kcard pith-lift"><span class="pith-kcard-label"><!-- @include marks/types/excerpt.svg -->摘抄</span><b class="pith-kcard-title">Stigler 1951 的摘抄</b><p class="pith-kcard-line">分工限于市场范围，也限于行业的一生。</p><span class="pith-kcard-meta"><!-- @include marks/stages/sprout.svg -->读《国富论》 · 11 月 4 日</span></div>
+  <div class="pith-kcard pith-lift is-hover"><span class="pith-kcard-label"><!-- @include marks/types/concept.svg -->概念卡</span><b class="pith-kcard-title" style="font-weight:640">看不见的手</b><p class="pith-kcard-line">只在 IV.ii.9 出现过一次。</p><span class="pith-kcard-meta"><!-- @include marks/stages/evergreen.svg -->读《国富论》 · 11 月 15 日</span></div>
+  <div class="pith-kcard pith-lift"><span class="pith-kcard-label"><!-- @include marks/types/answer.svg -->存下的回答</span><b class="pith-kcard-title" style="font-weight:300">四大古文明发源的地理条件</b><p class="pith-kcard-line">大河、冲积平原、能交换的邻居。</p><span class="pith-kcard-meta"><!-- @include marks/stages/seed.svg -->读《全球通史》 · 11 月 16 日</span></div>
+</div>
+</body>
+</html>

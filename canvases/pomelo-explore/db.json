@@ -1,0 +1,219 @@
+{
+  "review/Frame-Bloom.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:37:04.458Z",
+    "by": "owner",
+    "sha256": "07bbf1a471bd157c148b02016a9f52cd13e724d58b3dabb8416b2d69b3442f44",
+    "note": "站主在对话里批的：「我都批准完毕，请你继续开发」（2026-11-08，Dawn Plan · Phase 4、5 一起批）\n2026-11-12 从 pomelo-frame 的 Bloom.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Frame-Book.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:37:04.459Z",
+    "by": "owner",
+    "sha256": "024642cb4268420646c15fe95629f2a11ad03c54ccac15f484afb6ff46a9300d",
+    "note": "站主在对话里批的：「我都批准完毕，请你继续开发」（2026-11-08，Dawn Plan · Phase 4、5 一起批）\n2026-11-12 从 pomelo-frame 的 Book.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Frame-Main.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:37:04.454Z",
+    "by": "owner",
+    "sha256": "7c6f07ad9b3fee886cc8678bdb77c509829a5763ffaa18aef3c1e8397a62689e",
+    "note": "站主在对话里批的：「我都批准完毕，请你继续开发」（2026-11-08，Dawn Plan · Phase 4、5 一起批）\n2026-11-12 从 pomelo-frame 的 Main.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Frame-Page.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:37:04.457Z",
+    "by": "owner",
+    "sha256": "7c6a872af740d064603581999912c8815844a339ea5013470adf6cddfe1e2c0e",
+    "note": "站主在对话里批的：「我都批准完毕，请你继续开发」（2026-11-08，Dawn Plan · Phase 4、5 一起批）\n2026-11-12 从 pomelo-frame 的 Page.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Frame-Search.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:37:04.460Z",
+    "by": "owner",
+    "sha256": "0faccc6aec4ae8e2ba9cf9e86978253dbefdedfc95ceac2f51cd5ff98ea64b8d",
+    "note": "站主在对话里批的：「我都批准完毕，请你继续开发」（2026-11-08，Dawn Plan · Phase 4、5 一起批）\n2026-11-12 从 pomelo-frame 的 Search.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Icons-Batch2.dc.html": {
+    "status": "approved",
+    "at": "2026-11-09T08:59:42.946Z",
+    "by": "owner",
+    "sha256": "81c93319c38f5df48d27a1f2b79b1cc9ca6c132318b0087a60df0f414de45fea",
+    "note": "2026-11-12 从 pomelo-icons 的 Batch2.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Icons-InUse.dc.html": {
+    "status": "approved",
+    "at": "2026-11-09T08:59:38.225Z",
+    "by": "owner",
+    "sha256": "334ba4a9cc92b5b162bad8adbebcf00e8631141971ba0c9c1fe1cd7b33ee8394",
+    "note": "2026-11-12 从 pomelo-icons 的 InUse.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Icons-Main.dc.html": {
+    "status": "approved",
+    "at": "2026-11-09T08:59:41.714Z",
+    "by": "owner",
+    "sha256": "72864f7077283fc95e1c57d2067cfd2cea2128be0601d066b04b582c012d2cf3",
+    "note": "2026-11-12 从 pomelo-icons 的 Main.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Marks-AppIcon-grid.dc.html": {
+    "status": "approved",
+    "at": "2026-11-07T12:46:38.654Z",
+    "by": "owner",
+    "sha256": "62d40640f49b983d29f5da19339c27666367c3ac71f8e3ba652819ceb2b798a5",
+    "note": "2026-11-12 从 pomelo-marks 的 AppIcon-grid.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Marks-AppIcon-kraft.dc.html": {
+    "status": "approved",
+    "at": "2026-11-07T12:46:45.813Z",
+    "by": "owner",
+    "sha256": "b41cc3472ee17f9616537a64bc1dfb4273d62edfcf05c7d4c99aecbf7b262e80",
+    "note": "2026-11-12 从 pomelo-marks 的 AppIcon-kraft.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Marks-AppIcon-mint.dc.html": {
+    "status": "approved",
+    "at": "2026-11-07T12:46:42.603Z",
+    "by": "owner",
+    "sha256": "51a3235aea374f6af237c64801d51e315bf5fcbcb5932bd5966b43f40459c9f4",
+    "note": "2026-11-12 从 pomelo-marks 的 AppIcon-mint.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Marks-Colors.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:37:04.462Z",
+    "by": "owner",
+    "sha256": "dc56375502a666a26ac1855887561f51d160c159d745e2bea3b4ba31e3f2b0fb",
+    "note": "站主在对话里批的：「我都批准完毕，请你继续开发」（2026-11-08，Dawn Plan · Phase 4、5 一起批）\n2026-11-12 从 pomelo-marks 的 Colors.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Marks-Dock.dc.html": {
+    "status": "approved",
+    "at": "2026-11-07T12:50:38.514Z",
+    "by": "owner",
+    "sha256": "da9655ba4fe095368bc70d36fe39f8b691d15804bcc9fa04f1530a042e92fd84",
+    "note": "站主在对话里批的：兴趣和工具的颜色互换，改好就算批准（2026-11-07）\n2026-11-12 从 pomelo-marks 的 Dock.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Marks-Empty.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:37:04.464Z",
+    "by": "owner",
+    "sha256": "2c77fe41a8bc7cdc2ed94455aba49ed234b1647cdf39b5e09a11a912b744d17d",
+    "note": "站主在对话里批的：「我都批准完毕，请你继续开发」（2026-11-08，Dawn Plan · Phase 4、5 一起批）\n2026-11-12 从 pomelo-marks 的 Empty.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Marks-Library.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:37:04.461Z",
+    "by": "owner",
+    "sha256": "1fe660511f83dfe0acfe40a4eb35a54146fc4c80f223407f95a26b8926e15025",
+    "note": "站主在对话里批的：「我都批准完毕，请你继续开发」（2026-11-08，Dawn Plan · Phase 4、5 一起批）\n2026-11-12 从 pomelo-marks 的 Library.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Marks-Main.dc.html": {
+    "status": "approved",
+    "at": "2026-11-07T12:43:52.621Z",
+    "by": "owner",
+    "sha256": "a32bde80dee7bf0ad818d54c3c37de8fbf94737bbc549ef9337849f88b895e2a",
+    "note": "2026-11-12 从 pomelo-marks 的 Main.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Marks-Menubar.dc.html": {
+    "status": "approved",
+    "at": "2026-11-07T12:44:17.743Z",
+    "by": "owner",
+    "sha256": "4b863d10065d2ca4b352fd7c07d0a31ea7fa3a306e75811d3a5ac0aafb02a545",
+    "note": "2026-11-12 从 pomelo-marks 的 Menubar.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Marks-Modules.dc.html": {
+    "status": "approved",
+    "at": "2026-11-07T12:50:38.512Z",
+    "by": "owner",
+    "sha256": "71b2f2c00d29ec6657205b8f9d632b21ed2975db633a234c9cd65538f1e4f985",
+    "note": "站主在对话里批的：兴趣和工具的颜色互换，改好就算批准（2026-11-07）\n2026-11-12 从 pomelo-marks 的 Modules.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Marks-Picker.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:37:04.463Z",
+    "by": "owner",
+    "sha256": "e8d363ff92b92d0f0d4628178f9a6365332e2964f5cd45148a841fddb5be81db",
+    "note": "站主在对话里批的：「我都批准完毕，请你继续开发」（2026-11-08，Dawn Plan · Phase 4、5 一起批）\n2026-11-12 从 pomelo-marks 的 Picker.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Marks-Places.dc.html": {
+    "status": "approved",
+    "at": "2026-11-09T07:40:26.653Z",
+    "by": "owner",
+    "sha256": "1c44a95cf2859fdff5798fafe7f8a180d468ee92365252c1bae34ae7c558d1d6",
+    "note": "2026-11-12 从 pomelo-marks 的 Places.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Motion-Controls.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:20:41.398Z",
+    "by": "owner",
+    "sha256": "c66c537c9b2fbfe0a1267bd2df2a0106c2db0dfc16f5f9882951f013d22aed18",
+    "note": "2026-11-12 从 pomelo-motion 的 Controls.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Motion-Eggs.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T10:31:52.650Z",
+    "by": "owner",
+    "sha256": "39c007001ff6c9b55233a4ac6934594bccec12112a905d00b75dffcea003714a",
+    "note": "2026-11-12 从 pomelo-motion 的 Eggs.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Motion-Empty.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:26:21.529Z",
+    "by": "owner",
+    "sha256": "2326c23f8fec1d6ed313d9ecedd3b8d95507013720bfea4a3aabcf8276cea5a3",
+    "note": "2026-11-12 从 pomelo-motion 的 Empty.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Motion-Faces.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:22:26.761Z",
+    "by": "owner",
+    "sha256": "692166c8994ac190d75bcdfb860a1f6a5423a0819daf888498648f623d46f1c3",
+    "note": "2026-11-12 从 pomelo-motion 的 Faces.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Motion-Frame.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:25:53.591Z",
+    "by": "owner",
+    "sha256": "bf3283a3ecfc0a07c8d0cdb6328ff68e42ab9d74ee74aac4cb520c3b4fef5493",
+    "note": "2026-11-12 从 pomelo-motion 的 Frame.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Motion-Moments.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:25:07.909Z",
+    "by": "owner",
+    "sha256": "a9ab9bb658dcd894afd28e37ad964c0ddeca10a47eb27d2bfdd98335f9797ca2",
+    "note": "2026-11-12 从 pomelo-motion 的 Moments.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/Motion-Worried.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T10:31:21.526Z",
+    "by": "owner",
+    "sha256": "5b26c695990c38e70a0282d9a7e23c00093a01e0ad8f840829700c85a3a47815",
+    "note": "2026-11-12 从 pomelo-motion 的 Worried.dc.html 搬来（并进 Pomelo Explore）"
+  },
+  "review/X4-Contrast.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:18:09.202Z",
+    "by": "owner",
+    "sha256": "d740463472e4ac88e36e52aead4685cfbfa7c58d88a9fc9fa8fb6403217ae555",
+    "note": "2026-11-13 从 P3-Contrast.dc.html 改名（Phase 3 · 方案 → 探索 4）"
+  },
+  "review/X4-Kit.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:18:17.574Z",
+    "by": "owner",
+    "sha256": "631d4817070d602dd4139f650e50dd8a496f50c944186007929c966923724d05",
+    "note": "2026-11-13 从 P3-Kit.dc.html 改名（Phase 3 · 方案 → 探索 4）"
+  },
+  "review/X4-Motion.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:18:41.300Z",
+    "by": "owner",
+    "sha256": "137826ba80d598ddd37fae3673d858e4cffef8ebe34f0801d3ebd5a99e5982e1",
+    "note": "2026-11-13 从 P3-Motion.dc.html 改名（Phase 3 · 方案 → 探索 4）"
+  },
+  "review/X4-Palettes.dc.html": {
+    "status": "approved",
+    "at": "2026-11-08T07:16:50.974Z",
+    "by": "owner",
+    "sha256": "96a7eaf6378643cc5077021ee8a673a9c493bd5ac2b7164962f401d66ee1c024",
+    "note": "2026-11-13 从 P3-Palettes.dc.html 改名（Phase 3 · 方案 → 探索 4）"
+  }
+}

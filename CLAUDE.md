@@ -1,0 +1,109 @@
+# CLAUDE.md
+
+visual-atelier：站主的个人视觉仓库。多套视觉方案（`schemes/`）共用一套工具（`tooling/`），画布的源（`canvases/`）和看画布的引擎（`bench/`）也在这里；产出以 SVG、GIF、PNG、动效零件和 Design System 为主。站主没有设计软件和设计经验，用自然语言指挥：方向由 Agent 摆出来让站主挑，不要默认站主会画图。
+
+`AGENTS.md` 指向本文件，所有 Agent 通用。这里只放核心规则，细则在每节指向的文件里（2026-11-22 站主定重写成短版，规则没删，挪到了 `docs/`、`canvases/README.md`、`bench/README.md`）。
+
+## 开工前
+
+1. 读本文件和 `ROADMAP.md`（现在在哪、定过什么、现行授权）。动某套方案再读它的 `DESIGN.md` 和 `CLAUDE.md`；动某块画布再读它的 `README.md`；**做视觉探索、写简报、评估几家的版本，先读 `skills/design-craft/SKILL.md`**。
+2. 新会话、新 worktree、换账号：照 `docs/sessions.md`「新会话接手」冷启动（`npm ci`、构建、`npm test` 全过），认清自己是哪个会话、能动哪些文件。只认提交过的东西。
+3. 每次开发前，先问站主这次属于哪种程度（下面「版本与 Git」），再开工。
+4. 方案获批不等于开工许可：开始实现要站主明确说；「进入 Plan 阶段」只调研、提问、写文档。计划里上一个 Phase 验收后，下一个直接开工。
+5. 定过的不再问（跨方案的在 `ROADMAP.md`，方案的在它的 `DESIGN.md` 和 `history/`）。要站主定的，工作中直接用提问功能（AskUserQuestion）问，别等写完长篇汇报再列问题。
+6. Git 照下面「版本与 Git」。保留站主手写的内容；工作区里不认识的改动多半是别的会话的，别动也别还原，先问。
+7. 文档用中文，只写结论；同一件事只写一处，别处指过去。
+
+## 权限边界
+
+- 本仓库和站主的其他项目互相独立：需要的规则在这里写全，不写「去看某某项目」；别的项目取用本仓库一律复制。
+- **Pomelo**（`~/Documents/GitHub/pomelo`）由它自己的会话开发；本仓库的会话对它只读，要改先问站主。它的真实数据目录谁都不碰。
+- **网站**（`~/Documents/GitHub/personal-website`）默认只读：一知道要改哪些文件（含 `package.json`、lockfile、临时文件），就列清单问站主，逐文件授权，记进 `ROADMAP.md`；旧授权不能代替这一步。备份时只复制要改的文件。
+- **不进仓库、不做演示**：网站隐藏页 `/love-shuyu/` 及其内容、站主的私人内容、Pomelo 的真实数据目录（演示一律 `?mock` 假数据）。本仓库私有，站主少量的作品和文章可以进；看效果的截图只放会话临时目录或画布的 `.shots/`。
+- 依赖写 `^x.y.z`，不用 `latest`；新增外部或付费服务要站主授权；不用 Rive。
+
+## 几个会话怎么分
+
+同一个仓库几个会话同时做，按文件分开，谁也不改别人那块（站主 2026-11-12；细则、Pith 的会话、共用文件、第二条线的 Git 规矩在 `docs/sessions.md`）：
+
+| 会话 | 能动 |
+| --- | --- |
+| 本仓库的会话 | 下面三行以外的全部：`bench/`、`tooling/`（`atlas/`、`handmade/` 除外）、`skills/`、`docs/`、`schemes/vermilion/`、`schemes/_template/`、新方案、别的画布、根目录的文件 |
+| Pomelo 的会话 | `schemes/pomelo/`、`canvases/pomelo-*/`、`tooling/atlas/`、`tooling/handmade/` |
+| Peck 的会话 | `schemes/peck/`、`canvases/peck-*/` |
+| Pith 的会话 | `schemes/pith/`、`schemes/pith-wonder-*/`、`canvases/pith-*/`、`tooling/pith/`（0.1.0 由本仓库的会话照站主 2026-11-24 的话建好，以后归它） |
+
+共用的 `CHANGELOG.md`、`ROADMAP.md`「现在」的方案行、`README.md` 的方案表，各写各的那一条；`package.json` 只归本仓库的会话。
+
+## 版本与 Git（站主 2026-11-24 定）
+
+- **版本号**：整个仓库一个版本号，从 1.0.0 起（以前是 0.13.0），记在 `package.json` 的 `version`；所有会话都用它。各方案自己的版本照旧记在 `scheme.json`，给消费方的 tag 照旧是 `<方案>-v<版本>`（核心约定 6、`docs/adoption.md`），和仓库的版本号分开。
+- **开发程度**，开工前先问站主是哪种：
+  - 小幅优化、Bug 修复：1.0.0 → 1.0.1，不分 Phase。
+  - 新增功能、大幅优化：1.0.0 → 1.1.0，计划分 Phase（如 1.2.0 Phase 1~5）。
+  - 1.0.0 → 2.0.0：由站主决定，同样分 Phase。
+- **正式版**：改 `package.json` 的版本，`CHANGELOG.md` 记一条，打 tag `v<版本>`。1.0.1 这类做完自动出；1.1.0、2.0.0 只在最后一轮收尾自动出，中间的 Phase 不出，除非站主在那一期要求；站主也可以自己出。
+- **Git**：每一轮做完、对应的验证过了，自己 commit；push（连 tag）由站主做。每轮结束告诉站主这轮有哪些 commit、分别是什么。
+- **提交信息**：`vx.x.x: dev description`。x.x.x 是这轮所属的版本；description 全英文，简约、概括，可以直接写 `fix some problems`、`minor improvement`。不写正文，不署名（不加 `Co-Authored-By`；`.claude/settings.json` 已关掉 Claude Code 默认加的署名）。
+- 不 force push、不改写历史、不删分支、不改远端设置，站主说的除外。
+
+## 仓库结构
+
+| 路径 | 内容 |
+| --- | --- |
+| `schemes/<方案>/` | 一套视觉方案：`tokens/`、`marks/`、`motion/`、`type/`、`DESIGN.md`、`CLAUDE.md`、`scheme.json`，可选 `design-system/`、`history/`。新方案用 `dw scheme new`（`docs/architecture.md`） |
+| `tooling/` | 所有方案共用的脚本：token 构建、渲染、GIF、质量检查、同步、字体子集（`tooling/README.md`） |
+| `canvases/<画布名>/` | 一块画布或一个问卷页的全部源；`canvases/_lib/` 是生成器共用的零件（`canvases/README.md`） |
+| `bench/` | 看画布的引擎：`dw` 命令行和 MCP、本地画布界面、画布运行时的副本、测试（`bench/README.md`） |
+| `skills/` | 本仓库的 Skill（`.claude/skills`、`.agents/skills` 指向它） |
+| `docs/` | 架构、工作流和验证、会话、云端往返、采用、动效档位、许可 |
+| `history/` | 做完的大计划和逐条记录，只是历史、不是规则 |
+| `dist/`、`scratch/` | 构建产物、临时文件，不进 Git |
+
+## 核心约定
+
+1. **方案互相独立**：token、规则、动效数值不借用、不反向影响；共用的只有 `tooling/`。
+2. **源是文件**：SVG、JSON、小型 JS 模块；颜色用 `currentColor` 或 token，不在资产里写死色值（色板文件除外）。
+3. **动效是时间的函数**：每个动效只写一份实现，既能实时播放，也能逐帧定格导出 GIF。
+4. **两档动效 `calm` / `expressive`**（`docs/motion-tiers.md`）：每个动效标明档位，带减弱动效下的静态终态。
+5. **资产状态** `draft` → `proposed` → `approved`：只有站主能批准；`approved` 的不改几何和参数，要改开新版本。
+6. **版本**：每个方案独立 semver，记在 `scheme.json` 和 `CHANGELOG.md`。
+7. **字体**：只有可再分发许可（OFL 等）的能转曲线或打包；系统字体只作原生运行时字体。许可登记在 `docs/licensing.md`。
+8. **产物预算**：图片 ≤ 1.5 MB，其他公开文件 ≤ 5 MB；GIF 以平涂色为主。
+9. **对比度**：改色过 APCA（正文 Lc ≥ 75，次要文字和交互色 Lc ≥ 60），明暗都验。Explore Deck 的探索页（EX）只提示、不挡，不过的写进交付说明；优化页（R）和方案必须过（站主 2026-11-22）。
+10. **画布的源在 `canvases/`**：生成画布的数据、脚本、手写的画板都在 `canvases/<画布名>/` 并进 Git；先进这里再上云端，云端改过先拉回（`docs/cloud.md`）。
+
+## 画布与 bench
+
+- 格式和 Claude 云端画布同一套（`project/canvas.json` 加 `*.dc.html`）；看、批、改名的分工，Explore Deck 的页名和**两档门槛**，都在 `canvases/README.md`。站主看、批，不改内容；批准退回只由站主做，Agent 只标「待批」。
+- 拉回、发回逐个文件核对 sha256，对不上就停下；碰云端前照 `docs/cloud.md`「账号」看清账号（旧账号的只看不动，例外记在 `ROADMAP.md`「授权记录」）。
+- 运行时不手改：云端换了就对照 sha256 换掉 `bench/vendor/claude-design/` 的副本（`dw pull`、`verify`、`publish` 会提示）。服务只听 127.0.0.1，不加遥测。
+- 有 `dw` 的 MCP 就用它（三家的配置都在仓库里，`bench/README.md`「MCP」）。`node bench/bin/dw.js help` 列出全部命令。
+
+## 验证
+
+改了哪边跑哪边，只跑和改动直接相关的；细则在 `docs/workflow.md`「验证」。
+
+- **画板**：`dw check <画布名>` 全过，截图看过；有动效的再 `dw frames <画布名> --board <文件>` 看按时间线截的总览。没目视的（节奏、手感）写进交付说明。
+- **bench**：`npm test`。**方案、tooling**：相关的那一条 `npm run …`；发版前 `npm run all`。
+- **导出要确定**：同一份源两次导出逐字节一样。
+
+## 采用、工具与 Skill
+
+- **采用**：单向复制已发版本到消费方，消费方不手改；每个消费方每次同步都要站主授权；同步前核对 tag；不用 `file:` 之类的本机链接（`docs/adoption.md`、`docs/workflow.md`「资产从做到用」）。
+- **放哪**：脚本放 `tooling/`，引擎放 `bench/`，Skill 放 `skills/<名字>/SKILL.md`（自包含：用途、输入、输出、验证），不放用户全局目录。
+
+## 文档职责
+
+| 文件 | 内容 |
+| --- | --- |
+| `CLAUDE.md` | 核心规则（本文件） |
+| `ROADMAP.md` | 现在的状态、接下来做什么、跨方案的决定、现行授权 |
+| `CHANGELOG.md` | 做完且验证过的结果，不写待办 |
+| `README.md` | 仓库是什么、第一次怎么用 |
+| `docs/` | `sessions.md` 会话和第二条线、`workflow.md` 工作流和验证、`cloud.md` 云端往返、`architecture.md`、`adoption.md`、`motion-tiers.md`、`licensing.md` |
+| `canvases/README.md`、`bench/README.md`、`tooling/README.md` | 画布的约定、引擎怎么用、工具 |
+| `schemes/<方案>/DESIGN.md` | 这套方案定了的视觉基线和待确认的点 |
+| `history/` | 大阶段结束后归档的计划和过程 |
+
+大阶段结束时，把过程移进 `history/`，`ROADMAP.md` 只留下一阶段，`CHANGELOG.md` 只留摘要表。

@@ -1,0 +1,51 @@
+{
+  "id": "sticker-peel",
+  "title": "贴纸簿 · 翘起来、撕下来飞走",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "鼠标移上去翘起一角（:hover，演示用 .is-hover）；按下 .is-peeling；拖着 .is-held；松手没拖动就 .is-flyoff（放完去那一页）；贴回簿子时 .is-back",
+  "durationMs": 450,
+  "reducedMotion": "不翘、不飞，点了直接去",
+  "use": "贴纸簿（模块坞）里的贴纸",
+  "source": "canvases/pomelo-explore/p2-final/b.mjs 的 book（站主 2026-11-05 验收的 Phase 2 定稿）",
+  "files": {
+    "css": "sticker-peel.css",
+    "html": "sticker-peel.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".peel-demo",
+    "viewport": [
+      340,
+      260
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-hover",
+        "on": ".k1"
+      },
+      {
+        "at": 360,
+        "add": "is-peeling",
+        "on": ".k1"
+      },
+      {
+        "at": 520,
+        "remove": "is-hover is-peeling",
+        "add": "is-flyoff",
+        "on": ".k1"
+      }
+    ]
+  }
+}

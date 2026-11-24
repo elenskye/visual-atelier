@@ -1,0 +1,17 @@
+{
+  "kind": "canvas",
+  "title": "Peck Explore",
+  "targets": {
+    "0c77c74b-af76-46cf-ad03-c0d9e7f491ee": {
+      "url": "https://claude.ai/artifact/2YJB1WKiiC6q7s6VmryCaR",
+      "account": "现用账号",
+      "blobs": "same",
+      "lastPublish": {
+        "version": "1794303553-b12d",
+        "at": "2026-11-10T09:39:29.194Z",
+        "files": 191
+      }
+    }
+  },
+  "home": "0c77c74b-af76-46cf-ad03-c0d9e7f491ee"
+}

@@ -1,0 +1,45 @@
+{
+  "id": "tag",
+  "title": "标签 · 拍上去，撕下来",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "加一个：新标签带 .is-in；去掉：换成 .is-leaving，动画放完（0.38 秒）再拿掉",
+  "durationMs": 450,
+  "reducedMotion": "直接出现、直接消失",
+  "use": "标签（.pm-tag）",
+  "source": "canvases/pomelo-explore/p2-final/controls.mjs（站主 2026-11-05 验收的「控件的小动静」）",
+  "files": {
+    "css": "tag.css",
+    "html": "tag.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".tag-demo",
+    "viewport": [
+      380,
+      120
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-leaving",
+        "on": ".t1"
+      },
+      {
+        "at": 500,
+        "add": "is-in",
+        "on": ".t3"
+      }
+    ]
+  }
+}

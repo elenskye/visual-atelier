@@ -1,0 +1,41 @@
+{
+  "id": "wheel-spin",
+  "title": "柚子瓣 · 打「柚子」它转一圈",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "expressive",
+  "surface": "wheel-open",
+  "trigger": "在柚子瓣里打「柚子」：柚子瓣加一次 .is-spin（先去掉、读一次宽高、再加）；--pm-a 是现在转到的角度",
+  "durationMs": 900,
+  "reducedMotion": "不转",
+  "use": "柚子瓣的小彩蛋",
+  "source": "canvases/pomelo-explore/p2-final/wheel.mjs、logic.js 的 whlSpin（站主 2026-11-05 验收的 Phase 2 定稿）",
+  "files": {
+    "css": "wheel-spin.css",
+    "html": "wheel-spin.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 20,
+    "holdStartMs": 300,
+    "holdEndMs": 800,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".wheel-demo",
+    "viewport": [
+      340,
+      320
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-spin",
+        "on": ".pm-wheel"
+      }
+    ]
+  }
+}

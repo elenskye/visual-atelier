@@ -1,0 +1,46 @@
+/* 空状态：插图一笔笔画出来，再一样样弹一下，最后那句俏皮话浮上来（招牌时刻 empty-state，DESIGN.md §5 第 6 条）。
+   用法：<div class="pm-empty is-in">插图（marks/empty/*.svg 原样放进来）<p class="pm-empty-line">那句话</p></div>
+   一页第一次显示空状态时就带着 is-in 渲染，放进页面就画一次；要再画一次，把元素拿掉再放回去。不带 is-in 是画好的样子。
+   插图里每样东西是一组 <g class="pt 名字 动作" style="--i:n">（marks.mjs 生成）：第 n 样 n × 90ms 开始描线（0.6 秒），
+   白边跟着描线一起淡进来（暗色里墨线才看得清），描到一半填色淡进来；700 + n × 110ms 弹一下（0.5 秒，果冻弹）。动作换掉「弹一下」：hop 跳一下、tip 歪一下、
+   sway 晃一晃、swing 吊着荡、flap 盖子打开、rise 冒上来、twinkle 闪一下、echo 一圈圈荡开。话在 1.05 秒浮上来。
+   现在 8 张图最长 1.94 秒（一步一步：第 5 样是跳一下的饼干）。描线开始前先藏着（圆头的线长度为 0 时会剩一个点）。 */
+.pm-empty { display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; }
+.pm-empty svg { display: block; overflow: visible; }
+.pm-empty-line { margin: 0; font-size: var(--text-card-title); line-height: 24px; font-weight: 700; color: var(--color-ink); }
+.pm-empty .pt { transform-box: fill-box; transform-origin: 50% 100%; }
+.pm-empty .pt.tip { transform-origin: 0% 100%; }
+.pm-empty .pt.swing { transform-origin: 100% 0%; }
+.pm-empty .pt.twinkle { transform-origin: 50% 50%; }
+.pm-empty .pt.echo { transform-origin: 0% 100%; }
+
+.pm-empty.is-in .ol { stroke-dasharray: 1 1; animation: pm-empty-draw .6s ease-out both; animation-delay: calc(var(--i, 0) * 90ms); }
+.pm-empty.is-in .wb { animation: pm-empty-fill .4s ease-out both; animation-delay: calc(var(--i, 0) * 90ms); }
+.pm-empty.is-in .fl, .pm-empty.is-in .dt, .pm-empty.is-in .bl { animation: pm-empty-fill .4s ease-out both; animation-delay: calc(var(--i, 0) * 90ms + 350ms); }
+.pm-empty.is-in .pt { animation: pm-empty-pop .5s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(700ms + var(--i, 0) * 110ms); }
+.pm-empty.is-in .pt.hop { animation-name: pm-empty-hop; animation-duration: .8s; animation-timing-function: ease-out; }
+.pm-empty.is-in .pt.tip { animation-name: pm-empty-tip; animation-duration: .7s; animation-timing-function: ease-in-out; }
+.pm-empty.is-in .pt.sway { animation-name: pm-empty-sway; animation-duration: .8s; animation-timing-function: ease-in-out; }
+.pm-empty.is-in .pt.swing { animation-name: pm-empty-swing; animation-duration: .9s; animation-timing-function: ease-out; }
+.pm-empty.is-in .pt.flap { animation-name: pm-empty-flap; animation-duration: .55s; }
+.pm-empty.is-in .pt.rise { animation-name: pm-empty-rise; animation-duration: .7s; animation-timing-function: ease-out; }
+.pm-empty.is-in .pt.twinkle { animation-name: pm-empty-twinkle; }
+.pm-empty.is-in .pt.echo { animation-name: pm-empty-echo; animation-duration: .6s; animation-timing-function: ease-out; }
+.pm-empty.is-in .pm-empty-line { animation: pm-empty-line .5s ease-out 1.05s both; }
+
+@keyframes pm-empty-draw { 0% { stroke-dashoffset: 1; opacity: 0; } 3% { opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 1; } }
+@keyframes pm-empty-fill { 0% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes pm-empty-pop { 0% { transform: scale(1); } 35% { transform: scale(1.14, .84); } 65% { transform: scale(.94, 1.08); } 100% { transform: scale(1); } }
+@keyframes pm-empty-hop { 0% { transform: none; } 30% { transform: translateY(-18px) rotate(-12deg); } 55% { transform: translateY(0) rotate(4deg) scale(1.1, .9); } 75% { transform: scale(.96, 1.05); } 100% { transform: none; } }
+@keyframes pm-empty-tip { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-7deg); } 60% { transform: rotate(3deg); } 80% { transform: rotate(-1deg); } }
+@keyframes pm-empty-sway { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-6deg); } 55% { transform: rotate(4deg); } 80% { transform: rotate(-2deg); } }
+@keyframes pm-empty-swing { 0%, 100% { transform: rotate(0); } 20% { transform: rotate(14deg); } 45% { transform: rotate(-9deg); } 70% { transform: rotate(4deg); } 88% { transform: rotate(-1.5deg); } }
+@keyframes pm-empty-flap { 0% { transform: scaleY(.2); } 60% { transform: scaleY(1.08); } 80% { transform: scaleY(.97); } 100% { transform: none; } }
+@keyframes pm-empty-rise { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: none; } }
+@keyframes pm-empty-twinkle { 0% { transform: scale(0) rotate(-30deg); } 60% { transform: scale(1.3) rotate(10deg); } 100% { transform: none; } }
+@keyframes pm-empty-echo { 0% { opacity: 0; transform: scale(.3); } 60% { opacity: 1; } 100% { opacity: 1; transform: none; } }
+@keyframes pm-empty-line { 0% { opacity: 0; transform: translateY(8px); } 100% { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pm-empty.is-in .ol, .pm-empty.is-in .fl, .pm-empty.is-in .dt, .pm-empty.is-in .bl, .pm-empty.is-in .wb, .pm-empty.is-in .pt, .pm-empty.is-in .pm-empty-line { animation: none; }
+}

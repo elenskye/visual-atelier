@@ -1,0 +1,16 @@
+/* 呼出柚子瓣：从左上角的柚子那里转着长成一圈（0.62 秒），墨线画出来（0.7 秒），底色淡入，贴纸一张接一张弹出来
+   （每张晚 11 毫秒，--pm-i 是第几张，0.88 秒内弹完）；收起时转着缩回柚子那里（.is-closing，0.3 秒）。
+   柚子瓣的画（柚皮、瓣、瓤）包在 .pm-wheel-art 里：只有它的 .ol 画出来、.fl 淡入；贴纸格子是 .pm-wheel-slot。 */
+.pm-wheel.is-open { animation: pm-bloom-grow .62s cubic-bezier(.2,.9,.3,1.12) both; }
+.pm-wheel.is-open .pm-wheel-art .ol { stroke-dasharray: 1 2; animation: pm-bloom-draw .7s .12s ease-out both; }
+.pm-wheel.is-open .pm-wheel-art .fl { animation: pm-bloom-fade .4s .4s both; }
+.pm-wheel.is-open .pm-wheel-slot { animation: pm-bloom-pop .35s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(.3s + var(--pm-i, 0) * 11ms); }
+.pm-wheel.is-closing { animation: pm-bloom-shrink .3s cubic-bezier(.5, 0, .75, 0) both; pointer-events: none; }
+@keyframes pm-bloom-grow { 0% { transform: translate(var(--pm-from-x, 0px), var(--pm-from-y, 0px)) scale(.06) rotate(-60deg); opacity: .3; } 70% { opacity: 1; } 100% { transform: none; opacity: 1; } }
+@keyframes pm-bloom-shrink { 0% { transform: none; opacity: 1; } 100% { transform: translate(var(--pm-from-x, 0px), var(--pm-from-y, 0px)) scale(.06) rotate(-40deg); opacity: 0; } }
+@keyframes pm-bloom-draw { 0% { stroke-dashoffset: 1.01; } 100% { stroke-dashoffset: 0; } }
+@keyframes pm-bloom-fade { 0% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes pm-bloom-pop { 0% { transform: scale(0); } 60% { transform: scale(1.18); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-wheel.is-open, .pm-wheel.is-open .pm-wheel-art .ol, .pm-wheel.is-open .pm-wheel-art .fl, .pm-wheel.is-open .pm-wheel-slot, .pm-wheel.is-closing { animation: none !important; transition: none !important; }
+}

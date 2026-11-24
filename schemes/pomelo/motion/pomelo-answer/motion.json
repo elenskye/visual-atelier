@@ -1,0 +1,41 @@
+{
+  "id": "pomelo-answer",
+  "title": "柚子回答 · 一个字一个字写出来",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "expressive",
+  "surface": "pomelo-answer",
+  "trigger": "柚子想好了：新的回答带 .is-live，每个字是 .pm-ch（--pm-i 是第几个字）；之前的对话不带 .is-live，字直接都在",
+  "durationMs": 1300,
+  "reducedMotion": "整段直接出现",
+  "use": "问柚子、柚子那一页",
+  "source": "canvases/pomelo-explore/p2-final/logic.js 的 ask、css.mjs「打字」（站主 2026-11-05 验收的 Phase 2 定稿）",
+  "files": {
+    "css": "pomelo-answer.css",
+    "html": "pomelo-answer.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 300,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".answer-demo",
+    "viewport": [
+      420,
+      110
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-live"
+      }
+    ],
+    "skipRest": true
+  }
+}

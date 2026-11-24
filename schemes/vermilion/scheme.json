@@ -1,0 +1,11 @@
+{
+  "name": "vermilion",
+  "title": "Vermilion 朱红",
+  "status": "approved",
+  "version": "1.5.0",
+  "motion": {
+    "default": "calm",
+    "expressive": "registered-surfaces-only"
+  },
+  "consumers": ["personal-website"]
+}

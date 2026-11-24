@@ -1,0 +1,17 @@
+/* 开着的页叠在右边：换页时纸滑到新的位置（0.5 秒）；鼠标移到叠着的页上，它往外抽出一点（0.35 秒，弹性），露出来的贴纸歪一下；
+   新开的页从右边滑进来（.is-in，0.5 秒，放完不留住：叠到后面时照样能歪）；子页的纸签（.pm-folder-tab）鼠标移上去抬起来。叠几层、歪多少写在外框自己的样式里。 */
+.pm-page { transition: transform .5s cubic-bezier(.35,.1,.2,1), translate .35s cubic-bezier(.3,1.6,.5,1); }
+.pm-page.is-stacked:hover, .pm-page.is-stacked.is-hover { translate: 16px 0; }
+.pm-page.is-in { animation: pm-page-in .5s cubic-bezier(.35,.1,.2,1); }
+.pm-page-peek > * { transition: transform .35s cubic-bezier(.3,1.6,.5,1); }
+.pm-page.is-stacked:hover .pm-page-peek > *, .pm-page.is-stacked.is-hover .pm-page-peek > * { transform: rotate(-8deg) scale(1.08); }
+.pm-folder-tab { transition: transform .38s cubic-bezier(.3,1.6,.5,1); }
+.pm-folder-tab[aria-selected="false"]:hover, .pm-folder-tab[aria-selected="false"].is-hover { transform: translateY(-4px); }
+/* 「桌上开着」的小贴纸：新开一页时啪地贴上（slap-in 的 .pm-slap-in.is-in），关掉时掀起来撕走（.is-leaving，0.3 秒，放完再拿掉）。 */
+.pm-open-tab.is-leaving { animation: pm-tab-peel .3s ease-in both; pointer-events: none; }
+@keyframes pm-tab-peel { 0% { transform: none; } 40% { transform: translateY(-4px) rotate(-12deg) scale(1.08); } 100% { transform: translate(14px, -26px) rotate(28deg) scale(.7); opacity: 0; } }
+@keyframes pm-page-in { 0% { transform: translateX(90px); opacity: 0; } 100% { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-page, .pm-page.is-in, .pm-page-peek > *, .pm-folder-tab, .pm-open-tab.is-leaving { animation: none !important; transition: none !important; }
+  .pm-page.is-stacked:hover, .pm-page.is-stacked.is-hover { translate: none; }
+}

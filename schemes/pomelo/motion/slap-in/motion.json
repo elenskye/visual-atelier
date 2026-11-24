@@ -1,0 +1,42 @@
+{
+  "id": "slap-in",
+  "title": "啪地贴上 · 便签和贴纸落下来",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "trigger": "出现时带 .is-in；--pm-delay 让几张一张张落下",
+  "durationMs": 500,
+  "reducedMotion": "直接在那里，不落不弹",
+  "use": "桌上的便签、模块页左上角拍的贴纸、「桌上开着」新来的小贴纸",
+  "source": "canvases/pomelo-explore/p2-final/b.mjs、css.mjs 的 noteIn / slapIn（站主 2026-11-05 验收的 Phase 2 定稿）",
+  "files": {
+    "css": "slap-in.css",
+    "html": "slap-in.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".slap-demo",
+    "viewport": [
+      300,
+      190
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-in",
+        "on": ".pm-slap-in",
+        "all": true
+      }
+    ],
+    "skipRest": true
+  }
+}

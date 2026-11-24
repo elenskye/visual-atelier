@@ -1,0 +1,18 @@
+{
+  "$note": "需要通过的 APCA 对比度（Lc 绝对值）。来源：网站 DESIGN.md §2：正文 ≥ 75，次要文字与交互 ≥ 60。",
+  "pairs": [
+    { "fg": "text", "bg": "page", "min": 75, "use": "正文 / 页面" },
+    { "fg": "text", "bg": "surface", "min": 75, "use": "正文 / 卡片" },
+    { "fg": "text", "bg": "surface-cool", "min": 75, "use": "正文 / 分区" },
+    { "fg": "muted", "bg": "page", "min": 60, "use": "次要文字 / 页面" },
+    { "fg": "muted", "bg": "surface", "min": 60, "use": "次要文字 / 卡片" },
+    { "fg": "muted", "bg": "surface-cool", "min": 60, "use": "次要文字 / 分区" },
+    { "fg": "accent-strong", "bg": "page", "min": 60, "use": "链接 / 页面" },
+    { "fg": "accent-strong", "bg": "surface", "min": 60, "use": "链接 / 卡片" },
+    { "fg": "accent", "bg": "page", "min": 60, "use": "结构色 / 页面" },
+    { "fg": "ember", "bg": "page", "min": 60, "use": "交互 / 页面" },
+    { "fg": "ember", "bg": "surface", "min": 60, "use": "交互 / 卡片" },
+    { "fg": "accent", "bg": "surface", "min": 60, "use": "内容图标笔势 / 卡片" },
+    { "fg": "accent", "bg": "surface-cool", "min": 60, "use": "内容图标笔势 / 纸片（分区）" }
+  ]
+}

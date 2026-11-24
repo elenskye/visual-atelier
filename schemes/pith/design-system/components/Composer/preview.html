@@ -1,0 +1,22 @@
+<!-- @dsCard group="对话" height=260 width=960 subtitle="空的 · 打了字（选了知识库） · 在等 Pith（输入框里是「在想」）" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Composer</title>
+<style>
+  html, body { margin: 0; }
+  .demo { padding: 24px 32px; }
+  .lb { margin: 0 0 8px; font: 700 11px/1 var(--font-sans); letter-spacing: .1em; color: var(--color-text-4); }
+  .row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+
+</style>
+</head>
+<body class="pith">
+<div class="demo" style="display:flex;flex-direction:column;gap:14px">
+  <div class="pith-composer"><span class="pith-composer-field"><span class="ph">问 Pith……</span></span><span class="pith-sig"><button class="pith-ink">/</button><button class="pith-ink">@</button><button class="pith-ink">#</button></span><button class="pith-send pith-sweep"><!-- @include marks/icons/send.svg --></button></div>
+  <div class="pith-composer"><span class="pith-composer-field"><span class="pith-chip"># 读《国富论》</span>斯密为什么说分工受市场范围限制？</span><span class="pith-sig"><button class="pith-ink">/</button><button class="pith-ink">@</button><button class="pith-ink">#</button></span><button class="pith-send pith-sweep"><!-- @include marks/icons/send.svg --></button></div>
+  <div class="pith-composer"><span class="pith-composer-field"><span class="pith-thinking"><!-- @include marks/agents/think.svg --><span class="pith-shimmer">Pith 在想……</span></span></span><button class="pith-send" style="opacity:.4"><!-- @include marks/icons/send.svg --></button></div>
+</div>
+</body>
+</html>

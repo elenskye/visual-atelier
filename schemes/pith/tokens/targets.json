@@ -1,0 +1,36 @@
+{
+  "$note": "网页方言：--color-<角色>。两套配色用根上的 data-palette 换（paper-sea 纸与海、mist-ochre 雾与赭），data-theme=\"dark\" 是暗色；跟随系统时 App 自己按系统设 data-theme。",
+  "web": {
+    "colorVars": {
+      "page": "--color-page",
+      "surface": "--color-surface",
+      "raised": "--color-raised",
+      "tint": "--color-tint",
+      "line": "--color-line",
+      "line-2": "--color-line-2",
+      "text": "--color-text",
+      "text-2": "--color-text-2",
+      "text-3": "--color-text-3",
+      "text-4": "--color-text-4",
+      "accent": "--color-accent",
+      "accent-text": "--color-accent-text",
+      "on-accent": "--color-on-accent",
+      "second": "--color-second",
+      "coral": "--color-coral",
+      "gold": "--color-gold",
+      "app-ink": "--color-app-ink",
+      "app-paper": "--color-app-paper",
+      "app-coral": "--color-app-coral"
+    },
+    "aliasVars": {},
+    "light": {
+      "selector": ":root[data-palette='%s']",
+      "colorScheme": "light"
+    },
+    "dark": {
+      "selector": ":root[data-palette='%s'][data-theme='dark']",
+      "colorScheme": "dark"
+    }
+  },
+  "pending": []
+}

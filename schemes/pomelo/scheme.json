@@ -1,0 +1,11 @@
+{
+  "name": "pomelo",
+  "title": "Pomelo 柚儿园",
+  "status": "approved",
+  "version": "1.0.0",
+  "motion": {
+    "default": "calm",
+    "expressive": "registered-surfaces-only"
+  },
+  "consumers": ["pomelo"]
+}

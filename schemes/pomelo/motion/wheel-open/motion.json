@@ -1,0 +1,42 @@
+{
+  "id": "wheel-open",
+  "title": "呼出柚子瓣",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "expressive",
+  "surface": "wheel-open",
+  "trigger": "点左上角的柚子：柚子瓣加 .is-open（--pm-from-x / --pm-from-y 设成柚子相对圆心的位置）；收起换成 .is-closing，放完（0.3 秒）再藏起来",
+  "durationMs": 880,
+  "reducedMotion": "直接出现、直接收起",
+  "use": "柚子瓣",
+  "source": "canvases/pomelo-explore/p2-final/wheel.mjs（站主 2026-11-05 验收的 Phase 2 定稿）",
+  "files": {
+    "css": "wheel-open.css",
+    "html": "wheel-open.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 300,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".wheel-demo",
+    "viewport": [
+      340,
+      320
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-open",
+        "on": ".pm-wheel"
+      }
+    ],
+    "skipRest": true
+  }
+}

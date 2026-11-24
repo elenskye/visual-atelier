@@ -1,0 +1,1817 @@
+{
+  "scheme": "vermilion",
+  "$note": "每个资产一条。status：draft / proposed / approved。origin 记录从哪里、何时迁入，以及迁入时的 sha256（用于检测被手改）。colorMode：currentColor 表示由使用处决定颜色，fixed 表示颜色写死在文件里。 colorMode 为 roles 表示多色图形用角色变量上色（笔势与纸片，见 graphic/graphic.css），构建时另出上好色的 themed 版本；source 表示由本仓库的生成器产出（没有迁入来源）。 supersededBy：已被哪个新资产取代（旧的留档，不再与网站对照）。",
+  "assets": [
+    {
+      "id": "logo-mark",
+      "title": "Logo A · 标志",
+      "file": "logo-mark.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "Logo A v1.0.0，站主 2026-07-25 批准",
+      "colorMode": "currentColor",
+      "colorRole": "accent-strong",
+      "origin": {
+        "repo": "personal-website",
+        "path": "design/brand/logo-mark.svg",
+        "importedAt": "2026-10-23"
+      },
+      "renders": [
+        {
+          "size": 512,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        },
+        {
+          "size": 128,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "sha256": "7e361d290dcb16fa2cecb094b918b6c61d57718fab0bd989e62b9f241c56a707"
+    },
+    {
+      "id": "logo-lockup",
+      "title": "Logo A · 标志加字标",
+      "file": "logo-lockup.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "Logo A v1.0.0，站主 2026-07-25 批准",
+      "colorMode": "currentColor",
+      "colorRole": "text",
+      "origin": {
+        "repo": "personal-website",
+        "path": "design/brand/logo-lockup.svg",
+        "importedAt": "2026-10-23"
+      },
+      "renders": [],
+      "notes": "含文字（Noto Serif SC 600），不同机器上字形会不同；要位图或单个文件时用转曲线的 logo-lockup-paths。",
+      "sha256": "e426c35d0fa1cbd9a582c5474893bde3becc7b2d33ab3a055080d6c579fb194f"
+    },
+    {
+      "id": "logo-mono-black",
+      "title": "Logo A · 纯黑",
+      "file": "logo-mono-black.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "Logo A v1.0.0，站主 2026-07-25 批准",
+      "colorMode": "fixed",
+      "origin": {
+        "repo": "personal-website",
+        "path": "design/brand/logo-mono-black.svg",
+        "importedAt": "2026-10-23"
+      },
+      "renders": [
+        {
+          "size": 512
+        }
+      ],
+      "sha256": "663c9a2f3bd111865755e62b4358e067f7069e6f77c66dcbdb2f225d3d467a3f"
+    },
+    {
+      "id": "logo-mono-white",
+      "title": "Logo A · 纯白",
+      "file": "logo-mono-white.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "Logo A v1.0.0，站主 2026-07-25 批准",
+      "colorMode": "fixed",
+      "origin": {
+        "repo": "personal-website",
+        "path": "design/brand/logo-mono-white.svg",
+        "importedAt": "2026-10-23"
+      },
+      "renders": [
+        {
+          "size": 512,
+          "background": "#14201f",
+          "suffix": "on-dark"
+        }
+      ],
+      "sha256": "3a79a1e8bca2879fd990d66e575dd1f1831e66b412cb2fb00bce98432e6c4061"
+    },
+    {
+      "id": "app-icon-180",
+      "title": "应用图标 180",
+      "file": "app-icon-180.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "Logo A v1.0.0，站主 2026-07-25 批准",
+      "colorMode": "fixed",
+      "origin": {
+        "repo": "personal-website",
+        "path": "design/brand/app-icon-180.svg",
+        "importedAt": "2026-10-23"
+      },
+      "renders": [
+        {
+          "size": 180
+        },
+        {
+          "size": 1024
+        }
+      ],
+      "sha256": "d0143013ce7a55c461a60b1abd7596c2731dd3b9120f1183393436e3c457ddf3"
+    },
+    {
+      "id": "favicon",
+      "title": "站点 favicon",
+      "file": "favicon.svg",
+      "kind": "svg",
+      "status": "approved",
+      "colorMode": "fixed",
+      "notes": "文件内部用 prefers-color-scheme 切换明暗。",
+      "origin": {
+        "repo": "personal-website",
+        "path": "public/favicon.svg",
+        "importedAt": "2026-10-23"
+      },
+      "renders": [
+        {
+          "size": 32,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        },
+        {
+          "size": 128,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "sha256": "d9d4760daeda541382b5d4313667cd0f433e23217bc3f7fd89023dcba465b480"
+    },
+    {
+      "id": "route-glyph",
+      "title": "漫游路径小图标（About 标题）",
+      "file": "route-glyph.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-23 批准纳入基线",
+      "colorMode": "currentColor",
+      "colorRole": "accent",
+      "origin": {
+        "repo": "personal-website",
+        "path": "src/pages/about.astro",
+        "inline": true,
+        "contains": [
+          "M5 27c7-2 4-8 9-11s10-2 10-8",
+          "stroke-dasharray=\"0.5 4.4\"",
+          "cx=\"24.5\" cy=\"6\" r=\"3.2\""
+        ],
+        "importedAt": "2026-10-23"
+      },
+      "renders": [
+        {
+          "size": 128,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "notes": "网站在中英文 About 页的两个小标题前内联使用，没有独立文件；线宽、端点与颜色来自 global.css 的 .about-heading svg（描边 2.4、圆头、结构色），已写进本文件。",
+      "sha256": "58f390455eaa5c31acf2cb22aaa3309b6d4901a93f8dca7452495e467683bd8b"
+    },
+    {
+      "id": "apple-touch-icon",
+      "title": "apple-touch-icon（位图）",
+      "file": "raster/apple-touch-icon.png",
+      "kind": "raster",
+      "status": "approved",
+      "origin": {
+        "repo": "personal-website",
+        "path": "public/apple-touch-icon.png",
+        "importedAt": "2026-10-23"
+      },
+      "notes": "网站现用的位图。可用来核对渲染管线：app-icon-180.svg 渲染 180px 应与它接近。",
+      "sha256": "9f9bc751d2d6f5d33c1618395a3b0a6f217d8882393db74eee4542743c2ee1aa"
+    },
+    {
+      "id": "og-default",
+      "title": "默认 OG 分享图（wander-og-v2）",
+      "file": "illustrations/og/default.png",
+      "kind": "raster",
+      "status": "approved",
+      "origin": {
+        "repo": "personal-website",
+        "path": "public/images/og/default.png",
+        "importedAt": "2026-10-23"
+      },
+      "notes": "1200×630。仓库里只有位图，没有找到矢量源文件，无法直接编辑。",
+      "sha256": "14c57e8dccc740e9e6f7dbc89f644a71051cc642c21f7b03123ac6cffe3e98e1",
+      "supersededBy": "og-default-v3（网站 2026-10-31 换用，VL1 Phase 5）"
+    },
+    {
+      "id": "status-404",
+      "title": "404 状态插图",
+      "file": "illustrations/status/wander-error-cloud-pages-404.png",
+      "kind": "raster",
+      "status": "approved",
+      "origin": {
+        "repo": "personal-website",
+        "path": "public/images/status/wander-error-cloud-pages-404.png",
+        "importedAt": "2026-10-23"
+      },
+      "notes": "640×420，外背景透明。仓库里只有位图，没有找到矢量源文件。",
+      "sha256": "c90b0ab6b6aeefc6ef3dd8913bdf353b362c6638483dfc85bb4b050fb0a619eb",
+      "supersededBy": "not-found（网站 2026-11-02 换用，VL1 Phase 7）"
+    },
+    {
+      "id": "status-empty",
+      "title": "空状态插图（Oops）",
+      "file": "illustrations/status/wander-empty-cloud-pages-oops.png",
+      "kind": "raster",
+      "status": "approved",
+      "origin": {
+        "repo": "personal-website",
+        "path": "public/images/status/wander-empty-cloud-pages-oops.png",
+        "importedAt": "2026-10-23"
+      },
+      "notes": "480×300，外背景透明。仓库里只有位图，没有找到矢量源文件。",
+      "sha256": "c934f03e00ab65452df80bdcb7eecf6849d2f4131d8e4229be918400d8077a0f",
+      "supersededBy": "empty-graphic（网站 2026-10-31 换用，VL1 Phase 5）"
+    },
+    {
+      "id": "graphic-css",
+      "title": "笔势与纸片 · 上色样式",
+      "file": "graphic/graphic.css",
+      "kind": "css",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "use": "内联 marks/graphic/ 的 SVG 或动效片段时引入；按明暗与所在底色给出角色变量",
+      "source": {
+        "handwritten": true,
+        "rules": "DESIGN.md §4「纸片」「笔势」"
+      },
+      "sha256": "5e496a5114c18223fb03a116e279f16944915be938ac45f2acd52d8f533f5c1a"
+    },
+    {
+      "id": "glyph-write",
+      "title": "分类图形 · 写作",
+      "file": "graphic/glyph-write.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "显示 ≥ 48px（无封面卡片 44px 也用这一版）",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "fccecee86419bc5b2d8e395599c9adcdd5b04cb6212e97a5008c431a98fa9ae2"
+    },
+    {
+      "id": "glyph-write-simple",
+      "title": "分类图形 · 写作 · 简笔",
+      "file": "graphic/glyph-write-simple.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "显示 ≤ 32px",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "da987bb3dab3f7ca0fee5d371c99ec093800b946310b09c0935b9928e198e092"
+    },
+    {
+      "id": "glyph-project",
+      "title": "分类图形 · 项目",
+      "file": "graphic/glyph-project.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "显示 ≥ 48px（无封面卡片 44px 也用这一版）",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "c18ebf85254801788477ff7e8fcfb523eb27f0d3cb9ebb0adc09d9cdf5e79370"
+    },
+    {
+      "id": "glyph-project-simple",
+      "title": "分类图形 · 项目 · 简笔",
+      "file": "graphic/glyph-project-simple.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "显示 ≤ 32px",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "863ccca3da2dd915fe7dd54c3e0404e61132c08c1b2b127b8b2040f866c05ba6"
+    },
+    {
+      "id": "glyph-gallery",
+      "title": "分类图形 · 画廊",
+      "file": "graphic/glyph-gallery.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "显示 ≥ 48px（无封面卡片 44px 也用这一版）",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "abfca149071f7e0a630b45c4cc47bcc0a0044c527bca59b6d6eac97c19dda36b"
+    },
+    {
+      "id": "glyph-gallery-simple",
+      "title": "分类图形 · 画廊 · 简笔",
+      "file": "graphic/glyph-gallery-simple.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "显示 ≤ 32px",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "4ca28f32cbf11e2e57cb8c4f145439a8045ed85ec8c517fc850fc07fafa2a332"
+    },
+    {
+      "id": "glyph-create",
+      "title": "分类图形 · 创作",
+      "file": "graphic/glyph-create.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "显示 ≥ 48px（无封面卡片 44px 也用这一版）",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "cc31a094804dda5ad9ec9a21876b1883843bc9cef133d546c3f19f64c2e080e4"
+    },
+    {
+      "id": "glyph-create-simple",
+      "title": "分类图形 · 创作 · 简笔",
+      "file": "graphic/glyph-create-simple.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "显示 ≤ 32px",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "28748055109a64e78cb32f94fb634c516e64b83dca1aee9bff0ef8bebe7be212"
+    },
+    {
+      "id": "glyph-travel",
+      "title": "分类图形 · 游记",
+      "file": "graphic/glyph-travel.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "显示 ≥ 48px（无封面卡片 44px 也用这一版）",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "80f58aa94385e94bfe6f5ce3691ee7c746eb52f856767e355ba72396a8b9f388"
+    },
+    {
+      "id": "glyph-travel-simple",
+      "title": "分类图形 · 游记 · 简笔",
+      "file": "graphic/glyph-travel-simple.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "显示 ≤ 32px",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "47a36492fcd50cb831701e2b31a799f0b0de323cb7c9aea8909ca16fdec71046"
+    },
+    {
+      "id": "glyph-other",
+      "title": "分类图形 · 其他",
+      "file": "graphic/glyph-other.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "显示 ≥ 48px（无封面卡片 44px 也用这一版）",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "3892bf11eb4966db647d421b484d888718563d4ecaf74b73942dbfc360d78a17"
+    },
+    {
+      "id": "glyph-other-simple",
+      "title": "分类图形 · 其他 · 简笔",
+      "file": "graphic/glyph-other-simple.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "显示 ≤ 32px",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "b9cded10ca719056f4e48247b3124e4513360f46a3f285c07d7ceeeffafffe80"
+    },
+    {
+      "id": "section-deco",
+      "title": "分区装饰",
+      "file": "graphic/section-deco.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        560,
+        220
+      ],
+      "ink": "press",
+      "use": "页面大标题旁，每页一处",
+      "renders": [
+        {
+          "width": 560,
+          "height": 220,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "893b97191ae4544e4098526c7795d0c4ce6c19f794d181eaa583e6a1cb8f0904"
+    },
+    {
+      "id": "og-graphic",
+      "title": "分享图底图",
+      "file": "graphic/og-graphic.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "background": "page",
+      "viewBox": [
+        1200,
+        630
+      ],
+      "ink": "press",
+      "use": "OG 分享图 1200 × 630，标题放左上留白处",
+      "renders": [
+        {
+          "width": 1200,
+          "height": 630,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "c0dbb9183b6fa802b1cdf6569995c9d697e833e6c5a8326ac0b4d5c6b5efd713"
+    },
+    {
+      "id": "empty-graphic",
+      "title": "空状态插图",
+      "file": "graphic/empty-graphic.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "surface",
+      "viewBox": [
+        320,
+        200
+      ],
+      "ink": "press",
+      "use": "放在空状态框（表面底）里",
+      "renders": [
+        {
+          "width": 320,
+          "height": 200,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "38b7c81a2b7d54fce3ae7f1a31d8a98c4e28374380dc924ab0e95ed5760e6172"
+    },
+    {
+      "id": "ppt-cover",
+      "title": "PPT 封面底图",
+      "file": "graphic/ppt-cover.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "background": "page",
+      "viewBox": [
+        1920,
+        1080
+      ],
+      "ink": "press",
+      "use": "16:9 封面，标题放左上留白处",
+      "renders": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "b7aa50258a3da1a5577e74f9d406e50f3caeebcde7b3fa8c7cdc06c923f5473b"
+    },
+    {
+      "id": "ppt-section",
+      "title": "PPT 章节页底图",
+      "file": "graphic/ppt-section.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "background": "page",
+      "viewBox": [
+        1920,
+        1080
+      ],
+      "ink": "press",
+      "use": "16:9 章节页，左侧那一笔放在标题下作横线",
+      "renders": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "5c6ab59931737267ec2ebeed84ee8db7d72387a8fdad1b62d36af29cb05801c5"
+    },
+    {
+      "id": "loading-enso",
+      "title": "加载圆相（静止）",
+      "file": "graphic/loading-enso.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 验收 VL1 Phase 4",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        132,
+        132
+      ],
+      "ink": "clean",
+      "use": "加载动画的静止帧；动画见 motion/loading-enso/",
+      "renders": [
+        {
+          "size": 264,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "ca9ff882bf1cfd8c3c90d5de151251c5ef75d40c77508c0048264abb9a528afc"
+    },
+    {
+      "id": "wordmark",
+      "title": "字标 · 名字（转曲线）",
+      "file": "wordmark.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 批准（VL1 Phase 5）",
+      "colorMode": "currentColor",
+      "colorRole": "text",
+      "use": "网站页头：放在内联的 Logo A 标志右侧，两者同高，拼起来就是 logo-lockup 的排法",
+      "renders": [],
+      "source": {
+        "generator": "tooling/marks/derive.mjs",
+        "from": [
+          "logo-lockup.svg"
+        ]
+      },
+      "sha256": "5e2eb212280f0204442081631dff1ee786186aae8ae61624c3addb6bce41d879"
+    },
+    {
+      "id": "logo-lockup-paths",
+      "title": "Logo A · 标志加字标（转曲线）",
+      "file": "logo-lockup-paths.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 批准（VL1 Phase 5）",
+      "colorMode": "currentColor",
+      "colorRole": "text",
+      "use": "需要单个文件的字标处（幻灯片、文档、位图）",
+      "renders": [
+        {
+          "width": 584,
+          "height": 128,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/marks/derive.mjs",
+        "from": [
+          "logo-lockup.svg"
+        ]
+      },
+      "sha256": "ced771ad7a937bd8cf1a096ff1b0e83f7dd035ad41035bb35ef20a002d16b95a"
+    },
+    {
+      "id": "og-default-v3",
+      "title": "默认分享图 v3（笔势与纸片）",
+      "file": "illustrations/og/default-v3.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-10-31 批准（VL1 Phase 5）",
+      "colorMode": "roles",
+      "context": "page",
+      "background": "page",
+      "use": "网站默认分享图（没有自己题图的页面）",
+      "renders": [
+        {
+          "width": 1200,
+          "height": 630,
+          "themes": [
+            "light"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/marks/derive.mjs",
+        "from": [
+          "graphic/og-graphic.svg",
+          "logo-lockup.svg"
+        ]
+      },
+      "sha256": "fa1f50650bf2cb1044bfcccb1c99ecb35273c123e6529e197870f149c3de383d"
+    },
+    {
+      "id": "not-found",
+      "title": "404 插图（折页）",
+      "file": "graphic/not-found.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 7）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        640,
+        400
+      ],
+      "ink": "press",
+      "use": "404 页：标题与说明下方，最宽 560px；打开页面时写一次，见 motion/not-found-intro/",
+      "renders": [
+        {
+          "width": 640,
+          "height": 400,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "f03daab912ab3604376913ec8809bb6580804b48d0cdacfd6ccaf33ff1665bdf"
+    },
+    {
+      "id": "end-mark-arrive",
+      "title": "文末落款 · 抵达",
+      "file": "graphic/end-mark-arrive.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 7）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "文章正文结尾，40px；三版每次随机显示一版，滚到时写一次，见 motion/end-mark/",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "6bc49da745a2f0746f9348553f581eb60edd72e67166aa8090ef77f93f0cd09f"
+    },
+    {
+      "id": "end-mark-hills",
+      "title": "文末落款 · 远山",
+      "file": "graphic/end-mark-hills.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 7）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "文章正文结尾，40px；三版每次随机显示一版，滚到时写一次，见 motion/end-mark/",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "036cb53abc5fec573d0f7fcd95a894ae26c7cbec6404dd3c09e6625bd6a357ce"
+    },
+    {
+      "id": "end-mark-dots",
+      "title": "文末落款 · 三点",
+      "file": "graphic/end-mark-dots.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 7）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "文章正文结尾，40px；三版每次随机显示一版，滚到时写一次，见 motion/end-mark/",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "ee8b61e4bd371d3c308f17414bd5612e41ae76f0720df406000a9f417c28d612"
+    },
+    {
+      "id": "icon-tip",
+      "title": "内容图标 · 提示",
+      "file": "graphic/icon-tip.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :tip:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "e860e017f8104076ccbca45b7f3f9a6f0db94038e9868cf9e3f91e2d08d27959"
+    },
+    {
+      "id": "icon-caution",
+      "title": "内容图标 · 注意",
+      "file": "graphic/icon-caution.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :caution:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "2341249d5fca6394abdfbed1872fc44561913f137eae5cd4421303ce1d39f0fa"
+    },
+    {
+      "id": "icon-idea",
+      "title": "内容图标 · 想法",
+      "file": "graphic/icon-idea.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :idea:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "e342277b0c19d5571683c2167fe3d23d7c79585a982b2580ba65e5862e012bb3"
+    },
+    {
+      "id": "icon-done",
+      "title": "内容图标 · 完成",
+      "file": "graphic/icon-done.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :done:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "37520d59a5f5ddbba2ede793d1a61115bf47c148df75c705497fbedc06bf02db"
+    },
+    {
+      "id": "icon-wip",
+      "title": "内容图标 · 进行中",
+      "file": "graphic/icon-wip.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :wip:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "a0ccbee82c9303de8bd4f0a774d7715bb7c5c588f4ed149967f7f409a91747da"
+    },
+    {
+      "id": "icon-question",
+      "title": "内容图标 · 疑问",
+      "file": "graphic/icon-question.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :question:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "87b2c926fcb3746c9e2d3d894d1785651c463562dfb96bbeb645e493cc1fc56c"
+    },
+    {
+      "id": "icon-link",
+      "title": "内容图标 · 链接",
+      "file": "graphic/icon-link.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :link:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "583058ffc137212be7990a5b4bbfc4992111691a2efa264d7ca3b7904a25c269"
+    },
+    {
+      "id": "icon-place",
+      "title": "内容图标 · 地点",
+      "file": "graphic/icon-place.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :place:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "a4605395fb9d377b2cf131441e1ea4580aa65a0da99104204b8bdda467ce17bd"
+    },
+    {
+      "id": "icon-time",
+      "title": "内容图标 · 时间",
+      "file": "graphic/icon-time.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :time:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "ca6ea943461bbe837d24d394bebd53fa1ee0ff8529d462a2567e4e8743a9a61b"
+    },
+    {
+      "id": "icon-date",
+      "title": "内容图标 · 日期",
+      "file": "graphic/icon-date.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :date:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "06e03235c9ece878e24894579f40f21ba9ca86c0f4c9eb5c06b08c32c5fe20aa"
+    },
+    {
+      "id": "icon-mail",
+      "title": "内容图标 · 邮件",
+      "file": "graphic/icon-mail.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :mail:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "a1ed0d5aa9652d2c6fc9e5253df3436cddbab68054c05a78ddeeae7f37d31564"
+    },
+    {
+      "id": "icon-download",
+      "title": "内容图标 · 下载",
+      "file": "graphic/icon-download.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :download:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "b449f6f0129c2d43e9efc8e240d89d097ded1b8fa73e2e0f3ca73987da08a19a"
+    },
+    {
+      "id": "icon-book",
+      "title": "内容图标 · 读书",
+      "file": "graphic/icon-book.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :book:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "fa1f633244673c8baec2b1bc72be6d38cb5dff924560e80a41a0e1b7b6630209"
+    },
+    {
+      "id": "icon-music",
+      "title": "内容图标 · 音乐",
+      "file": "graphic/icon-music.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :music:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "8755dd829beafaf4908d937e5577753e045f1d88eb43266205974a8b0e329170"
+    },
+    {
+      "id": "icon-film",
+      "title": "内容图标 · 影视",
+      "file": "graphic/icon-film.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :film:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "1741a70c79f993143330159be338fd53a6d44172dcf08abb6b77b285a751a088"
+    },
+    {
+      "id": "icon-photo",
+      "title": "内容图标 · 摄影",
+      "file": "graphic/icon-photo.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :photo:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "5514d6872bf40c2cf63d1357c4b83e8c2d7262fc2397b5e7b20bb734d21f57cf"
+    },
+    {
+      "id": "icon-paint",
+      "title": "内容图标 · 绘画",
+      "file": "graphic/icon-paint.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :paint:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "81e8e151e6138e32222e684d9ec4fd17a4740fce3865a9d4f65329acd610d125"
+    },
+    {
+      "id": "icon-food",
+      "title": "内容图标 · 美食",
+      "file": "graphic/icon-food.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :food:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "3c7bf229e02aa406083588c145cc7f1258ce44a7f877617917ac9ba95bfbf7c0"
+    },
+    {
+      "id": "icon-heart",
+      "title": "内容图标 · 喜欢",
+      "file": "graphic/icon-heart.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :heart:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "22f94ae367ea4a4b53197150ed2156e9a7d7238c6c696e8462eb4b0f6953dd15"
+    },
+    {
+      "id": "icon-star",
+      "title": "内容图标 · 推荐",
+      "file": "graphic/icon-star.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :star:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "423d2534c8e8a177ec4201e6beadcfcbdc0178d92c56bbb6b129de15067b53ee"
+    },
+    {
+      "id": "icon-code",
+      "title": "内容图标 · 代码",
+      "file": "graphic/icon-code.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :code:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "a1e0281aa7630096830d4e715adb1d95d0972745a0b4ffa3ea2dd96a7b1ba2f1"
+    },
+    {
+      "id": "icon-trip",
+      "title": "内容图标 · 出行",
+      "file": "graphic/icon-trip.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :trip:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "014c7a7c74e82391005a943caf080e77950edab2a5202857a8b7525eec7410c2"
+    },
+    {
+      "id": "icon-flag",
+      "title": "内容图标 · 目标",
+      "file": "graphic/icon-flag.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :flag:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "c8520ee5dd5c130a689c02adac55017c8dda72f6b423c1cf89f69fe4bde24562"
+    },
+    {
+      "id": "icon-pen",
+      "title": "内容图标 · 写作",
+      "file": "graphic/icon-pen.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "colorMode": "roles",
+      "context": "page",
+      "viewBox": [
+        64,
+        64
+      ],
+      "ink": "clean",
+      "use": "写进网站内容，Markdown 写 :pen:；显示约 1.2em，见 marks/icons.json",
+      "renders": [
+        {
+          "size": 256,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "1431e6456aba8ad1e82b3eb4916b016b4abe10be64a7df876b041ea7e9788531"
+    },
+    {
+      "id": "content-icons",
+      "title": "内容图标清单",
+      "file": "icons.json",
+      "kind": "json",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 8）",
+      "use": "网站把 Markdown 里的 :名字: 换成内联图标；Pomelo「呦呦漫游」编辑器复制它做图标选择器",
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §6「内容图标」"
+      },
+      "sha256": "1ab864432294be1f71bbc51167376a69a31dbbef024fa0b40f9b138aeca911a4"
+    },
+    {
+      "id": "og-card-graphic",
+      "title": "文章分享图底图（低山）",
+      "file": "graphic/og-card-graphic.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 9）",
+      "colorMode": "roles",
+      "context": "page",
+      "background": "page",
+      "viewBox": [
+        1200,
+        630
+      ],
+      "ink": "press",
+      "use": "每篇文章的分享图 1200 × 630：字标在左上，标题在纸山上方的留白处；由 marks/og-card/template.json 使用",
+      "renders": [
+        {
+          "width": 1200,
+          "height": 630,
+          "themes": [
+            "light",
+            "dark"
+          ]
+        }
+      ],
+      "source": {
+        "generator": "tooling/graphic/build.mjs",
+        "rules": "DESIGN.md §4「笔势与纸片」"
+      },
+      "sha256": "9533f37a9a04557a770e4f1ae2d1126872d79a341863cfcd706c00a30ff6363e"
+    },
+    {
+      "id": "og-card",
+      "title": "文章分享图模板（低山）",
+      "file": "og-card/template.json",
+      "kind": "json",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 9）",
+      "use": "每篇文章的分享图：网站构建时把标题交给 og-card/card.mjs，按这份模板生成 1200 × 630 PNG",
+      "samples": [
+        "走到地图之外",
+        "一个方法：把很长的标题好好放进分享图里面",
+        "Excel 与 AI：怎样在两周内把写作练起来",
+        "Walking Past the Edge of the Map",
+        "One Method to Fit a Long English Title into a Share Image Without Shrinking It",
+        "「引号」（括号）开头：标点不能落在行首，也不能落在行尾，这样能放下吗？！",
+        "一个特别特别长的中文标题，用来测试在分享图上换行和截断的时候到底会发生什么，以及它最后会不会好好地停在省略号上面，而不是直接从画面右边跑出去，再多写几个字也要截得住才行"
+      ],
+      "source": {
+        "generator": "tooling/marks/derive.mjs",
+        "from": [
+          "graphic/og-card-graphic.svg",
+          "logo-lockup.svg"
+        ]
+      },
+      "sha256": "b73a05734d8987a298d3566060914bf347d93428095b1e87876b492939cd26e1"
+    },
+    {
+      "id": "watermark",
+      "title": "作品水印模板（字标）",
+      "file": "watermark/template.json",
+      "kind": "json",
+      "status": "approved",
+      "approved": "站主 2026-11-02 批准（VL1 Phase 10）",
+      "use": "画作与摄影上线时加在角落的水印：网站构建时交给 watermark/watermark.mjs，按这份模板生成带水印的图，资源库里的原图不动",
+      "fakeImages": [
+        "sky",
+        "night",
+        "texture",
+        "painting",
+        "crowded"
+      ],
+      "source": {
+        "generator": "tooling/marks/derive.mjs",
+        "from": [
+          "logo-lockup.svg"
+        ]
+      },
+      "sha256": "7074348b91112871fc82619f229feb5c82ba87eb19b7ce2ccaeb8b073e779fa5"
+    }
+  ]
+}

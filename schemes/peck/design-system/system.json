@@ -1,0 +1,69 @@
+{
+  "$note": "Design System 的名字、命名空间、资产分组。资产取自方案 marks/（按 manifest 的 id），A3 是位图（marks/raster/a3.png）。没有 JS 组件：bundle.js 只声明 window.Peck。上传记录在 published.json。",
+  "title": "Peck",
+  "namespace": "Peck",
+  "by": "Elen Skye",
+  "via": "Claude Code · Peck Explore",
+  "assetGroups": [
+    {
+      "name": "App",
+      "tile": "l",
+      "assets": [
+        {
+          "id": "app-icon-j2",
+          "name": "peck-j2.svg"
+        },
+        {
+          "id": "app-icon-j2-128",
+          "name": "peck-j2-128.svg"
+        },
+        {
+          "id": "app-icon-j2-64",
+          "name": "peck-j2-64.svg"
+        },
+        {
+          "id": "app-icon-j2-32",
+          "name": "peck-j2-32.svg"
+        },
+        {
+          "id": "app-icon-j2-16",
+          "name": "peck-j2-16.svg"
+        },
+        {
+          "id": "app-icon-a3",
+          "name": "peck-a3.png"
+        }
+      ]
+    },
+    {
+      "name": "MenuBar",
+      "tile": "s",
+      "assets": [
+        {
+          "id": "menubar-idle",
+          "name": "menubar-idle.svg"
+        },
+        {
+          "id": "menubar-run-1",
+          "name": "menubar-run-1.svg"
+        },
+        {
+          "id": "menubar-run-2",
+          "name": "menubar-run-2.svg"
+        },
+        {
+          "id": "menubar-run-3",
+          "name": "menubar-run-3.svg"
+        },
+        {
+          "id": "menubar-wait",
+          "name": "menubar-wait.svg"
+        },
+        {
+          "id": "menubar-count",
+          "name": "menubar-count-3.svg"
+        }
+      ]
+    }
+  ]
+}

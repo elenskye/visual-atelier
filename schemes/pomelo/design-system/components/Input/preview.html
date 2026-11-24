@@ -1,0 +1,26 @@
+<!-- @dsCard group="控件" height=170 width=960 subtitle="输入框：没有多余的方框，聚焦时手画的边描粗" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Input</title>
+<style>
+  html, body { margin: 0; }
+  .demo { display: flex; gap: 32px; padding: 24px 36px; }
+  .col { display: flex; flex-direction: column; gap: 8px; }
+  .k { font-size: var(--text-caption); line-height: 18px; color: var(--color-ink-soft); }
+  .pm-field { width: 236px; }
+</style>
+</head>
+<body class="pm pm-desk">
+<div class="demo">
+  <div class="col"><span class="k">常态</span>
+    <label class="pm-field" data-hand="field" data-seed="1410"><input aria-label="写点什么" placeholder="写点什么…"><span class="pm-field-icon" data-hand="icon" data-size="18" data-seed="12" data-d="M5 19 L6 15 L16 5 L19 8 L9 18 Z M14 7 L17 10"></span></label></div>
+  <div class="col"><span class="k">聚焦：边描粗到 2.8</span>
+    <label class="pm-field is-focus" data-hand="field" data-seed="1411"><input aria-label="写点什么" value="周末去海边"><span class="pm-field-icon" data-hand="icon" data-size="18" data-seed="13" data-d="M5 19 L6 15 L16 5 L19 8 L9 18 Z M14 7 L17 10"></span></label></div>
+  <div class="col"><span class="k">找东西</span>
+    <label class="pm-field" data-hand="field" data-seed="1412"><span class="pm-field-icon pm-soft" data-hand="icon" data-size="18" data-seed="14" data-d="M16 16 L20.5 20.5" data-o="10.5 10.5 6" style="color: var(--color-ink-soft)"></span><input aria-label="找东西" placeholder="找点什么…"></label></div>
+</div>
+<script>Pomelo.paintLive(document.body);</script>
+</body>
+</html>

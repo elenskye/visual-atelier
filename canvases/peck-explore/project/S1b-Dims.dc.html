@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>还没定的四个细节</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Doto:wght@700;900&amp;display=swap">
+<style>
+body{margin:0}
+.pk{position:relative;box-sizing:border-box;overflow:hidden;font-family:"IBM Plex Sans","PingFang SC","Hiragino Sans GB",sans-serif;font-size:14px;line-height:1.55;color:var(--tx);background:var(--bg);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums;--clip:polygon(0 6px,3px 6px,3px 3px,6px 3px,6px 0,calc(100% - 6px) 0,calc(100% - 6px) 3px,calc(100% - 3px) 3px,calc(100% - 3px) 6px,100% 6px,100% calc(100% - 6px),calc(100% - 3px) calc(100% - 6px),calc(100% - 3px) calc(100% - 3px),calc(100% - 6px) calc(100% - 3px),calc(100% - 6px) 100%,6px 100%,6px calc(100% - 3px),3px calc(100% - 3px),3px calc(100% - 6px),0 calc(100% - 6px));--clip2:polygon(0 4px,2px 4px,2px 2px,4px 2px,4px 0,calc(100% - 4px) 0,calc(100% - 4px) 2px,calc(100% - 2px) 2px,calc(100% - 2px) 4px,100% 4px,100% calc(100% - 4px),calc(100% - 2px) calc(100% - 4px),calc(100% - 2px) calc(100% - 2px),calc(100% - 4px) calc(100% - 2px),calc(100% - 4px) 100%,4px 100%,4px calc(100% - 2px),2px calc(100% - 2px),2px calc(100% - 4px),0 calc(100% - 4px))}
+.pk.dots{background-image:radial-gradient(circle at 1.5px 1.5px,var(--grid) 1.1px,transparent 1.6px);background-size:8px 8px}
+.pk *{box-sizing:border-box}
+:where(.pk) :where(p,h1,h2,ul,ol){margin:0;padding:0}
+:where(.pk) :where(ul,ol){list-style:none}
+:where(.pk) button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0;text-align:left}
+:where(.pk) :where(i,em){font-style:normal}
+.px{width:16px;height:16px;fill:currentColor;flex:none;display:block}
+.px.s8{width:8px;height:8px}.px.s24{width:24px;height:24px}
+/* 模块：外层是边线色，:before 是面板色，两层都切成像素阶梯角 */
+.mod{position:relative;isolation:isolate;clip-path:var(--clip);background:var(--mline,var(--line));padding:14px 18px 16px;min-width:0}
+.mod:before{content:"";position:absolute;inset:1px;clip-path:var(--clip);background:var(--mbg,var(--pane));z-index:-1}
+.mod.run{--mline:var(--cy-line)}
+.mod.wait{--mline:var(--warn-line)}
+.ml{display:flex;align-items:center;gap:8px;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:11.5px;letter-spacing:.04em;color:var(--tx3);margin-bottom:12px;white-space:nowrap}
+.ml .l{color:var(--tx2)}
+.ml .l:before{content:"[ ";color:var(--tx3)}.ml .l:after{content:" ]";color:var(--tx3)}
+.ml .r{margin-left:auto}
+.ml .n{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:17px;line-height:1;color:var(--tx2)}
+.dot{display:inline-block;width:7px;height:7px;flex:none}
+.dot.muse{background:var(--muse)}.dot.grok{background:var(--grok)}.dot.api{background:var(--api)}
+.who{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.who .arr{color:var(--tx3)}
+/* 3×3 点阵转圈 */
+.tw{display:inline-grid;grid-template-columns:repeat(3,3px);gap:1.5px;flex:none}
+.tw i{width:3px;height:3px;background:var(--cy);box-shadow:var(--dglow);animation:tw 1.2s steps(1) infinite}
+.tw i:nth-child(2){animation-delay:.3s}.tw i:nth-child(4){animation-delay:.6s}.tw i:nth-child(6){animation-delay:.15s}.tw i:nth-child(8){animation-delay:.45s}.tw i:nth-child(9){animation-delay:.9s}
+.lt .tw i{box-shadow:inset 0 0 0 .5px var(--blk-ln)}
+/* 按钮 */
+.btn{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:34px;padding:0 14px;clip-path:var(--clip2);background:var(--line2);font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:12.5px;font-weight:500;white-space:nowrap;color:var(--tx)}
+.btn:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.btn.pri{background:var(--cy);color:var(--on-cy);font-weight:600}
+.btn.pri:before{display:none}
+.lt .btn.pri{background:var(--blk-ln)}
+.lt .btn.pri:before{display:block;background:var(--cy)}
+.btn.danger{background:var(--bad-line);color:var(--bad)}
+.btn.warn{background:var(--warn);color:var(--on-cy);font-weight:600}.btn.warn:before{display:none}
+.btn.ghost{background:transparent;color:var(--tx2)}.btn.ghost:before{display:none}
+.btn .k{font-size:11px;opacity:.7}
+/* 开关、分段、标签 */
+.tg{display:flex;align-items:center;gap:10px;font-size:13px}
+.tgt{position:relative;width:34px;height:18px;flex:none;clip-path:var(--clip2);background:var(--cy)}
+.tgt i{position:absolute;top:3px;left:19px;width:12px;height:12px;background:var(--on-cy)}
+.lt .tgt{box-shadow:inset 0 0 0 1px var(--blk-ln)}
+.seg{display:inline-flex;gap:3px;padding:3px;clip-path:var(--clip2);background:var(--line2);position:relative;isolation:isolate}
+.seg:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.seg button{height:28px;padding:0 12px;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:12px;color:var(--tx2);display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+.seg button.on{background:var(--cy);color:var(--on-cy);font-weight:600}
+.seg.full{display:flex;width:100%}.seg.full button{flex:1 1 0}
+.seg.ink button.on{background:var(--tx);color:var(--bg)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 10px;clip-path:var(--clip2);background:var(--line2);font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:12px;color:var(--tx2);white-space:nowrap}
+.chip:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane);z-index:-1}
+.chip.on{background:var(--cy);color:var(--tx)}
+.lt .chip.on{background:var(--blk-ln)}
+.tag{display:inline-block;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:10.5px;line-height:17px;padding:0 5px;white-space:nowrap}
+.tag.new{background:var(--ok);color:var(--bg)}.tag.del{background:var(--bad);color:var(--bg)}
+.tag.rec{background:var(--cy);color:var(--on-cy);font-weight:600}
+.tag.mid{background:var(--warn-soft);color:var(--warn);box-shadow:inset 0 0 0 1px var(--warn-line)}
+.tag.hi{background:var(--bad);color:var(--bg);font-weight:600}
+.tag.lo{background:var(--raise);color:var(--tx2)}
+.field{display:flex;align-items:center;height:38px;padding:0 12px;clip-path:var(--clip2);background:var(--cy);position:relative;isolation:isolate;font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:13px;color:var(--tx)}
+.field:before{content:"";position:absolute;inset:1px;clip-path:var(--clip2);background:var(--pane2);z-index:-1}
+.lt .field{background:var(--blk-ln)}
+.field .pr{color:var(--cy-tx);margin-right:8px}
+.caret{display:inline-block;width:8px;height:15px;background:var(--cy);margin-left:2px;animation:blink 1.05s steps(1) infinite}
+.lt .caret{box-shadow:inset 0 0 0 1px var(--blk-ln)}
+.kbd{font-family:"IBM Plex Mono","PingFang SC",monospace;font-size:11.5px;color:var(--tx3)}
+/* 方块进度 */
+.blocks{display:grid;grid-template-columns:repeat(28,minmax(0,1fr));gap:3px}
+.blocks i{display:block;height:14px;background:var(--off)}
+.blocks i.f{background:var(--cy);box-shadow:inset 0 0 0 1px var(--blk-ln);animation:wave 2.4s ease-in-out infinite}
+.blocks i.h{background:var(--cy);box-shadow:inset 0 0 0 1px var(--blk-ln);animation:blink .8s steps(1) infinite}
+.dk .blocks i.f,.dk .blocks i.h{box-shadow:0 0 6px rgba(0,229,255,.45)}
+.meter{display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:3px}
+.meter i{height:10px;background:var(--off)}
+.meter i.f{background:var(--cy);box-shadow:inset 0 0 0 1px var(--blk-ln)}
+/* 点阵勾 */
+.dck{display:inline-grid;grid-template-columns:repeat(7,4px);grid-auto-rows:4px;gap:1px;flex:none}
+.dck i{width:4px;height:4px;background:var(--off)}
+.dck i.on{background:var(--cy);box-shadow:var(--dglow)}
+.lt .dck i.on{background:var(--tx)}
+@keyframes blink{50%{opacity:0}}
+@keyframes tw{50%{opacity:.18}}
+@keyframes wave{0%,100%{filter:brightness(1)}50%{filter:brightness(.62)}}
+@keyframes bounce{0%{transform:scale(1)}18%{transform:scale(1.5);animation-timing-function:cubic-bezier(.3,1.6,.5,1)}40%{transform:scale(.9)}55%,100%{transform:scale(1)}}
+@keyframes ring{0%,10%{transform:scale(1);opacity:0}14%{opacity:.9}60%,100%{transform:scale(2.6);opacity:0}}
+@keyframes scanx{0%{left:-90px}62%,100%{left:100%}}
+@media (prefers-reduced-motion:reduce){.pk *,.pk *:before,.pk *:after{animation:none!important;transition:none!important}.pk .scan-fx{display:none}}
+
+.pk.dk{--bg:#050816;--grid:rgba(120,140,255,.085);--pane:#0A0F24;--pane2:#0F1630;--raise:#172040;--line:#1E2850;--line2:#2E3B72;--tx:#E8ECFF;--tx2:#9AA3CF;--tx3:#7A84B6;--cy:#00E5FF;--cy-tx:#00E5FF;--on-cy:#02101A;--cy-line:rgba(0,229,255,.6);--cy-soft:rgba(0,229,255,.10);--cy-scan:rgba(0,229,255,.22);--muse:#A78BFA;--grok:#FFB86B;--api:#60A5FA;--ok:#4ADE80;--warn:#FFB86B;--bad:#FB7185;--warn-soft:rgba(255,184,107,.10);--bad-soft:rgba(251,113,133,.10);--ok-soft:rgba(74,222,128,.10);--warn-line:rgba(255,184,107,.55);--bad-line:rgba(251,113,133,.6);--glow:0 0 10px rgba(0,229,255,.55);--tglow:0 0 18px rgba(0,229,255,.5),0 0 2px rgba(0,229,255,.9);--dglow:0 0 4px rgba(0,229,255,.85);--blk-ln:transparent;--off:#141C3C;color-scheme:dark}
+.pk.lt{--bg:#F2F4FC;--grid:rgba(40,50,130,.10);--pane:#FFFFFF;--pane2:#F5F7FD;--raise:#E7EBF8;--line:#DAE0F0;--line2:#B4BDDB;--tx:#0B1030;--tx2:#4E567A;--tx3:#646C92;--cy:#00E5FF;--cy-tx:#0B1030;--on-cy:#0B1030;--cy-line:#0B1030;--cy-soft:rgba(0,229,255,.16);--cy-scan:rgba(0,229,255,.38);--muse:#6D4AE8;--grok:#A35E00;--api:#2563EB;--ok:#12804C;--warn:#A35E00;--bad:#E11D48;--warn-soft:#FFF3E2;--bad-soft:#FFE9EE;--ok-soft:#E3F5EC;--warn-line:#A35E00;--bad-line:#E11D48;--glow:none;--tglow:none;--dglow:none;--blk-ln:#0B1030;--off:#E1E6F5;color-scheme:light}
+
+.pk.dm{width:1280px;height:800px;padding:26px 34px 30px;display:flex;flex-direction:column;gap:14px}
+.top{display:flex;align-items:baseline;gap:16px}
+.top h1{font-size:20px;font-weight:600}
+.top p{font-size:13px;color:var(--tx2)}
+.rows{flex:1;display:grid;grid-template-rows:repeat(4,minmax(0,1fr));gap:12px;min-height:0}
+.drow{display:grid;grid-template-columns:150px repeat(3,minmax(0,1fr));gap:14px;min-height:0}
+.rk{display:flex;flex-direction:column;justify-content:center;gap:4px}
+.rk b{font-size:16px;font-weight:600}
+.rk span{font-size:12px;color:var(--tx2);line-height:1.5}
+.cell{position:relative;display:flex;flex-direction:column;gap:6px;padding:8px 12px 10px;background:var(--bg);box-shadow:inset 0 0 0 1px var(--line);min-height:0;overflow:hidden}
+.ch{display:flex;align-items:baseline;gap:8px;font-size:12.5px;white-space:nowrap}
+.ch b{font-weight:600}
+.ch span{color:var(--tx3);overflow:hidden;text-overflow:ellipsis}
+.ch .tag{margin-left:auto}
+.mini{padding:8px 12px 10px}
+.mini .ml{margin-bottom:2px}
+.mrow{display:flex;align-items:baseline;gap:10px}
+.mrow b{font-family:"IBM Plex Mono","PingFang SC",monospace;font-weight:500;font-size:13px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.clk{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:27px;line-height:1;color:var(--cy-tx);text-shadow:var(--tglow)}
+.mini .blocks{grid-template-columns:repeat(20,minmax(0,1fr));margin:6px 0 8px}
+.mini .blocks i{height:10px}
+.mact{display:flex;align-items:center;gap:8px}
+.mact .btn{height:28px;padding:0 10px;font-size:12px}
+.mact .chip{height:26px}
+.mact .cnt{margin-left:auto;font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:18px;color:var(--tx2)}
+.tk{display:none;position:absolute;width:9px;height:9px;border:0 solid var(--line2)}
+.tk.tl{left:0;top:0;border-left-width:2px;border-top-width:2px}.tk.tr{right:0;top:0;border-right-width:2px;border-top-width:2px}
+.tk.bl{left:0;bottom:0;border-left-width:2px;border-bottom-width:2px}.tk.br{right:0;bottom:0;border-right-width:2px;border-bottom-width:2px}
+.mod.run .tk{border-color:var(--cy)}
+.lt .mod.run .tk{border-color:var(--blk-ln)}
+/* 角 */
+.c-sq .mod,.c-sq .mod:before,.c-sq .btn,.c-sq .btn:before,.c-sq .chip,.c-sq .chip:before{clip-path:none}
+.c-brk .mod{clip-path:none;background:transparent}
+.c-brk .mod:before{inset:0;clip-path:none}
+.c-brk .tk{display:block}
+.c-brk .btn,.c-brk .btn:before,.c-brk .chip,.c-brk .chip:before{clip-path:none}
+/* 底纹 */
+.bg-dots{background-image:radial-gradient(circle at 1.5px 1.5px,var(--grid) 1.1px,transparent 1.6px);background-size:8px 8px}
+.bg-scan{background-image:repeating-linear-gradient(0deg,var(--scanl) 0 1px,transparent 1px 3px)}
+.dk{--scanl:rgba(150,170,255,.07)}.lt{--scanl:rgba(20,30,90,.06)}
+.bg-scan .mod:before{background:var(--pane) repeating-linear-gradient(0deg,var(--scanl) 0 1px,transparent 1px 3px)}
+/* 发光 */
+.g-0{--glow:none;--tglow:none;--dglow:none}
+.dk .g-0 .blocks i.f,.dk .g-0 .blocks i.h{box-shadow:none}
+.dk .g-2{--glow:0 0 16px rgba(0,229,255,.85);--tglow:0 0 26px rgba(0,229,255,.75),0 0 6px rgba(0,229,255,1);--dglow:0 0 8px rgba(0,229,255,1)}
+.dk .g-2 .blocks i.f,.dk .g-2 .blocks i.h{box-shadow:0 0 12px rgba(0,229,255,.85)}
+.dk .g-2 .btn.pri{text-shadow:0 0 6px rgba(0,229,255,.9)}
+.dk .g-2 .mrow b{text-shadow:0 0 8px rgba(232,236,255,.35)}
+/* 点阵字 */
+.f-1 .clk{font-family:"IBM Plex Mono","PingFang SC",monospace;font-weight:500;font-size:24px}
+.f-1 .ml .n,.f-1 .cnt{font-family:"IBM Plex Mono","PingFang SC",monospace;font-weight:500;font-size:13px}
+.f-3 .ml .l,.f-3 .btn,.f-3 .chip{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;letter-spacing:.08em}
+.f-3 .ml .l{font-size:14px}
+.f-3 .btn,.f-3 .chip{font-size:14px}
+.f-3 .mrow b{font-family:"Doto","IBM Plex Mono",monospace;font-weight:900;font-size:15px;letter-spacing:.04em}
+</style>
+</helmet>
+<div class="{{root}}">
+  <div class="top"><h1>还没定的四个细节</h1><p>一次只变一项，其他三项都用推荐那格（中间）。每行挑一格。</p></div>
+  <div class="rows"><div class="drow"><div class="rk"><b>角</b><span>模块、按钮、标签的四个角</span></div><div class="cell bg-dots"><p class="ch"><b>方角</b><span>最干净，但少了像素味</span></p><div class="c-sq g-1 f-2"><div class="mod run mini"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="ml"><span class="l">正在做</span><span class="r n">3/4</span></p>
+  <div class="mrow"><b>Grok 跑 pnpm check</b><span class="clk">02:14</span></div>
+  <div class="blocks"><i class="f" style="animation-delay:0.00s"></i><i class="f" style="animation-delay:0.07s"></i><i class="f" style="animation-delay:0.14s"></i><i class="f" style="animation-delay:0.21s"></i><i class="f" style="animation-delay:0.28s"></i><i class="f" style="animation-delay:0.35s"></i><i class="f" style="animation-delay:0.42s"></i><i class="f" style="animation-delay:0.49s"></i><i class="f" style="animation-delay:0.56s"></i><i class="f" style="animation-delay:0.63s"></i><i class="f" style="animation-delay:0.70s"></i><i class="f" style="animation-delay:0.77s"></i><i class="h"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="mact"><button type="button" class="btn pri">发送<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><span class="chip on">Muse → Grok</span><span class="cnt">4</span></div>
+</div></div></div><div class="cell bg-dots"><p class="ch"><b>像素阶梯角</b><span>两级台阶，像放大的像素</span><em class="tag rec">推荐</em></p><div class="c-step g-1 f-2"><div class="mod run mini"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="ml"><span class="l">正在做</span><span class="r n">3/4</span></p>
+  <div class="mrow"><b>Grok 跑 pnpm check</b><span class="clk">02:14</span></div>
+  <div class="blocks"><i class="f" style="animation-delay:0.00s"></i><i class="f" style="animation-delay:0.07s"></i><i class="f" style="animation-delay:0.14s"></i><i class="f" style="animation-delay:0.21s"></i><i class="f" style="animation-delay:0.28s"></i><i class="f" style="animation-delay:0.35s"></i><i class="f" style="animation-delay:0.42s"></i><i class="f" style="animation-delay:0.49s"></i><i class="f" style="animation-delay:0.56s"></i><i class="f" style="animation-delay:0.63s"></i><i class="f" style="animation-delay:0.70s"></i><i class="f" style="animation-delay:0.77s"></i><i class="h"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="mact"><button type="button" class="btn pri">发送<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><span class="chip on">Muse → Grok</span><span class="cnt">4</span></div>
+</div></div></div><div class="cell bg-dots"><p class="ch"><b>方括号角</b><span>只描四个角，第一轮 C 的做法</span></p><div class="c-brk g-1 f-2"><div class="mod run mini"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="ml"><span class="l">正在做</span><span class="r n">3/4</span></p>
+  <div class="mrow"><b>Grok 跑 pnpm check</b><span class="clk">02:14</span></div>
+  <div class="blocks"><i class="f" style="animation-delay:0.00s"></i><i class="f" style="animation-delay:0.07s"></i><i class="f" style="animation-delay:0.14s"></i><i class="f" style="animation-delay:0.21s"></i><i class="f" style="animation-delay:0.28s"></i><i class="f" style="animation-delay:0.35s"></i><i class="f" style="animation-delay:0.42s"></i><i class="f" style="animation-delay:0.49s"></i><i class="f" style="animation-delay:0.56s"></i><i class="f" style="animation-delay:0.63s"></i><i class="f" style="animation-delay:0.70s"></i><i class="f" style="animation-delay:0.77s"></i><i class="h"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="mact"><button type="button" class="btn pri">发送<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><span class="chip on">Muse → Grok</span><span class="cnt">4</span></div>
+</div></div></div></div><div class="drow"><div class="rk"><b>底纹</b><span>窗口最底下那层</span></div><div class="cell bg-flat"><p class="ch"><b>纯色</b><span>最安静</span></p><div class="c-step g-1 f-2"><div class="mod run mini"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="ml"><span class="l">正在做</span><span class="r n">3/4</span></p>
+  <div class="mrow"><b>Grok 跑 pnpm check</b><span class="clk">02:14</span></div>
+  <div class="blocks"><i class="f" style="animation-delay:0.00s"></i><i class="f" style="animation-delay:0.07s"></i><i class="f" style="animation-delay:0.14s"></i><i class="f" style="animation-delay:0.21s"></i><i class="f" style="animation-delay:0.28s"></i><i class="f" style="animation-delay:0.35s"></i><i class="f" style="animation-delay:0.42s"></i><i class="f" style="animation-delay:0.49s"></i><i class="f" style="animation-delay:0.56s"></i><i class="f" style="animation-delay:0.63s"></i><i class="f" style="animation-delay:0.70s"></i><i class="f" style="animation-delay:0.77s"></i><i class="h"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="mact"><button type="button" class="btn pri">发送<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><span class="chip on">Muse → Grok</span><span class="cnt">4</span></div>
+</div></div></div><div class="cell bg-dots"><p class="ch"><b>LED 点阵孔</b><span>8 像素一颗，很淡</span><em class="tag rec">推荐</em></p><div class="c-step g-1 f-2"><div class="mod run mini"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="ml"><span class="l">正在做</span><span class="r n">3/4</span></p>
+  <div class="mrow"><b>Grok 跑 pnpm check</b><span class="clk">02:14</span></div>
+  <div class="blocks"><i class="f" style="animation-delay:0.00s"></i><i class="f" style="animation-delay:0.07s"></i><i class="f" style="animation-delay:0.14s"></i><i class="f" style="animation-delay:0.21s"></i><i class="f" style="animation-delay:0.28s"></i><i class="f" style="animation-delay:0.35s"></i><i class="f" style="animation-delay:0.42s"></i><i class="f" style="animation-delay:0.49s"></i><i class="f" style="animation-delay:0.56s"></i><i class="f" style="animation-delay:0.63s"></i><i class="f" style="animation-delay:0.70s"></i><i class="f" style="animation-delay:0.77s"></i><i class="h"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="mact"><button type="button" class="btn pri">发送<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><span class="chip on">Muse → Grok</span><span class="cnt">4</span></div>
+</div></div></div><div class="cell bg-scan"><p class="ch"><b>扫描线</b><span>老显示器的横纹</span></p><div class="c-step g-1 f-2"><div class="mod run mini"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="ml"><span class="l">正在做</span><span class="r n">3/4</span></p>
+  <div class="mrow"><b>Grok 跑 pnpm check</b><span class="clk">02:14</span></div>
+  <div class="blocks"><i class="f" style="animation-delay:0.00s"></i><i class="f" style="animation-delay:0.07s"></i><i class="f" style="animation-delay:0.14s"></i><i class="f" style="animation-delay:0.21s"></i><i class="f" style="animation-delay:0.28s"></i><i class="f" style="animation-delay:0.35s"></i><i class="f" style="animation-delay:0.42s"></i><i class="f" style="animation-delay:0.49s"></i><i class="f" style="animation-delay:0.56s"></i><i class="f" style="animation-delay:0.63s"></i><i class="f" style="animation-delay:0.70s"></i><i class="f" style="animation-delay:0.77s"></i><i class="h"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="mact"><button type="button" class="btn pri">发送<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><span class="chip on">Muse → Grok</span><span class="cnt">4</span></div>
+</div></div></div></div><div class="drow"><div class="rk"><b>发光</b><span>青色的字、进度块、在跑的点（浅色里都不发光）</span></div><div class="cell bg-dots"><p class="ch"><b>不发光</b><span>只靠颜色本身</span></p><div class="c-step g-0 f-2"><div class="mod run mini"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="ml"><span class="l">正在做</span><span class="r n">3/4</span></p>
+  <div class="mrow"><b>Grok 跑 pnpm check</b><span class="clk">02:14</span></div>
+  <div class="blocks"><i class="f" style="animation-delay:0.00s"></i><i class="f" style="animation-delay:0.07s"></i><i class="f" style="animation-delay:0.14s"></i><i class="f" style="animation-delay:0.21s"></i><i class="f" style="animation-delay:0.28s"></i><i class="f" style="animation-delay:0.35s"></i><i class="f" style="animation-delay:0.42s"></i><i class="f" style="animation-delay:0.49s"></i><i class="f" style="animation-delay:0.56s"></i><i class="f" style="animation-delay:0.63s"></i><i class="f" style="animation-delay:0.70s"></i><i class="f" style="animation-delay:0.77s"></i><i class="h"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="mact"><button type="button" class="btn pri">发送<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><span class="chip on">Muse → Grok</span><span class="cnt">4</span></div>
+</div></div></div><div class="cell bg-dots"><p class="ch"><b>轻</b><span>一圈很窄的光</span><em class="tag rec">推荐</em></p><div class="c-step g-1 f-2"><div class="mod run mini"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="ml"><span class="l">正在做</span><span class="r n">3/4</span></p>
+  <div class="mrow"><b>Grok 跑 pnpm check</b><span class="clk">02:14</span></div>
+  <div class="blocks"><i class="f" style="animation-delay:0.00s"></i><i class="f" style="animation-delay:0.07s"></i><i class="f" style="animation-delay:0.14s"></i><i class="f" style="animation-delay:0.21s"></i><i class="f" style="animation-delay:0.28s"></i><i class="f" style="animation-delay:0.35s"></i><i class="f" style="animation-delay:0.42s"></i><i class="f" style="animation-delay:0.49s"></i><i class="f" style="animation-delay:0.56s"></i><i class="f" style="animation-delay:0.63s"></i><i class="f" style="animation-delay:0.70s"></i><i class="f" style="animation-delay:0.77s"></i><i class="h"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="mact"><button type="button" class="btn pri">发送<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><span class="chip on">Muse → Grok</span><span class="cnt">4</span></div>
+</div></div></div><div class="cell bg-dots"><p class="ch"><b>强</b><span>像老 CRT 屏的光晕</span></p><div class="c-step g-2 f-2"><div class="mod run mini"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="ml"><span class="l">正在做</span><span class="r n">3/4</span></p>
+  <div class="mrow"><b>Grok 跑 pnpm check</b><span class="clk">02:14</span></div>
+  <div class="blocks"><i class="f" style="animation-delay:0.00s"></i><i class="f" style="animation-delay:0.07s"></i><i class="f" style="animation-delay:0.14s"></i><i class="f" style="animation-delay:0.21s"></i><i class="f" style="animation-delay:0.28s"></i><i class="f" style="animation-delay:0.35s"></i><i class="f" style="animation-delay:0.42s"></i><i class="f" style="animation-delay:0.49s"></i><i class="f" style="animation-delay:0.56s"></i><i class="f" style="animation-delay:0.63s"></i><i class="f" style="animation-delay:0.70s"></i><i class="f" style="animation-delay:0.77s"></i><i class="h"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="mact"><button type="button" class="btn pri">发送<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><span class="chip on">Muse → Grok</span><span class="cnt">4</span></div>
+</div></div></div></div><div class="drow"><div class="rk"><b>点阵字用到哪</b><span>Doto 点阵字只有英文和数字</span></div><div class="cell bg-dots"><p class="ch"><b>只用在计时</b><span>其他数字用等宽字</span></p><div class="c-step g-1 f-1"><div class="mod run mini"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="ml"><span class="l">正在做</span><span class="r n">3/4</span></p>
+  <div class="mrow"><b>Grok 跑 pnpm check</b><span class="clk">02:14</span></div>
+  <div class="blocks"><i class="f" style="animation-delay:0.00s"></i><i class="f" style="animation-delay:0.07s"></i><i class="f" style="animation-delay:0.14s"></i><i class="f" style="animation-delay:0.21s"></i><i class="f" style="animation-delay:0.28s"></i><i class="f" style="animation-delay:0.35s"></i><i class="f" style="animation-delay:0.42s"></i><i class="f" style="animation-delay:0.49s"></i><i class="f" style="animation-delay:0.56s"></i><i class="f" style="animation-delay:0.63s"></i><i class="f" style="animation-delay:0.70s"></i><i class="f" style="animation-delay:0.77s"></i><i class="h"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="mact"><button type="button" class="btn pri">发送<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><span class="chip on">Muse → Grok</span><span class="cnt">4</span></div>
+</div></div></div><div class="cell bg-dots"><p class="ch"><b>计时和计数</b><span>计时、文件数、项目数</span><em class="tag rec">推荐</em></p><div class="c-step g-1 f-2"><div class="mod run mini"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="ml"><span class="l">正在做</span><span class="r n">3/4</span></p>
+  <div class="mrow"><b>Grok 跑 pnpm check</b><span class="clk">02:14</span></div>
+  <div class="blocks"><i class="f" style="animation-delay:0.00s"></i><i class="f" style="animation-delay:0.07s"></i><i class="f" style="animation-delay:0.14s"></i><i class="f" style="animation-delay:0.21s"></i><i class="f" style="animation-delay:0.28s"></i><i class="f" style="animation-delay:0.35s"></i><i class="f" style="animation-delay:0.42s"></i><i class="f" style="animation-delay:0.49s"></i><i class="f" style="animation-delay:0.56s"></i><i class="f" style="animation-delay:0.63s"></i><i class="f" style="animation-delay:0.70s"></i><i class="f" style="animation-delay:0.77s"></i><i class="h"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="mact"><button type="button" class="btn pri">发送<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><span class="chip on">Muse → Grok</span><span class="cnt">4</span></div>
+</div></div></div><div class="cell bg-dots"><p class="ch"><b>标签和按钮也用</b><span>标签和按钮要改成英文大写</span></p><div class="c-step g-1 f-3"><div class="mod run mini"><i class="tk tl"></i><i class="tk tr"></i><i class="tk bl"></i><i class="tk br"></i><p class="ml"><span class="l">RUNNING</span><span class="r n">3/4</span></p>
+  <div class="mrow"><b>GROK · PNPM CHECK</b><span class="clk">02:14</span></div>
+  <div class="blocks"><i class="f" style="animation-delay:0.00s"></i><i class="f" style="animation-delay:0.07s"></i><i class="f" style="animation-delay:0.14s"></i><i class="f" style="animation-delay:0.21s"></i><i class="f" style="animation-delay:0.28s"></i><i class="f" style="animation-delay:0.35s"></i><i class="f" style="animation-delay:0.42s"></i><i class="f" style="animation-delay:0.49s"></i><i class="f" style="animation-delay:0.56s"></i><i class="f" style="animation-delay:0.63s"></i><i class="f" style="animation-delay:0.70s"></i><i class="f" style="animation-delay:0.77s"></i><i class="h"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></div>
+  <div class="mact"><button type="button" class="btn pri">SEND<svg class="px" viewBox="0 0 8 8" aria-hidden="true" shape-rendering="crispEdges"><rect x="4" y="0" width="1" height="1"></rect><rect x="4" y="1" width="2" height="1"></rect><rect x="1" y="2" width="6" height="1"></rect><rect x="1" y="3" width="7" height="1"></rect><rect x="1" y="4" width="6" height="1"></rect><rect x="4" y="5" width="2" height="1"></rect><rect x="4" y="6" width="1" height="1"></rect></svg></button><span class="chip on">MUSE→GROK</span><span class="cnt">4</span></div>
+</div></div></div></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","options":["深色","浅色"],"default":"深色","section":"看"},"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+renderVals() { return { root: 'pk dm ' + ((this.props.theme ?? '深色') === '深色' ? 'dk' : 'lt') }; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+/* 拆年度小报的信封（Phase 2 年度小报的开头）：新年第一周桌上多一个信封，点一下：
+   封口的柚子贴纸撕掉飞走（0.45 秒）→ 翻盖往上翻、翻过去退到小报后面（0.3 秒起，0.5 秒）→ 小报从口袋里升起来（0.72 秒起，0.5 秒）。
+   用法：<button class="pm-env"> 里放纸层（.pm-env-paper：里层、.pm-env-flap、.pm-env-mini、口袋、外框）、.pm-env-seal、字；
+   拆开时加 .is-open（之后小报放大成一本书是 Atlas 页面的事，不在这里）。纸歪 −3°，字和封口贴纸是正的。 */
+.pm-env { position: relative; display: block; width: 330px; height: 210px; cursor: pointer; transition: transform .35s cubic-bezier(.3,1.6,.5,1); }
+.pm-env:hover, .pm-env.is-hover { transform: translateY(-4px); }
+.pm-env-seal, .pm-env-mini-pomelo { line-height: 0; }
+.pm-env-seal > svg, .pm-env-mini-pomelo > svg { display: block; width: 100%; height: auto; overflow: visible; }
+.pm-env-flap { transform-origin: 50% 3px; }
+.pm-env-mini { transition: transform .5s cubic-bezier(.3,1.3,.5,1); }
+.pm-env.is-open .pm-env-seal { animation: pm-env-seal .45s cubic-bezier(.3,.6,.4,1) both; }
+.pm-env.is-open .pm-env-flap { animation: pm-env-flap .5s .3s cubic-bezier(.4,0,.2,1) both; }
+.pm-env.is-open .pm-env-mini { transform: translateY(-104px); transition-delay: .72s; }
+@keyframes pm-env-seal {
+  0% { transform: none; opacity: 1; }
+  40% { transform: translate(8px, -16px) rotate(-22deg) scale(1.12); opacity: 1; }
+  100% { transform: translate(46px, -84px) rotate(-48deg) scale(.9); opacity: 0; }
+}
+@keyframes pm-env-flap {
+  0% { transform: perspective(700px) rotateX(0); z-index: 4; filter: none; }
+  49% { z-index: 4; filter: none; }
+  51% { z-index: 1; filter: brightness(.9); }
+  100% { transform: perspective(700px) rotateX(180deg); z-index: 1; filter: brightness(.9); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pm-env, .pm-env-mini { transition: none; }
+  .pm-env.is-open .pm-env-seal { animation: none; opacity: 0; }
+  .pm-env.is-open .pm-env-flap { animation: none; transform: perspective(700px) rotateX(180deg); z-index: 1; filter: brightness(.9); }
+}

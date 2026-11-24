@@ -1,0 +1,79 @@
+{
+  "$note": "Pith 用到的字体。web：四个都是 OFL（登记在 docs/licensing.md），画布和 Design System 从 Google Fonts 取；App 打包时 Newsreader、Lato 整个带上，中文两个先用系统字体后备（DESIGN.md §3、§8）。native：系统字体，只作运行时后备，不转曲线、不进产物。",
+  "web": [
+    {
+      "family": "Newsreader",
+      "name": "Newsreader",
+      "stack": "serif",
+      "use": "读的字：回答、标题、问候、卡片标题、「Pith」字标",
+      "weights": [
+        300,
+        400,
+        430,
+        480,
+        500,
+        600,
+        640
+      ],
+      "italic": true,
+      "license": "OFL-1.1",
+      "outline": true
+    },
+    {
+      "family": "Noto Serif SC",
+      "name": "思源宋体",
+      "stack": "serif",
+      "use": "读的字的中文",
+      "weights": [
+        300,
+        400,
+        500,
+        600
+      ],
+      "license": "OFL-1.1",
+      "outline": true,
+      "note": "很大；随 App 打包要子集或按需下载"
+    },
+    {
+      "family": "Lato",
+      "name": "Lato",
+      "stack": "sans",
+      "use": "界面的字：按钮、标签、编号、提示",
+      "weights": [
+        400,
+        700
+      ],
+      "license": "OFL-1.1",
+      "outline": true
+    },
+    {
+      "family": "Noto Sans SC",
+      "name": "思源黑体",
+      "stack": "sans",
+      "use": "界面的字的中文",
+      "weights": [
+        400,
+        500
+      ],
+      "license": "OFL-1.1",
+      "outline": true,
+      "note": "App 里可以只用苹方后备"
+    }
+  ],
+  "native": [
+    {
+      "family": "PingFang SC",
+      "name": "苹方",
+      "use": "界面中文的后备",
+      "license": "macOS 系统字体，授权归 Apple",
+      "outline": false
+    },
+    {
+      "family": "Songti SC",
+      "name": "宋体-简",
+      "use": "读的字中文的后备",
+      "license": "macOS 系统字体，授权归 Apple",
+      "outline": false
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "pomelo-sleepy",
+  "title": "柚子 · 睡着了",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "expressive",
+  "surface": "pomelo-sleepy",
+  "trigger": "20 秒没动鼠标、键盘（换成 data-face=\"sleepy\"）；一动就换成惊讶",
+  "durationMs": 5200,
+  "loop": true,
+  "reducedMotion": "不动：停在困了的脸，z 不飘",
+  "use": "顶栏左上角的柚子",
+  "source": "canvases/pomelo-explore/p2-final/css.mjs「柚子：脸、身子的动作」（站主 2026-11-05 验收）",
+  "contract": "<span class=\"pm-pomelo\" data-face=\"sleepy\">pomelo-sleepy.svg</span>：脸一出现动画就开始，一直循环",
+  "requires": [
+    "motion/pomelo-idle/pomelo-idle.css"
+  ],
+  "files": {
+    "css": "pomelo-sleepy.css",
+    "html": "pomelo-sleepy.fragment.html"
+  },
+  "capture": {
+    "host": ".pomelo-demo",
+    "viewport": [
+      200,
+      190
+    ],
+    "scale": 2,
+    "padPx": 0,
+    "fps": 20,
+    "skipRest": true,
+    "endMs": 5200,
+    "holdStartMs": 50,
+    "holdEndMs": 50,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0
+  }
+}

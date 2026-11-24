@@ -1,0 +1,53 @@
+<!-- @dsCard group="列表与筛选" height=380 width=1100 subtitle="话题横排（一个已选）、圆形箭头、类别下拉（展开）" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>WanderFilter</title>
+<style>
+  .vm-demo { padding: var(--space-5) var(--space-6) 260px; }
+  .vm-demo .wander-filter { margin-top: 0; }
+</style>
+</head>
+<body class="vm-page">
+<div class="vm-demo">
+  <div class="wander-filter">
+    <div class="filter-topics">
+      <span class="filter-eyebrow">话题</span>
+      <button class="topic-arrow" type="button" aria-label="向左滚动话题">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+      <div class="topic-scroll va-slide">
+        <button class="topic-chip" type="button" aria-pressed="true">游记</button>
+        <button class="topic-chip" type="button" aria-pressed="false">诗歌</button>
+        <button class="topic-chip" type="button" aria-pressed="false">故事</button>
+        <button class="topic-chip" type="button" aria-pressed="false">随笔</button>
+        <button class="topic-chip" type="button" aria-pressed="false">学习方法</button>
+        <button class="topic-chip" type="button" aria-pressed="false">机器学习</button>
+        <button class="topic-chip" type="button" aria-pressed="false">软件工程</button>
+        <button class="topic-chip" type="button" aria-pressed="false">财富</button>
+        <button class="topic-chip" type="button" aria-pressed="false">时间与空间与世界</button>
+        <!-- 选中指示：网站里位置由 selection-slide.js 量出来；预览写死在「游记」下（左缩进 6px，宽 = 两个字） -->
+        <span class="va-slide-indicator is-on" aria-hidden="true" style="--va-slide-x: 6; --va-slide-w: 32"></span>
+      </div>
+      <button class="topic-arrow" type="button" aria-label="向右滚动话题">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+    </div>
+    <div class="filter-category is-open">
+      <button class="category-toggle" type="button" aria-haspopup="true" aria-expanded="true" aria-controls="vm-demo-category-panel">
+        <span class="category-toggle-label">1 类已选</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div class="category-panel" id="vm-demo-category-panel">
+        <button class="category-clear" type="button">全部类别</button>
+        <label class="category-option"><input type="checkbox" value="notes" checked><span class="category-option-label">写作</span><span class="category-option-count">12</span></label>
+        <label class="category-option"><input type="checkbox" value="project"><span class="category-option-label">项目</span><span class="category-option-count">4</span></label>
+        <label class="category-option"><input type="checkbox" value="gallery"><span class="category-option-label">画廊</span><span class="category-option-count">6</span></label>
+        <label class="category-option"><input type="checkbox" value="literature"><span class="category-option-label">创作</span><span class="category-option-count">3</span></label>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+  "id": "done-cheer",
+  "title": "全做完 · 撒一把小贴纸",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "expressive",
+  "surface": "done-cheer",
+  "trigger": "勾完今天最后一件：.pm-cheer 加 .is-in；便签停 2 秒后换成 .is-leaving，放完再拿掉",
+  "durationMs": 1200,
+  "reducedMotion": "便签直接出现、直接消失，不撒小贴纸",
+  "use": "待办全做完、打卡打满",
+  "source": "canvases/pomelo-explore/p2-final/b.mjs 的 eggNote、confetti（站主 2026-11-05 验收的 Phase 2 定稿）",
+  "files": {
+    "css": "done-cheer.css",
+    "html": "done-cheer.fragment.html"
+  },
+  "capture": {
+    "scale": 1.5,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 300,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".cheer-demo",
+    "viewport": [
+      460,
+      360
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-in"
+      }
+    ],
+    "skipRest": true
+  }
+}

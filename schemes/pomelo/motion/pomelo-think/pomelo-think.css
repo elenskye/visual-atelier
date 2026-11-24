@@ -1,0 +1,13 @@
+/* 柚子在想：身子一压一弹，眼睛跟着转，三个想法泡泡依次往上浮。一圈 1.6 秒（里面每样都是 1.6 秒一圈）。
+   白边（.wb）的第 10–12 条是三个泡泡的。 */
+.pm-pomelo[data-face="think"] > svg { animation: pm-pomelo-think 1.6s ease-in-out infinite; }
+.pm-pomelo[data-face="think"] .eyes { animation: pm-pomelo-look-think 1.6s ease-in-out infinite; }
+.pm-pomelo[data-face="think"] .th1, .pm-pomelo[data-face="think"] .wb > path:nth-child(10) { animation: pm-pomelo-dot 1.6s ease-in-out infinite; }
+.pm-pomelo[data-face="think"] .th2, .pm-pomelo[data-face="think"] .wb > path:nth-child(11) { animation: pm-pomelo-dot 1.6s ease-in-out -1.4s infinite; }
+.pm-pomelo[data-face="think"] .th3, .pm-pomelo[data-face="think"] .wb > path:nth-child(12) { animation: pm-pomelo-dot 1.6s ease-in-out -1.2s infinite; }
+@keyframes pm-pomelo-think { 0%, 46% { transform: scale(1); } 52% { transform: scale(1.1, .88); } 58% { transform: scale(.93, 1.08); } 64% { transform: scale(1.03, .97); } 70%, 100% { transform: scale(1); } }
+@keyframes pm-pomelo-look-think { 0%, 20% { transform: translateX(0); } 30%, 50% { transform: translateX(3px); } 60%, 80% { transform: translateX(-2.5px); } 90%, 100% { transform: translateX(0); } }
+@keyframes pm-pomelo-dot { 0%, 100% { transform: translateY(0) scale(1); } 40% { transform: translateY(-3px) scale(1.15); } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-pomelo[data-face="think"] > svg, .pm-pomelo[data-face="think"] .pt, .pm-pomelo[data-face="think"] .wb > path { animation: none !important; }
+}

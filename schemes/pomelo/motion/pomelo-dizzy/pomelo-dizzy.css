@@ -1,0 +1,9 @@
+/* 小彩蛋 · 连戳柚子（Phase 2 定稿）：2.5 秒里戳柚子 5 下，它换上「出错」的脸、整个转两圈晕过去（1.1 秒，转过头一点再回来），
+   旁边贴一张便签「别戳啦，晕了…」（便签用全做完 done-cheer 的写法：.pm-cheer 加 .is-in，停一会儿换 .is-leaving）。
+   平时每戳一下换一张脸（哇、开心、眨眼、吓一跳，各 1 秒）。
+   界面给显示「出错」那张脸的 .pm-pomelo 加 .is-dizzy，2.2 秒后换回平常、拿掉 .is-dizzy。轴心和别的表情一样在脚下（pomelo-idle）。 */
+.pm-pomelo.is-dizzy > svg { animation: pm-pomelo-dizzy 1.1s ease-in-out both; }
+@keyframes pm-pomelo-dizzy { 0% { transform: rotate(0); } 60% { transform: rotate(720deg); } 80% { transform: rotate(700deg); } 100% { transform: rotate(720deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-pomelo.is-dizzy > svg { animation: none; }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "{{name}}",
+  "title": "{{title}}",
+  "status": "draft",
+  "version": "0.0.0",
+  "motion": {
+    "default": "calm",
+    "expressive": "registered-surfaces-only"
+  },
+  "consumers": []
+}

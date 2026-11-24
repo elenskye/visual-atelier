@@ -1,0 +1,41 @@
+{
+  "id": "tooltip",
+  "title": "鼠标提示 · 小签晃两下",
+  "status": "approved",
+  "approved": "站主 2026-11-08 批准（Dawn Plan · Phase 4、5 一起批）：pomelo-motion 画板、外框原型",
+  "tier": "calm",
+  "calmException": "tooltip-swing",
+  "trigger": "鼠标移到只有图标的按钮或贴纸上（.pm-tip-host:hover）、键盘聚焦；柚子瓣里打字找到的那张加 .is-hover",
+  "durationMs": 1100,
+  "reducedMotion": "不晃，直接挂出来",
+  "use": "柚子瓣的贴纸、顶栏的图标按钮、「桌上开着」的小贴纸",
+  "source": "canvases/pomelo-explore/p2-final/controls.mjs「鼠标提示」（站主 2026-11-05 验收）",
+  "files": {
+    "css": "tooltip.css",
+    "html": "tooltip.fragment.html"
+  },
+  "capture": {
+    "host": ".tip-demo",
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-hover",
+        "on": ".tip-demo .t1"
+      }
+    ],
+    "viewport": [
+      330,
+      180
+    ],
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0
+  }
+}

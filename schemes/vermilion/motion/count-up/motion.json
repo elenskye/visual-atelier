@@ -1,0 +1,24 @@
+{
+  "id": "count-up",
+  "title": "数字计数",
+  "status": "approved",
+  "approved": "站主 2026-11-01 批准（VL1 Phase 6）",
+  "tier": "calm",
+  "trigger": "页面载入时带 .is-playing 的徽标数一次；每次打开网站只数一次（../visit-once.js 标记同一次访问）",
+  "durationMs": 320,
+  "reducedMotion": "静态终态：直接显示真实数字",
+  "use": "首页标题旁的数量徽标",
+  "files": { "css": "count-up.css", "html": "count-up.fragment.html", "js": "../visit-once.js" },
+  "capture": {
+    "host": ".va-count-demo",
+    "playClass": "is-playing",
+    "viewport": [120, 80],
+    "scale": 4,
+    "padPx": 8,
+    "fps": 50,
+    "holdStartMs": 500,
+    "holdEndMs": 1200,
+    "themes": ["light", "dark"],
+    "loop": 0
+  }
+}
