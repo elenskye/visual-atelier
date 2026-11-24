@@ -8,8 +8,8 @@
 //
 // 保护：清单里已是 approved 的资产，生成结果与文件不同就报错、不覆盖（approved 不改几何与参数，要改开新版本）。
 import path from 'node:path';
-import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
-import { parseArgs, schemesToBuild, schemeDir, readJson, sha256, log, isMain } from '../lib/common.mjs';
+import { existsSync, readFileSync } from 'node:fs';
+import { parseArgs, schemesToBuild, schemeDir, readJson, sha256, mergeManifestEntry, writeGenerated, log, isMain } from '../lib/common.mjs';
 import { graphics, glyph, endMark, contentIcon, CATEGORIES, END_MARKS } from './shapes.mjs';
 import { CONTENT_ICONS } from './icons.mjs';
 import { staticSvg, inlineSvg } from './svg.mjs';
@@ -143,9 +143,8 @@ export function runGraphic(args = parseArgs()) {
     const next = manifest.assets.filter((a) => a.source?.generator !== 'tooling/graphic/build.mjs' || entries.some((e) => e.id === a.id));
     for (const e of entries) {
       const old = byId.get(e.id);
-      const keep = old ? { status: old.status, ...(old.approved ? { approved: old.approved } : {}), ...(old.notes ? { notes: old.notes } : {}) } : { status: 'proposed' };
       if (old?.status === 'approved' && old.sha256 !== e.sha256) continue;
-      const merged = { id: e.id, title: e.title, file: e.file, kind: e.kind, ...keep, ...Object.fromEntries(Object.entries(e).filter(([k]) => !['id', 'title', 'file', 'kind'].includes(k))) };
+      const merged = mergeManifestEntry(old, e);
       const i = next.findIndex((a) => a.id === e.id);
       if (i < 0) { next.push(merged); manifestChanged = true; }
       else if (JSON.stringify(next[i]) !== JSON.stringify(merged)) { next[i] = merged; manifestChanged = true; }
@@ -153,15 +152,7 @@ export function runGraphic(args = parseArgs()) {
     if (next.length !== manifest.assets.length) manifestChanged = true;
     if (manifestChanged) changed.push('marks/manifest.json');
 
-    if (!args.check) {
-      for (const rel of changed) {
-        if (rel === 'marks/manifest.json') continue;
-        const p = path.join(sdir, rel);
-        mkdirSync(path.dirname(p), { recursive: true });
-        writeFileSync(p, files[rel]);
-      }
-      if (manifestChanged) writeFileSync(mpath, JSON.stringify({ ...manifest, assets: next }, null, 2) + '\n');
-    }
+    if (!args.check) writeGenerated(sdir, files, changed, mpath, manifest, manifestChanged ? next : null);
     const verb = args.check ? '待更新' : '已写入';
     log(`graphic ${scheme}: ${Object.keys(files).length} 个生成文件，${changed.length ? `${verb} ${changed.length} 个：${changed.join('、')}` : '与源文件一致'}${blocked.length ? `；已批准、拒绝覆盖：${blocked.join('、')}` : ''}`);
     results.push({ scheme, changed, blocked });

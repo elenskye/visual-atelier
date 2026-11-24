@@ -6,11 +6,10 @@ import { canvasDir, kindOf } from './store.js';
 // 一个 JSON 对象，键是文档路径（survey/answers），值是文档内容。按路径排序写出，Agent 直接读这个文件就行。
 // 只有一个人在本机用，没有权限分级：data/users/<id>/ 也照样存，id 固定是 local。
 
-export const LOCAL_USER = 'local';
 const SEG = /^[A-Za-z0-9_\-.~:@+]+$/;
 const MAX_BODY = 256 * 1024;
 
-export class DbError extends Error {
+class DbError extends Error {
   constructor(code, message) {
     super(message);
     this.code = code;
@@ -18,7 +17,7 @@ export class DbError extends Error {
 }
 
 /** Splits and checks a path; parity 'doc' wants an even number of segments, 'collection' an odd one. */
-export function checkPath(p, parity) {
+function checkPath(p, parity) {
   if (typeof p !== 'string' || !p) throw new DbError('invalid_argument', '路径是空的');
   if (Buffer.byteLength(p) > 1000) throw new DbError('invalid_argument', '路径超过 1000 字节');
   const segs = p.split('/');

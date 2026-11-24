@@ -2,9 +2,14 @@
 
 Pith 的 Explore Deck（`canvases/README.md`「Explore Deck 的规矩」）。站主 2026-11-24 验收了 EX11（「验收完毕，开始做优化页、建 schemes/pith/」），同一天定：本地只留最终一轮。所以这块画布现在只有一页 **R1：Pith 定稿**，打开画布落在这页。
 
-EX1–EX11（Claude、Codex、Argon 三家的 Phase 5 和照新架构做的八轮）的板和生成器在 Git 历史里（清理前的提交 `546725d`）；经过和三家的评估在 `history/pith-phase5.md`，每一轮的说明在 `CHANGELOG.md`。
+EX1–EX11（Claude、Codex、Argon 三家的 Phase 5 和照新架构做的八轮）的板和生成器在站主 11-24 重建 Git 之前的历史里（旧 `.git` 备份，清理前的提交 `546725d`）；经过和三家的评估在 `history/pith-phase5.md`，每一轮的说明在 `history/changelog-2026-11.md`。
 
-云端：https://claude.ai/artifact/3qPdEANYGZCWLqNyfaajvx （Design 画布，私有，**旧账号**，站主 2026-11-21 授权，`ROADMAP.md`「授权记录」）。站主 11-24 说云端不清理，所以云端那份还是 EX1–EX11 十一页（第 15 版，EX11 为止），没有 R1；本地是真身。
+云端（Design 画布，私有）：
+
+- **现用账号** https://claude.ai/artifact/HcCFtnXuGg9fQnp5qSVoH7 （`cloud.json` 的 home，11-24 新建，只有 R1，挂着 Design System「Pith」）。
+- 旧账号 https://claude.ai/artifact/3qPdEANYGZCWLqNyfaajvx ：EX1–EX11 十一页（第 15 版），只看不动（站主 11-24 说不清理）。
+
+本地是真身。画板挂着 Design System「Pith」（`project/ds/pith/`，`node bench/bin/dw.js ds install pith-explore pith` 换成新的）；R1 的板把方案的样式原样放在自己里面，不靠这份副本。
 
 ## R1
 

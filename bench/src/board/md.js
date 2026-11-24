@@ -4,7 +4,7 @@
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const safeUrl = (u) => (/^(https?:|mailto:|#|\/|\.\.?\/|data:image\/)/i.test(u) ? u : '#');
 
-export function inline(text) {
+function inline(text) {
   const codes = [];
   let s = esc(text).replace(/`([^`]+)`/g, (_, c) => `\u0000${codes.push(c) - 1}\u0000`);
   s = s

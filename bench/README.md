@@ -201,16 +201,16 @@ Pomelo 的「有板有眼」模块用这一套在它自己的窗口里启动、�
 | Agent | 文件 | 什么时候读 |
 | --- | --- | --- |
 | Claude Code | `.mcp.json` | 在仓库里开 Claude Code，问要不要用 `dw` 时同意。没批过时 `claude mcp get dw` 写「Pending approval」，非交互（`claude -p`，Peck 就是这样起它的）**不会**问、直接不连；在那个文件夹里开一次 Claude Code 点同意，或者在不进 Git 的 `.claude/settings.local.json` 里写 `{"enabledMcpjsonServers": ["dw"]}`，之后 `claude mcp get dw` 是 Connected。新 worktree 要再批一次 |
-| Grok | `.mcp.json`（Grok 当成兼容来源读） | 文件夹要被信任：第一次在这里开 `grok` 点信任（或 `/hooks-trust`），记在 `~/.grok/trusted_folders.toml`；信任按仓库算，主工作区信任了，它的 worktree 也算。`grok mcp list` 只列它自己的 TOML，看不到 `dw`；看连上没有用 `grok mcp doctor`（`.mcp.json 1 server`、24 个工具）或 `grok inspect --json`（`projectTrusted`、`mcpServers`）。工具名是 `dw__<工具>` |
+| Grok | `.mcp.json`（Grok 当成兼容来源读） | 文件夹要被信任：第一次在这里开 `grok` 点信任（或 `/hooks-trust`），记在 `~/.grok/trusted_folders.toml`；信任按仓库算，主工作区信任了，它的 worktree 也算。`grok mcp list` 只列它自己的 TOML，看不到 `dw`；看连上没有用 `grok mcp doctor`（`.mcp.json 1 server`、25 个工具）或 `grok inspect --json`（`projectTrusted`、`mcpServers`）。工具名是 `dw__<工具>` |
 | Muse | `.mcp.json`（`muse mcp add --project` 写的也是这份） | 工作区要被信任：第一次在这个文件夹里开 `muse`，选「1 Trust and continue」，记在 `~/.config/muse/trust.json`。没信任时 `muse mcp list` 写「no project MCP servers will load」，非交互的 `muse exec`、`muse serve` 也不读。每个 worktree 是单独的工作区，要各点一次 |
 | Codex | `.codex/config.toml`（`[mcp_servers.dw]`） | 只在这个目录被设为「信任」时：第一次在这里开 Codex、问要不要信任时点同意，或用户配置 `~/.codex/config.toml` 里给这个路径写 `trust_level = "trusted"`（这台机器已经写了；这个仓库的 worktree 也算信任，11-15 试过）。同一项两边都写了，项目里的优先。`codex mcp add` 只写用户配置，项目级的只能改文件 |
 | Antigravity（Argon） | 工作区插件 `.agents/plugins/dw/`：`plugin.json` 加 `mcp_config.json`（顶层 `mcpServers`） | 打开这个仓库（或 worktree）当工作区时，工作区 `.agents/plugins/` 里的插件默认就开着。它**不读**工作区根上的 `.agents/mcp_config.json`（2026-11-15 Phase 4 Argon 查出来的），工作区里的 MCP 只能放进插件。全局的在 `~/.gemini/config/mcp_config.json`（网上有些教程写的 `~/.gemini/antigravity/mcp_config.json` 是旧路径），这里不用它。命令行的 `agy`（`agy acp` 也一样）同样读这个插件，服务器名是「插件名_服务器名」`dw_dw`，用 `call_mcp_tool` 调；它的系统提示里的 MCP 摘要可能漏列 `dw_dw`，说明里点名 `dw_dw` 它就找得到（2026-11-16 试过） |
 
-Codex、Antigravity 那两份的命令是 `/bin/sh -c 'exec "$(git rev-parse --show-toplevel)/bench/bin/dw-mcp.sh"'`：从仓库里哪一层目录启动都找得到根目录（Antigravity 的 `cwd` 写 `.`：插件里相对的 `cwd` 照它的文档按插件目录算，在插件目录里跑这条命令试过，24 个工具都在；插件的工具名可能带上前缀）。Codex 不问就只用只读的工具，会改东西的照它的批准设置问人。
+Codex、Antigravity 那两份的命令是 `/bin/sh -c 'exec "$(git rev-parse --show-toplevel)/bench/bin/dw-mcp.sh"'`：从仓库里哪一层目录启动都找得到根目录（Antigravity 的 `cwd` 写 `.`：插件里相对的 `cwd` 照它的文档按插件目录算，在插件目录里跑这条命令试过，25 个工具都在；插件的工具名可能带上前缀）。Codex 不问就只用只读的工具，会改东西的照它的批准设置问人。
 
 **Peck**（站主的 Harness，`personal-cli-studio/peck`）：Peck 用 CLI 干活时，上面几家照各自的规矩读这个仓库的配置；Peck 自己的循环（API 模型）现在不读项目里的 `.mcp.json`，要在 Peck 的「设置 → MCP」里加一台：名字 `dw`，命令写这个仓库（或 worktree）里 `bench/bin/dw-mcp.sh` 的完整路径，参数空着。会删改的工具（`write_board`、`delete`……）Peck 每次都问；`check` 带图回来时，能看图的模型看得见截图。
 
-看连上没有：Codex 里 `codex mcp list` 有 `dw` 这一行（命令行的 codex 在 `/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex`）；Antigravity 在「Additional Options（…）> MCP Servers」里看得到 `dw` 和 24 个工具；Claude Code 里 `/mcp`。
+看连上没有：Codex 里 `codex mcp list` 有 `dw` 这一行（命令行的 codex 在 `/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex`）；Antigravity 在「Additional Options（…）> MCP Servers」里看得到 `dw` 和 25 个工具；Claude Code 里 `/mcp`。
 
 **自己试一下**（站主能跑）：在终端里起一个服务、问它有几个工具：
 

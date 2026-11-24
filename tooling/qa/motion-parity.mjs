@@ -1,15 +1,11 @@
 // 把动效零件与网站「真实实现」逐帧比较（像素级）。比较哪些、怎么比，写在零件 motion.json 的 parity 里。
 // 用法：npm run qa:parity -- --origin ~/Documents/GitHub/personal-website
 import path from 'node:path';
-import os from 'node:os';
-import { readdirSync, existsSync } from 'node:fs';
-import { parseArgs, schemesToBuild, schemeDir, readJson, readText, loadTokens, log, isMain } from '../lib/common.mjs';
+import { parseArgs, schemesToBuild, schemeDir, readText, loadTokens, motionParts, expandHome, log, isMain } from '../lib/common.mjs';
 import { launchBrowser } from '../lib/browser.mjs';
 import { buildWebCss } from '../tokens/build.mjs';
 import { harnessHtml, captureFrames } from '../lib/motion-harness.mjs';
 import { diffPng } from '../lib/gif.mjs';
-
-const expand = (p) => p.replace(/^~(?=$|\/)/, os.homedir());
 
 /**
  * 网站那边的标记：parity.siteMarkup 为 { file, pattern } 时从网站源文件里取（Astro 写法替换掉），
@@ -25,18 +21,15 @@ function siteMarkup(origin, parity, fragment) {
 
 export async function runParity(args = parseArgs()) {
   if (typeof args.origin !== 'string') { console.log('跳过：需要 --origin <personal-website 路径>'); return { skipped: true }; }
-  const origin = expand(args.origin);
+  const origin = expandHome(args.origin);
   const browser = await launchBrowser();
   const results = [];
   try {
     for (const scheme of schemesToBuild(args)) {
-      const mdir = path.join(schemeDir(scheme), 'motion');
-      if (!existsSync(mdir)) continue;
+      const parts = motionParts(schemeDir(scheme));
+      if (!parts.length) continue;
       const webCss = buildWebCss(scheme, loadTokens(scheme));
-      for (const id of readdirSync(mdir)) {
-        const dir = path.join(mdir, id);
-        if (!existsSync(path.join(dir, 'motion.json'))) continue;
-        const spec = readJson(path.join(dir, 'motion.json'));
+      for (const { dir, spec } of parts) {
         const parity = spec.parity;
         if (!parity) continue; // 只比较网站上有对应实现的零件（motion.json 写了 parity）
         const siteCss = readText(path.join(origin, parity.siteCss));

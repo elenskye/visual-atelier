@@ -6,7 +6,7 @@ import path from 'node:path';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { rootImport, fromRoot } from '../../_lib/root.mjs';
-import { PROJECT, writePage } from '../page.mjs';
+import { PROJECT, writePage, dsBoard, esc } from '../page.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PG = 'motion';
@@ -18,7 +18,6 @@ const PLAY_JS = readFileSync(path.join(HERE, 'play.js'), 'utf8');
 const tokens = loadTokens('pomelo');
 const PALETTES = Object.keys(tokens.color.palettes);
 const PARTS = Object.fromEntries(partList('pomelo').map((p) => [p.id, p]));
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
 /** 一格的说明：名字、一句话（零件标题「·」后面那半）、档位和时长。 */
 function meta(id) {
@@ -100,41 +99,21 @@ function board(file, title, sub, cells, { cols = 3, extraCss = '' } = {}) {
   // 放完东西就没了的（便签撕走、纸团丢掉、贴纸飞走、小票撕走）：停一会儿回到开头的样子
   const RESET = { toast: 3000, crumple: 2600, 'sticker-peel': 2200, 'receipt-print': 2600, 'pomelo-dizzy': 3200 };
   const parts = Object.fromEntries(cells.filter((c) => c.id).map((c) => [c.id, { html: fragmentOf('pomelo', PARTS[c.id].dir, PARTS[c.id].spec), steps: PARTS[c.id].spec.capture.steps ?? [], host: PARTS[c.id].spec.capture.host, reset: RESET[c.id] ?? 0 }]));
-  const html = `<!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<title>${title}</title>
-<script src="./support.js"></script>
-<link rel="stylesheet" href="ds/pomelo/tokens.css">
-<link rel="stylesheet" href="ds/pomelo/components/bundle.css">
-<script src="ds/pomelo/components/bundle.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-<style>
-${CSS}${extraCss}
-</style>
-</helmet>
-<div class="pm root" data-palette="{{palette}}" data-theme="{{theme}}" style="width:${BW}px;height:${H}px">
+  const html = dsBoard({
+    title, css: CSS + extraCss, props,
+    body: `<div class="pm root" data-palette="{{palette}}" data-theme="{{theme}}" style="width:${BW}px;height:${H}px">
 <div class="bhead"><div class="btitle">${title}</div><div class="bsub">${sub}</div></div>
 ${placed.map((c) => c.html(c.x, c.y)).join('\n')}
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props='${JSON.stringify(props).replace(/'/g, '&#39;')}'>
-const CFG = ${JSON.stringify({ parts }).replace(/<\/script/gi, '<\\/script')};
+</div>`,
+    script: `const CFG = ${JSON.stringify({ parts }).replace(/<\/script/gi, '<\\/script')};
 ${PLAY_JS}
 class Component extends DCLogic {
   renderVals() { return { palette: this.props.palette ?? 'blue', theme: this.props.dark ? 'dark' : 'light' }; }
   componentDidMount() { this.stop = Pomelo.paintLive(document.body); PomeloPlay.start(CFG); }
   componentDidUpdate() { Pomelo.paint(document.body); }
   componentWillUnmount() { this.stop && this.stop(); }
-}
-</script>
-</body>
-</html>
-`;
+}`,
+  });
   writeFileSync(path.join(PROJECT, PREFIX + file), html);
   console.log(file, `${BW}×${H}`, (html.length / 1024).toFixed(0) + ' KB');
   return { file: PREFIX + file, title, h: H };

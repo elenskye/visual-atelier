@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { canvasDir, kindOf, readCloud, readCanvasJson } from './store.js';
+import { canvasDir, kindOf, readCloud, readCanvasJson, boardOrder } from './store.js';
 import { startServer } from '../server/server.js';
 import { captureUrl } from '../server/headless.js';
 
@@ -11,7 +11,7 @@ import { captureUrl } from '../server/headless.js';
 //   3. 这块画布自己的版面检查：它目录里的 */lint.mjs（生成器带的，比如 Pomelo Explore 的「糊」「贴边」）
 // 故意的（比如藏在贴纸底下的字）给元素加 data-nolint。截图在 .shots/check/。
 
-export const LAYOUT_EXPRESSION = `(() => {
+const LAYOUT_EXPRESSION = `(() => {
   const W = document.documentElement.clientWidth, H = document.documentElement.clientHeight;
   const problems = [];
   const label = (el) => {
@@ -77,16 +77,21 @@ export function boardsOf(config, name, only = null) {
   }
   if (kind !== 'canvas') throw new Error(`${name} 不是画布`);
   const c = readCanvasJson(config, name);
-  const order = [...(c.order || []).filter((f) => c.boards[f]), ...Object.keys(c.boards).filter((f) => !(c.order || []).includes(f))];
-  const list = order.map((f) => ({ file: f, w: c.boards[f].w, h: c.boards[f].h }));
+  const list = boardOrder(c).map((f) => ({ file: f, w: c.boards[f].w, h: c.boards[f].h }));
   if (!only) return list;
   const hit = list.filter((b) => b.file === only || b.file === `${only}.dc.html`);
   if (!hit.length) throw new Error(`${name} 没有画板 ${only}`);
   return hit;
 }
 
+/** Where the bench at `base` serves one of boardsOf's boards (a page: its entry). */
+export const boardUrl = (base, name, b) => (b.page ? `${base}/c/${name}/` : `${base}/c/${name}/${b.file.split('/').map(encodeURIComponent).join('/')}`);
+
+/** A board's file name without .dc.html (or .html): what its screenshots are called. */
+export const stemOf = (file) => file.replace(/\.dc\.html$|\.html?$/, '');
+
 // The canvas's own layout lints: <folder>/lint.mjs one level down (generators carry them).
-export function ownLints(config, name) {
+function ownLints(config, name) {
   const dir = canvasDir(config, name);
   return fs
     .readdirSync(dir, { withFileTypes: true })
@@ -102,10 +107,8 @@ export async function runCheck(config, name, { board = null, lints = true, onBoa
   const srv = await startServer(config, { port: 0, watch: false, quiet: true });
   try {
     for (const b of boards) {
-      const stem = b.file.replace(/\.dc\.html$|\.html?$/, '');
-      const out = path.join(dir, '.shots', 'check', `${stem}.png`);
-      const url = b.page ? `${srv.baseUrl}/c/${name}/` : `${srv.baseUrl}/c/${name}/${b.file.split('/').map(encodeURIComponent).join('/')}`;
-      const r = await captureUrl(config, url, out, { width: b.w, height: b.h, scale: 1, reducedMotion: true, inspect: b.page ? null : LAYOUT_EXPRESSION });
+      const out = path.join(dir, '.shots', 'check', `${stemOf(b.file)}.png`);
+      const r = await captureUrl(config, boardUrl(srv.baseUrl, name, b), out, { width: b.w, height: b.h, scale: 1, reducedMotion: true, inspect: b.page ? null : LAYOUT_EXPRESSION });
       const layout = r.inspect?.problems || [];
       if (r.inspect?.more) layout.push(`……还有 ${r.inspect.more} 处`);
       if (r.inspect?.error) layout.push(`版面检查没跑成：${r.inspect.error}`);

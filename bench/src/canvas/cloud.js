@@ -80,7 +80,7 @@ function cloudOf(config, name) {
 }
 
 /** Resolves a target slug (default: the canvas's home) and its blob map (local id → remote id). */
-export function resolveTarget(config, name, slug = null) {
+function resolveTarget(config, name, slug = null) {
   const { cloud } = cloudOf(config, name);
   const target = slug || cloud.home;
   if (!target) throw new Error(`${name} 还没有云端地址：先用 dw target ${name} <slug> --url <链接> 登记`);

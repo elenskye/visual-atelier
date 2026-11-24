@@ -99,7 +99,7 @@ node bench/bin/dw.js target <画布名> <slug> --url <链接> --home
   4. 挂着 Design System 的画布（`canvas.json` 的 `designSystems`）：`project/ds/<名字>/` 跟着发上去，主题、样式和手画线条照样能用；记录里的链接要指向现用账号的那份（Pomelo 柚儿园：https://claude.ai/artifact/5uaouHwXAXihjxhh9g4vb3 ），重新 `dw ds install` 就会写成这份。
   5. 告诉站主新链接，记进这块画布的 `README.md` 和 `canvases/README.md`。
 - **home** 只是「不加 `--target` 时用哪份」。
-- **内置浏览器**的 claude.ai 要单独登录，和桌面 App 用的账号可以不同；它登的是哪个账号，就只看得到哪个账号的私有画布。和云端截图对比前先确认。
+- **内置浏览器**的 claude.ai 要单独登录，和桌面 App 用的账号可以不同；它登的是哪个账号，就只看得到哪个账号的私有画布和共享给它的。和云端截图对比前先确认。
 
 ### 旧账号的云端和本地源（2026-11-07 核对）
 
@@ -111,6 +111,6 @@ node bench/bin/dw.js target <画布名> <slug> --url <链接> --home
 
 旧账号里另有三份问卷（Phase 4、仓库合并、网站优化）和两块测试画布（Workbench 往返测试、今天的待办卡片），本地源 2026-11-12 清掉了，在 Git 历史里。
 
-现用账号里的：三个 Design System（[Pomelo 柚儿园](https://claude.ai/artifact/5uaouHwXAXihjxhh9g4vb3)、[Vermilion 朱红](https://claude.ai/artifact/B89E9carxtZjjkT4adbNer)、Peck，地址在各自的 `published.json`）；画布和问卷页列在 `canvases/README.md`。
+现用账号里的：四个 Design System（[Pomelo 柚儿园](https://claude.ai/artifact/5uaouHwXAXihjxhh9g4vb3)、[Vermilion 朱红](https://claude.ai/artifact/B89E9carxtZjjkT4adbNer)、Peck、[Pith](https://claude.ai/artifact/CPavXvD8wdYuEEXbVhYqAb)，地址在各自的 `published.json`）；画布和问卷页列在 `canvases/README.md`。旧账号的 Pith Explore（EX1–EX11）站主共享给了现用账号：内置浏览器里能看（Can view），工具照样读不了。
 
 **站主在 Claude 里复制过来的**（2026-11-12 的「Vermilion (Copy)」「Vermilion Explore (Copy)」，已改回原名）：文件和图片 id 原样带过来，图片也存在新的那份里（Design System 页的 Assets 写着「Stored alongside the page: 115 files」）。所以不用重传图片：`published.json` 顶层换成新的这份、图片记录照抄，旧的那份挪进 `copies`；画布用 `dw target … --same-ids` 登记成 home。复制来的那份 `list_assets` 不给（工具认不出是谁建的），图显不显示只能在页面上看。

@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, existsSync, realpathSync, rmSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import os from 'node:os';
 import path from 'node:path';
 
 export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -46,6 +47,19 @@ export function schemesToBuild(args) {
 }
 
 export const outRoot = (args) => path.resolve(typeof args.out === 'string' ? args.out : path.join(ROOT, 'dist'));
+
+/** 开头的 ~ 换成用户目录（--origin、sync.json 的 root 这类路径）。 */
+export const expandHome = (p) => p.replace(/^~(?=$|\/)/, os.homedir());
+
+/** 方案目录 sdir 下的全部动效零件（带 motion.json 的文件夹）：[{ id, dir, spec }]，按文件夹名排。 */
+export function motionParts(sdir) {
+  const mdir = path.join(sdir, 'motion');
+  if (!existsSync(mdir)) return [];
+  return readdirSync(mdir).sort().filter((id) => existsSync(path.join(mdir, id, 'motion.json'))).map((id) => {
+    const dir = path.join(mdir, id);
+    return { id, dir, spec: readJson(path.join(dir, 'motion.json')) };
+  });
+}
 
 export function walk(dir) {
   const files = [];
@@ -122,6 +136,26 @@ export function loadTokens(scheme) {
     graphic: optional('graphic.json'),
     handmade: optional('handmade.json'),
   };
+}
+
+/**
+ * 生成器（build:graphic、build:derived）更新清单里自己的一条：保留状态、批准记录与备注，其余字段以生成结果 e 为准；
+ * 没有旧条目的记为 proposed。
+ */
+export function mergeManifestEntry(old, e) {
+  const keep = old ? { status: old.status, ...(old.approved ? { approved: old.approved } : {}), ...(old.notes ? { notes: old.notes } : {}) } : { status: 'proposed' };
+  return { id: e.id, title: e.title, file: e.file, kind: e.kind, ...keep, ...Object.fromEntries(Object.entries(e).filter(([k]) => !['id', 'title', 'file', 'kind'].includes(k))) };
+}
+
+/** 生成器写回方案目录：changed（相对方案目录）里的文件取 files 的内容；assets 不为空时把清单整份写回。 */
+export function writeGenerated(sdir, files, changed, manifestPath, manifest, assets) {
+  for (const rel of changed) {
+    if (rel === 'marks/manifest.json') continue;
+    const p = path.join(sdir, rel);
+    mkdirSync(path.dirname(p), { recursive: true });
+    writeFileSync(p, files[rel]);
+  }
+  if (assets) writeFileSync(manifestPath, JSON.stringify({ ...manifest, assets }, null, 2) + '\n');
 }
 
 /** 方案的配色 id；只有一套的方案返回 [null]，循环写法两边一样。 */

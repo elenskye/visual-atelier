@@ -6,7 +6,17 @@
       "url": "https://claude.ai/artifact/3qPdEANYGZCWLqNyfaajvx",
       "account": "旧账号",
       "blobs": {}
+    },
+    "867c300f-e959-4df2-8a41-75c10648428e": {
+      "url": "https://claude.ai/artifact/HcCFtnXuGg9fQnp5qSVoH7",
+      "account": "现用账号",
+      "blobs": {},
+      "lastPublish": {
+        "version": "1795508590-fd10",
+        "at": "2026-11-24T08:23:27.709Z",
+        "files": 11
+      }
     }
   },
-  "home": "3qPdEANYGZCWLqNyfaajvx"
+  "home": "867c300f-e959-4df2-8a41-75c10648428e"
 }

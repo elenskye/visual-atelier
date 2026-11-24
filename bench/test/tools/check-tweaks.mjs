@@ -4,12 +4,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
-import { loadConfig } from '../../src/utils/config.js';
 
 const [name, prop, outDir, ...rest] = process.argv.slice(2);
 const dark = rest.includes('--dark');
 const BASE = rest.includes('--base') ? rest[rest.indexOf('--base') + 1] : 'http://127.0.0.1:4321';
-const config = loadConfig();
 const sharp = (await import('sharp')).default;
 const pw = await import('playwright-core');
 const chromium = pw.chromium || pw.default.chromium;

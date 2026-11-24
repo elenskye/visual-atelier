@@ -48,9 +48,9 @@ const add = (id, title, file, body, extra = {}) => { files.set(file, body); asse
 
 add('logo', 'Logo · 蕨芽', 'logo/pith.svg', svgFile(LOGO, 'pith-logo'), { use: '顶栏左边（30px）、关于页；配 Newsreader 500 的「Pith」字标。最小 16px。' });
 add('logo-grow', 'Logo · 蕨芽（会长的那一版）', 'logo/pith-grow.svg', svgFile(logoGrow('m'), 'pith-logo'), {
-  status: 'proposed', approved: undefined,
+  approved: '站主 2026-11-24 批准（茎到碗不停顿、接口不留缝的那一版）',
   use: '只在动效里用（schemes/pith/motion/logo-grow/）：茎和碗一笔长出来，再卷进去，最后结果。不动的时候和 logo 一样。页面上有几个时，遮罩的 id（lgm-m-1/2/3）要换成不重的。',
-  notes: '站主 11-24 要的修正：茎到碗不停顿、接口不留缝（茎伸进碗里 1，碗的后段用窄一点的遮罩）。待站主看过。',
+  notes: '茎伸进碗里 1，碗的后段用窄一点的遮罩，所以一笔长出来、接口不留缝。',
 });
 add('app-icon', 'App 图标', 'logo/app-icon.svg', `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">${appIcon(LOGO).replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, '').replace('class="ap-bg"', `fill="${APP['app-ink']}"`).replace(/class="so"/g, `fill="${APP['app-paper']}"`).replace(/class="co"/g, `fill="${APP['app-coral']}"`)}</svg>\n`, {
   colorMode: 'fixed', use: '纸与海的 App 图标：墨色圆角方、纸色的蕨芽、珊瑚色的果。颜色是 color.json 里纸与海的 app-ink、app-paper、app-coral。',

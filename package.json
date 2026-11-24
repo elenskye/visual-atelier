@@ -1,7 +1,7 @@
 {
   "name": "visual-atelier",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "个人视觉仓库：多套视觉方案、共用工具、画布和看画布的引擎",
   "type": "module",
   "engines": {

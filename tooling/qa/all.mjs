@@ -5,7 +5,7 @@
 // 用法：npm run all（参数照传给每一步，比如 -- --scheme vermilion）。同一时间只跑一遍。
 import path from 'node:path';
 import { spawn } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { ROOT, writeFile, isMain } from '../lib/common.mjs';
 
 export const STEPS = [

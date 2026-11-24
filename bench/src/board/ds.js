@@ -27,7 +27,7 @@ const kb = (n) => (n >= 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(1)} MB` : n >
 
 const D = { name: null, data: null, section: 'overview', theme: null, onNav: null };
 
-export function systemSections(data) {
+function systemSections(data) {
   const t = data?.tokens || {};
   const fams = Object.keys(t).filter((k) => k !== 'color' && k !== 'type' && t[k] && Array.isArray(t[k].tokens) && t[k].tokens.length);
   return [
@@ -69,10 +69,6 @@ export async function openSystem(name, section, { onNav }) {
 export function closeSystem() {
   $('#dsview').hidden = true;
   $('#ds-main').replaceChildren();
-}
-
-export function currentSystem() {
-  return D.data;
 }
 
 function loadFonts(urls) {

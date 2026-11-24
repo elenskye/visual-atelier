@@ -4,7 +4,7 @@ import util from 'node:util';
 import readline from 'node:readline';
 import { spawn } from 'node:child_process';
 import { loadConfig, readJsonFile, writeJsonFile, BENCH_ROOT, REPO_ROOT } from '../utils/config.js';
-import { listCanvases, canvasDir, kindOf, readCloud, readCanvasJson } from '../canvas/store.js';
+import { canvasDir, kindOf, readCloud, readCanvasJson, boardOrder } from '../canvas/store.js';
 import { snapshot } from '../canvas/versions.js';
 import { createCanvas } from '../canvas/create.js';
 import { runCheck } from '../canvas/check.js';
@@ -17,7 +17,7 @@ import { listSystems, installSystem } from '../ds/systems.js';
 import { listMotionSchemes } from '../motion/parts.js';
 import { catalog } from '../server/catalog.js';
 import { readChecks, startChecks } from '../server/checks.js';
-import { benchStatus, boardAddress } from '../cli/commands.js';
+import { benchStatus, stopBench, boardAddress } from '../cli/commands.js';
 import { BENCH_API } from '../server/server.js';
 import { createScheme, checkScheme } from '../scheme/new.js';
 
@@ -63,7 +63,7 @@ function canvasSummary(config, name) {
   const c = readCanvasJson(config, name);
   const pages = c.pages?.length ? c.pages : [{ id: null, name: '（没有分页）' }];
   const first = pages[0]?.id;
-  const order = [...(c.order || []).filter((f) => c.boards[f]), ...Object.keys(c.boards).filter((f) => !(c.order || []).includes(f))];
+  const order = boardOrder(c);
   const reviews = listReviews(config, name);
   return {
     name,
@@ -165,8 +165,7 @@ async function serveStop(config, { port }) {
   const s = await benchStatus(base);
   if (!s) return { running: false, stopped: false, url: base };
   if (notOurs(config, s)) throw new Error(`${notOursMessage(config, s, port)}。它不归这一份管，不停`);
-  const r = await fetch(`${base}/api/stop`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
-  if (!r.ok) throw new Error((await r.json().catch(() => ({}))).message || `停不了（${r.status}）`);
+  await stopBench(base);
   return { running: false, stopped: true, url: base, pid: s.pid };
 }
 
@@ -193,7 +192,7 @@ const READ_ONLY = new Set(['list', 'canvas', 'read_board', 'open', 'ds_list', 'd
 const DESTRUCTIVE = new Set(['delete', 'write_board', 'write_file', 'db_set', 'dw', 'serve_stop']);
 const annotationsOf = (name) => ({ readOnlyHint: READ_ONLY.has(name), destructiveHint: !READ_ONLY.has(name) && DESTRUCTIVE.has(name), idempotentHint: READ_ONLY.has(name), openWorldHint: false });
 
-export const TOOLS = [
+const TOOLS = [
   {
     name: 'list',
     description: '列出 bench 里的全部，五类：Design System、Motion Deck、Explore Deck（画布）、Questionnaire（问卷页）、Checks（npm run all 的结果）。',
@@ -454,7 +453,7 @@ export const TOOLS = [
 
 // ---------- 协议 ----------
 
-export async function callTool(config, name, args = {}) {
+async function callTool(config, name, args = {}) {
   const tool = TOOLS.find((t) => t.name === name);
   if (!tool) throw Object.assign(new Error(`没有这个工具：${name}`), { rpc: -32602 });
   const out = await tool.run(config, args || {});
@@ -464,7 +463,7 @@ export async function callTool(config, name, args = {}) {
 }
 
 /** Answers one JSON-RPC message (null for notifications). */
-export async function handle(config, msg) {
+async function handle(config, msg) {
   const { id, method, params } = msg || {};
   const isRequest = id !== undefined && id !== null;
   const reply = (result) => (isRequest ? { jsonrpc: '2.0', id, result } : null);

@@ -15,14 +15,14 @@
 | 实现 | Agent | 源文件（状态 `draft`） | 能构建 |
 | 校验 | Agent | 对比度、体积、减弱动效、禁用项、逐帧总览图 | 全部通过；未目视项如实列出 |
 | 确认 | 站主 | 在 bench 或画布上目视，说「批准」 | 状态改为 `approved` |
-| 发版 | 站主 | Git tag 与 `CHANGELOG.md` | 站主提交 |
+| 发版 | Agent | 提交、tag `<方案>-v<版本>` 与 `CHANGELOG.md` | 站主推送 |
 | 采用 | 站主授权，Agent 执行 | 同步到消费方 | 消费方构建与目视通过 |
 
 ## 资产从做到用
 
 1. 在本仓库做。要选的给 2–4 版小样，放进画布 `canvases/<画布名>/`（`design-loop` Skill），站主在 bench 或云端画布上看、批；`scratch/` 和会话临时目录不算留了一份。
 2. 站主批准，资产改为 `approved`。Design System 跟着更新，发布记录 `published.json` 进这次提交。
-3. 打 tag 前跑 `npm run all`。站主提交、打 tag。给站主的命令写全路径（`git -C <路径>`），因为 worktree 和主工作区容易弄混。
+3. 打 tag 前跑 `npm run all`。做这个方案的会话提交、打 tag，站主推送（`CLAUDE.md`「版本与 Git」）。给站主的命令写全路径（`git -C <路径>`），因为 worktree 和主工作区容易弄混。
 4. Agent 核对 tag，都对上才继续：
    - `git rev-parse <tag>` 是预期的提交；
    - tag 里 `scheme.json` 的版本是这次的版本；
@@ -53,7 +53,7 @@
 
 探索稿一律是 `draft`。胜出后 `dw scheme new` 新建方案目录（从 `_template/` 起），简报移进方案的 `history/`。哪个 Agent 在云端、哪个在本地做，见 `canvases/README.md`「看、批、写」；同一份说明交给几家各做一版、再由 Claude 评估的，照 `docs/sessions.md`「第二条线」。
 
-## 验证（2026-11-22 从 `CLAUDE.md` 挪过来）
+## 验证
 
 - **改了哪边跑哪边**：方案和资产在 `schemes/`、`tooling/`、`canvases/`，引擎在 `bench/`、`docs/cloud.md` 和画布用的 Skill。日常只跑和改动直接相关的最小验证；`npm run all` 只在发版前或站主要求时跑（`tooling/README.md`）。
 - **画板**：`node bench/bin/dw.js check <画布名>`（只看一张加 `--board <文件>`）全部通过，再看 `canvases/<画布名>/.shots/check/<画板名>.png`（画板名去掉 `.dc.html`）。它会跑画布自带的 `*/lint.mjs`；故意出框、藏起来的字给元素加 `data-nolint`。

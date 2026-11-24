@@ -14,6 +14,7 @@
   --color-selected: #E1E7FF;
   --color-marker: #FFD23F;
   --color-link: #2B4BC0;
+  --color-link-pomelo: #A85210;
   --color-danger: #C8322A;
   --color-on-danger: #FFFFFF;
   --color-up: #1D7A4F;
@@ -90,6 +91,7 @@
   --color-selected: #28315C;
   --color-marker: #745C00;
   --color-link: #A6B8FF;
+  --color-link-pomelo: #FFB870;
   --color-danger: #FFA291;
   --color-on-danger: #1A0C0A;
   --color-up: #6FD6A0;

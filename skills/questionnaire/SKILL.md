@@ -39,6 +39,8 @@ description: 在 visual-atelier 里做一份问卷页，和站主对齐一个 Ph
    - `SURVEY.title` 是顶栏的名字，`SURVEY.key` 是本机暂存用的名字，每份问卷不一样。
    - `PAGES` 每页 `{ name, title, lead, note?, items }`，一页 3–8 题。题的写法照那一段开头的注释和示例：单选 `single`、多选 `multi`（`max`）、矩阵 `rows`（`scale` 加 `rows`，行多时用 `groups` 分块）、文字 `text`。题的 `id` 全卷不能重复。
    - 能给建议的都给 `rec`，站主可以一键照建议填；纯粹核对事实的题（「看过没问题吗」）不给。
+   - **选项配示意图**（站主 2026-11-15）：会改变样子、流程的选项都写 `fig`（一小段内联 SVG 或图），别只靠文字；纯文字的选项站主看不出在比什么。
+   - **出问卷之前先用提问功能问**几个会改变问卷走向的决定（站主 2026-11-15），问卷里不再问；对话里已经定了的写成「已经定了」列出来，不再问。
    - 中文，字号和对比够大；不放站主的私人内容和真实数据。
    - 模板本身要改（加题型、修 bug）就改 `skills/questionnaire/template/survey.html`，已经发出去的问卷不跟着变。
    - Vermilion 的 tokens 改过（`npm run build:ds` 之后）：`node skills/questionnaire/template/vermilion.mjs` 更新模板，`… vermilion.mjs canvases/<名字>/survey.html` 更新一份问卷；加 `--check` 只看是不是最新的。

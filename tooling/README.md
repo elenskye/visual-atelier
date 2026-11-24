@@ -44,7 +44,7 @@
 | `sync/sync.mjs` | 单向同步（`docs/adoption.md`）：把 tag 用 `git archive` 导出到临时目录再构建，把 `sync.json` 登记的文件复制到消费方，写 `VERSION`、`README.md`、`SHA256SUMS`。只同步 approved 的资产与零件，token 方言（`dist` 的 `tokens/`）和手画零件的画法（`design-system/project/components/bundle.js`）跟着 `scheme.json` 的状态；要构建时用到浏览器，加 `VA_BROWSER_CHANNEL=chrome`；tag 名必须是 `<方案>-v<version>`；只在 Mac 上跑；目标目录与上次的校验和对不上就停下（`--force` 跳过）。`--check` 只核对，加 `--tag` 时再与该 tag 的构建逐字节比较；`--dry-run` 只列出要写的文件 |
 | `og-card/` | 文章分享图的生成模块，同步到消费方、在消费方构建时运行：给标题，按模板排版，用 resvg（wasm 版）出 PNG，不依赖浏览器，两次输出逐字节一致 |
 | `watermark/` | 作品水印的生成模块，同步到消费方运行：给一张图，选位置和墨色，输出同格式、同尺寸的新图，只依赖 sharp。`fake-images.mjs` 是假图，只在本仓库用 |
-| `lib/` | 共用函数：路径与哈希、浏览器启动、GIF 编码、逐帧采集 |
+| `lib/` | 共用函数：路径与哈希、`~` 展开、列出方案的动效零件、生成器写清单（`common.mjs`），浏览器启动、GIF 编码、逐帧采集 |
 | `fonts/subset.mjs` | TrueType 字体子集：只留用到的字，补上浏览器要的 cmap、name、OS/2、post。画布的优化页和方案要打包中文字体时用（探索页直接用 Google Fonts）；生成器经 `canvases/_lib/root.mjs` 的 `rootImport` 引，命令行 `node tooling/fonts/subset.mjs <原字体.ttf> --text <字> --out <输出.ttf>`。保留字名的字体（得意黑这类）别做子集 |
 
 第一次用（装依赖、选浏览器、构建）见根目录 `README.md`「第一次用」。
@@ -99,7 +99,7 @@ VA_CHROMIUM="$PWD/scratch/chrome-nogpu.sh" npm run sync -- --scheme vermilion --
 
 `project/` 里除了 index 还有 `tokens.json`、`tokens.css`（构建按 `tokens.json` 生成，第一行是「<名字> — generated from tokens.json」，Design System 页本身不发布它，读的人和挂载的画布要靠这份）、`README.md`、`components/`、`assets/` 的说明。
 
-`published.json` 顶层的 `account` 是建这份 Design System 的 Claude 账号，只有它能发布、上传资产（三个都是「现用账号」；Vermilion 朱红旧账号那份记在 `copies.旧账号`，只能看）。用 Claude Code 的 Artifact 工具发布时，`root` 写 `dist/<方案>/design-system`，`file_path` 是 `project/design-system.json`，`files` 列其余改过的 `project/` 文件，一次发完。
+`published.json` 顶层的 `account` 是建这份 Design System 的 Claude 账号，只有它能发布、上传资产（四个都是「现用账号」；Vermilion 朱红旧账号那份记在 `copies.旧账号`，只能看）。用 Claude Code 的 Artifact 工具发布时，`root` 写 `dist/<方案>/design-system`，`file_path` 是 `project/design-system.json`，`files` 列其余改过的 `project/` 文件，一次发完。
 
 ### 在另一个账号里发一份
 

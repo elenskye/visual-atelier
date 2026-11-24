@@ -1,6 +1,7 @@
 // EX6、EX7 共用的零件：外框、图标、贴纸、小控件。仓库里的 token、工具、贴纸都只读地取（走 _lib/root.mjs）。
 import { readFileSync } from 'node:fs';
 import { rootImport, fromRoot } from '../../_lib/root.mjs';
+import { dsBoard, esc } from '../page.mjs';
 
 const { loadTokens } = await rootImport('tooling/lib/common.mjs');
 const { makeCtx } = await rootImport('tooling/handmade/marks.mjs');
@@ -10,7 +11,7 @@ export const tokens = loadTokens('pomelo');
 const mctx = makeCtx(tokens);
 export const PALETTES = Object.keys(tokens.color.palettes);
 export const BASE_CSS = readFileSync(fromRoot('canvases/pomelo-explore/notes/notes.css'), 'utf8');
-export const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+export { esc };
 
 // ---------- 玩物有志的贴纸：三个方案（64 格，兴趣 · 樱粉，和 MODULE_ICONS 同一种写法）。站主 11-15 挑了 B，已搬进方案的 MODULE_ICONS.games；
 // 这里留着三个的起稿，EX7 的贴纸板照旧三个并排（探索全留） ----------
@@ -180,44 +181,22 @@ export function boardHtml({ title, w, h, css, body, dark, mark }) {
     mark: { editor: 'enum', options: ['a', 'b', 'c'], default: mark ?? 'a', section: '贴纸', label: '玩物有志的贴纸（A 卡带 · B 掌机 · C 手柄）' },
     $preview: { width: w, height: h },
   };
-  return `<!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<title>${title}</title>
-<script src="./support.js"></script>
-<link rel="stylesheet" href="ds/pomelo/tokens.css">
-<link rel="stylesheet" href="ds/pomelo/components/bundle.css">
-<script src="ds/pomelo/components/bundle.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-<style>
-${BASE_CSS}
-.root{width:${w}px;height:${h}px}
-.page{height:${h - 88}px}
-${css}
-</style>
-</helmet>
-<div class="pm root" data-palette="{{palette}}" data-theme="{{theme}}" data-mark="{{mark}}">
+  return dsBoard({
+    title, props,
+    css: `${BASE_CSS}\n.root{width:${w}px;height:${h}px}\n.page{height:${h - 88}px}\n${css}`,
+    body: `<div class="pm root" data-palette="{{palette}}" data-theme="{{theme}}" data-mark="{{mark}}">
 <div class="app" data-bar="always" ${body.attrs ?? ''}>
 ${sprite()}
 ${body.html}
 </div>
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props='${JSON.stringify(props).replace(/'/g, '&#39;')}'>
-class Component extends DCLogic {
+</div>`,
+    script: `class Component extends DCLogic {
   renderVals() {
     return { palette: this.props.palette ?? 'blue', theme: this.props.dark ?? ${dark ? 'true' : 'false'} ? 'dark' : 'light', mark: this.props.mark ?? '${mark ?? 'a'}' };
   }
   componentDidMount() { this.stop = Pomelo.paintLive(document.body); }
   componentDidUpdate() { Pomelo.paint(document.body); }
   componentWillUnmount() { this.stop && this.stop(); }
-}
-</script>
-</body>
-</html>
-`;
+}`,
+  });
 }

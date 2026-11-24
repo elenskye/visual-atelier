@@ -10,10 +10,10 @@ import { readJsonFile, writeJsonFile, sha256File } from '../utils/config.js';
 // A page (a single Artifact page such as a questionnaire) has cloud.json with kind "page" and an entry file.
 
 export const NAME_RE = /^[a-z0-9][a-z0-9-]*$/;
-export const BLOB_ID_RE = /\/_blob\/([0-9a-f]{32})/g;
+const BLOB_ID_RE = /\/_blob\/([0-9a-f]{32})/g;
 const TEXT_EXT = new Set(['.html', '.htm', '.css', '.js', '.mjs', '.json', '.md', '.svg', '.txt']);
 
-export function assertName(name) {
+function assertName(name) {
   if (!name || !NAME_RE.test(name)) {
     throw new Error(`画布名只能用小写字母、数字和连字符：${name}`);
   }
@@ -83,6 +83,9 @@ export function listCanvases(config) {
   }
   return out.sort((a, b) => a.name.localeCompare(b.name));
 }
+
+/** A canvas's boards in order: canvas.json's `order` (those still there), then any it leaves out. */
+export const boardOrder = (c) => [...(c.order || []).filter((f) => c.boards[f]), ...Object.keys(c.boards).filter((f) => !(c.order || []).includes(f))];
 
 export function readCanvasJson(config, name) {
   const file = path.join(canvasDir(config, name), 'project', 'canvas.json');

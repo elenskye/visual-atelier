@@ -11,7 +11,7 @@ import { checksSub } from './checks.js';
 //   Explore Deck    canvases/<名字>/ with project/canvas.json              → #/<名字>
 //   Questionnaire   canvases/<名字>/ that is a single page (cloud.json kind "page") → #/<名字>, alone at /c/<名字>/
 //   Checks          npm run all's results (server/checks.js), one item       → #/qa/all（站主 2026-11-14 加的第五类）
-export const SECTIONS = [
+const SECTIONS = [
   { id: 'ds', title: 'Design System' },
   { id: 'motion', title: 'Motion Deck' },
   { id: 'explore', title: 'Explore Deck' },
@@ -20,7 +20,7 @@ export const SECTIONS = [
 ];
 
 /** One line under a list's title: what it is and how big. */
-export function subOf(section, item) {
+function subOf(section, item) {
   if (section === 'ds') return item.built ? `schemes · ${item.name}` : '还没构建：npm run build:ds';
   if (section === 'motion') return `${item.parts} 个零件`;
   if (section === 'questionnaire') return '问卷页';
@@ -29,7 +29,7 @@ export function subOf(section, item) {
 }
 
 /** Where the bench UI shows it (the part after #). */
-export function routeOf(section, name) {
+function routeOf(section, name) {
   if (section === 'ds') return `/ds/${name}`;
   if (section === 'motion') return `/motion/${name}`;
   if (section === 'checks') return `/qa/${name}`;

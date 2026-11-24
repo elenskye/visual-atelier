@@ -16,9 +16,8 @@ import path from 'node:path';
 import os from 'node:os';
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, symlinkSync } from 'node:fs';
-import { ROOT, parseArgs, readJson, readText, sha256, walk, writeFile, log, isMain } from '../lib/common.mjs';
+import { ROOT, parseArgs, readJson, readText, motionParts, expandHome, sha256, walk, writeFile, log, isMain } from '../lib/common.mjs';
 
-const expand = (p) => p.replace(/^~(?=$|\/)/, os.homedir());
 const git = (...a) => execFileSync('git', a, { cwd: ROOT, encoding: 'utf8' }).trim();
 const IGNORED = new Set(['.DS_Store']);
 
@@ -26,7 +25,7 @@ function consumerOf(scheme, name) {
   const spec = readJson(path.join(ROOT, 'schemes', scheme, 'sync.json'));
   const c = spec.consumers[name];
   if (!c) throw new Error(`schemes/${scheme}/sync.json 没有登记消费方 ${name}`);
-  const root = path.resolve(expand(c.root));
+  const root = path.resolve(expandHome(c.root));
   const target = path.resolve(root, c.dir);
   if (!target.startsWith(root + path.sep)) throw new Error(`同步目录 ${c.dir} 不在 ${root} 里面`);
   if (!existsSync(root)) throw new Error(`找不到消费方仓库 ${root}`);
@@ -56,6 +55,8 @@ export function verifyTarget(target) {
 /** 同步的每个文件都要来自 approved 的资产或动效零件。 */
 function unapproved(sdir, files) {
   const manifest = readJson(path.join(sdir, 'marks', 'manifest.json'));
+  // 属于方案本身的文件跟着 scheme.json 的状态
+  const ofScheme = (rel) => ({ status: readJson(path.join(sdir, 'scheme.json')).status, what: `${path.basename(sdir)} 方案（${rel}）` });
   const bad = [];
   for (const f of files) {
     let status, what;
@@ -69,10 +70,7 @@ function unapproved(sdir, files) {
       status = a?.status; what = a?.id ?? f.src;
     } else if (f.src?.startsWith('motion/') && f.src.split('/').length === 2) {
       // 零件共用的文件（例如 motion/visit-once.js）：引用它的零件都要是 approved
-      const users = readdirSync(path.join(sdir, 'motion'))
-        .filter((id) => existsSync(path.join(sdir, 'motion', id, 'motion.json')))
-        .map((id) => readJson(path.join(sdir, 'motion', id, 'motion.json')))
-        .filter((spec) => spec.files.js && path.posix.join('motion', spec.id, spec.files.js) === f.src);
+      const users = motionParts(sdir).map((p) => p.spec).filter((spec) => spec.files.js && path.posix.join('motion', spec.id, spec.files.js) === f.src);
       status = users.length && users.every((spec) => spec.status === 'approved') ? 'approved' : users.length ? 'proposed' : undefined;
       what = f.src;
     } else if (f.src?.startsWith('motion/')) {
@@ -85,14 +83,12 @@ function unapproved(sdir, files) {
       const id = path.basename(f.dist).split('@')[0];
       status = manifest.assets.find((x) => x.id === id)?.status; what = id;
     } else if (f.dist?.startsWith('tokens/') || f.dist?.startsWith('design-system/project/') || f.dist === 'design-system/consumer.css') {
-      // token 方言、手画零件的画法、Design System 的产物（样式、字体；consumer.css 里的动效只放 approved 的零件）属于方案本身：跟着 scheme.json 的状态
-      status = readJson(path.join(sdir, 'scheme.json')).status; what = `${path.basename(sdir)} 方案（${f.dist}）`;
-    } else if (f.src && !f.src.split('/').includes('..') && (/^[^/]+\.md$/.test(f.src) || f.src.startsWith('type/'))) {
-      // 方案自己的说明（DESIGN.md、规则）和随方案发的字体文件（type/ 下）：也跟着 scheme.json 的状态（Peck 的云端开发看不到本仓库，2026-11-10）
-      status = readJson(path.join(sdir, 'scheme.json')).status; what = `${path.basename(sdir)} 方案（${f.src}）`;
-    } else if (f.src && !f.src.split('/').includes('..') && f.src.startsWith('atlas/releases/')) {
-      // Atlas 的设计快照（冻结以后不改，tooling/atlas/build.mjs）：站主定稿才冻结，跟着 scheme.json 的状态
-      status = readJson(path.join(sdir, 'scheme.json')).status; what = `${path.basename(sdir)} 方案（${f.src}）`;
+      // token 方言、手画零件的画法、Design System 的产物（样式、字体；consumer.css 里的动效只放 approved 的零件）属于方案本身
+      ({ status, what } = ofScheme(f.dist));
+    } else if (f.src && !f.src.split('/').includes('..') && (/^[^/]+\.md$/.test(f.src) || f.src.startsWith('type/') || f.src.startsWith('atlas/releases/'))) {
+      // 方案自己的说明（DESIGN.md、规则）、随方案发的字体文件（type/ 下；Peck 的云端开发看不到本仓库，2026-11-10）、
+      // Atlas 的设计快照（冻结以后不改，tooling/atlas/build.mjs；站主定稿才冻结）：也属于方案本身
+      ({ status, what } = ofScheme(f.src));
     } else {
       throw new Error(`不认识的同步来源：${JSON.stringify(f)}`);
     }

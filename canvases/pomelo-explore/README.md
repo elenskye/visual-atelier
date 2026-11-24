@@ -23,6 +23,7 @@ Pomelo 的 Explore Deck：探索和优化都在这一块，按页分（站主 20
 | R5：Atlas 年度小报 | 5 张 `Atlas-*` | `atlas/` |
 | R6：见字如面原型 | 7 张 `Notes-*`，能玩的原型 | `notes/` |
 | R7：见字如面格式条、PDF | `Notes-Toolbar`、`Notes-Export`、`Notes-PDF-Pomelo`、`Notes-PDF-Print` | `notes/` |
+| R8：侧栏展开 | `Fold-Sidebar`，能玩的原型（标签树、文件夹、分组三栏；零件 `motion/fold`，站主 2026-11-24 挑了 C 并批准） | 手写，没有生成器，直接改 `project/Fold-Sidebar.dc.html` |
 
 每个目录的 `README.md` 写它那一页的画板和做法。`schemes/pomelo/` 清单里「pomelo-marks 的 Main」这类出处，说的是这里带前缀的板（`Marks-Main`）。
 
@@ -38,7 +39,8 @@ node canvases/pomelo-explore/notes/gen.mjs
 VA_BROWSER_CHANNEL=chrome node bench/bin/dw.js check pomelo-explore
 ```
 
-- 每页的生成器都用 `page.mjs` 的 `writePage`：只写自己那一页的画板和 `canvas.json` 里自己那一页，别的页、画板、便签不动；页名、页的先后、打开时落在哪页都以 `canvas.json` 为准（站主在 bench 和有板有眼里能改名、删页），生成器只在一页还没有时把它加在最后。上面那张表以界面里的为准。
+- **先别重跑 `atlas/`、`marks/` 的生成器**（2026-11-24 发现）：`project/` 里 `Atlas-Main`、`Marks-*` 共 11 张板和 `canvas.json` 已经和现在的生成器对不上，重跑会把它们改掉。要重跑先在一份副本里跑、比对，确认改动是想要的。
+- 每页的生成器都用 `page.mjs` 的 `writePage`（实现在 `../_lib/page.mjs`）、画板外壳 `dsBoard` 和 `esc`：只写自己那一页的画板和 `canvas.json` 里自己那一页，别的页、画板、便签不动；页名、页的先后、打开时落在哪页都以 `canvas.json` 为准（站主在 bench 和有板有眼里能改名、删页），生成器只在一页还没有时把它加在最后。上面那张表以界面里的为准。
 - 画板标题、删掉的画板不一样：重跑生成器会把它那一页的板名写回去、删掉的板加回来。站主在界面里改过板名或删过板的页，重跑之前先把改动写进生成器；新加的页照「EX<N>：主题」「R<N>：主题」起名。
 - 同一份源两次生成逐字节一致。生成器取用仓库里的 token、工具和依赖都走 `../../_lib/root.mjs`。
 - 这几页的板挂着 Design System「Pomelo 柚儿园」（`project/ds/pomelo/`）；`node bench/bin/dw.js ds install pomelo-explore pomelo` 换成新的。EX1–EX4 的板不用它。
@@ -52,6 +54,7 @@ VA_BROWSER_CHANNEL=chrome node bench/bin/dw.js check pomelo-explore
 ## 云端
 
 - 旧账号 [Pomelo Explore](https://claude.ai/artifact/CwBUdwLqGsRxZz5hKiX143)（`cloud.json` 的 home）和现用账号的副本「Pomelo Explore_Copy」只有最早的两页，只看。
+- 现用账号的 [Pomelo Fold](https://claude.ai/artifact/U7ieNnEjrX3dEdF2427atr)（R8 的原画布，站主 11-24 在那里批的；零件的 CSS 当时写在画板里，现在在 Design System 里）只看。
 - 现用账号的 [见字如面](https://claude.ai/artifact/79kFbKGj2nSXFqpE7o6D3k)（站主 11-13 在那里批的）、[Atlas 年度小报（探索）](https://claude.ai/artifact/RNfxkLga1kUDvJMm4TPRYY) 和 [Pomelo · 联动和玩物有志](https://claude.ai/artifact/WiXRSdag98S76mVQB92eL8)（站主 11-15 批的，EX6、EX7）都停在旧的一轮，只看。
 - 以本地为准，不再发回（ROADMAP「不做」）。真要发，照 `docs/cloud.md` 在现用账号新建一块。
 

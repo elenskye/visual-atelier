@@ -5,7 +5,7 @@
 import path from 'node:path';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { parseArgs, schemesToBuild, outRoot, readJson, readText, writeFile, log, isMain } from '../lib/common.mjs';
-import { launchBrowser } from '../lib/browser.mjs';
+import { launchBrowser, nextFrames } from '../lib/browser.mjs';
 import { tokensCss } from './tokens-css.mjs';
 
 // bench 从这里取 tokensCss（dw ds install 写画布里的 tokens.css）
@@ -64,7 +64,7 @@ export async function runCheck(args = parseArgs()) {
           await page.setContent(doc, { waitUntil: 'networkidle' }).catch(() => page.setContent(doc));
           await page.evaluate(() => document.fonts.ready);
           // 手画零件：字体到了以后 paintLive 会按新的宽高补画，等两帧再查
-          await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
+          await nextFrames(page);
           const unpainted = await page.evaluate(() => [...document.querySelectorAll('[data-hand]')].filter((el) => !el.querySelector(':scope > [data-hand-painted]')).map((el) => `${el.tagName.toLowerCase()}[data-hand=${el.dataset.hand}]`));
           if (unpainted.length) errors.push(`没画上的手画零件 ${unpainted.length} 个：${[...new Set(unpainted)].join('、')}`);
           const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);

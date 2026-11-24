@@ -29,7 +29,7 @@ const MEDIA = { '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpe
  * from the upload record (a render that is not yet deterministic, say); then it is rebuilt here from
  * system.json and published.json, which is all the page needs, and `partial` says why.
  */
-export function readIndex(config, name) {
+function readIndex(config, name) {
   const p = systemPaths(config, name);
   const file = path.join(p.project, 'design-system.json');
   if (fs.existsSync(file)) return readJson(file);
@@ -87,7 +87,7 @@ function systemOf(config, name) {
 }
 
 /** The marker on line 1 of a preview: <!-- @dsCard group="…" height=N width=N subtitle="…" --> */
-export function parseMarker(line) {
+function parseMarker(line) {
   const m = /^<!--\s*@dsCard\b(.*?)-->/.exec(line || '');
   if (!m) return {};
   const out = {};

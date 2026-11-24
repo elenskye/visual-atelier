@@ -69,6 +69,10 @@
     {
       "id": "x8",
       "name": "EX8：Atlas 新的几幕"
+    },
+    {
+      "id": "fold",
+      "name": "R8：侧栏展开"
     }
   ],
   "boards": {
@@ -907,6 +911,16 @@
       "title": "新的几幕放在哪 · 通用幕怎么排出来",
       "radius": 12,
       "page": "x8"
+    },
+    "Fold-Sidebar.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1040,
+      "h": 880,
+      "title": "侧栏展开",
+      "radius": 12,
+      "is_interactive": true,
+      "page": "fold"
     }
   },
   "order": [
@@ -1001,7 +1015,8 @@
     "Scenes-Games.dc.html",
     "Scenes-Kit.dc.html",
     "Scenes-Custom.dc.html",
-    "Scenes-Flow.dc.html"
+    "Scenes-Flow.dc.html",
+    "Fold-Sidebar.dc.html"
   ],
   "notes": {
     "motion-how": {
@@ -1267,7 +1282,7 @@
       "namespace": "pomelo",
       "artifact": "https://claude.ai/artifact/5uaouHwXAXihjxhh9g4vb3",
       "version": null,
-      "copiedAt": "2026-11-12T09:49:57Z"
+      "copiedAt": "2026-11-24T08:18:34Z"
     }
   ]
 }

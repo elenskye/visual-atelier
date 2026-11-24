@@ -4,9 +4,8 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
-import { BENCH_ROOT } from '../src/utils/config.js';
+import { BENCH_ROOT, loadConfig } from '../src/utils/config.js';
 import { resolveChromeExecutable } from '../src/server/headless.js';
-import { loadConfig } from '../src/utils/config.js';
 import { startServer } from '../src/server/server.js';
 
 // dw mcp（v1.0 Phase 3）：真的起一个进程，照 MCP 客户端那样一行一条 JSON-RPC 说话。画布都在临时目录（DW_CANVASES）。

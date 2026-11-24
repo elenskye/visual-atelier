@@ -2,6 +2,7 @@
 //   SCHEME_CSS：Design System 的 tokens.css（默认配色纸与海、明暗）+ bundle.css（组件、第二套配色雾与赭、全部动效零件），和发布的 Design System 是同一份。
 //   ALIAS_CSS：App 板的老变量名（--bg、--ink、--sea……，从 EX 一路沿用）指到方案的 --color-*，换配色、明暗时跟着变。
 import { rootImport } from '../../_lib/root.mjs';
+import { lc } from '../../_lib/apca.mjs';
 
 const { dsRuntime } = await rootImport('tooling/design-system/build.mjs');
 const rt = await dsRuntime('pith', { motion: true });
@@ -15,11 +16,10 @@ export const ALIAS_CSS = (root) => `${root},${root} [data-theme],${root} [data-p
 /** 两套配色、明暗各查一遍方案的 APCA 配对（和 npm run qa 同一份门槛：schemes/pith/tokens/contrast.json）。返回每套每个明暗最低的那一对。 */
 export async function apcaReport() {
   const { loadTokens, resolveColor, paletteIds } = await rootImport('tooling/lib/common.mjs');
-  const { calcAPCA } = await (await import('../../_lib/root.mjs')).rootPackage('apca-w3');
   const t = loadTokens('pith');
   const out = [];
   for (const pal of paletteIds(t)) for (const mode of ['light', 'dark']) {
-    const rows = t.contrast.pairs.map((p) => ({ ...p, lc: Math.abs(calcAPCA(resolveColor(t, p.fg, mode, pal), resolveColor(t, p.bg, mode, pal))) }));
+    const rows = t.contrast.pairs.map((p) => ({ ...p, lc: lc(resolveColor(t, p.fg, mode, pal), resolveColor(t, p.bg, mode, pal)) }));
     const min = rows.reduce((a, b) => (b.lc - b.min < a.lc - a.min ? b : a));
     out.push({ palette: t.color.palettes[pal].label, mode, min, pass: rows.every((r) => r.lc >= r.min) });
   }

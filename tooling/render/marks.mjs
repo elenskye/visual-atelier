@@ -6,7 +6,6 @@
 //   - 文章分享图的模板（带 samples）用生成模块 tooling/og-card/card.mjs 出示例，和消费方构建时同一条路，不经过浏览器；
 //   - 作品水印的模板（带 fakeImages）用生成模块 tooling/watermark/watermark.mjs 在假图上出示例。
 import path from 'node:path';
-import { mkdirSync } from 'node:fs';
 import { parseArgs, schemesToBuild, outRoot, schemeDir, readJson, readText, loadTokens, markColorRole, writeFile, copyFile, log, isMain } from '../lib/common.mjs';
 import { launchBrowser, nextFrames } from '../lib/browser.mjs';
 import { roleColors, themedSvg } from '../graphic/svg.mjs';
@@ -37,7 +36,6 @@ export async function runMarks(args = parseArgs()) {
       const tokens = loadTokens(scheme);
       const out = path.join(outRoot(args), scheme, 'marks');
       for (const a of manifest.assets) {
-        mkdirSync(path.dirname(path.join(out, a.file)), { recursive: true });
         copyFile(path.join(dir, a.file), path.join(out, a.file));
         if (a.samples?.length) {
           const template = readJson(path.join(dir, a.file));
@@ -52,8 +50,7 @@ export async function runMarks(args = parseArgs()) {
         if (a.colorMode === 'roles') {
           for (const theme of ['light', 'dark']) writeFile(path.join(out, 'themed', `${a.id}-${theme}.svg`), themedFor(a, src, tokens, theme));
         }
-        if (!a.renders?.length) continue;
-        for (const r of a.renders) {
+        for (const r of a.renders ?? []) {
           const width = r.width ?? r.size, height = r.height ?? r.size;
           for (const theme of r.themes ?? [null]) {
             const svg = a.colorMode === 'roles' ? themedFor(a, src, tokens, theme ?? 'light', r.palette ?? null) : src;

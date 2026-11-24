@@ -8,13 +8,13 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import { rootImport, fromRoot } from '../../_lib/root.mjs';
-import { PROJECT, writePage } from '../page.mjs';
+import { PROJECT, writePage, dsBoard } from '../page.mjs';
 const imp = rootImport;
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const T = 'schemes/pomelo/atlas/tabloid';
 
-const { P, f, rng, rrect, circle, ellipse } = await imp('tooling/handmade/line.mjs');
-const { PW, PH, INK, INK2, RULE, LINE, CATS, cat, soft, st, fl, svg, fmt, b, esc, clip, tape, slip, roll, page, head, say, recBtn, useStar, atlasDefs, md } = await imp(`${T}/draw.mjs`);
+const { P, f, rrect, circle, ellipse } = await imp('tooling/handmade/line.mjs');
+const { PW, PH, INK, INK2, RULE, CATS, cat, soft, st, fl, svg, fmt, b, esc, clip, tape, slip, roll, page, head, say, recBtn, useStar, atlasDefs, md } = await imp(`${T}/draw.mjs`);
 const { CSS: ZINE_CSS } = await imp(`${T}/style.mjs`);
 const { makeKit } = await imp(`${T}/kit.mjs`);
 const { atlasPages, prepare } = await imp(`${T}/pages.mjs`);
@@ -26,8 +26,8 @@ const ASSETS = await loadAssets('pomelo', 'tabloid');
 for (const m of ['articles', 'games', 'coffee', 'grad', 'mountain', 'camera', 'shapes']) ASSETS.marks[m] = readFileSync(fromRoot(`schemes/pomelo/marks/modules/${m}.svg`), 'utf8').trim();
 const K = makeKit(ASSETS);
 const V = prepare(sampleYear());
-const OLD = atlasPages(V, K);
-const oldPage = (scene) => OLD.find((p) => p.includes(`data-scene="${scene}"`));
+// 先照小报原样排一遍、结果不用：K 每放一次图就给 id 换一个编号，下面的画板接着这一遍往下数（去掉它画板的 id 会变）
+atlasPages(V, K);
 
 const star5 = (x, y, n, size = 15, gap = 2) => Array.from({ length: 5 }, (_, i) => i < n ? useStar('zgold', x + i * (size + gap), y, size) : useStar('zstar', x + i * (size + gap), y, size, 'color:var(--color-print-rule)')).join('');
 const ink = (t, size = 14, extra = '') => `<span style="font-size:${size}px;line-height:${Math.round(size * 1.5)}px;${extra}">${t}</span>`;
@@ -432,8 +432,6 @@ ${d.last != null ? `<div class="num" style="font-size:11.5px;line-height:17px;co
     return `<div ${b(bb)}>${at(x, y, w, 22, `<div style="font-size:12px;line-height:18px;color:${INK2}">${esc(d.label)}</div>`)}</div>${out}`;
   },
 };
-/** 每个零件能放在哪种位置（Rust 照这张表核对模型的排法）。 */
-const FITS = { big: 'HAB', compare: 'HAB', stars: 'HAB', dist: 'HAB', months: 'S', cards: 'QH', quote: 'Q', sum: 'HAB', courses: 'HA', chips: 'HAB' };
 const PART_NAMES = { big: '大数字', compare: '和去年比', stars: '一排星', dist: '分布条', months: '十二个月', cards: '条目卡', quote: '引用', sum: '合计（小票）', courses: '学完的几门', chips: '多选的词' };
 
 /** 照一份「排法」（模型给的，Rust 填好了数）画一页。 */
@@ -628,33 +626,12 @@ function board(file, title, w, h, inner) {
   componentDidUpdate() { Pomelo.paint(document.body); }
   componentWillUnmount() { this.stop && this.stop(); }
 }`;
-  const html = `<!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<title>${title}</title>
-<script src="./support.js"></script>
-<link rel="stylesheet" href="ds/pomelo/tokens.css">
-<link rel="stylesheet" href="ds/pomelo/components/bundle.css">
-<script src="ds/pomelo/components/bundle.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-<style>
-${CSS}
-</style>
-</helmet>
-<div class="pm root board" data-palette="{{palette}}" data-theme="{{theme}}" data-motion="{{motion}}" style="width:${w}px;height:${h}px">
+  const html = dsBoard({
+    title, css: CSS, props, script,
+    body: `<div class="pm root board" data-palette="{{palette}}" data-theme="{{theme}}" data-motion="{{motion}}" style="width:${w}px;height:${h}px">
 ${inner}
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props='${JSON.stringify(props).replace(/'/g, '&#39;')}'>
-${script}
-</script>
-</body>
-</html>
-`;
+</div>`,
+  });
   if (/<\/script/i.test(script)) throw new Error('script');
   writeFileSync(path.join(PROJECT, file), html);
   console.log(file, (html.length / 1024).toFixed(0) + ' KB');

@@ -9,7 +9,6 @@ export const typeIcon = (t, cls = 'tyi') => G.svg48(G.TYPE[t], `${cls} pith-type
 export const stageIcon = (k, cls = 'stg') => G.svg48(G.STAGE[k], `${cls} pith-stage`);
 /** 会长的 Logo：uid 让同一页上几个 Logo 的遮罩不撞名。 */
 export const logoMark = (uid, cls = 'mark') => G.svg48(G.logoGrow(uid), `${cls} pith-logo`);
-export const logoStatic = (cls = 'mark') => G.svg48(G.LOGO, `${cls} pith-logo`);
 export const wordmark = () => '<span class="wm pith-wordmark">Pith</span>';
 export const appIcon = (cls = 'appi') => `<span class="${cls}">${G.appIcon(G.LOGO)}</span>`;
 export const agentIcon = (id, cls = '') => G.agentIcon(id, cls);

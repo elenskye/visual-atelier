@@ -30,15 +30,15 @@ function sameFiles(a, b) {
 }
 
 /**
- * Saves the current tracked files as a version. With skipIfSame (default) nothing is written
- * when they equal the latest version; the latest is returned instead.
+ * Saves the current tracked files as a version. Nothing is written when they equal the latest version;
+ * the latest is returned instead.
  */
-export function snapshot(config, name, label = 'save', { skipIfSame = true, at = new Date() } = {}) {
+export function snapshot(config, name, label = 'save', { at = new Date() } = {}) {
   const dir = versionsDir(config, name);
   const root = canvasDir(config, name);
   const files = trackedFiles(config, name);
   const latest = listVersions(config, name).at(-1);
-  if (skipIfSame && latest && sameFiles(latest.files, files)) {
+  if (latest && sameFiles(latest.files, files)) {
     // same files: keep one version, but note what happened to it (publish, pull…)
     if (label !== latest.label && !(latest.events || []).some((e) => e.label === label && e.at === at.toISOString())) {
       latest.events = [...(latest.events || []), { label, at: at.toISOString() }];

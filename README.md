@@ -5,9 +5,9 @@
 | 方案 | 给谁用 | 状态 |
 | --- | --- | --- |
 | `schemes/vermilion/`（朱红） | 个人网站，以及站主的 PPT 与动图 | `1.5.0`，已上线；[Design System](https://claude.ai/artifact/B89E9carxtZjjkT4adbNer)（私有，现用账号） |
-| `schemes/pomelo/`（柚儿园） | Pomelo | `1.0.0`（Pomelo v1.0 收口：Atlas 的 Tabloid 1.1.1，Design System 加了菜单、提示框、柚子链接），已同步进 Pomelo；[Design System](https://claude.ai/artifact/5uaouHwXAXihjxhh9g4vb3)（私有，现用账号，11-16 按 1.0.0 发了）；由 Pomelo 的会话做，计划在 Pomelo 的 `docs/roadmap.md` |
-| `schemes/peck/` | Peck（站主的本地 Coding Agent） | `0.1.0`；Design System「Peck」（私有）；由 Peck 的会话做，计划在 Peck 自己的仓库 |
-| `schemes/pith/` | Pith（站主的 macOS 研究工作台）的 App 界面：花园笔记 × 铅字 × 数字花园；WonderLab 作品另起 `pith-wonder-*` | `0.1.0`（站主 2026-11-24 验收，`logo-grow` 待批）；Design System 还没发到 Claude；以后由 Pith 的会话做 |
+| `schemes/pomelo/`（柚儿园） | Pomelo | `1.0.1`（加了侧栏展开 `fold`）；[Design System](https://claude.ai/artifact/5uaouHwXAXihjxhh9g4vb3)（私有，现用账号，按 1.0.1 发了）；由 Pomelo 的会话做，计划在 Pomelo 的 `docs/roadmap.md` |
+| `schemes/peck/` | Peck（站主的本地 Coding Agent） | `1.0.0`；Design System「Peck」（私有）；由 Peck 的会话做，计划在 Peck 自己的仓库 |
+| `schemes/pith/` | Pith（站主的 macOS 研究工作台）的 App 界面：花园笔记 × 铅字 × 数字花园；WonderLab 作品另起 `pith-wonder-*` | `1.0.0`（站主 2026-11-24 验收）；[Design System](https://claude.ai/artifact/CPavXvD8wdYuEEXbVhYqAb)（私有，现用账号）；由 Pith 的会话做 |
 
 2026-11-06 之前分成两个仓库：visual-assets（方案和工具）和 visual-workbench（画布和引擎）。旧文档、历史记录、消费方和云端里写着这两个名字的，说的都是这里。
 
@@ -15,7 +15,7 @@
 
 ```
 CLAUDE.md          核心规则（AGENTS.md 是指向它的软链接；细则在 docs/ 和各份 README）
-ROADMAP.md         当前状态、到 v1.0 的计划、长期的决定和授权
+ROADMAP.md         当前状态、接下来做什么、长期的决定和授权
 CHANGELOG.md       已完成的结果
 docs/              会话和第二条线、工作流和验证、架构、动效档位、采用、许可、云端往返
 schemes/           视觉方案（_template 是新方案的起点）

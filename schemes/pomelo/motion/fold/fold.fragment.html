@@ -1,0 +1,21 @@
+<!-- 侧栏展开：点开「课程」，四个子标签一行接一行滑下来 -->
+<div class="fold-demo" style="width:236px;height:252px;padding:8px 12px 12px">
+  <style>
+    .fold-demo .r { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 6px 0 calc(8px + var(--d, 0) * 16px); font-size: 15px; white-space: nowrap; }
+    .fold-demo .r .ic { width: 18px; text-align: center; color: var(--color-ink-soft); }
+    .fold-demo .r .nm { flex: 1; }
+    .fold-demo .r .n { font-size: 12px; color: var(--color-ink-soft); }
+    .fold-demo .r[aria-expanded="false"] .pm-fold-chev { transform: rotate(-90deg); }
+    .fold-demo .pm-fold { height: 0; overflow: visible; }
+    .fold-demo .pm-fold:not(.is-open) > * { visibility: hidden; }
+  </style>
+  <div class="r" style="--d:0"><span class="ic">#</span><span class="nm">创作</span><span class="n">17</span><span style="width:18px"></span></div>
+  <div class="r k" style="--d:0" aria-expanded="false"><span class="ic">#</span><span class="nm">课程</span><span class="n">52</span><span class="pm-fold-chev" data-hand="icon" data-size="14" data-seed="7" data-d="M7 10 L12 15 L17 10"></span></div>
+  <div class="pm-fold">
+    <div class="r" style="--d:1;--pm-i:0;--pm-r:3"><span class="ic">#</span><span class="nm">机器学习</span><span class="n">18</span></div>
+    <div class="r" style="--d:1;--pm-i:1;--pm-r:2"><span class="ic">#</span><span class="nm">统计</span><span class="n">6</span></div>
+    <div class="r" style="--d:1;--pm-i:2;--pm-r:1"><span class="ic">#</span><span class="nm">项目</span><span class="n">5</span></div>
+    <div class="r" style="--d:1;--pm-i:3;--pm-r:0"><span class="ic">#</span><span class="nm">编程</span><span class="n">4</span></div>
+  </div>
+  <div class="r" style="--d:0"><span class="ic">#</span><span class="nm">科技</span><span class="n">8</span><span style="width:18px"></span></div>
+</div>

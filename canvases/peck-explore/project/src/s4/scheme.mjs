@@ -59,7 +59,8 @@ export function schemeFiles({ dsUrl, a3 } = {}) {
   d = d.slice(0, d.indexOf('## 6. 标志与图标')) + SEC6(dsUrl);
   f['DESIGN.md'] = d;
   for (const [p, t] of Object.entries(sourceFiles())) f[`design-system/${p}`] = t;
-  f['scheme.json'] = J({ ...JSON.parse(f['scheme.json']), status: 'approved' });
+  // 1.0.0（站主 2026-11-24）：内容和 0.1.0 一样，只是定为 1.0.0
+  f['scheme.json'] = J({ ...JSON.parse(f['scheme.json']), status: 'approved', version: '1.0.0' });
   const fonts = JSON.parse(f['type/fonts.json']);
   fonts.notes = ['缝合像素 12 和 Departure Mono 的文件在 visual-atelier 方案的 type/fonts/（带 OFL 许可原文；画布附件里是同一份），登记在 visual-atelier 的 docs/licensing.md。'];
   f['type/fonts.json'] = J(fonts);

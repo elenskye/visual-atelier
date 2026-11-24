@@ -19,7 +19,7 @@ import {
   runtimeDrift
 } from '../canvas/cloud.js';
 import { listSystems, installSystem, readSystem, systemPaths } from '../ds/systems.js';
-import { prefetchPage, runtimeResources, getResource, readCached, cacheDir } from '../server/offline.js';
+import { prefetchPage, runtimeResources, getResource, cacheDir } from '../server/offline.js';
 import { getDoc, setDoc, readStore, dbFile } from '../canvas/db.js';
 import { listReviews, setReview, clearReview, STATUS_LABEL } from '../canvas/review.js';
 import { runCheck } from '../canvas/check.js';
@@ -27,13 +27,15 @@ import { runFrames, frameTimes } from '../canvas/frames.js';
 import { exportBoards } from '../canvas/export.js';
 import { startServer, BENCH_APP, BENCH_API } from '../server/server.js';
 import { catalog } from '../server/catalog.js';
-import { renameCanvas, deleteCanvas, renamePage, deletePage, renameBoard, deleteBoard, renameScheme, listTrash, restoreTrash, emptyTrash } from '../canvas/manage.js';
+import { renameCanvas, deleteCanvas, renamePage, deletePage, renameBoard, deleteBoard, renameScheme, listTrash, restoreTrash, emptyTrash, NAME_KINDS } from '../canvas/manage.js';
 import { captureUrl } from '../server/headless.js';
 import { listMotionSchemes, readMotion, exportMotion, closeExportBrowser } from '../motion/parts.js';
 import { createScheme, checkScheme } from '../scheme/new.js';
 
 const list = (v) => (v === undefined || v === true ? [] : Array.isArray(v) ? v.flatMap((x) => String(x).split(',')) : String(v).split(','));
 const out = (flags, data, text) => console.log(flags.json ? JSON.stringify(data, null, 2) : text);
+/** A flag's value, or null when it is missing or was given without one (`--board` alone). */
+const opt = (v) => (v && v !== true ? v : null);
 
 function need(value, usage) {
   if (!value || value === true) throw new Error(`用法：${usage}`);
@@ -60,7 +62,7 @@ export async function cmdRename(pos, flags) {
     const scheme = need(flags[kind], usage);
     const known = (kind === 'ds' ? listSystems(config) : listMotionSchemes(config)).map((x) => x.name);
     const r = renameScheme(config, kind, scheme, pos.join(' '), { known });
-    return out(flags, r, r.reset ? `${kind === 'ds' ? 'Design System' : 'Motion Deck'} ${scheme} 回到方案自己的名字` : `${kind === 'ds' ? 'Design System' : 'Motion Deck'} ${scheme} 在 bench 里叫「${r.title}」（方案的源和云端不变）`);
+    return out(flags, r, r.reset ? `${NAME_KINDS[kind]} ${scheme} 回到方案自己的名字` : `${NAME_KINDS[kind]} ${scheme} 在 bench 里叫「${r.title}」（方案的源和云端不变）`);
   }
   const name = need(pos[0], usage);
   const title = need(pos.slice(1).join(' '), usage);
@@ -80,7 +82,7 @@ export async function cmdDelete(pos, flags) {
   const usage = 'dw delete <画布名> [--page <页 id> | --board <文件>]';
   const name = need(pos[0], usage);
   const config = loadConfig();
-  const r = flags.board ? deleteBoard(config, name, need(flags.board, usage)) : flags.page ? deletePage(config, name, need(flags.page, usage), {}) : deleteCanvas(config, name);
+  const r = flags.board ? deleteBoard(config, name, need(flags.board, usage)) : flags.page ? deletePage(config, name, need(flags.page, usage)) : deleteCanvas(config, name);
   const what = flags.board ? `画板「${r.title}」` : flags.page ? `「${r.title}」这一页` : `「${r.title}」`;
   out(flags, r, `删了${what}，挪进了回收处（canvases/.trash/${r.id}/）。放回：node bench/bin/dw.js trash restore ${r.id}`);
 }
@@ -132,7 +134,7 @@ export async function cmdTarget(pos, flags) {
     const rows = listTargets(config, name);
     return out(flags, { targets: rows }, rows.length ? rows.map((t) => `${t.home ? '* ' : '  '}${t.slug}  ${t.account || '（没记账号）'}  ${t.url || ''}`).join('\n') + '\n（* 是 home：不加 --target 时用它）' : `${name} 还没有云端地址`);
   }
-  const str = (v) => (v && v !== true ? String(v) : null);
+  const str = (v) => (opt(v) ? String(v) : null);
   const t = addTarget(config, name, pos[1], { url: str(flags.url), type: str(flags.type), title: str(flags.title), account: str(flags.account), home: Boolean(flags.home), blobs: flags['same-ids'] ? 'same' : undefined });
   out(flags, t, `已登记 ${name} → ${pos[1]}${t.account ? `（${t.account}）` : ''}${t.blobs === 'same' ? '，图片 id 和本地相同' : '，图片 id 要对照表'}${flags.home ? '，设为 home' : ''}`);
 }
@@ -141,7 +143,7 @@ export async function cmdPull(pos, flags) {
   const usage = 'dw pull <画布名> --listing <list_files.json> [--from <下载的文件或目录>] [--assets <list_assets.json>] [--target <slug>]';
   const name = need(pos[0], usage);
   const config = loadConfig();
-  const target = flags.target && flags.target !== true ? flags.target : null;
+  const target = opt(flags.target);
   const from = list(flags.from);
   if (flags.assets) {
     const assets = readListing(flags.assets);
@@ -175,7 +177,7 @@ export async function cmdVerify(pos, flags) {
   const name = need(pos[0], usage);
   const config = loadConfig();
   const listing = readListing(need(flags.listing, usage));
-  const r = verify(config, name, listing, { target: flags.target && flags.target !== true ? flags.target : null });
+  const r = verify(config, name, listing, { target: opt(flags.target) });
   const drift = runtimeDrift(config, listing);
   out(flags, { ...r, runtime: drift }, `${r.bad.length ? `对不上 ${r.bad.length} 个：\n  ${r.bad.join('\n  ')}` : `校验和 ${r.ok}/${r.total} 全对`}${drift ? `\n注意：${drift.message}` : ''}`);
   if (r.bad.length) process.exitCode = 1;
@@ -185,12 +187,12 @@ export async function cmdPublish(pos, flags) {
   const usage = 'dw publish <画布名> [--listing <list_files.json>] [--target <slug>] [--blob-map <file>] [--record]';
   const name = need(pos[0], usage);
   const config = loadConfig();
-  const target = flags.target && flags.target !== true ? flags.target : null;
+  const target = opt(flags.target);
   if (flags['blob-map']) {
     const map = addBlobMap(config, name, target || readCloud(canvasDir(config, name)).home, readJsonFile(flags['blob-map']));
     console.log(`对照表现在有 ${Object.keys(map).length} 张图片`);
   }
-  const listing = flags.listing && flags.listing !== true ? readListing(flags.listing) : null;
+  const listing = opt(flags.listing) ? readListing(flags.listing) : null;
   if (flags.record) {
     const r = recordPublish(config, name, need(listing, usage), { target });
     return out(flags, r, `云端 ${r.target} 和本地校验和 ${r.verified} 个全对，已存版本 ${r.version}`);
@@ -218,7 +220,7 @@ export async function cmdVersions(pos, flags) {
 
 export async function cmdSnapshot(pos, flags) {
   const name = need(pos[0], 'dw snapshot <画布名> [--label 名字]');
-  const v = snapshot(loadConfig(), name, flags.label && flags.label !== true ? flags.label : 'save');
+  const v = snapshot(loadConfig(), name, opt(flags.label) || 'save');
   out(flags, v, v.reused ? `和上一版一样，没有新存：${v.id}` : `已存版本 ${v.id}`);
 }
 
@@ -228,7 +230,7 @@ export async function cmdRestore(pos, flags) {
   out(flags, r, `已恢复到 ${r.restored}；恢复前的样子存成了 ${r.savedBefore}`);
 }
 
-const portOf = (config, flags) => (flags.port && flags.port !== true ? Number(flags.port) : config.server.port);
+const portOf = (config, flags) => (opt(flags.port) ? Number(flags.port) : config.server.port);
 const baseOf = (config, flags) => `http://127.0.0.1:${portOf(config, flags)}`;
 
 /** What answers on the port: this server's `/api/status`, or null (nothing there, or something else). */
@@ -240,6 +242,12 @@ export async function benchStatus(base) {
   } catch {
     return null;
   }
+}
+
+/** Asks the bench at `base` to stop (only one `dw serve` started can). */
+export async function stopBench(base) {
+  const r = await fetch(`${base}/api/stop`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
+  if (!r.ok) throw new Error((await r.json().catch(() => ({}))).message || `停不了（${r.status}）`);
 }
 
 /** The address of a canvas in the board UI (`page`: a page id; `board`: a board file, opened full size). */
@@ -257,7 +265,7 @@ export async function cmdServe(_pos, flags) {
   const stopped = new Promise((resolve) => (stop = resolve));
   let srv;
   try {
-    srv = await startServer(config, { port: flags.port && flags.port !== true ? Number(flags.port) : undefined, onStop: stop, quiet: !!flags.json });
+    srv = await startServer(config, { port: opt(flags.port) ? Number(flags.port) : undefined, onStop: stop, quiet: !!flags.json });
   } catch (e) {
     if (e.code !== 'EADDRINUSE') throw e;
     const base = baseOf(config, flags);
@@ -285,8 +293,7 @@ export async function cmdStop(_pos, flags) {
   const base = baseOf(config, flags);
   const s = await benchStatus(base);
   if (!s) return out(flags, { stopped: false, running: false, url: base }, `没在跑（${base}）`);
-  const r = await fetch(`${base}/api/stop`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
-  if (!r.ok) throw new Error((await r.json().catch(() => ({}))).message || `停不了（${r.status}）`);
+  await stopBench(base);
   out(flags, { stopped: true, running: false, url: base, pid: s.pid }, `已停掉 ${base}/（进程 ${s.pid}）`);
 }
 
@@ -300,8 +307,8 @@ export async function cmdOpen(pos, flags) {
   let url = `${base}/c/${name}/`;
   if (kind === 'canvas') {
     const canvas = readCanvasJson(config, name);
-    const page = flags.page && flags.page !== true ? String(flags.page) : null;
-    const board = flags.board && flags.board !== true ? String(flags.board) : null;
+    const page = opt(flags.page) ? String(flags.page) : null;
+    const board = opt(flags.board) ? String(flags.board) : null;
     if (page && !(canvas.pages || []).some((p) => p.id === page)) throw new Error(`${name} 没有这一页：${page}（有：${(canvas.pages || []).map((p) => p.id).join('、') || '没有分页'}）`);
     if (board && !canvas.boards?.[board]) throw new Error(`${name} 没有画板 ${board}`);
     url = boardAddress(base, name, { page: page || (board && canvas.boards[board].page) || null, board });
@@ -320,7 +327,7 @@ export async function cmdShot(pos, flags) {
   let h = flags.height ? Number(flags.height) : 800;
   if (kind === 'canvas') {
     const canvas = readCanvasJson(config, name);
-    file = flags.board && flags.board !== true ? flags.board : canvas.order?.[0] || Object.keys(canvas.boards)[0];
+    file = opt(flags.board) || canvas.order?.[0] || Object.keys(canvas.boards)[0];
     const b = canvas.boards[file];
     if (!b) throw new Error(`${name} 没有画板 ${file}`);
     if (!flags.width) w = b.w;
@@ -330,7 +337,7 @@ export async function cmdShot(pos, flags) {
   } else {
     throw new Error(`${name} 不是画布`);
   }
-  const outPath = flags.out && flags.out !== true ? path.resolve(flags.out) : path.join(dir, '.shots', `${file.replace(/\.dc\.html$|\.html$/, '')}.png`);
+  const outPath = opt(flags.out) ? path.resolve(flags.out) : path.join(dir, '.shots', `${file.replace(/\.dc\.html$|\.html$/, '')}.png`);
   const srv = await startServer(config, { port: 0, watch: false, quiet: true });
   try {
     const r = await captureUrl(config, `${srv.baseUrl}/c/${name}/${encodeURI(file)}`, outPath, { width: w, height: h, fullPage: Boolean(flags['full-page']) });
@@ -510,7 +517,7 @@ export async function cmdMcp() {
 export async function cmdCheck(pos, flags) {
   const name = need(pos[0], 'dw check <画布名> [--board 文件名] [--no-lint]');
   const config = loadConfig();
-  const board = flags.board && flags.board !== true ? flags.board : null;
+  const board = opt(flags.board);
   const lines = [];
   const say = (t) => (flags.json ? lines.push(t) : console.log(t));
   const r = await runCheck(config, name, {
@@ -557,11 +564,11 @@ export async function cmdExport(pos, flags) {
   const html = Boolean(flags.html);
   const png = Boolean(flags.png) || !html;
   const r = await exportBoards(config, name, {
-    board: flags.board && flags.board !== true ? flags.board : null,
+    board: opt(flags.board),
     png,
     html,
     scale: flags.scale ? Number(flags.scale) : 2,
-    outDir: flags.out && flags.out !== true ? path.resolve(flags.out) : null
+    outDir: opt(flags.out) ? path.resolve(flags.out) : null
   });
   const text = [
     ...r.rows.map((row) => [row.file, row.png && `  PNG ${path.relative(process.cwd(), row.png)}`, row.html && `  HTML ${path.relative(process.cwd(), row.html)}${row.offlineMissing?.length ? '' : '（断网也能打开）'}`, ...(row.errors || []).map((e) => `  报错：${e}`), ...(row.missing || []).map((m) => `  没找到，原样留着：${m}`), ...(row.offlineMissing || []).map((u) => `  没取到，打开时要联网：${u}`)].filter(Boolean).join('\n'))
@@ -592,7 +599,7 @@ export async function cmdMotion(pos, flags) {
   if (sub === 'export') {
     need(scheme, usage);
     try {
-      const rows = await exportMotion(config, scheme, id || '', { out: flags.out && flags.out !== true ? path.resolve(flags.out) : null });
+      const rows = await exportMotion(config, scheme, id || '', { out: opt(flags.out) ? path.resolve(flags.out) : null });
       return out(flags, { rows }, rows.map((r) => `${r.id} ${r.theme}：${r.frames} 帧，GIF ${(r.gif / 1024).toFixed(1)} KB → ${path.relative(process.cwd(), r.out)}`).join('\n'));
     } finally {
       await closeExportBrowser();

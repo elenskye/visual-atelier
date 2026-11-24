@@ -8,7 +8,7 @@ import path from 'node:path';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { rootImport, fromRoot } from '../../_lib/root.mjs';
-import { PROJECT, writePage } from '../page.mjs';
+import { PROJECT, writePage, dsBoard } from '../page.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PG = 'frame';
@@ -111,7 +111,6 @@ const markOf = (id) => MODS[id].mark ?? id;
 const modMark = (id, size, o = {}) => (id === 'youzi' ? face('pomelo-normal', size, o.tilt ?? 0) : mark(markOf(id), size, { tint: MODS[id].tint ?? null, ...o }));
 
 // ---------- 小零件 ----------
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 /** 界面小图标（24 格一笔单线，跟着字的颜色），由 bundle.js 画。 */
 const ICON = {
   back: 'M15 5.5 L8.5 12 L15 18.5', fwd: 'M9 5.5 L15.5 12 L9 18.5', plus: 'M12 5 L12 19 M5 12 L19 12', x: 'M6.5 6.5 L17.5 17.5 M17.5 6.5 L6.5 17.5',
@@ -653,24 +652,9 @@ function board(file, title, cfg) {
     reduce: { editor: 'boolean', default: false, section: '动效', label: '减弱动态效果' },
     $preview: { width: 1280, height: 800 },
   };
-  const html = `<!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<title>${title}</title>
-<script src="./support.js"></script>
-<link rel="stylesheet" href="ds/pomelo/tokens.css">
-<link rel="stylesheet" href="ds/pomelo/components/bundle.css">
-<script src="ds/pomelo/components/bundle.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-<style>
-${CSS}
-</style>
-</helmet>
-<div class="pm root" data-palette="{{palette}}" data-theme="{{theme}}" data-motion="{{motion}}">
+  const html = dsBoard({
+    title, css: CSS, props,
+    body: `<div class="pm root" data-palette="{{palette}}" data-theme="{{theme}}" data-motion="{{motion}}">
 <div class="app" data-view="home">
 <div class="pm-desk deskbg" data-hand="desk" data-seed="700" style="position:absolute;inset:0"></div>
 ${sprite()}
@@ -684,10 +668,8 @@ ${parts.bloom}
 ${parts.search}
 ${parts.bar}
 </div>
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props='${JSON.stringify(props).replace(/'/g, '&#39;')}'>
-const CFG = ${JSON.stringify({ ...cfg, thinkPath: THINK_PATH, avatar: faces(34, ['normal', 'think', 'happy']), mods: Object.fromEntries(Object.entries(MODS).map(([k, m]) => [k, { name: m.name }])), order: CATS.flatMap((c) => c.mods), index: INDEX, near: NEAR })};
+</div>`,
+    script: `const CFG = ${JSON.stringify({ ...cfg, thinkPath: THINK_PATH, avatar: faces(34, ['normal', 'think', 'happy']), mods: Object.fromEntries(Object.entries(MODS).map(([k, m]) => [k, { name: m.name }])), order: CATS.flatMap((c) => c.mods), index: INDEX, near: NEAR })};
 ${APP_JS}
 class Component extends DCLogic {
   renderVals() {
@@ -696,11 +678,8 @@ class Component extends DCLogic {
   componentDidMount() { this.stop = Pomelo.paintLive(document.body); PomeloFrame.start(document.querySelector('.app'), CFG); }
   componentDidUpdate() { Pomelo.paint(document.body); }
   componentWillUnmount() { this.stop && this.stop(); }
-}
-</script>
-</body>
-</html>
-`;
+}`,
+  });
   writeFileSync(path.join(PROJECT, PREFIX + file), html);
   console.log(file, (html.length / 1024).toFixed(0) + ' KB');
   return { file: PREFIX + file, title };

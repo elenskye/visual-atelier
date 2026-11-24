@@ -10,15 +10,15 @@ import { listReviews, setReview, clearReview } from '../canvas/review.js';
 import { listMotionSchemes, readMotion, partDocument, exportMotion, motionPaths, closeExportBrowser } from '../motion/parts.js';
 import { catalog } from './catalog.js';
 import { CDN_HOSTS, getResource, rewriteFontCss, rewritePage, resourcesScript, localUrl } from './offline.js';
-import { readChecks, startChecks, watchRun, readRun, stopWatching } from './checks.js';
+import { readChecks, startChecks, watchRun, stopWatching } from './checks.js';
 import { renameCanvas, deleteCanvas, renamePage, deletePage, renameBoard, deleteBoard, renameScheme, withNames, listTrash, restoreTrash } from '../canvas/manage.js';
 
 // Local preview server. Binds to 127.0.0.1 only.
-//   /                      the canvas board UI (src/board/), or a plain list until it exists
+//   /                      the canvas board UI (src/board/)
 //   /c/<name>/<file>       a canvas's project file; support.js is the Claude canvas runtime
 //   /v/<name>/<id>/<file>  the same file as it was in local version <id> (read-only)
 //   /_blob/<id>            a board image, looked up in every canvas's blobs/
-//   /api/index             everything in four lists (Design System, Motion Deck, Explore Deck, Questionnaire), catalog.js
+//   /api/index             everything in five lists (Design System, Motion Deck, Explore Deck, Questionnaire, Checks), catalog.js
 //   /api/canvases[/name]   JSON for the board UI and for Agents (?version=<id> for an old canvas.json)
 //   /api/canvases/<name>/versions   the local version history
 //   /api/ds[/name]         the Design Systems built at the repo root (dist/<方案>/design-system/)
@@ -143,27 +143,6 @@ function readBody(req, limit = 320 * 1024) {
   });
 }
 
-function esc(s) {
-  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
-
-function listPage(config) {
-  const items = listCanvases(config)
-    .map((c) => {
-      if (c.kind === 'page') return `<li><a href="/c/${c.name}/">${esc(c.title)}</a> <small>页面</small></li>`;
-      const canvas = readCanvasJson(config, c.name);
-      const boards = (canvas.order || Object.keys(canvas.boards || {}))
-        .map((f) => `<a href="/c/${c.name}/${encodeURI(f)}">${esc(canvas.boards[f]?.title || f)}</a>`)
-        .join(' · ');
-      return `<li><b>${esc(c.title)}</b> <small>${c.boards} 张板</small><br>${boards}</li>`;
-    })
-    .join('\n');
-  return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>visual-atelier</title>
-<style>body{font:14px/1.6 -apple-system,"PingFang SC",sans-serif;margin:32px;max-width:960px;color:#1f1e1d;background:#f5f4ef}li{margin:0 0 14px}small{color:#6b6a68}a{color:#1f4fbf}</style>
-</head><body><h1 style="font-size:18px">画布</h1><ul>${items || '<li>还没有画布</li>'}</ul>
-<script>try{new EventSource('/api/events').addEventListener('reload',()=>location.reload())}catch{}</script></body></html>`;
-}
-
 /** What `GET /api/status` says first: another program (Pomelo's 有板有眼) asks this to know the thing on the port is
  *  this server, and which version of the interface it speaks. */
 export const BENCH_APP = 'visual-atelier-bench';
@@ -214,13 +193,15 @@ export async function startServer(config, { port = config.server.port, watch = t
     try {
       const url = new URL(req.url || '/', `http://${host}`);
       const pathname = decodeURIComponent(url.pathname);
+      // JSON out: compact for what a call gets back, indented for what one reads
+      const json = (status, body) => send(res, status, JSON.stringify(body), MIME['.json']);
+      const pretty = (body) => send(res, 200, JSON.stringify(body, null, 2), MIME['.json']);
       if (req.method !== 'GET' && req.method !== 'HEAD' && !fromHere(req, server.address().port)) {
-        return send(res, 403, JSON.stringify({ code: 'permission_denied', message: '只接受本机这个服务自己的页面和本机程序' }), MIME['.json']);
+        return json(403, { code: 'permission_denied', message: '只接受本机这个服务自己的页面和本机程序' });
       }
       // 改名、删除、回收处（canvas/manage.js）：JSON 进，JSON 出
       const mg = pathname.match(/^\/api\/canvases\/([a-z0-9-]+)\/(rename|delete|page-rename|page-delete|board-rename|board-delete)$/) || pathname.match(/^\/api\/trash(\/restore)?$/) || pathname.match(/^\/api\/names\/(ds|motion)\/([a-z0-9-]+)$/);
       if (mg) {
-        const json = (status, body) => send(res, status, JSON.stringify(body), MIME['.json']);
         const trash = pathname.startsWith('/api/trash');
         const naming = pathname.startsWith('/api/names/');
         if (trash && !mg[1] && req.method === 'GET') return json(200, { items: listTrash(config) });
@@ -259,7 +240,6 @@ export async function startServer(config, { port = config.server.port, watch = t
       if (dbm) {
         const [, name, coll] = dbm;
         const p = url.searchParams.get('path');
-        const json = (status, body) => send(res, status, JSON.stringify(body), MIME['.json']);
         try {
           if (coll) {
             if (req.method !== 'GET') return send(res, 405, 'Method Not Allowed');
@@ -289,7 +269,6 @@ export async function startServer(config, { port = config.server.port, watch = t
       }
       const rv = pathname.match(/^\/api\/review\/([a-z0-9-]+)$/);
       if (rv) {
-        const json = (status, body) => send(res, status, JSON.stringify(body), MIME['.json']);
         try {
           if (kindOf(canvasDir(config, rv[1])) !== 'canvas') return send(res, 404, 'Not Found');
           if (req.method === 'GET') return json(200, { reviews: listReviews(config, rv[1]) });
@@ -310,7 +289,6 @@ export async function startServer(config, { port = config.server.port, watch = t
       }
       const mx = pathname.match(/^\/api\/motion\/([a-z0-9-]+)\/([a-z0-9-]+)\/export$/);
       if (mx) {
-        const json = (status, body) => send(res, status, JSON.stringify(body), MIME['.json']);
         if (req.method !== 'POST') return send(res, 405, 'Method Not Allowed');
         try {
           const rows = await exportMotion(config, mx[1], mx[2]);
@@ -322,7 +300,6 @@ export async function startServer(config, { port = config.server.port, watch = t
       }
       // the interface for another program (docs: bench/README.md「给别的程序用」)
       if (pathname === '/api/stop') {
-        const json = (status, body) => send(res, status, JSON.stringify(body), MIME['.json']);
         if (req.method !== 'POST') return send(res, 405, 'Method Not Allowed');
         // a JSON body: a web page somewhere else can't send one here without asking first, and nothing here answers that
         if (!String(req.headers['content-type'] || '').startsWith('application/json')) return json(400, { code: 'invalid_argument', message: '要用 application/json 发' });
@@ -333,19 +310,19 @@ export async function startServer(config, { port = config.server.port, watch = t
       }
       if (pathname === '/api/checks/run') {
         if (req.method !== 'POST') return send(res, 405, 'Method Not Allowed');
-        if (!String(req.headers['content-type'] || '').startsWith('application/json')) return send(res, 400, JSON.stringify({ code: 'invalid_argument', message: '要用 application/json 发' }), MIME['.json']);
+        if (!String(req.headers['content-type'] || '').startsWith('application/json')) return json(400, { code: 'invalid_argument', message: '要用 application/json 发' });
         try {
           const r = startChecks(config, () => broadcast('checks', { at: Date.now() }));
           broadcast('checks', { at: Date.now() });
-          return send(res, 200, JSON.stringify(r), MIME['.json']);
+          return json(200, r);
         } catch (e) {
-          return send(res, e.code === 'already_exists' ? 409 : 500, JSON.stringify({ code: e.code || 'unavailable', message: e.message }), MIME['.json']);
+          return json(e.code === 'already_exists' ? 409 : 500, { code: e.code || 'unavailable', message: e.message });
         }
       }
       if (req.method !== 'GET' && req.method !== 'HEAD') return send(res, 405, 'Method Not Allowed');
       if (pathname === '/api/status') {
         const body = { app: BENCH_APP, api: BENCH_API, pid: process.pid, startedAt, url: `http://${host}:${server.address().port}`, root: config.repoAbs, canvasesDir: config.canvasesAbs, canvases: listCanvases(config).length, stoppable: !!onStop };
-        return send(res, 200, JSON.stringify(body, null, 2), MIME['.json']);
+        return pretty(body);
       }
       if (pathname === '/_claude/runtime.js') return sendFile(res, path.join(boardDir, 'claude-local.js'));
 
@@ -362,7 +339,7 @@ export async function startServer(config, { port = config.server.port, watch = t
       }
       const cdn = pathname.match(/^\/_cdn\/([a-z0-9.-]+)\/(.+)$/);
       if (cdn) {
-        if (!CDN_HOSTS.includes(cdn[1]) || (req.method !== 'GET' && req.method !== 'HEAD')) return send(res, 404, 'Not Found');
+        if (!CDN_HOSTS.includes(cdn[1])) return send(res, 404, 'Not Found');
         const target = `https://${cdn[1]}/${url.pathname.split('/').slice(3).join('/')}${url.search}`;
         try {
           const r = await getResource(config, target);
@@ -377,19 +354,19 @@ export async function startServer(config, { port = config.server.port, watch = t
         const body = readChecks(config);
         // a run started elsewhere (npm run all in a terminal): follow it too
         if (body.run?.status === 'running') watchRun(config, () => broadcast('checks', { at: Date.now() }));
-        return send(res, 200, JSON.stringify(body, null, 2), MIME['.json']);
+        return pretty(body);
       }
       const distFile = pathname.match(/^\/_dist\/(.+)$/);
       if (distFile) return sendFile(res, safeJoin(path.join(config.repoAbs, 'dist'), distFile[1]));
-      if (pathname === '/api/index') return send(res, 200, JSON.stringify(catalog(config), null, 2), MIME['.json']);
-      if (pathname === '/api/canvases') return send(res, 200, JSON.stringify({ canvases: listCanvases(config) }, null, 2), MIME['.json']);
+      if (pathname === '/api/index') return pretty(catalog(config));
+      if (pathname === '/api/canvases') return pretty({ canvases: listCanvases(config) });
       const apiV = pathname.match(/^\/api\/canvases\/([a-z0-9-]+)\/versions$/);
       if (apiV) {
         if (!kindOf(canvasDir(config, apiV[1]))) return send(res, 404, 'Not Found');
         // ?file=<board>: also each version's checksum of that board (null when the version hasn't got it)
         const board = url.searchParams.get('file');
         const versions = listVersions(config, apiV[1]).map(({ id, label, createdAt, events, files }) => ({ id, label, createdAt, events: events || [], files: Object.keys(files).length, ...(board ? { board: files[`project/${board}`] || null } : {}) }));
-        return send(res, 200, JSON.stringify({ versions }, null, 2), MIME['.json']);
+        return pretty({ versions });
       }
       const api = pathname.match(/^\/api\/canvases\/([a-z0-9-]+)$/);
       if (api) {
@@ -404,19 +381,19 @@ export async function startServer(config, { port = config.server.port, watch = t
           body.canvas = JSON.parse(buf.toString('utf8'));
           body.version = version;
         } else if (kind === 'canvas') body.canvas = readCanvasJson(config, api[1]);
-        return send(res, 200, JSON.stringify(body, null, 2), MIME['.json']);
+        return pretty(body);
       }
 
-      if (pathname === '/api/ds') return send(res, 200, JSON.stringify({ systems: withNames(config, 'ds', listSystems(config)) }, null, 2), MIME['.json']);
+      if (pathname === '/api/ds') return pretty({ systems: withNames(config, 'ds', listSystems(config)) });
       const apiDs = pathname.match(/^\/api\/ds\/([a-z0-9-]+)$/);
       if (apiDs) {
         if (!listSystems(config).some((x) => x.name === apiDs[1])) return send(res, 404, 'Not Found');
         try {
           const sys = readSystem(config, apiDs[1]);
           sys.fonts = (sys.fonts || []).map((u) => (u.startsWith('https://fonts.googleapis.com/') ? localUrl(u) : u));
-          return send(res, 200, JSON.stringify(sys, null, 2), MIME['.json']);
+          return pretty(sys);
         } catch (err) {
-          return send(res, 409, JSON.stringify({ error: err.message }), MIME['.json']);
+          return json(409, { error: err.message });
         }
       }
       const ds = pathname.match(/^\/ds\/([a-z0-9-]+)\/(.+)$/);
@@ -436,12 +413,12 @@ export async function startServer(config, { port = config.server.port, watch = t
         return sendFile(res, safeJoin(project, rel));
       }
 
-      if (pathname === '/api/motion') return send(res, 200, JSON.stringify({ schemes: withNames(config, 'motion', listMotionSchemes(config)) }, null, 2), MIME['.json']);
+      if (pathname === '/api/motion') return pretty({ schemes: withNames(config, 'motion', listMotionSchemes(config)) });
       const apiM = pathname.match(/^\/api\/motion\/([a-z0-9-]+)$/);
       if (apiM) {
         const body = await readMotion(config, apiM[1]);
         if (body) body.title = withNames(config, 'motion', [{ name: apiM[1], title: body.title }])[0].title;
-        return body ? send(res, 200, JSON.stringify(body, null, 2), MIME['.json']) : send(res, 404, 'Not Found');
+        return body ? pretty(body) : send(res, 404, 'Not Found');
       }
       if (pathname === '/_va/motion-harness.mjs') return sendFile(res, path.join(config.repoAbs, 'tooling/lib/motion-harness.mjs'));
       const mp = pathname.match(/^\/motion\/([a-z0-9-]+)\/([a-z0-9-]+)\.html$/);
@@ -508,7 +485,6 @@ export async function startServer(config, { port = config.server.port, watch = t
         const rel = pathname.startsWith('/board/') ? pathname.slice('/board/'.length) : 'index.html';
         const abs = safeJoin(boardDir, rel);
         if (abs && fs.existsSync(abs)) return sendFile(res, abs);
-        if (rel === 'index.html') return send(res, 200, listPage(config), MIME['.html']);
       }
       return send(res, 404, 'Not Found');
     } catch (err) {

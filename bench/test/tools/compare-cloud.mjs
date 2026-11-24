@@ -5,7 +5,6 @@
 //   cloud.json：[[画板文件名, 云端截图路径], …]
 import fs from 'node:fs';
 import path from 'node:path';
-import { loadConfig } from '../../src/utils/config.js';
 
 const [name, listFile, outDir, ...rest] = process.argv.slice(2);
 const opt = Object.fromEntries(rest.join(' ').split('--').filter(Boolean).map((s) => s.trim().split(/\s+/)));
@@ -13,7 +12,6 @@ const W = Number(opt.width || 618);
 const H = Number(opt.height || 706);
 const DPR = Number(opt.dpr || 2);
 const BASE = opt.base || 'http://127.0.0.1:4321';
-const config = loadConfig();
 const sharp = (await import('sharp')).default;
 const pw = await import('playwright-core');
 const chromium = pw.chromium || pw.default.chromium;

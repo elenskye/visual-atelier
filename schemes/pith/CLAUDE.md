@@ -4,7 +4,7 @@
 
 `AGENTS.md` 是指向本文件的软链接。
 
-- 这是 Pith（站主的 macOS 研究工作台，`~/Documents/GitHub/pith`，GitHub `elenskye/pith`）的 App 方案。0.1.0 由本仓库的会话照站主 2026-11-24 验收的 Pith Explore EX11 建（站主说「验收完毕，开始做优化页、建 schemes/pith/」）。以后由 Pith 的会话管（根目录 `CLAUDE.md`「几个会话怎么分」）；WonderLab 作品另起 `pith-wonder-<名字>`，不和这里共用 token。
+- 这是 Pith（站主的 macOS 研究工作台，`~/Documents/GitHub/pith`，GitHub `elenskye/pith`）的 App 方案。0.1.0 由本仓库的会话照站主 2026-11-24 验收的 Pith Explore EX11 建，同一天站主批了 `logo-grow`，定为 1.0.0。以后由 Pith 的会话管（根目录 `CLAUDE.md`「几个会话怎么分」）；WonderLab 作品另起 `pith-wonder-<名字>`，不和这里共用 token。
 - 改任何视觉基线前，先完整阅读 `DESIGN.md`。
 - `approved` 的资产不改几何与参数，要改开新版本。
 - 本方案的 token 与规则不得借用其他方案（Vermilion、Pomelo、Peck）；悬停只借了 Vermilion 的做法，数值是 Pith 的。

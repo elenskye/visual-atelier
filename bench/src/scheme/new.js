@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 
-export const SCHEME_NAME = /^[a-z][a-z0-9-]{1,30}$/;
+const SCHEME_NAME = /^[a-z][a-z0-9-]{1,30}$/;
 const TEXT = /\.(json|md|css|html|mjs|js|txt)$/;
 
 /** 方案名 → Design System 的命名空间（JS 标识符）：pith → Pith，my-scheme → MyScheme。 */

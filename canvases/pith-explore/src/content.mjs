@@ -1,5 +1,5 @@
 // EX6（页 id ex7）共用的内容，从 EX5 复制，知识库补齐了每一种记录（站主 11-23：每种类型都做一种卡片），文献库加了几本真书好放进表格。
-// 原注：EX4 四个方向共用的内容：同一条任务、同一批书和知识库（HANDOFF.md 5.2）。
+// 原注：EX4 四个方向共用的内容：同一条任务、同一批书和知识库（Pith 仓库 docs/atelier-handoff-2026-11-22.md 5.2）。
 // 书、论文、作者、年份、刊物是真的；斯密的三句和 Young 的一句是原话（WN I.iii.1–3）；对话、笔记、摘抄、日期是演示用的。
 
 /** 第一问：用 # 选了「读《国富论》」，角色是伴读。 */
@@ -101,7 +101,7 @@ export const LIB = [
   { by: 'Marshall, A.', year: '1890', title: 'Principles of Economics', venue: 'Macmillan', type: '书', files: 'EPUB', kbs: '—', chats: '—' },
 ];
 
-/** 四个初始角色（HANDOFF.md 第 4 节）。 */
+/** 四个初始角色（Pith 仓库 docs/atelier-handoff-2026-11-22.md 第 4 节）。 */
 export const ROLES = [
   { name: 'Pith', mark: 'P', line: '研究助手 · 默认', desc: '你是站主的研究助手。什么都能问：先给结论，再给依据和编号；该用哪个技能自己挑。', kb: '上一次勾的', model: '跟随全局', skills: '全部', chats: ['把第 2 章的论证理一遍', '这三篇谁引了谁'] },
   { name: '伴读', mark: '伴', line: '读一本书的时候', desc: '你陪站主读书：讲清一个概念的来龙去脉，反过来问他，帮他整理摘抄、做概念卡。不急着替他下结论。', kb: '在读的那本书', model: '跟随全局', skills: '问这本书 · 整章分析 · 追踪概念 · WonderLab', chats: ['斯密为什么说分工受市场范围限制？', '四大古文明发源的地理条件'] },

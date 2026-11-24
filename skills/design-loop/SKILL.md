@@ -9,9 +9,9 @@ description: 在 visual-atelier 里新建、修改、检查一块画布或一张
 
 在 `canvases/<画布名>/` 里做画板：写、看、检查、和云端同步。**画什么、怎么判断好不好看 `skills/design-craft/SKILL.md`**：开始一轮探索、写简报（`design-craft/brief-template.md`）、评估几家的版本之前先读它。规矩在仓库根的 `CLAUDE.md`（`AGENTS.md` 指向它），拉回和发回的细节在 `docs/cloud.md`。
 
-**在「第二条线」的任务里**（同一份说明几家各做一版）：在站主建好的 worktree 里、分支 `agent/<claude|codex|argon>/<任务>` 上做，只在自己的分支上提交，不推送、不合并、不碰 main 和别人的分支，也不看别人的分支；bench 用自己的端口（Claude 4351、Codex 4331、Argon 4341）。细则在 `docs/sessions.md`「第二条线」。新方案用 `dw scheme new`（MCP `scheme_new`）起。
+**在「第二条线」的任务里**（同一份说明几家各做一版）：只在站主建好的 worktree 和自己的分支上做，bench 用自己的端口，规矩在 `docs/sessions.md`「第二条线」。新方案用 `dw scheme new`（MCP `scheme_new`）起。
 
-**有 `dw` 这个 MCP 服务就用它**（v1.0 Phase 3；三家的配置都在仓库里：`.mcp.json`、`.codex/config.toml`、`.agents/plugins/dw/`，工具清单在 `bench/README.md`「MCP」；在 worktree 里打开，连的就是那个 worktree 自己的画布）。下面每一步都有对应的工具：`list`、`canvas` 看有什么，`new_canvas`、`write_board`（顺带登记 `canvas.json`、新建页）写，`check`（`image: true` 把截图给回来）自检，`export` 导出，`ds_install` 挂 Design System，`review_propose` 标待批，`open` 给站主地址，`serve_start` 开服务；别的（拉回、发回、版本）用 `dw` 工具照命令行跑。没有 MCP 时照下面的命令行做，结果一样。
+**有 `dw` 这个 MCP 服务就用它**（三家的配置都在仓库里：`.mcp.json`、`.codex/config.toml`、`.agents/plugins/dw/`，工具清单在 `bench/README.md`「MCP」；在 worktree 里打开，连的就是那个 worktree 自己的画布）。下面每一步都有对应的工具：`list`、`canvas` 看有什么，`new_canvas`、`write_board`（顺带登记 `canvas.json`、新建页）写，`check`（`image: true` 把截图给回来）自检，`export` 导出，`ds_install` 挂 Design System，`review_propose` 标待批，`open` 给站主地址，`serve_start` 开服务；别的（拉回、发回、版本）用 `dw` 工具照命令行跑。没有 MCP 时照下面的命令行做，结果一样。
 
 ## 输入
 

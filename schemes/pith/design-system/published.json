@@ -1,0 +1,191 @@
+{
+  "$note": "Design System 的发布记录：地址、建它的账号、创建标记、最近一次发布、已上传资产的 id 与校验和。由发布时更新；build:ds 用它生成 index。",
+  "url": "https://claude.ai/artifact/CPavXvD8wdYuEEXbVhYqAb",
+  "slug": "5c3bcb42-5dcf-4fb0-b713-759203910244",
+  "account": "现用账号",
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-11-24T08:20:30Z"
+  },
+  "lastChange": {
+    "at": "2026-11-24T08:20:30Z",
+    "note": "第一次发布：方案 pith 1.0.0（两套配色、12 个组件、35 个资产、七个动效零件）"
+  },
+  "assets": {
+    "Agents/pith-agent-ask.svg": {
+      "blob": "59bb2d78e48e1d24f2030b63935c04be",
+      "size": 520,
+      "sha256": "cf3018204fb35db4c33fa813fac7eacc7e2055558583f800456853cbc670128f"
+    },
+    "Agents/pith-agent-bg.svg": {
+      "blob": "73400bd340865c5b7066df688d6fb356",
+      "size": 930,
+      "sha256": "c2e7e38ecd05fbb9393cc567bfc7b8ae23cebb4465e5c4fa282cfc0ae1de7b94"
+    },
+    "Agents/pith-agent-cite.svg": {
+      "blob": "a12d34c950a1d9255d9836e9fbcac3b2",
+      "size": 921,
+      "sha256": "2774417f2d672a58756f1ba9cbeb99311926ebdaeebf74962814b8107f10de15"
+    },
+    "Agents/pith-agent-compute.svg": {
+      "blob": "b9600ad37910615a9e7baadf1f6dbaa4",
+      "size": 646,
+      "sha256": "ed4001838dd56efe540d67d3c7f4efd1aa5cab8f78544187ca53d9ea60c23b2c"
+    },
+    "Agents/pith-agent-done.svg": {
+      "blob": "d890beaa44013cd2b9f9faafe9c6abf6",
+      "size": 1129,
+      "sha256": "3ce14d9aba8d8d04788342a0b3e55cfece94e692e8e75ea1465b4cbb93547060"
+    },
+    "Agents/pith-agent-lib.svg": {
+      "blob": "046e6286ed483bc0e92f4afcc182cd66",
+      "size": 544,
+      "sha256": "1c84cd2762324ea731d551ecb4a2bdae468b42b97ffc48b496fc0af4351fd844"
+    },
+    "Agents/pith-agent-read.svg": {
+      "blob": "b46bd039374c3038be233dff4c1b40aa",
+      "size": 1639,
+      "sha256": "5fe926ba36d9ec0685f9f39ebf2ab2c3f0e29251683b574ee4c8417df43a9d5a"
+    },
+    "Agents/pith-agent-save.svg": {
+      "blob": "00c79caa053e90fe6f719c916d3a3c0e",
+      "size": 1311,
+      "sha256": "45b1e5e40745d6f5b41edc3b4c7ab5a270cac6b86601a6be179a81d744311e04"
+    },
+    "Agents/pith-agent-search.svg": {
+      "blob": "039ea575b0d8822bece96d72d5b588b3",
+      "size": 622,
+      "sha256": "1a7c07e045bdca932f6bda7fa3e53befd302f2ef76f422f4c772f2aa5763d31f"
+    },
+    "Agents/pith-agent-skill.svg": {
+      "blob": "843fa86b6d404a9b914d206838e301e3",
+      "size": 545,
+      "sha256": "3a957fe353d7e8e7f223450985f2af1ea958aef9403dd1ec6b5df98f603daa7e"
+    },
+    "Agents/pith-agent-think.svg": {
+      "blob": "22bf8f7473094feaa2cc6486ef0333eb",
+      "size": 1815,
+      "sha256": "c7fa60f0ad9bb2045a7b8ddfdf1624ab5011fa8aa1754ac8a76172940d027c2e"
+    },
+    "Agents/pith-agent-web.svg": {
+      "blob": "16b9c0643055451b5cf7663de9470abc",
+      "size": 668,
+      "sha256": "8a52082a581f97f7f0cebc5b2686a732db783133c7537cbb372a988fbd34c8c0"
+    },
+    "Agents/pith-agent-word.svg": {
+      "blob": "586f79fc3a01e0d6755fcacb5f94e3de",
+      "size": 621,
+      "sha256": "3c4c0bda5eb08ebf206702905f361566ff0706da275224e3d5c4e5e44af01a86"
+    },
+    "Agents/pith-agent-write.svg": {
+      "blob": "d5910b41bb9c5c31e59d5439a216ef79",
+      "size": 581,
+      "sha256": "cbb7d0f340ccbd6977b5747f55869445b1bbceb1cb991fb57754134b7d419713"
+    },
+    "Interface/pith-icon-new.svg": {
+      "blob": "941a4c41bad4f62beca28f7883844752",
+      "size": 622,
+      "sha256": "61ed2ad1f53e758d0d401717bc9219071d5208f6b85d3b029c80093950f76bf8"
+    },
+    "Interface/pith-icon-search.svg": {
+      "blob": "6fbd90991803882a6f421096d365ec83",
+      "size": 539,
+      "sha256": "0dc0af02e35e2b2ceb59ba35e173200b19f4f5d526a08ad1eb30210ed53bf9cb"
+    },
+    "Interface/pith-icon-send.svg": {
+      "blob": "8d7ad179e2eb6b1c6326100d632c834b",
+      "size": 363,
+      "sha256": "05c3c7f71418df7a4d1579b335ea846c5c8fe3cbae606bc0eab3957f158201f8"
+    },
+    "Logo/pith-app-icon.svg": {
+      "blob": "923cc855037ed6d7a1f431d2d81cd152",
+      "size": 4227,
+      "sha256": "400cf8604493867028fda0225c7dc0200c5e8e19535eefb5a84761f8f71875ed"
+    },
+    "Logo/pith-logo.svg": {
+      "blob": "2d2ac5dbc27350a33e73b4c4ddabee6b",
+      "size": 4214,
+      "sha256": "6ea49e1566a1d574d5387e9459e8d4a58b27f1669aa10b1f231f5e6b1a0378aa"
+    },
+    "Records/pith-type-answer.svg": {
+      "blob": "39d60ae34eb55bcf1761158890c5155c",
+      "size": 467,
+      "sha256": "a7b5fb1bbe7fc2a5ec8c4042a2d822d2c4fd2c4d3372b15f0836c3c112579c25"
+    },
+    "Records/pith-type-concept.svg": {
+      "blob": "388ffa0c14e149303dbe547d400d9443",
+      "size": 691,
+      "sha256": "519da7e7ec220041db439df129957c096d4570e47daafa44e27db23101b874d4"
+    },
+    "Records/pith-type-excerpt.svg": {
+      "blob": "79ba5a06927d6cd1d133d75ab922d943",
+      "size": 642,
+      "sha256": "2d6b2ce64328ead664b6d8382f97782c93f93d770b3d85a30039f42047393f49"
+    },
+    "Records/pith-type-file.svg": {
+      "blob": "598b0b41fc71310ecb2f280deb383493",
+      "size": 410,
+      "sha256": "8e31ef88e88df8365eff0905614c1389e6df35ee45b07812aa14def3d063a5d1"
+    },
+    "Records/pith-type-full.svg": {
+      "blob": "3b8a02fc4fd0de8c8e78c9624d8a0493",
+      "size": 542,
+      "sha256": "66716251f5a6a6aa95b5e04503aa11ee7c556ee2db5b1a4d20813958b0767f0e"
+    },
+    "Records/pith-type-note.svg": {
+      "blob": "525971d478c707716d25d7c100f1d74d",
+      "size": 498,
+      "sha256": "8ecdacd8b0cc8da1bfba9e6705e3ee07aaa6a7801540510ac7ca67ebed769c9f"
+    },
+    "Records/pith-type-report.svg": {
+      "blob": "4b58ec052154b3475071ba8036c8c7ab",
+      "size": 429,
+      "sha256": "047895137b43b96a593671769b25ea4eb26fd419eae3bb13ddbe0f276719954f"
+    },
+    "Records/pith-type-scan.svg": {
+      "blob": "1b5f61104b8722b0a00df1a782a431dc",
+      "size": 447,
+      "sha256": "a0645e76ba1e83c8ede12633c2be144f7b489d41ba2753f286400a0feb67a7a9"
+    },
+    "Records/pith-type-web.svg": {
+      "blob": "79f3e4c51e2eb0d9317056540a4ae0fc",
+      "size": 595,
+      "sha256": "6ac82a8a276e4fc22af89859a103dbb37c27618a5df040471a0cb8af53f29eb1"
+    },
+    "Records/pith-type-wonder.svg": {
+      "blob": "25a04520259eda67dac1135bac4602ae",
+      "size": 808,
+      "sha256": "d983dea91ad1f4fb87c210c7333938b5c422b6366e263aafa46b112c30814196"
+    },
+    "Stages/pith-stage-evergreen.svg": {
+      "blob": "521e6293b1f7d36a763b3cdc307fe489",
+      "size": 1141,
+      "sha256": "f57d1c462a0b49ee19b5f2ad87503859dbd020873737dc25b5f65fb134bd26d2"
+    },
+    "Stages/pith-stage-seed.svg": {
+      "blob": "85b2a4070a4f356f56eba098b6d05fc7",
+      "size": 226,
+      "sha256": "e72075446ff48fcd371a86e9ed5fda7ceb0a095763b623d2d68e18d7773c1b54"
+    },
+    "Stages/pith-stage-sprout.svg": {
+      "blob": "22224575e218eb45de7dce8b7016b427",
+      "size": 683,
+      "sha256": "4b98be53f9fc3d3ea435ccaa46009ef66dae7dd95411fe525931c5342d8a083a"
+    },
+    "TopBar/pith-icon-kb.svg": {
+      "blob": "01c60cdeb2da7ec0410e2c169e7a4b39",
+      "size": 1066,
+      "sha256": "0ba97e06abf6f41fd64b7440e29fcb4dc022da58bf2eb2417c098a7807232759"
+    },
+    "TopBar/pith-icon-lib.svg": {
+      "blob": "6e80cfbbc213fbf22f1f7b9d8c4ac860",
+      "size": 774,
+      "sha256": "1f3359c473d65eb54cdef36f16ad84ff3151cdc4f2170511d3620178097c8509"
+    },
+    "TopBar/pith-icon-set.svg": {
+      "blob": "c109b86316821b1e2d02337ded28bb88",
+      "size": 1732,
+      "sha256": "15bc6afb8db5b72fbc2cb0f9a2fc388b0e7844c9e2a1e8bff6769b4483144f83"
+    }
+  }
+}

@@ -8,9 +8,9 @@
 // tokens.css、bundle.css（不插动效）和 bundle.js，片段放好后用它画手画的框；bench 的 Motion Deck用同一个 partPage。
 // 只导出一个零件：npm run build:motion -- --scheme pomelo --part tooltip
 import path from 'node:path';
-import { readdirSync, existsSync, mkdirSync } from 'node:fs';
-import { parseArgs, schemesToBuild, outRoot, schemeDir, readJson, readText, loadTokens, pageColor, writeFile, copyFile, log, isMain } from '../lib/common.mjs';
-import { launchBrowser } from '../lib/browser.mjs';
+import { existsSync } from 'node:fs';
+import { parseArgs, schemesToBuild, outRoot, schemeDir, readJson, readText, loadTokens, pageColor, motionParts, writeFile, copyFile, log, isMain } from '../lib/common.mjs';
+import { launchBrowser, nextFrames } from '../lib/browser.mjs';
 import { buildWebCss } from '../tokens/build.mjs';
 import { harnessHtml, captureFrames, frameTimes } from '../lib/motion-harness.mjs';
 import { encodeGif, mergeIdentical, contactSheet } from '../lib/gif.mjs';
@@ -25,13 +25,12 @@ export function pieceCss(scheme, dir, spec) {
 }
 
 /** 方案的全部零件：[{ id, dir, spec }]，按目录名排。 */
-export function partList(scheme) {
-  const mdir = path.join(schemeDir(scheme), 'motion');
-  if (!existsSync(mdir)) return [];
-  return readdirSync(mdir).sort().filter((id) => existsSync(path.join(mdir, id, 'motion.json'))).map((id) => {
-    const dir = path.join(mdir, id);
-    return { id, dir, spec: readJson(path.join(dir, 'motion.json')) };
-  });
+export const partList = (scheme) => motionParts(schemeDir(scheme));
+
+function findPart(scheme, id) {
+  const part = partList(scheme).find((p) => p.id === id);
+  if (!part) throw new Error(`${scheme} 没有动效零件 ${id}`);
+  return part;
 }
 
 /** 页面的底：网站方言的变量；有 Design System 画法的方案再加它的 tokens、bundle.css、bundle.js。 */
@@ -59,10 +58,8 @@ export const fragmentOf = (scheme, dir, spec) => expand(readText(path.join(dir, 
 
 /** 一个零件的演示页（逐帧导出和 bench 的 Motion Deck都用它）。 */
 export async function partPage(scheme, id, theme, { palette } = {}) {
-  const part = partList(scheme).find((p) => p.id === id);
-  if (!part) throw new Error(`${scheme} 没有动效零件 ${id}`);
+  const { spec, dir } = findPart(scheme, id);
   const base = await schemeBase(scheme);
-  const { spec, dir } = part;
   return harnessHtml({
     webCss: base.webCss, head: base.head, boot: base.boot, bodyClass: base.bodyClass,
     pieceCss: pieceCss(scheme, dir, spec), fragment: fragmentOf(scheme, dir, spec), theme, palette: palette ?? spec.capture.palette ?? '',
@@ -73,7 +70,7 @@ export async function partPage(scheme, id, theme, { palette } = {}) {
 export async function settle(page) {
   await page.evaluate(() => document.fonts.ready);
   await page.evaluate(() => { if (window.Pomelo?.paint) window.Pomelo.paint(document.body); });
-  await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
+  await nextFrames(page);
 }
 
 /**
@@ -81,12 +78,9 @@ export async function settle(page) {
  * 返回 [{ theme, gif, contact, frames }]，gif、contact 是 Buffer。bench 的 Motion Deck也调它，所以两边导出的一模一样。
  */
 export async function renderPart(browser, scheme, id, { out = null, write = true } = {}) {
-  const part = partList(scheme).find((p) => p.id === id);
-  if (!part) throw new Error(`${scheme} 没有动效零件 ${id}`);
-  const { spec, dir } = part;
+  const { spec, dir } = findPart(scheme, id);
   const base = await schemeBase(scheme);
   if (write && out) {
-    mkdirSync(out, { recursive: true });
     for (const k of ['css', 'html', 'js', 'site']) if (spec.files[k]) copyFile(path.join(dir, spec.files[k]), path.join(out, spec.files[k]));
   }
   const c = spec.capture;

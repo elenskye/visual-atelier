@@ -1,0 +1,175 @@
+{
+  "$note": "同步清单：哪些文件复制到 Pith 的什么位置（规则见 docs/adoption.md）。由 tooling/sync/sync.mjs 按 Git tag 构建后复制；dist 取构建产物（dist/pith/ 下），src 取方案里的文件。pith.css 是网页方言的变量（两套配色、明暗，根上 data-palette、data-theme 换），bundle.css 是 Design System 的 pith- 组件样式加全部动效零件，tokens.ts 是同一份 token 的常量；marks/ 是全部已批的 SVG，App 图标另给 1024 的 PNG（tauri icon 用它生成）。字体用 Google Fonts 托管的，不同步（要不要打包见 DESIGN.md 第 8 节）。目标目录整个归同步管，Pith 不手改，里面另写 VERSION、SHA256SUMS 与 README.md。",
+  "consumers": {
+    "pith": {
+      "root": "~/Documents/GitHub/pith",
+      "dir": "src/vendor/pith",
+      "files": [
+        {
+          "to": "pith.css",
+          "dist": "tokens/web.css"
+        },
+        {
+          "to": "tokens.ts",
+          "dist": "tokens/tokens.ts"
+        },
+        {
+          "to": "bundle.css",
+          "dist": "design-system/project/components/bundle.css"
+        },
+        {
+          "to": "DESIGN.md",
+          "src": "DESIGN.md"
+        },
+        {
+          "to": "marks/logo/pith.svg",
+          "src": "marks/logo/pith.svg"
+        },
+        {
+          "to": "marks/logo/pith-grow.svg",
+          "src": "marks/logo/pith-grow.svg"
+        },
+        {
+          "to": "marks/logo/app-icon.svg",
+          "src": "marks/logo/app-icon.svg"
+        },
+        {
+          "to": "marks/icons/kb.svg",
+          "src": "marks/icons/kb.svg"
+        },
+        {
+          "to": "marks/icons/lib.svg",
+          "src": "marks/icons/lib.svg"
+        },
+        {
+          "to": "marks/icons/set.svg",
+          "src": "marks/icons/set.svg"
+        },
+        {
+          "to": "marks/icons/new.svg",
+          "src": "marks/icons/new.svg"
+        },
+        {
+          "to": "marks/icons/search.svg",
+          "src": "marks/icons/search.svg"
+        },
+        {
+          "to": "marks/icons/send.svg",
+          "src": "marks/icons/send.svg"
+        },
+        {
+          "to": "marks/types/full.svg",
+          "src": "marks/types/full.svg"
+        },
+        {
+          "to": "marks/types/excerpt.svg",
+          "src": "marks/types/excerpt.svg"
+        },
+        {
+          "to": "marks/types/note.svg",
+          "src": "marks/types/note.svg"
+        },
+        {
+          "to": "marks/types/web.svg",
+          "src": "marks/types/web.svg"
+        },
+        {
+          "to": "marks/types/file.svg",
+          "src": "marks/types/file.svg"
+        },
+        {
+          "to": "marks/types/scan.svg",
+          "src": "marks/types/scan.svg"
+        },
+        {
+          "to": "marks/types/concept.svg",
+          "src": "marks/types/concept.svg"
+        },
+        {
+          "to": "marks/types/report.svg",
+          "src": "marks/types/report.svg"
+        },
+        {
+          "to": "marks/types/wonder.svg",
+          "src": "marks/types/wonder.svg"
+        },
+        {
+          "to": "marks/types/answer.svg",
+          "src": "marks/types/answer.svg"
+        },
+        {
+          "to": "marks/stages/seed.svg",
+          "src": "marks/stages/seed.svg"
+        },
+        {
+          "to": "marks/stages/sprout.svg",
+          "src": "marks/stages/sprout.svg"
+        },
+        {
+          "to": "marks/stages/evergreen.svg",
+          "src": "marks/stages/evergreen.svg"
+        },
+        {
+          "to": "marks/agents/think.svg",
+          "src": "marks/agents/think.svg"
+        },
+        {
+          "to": "marks/agents/search.svg",
+          "src": "marks/agents/search.svg"
+        },
+        {
+          "to": "marks/agents/read.svg",
+          "src": "marks/agents/read.svg"
+        },
+        {
+          "to": "marks/agents/cite.svg",
+          "src": "marks/agents/cite.svg"
+        },
+        {
+          "to": "marks/agents/lib.svg",
+          "src": "marks/agents/lib.svg"
+        },
+        {
+          "to": "marks/agents/web.svg",
+          "src": "marks/agents/web.svg"
+        },
+        {
+          "to": "marks/agents/compute.svg",
+          "src": "marks/agents/compute.svg"
+        },
+        {
+          "to": "marks/agents/skill.svg",
+          "src": "marks/agents/skill.svg"
+        },
+        {
+          "to": "marks/agents/write.svg",
+          "src": "marks/agents/write.svg"
+        },
+        {
+          "to": "marks/agents/ask.svg",
+          "src": "marks/agents/ask.svg"
+        },
+        {
+          "to": "marks/agents/save.svg",
+          "src": "marks/agents/save.svg"
+        },
+        {
+          "to": "marks/agents/bg.svg",
+          "src": "marks/agents/bg.svg"
+        },
+        {
+          "to": "marks/agents/word.svg",
+          "src": "marks/agents/word.svg"
+        },
+        {
+          "to": "marks/agents/done.svg",
+          "src": "marks/agents/done.svg"
+        },
+        {
+          "to": "marks/logo/app-icon@1024.png",
+          "dist": "marks/png/app-icon@1024.png"
+        }
+      ]
+    }
+  }
+}

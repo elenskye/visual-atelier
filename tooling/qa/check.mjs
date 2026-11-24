@@ -1,10 +1,9 @@
 // 质量检查。fail 让进程退出码非 0；warn / info 只提示。
 // 用法：npm run qa  或  npm run qa -- --origin ~/Documents/GitHub/personal-website
 import path from 'node:path';
-import os from 'node:os';
-import { readdirSync, existsSync, statSync, readFileSync } from 'node:fs';
+import { existsSync, statSync, readFileSync } from 'node:fs';
 import { calcAPCA } from 'apca-w3';
-import { ROOT, parseArgs, schemesToBuild, schemeDir, outRoot, readJson, readText, loadTokens, resolveColor, paletteIds, extractBlock, parseVars, sha256, walk, writeFile, log, isMain } from '../lib/common.mjs';
+import { ROOT, parseArgs, schemesToBuild, schemeDir, outRoot, readJson, readText, loadTokens, resolveColor, paletteIds, extractBlock, parseVars, motionParts, expandHome, sha256, walk, writeFile, log, isMain } from '../lib/common.mjs';
 import { buildWebCss } from '../tokens/build.mjs';
 import { diffPng } from '../lib/gif.mjs';
 import { runGraphic } from '../graphic/build.mjs';
@@ -12,12 +11,20 @@ import { runDerived } from '../marks/derive.mjs';
 import { runHandmadeMarks } from '../handmade/marks.mjs';
 import { renderCardSvg, NO_START, NO_END } from '../og-card/card.mjs';
 
-const expand = (p) => p.replace(/^~(?=$|\/)/, os.homedir());
 const IMAGE_EXT = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.avif']);
 const MB = 1024 * 1024;
+const LOOP = /animation[^;]*\binfinite\b|animation-iteration-count:\s*infinite/;
+
+/** 静静地跑一个生成器的 --check（它自己的输出不打出来），返回这个方案的 { changed, blocked }。 */
+async function quietCheck(run, { errors = false } = {}) {
+  const log0 = console.log, err0 = console.error;
+  console.log = () => {};
+  if (errors) console.error = () => {};
+  try { return (await run())[0]; } finally { console.log = log0; console.error = err0; }
+}
 
 export async function runQa(args = parseArgs()) {
-  const origin = typeof args.origin === 'string' ? expand(args.origin) : null;
+  const origin = typeof args.origin === 'string' ? expandHome(args.origin) : null;
   const report = [];
   // file：这一项说的是哪个文件（相对仓库根目录），bench 的 Checks 页点了能看图
   const add = (scheme, group, name, status, detail = '', file = null) => report.push({ scheme, group, name, status, detail, ...(file ? { file: path.relative(ROOT, file).split(path.sep).join('/') } : {}) });
@@ -45,7 +52,10 @@ export async function runQa(args = parseArgs()) {
             const src = readText(of);
             const missing = (a.origin.contains ?? []).filter((s) => !src.includes(s));
             add(scheme, '网站对照', `${a.id} 与网站内联图形一致`, missing.length ? 'warn' : 'pass', missing.length ? `网站里找不到：${missing.join('；')}` : '关键几何一致');
-          } else add(scheme, '网站对照', `${a.id} 与网站现用文件一致`, sha256(readFileSync(of)) === h ? 'pass' : 'warn', sha256(readFileSync(of)) === h ? '逐字节一致' : '网站的文件与本仓库不一致（被手改过？）');
+          } else {
+            const same = sha256(readFileSync(of)) === h;
+            add(scheme, '网站对照', `${a.id} 与网站现用文件一致`, same ? 'pass' : 'warn', same ? '逐字节一致' : '网站的文件与本仓库不一致（被手改过？）');
+          }
         }
         // 可着色的 SVG 与样式不得写死颜色
         if ((a.kind === 'svg' && ['currentColor', 'roles'].includes(a.colorMode)) || a.kind === 'css') {
@@ -57,31 +67,19 @@ export async function runQa(args = parseArgs()) {
       }
     }
 
-    // 1b. 图形语言的源文件与生成器一致（只比较，不写入）
+    // 1b–1c'. 生成器写的源文件与生成器一致（只比较，不写入）：图形语言、派生资产（字标转曲线、默认分享图）、手作的资产（marks/art.mjs）
+    const generated = (name, r, cmd, ok) => {
+      const stale = [...r.changed, ...r.blocked];
+      add(scheme, '资产', name, stale.length ? 'warn' : 'pass', stale.length ? `与 ${cmd} 的结果不同：${stale.join('、')}` : ok);
+    };
     if (tokens.graphic) {
-      const log0 = console.log; console.log = () => {};
-      let r;
-      try { r = runGraphic({ ...args, scheme, check: true })[0]; } finally { console.log = log0; }
-      add(scheme, '资产', '图形语言源文件与生成器一致', r.changed.length || r.blocked.length ? 'warn' : 'pass',
-        r.changed.length || r.blocked.length ? `与 npm run build:graphic 的结果不同：${[...r.changed, ...r.blocked].join('、')}` : 'marks/graphic/ 与动效片段都是最新的');
+      generated('图形语言源文件与生成器一致', await quietCheck(() => runGraphic({ ...args, scheme, check: true })), 'npm run build:graphic', 'marks/graphic/ 与动效片段都是最新的');
     }
-
-    // 1c. 派生资产（字标转曲线、默认分享图）与生成器一致
-    if (existsSync(path.join(schemeDir(scheme), 'marks', 'derived.json'))) {
-      const log0 = console.log; console.log = () => {};
-      let r;
-      try { r = runDerived({ ...args, scheme, check: true })[0]; } finally { console.log = log0; }
-      add(scheme, '资产', '派生资产与生成器一致', r.changed.length || r.blocked.length ? 'warn' : 'pass',
-        r.changed.length || r.blocked.length ? `与 npm run build:derived 的结果不同：${[...r.changed, ...r.blocked].join('、')}` : '字标转曲线与默认分享图都是最新的');
+    if (existsSync(path.join(sdir, 'marks', 'derived.json'))) {
+      generated('派生资产与生成器一致', await quietCheck(() => runDerived({ ...args, scheme, check: true })), 'npm run build:derived', '字标转曲线与默认分享图都是最新的');
     }
-
-    // 1c'. 手作的资产（marks/art.mjs）与生成器一致
-    if (existsSync(path.join(schemeDir(scheme), 'marks', 'art.mjs'))) {
-      const log0 = console.log, err0 = console.error; console.log = () => {}; console.error = () => {};
-      let r;
-      try { r = (await runHandmadeMarks({ ...args, scheme, check: true, quiet: true }))[0]; } finally { console.log = log0; console.error = err0; }
-      add(scheme, '资产', '手作资产与生成器一致', r.changed.length || r.blocked.length ? 'warn' : 'pass',
-        r.changed.length || r.blocked.length ? `与 node tooling/handmade/marks.mjs 的结果不同：${[...r.changed, ...r.blocked].join('、')}` : 'marks/ 的 SVG 和清单都是最新的');
+    if (existsSync(path.join(sdir, 'marks', 'art.mjs'))) {
+      generated('手作资产与生成器一致', await quietCheck(() => runHandmadeMarks({ ...args, scheme, check: true, quiet: true }), { errors: true }), 'node tooling/handmade/marks.mjs', 'marks/ 的 SVG 和清单都是最新的');
     }
 
     // 1d. 文章分享图：示例标题排得下、守标点禁则，导出的 PNG 尺寸对（体积在下面的预算里查，两次一致由 qa:determinism 查）
@@ -133,57 +131,50 @@ export async function runQa(args = parseArgs()) {
     }
 
     // 5. 体积预算：图片 ≤ 1.5 MB，其他 ≤ 5 MB
-    for (const f of walk(sdir)) {
-      const size = statSync(f).size; const limit = IMAGE_EXT.has(path.extname(f)) ? 1.5 * MB : 5 * MB;
-      if (size > limit) add(scheme, '体积', path.relative(sdir, f), 'fail', `${(size / MB).toFixed(2)} MB 超过 ${limit / MB} MB`, f);
-    }
+    const overBudget = (f, name) => {
+      const size = statSync(f).size, limit = IMAGE_EXT.has(path.extname(f)) ? 1.5 * MB : 5 * MB;
+      if (size > limit) add(scheme, '体积', name, 'fail', `${(size / MB).toFixed(2)} MB 超过 ${limit / MB} MB`, f);
+      return size > limit;
+    };
+    for (const f of walk(sdir)) overBudget(f, path.relative(sdir, f));
     const dist = path.join(outRoot(args), scheme);
     let distCount = 0, distBad = 0;
     for (const f of walk(dist)) {
       distCount++;
-      const size = statSync(f).size; const limit = IMAGE_EXT.has(path.extname(f)) ? 1.5 * MB : 5 * MB;
-      if (size > limit) { distBad++; add(scheme, '体积', 'dist/' + path.relative(dist, f), 'fail', `${(size / MB).toFixed(2)} MB 超过 ${limit / MB} MB`, f); }
+      if (overBudget(f, 'dist/' + path.relative(dist, f))) distBad++;
     }
     add(scheme, '体积', `构建产物 ${distCount} 个文件`, distBad ? 'fail' : (distCount ? 'pass' : 'warn'), distBad ? `${distBad} 个超限` : (distCount ? '均在预算内' : '还没有构建产物，先运行 npm run build'));
 
     // 6. 动效规则
-    const mdir = path.join(sdir, 'motion');
-    if (existsSync(mdir)) {
-      for (const id of readdirSync(mdir)) {
-        const mp = path.join(mdir, id, 'motion.json');
-        if (!existsSync(mp)) continue;
-        const spec = readJson(mp);
-        const css = readText(path.join(mdir, id, spec.files.css));
-        const name = spec.id;
-        add(scheme, '动效', `${name} 档位`, ['calm', 'expressive'].includes(spec.tier) ? 'pass' : 'fail', `tier = ${spec.tier}`);
-        add(scheme, '动效', `${name} 减弱动效回退`, spec.reducedMotion && /prefers-reduced-motion:\s*reduce/.test(css) ? 'pass' : 'fail', spec.reducedMotion || '缺少 reducedMotion 说明或 CSS 回退');
-        if (spec.tier === 'calm') {
-          const loop = /animation[^;]*\binfinite\b|animation-iteration-count:\s*infinite/.test(css);
-          add(scheme, '动效', `${name} 无循环（calm）`, loop ? 'fail' : 'pass');
-          const limit = tokens.motion.tiers.calm.maxMsWithoutSignature;
-          // 例外：招牌动作（spec.signature），或 tokens/motion.json 的 calmExceptions 登记了这个零件
-          const exc = spec.calmException ? tokens.motion.calmExceptions?.[spec.calmException] : null;
-          const excOk = exc && exc.parts?.includes(spec.id) && spec.durationMs <= exc.durationMs;
-          add(scheme, '动效', `${name} 时长（calm）`, spec.durationMs <= limit || spec.signature || excOk ? 'pass' : 'fail',
-            spec.durationMs <= limit ? `${spec.durationMs}ms`
-              : spec.signature ? `${spec.durationMs}ms 超过 ${limit}ms，已按「招牌动作」例外`
-              : excOk ? `${spec.durationMs}ms 超过 ${limit}ms，已按 calm 例外「${spec.calmException}」（${exc.approved}）`
-              : `${spec.durationMs}ms 超过 ${limit}ms，${spec.calmException ? `calm 例外「${spec.calmException}」没有登记这个零件或时长超出` : '没有登记例外'}`);
+    for (const { dir, spec } of motionParts(sdir)) {
+      const css = readText(path.join(dir, spec.files.css));
+      const name = spec.id;
+      add(scheme, '动效', `${name} 档位`, ['calm', 'expressive'].includes(spec.tier) ? 'pass' : 'fail', `tier = ${spec.tier}`);
+      add(scheme, '动效', `${name} 减弱动效回退`, spec.reducedMotion && /prefers-reduced-motion:\s*reduce/.test(css) ? 'pass' : 'fail', spec.reducedMotion || '缺少 reducedMotion 说明或 CSS 回退');
+      if (spec.tier === 'calm') {
+        add(scheme, '动效', `${name} 无循环（calm）`, LOOP.test(css) ? 'fail' : 'pass');
+        const limit = tokens.motion.tiers.calm.maxMsWithoutSignature;
+        // 例外：招牌动作（spec.signature），或 tokens/motion.json 的 calmExceptions 登记了这个零件
+        const exc = spec.calmException ? tokens.motion.calmExceptions?.[spec.calmException] : null;
+        const excOk = exc && exc.parts?.includes(spec.id) && spec.durationMs <= exc.durationMs;
+        add(scheme, '动效', `${name} 时长（calm）`, spec.durationMs <= limit || spec.signature || excOk ? 'pass' : 'fail',
+          spec.durationMs <= limit ? `${spec.durationMs}ms`
+            : spec.signature ? `${spec.durationMs}ms 超过 ${limit}ms，已按「招牌动作」例外`
+            : excOk ? `${spec.durationMs}ms 超过 ${limit}ms，已按 calm 例外「${spec.calmException}」（${exc.approved}）`
+            : `${spec.durationMs}ms 超过 ${limit}ms，${spec.calmException ? `calm 例外「${spec.calmException}」没有登记这个零件或时长超出` : '没有登记例外'}`);
+      } else {
+        const ex = tokens.motion.tiers.expressive;
+        const reg = tokens.motion.registeredSurfaces?.[spec.surface];
+        const ok = ex.registeredSurfaces.includes(spec.surface) && reg;
+        add(scheme, '动效', `${name} 已登记（expressive）`, ok ? 'pass' : 'fail', ok ? `表面 ${spec.surface}` : `表面 ${spec.surface ?? '（未写）'} 没有登记在 tokens/motion.json`);
+        if (!ok) continue;
+        if (spec.loop) {
+          const loopCss = /animation[^;]*\binfinite\b/.test(css);
+          add(scheme, '动效', `${name} 循环（expressive）`, reg.loop && spec.durationMs === reg.loopMs && loopCss ? 'pass' : 'fail', `一圈 ${spec.durationMs}ms，登记 ${reg.loopMs}ms`);
         } else {
-          const ex = tokens.motion.tiers.expressive;
-          const reg = tokens.motion.registeredSurfaces?.[spec.surface];
-          const ok = ex.registeredSurfaces.includes(spec.surface) && reg;
-          add(scheme, '动效', `${name} 已登记（expressive）`, ok ? 'pass' : 'fail', ok ? `表面 ${spec.surface}` : `表面 ${spec.surface ?? '（未写）'} 没有登记在 tokens/motion.json`);
-          if (!ok) continue;
-          if (spec.loop) {
-            const loopCss = /animation[^;]*\binfinite\b/.test(css);
-            add(scheme, '动效', `${name} 循环（expressive）`, reg.loop && spec.durationMs === reg.loopMs && loopCss ? 'pass' : 'fail', `一圈 ${spec.durationMs}ms，登记 ${reg.loopMs}ms`);
-          } else {
-            const limit = Math.min(ex.maxSingleMs, reg.maxMs ?? Infinity);
-            const loop = /animation[^;]*\binfinite\b|animation-iteration-count:\s*infinite/.test(css);
-            add(scheme, '动效', `${name} 无循环`, loop ? 'fail' : 'pass');
-            add(scheme, '动效', `${name} 时长（expressive）`, spec.durationMs <= limit ? 'pass' : 'fail', `${spec.durationMs}ms，上限 ${limit}ms`);
-          }
+          const limit = Math.min(ex.maxSingleMs, reg.maxMs ?? Infinity);
+          add(scheme, '动效', `${name} 无循环`, LOOP.test(css) ? 'fail' : 'pass');
+          add(scheme, '动效', `${name} 时长（expressive）`, spec.durationMs <= limit ? 'pass' : 'fail', `${spec.durationMs}ms，上限 ${limit}ms`);
         }
       }
     }

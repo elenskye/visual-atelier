@@ -2,7 +2,7 @@
   "name": "pomelo",
   "title": "Pomelo 柚儿园",
   "status": "approved",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "motion": {
     "default": "calm",
     "expressive": "registered-surfaces-only"

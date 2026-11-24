@@ -34,26 +34,34 @@ export function stripModule(text, file, inSet) {
 }
 
 /**
- * modules：仓库根目录下的相对路径（按依赖顺序）。expose：除了导出的函数之外，再挂在命名空间上的值（JSON）。
+ * 把几个模块原样拼起来（Atlas 的设计也用它）：每个去掉 import 和 export，前面加一行「// ---- 路径 ----」。
+ * sources：[{ rel, text }]，按依赖顺序；import 只能指向这一串里的模块（按文件名认），拼起来以后顶层名字不能重复。
+ * 返回 { parts（每个模块一段）, exported（导出的名字）, tops（顶层名字 → 哪个模块）, names（文件名，按先后） }。
+ */
+export function joinModules(sources) {
+  const names = new Set(sources.map((s) => path.basename(s.rel)));
+  const tops = new Map();
+  const exported = [];
+  const parts = sources.map(({ rel, text }) => {
+    const m = stripModule(text, rel, (p) => names.has(path.basename(p)));
+    for (const t of m.tops) {
+      if (tops.has(t)) throw new Error(`打包后顶层名字重复：${t}（${tops.get(t)} 和 ${rel}）`);
+      tops.set(t, rel);
+    }
+    exported.push(...m.exports);
+    return `// ---- ${rel} ----\n${m.code.trim()}\n`;
+  });
+  return { parts, exported, tops, names };
+}
+
+/**
+ * modules：仓库根目录下的相对路径（按依赖顺序）。config：打包进去的 CONFIG（JSON）。
  * entry：生成命名空间上的便捷函数的代码（字符串），可以引用模块里的名字和 CONFIG。
  */
 export function bundleClassic({ root, namespace, title, modules, config, entry }) {
   if (!/^[A-Za-z_$][\w$]*$/.test(namespace)) throw new Error(`namespace 要是 JS 标识符：${namespace}`);
-  const names = new Set(modules.map((m) => path.basename(m)));
-  const seen = new Map();
-  const parts = [];
-  const exported = [];
-  for (const rel of modules) {
-    const text = readFileSync(path.join(root, rel), 'utf8');
-    const { code, exports, tops } = stripModule(text, rel, (p) => names.has(path.basename(p)));
-    for (const t of tops) {
-      if (seen.has(t)) throw new Error(`打包后顶层名字重复：${t}（${seen.get(t)} 和 ${rel}）`);
-      seen.set(t, rel);
-    }
-    exported.push(...exports);
-    parts.push(`// ---- ${rel} ----\n${code.trim()}\n`);
-  }
-  for (const reserved of ['CONFIG', 'NS']) if (seen.has(reserved)) throw new Error(`模块里不能有顶层名字 ${reserved}`);
+  const { parts, exported, tops } = joinModules(modules.map((rel) => ({ rel, text: readFileSync(path.join(root, rel), 'utf8') })));
+  for (const reserved of ['CONFIG', 'NS']) if (tops.has(reserved)) throw new Error(`模块里不能有顶层名字 ${reserved}`);
   const header = `/* @ds-bundle: ${JSON.stringify({ format: 4, namespace, components: [] })} */`;
   const note = `/* ${title}：手画零件。由 tooling/design-system/bundle.mjs 把 ${modules.map((m) => path.basename(m)).join('、')} 原样打包，不要手改。 */`;
   const body = [

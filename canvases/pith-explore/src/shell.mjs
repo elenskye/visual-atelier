@@ -2,7 +2,7 @@
 // 换配色是几圈湖面波纹，加一层水面的扭曲（SVG 滤镜，一次 1.4 秒）；对话在跑的时候输入框里是「在想」。原注：EX9（页 id ex10）的外壳：从 EX8 复制，配色进了状态（设置 › 外观、⌘K 都能换，Tweaks 的配色是起点），明暗三档（跟随系统就是 Tweaks 的明暗），图标跟 Tweaks 的「画法」走。原注：EX8（页 id ex9）的外壳：从 EX7 复制。这一轮：对话历史没有按钮，只能 ⌘\（Ctrl+\）或双指横滑叫出来（往右滑打开、往左滑收起）；
 // Tweaks 加了配色（pal-N）和 Logo（mk-N）；生长阶段的小图标换成 marks.mjs 的三套。原注：EX7（页 id ex8）的外壳：从 EX6 复制，加了对话页的左栏（默认收起）、文献库的右侧面板和元信息的编辑。原注：EX6（页 id ex7）每张板的外壳和共用的状态，从 EX5 复制，加了可以自由拖动的画布（.js-pan 上的 --px、--py，拖的时候直接改 DOM，松手再记进状态）
 // 和画布的镜头（board({ cams }) 传进来：去某一屏、某个知识库时镜头滑过去）、C 的对话收起（mini）。原注：EX5 加了 ⌘K 搜索框：一个方向一张 1280 × 800 的板，四屏（对话、知识库、文献库、设置 › 角色）共用一份状态，
-// 能点着走完同一条任务（HANDOFF.md 5.2）：
+// 能点着走完同一条任务（Pith 仓库 docs/atelier-handoff-2026-11-22.md 5.2）：
 //   对话首页 → 点输入框，打出「# 读《国富论》 斯密为什么说……」→ 发送 → 一行短状态 → 回答带编号 → 点 [n] 看原文 →
 //   去知识库那一段、去文献库那一条 → 存成概念卡 → 再点输入框打出「@审稿人 这个解释站得住吗？」→ 审稿人答、问要不要把 Young 1928 加进文献库。
 //   设置 › 角色里把审稿人改成「说话再短一点」，回到对话，审稿人的回答跟着变短。存了的卡、加了的文献，在知识库、文献库里都看得到。
@@ -353,9 +353,6 @@ export function palette(p) {
 <p class="${p}-g">设置</p>${C.ROLES.map((r, i) => row('pgRole' + i, '角色', r.name, r.line)).join('')}${C.SETTINGS.slice(1).map((t, i) => row('pgOther' + i, '设置', t, '')).join('')}
 </div></div></sc-if>`;
 }
-
-/** 角上那个 ⌘K（只是提示，也能点）。 */
-export const palHint = (cls) => `<button type="button" class="${cls}" onClick="{{openPal}}" aria-label="搜索"><kbd>⌘K</kbd></button>`;
 
 /** 一闪而过的提示。 */
 export const toast = (cls) => `<sc-if value="{{isToast}}" hint-placeholder-val="{{ false }}"><p class="${cls}">{{toast}}</p></sc-if>`;

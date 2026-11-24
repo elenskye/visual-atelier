@@ -1,0 +1,50 @@
+{
+  "id": "fold",
+  "title": "侧栏展开 · 一行接一行滑下来",
+  "status": "approved",
+  "approved": "站主 2026-11-24 批准：画布 Pomelo Fold 的 C（Bear 的节奏加柚儿园的弹），现在是 pomelo-explore 的 R8",
+  "tier": "calm",
+  "trigger": "用户点开：子项的外层 .pm-fold 加 .is-open、高度从 0 写到 scrollHeight，放完拿掉；收起：加 .is-closing、高度写回 0，放完拿掉并隐藏；箭头 .pm-fold-chev 跟着行的 aria-expanded 转",
+  "durationMs": 570,
+  "reducedMotion": "直接展开、直接收起，箭头直接转过去",
+  "use": "侧栏里能展开的树和分组：标签树、文件夹、分组（念念不忘、见字如面、一网打尽、有板有眼、一步一步、柚子的对话）",
+  "source": "canvases/pomelo-explore R8「侧栏展开」（原画布 pomelo-fold，站主 2026-11-24 挑了 C）",
+  "files": {
+    "css": "fold.css",
+    "html": "fold.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 500,
+    "holdEndMs": 1000,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".fold-demo",
+    "viewport": [
+      260,
+      300
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "attr": {
+          "aria-expanded": "true"
+        },
+        "on": ".fold-demo .k"
+      },
+      {
+        "at": 0,
+        "add": "is-open",
+        "style": {
+          "height": "136px"
+        },
+        "on": ".fold-demo .pm-fold"
+      }
+    ]
+  }
+}

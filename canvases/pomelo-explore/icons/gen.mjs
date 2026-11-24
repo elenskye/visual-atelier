@@ -5,7 +5,7 @@
 import path from 'node:path';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { rootImport, fromRoot } from '../../_lib/root.mjs';
-import { PROJECT, writePage } from '../page.mjs';
+import { PROJECT, writePage, dsBoard } from '../page.mjs';
 
 const PG = 'icons';
 const PREFIX = 'Icons-';
@@ -31,40 +31,20 @@ body{margin:0}
 
 function board(file, title, body, { w = 1280, h = 800 } = {}) {
   const props = { palette: { editor: 'enum', options: PALETTES, default: PALETTES[0], section: '配色' }, dark: { editor: 'boolean', default: false, section: '配色' }, $preview: { width: w, height: h } };
-  const html = `<!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<title>${title}</title>
-<script src="./support.js"></script>
-<link rel="stylesheet" href="ds/pomelo/tokens.css">
-<link rel="stylesheet" href="ds/pomelo/components/bundle.css">
-<script src="ds/pomelo/components/bundle.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-<style>
-${CSS}
-</style>
-</helmet>
-<div class="pm bd" data-palette="{{palette}}" data-theme="{{theme}}">
+  const html = dsBoard({
+    title, css: CSS, props,
+    body: `<div class="pm bd" data-palette="{{palette}}" data-theme="{{theme}}">
 ${body}
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props='${JSON.stringify(props).replace(/'/g, '&#39;')}'>
-class Component extends DCLogic {
+</div>`,
+    script: `class Component extends DCLogic {
   renderVals() {
     return { palette: this.props.palette ?? 'blue', theme: this.props.dark ? 'dark' : 'light' };
   }
   componentDidMount() { this.stop = Pomelo.paintLive(document.body); }
   componentDidUpdate() { Pomelo.paint(document.body); }
   componentWillUnmount() { this.stop && this.stop(); }
-}
-</script>
-</body>
-</html>
-`;
+}`,
+  });
   writeFileSync(path.join(PROJECT, PREFIX + file), html);
   return { file: PREFIX + file, title, w, h };
 }

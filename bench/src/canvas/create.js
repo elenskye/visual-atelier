@@ -3,15 +3,14 @@ import os from 'node:os';
 import path from 'node:path';
 import { canvasDir, writeCloud } from './store.js';
 import { snapshot } from './versions.js';
-import { writeJsonFile, sha256 } from '../utils/config.js';
+import { readJsonFile, writeJsonFile, sha256 } from '../utils/config.js';
 import { BundlerRegistry } from '../bundler/registry.js';
-import { readJsonFile } from '../utils/config.js';
 
 const GAP_X = 80;
 const GAP_Y = 120;
 const PER_ROW = 4;
 
-export function canvasIndex(title, boards, at = new Date()) {
+function canvasIndex(title, boards, at = new Date()) {
   const index = {
     v: 3,
     createdOnFiles: { v: 1, at: at.toISOString().replace(/\.\d+Z$/, 'Z') },
@@ -40,7 +39,7 @@ export function canvasIndex(title, boards, at = new Date()) {
   return index;
 }
 
-export function boardSkeleton({ title, w = 1280, h = 800 }) {
+function boardSkeleton({ title, w = 1280, h = 800 }) {
   const t = JSON.stringify(title);
   return `<!doctype html>
 <html lang="zh-CN">
@@ -73,7 +72,7 @@ return { title: this.props.title ?? ${t} };
 }
 
 /** The README every canvas carries (canvases/README.md): what it is, how to look, check, export, and where the cloud copy is. */
-export function canvasReadme({ name, title, w = 1280, h = 800 }) {
+function canvasReadme({ name, title, w = 1280, h = 800 }) {
   return `# ${title}
 
 本地新建的画布，源在 \`project/\`（\`canvas.json\` 加 \`*.dc.html\`），没有生成器，直接改 \`project/\` 里的文件。还没有云端那份。

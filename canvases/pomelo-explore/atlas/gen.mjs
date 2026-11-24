@@ -10,7 +10,7 @@
 import path from 'node:path';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { rootImport, fromRoot } from '../../_lib/root.mjs';
-import { PROJECT, writePage } from '../page.mjs';
+import { PROJECT, writePage, dsBoard } from '../page.mjs';
 
 const { loadTokens } = await rootImport('tooling/lib/common.mjs');
 const { stripModule } = await rootImport('tooling/design-system/bundle.mjs');
@@ -173,33 +173,12 @@ class Component extends DCLogic {
   componentWillUnmount() { this.stop && this.stop(); }
 }`;
   if (/<\/script/i.test(script)) throw new Error('画板的脚本里不能有 </script');
-  const html = `<!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<title>${title}</title>
-<script src="./support.js"></script>
-<link rel="stylesheet" href="ds/pomelo/tokens.css">
-<link rel="stylesheet" href="ds/pomelo/components/bundle.css">
-<script src="ds/pomelo/components/bundle.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-<style>
-${CSS}
-</style>
-</helmet>
-<div class="pm root board" data-kind="${kind}" data-palette="{{palette}}" data-theme="{{theme}}" data-motion="{{motion}}" style="width:${w}px;height:${h}px">
+  const html = dsBoard({
+    title, css: CSS, props, script,
+    body: `<div class="pm root board" data-kind="${kind}" data-palette="{{palette}}" data-theme="{{theme}}" data-motion="{{motion}}" style="width:${w}px;height:${h}px">
 ${inner}
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props='${JSON.stringify(props).replace(/'/g, '&#39;')}'>
-${script}
-</script>
-</body>
-</html>
-`;
+</div>`,
+  });
   writeFileSync(path.join(PROJECT, file), html);
   console.log(file, (html.length / 1024).toFixed(0) + ' KB');
   return { file, title, w, h };

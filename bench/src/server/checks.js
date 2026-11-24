@@ -21,7 +21,7 @@ function alive(pid) {
 }
 
 /** The last run (status "stopped" when it says running but its process is gone). */
-export function readRun(config) {
+function readRun(config) {
   const run = readJsonFile(runPath(config), null);
   if (run?.status === 'running' && !alive(run.pid)) return { ...run, status: 'stopped' };
   return run;

@@ -4,7 +4,7 @@
 
 `AGENTS.md` 是指向本文件的软链接。
 
-- 这是 Peck（`~/Documents/GitHub/personal-cli-studio/peck`，站主的本地 Coding Agent）的方案，0.1.0 站主 2026-11-10 批了。Peck 的计划在它自己的 `docs/roadmap.md`，规则在它的 `CLAUDE.md`；本仓库的 `ROADMAP.md` 不记 Peck。
+- 这是 Peck（`~/Documents/GitHub/personal-cli-studio/peck`，站主的本地 Coding Agent）的方案，0.1.0 站主 2026-11-10 批了，2026-11-24 内容不变定为 1.0.0。Peck 的计划在它自己的 `docs/roadmap.md`，规则在它的 `CLAUDE.md`；本仓库的 `ROADMAP.md` 不记 Peck。
 - 改任何视觉基线前，先完整阅读 `DESIGN.md`；外框怎么放（三栏、右栏四个页签、卡片、权限三档）在同目录 `peck-rules.md`。
 - `approved` 的资产不改几何与参数，要改开新版本。
 - 本方案的 token 与规则不得借用其他方案（Vermilion、Pomelo）；不写 `tokens/graphic.json`、`tokens/handmade.json`。

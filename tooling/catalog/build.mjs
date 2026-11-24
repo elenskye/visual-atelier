@@ -4,7 +4,7 @@
 import path from 'node:path';
 import { existsSync, readdirSync } from 'node:fs';
 import { calcAPCA } from 'apca-w3';
-import { parseArgs, schemesToBuild, outRoot, schemeDir, readJson, readText, loadTokens, resolveColor, paletteIds, pageColor, markColorRole, walk, writeFile, log, isMain } from '../lib/common.mjs';
+import { parseArgs, schemesToBuild, outRoot, schemeDir, readJson, readText, loadTokens, resolveColor, paletteIds, pageColor, markColorRole, motionParts, walk, writeFile, log, isMain } from '../lib/common.mjs';
 import { buildWebCss, buildPomeloCss } from '../tokens/build.mjs';
 import { fakeLabel } from '../watermark/fake-images.mjs';
 
@@ -35,6 +35,14 @@ function contrastTable(tokens, palette = null) {
   return `<div class="scroll"><table><thead><tr><th>用途</th><th>前景 / 背景</th><th>要求</th><th>浅色</th><th>深色</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
+/** 一个颜色角色的卡片：明暗两块色、名字、取值；extra 接在取值后面（网页变量）。 */
+const roleCard = (id, r, extra = '') => `
+    <div class="role">
+      <div class="chips"><span style="background:${r.light}"></span><span style="background:${r.dark}"></span></div>
+      <h4>${esc(r.label)} <code>${esc(id)}</code></h4>
+      <dl><dt>浅色</dt><dd>${r.light}</dd><dt>深色</dt><dd>${r.dark}</dd>${extra}</dl>
+    </div>`;
+
 /** 多套配色：角色一行，每套一列；对比度每套一张，收起来。 */
 function paletteSection(tokens) {
   const ids = paletteIds(tokens);
@@ -46,12 +54,7 @@ function paletteSection(tokens) {
     }).join('');
     return `<tr><td>${esc(tokens.color.roleDefs[role].label)} <code>${esc(role)}</code></td>${cells}</tr>`;
   }).join('');
-  const shared = Object.entries(tokens.color.shared ?? {}).map(([id, r]) => `
-    <div class="role">
-      <div class="chips"><span style="background:${r.light}"></span><span style="background:${r.dark}"></span></div>
-      <h4>${esc(r.label)} <code>${esc(id)}</code></h4>
-      <dl><dt>浅色</dt><dd>${r.light}</dd><dt>深色</dt><dd>${r.dark}</dd></dl>
-    </div>`).join('');
+  const shared = Object.entries(tokens.color.shared ?? {}).map(([id, r]) => roleCard(id, r)).join('');
   const tables = ids.map((id) => `<details><summary>${esc(tokens.color.palettes[id].label)}</summary>${contrastTable(tokens, id)}</details>`).join('');
   return `
   <h3>颜色</h3>
@@ -73,12 +76,7 @@ function handmadeSection(scheme, out) {
 function colorSection(tokens) {
   if (tokens.color.palettes) return paletteSection(tokens);
   const vars = tokens.targets.web.colorVars;
-  const cards = Object.entries(tokens.color.roles).map(([id, r]) => `
-    <div class="role">
-      <div class="chips"><span style="background:${r.light}"></span><span style="background:${r.dark}"></span></div>
-      <h4>${esc(r.label)} <code>${esc(id)}</code></h4>
-      <dl><dt>浅色</dt><dd>${r.light}</dd><dt>深色</dt><dd>${r.dark}</dd><dt>网页变量</dt><dd>${esc(vars[id] || '—')}</dd></dl>
-    </div>`).join('');
+  const cards = Object.entries(tokens.color.roles).map(([id, r]) => roleCard(id, r, `<dt>网页变量</dt><dd>${esc(vars[id] || '—')}</dd>`)).join('');
   return `
   <h3>颜色</h3>
   <p class="lead">每个角色一组明暗取值。左半是浅色，右半是深色。</p>
@@ -93,10 +91,9 @@ function marksSection(scheme, tokens, out) {
   const manifest = readJson(manifestPath);
   const pngDir = path.join(out, scheme, 'marks', 'png');
   const pngs = existsSync(pngDir) ? readdirSync(pngDir).sort() : [];
-  const tile = (mode, inner) => {
-    const bg = pageColor(tokens, mode);
-    return `<div class="tile" style="background:${bg}">${inner}</div>`;
-  };
+  const tile = (mode, inner) => `<div class="tile" style="background:${pageColor(tokens, mode)}">${inner}</div>`;
+  // 分享图、水印模板的示例图：[文件名（marks/png/ 下）, alt]
+  const samples = (items) => `<div class="tiles card-samples">${items.map(([file, alt]) => `<a href="../${scheme}/marks/png/${file}"><img src="../${scheme}/marks/png/${file}" alt="${alt}" loading="lazy"></a>`).join('')}</div>`;
   const cards = manifest.assets.map((a) => {
     const href = `../${scheme}/marks/${a.file}`;
     let visual;
@@ -107,9 +104,9 @@ function marksSection(scheme, tokens, out) {
       const themed = (mode) => `<div class="tile${a.viewBox?.[0] >= 400 ? ' wide' : ''}" style="background:${tokens.color.roles[bgRole][mode]}"><img src="../${scheme}/marks/themed/${a.id}-${mode}.svg" alt="${esc(a.title)}（${mode === 'light' ? '浅色' : '深色'}）"></div>`;
       visual = `<div class="tiles">${themed('light')}${themed('dark')}</div>`;
     } else if (a.samples?.length) {
-      visual = `<div class="tiles card-samples">${a.samples.map((title, i) => `<a href="../${scheme}/marks/png/${a.id}@sample-${i + 1}.png"><img src="../${scheme}/marks/png/${a.id}@sample-${i + 1}.png" alt="示例：${esc(title)}" loading="lazy"></a>`).join('')}</div>`;
+      visual = samples(a.samples.map((title, i) => [`${a.id}@sample-${i + 1}.png`, `示例：${esc(title)}`]));
     } else if (a.fakeImages?.length) {
-      visual = `<div class="tiles card-samples">${a.fakeImages.map((kind) => `<a href="../${scheme}/marks/png/${a.id}@sample-${kind}.jpg"><img src="../${scheme}/marks/png/${a.id}@sample-${kind}.jpg" alt="假图示例：${esc(fakeLabel(kind))}" loading="lazy"></a>`).join('')}</div>`;
+      visual = samples(a.fakeImages.map((kind) => [`${a.id}@sample-${kind}.jpg`, `假图示例：${esc(fakeLabel(kind))}`]));
     } else if (a.kind === 'css' || a.kind === 'json') {
       visual = `<div class="tiles one"><div class="tile"><code>${esc(path.basename(a.file))}</code></div></div>`;
     } else if (a.kind === 'svg' && a.colorMode === 'currentColor') {
@@ -142,18 +139,15 @@ function marksSection(scheme, tokens, out) {
   return `<h3>标志、图标与插图</h3><div class="grid">${cards}</div>`;
 }
 
-function motionSection(scheme, out, state) {
-  const mdir = path.join(schemeDir(scheme), 'motion');
-  if (!existsSync(mdir)) return '';
+function motionSection(scheme, css) {
   const blocks = [];
-  for (const id of readdirSync(mdir).sort()) {
-    const specPath = path.join(mdir, id, 'motion.json');
-    if (!existsSync(specPath)) continue;
-    const spec = readJson(specPath);
-    const fragment = readText(path.join(mdir, id, spec.files.html));
-    for (const p of spec.requires ?? []) if (!state.css.includes(readText(path.join(schemeDir(scheme), p)))) state.css.push(readText(path.join(schemeDir(scheme), p)));
-    state.css.push(readText(path.join(mdir, id, spec.files.css)));
-    state.pieces.push(spec.id);
+  for (const { dir, spec } of motionParts(schemeDir(scheme))) {
+    const fragment = readText(path.join(dir, spec.files.html));
+    for (const p of spec.requires ?? []) {
+      const dep = readText(path.join(schemeDir(scheme), p));
+      if (!css.includes(dep)) css.push(dep);
+    }
+    css.push(readText(path.join(dir, spec.files.css)));
     // 同页放两份（演示、静止态），遮罩 id 各加后缀，免得互相引用
     const ids = [...fragment.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);
     const suffix = (html, sfx) => ids.reduce((h, id0) => h.split(`id="${id0}"`).join(`id="${id0}-${sfx}"`).split(`url(#${id0})`).join(`url(#${id0}-${sfx})`), html.replace(/<!--[\s\S]*?-->\n?/g, ''));
@@ -303,11 +297,11 @@ const PAGE_JS = `
 `;
 
 export function buildCatalogHtml(schemes, out) {
-  const state = { css: [], pieces: [] };
+  const css = [];
   const sections = schemes.map((scheme) => {
     const meta = readJson(path.join(schemeDir(scheme), 'scheme.json'));
     const tokens = loadTokens(scheme);
-    const body = [colorSection(tokens), handmadeSection(scheme, out), marksSection(scheme, tokens, out), motionSection(scheme, out, state), qaSection(scheme, out), tokenFilesSection(scheme, tokens)].join('\n');
+    const body = [colorSection(tokens), handmadeSection(scheme, out), marksSection(scheme, tokens, out), motionSection(scheme, css), qaSection(scheme, out), tokenFilesSection(scheme, tokens)].join('\n');
     return `
   <section id="${esc(scheme)}">
     <h2>${esc(meta.title || scheme)}</h2>
@@ -331,7 +325,7 @@ export function buildCatalogHtml(schemes, out) {
 <style>
 ${webCss}
 ${PAGE_CSS}
-${state.css.join('\n')}
+${css.join('\n')}
 </style>
 </head>
 <body>

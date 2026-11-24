@@ -31,6 +31,7 @@
   --color-selected: #4A2238;
   --color-marker: #8E3A5E;
   --color-link: #C4B5FF;
+  --color-link-pomelo: #FFB870;
   --color-danger: #FFA291;
   --color-on-danger: #1A0C0A;
   --color-up: #6FD6A0;
@@ -106,6 +107,7 @@
   --color-selected: #FFE1EC;
   --color-marker: #FFBDDF;
   --color-link: #5B3FC4;
+  --color-link-pomelo: #A85210;
   --color-danger: #C8322A;
   --color-on-danger: #FFFFFF;
   --color-up: #1D7A4F;
@@ -181,6 +183,7 @@
   --color-selected: #4A4019;
   --color-marker: #745C00;
   --color-link: #FFD23F;
+  --color-link-pomelo: #FFB870;
   --color-danger: #FFA291;
   --color-on-danger: #1A0C0A;
   --color-up: #6FD6A0;
@@ -256,6 +259,7 @@
   --color-selected: #FFF0A0;
   --color-marker: #FFD23F;
   --color-link: #1F1D1A;
+  --color-link-pomelo: #A85210;
   --color-danger: #C8322A;
   --color-on-danger: #FFFFFF;
   --color-up: #1D7A4F;
@@ -331,6 +335,7 @@
   --color-selected: #5A4D12;
   --color-marker: #745C00;
   --color-link: #FFD23F;
+  --color-link-pomelo: #FFB870;
   --color-danger: #FFA291;
   --color-on-danger: #1A0C0A;
   --color-up: #6FD6A0;
@@ -406,6 +411,7 @@
   --color-selected: #FFEE9E;
   --color-marker: #FFD23F;
   --color-link: #20241F;
+  --color-link-pomelo: #A85210;
   --color-danger: #E0362B;
   --color-on-danger: #FFFFFF;
   --color-up: #1D7A4F;
@@ -481,6 +487,7 @@
   --color-selected: #1F4A37;
   --color-marker: #745C00;
   --color-link: #81E5B9;
+  --color-link-pomelo: #FFB870;
   --color-danger: #FFA291;
   --color-on-danger: #1A0C0A;
   --color-up: #6FD6A0;
@@ -556,6 +563,7 @@
   --color-selected: #D3F5E5;
   --color-marker: #FFD23F;
   --color-link: #1E2A24;
+  --color-link-pomelo: #A85210;
   --color-danger: #E0362B;
   --color-on-danger: #FFFFFF;
   --color-up: #1D7A4F;
@@ -632,6 +640,28 @@
 .pm-num { font-variant-numeric: tabular-nums; }
 .pm-long { font-family: var(--font-long); line-height: var(--leading-loose); }
 .pm-link { color: var(--color-link); text-decoration: underline; text-underline-offset: 3px; }
+/* 柚子链接：[[目标]] 是行内的小卡（模块的贴纸加名字），[[目标|字]] 是带点线的字；列表里大一号 */
+.pm-lk { display: inline; padding: 0 0.32em 0 0.18em; margin: 0 0.06em; border-radius: 7px; color: var(--color-link-pomelo); background: color-mix(in srgb, var(--color-link-pomelo) 9%, transparent); font: inherit; line-height: inherit; white-space: nowrap; cursor: pointer; vertical-align: baseline; text-align: left; }
+.pm-lk:hover { background: color-mix(in srgb, var(--color-link-pomelo) 16%, transparent); }
+.pm-lk .pm-lk-mk { display: inline-block; vertical-align: -0.22em; margin-right: 0.22em; }
+.pm-lk.dead { color: var(--color-ink-soft); background: color-mix(in srgb, var(--color-ink-soft) 8%, transparent); cursor: default; }
+.pm-lk-lg { display: inline-flex; align-items: center; gap: 0.3em; padding: 1px 9px 1px 5px; border-radius: 8px; font-size: 14px; line-height: 1.8; }
+.pm-lk-lg .pm-lk-mk { margin: 0; vertical-align: 0; }
+.pm-lk-d { margin-left: 0.35em; color: var(--color-ink-soft); font-size: 0.85em; }
+.pm-lkw { display: inline; padding: 0; font: inherit; line-height: inherit; color: var(--color-link-pomelo); text-decoration: underline dotted 1.5px; text-underline-offset: 3px; cursor: pointer; text-align: left; }
+/* 提示框（见字如面）：分类色的淡底、左边一道分类色，开头是那一种的图标（和字的中线对齐） */
+.pm-callout { padding: 0.4em 0.9em; border-left: 3px solid; border-radius: 0 10px 10px 0; color: var(--color-ink); font-size: var(--text-body-lg); line-height: 1.75; }
+.pm-callout-head { display: inline-flex; align-items: center; height: 1lh; vertical-align: top; margin-right: 0.45em; }
+.pm-callout.is-note { background: var(--color-cat-sky-tint); border-left-color: var(--color-cat-sky); }
+.pm-callout.is-tip { background: var(--color-cat-mint-tint); border-left-color: var(--color-cat-mint); }
+.pm-callout.is-important { background: var(--color-cat-grape-tint); border-left-color: var(--color-cat-grape); }
+.pm-callout.is-warning { background: var(--color-cat-orange-tint); border-left-color: var(--color-cat-orange); }
+.pm-callout.is-caution { background: var(--color-cat-pink-tint); border-left-color: var(--color-cat-pink); }
+.pm-callout.is-note .pm-callout-head { color: var(--color-cat-sky); }
+.pm-callout.is-tip .pm-callout-head { color: var(--color-cat-mint); }
+.pm-callout.is-important .pm-callout-head { color: var(--color-cat-grape); }
+.pm-callout.is-warning .pm-callout-head { color: var(--color-cat-orange); }
+.pm-callout.is-caution .pm-callout-head { color: var(--color-cat-pink); }
 
 /* ---------- 手画的那一层 ---------- */
 [data-hand] { position: relative; isolation: isolate; }
@@ -734,6 +764,15 @@
 .pm-menu-item:last-child { border-bottom: 1.5px solid var(--color-pen); border-radius: 0 0 var(--radius-paper) var(--radius-paper); }
 .pm-menu-item[aria-selected="true"] { background: var(--color-selected); }
 .pm-menu-item:not([aria-selected="true"]) .pm-menu-check { visibility: hidden; }
+/* 右键菜单：同一条纸，矮一点、带一点投影；组的那一格指着时旁边再出一条（pm-menu-sub） */
+.pm-menu--ctx { width: 196px; filter: drop-shadow(0 6px 14px var(--color-shadow)); color: var(--color-ink); }
+.pm-menu--ctx .pm-menu-item { width: 100%; height: 30px; padding: 0 12px; font-size: 14px; text-align: left; }
+.pm-menu--ctx .pm-menu-item:hover, .pm-menu--ctx .pm-menu-item.is-on { background: var(--color-selected); }
+.pm-menu-sub { width: 184px; }
+.pm-menu-lead { font-weight: 700; }
+.pm-menu-lead [data-hand="icon"] { color: var(--color-pen); }
+.pm-menu-keys { flex-shrink: 0; font-size: 12px; color: var(--color-ink-soft); }
+.pm-menu-rule { height: 0; border-left: 1.5px solid var(--color-pen); border-right: 1.5px solid var(--color-pen); border-bottom: 1.5px solid var(--color-pen); background: var(--color-card); }
 
 /* ---------- 分段：选中的一格抹一笔选中色 ---------- */
 .pm-seg { position: relative; display: inline-flex; height: 36px; padding: 3px; }
@@ -981,6 +1020,24 @@
 @keyframes pm-pencil { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(-14deg) translateY(-1px); } 70% { transform: rotate(8deg); } }
 @media (prefers-reduced-motion: reduce) {
   .pm-field:focus-within .pm-field-icon, .pm-field.is-focus .pm-field-icon { animation: none; }
+}
+
+/* ---------- 动效 · 侧栏展开 · 一行接一行滑下来（fold，calm） ---------- */
+/* 侧栏展开：子项一行接一行从上一行底下滑出来，落到位弹一下、歪一点再摆正（每行 0.32 秒，间隔 28 毫秒，最多晚 0.25 秒）；
+   整块的高度跟着长（0.3 秒，带一点弹），下面的行顺着让开。收起倒着一行行收回去（每行 0.16 秒，间隔 16 毫秒），高度跟着缩。
+   箭头 .pm-fold-chev 弹着转过去（0.3 秒）。
+   用法：子项包在 .pm-fold 里，每个子项写 --pm-i（从上往下第几个）、--pm-r（从下往上第几个）；用户点开的那一刻加 .is-open、
+   收起加 .is-closing，放完拿掉（页面刚打开时展开着的不放）；高度由界面量了写在 style 上（展开 0 → scrollHeight，收起反过来）。
+   动的时候用 clip-path 只裁上下（不用 overflow：外边距照样合并、歪着的纸条和焦点框不被左右裁掉）。 */
+.pm-fold { transition: height .3s cubic-bezier(.3,1.25,.5,1); }
+.pm-fold.is-open, .pm-fold.is-closing { clip-path: inset(0 -100vw); }
+.pm-fold.is-open > * { animation: pm-fold-in .32s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(min(var(--pm-i, 0), 9) * 28ms); }
+.pm-fold.is-closing > * { animation: pm-fold-out .16s ease-in both; animation-delay: calc(min(var(--pm-r, 0), 9) * 16ms); }
+.pm-fold-chev { transition: transform .3s cubic-bezier(.3,1.6,.5,1), rotate .3s cubic-bezier(.3,1.6,.5,1); }
+@keyframes pm-fold-in { 0% { opacity: 0; transform: translateY(-80%) rotate(-1.5deg); } 50% { opacity: 1; } 100% { opacity: 1; transform: none; } }
+@keyframes pm-fold-out { 100% { opacity: 0; transform: translateY(-50%) scale(.96); } }
+@media (prefers-reduced-motion: reduce) {
+  .pm-fold, .pm-fold.is-open > *, .pm-fold.is-closing > *, .pm-fold-chev { transition: none !important; animation: none !important; }
 }
 
 /* ---------- 动效 · 打开 App 的问候（greeting，expressive） ---------- */

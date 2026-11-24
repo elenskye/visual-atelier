@@ -15,7 +15,7 @@ Pith 的动效零件：每个一个目录，一份规格（`motion.json`）、�
 | --- | --- | --- |
 | `hover/` | calm（0.52 秒） | 上墨：图标按钮、链接、列表行、卡片、按钮 |
 | `topbar-grow/` | expressive（≤ 1.32 秒） | 顶栏三个图标各自长出来，珊瑚色最后出现 |
-| `logo-grow/` | expressive（1.74 秒，待批） | Logo 从底下长出来，结一颗果 |
+| `logo-grow/` | expressive（1.74 秒） | Logo 从底下长出来，结一颗果 |
 | `agents/` | expressive（循环） | Pith 在想：十四个 Agent 图标、状态行的光、「存进知识库」的 `.once` |
 | `unfold/` | expressive（≤ 1.4 秒） | 舒展：回答一段段展开、页边注展开 |
 | `save-grow/` | expressive（1.9 秒） | 生长：种子落到知识库图标、晃一下、+1 |

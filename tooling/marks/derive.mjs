@@ -8,8 +8,8 @@
 //
 // 保护：清单里已是 approved 的派生资产，生成结果与文件不同就报错、不覆盖（approved 不改几何与参数，要改开新版本）。
 import path from 'node:path';
-import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
-import { parseArgs, schemesToBuild, schemeDir, readJson, readText, loadTokens, sha256, log, isMain } from '../lib/common.mjs';
+import { existsSync, readFileSync } from 'node:fs';
+import { parseArgs, schemesToBuild, schemeDir, readJson, readText, loadTokens, sha256, mergeManifestEntry, writeGenerated, log, isMain } from '../lib/common.mjs';
 import { roleColors, themedSvg } from '../graphic/svg.mjs';
 import { textToPath } from '../og-card/outline.mjs';
 
@@ -211,8 +211,7 @@ export function runDerived(args = parseArgs()) {
     for (const e of entries) {
       const old = byId.get(e.id);
       if (old?.status === 'approved' && old.sha256 !== e.sha256) continue;
-      const keep = old ? { status: old.status, ...(old.approved ? { approved: old.approved } : {}), ...(old.notes ? { notes: old.notes } : {}) } : { status: 'proposed' };
-      const merged = { id: e.id, title: e.title, file: e.file, kind: e.kind, ...keep, ...Object.fromEntries(Object.entries(e).filter(([k]) => !['id', 'title', 'file', 'kind'].includes(k))) };
+      const merged = mergeManifestEntry(old, e);
       const i = next.findIndex((a) => a.id === e.id);
       if (i < 0) next.push(merged);
       else next[i] = merged;
@@ -220,15 +219,7 @@ export function runDerived(args = parseArgs()) {
     const manifestChanged = JSON.stringify(next) !== JSON.stringify(manifest.assets);
     if (manifestChanged) changed.push('marks/manifest.json');
 
-    if (!args.check) {
-      for (const rel of changed) {
-        if (rel === 'marks/manifest.json') continue;
-        const p = path.join(sdir, rel);
-        mkdirSync(path.dirname(p), { recursive: true });
-        writeFileSync(p, files[rel]);
-      }
-      if (manifestChanged) writeFileSync(mpath, JSON.stringify({ ...manifest, assets: next }, null, 2) + '\n');
-    }
+    if (!args.check) writeGenerated(sdir, files, changed, mpath, manifest, manifestChanged ? next : null);
     const verb = args.check ? '待更新' : '已写入';
     log(`derived ${scheme}: ${Object.keys(files).length} 个派生文件，${changed.length ? `${verb} ${changed.length} 个：${changed.join('、')}` : '与源文件一致'}${blocked.length ? `；已批准、拒绝覆盖：${blocked.join('、')}` : ''}`);
     results.push({ scheme, changed, blocked });

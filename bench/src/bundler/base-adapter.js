@@ -72,22 +72,12 @@ export class BaseBundlerAdapter {
   }
 
   /**
-   * Unpacks a bundle file into `workspace/artifacts/<id>/`.
+   * Unpacks a bundle file into `options.artifactDir`.
    * @param {string} _htmlContent
    * @param {object} _options
    * @returns {Promise<object>} The generated artifact manifest
    */
   async unpack(_htmlContent, _options) {
     throw new Error(`${this.name}.unpack() is not implemented`);
-  }
-
-  /**
-   * Packs an artifact directory `workspace/artifacts/<id>/` back into a single-file HTML bundle.
-   * @param {string} _artifactDir
-   * @param {object} _options
-   * @returns {Promise<string>} The packed single-file HTML string
-   */
-  async pack(_artifactDir, _options) {
-    throw new Error(`${this.name}.pack() is not implemented`);
   }
 }

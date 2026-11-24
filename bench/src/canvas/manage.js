@@ -21,7 +21,7 @@ import { readJsonFile, writeJsonFile, stamp } from '../utils/config.js';
 
 const MAX_NAME = 80;
 
-export class ManageError extends Error {
+class ManageError extends Error {
   constructor(code, message) {
     super(message);
     this.code = code;
@@ -31,7 +31,7 @@ const fail = (code, message) => {
   throw new ManageError(code, message);
 };
 
-export const trashDir = (config) => path.join(config.canvasesAbs, '.trash');
+const trashDir = (config) => path.join(config.canvasesAbs, '.trash');
 const canvasJsonPath = (dir) => path.join(dir, 'project', 'canvas.json');
 
 function cleanName(value, what) {

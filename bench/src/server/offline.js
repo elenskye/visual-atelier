@@ -151,20 +151,17 @@ function inRange(range, used) {
   return false;
 }
 
-/** The @font-face blocks of a Google Fonts stylesheet: [{ css, urls, range }]; `rest` is everything else. */
-export function fontFaces(css) {
-  const faces = [];
-  const rest = css.replace(/(?:\/\*[^*]*\*\/\s*)?@font-face\s*\{[^}]*\}/g, (block) => {
-    const range = block.match(/unicode-range:\s*([^;}]+)/i)?.[1]?.trim() || null;
-    const urls = [...block.matchAll(/url\((["']?)(https:\/\/fonts\.gstatic\.com\/[^)"']+)\1\)/g)].map((m) => m[2]);
-    faces.push({ css: block.replace(/^\/\*[^*]*\*\/\s*/, ''), urls, range });
-    return '';
-  });
-  return { faces, rest: rest.trim() };
+/** The @font-face blocks of a Google Fonts stylesheet: [{ css, urls, range }]. */
+function fontFaces(css) {
+  return [...css.matchAll(/(?:\/\*[^*]*\*\/\s*)?@font-face\s*\{[^}]*\}/g)].map(([block]) => ({
+    css: block.replace(/^\/\*[^*]*\*\/\s*/, ''),
+    urls: [...block.matchAll(/url\((["']?)(https:\/\/fonts\.gstatic\.com\/[^)"']+)\1\)/g)].map((m) => m[2]),
+    range: block.match(/unicode-range:\s*([^;}]+)/i)?.[1]?.trim() || null
+  }));
 }
 
 /** Only the blocks with characters this text uses. */
-export const facesFor = (css, used) => fontFaces(css).faces.filter((f) => inRange(f.range, used));
+export const facesFor = (css, used) => fontFaces(css).filter((f) => inRange(f.range, used));
 
 /** The Google Fonts stylesheets a page links to (absolute https URLs, &amp; undone). */
 export function fontCssLinks(html) {
@@ -204,7 +201,7 @@ export async function prefetchPage(config, html, { allGlyphs = false, extraText 
   for (const cssUrl of fontCssLinks(html)) {
     const css = await take(cssUrl);
     if (!css) continue;
-    const faces = allGlyphs ? fontFaces(css.body.toString('utf8')).faces : facesFor(css.body.toString('utf8'), used);
+    const faces = allGlyphs ? fontFaces(css.body.toString('utf8')) : facesFor(css.body.toString('utf8'), used);
     for (const f of faces) for (const u of f.urls) await take(u);
   }
   return { have, missing };

@@ -3,8 +3,8 @@ import path from 'node:path';
 /**
  * Claude Bridge Slot — Lifecycle Hooks (`bridges/claude/scripts/hooks.mjs`)
  *
- * Claude 接手工作台时，可在此文件中直接注入专有的无损导入/导出逻辑、
- * AST 转换规则、`<x-dc>` 组件提取器或自定义打包流程，无需修改 `src/` 主干代码。
+ * Claude 接手工作台时，可在此文件中直接注入专有的无损导入逻辑、
+ * AST 转换规则或 `<x-dc>` 组件提取器，无需修改 `src/` 主干代码。
  */
 
 /**
@@ -72,40 +72,10 @@ export async function onSubpageExtracted(subpage, _context) {
 }
 
 /**
- * 解包完成并准备写入 `manifest.json` 前的 Hook。
+ * 解包完成、把清单交给 `dw import` 前的 Hook。
  * @param {object} manifest
  * @param {object} _context
  */
 export async function afterUnpack(manifest, _context) {
   return manifest;
-}
-
-/**
- * 若返回非 null 字符串，则完全接管 `dw export` 的打包流程。
- * @param {string} _artifactDir
- * @param {object} _manifest
- * @param {object} _context
- * @returns {Promise<null | string>}
- */
-export async function customPack(_artifactDir, _manifest, _context) {
-  return null;
-}
-
-/**
- * 打包开始前的预处理 Hook。
- * @param {string} _artifactDir
- * @param {object} manifest
- * @param {object} _context
- */
-export async function beforePack(_artifactDir, manifest, _context) {
-  return manifest;
-}
-
-/**
- * 打包生成最终 HTML 字符串后的后处理 Hook。
- * @param {string} bundleHtml
- * @param {object} _context
- */
-export async function afterPack(bundleHtml, _context) {
-  return bundleHtml;
 }

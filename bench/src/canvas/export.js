@@ -4,7 +4,7 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { canvasDir, kindOf, readCanvasJson, localBlobs } from './store.js';
 import { encodeManifestEntry, extToMime, escapeHtml } from '../bundler/codec.js';
-import { boardsOf } from './check.js';
+import { boardsOf, boardUrl, stemOf } from './check.js';
 import { startServer } from '../server/server.js';
 import { captureUrl } from '../server/headless.js';
 import { readCached, runtimeResources, fontCssLinks, facesFor, codePoints, prefetchPage, cdnUrl } from '../server/offline.js';
@@ -130,12 +130,11 @@ export async function exportBoards(config, name, { board = null, png = true, htm
   const srv = png ? await startServer(config, { port: 0, watch: false, quiet: true }) : null;
   try {
     for (const b of boards) {
-      const stem = b.file.replace(/\.dc\.html$|\.html?$/, '').split('/').join('-');
+      const stem = stemOf(b.file).split('/').join('-');
       const row = { file: b.file };
       if (png) {
         const target = path.join(out, `${stem}.png`);
-        const url = b.page ? `${srv.baseUrl}/c/${name}/` : `${srv.baseUrl}/c/${name}/${b.file.split('/').map(encodeURIComponent).join('/')}`;
-        const r = await captureUrl(config, url, target, { width: b.w, height: b.h, scale, fullPage: Boolean(b.page) });
+        const r = await captureUrl(config, boardUrl(srv.baseUrl, name, b), target, { width: b.w, height: b.h, scale, fullPage: Boolean(b.page) });
         row.png = target;
         row.errors = r.allErrors;
       }

@@ -70,7 +70,6 @@ export const LOGO = `<g class="t">${rect(11.6, 18.2, 7.2, 23.8, 0.6)}${rect(8, 3
  * 茎和碗（.cz1 茎和碗的前段叠在一个遮罩下，.cz1b 碗的后段用窄一点的遮罩，两个遮罩画的是同一条中心线、同一个时间）一笔长出来，卷进去的那段是另一块（.cz2），各用一个遮罩，遮罩里是它的中心线，动画时中心线一点点画出来；
  * 不动的时候中心线是整条，看起来和 LOGO 一样。uid 让同一页上几个 Logo 的遮罩不撞名。 */
 export const logoGrow = (uid) => `<g class="t lgw"><mask id="lgm-${uid}-1" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48"><path class="m1" pathLength="1" d="${STEM_LOOP_LINE}" fill="none" stroke="white" stroke-width="7.6" stroke-linejoin="round"/></mask><mask id="lgm-${uid}-3" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48"><path class="m1" pathLength="1" d="${STEM_LOOP_LINE}" fill="none" stroke="white" stroke-width="5.4" stroke-linejoin="round"/></mask><mask id="lgm-${uid}-2" maskUnits="userSpaceOnUse" x="0" y="0" width="48" height="48"><path class="m2" pathLength="1" d="${CZ.curl.line}" fill="none" stroke="white" stroke-width="5.6" stroke-linejoin="round"/></mask><g class="cz1" mask="url(#lgm-${uid}-1)"><path class="so" d="${STEM_UP}"/><path class="so" d="${CZ.loop.a}"/></g><path class="so cz1b" d="${CZ.loop.b}" mask="url(#lgm-${uid}-3)"/><path class="so cz2" d="${CZ.curl.d}" mask="url(#lgm-${uid}-2)"/>${rect(8, 38.8, 14.4, 3.2, 0.5, 'so ft')}${ball(CZ.end[0], CZ.end[1], 2.9, 'co fr')}</g>`;
-export const FRUIT = CZ.end.map(n1);
 
 // ---------- 顶栏三个 ----------
 // 每个部件有自己的名字，悬停时按顺序出来：知识库从底下长（茎 .stem、三片叶 .l1–.l3、芽）；文献库书一本本摆出来（.b1–.b3），叶书签最后冒出来；

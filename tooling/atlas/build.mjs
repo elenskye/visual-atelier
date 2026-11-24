@@ -17,7 +17,7 @@ import path from 'node:path';
 import { existsSync, readFileSync, readdirSync, rmSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { ROOT, parseArgs, readJson, sha256, writeFile, log, isMain } from '../lib/common.mjs';
-import { stripModule } from '../design-system/bundle.mjs';
+import { joinModules } from '../design-system/bundle.mjs';
 
 const SCHEME = 'pomelo';
 const atlasDir = (scheme = SCHEME) => path.join(ROOT, 'schemes', scheme, 'atlas');
@@ -44,20 +44,12 @@ export async function bundleDesign(scheme, id) {
   const meta = readJson(path.join(ddir, 'design.json'));
   if (meta.id !== id) throw new Error(`${id}/design.json 的 id 是 ${meta.id}`);
   if (!/^\d+\.\d+\.\d+$/.test(meta.version)) throw new Error(`${id}：版本要写成 1.0.0 这样`);
-  const files = meta.modules.map((m) => path.resolve(ddir, m));
-  const names = new Set(files.map((p) => path.basename(p)));
-  const seen = new Map();
-  const parts = files.map((file) => {
-    const rel = path.relative(ROOT, file);
+  const { parts, names } = joinModules(meta.modules.map((m) => {
+    const file = path.resolve(ddir, m);
     // import 的路径只留文件名：打包以后都在一个作用域里
     const text = readFileSync(file, 'utf8').replace(/^(import\s*\{[^}]*\}\s*from\s*')(?:\.{1,2}\/)+(?:[\w.-]+\/)*([\w.-]+\.mjs';\s*)$/gm, "$1./$2");
-    const { code, tops } = stripModule(text, rel, (p) => names.has(path.basename(p)));
-    for (const t of tops) {
-      if (seen.has(t)) throw new Error(`打包后顶层名字重复：${t}（${seen.get(t)} 和 ${rel}）`);
-      seen.set(t, rel);
-    }
-    return `// ---- ${rel} ----\n${code.trim()}\n`;
-  });
+    return { rel: path.relative(ROOT, file), text };
+  }));
   const assets = await loadAssets(scheme, id);
   const dsDir = path.join(ROOT, 'dist', scheme, 'design-system');
   if (!existsSync(path.join(dsDir, 'consumer.css'))) throw new Error(`没有 dist/${scheme}/design-system/consumer.css：先 npm run build:ds`);
@@ -113,18 +105,14 @@ export async function check(scheme = SCHEME) {
     const twin = all.find((o) => o !== r && sameLine(o, r) && semver(o.version)[2] > semver(r.version)[2]);
     if (twin) problems.push(`${r.dir}：同一条线里有更新的 ${twin.version}，小修以后旧的不算定稿，该删掉（--freeze 会替掉它）`);
   }
-  const rdir = path.join(atlasDir(scheme), 'releases');
-  for (const name of existsSync(rdir) ? readdirSync(rdir) : []) {
-    const dir = path.join(rdir, name);
-    if (!existsSync(path.join(dir, 'design.json'))) continue;
-    const info = readJson(path.join(dir, 'design.json'));
-    const code = readFileSync(path.join(dir, 'design.js'), 'utf8');
-    if (name !== `${info.id}-${info.version}`) problems.push(`${name}：文件夹名和 design.json 对不上`);
-    if (sha256(code) !== info.sha256) problems.push(`${name}：design.js 和记下的校验和不一样（快照被改过？）`);
-    const src = path.join(atlasDir(scheme), info.id, 'design.json');
-    // 设计自己的那一部分要和源一样；带进去的 Design System 样式和上墨脚本是冻结那天的，方案往前走了也不算改
-    const own = (text) => text.slice(0, text.indexOf('\nconst DS = '));
-    if (existsSync(src) && readJson(src).version === info.version && own(await bundleDesign(scheme, info.id)) !== own(code)) problems.push(`${name}：源改了但版本没升（快照不改：升版本再冻结一份）`);
+  // 设计自己的那一部分要和源一样；带进去的 Design System 样式和上墨脚本是冻结那天的，方案往前走了也不算改
+  const own = (text) => text.slice(0, text.indexOf('\nconst DS = '));
+  for (const r of all) {
+    const code = readFileSync(path.join(atlasDir(scheme), 'releases', r.dir, 'design.js'), 'utf8');
+    if (r.dir !== `${r.id}-${r.version}`) problems.push(`${r.dir}：文件夹名和 design.json 对不上`);
+    if (sha256(code) !== r.sha256) problems.push(`${r.dir}：design.js 和记下的校验和不一样（快照被改过？）`);
+    const src = path.join(atlasDir(scheme), r.id, 'design.json');
+    if (existsSync(src) && readJson(src).version === r.version && own(await bundleDesign(scheme, r.id)) !== own(code)) problems.push(`${r.dir}：源改了但版本没升（快照不改：升版本再冻结一份）`);
   }
   return problems;
 }

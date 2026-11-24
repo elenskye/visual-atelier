@@ -2,7 +2,7 @@
 // 和 Design System、Motion Deck 是同一份；悬停和别的动效零件在 bench 的 Motion Deck 里看（/#/motion/pith）。原注：EX11 的几张板：都挂同一套配色（纸与海默认），Tweaks 换配色和明暗。
 import { esc, dcBoard } from '../../_lib/board.mjs';
 import { FONTS } from './base.mjs';
-import { SCHEME_CSS, ALIAS_CSS, PALETTES } from './scheme.mjs';
+import { SCHEME_CSS, ALIAS_CSS } from './scheme.mjs';
 import { LOGO, ICON, TYPE, STAGE, AGENTS, svg48, icon, logoMark, agentIcon, appIcon as appIconSpan } from './marks.mjs';
 const appIcon = () => appIconSpan('').replace(/^<span class="">/, '').replace(/<\/span>$/, '');
 import * as C from './content.mjs';

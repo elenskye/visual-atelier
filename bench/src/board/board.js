@@ -210,6 +210,20 @@ async function loadList() {
   S.checksSub = await api('/api/index').then((d) => d.sections.find((x) => x.id === 'checks')?.items?.[0]?.sub || '', () => '');
 }
 
+// A Design System, a Motion Deck or Checks takes the canvas's place: the stage and its bars go, and come back after.
+function hideStage() {
+  liveness();
+  stage.hidden = true;
+  $('#banner').hidden = true;
+  $('#version-wrap').hidden = true;
+  $('#globals').hidden = true;
+  $('#ds-chips').replaceChildren();
+}
+function showStage() {
+  stage.hidden = false;
+  $('#version-wrap').hidden = false;
+  $('#globals').hidden = false;
+}
 // ---------- Design System ----------
 async function openDs(name, section = null) {
   leaveMotion();
@@ -219,12 +233,7 @@ async function openDs(name, section = null) {
   closePanel();
   S.ds = name;
   S.dsSection = section || 'overview';
-  liveness();
-  stage.hidden = true;
-  $('#banner').hidden = true;
-  $('#version-wrap').hidden = true;
-  $('#globals').hidden = true;
-  $('#ds-chips').replaceChildren();
+  hideStage();
   const sys = S.systems.find((x) => x.name === name);
   $('#canvas-title').textContent = sys?.title || name;
   const link = $('#cloud-link');
@@ -242,12 +251,7 @@ async function openMotionView(name, part = null) {
   if (S.focus) closeFocus();
   closePanel();
   S.motion = name;
-  liveness();
-  stage.hidden = true;
-  $('#banner').hidden = true;
-  $('#version-wrap').hidden = true;
-  $('#globals').hidden = true;
-  $('#ds-chips').replaceChildren();
+  hideStage();
   $('#cloud-link').hidden = true;
   const sch = S.motionSchemes.find((x) => x.name === name);
   $('#canvas-title').textContent = `Motion Deck · ${sch?.title || name}`;
@@ -263,12 +267,7 @@ async function openChecksView() {
   if (S.focus) closeFocus();
   closePanel();
   S.checks = true;
-  liveness();
-  stage.hidden = true;
-  $('#banner').hidden = true;
-  $('#version-wrap').hidden = true;
-  $('#globals').hidden = true;
-  $('#ds-chips').replaceChildren();
+  hideStage();
   $('#cloud-link').hidden = true;
   $('#canvas-title').textContent = 'Checks · npm run all';
   await openChecks();
@@ -278,26 +277,20 @@ function leaveChecks() {
   if (!S.checks) return;
   S.checks = false;
   closeChecks();
-  stage.hidden = false;
-  $('#version-wrap').hidden = false;
-  $('#globals').hidden = false;
+  showStage();
 }
 function leaveMotion() {
   if (!S.motion) return;
   S.motion = null;
   S.motionPart = null;
   closeMotion();
-  stage.hidden = false;
-  $('#version-wrap').hidden = false;
-  $('#globals').hidden = false;
+  showStage();
 }
 function leaveDs() {
   if (!S.ds) return;
   S.ds = null;
   closeSystem();
-  stage.hidden = false;
-  $('#version-wrap').hidden = false;
-  $('#globals').hidden = false;
+  showStage();
 }
 const systemOfRecord = (d) => S.systems.find((x) => x.title === d.title || x.namespace.toLowerCase() === String(d.namespace).toLowerCase());
 function renderDsChips() {

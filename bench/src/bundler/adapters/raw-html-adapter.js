@@ -2,15 +2,13 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { BaseBundlerAdapter } from '../base-adapter.js';
 import { isClaudeBundlerHtml, extractTweaksFromHtml, decodeHtmlEntities } from '../codec.js';
-import { writeJsonFile } from '../../utils/config.js';
-import { ClaudeDesignAdapter } from './claude-design-adapter.js';
 
 /**
  * Fallback Adapter for standard single-file `.html` and `.dc.html` files (`RawHtmlAdapter`)
  *
  * When importing a `.dc.html` file (Claude Design raw component format with `<x-dc>`),
- * it automatically wires `dc-runtime.js` from `bridges/claude/templates/dc-runtime.js`
- * so the component can be previewed locally via `dw serve` and `dw shot`.
+ * it wires the canvas runtime (`vendor/claude-design/dc-runtime.js`) in as `assets/dc-runtime.js`;
+ * `dw import` then points the board at `./support.js`.
  */
 export class RawHtmlAdapter extends BaseBundlerAdapter {
   constructor(config) {
@@ -34,11 +32,7 @@ export class RawHtmlAdapter extends BaseBundlerAdapter {
     } = options;
 
     const assetsDir = path.join(artifactDir, 'assets');
-    const rawDir = path.join(artifactDir, 'raw');
     fs.mkdirSync(assetsDir, { recursive: true });
-    fs.mkdirSync(rawDir, { recursive: true });
-
-    fs.writeFileSync(path.join(rawDir, 'original.html'), htmlContent, 'utf8');
 
     const isDcComponent = /<x-dc[\s>]/i.test(htmlContent);
     let processedHtml = htmlContent;
@@ -65,7 +59,7 @@ export class RawHtmlAdapter extends BaseBundlerAdapter {
     const tweaksInfo = extractTweaksFromHtml(processedHtml);
     const nowIso = new Date().toISOString();
 
-    const manifest = {
+    return {
       id: artifactId,
       title,
       createdAt: nowIso,
@@ -87,14 +81,5 @@ export class RawHtmlAdapter extends BaseBundlerAdapter {
         notes: `Imported from ${sourcePath ? path.basename(sourcePath) : 'raw HTML'}.`
       }
     };
-
-    writeJsonFile(path.join(artifactDir, 'manifest.json'), manifest);
-    return manifest;
-  }
-
-  async pack(artifactDir, options = {}) {
-    // Delegate packing to ClaudeDesignAdapter so any raw HTML artifact can also be exported as a self-contained Claude Design bundle
-    const claudeAdapter = new ClaudeDesignAdapter(this.config);
-    return await claudeAdapter.pack(artifactDir, options);
   }
 }

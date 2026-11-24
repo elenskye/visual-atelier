@@ -2,7 +2,7 @@
 
 visual-atelier：站主的个人视觉仓库。多套视觉方案（`schemes/`）共用一套工具（`tooling/`），画布的源（`canvases/`）和看画布的引擎（`bench/`）也在这里；产出以 SVG、GIF、PNG、动效零件和 Design System 为主。站主没有设计软件和设计经验，用自然语言指挥：方向由 Agent 摆出来让站主挑，不要默认站主会画图。
 
-`AGENTS.md` 指向本文件，所有 Agent 通用。这里只放核心规则，细则在每节指向的文件里（2026-11-22 站主定重写成短版，规则没删，挪到了 `docs/`、`canvases/README.md`、`bench/README.md`）。
+`AGENTS.md` 指向本文件，所有 Agent 通用。这里只放核心规则，细则在每节指向的文件里。
 
 ## 开工前
 
@@ -31,19 +31,19 @@ visual-atelier：站主的个人视觉仓库。多套视觉方案（`schemes/`�
 | 本仓库的会话 | 下面三行以外的全部：`bench/`、`tooling/`（`atlas/`、`handmade/` 除外）、`skills/`、`docs/`、`schemes/vermilion/`、`schemes/_template/`、新方案、别的画布、根目录的文件 |
 | Pomelo 的会话 | `schemes/pomelo/`、`canvases/pomelo-*/`、`tooling/atlas/`、`tooling/handmade/` |
 | Peck 的会话 | `schemes/peck/`、`canvases/peck-*/` |
-| Pith 的会话 | `schemes/pith/`、`schemes/pith-wonder-*/`、`canvases/pith-*/`、`tooling/pith/`（0.1.0 由本仓库的会话照站主 2026-11-24 的话建好，以后归它） |
+| Pith 的会话 | `schemes/pith/`、`schemes/pith-wonder-*/`、`canvases/pith-*/`、`tooling/pith/` |
 
-共用的 `CHANGELOG.md`、`ROADMAP.md`「现在」的方案行、`README.md` 的方案表，各写各的那一条；`package.json` 只归本仓库的会话。
+共用的 `CHANGELOG.md`、`ROADMAP.md`「现在」的方案行、`README.md` 的方案表，各写各的那一条；`package.json` 只归本仓库的会话。要改别人那块先问站主，例外记在 `ROADMAP.md`「授权记录」。
 
 ## 版本与 Git（站主 2026-11-24 定）
 
-- **版本号**：整个仓库一个版本号，从 1.0.0 起（以前是 0.13.0），记在 `package.json` 的 `version`；所有会话都用它。各方案自己的版本照旧记在 `scheme.json`，给消费方的 tag 照旧是 `<方案>-v<版本>`（核心约定 6、`docs/adoption.md`），和仓库的版本号分开。
+- **版本号**：整个仓库一个版本号，从 1.0.0 起，记在 `package.json` 的 `version`（连 `package-lock.json`）；所有会话都用它。各方案自己的版本记在 `scheme.json`，给消费方的 tag 是 `<方案>-v<版本>`（核心约定 6、`docs/adoption.md`），和仓库的版本号分开。
 - **开发程度**，开工前先问站主是哪种：
   - 小幅优化、Bug 修复：1.0.0 → 1.0.1，不分 Phase。
   - 新增功能、大幅优化：1.0.0 → 1.1.0，计划分 Phase（如 1.2.0 Phase 1~5）。
   - 1.0.0 → 2.0.0：由站主决定，同样分 Phase。
-- **正式版**：改 `package.json` 的版本，`CHANGELOG.md` 记一条，打 tag `v<版本>`。1.0.1 这类做完自动出；1.1.0、2.0.0 只在最后一轮收尾自动出，中间的 Phase 不出，除非站主在那一期要求；站主也可以自己出。
-- **Git**：每一轮做完、对应的验证过了，自己 commit；push（连 tag）由站主做。每轮结束告诉站主这轮有哪些 commit、分别是什么。
+- **正式版**：改 `package.json` 的版本，`CHANGELOG.md` 记一条，打 tag `v<版本>`。1.0.1 这类做完自动出；1.1.0、2.0.0 只在最后一轮收尾自动出，中间的 Phase 不出，除非站主在那一期要求；站主也可以自己出。方案发版的 tag `<方案>-v<版本>` 由做这个方案的会话在提交后打。
+- **Git**：每一轮做完、对应的验证过了，自己 commit；push（连 tag）由站主做。每轮结束告诉站主这轮有哪些 commit、tag，分别是什么。
 - **提交信息**：`vx.x.x: dev description`。x.x.x 是这轮所属的版本；description 全英文，简约、概括，可以直接写 `fix some problems`、`minor improvement`。不写正文，不署名（不加 `Co-Authored-By`；`.claude/settings.json` 已关掉 Claude Code 默认加的署名）。
 - 不 force push、不改写历史、不删分支、不改远端设置，站主说的除外。
 

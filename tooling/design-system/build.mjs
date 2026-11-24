@@ -4,8 +4,8 @@
 // 只处理有 design-system/ 目录的方案。数值来自 tokens/，说明与组件来自 design-system/，上传记录来自 design-system/published.json。
 // 用法：npm run build:ds；要按另一个账号的那份生成 index：npm run build:ds -- --scheme <方案> --account <账号名>
 import path from 'node:path';
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
-import { ROOT, parseArgs, schemesToBuild, schemeDir, outRoot, readJson, readText, loadTokens, paletteIds, sha256, walk, writeFile, copyFile, log, isMain } from '../lib/common.mjs';
+import { existsSync, readFileSync } from 'node:fs';
+import { ROOT, parseArgs, schemesToBuild, schemeDir, outRoot, readJson, readText, loadTokens, paletteIds, motionParts, sha256, walk, writeFile, copyFile, log, isMain } from '../lib/common.mjs';
 import { bundleClassic, selfTest } from './bundle.mjs';
 import { tokensCss } from './tokens-css.mjs';
 import { textureDataUri } from '../handmade/texture.mjs';
@@ -147,30 +147,26 @@ export function pickRecord(published, account, scheme = '') {
 
 /** 动效零件的 CSS：方案 motion/ 下每个零件自己的 CSS，按 id 排，插进 bundle.css 的 / * @generate motion * / 处（同一份，不另写）。 */
 export function motionCss(sdir, { approvedOnly = false } = {}) {
-  const mdir = path.join(sdir, 'motion');
-  if (!existsSync(mdir)) return '';
-  return readdirSync(mdir).sort().filter((id) => existsSync(path.join(mdir, id, 'motion.json'))).map((id) => {
-    const spec = readJson(path.join(mdir, id, 'motion.json'));
-    if (approvedOnly && spec.status !== 'approved') return '';
-    return `/* ---------- 动效 · ${spec.title}（${id}，${spec.tier}） ---------- */\n` + readText(path.join(mdir, id, spec.files.css)).trim();
-  }).filter(Boolean).join('\n\n');
+  return motionParts(sdir).filter(({ spec }) => !approvedOnly || spec.status === 'approved')
+    .map(({ id, dir, spec }) => `/* ---------- 动效 · ${spec.title}（${id}，${spec.tier}） ---------- */\n` + readText(path.join(dir, spec.files.css)).trim())
+    .join('\n\n');
 }
 
 /**
  * Design System 的 tokens.json、tokens.css、bundle.css、bundle.js，只算不写文件。build:ds 写发布用的文件；
  * 动效的逐帧导出和 bench 的 Motion Deck拿它当页面的底（motion: false：bundle.css 不插动效，零件自己的 CSS 另放）。
  */
-export async function dsRuntime(scheme, { motion = true, selfCheck = false, config = null, version = null } = {}) {
+export async function dsRuntime(scheme, { motion = true, selfCheck = false } = {}) {
   // motion：true 全部零件；'approved' 只放 approved 的（给消费方的那份）；false 不放
   const sdir = schemeDir(scheme);
   const src = path.join(sdir, 'design-system');
   const t = loadTokens(scheme);
   const meta = readJson(path.join(sdir, 'scheme.json'));
   const system = readJson(path.join(src, 'system.json'));
-  const cfg = config ?? { ...readJson(path.join(src, 'tokens.config.json')), title: system.title };
+  const cfg = { ...readJson(path.join(src, 'tokens.config.json')), title: system.title };
   const fontsPath = path.join(sdir, 'type/fonts.json');
   const localFonts = existsSync(fontsPath) ? (readJson(fontsPath).native ?? []).flatMap((x) => [x.alias, x.family].filter(Boolean)) : [];
-  const tokensJson = buildTokensJson(scheme, t, cfg, version ?? meta.version, { localFonts });
+  const tokensJson = buildTokensJson(scheme, t, cfg, meta.version, { localFonts });
   let css = expand(readText(path.join(src, 'bundle.css')), sdir);
   if (css.includes('/* @generate palettes */')) {
     if (!t.color.palettes) throw new Error(`${scheme}: bundle.css 要插配色，可是 color.json 没有 palettes`);
@@ -222,14 +218,11 @@ export async function runDesignSystem(args = parseArgs()) {
     if (!existsSync(src)) continue;
     const out = path.join(outRoot(args), scheme, 'design-system');
     const project = path.join(out, 'project');
-    const t = loadTokens(scheme);
-    const meta = readJson(path.join(sdir, 'scheme.json'));
     const system = readJson(path.join(src, 'system.json'));
-    const config = { ...readJson(path.join(src, 'tokens.config.json')), title: system.title };
     const publishedPath = path.join(src, 'published.json');
     const published = pickRecord(existsSync(publishedPath) ? readJson(publishedPath) : null, args.account, scheme);
 
-    const rt = await dsRuntime(scheme, { config, version: meta.version, selfCheck: true });
+    const rt = await dsRuntime(scheme, { selfCheck: true });
     writeFile(path.join(project, 'tokens.json'), JSON.stringify(rt.tokensJson, null, 2) + '\n');
     // 第一份 tokens.css 由我们写（Design System 页只在有人在页面上保存时才生成它，之前读的人拿不到）。
     // 第一行照格式要求写「<名字> — generated from tokens.json」，页面以后保存时会接手这份文件。

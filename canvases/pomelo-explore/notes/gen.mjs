@@ -11,7 +11,7 @@ import path from 'node:path';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { rootImport, fromRoot } from '../../_lib/root.mjs';
-import { PROJECT, writePage } from '../page.mjs';
+import { PROJECT, writePage, dsBoard, esc } from '../page.mjs';
 import { DRAFT_STICKERS, STICKER_PICK } from './drafts.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -24,7 +24,6 @@ const PALETTES = Object.keys(tokens.color.palettes);
 const CSS = readFileSync(path.join(HERE, 'notes.css'), 'utf8');
 const APP_JS = readFileSync(path.join(HERE, 'app.js'), 'utf8');
 const TODAY = '11 月 8 日 · 周日';
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
 
 // ---------- 每张画板里的图：图标和贴纸都只定义一次（<symbol>），各处 <use> ----------
 let SYM = new Map();
@@ -519,34 +518,16 @@ const notesProps = (o) => ({
   mark: { editor: 'enum', options: ['a', 'b', 'c'], default: o.mark ?? 'b', section: '贴纸', label: '见字如面的贴纸（三个方案）' },
 });
 function board({ file, title, w = 1280, h = 800, props, body, css = '', start = false, attrs = '' }) {
-  const html = `<!doctype html>
-<html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<title>${title}</title>
-<script src="./support.js"></script>
-<link rel="stylesheet" href="ds/pomelo/tokens.css">
-<link rel="stylesheet" href="ds/pomelo/components/bundle.css">
-<script src="ds/pomelo/components/bundle.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
-<style>
-${CSS}
-.root{width:${w}px;height:${h}px}
-${css}
-</style>
-</helmet>
-<div class="pm root" data-palette="{{palette}}" data-theme="{{theme}}" data-mark="{{mark}}">
+  const html = dsBoard({
+    title, css: `${CSS}\n.root{width:${w}px;height:${h}px}\n${css}`,
+    body: `<div class="pm root" data-palette="{{palette}}" data-theme="{{theme}}" data-mark="{{mark}}">
 <div class="app" data-bar="{{bar}}" ${attrs}>
 ${sprite()}
 ${body}
 </div>
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props='${JSON.stringify({ ...props, $preview: { width: w, height: h } }).replace(/'/g, '&#39;')}'>
-${start ? APP_JS : ''}
+</div>`,
+    props: { ...props, $preview: { width: w, height: h } },
+    script: `${start ? APP_JS : ''}
 class Component extends DCLogic {
   renderVals() {
     return { palette: this.props.palette ?? 'blue', theme: this.props.dark ? 'dark' : 'light', bar: this.props.bar ?? 'always', mark: this.props.mark ?? 'b' };
@@ -554,11 +535,8 @@ class Component extends DCLogic {
   componentDidMount() { this.stop = Pomelo.paintLive(document.body);${start ? " PomeloNotes.start(document.querySelector('.app'));" : ''} }
   componentDidUpdate() { Pomelo.paint(document.body); }
   componentWillUnmount() { this.stop && this.stop(); }
-}
-</script>
-</body>
-</html>
-`;
+}`,
+  });
   writeFileSync(path.join(PROJECT, file), html);
   console.log(file, (html.length / 1024).toFixed(0) + ' KB');
 }

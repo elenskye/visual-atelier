@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { canvasDir } from './store.js';
-import { boardsOf } from './check.js';
+import { boardsOf, boardUrl, stemOf } from './check.js';
 import { startServer } from '../server/server.js';
 import { captureFrames, captureUrl } from '../server/headless.js';
 
@@ -33,7 +33,7 @@ export function frameTimes({ at = null, every = null, until = null } = {}) {
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 /** 总览页：每帧一格，标上时间点和实际截到的时间。 */
-export function sheetHtml({ title, frames, thumbW, thumbH }) {
+function sheetHtml({ title, frames, thumbW, thumbH }) {
   const cols = Math.min(frames.length, thumbW > 400 ? 3 : 4);
   const cells = frames
     .map((f) => `<figure><img src="${esc(f.file)}" width="${thumbW}" height="${thumbH}" alt=""><figcaption><b>${f.t} ms</b>${f.actual !== f.t ? `<span>实际 ${f.actual} ms</span>` : ''}</figcaption></figure>`)
@@ -65,15 +65,14 @@ export async function runFrames(config, name, { board, times, clicks = [], scale
   if (!board) throw new Error('要写 --board <画板文件>：一次只截一张');
   const dir = canvasDir(config, name);
   const [b] = boardsOf(config, name, board);
-  const stem = b.file.replace(/\.dc\.html$|\.html?$/, '');
+  const stem = stemOf(b.file);
   const outDir = path.join(dir, '.shots', 'frames', stem);
   fs.rmSync(outDir, { recursive: true, force: true });
   fs.mkdirSync(outDir, { recursive: true });
   const srv = await startServer(config, { port: 0, watch: false, quiet: true });
   let r;
   try {
-    const url = b.page ? `${srv.baseUrl}/c/${name}/` : `${srv.baseUrl}/c/${name}/${b.file.split('/').map(encodeURIComponent).join('/')}`;
-    r = await captureFrames(config, url, { width: b.w, height: b.h, scale, times, clicks });
+    r = await captureFrames(config, boardUrl(srv.baseUrl, name, b), { width: b.w, height: b.h, scale, times, clicks });
   } finally {
     await srv.close();
   }

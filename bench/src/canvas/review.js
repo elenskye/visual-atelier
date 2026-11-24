@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { canvasDir, readCanvasJson } from './store.js';
-import { getDoc, setDoc, deleteDoc, listCollection } from './db.js';
+import { setDoc, deleteDoc, listCollection } from './db.js';
 import { sha256File } from '../utils/config.js';
 
 // 画板的批准状态：存在画布的 db.json 里，路径 review/<画板文件名>，和页面存储同一个文件，Agent 直接读。
@@ -10,7 +10,7 @@ import { sha256File } from '../utils/config.js';
 // 只有站主在画布界面里批准、退回；Agent 用 dw review 只能标「待批」或清掉（approved 只能由站主给）。
 
 export const REVIEW_COLLECTION = 'review';
-export const STATUSES = ['proposed', 'approved', 'rejected'];
+const STATUSES = ['proposed', 'approved', 'rejected'];
 export const STATUS_LABEL = { proposed: '待批', approved: '已批准', rejected: '退回' };
 
 function boardPath(config, name, file) {
@@ -46,5 +46,3 @@ export function setReview(config, name, file, status, { note = '', by = 'owner',
 export function clearReview(config, name, file) {
   deleteDoc(config, name, `${REVIEW_COLLECTION}/${file}`);
 }
-
-export const reviewOf = (config, name, file) => getDoc(config, name, `${REVIEW_COLLECTION}/${file}`);
