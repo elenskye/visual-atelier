@@ -212,11 +212,13 @@ Codex、Antigravity 那两份的命令是 `/bin/sh -c 'exec "$(git rev-parse --s
 
 看连上没有：Codex 里 `codex mcp list` 有 `dw` 这一行（命令行的 codex 在 `/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex`）；Antigravity 在「Additional Options（…）> MCP Servers」里看得到 `dw` 和 25 个工具；Claude Code 里 `/mcp`。
 
-**自己试一下**（站主能跑）：在终端里起一个服务、问它有几个工具：
+**自己试一下**（站主、Agent 都能跑，在仓库根目录）：在终端里起一个服务、问它有几个工具：
 
 ```bash
 printf '%s\n' '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18","capabilities":{},"clientInfo":{"name":"me","version":"1"}}}' '{"jsonrpc":"2.0","id":2,"method":"tools/list"}' | bench/bin/dw-mcp.sh
 ```
+
+调一个工具（例：`list` 列出全部画布）：把第二行换成 `'{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"list","arguments":{}}}'`。结果在 `result.content[0].text` 里，是一段 JSON 字符串：末尾接 `| tail -1 | jq -r '.result.content[0].text'` 取出来。
 
 画布改到别的目录（测试、试跑）：环境变量 `DW_CANVASES=<目录>`，配置里写进 `env`。
 

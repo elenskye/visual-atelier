@@ -26,6 +26,7 @@
     "build:atlas": "node tooling/atlas/build.mjs",
     "check:atlas": "node tooling/atlas/build.mjs --check",
     "check:ds": "node tooling/design-system/check.mjs",
+    "check:canvases": "node tooling/qa/canvases.mjs",
     "build": "npm run build:tokens && npm run build:handmade && npm run build:derived && npm run build:marks && npm run build:motion && npm run build:ds && npm run build:atlas && npm run build:catalog",
     "qa": "node tooling/qa/check.mjs",
     "qa:determinism": "node tooling/qa/determinism.mjs",

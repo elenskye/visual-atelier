@@ -27,18 +27,29 @@ export function writePage(project, { id, name, prefix, boards, notes = {} }) {
   }
   // 页名以 canvas.json 为准：站主在界面里改过的不盖掉；name 只在这一页还没有时用
   if (!canvas.pages.some((p) => p.id === id)) canvas.pages.push({ id, name });
-  for (const [k, b] of Object.entries(canvas.boards)) if (b.page === id) delete canvas.boards[k];
-  for (const [k, n] of Object.entries(canvas.notes ?? {})) if (n.page === id) delete canvas.notes[k];
+  const fresh = new Map();
   for (const { file, html, ...rest } of boards) {
-    if (canvas.boards[file]) throw new Error(`${file} 已经是别的页的画板`);
+    if (canvas.boards[file] && canvas.boards[file].page !== id) throw new Error(`${file} 已经是别的页的画板`);
     if (html !== undefined) writeFileSync(path.join(project, file), html);
-    canvas.boards[file] = { ...rest, page: id };
+    fresh.set(file, { ...rest, page: id });
   }
-  for (const [k, n] of Object.entries(notes)) canvas.notes[`${id}-${k}`] = { ...n, page: id };
+  canvas.boards = replacePage(canvas.boards, id, fresh);
+  canvas.notes = replacePage(canvas.notes ?? {}, id, new Map(Object.entries(notes).map(([k, n]) => [`${id}-${k}`, { ...n, page: id }])));
   // 画板顺序按页排：先 pages 的顺序，同一页里照原来的先后
   const pageAt = (f) => canvas.pages.findIndex((p) => p.id === canvas.boards[f].page);
   canvas.order = [...canvas.order.filter((f) => canvas.boards[f]), ...boards.map((b) => b.file)];
   canvas.order = [...new Set(canvas.order)].sort((a, b) => pageAt(a) - pageAt(b));
   writeFileSync(cpath, JSON.stringify(canvas, null, 2) + '\n');
   return canvas;
+}
+
+// 换掉这一页的条目：原来就有的留在原来的位置（重跑生成器时 canvas.json 不会整段挪动），新的接在后面，这次没有的去掉。
+function replacePage(entries, id, fresh) {
+  const out = {};
+  for (const [k, v] of Object.entries(entries)) {
+    if (v.page !== id) out[k] = v;
+    else if (fresh.has(k)) out[k] = fresh.get(k);
+  }
+  for (const [k, v] of fresh) out[k] = v;
+  return out;
 }

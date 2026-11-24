@@ -34,6 +34,7 @@
 | `qa/watermark.mjs` | 作品水印的检查，只用假图：不遮主体、位置与取色、尺寸格式不变、原图不动、不留 EXIF、体积上限、两次一致；结果写进 `dist/qa/watermark.json` |
 | `qa/all.mjs` | `npm run all`：一步一步跑构建和检查，结果写进 `dist/qa/run.json`（同一时间只跑一遍） |
 | `qa/determinism.mjs` | 同一份源导出两次，逐字节比较 |
+| `qa/canvases.mjs` | `npm run check:canvases`（`npm run all` 的一步）：把工作区复制到临时目录，把各画布的生成器按顺序重跑，和真的 `canvases/` 逐个文件比（`canvas.json` 只比内容），列出对不上的；真的画布不动。新画布有生成器就登记进它的 `GENERATORS` |
 | `qa/canvas-lint.mjs` | 画布样稿的版面检查：字糊、字贴边、出框。由 `canvases/` 里每一页的 `lint.mjs` 调用，发布前跑 |
 | `qa/motion-parity.mjs` | 网站现用的动效是否与零件逐像素一致（只读）；比较什么写在零件的 `parity` 里 |
 
@@ -61,6 +62,7 @@
 | `npm run build:motion -- --scheme pomelo --part tooltip` | 只导出一个动效零件 |
 | `npm run build:catalog` | 在检查之后重新生成目录页，目录页才会带上检查结果 |
 | `npm run check:ds` | 渲染 Design System 的组件预览自检（需要联网取字体） |
+| `npm run check:canvases -- --canvas pomelo-explore` | 各画布的板和生成器对不对得上（已在 `npm run all` 里）；`--keep` 留下临时目录看差在哪 |
 | `npm run qa -- --origin ~/Documents/GitHub/personal-website` | 质量检查，并只读对照网站现用的文件 |
 | `npm run qa:determinism` | 确定性检查 |
 | `npm run qa:watermark` | 作品水印的检查（已在 `npm run all` 里） |

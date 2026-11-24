@@ -8,3 +8,6 @@ bench/.cache/
 
 # Peck runtime handoff & task artifacts
 .peck/
+
+# Claude Code 的 worktree（子 Agent 隔离用）
+.claude/worktrees/

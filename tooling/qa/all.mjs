@@ -21,6 +21,7 @@ export const STEPS = [
   { id: 'qa', title: '质量检查（资产、对比度、体积……）', script: 'tooling/qa/check.mjs' },
   { id: 'qa:watermark', title: '作品水印', script: 'tooling/qa/watermark.mjs' },
   { id: 'check:atlas', title: 'Atlas 和 Pomelo 里的一致', script: 'tooling/atlas/build.mjs', args: ['--check'] },
+  { id: 'check:canvases', title: '画布和生成器对得上', script: 'tooling/qa/canvases.mjs' },
   { id: 'catalog', title: '目录页（带上检查结果）', script: 'tooling/catalog/build.mjs' }
 ];
 

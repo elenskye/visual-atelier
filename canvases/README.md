@@ -13,7 +13,6 @@ bench 把画布分成两类列出（`bench/README.md`）：**Explore Deck** 是�
 | `peck-explore/` | Peck 的 Explore Deck：初版、图形语言三轮、外框小样、方案、Design System；生成器在 `project/src/`，方案在 `schemes/peck/` | 现用账号 [Peck Explore](https://claude.ai/artifact/2YJB1WKiiC6q7s6VmryCaR)，11-10 的样子 |
 | `pith-explore/` | Pith 的 Explore Deck：只有 R1「Pith 定稿」（站主 11-24 验收后清理，EX1–EX11 的经过在 `history/pith-phase5.md` 和 `CHANGELOG.md` 的归档）；颜色、图形、动效都从 `schemes/pith/` 来，挂着 Design System「Pith」 | 现用账号 [Pith Explore](https://claude.ai/artifact/HcCFtnXuGg9fQnp5qSVoH7)（R1）；旧账号那份（EX1–EX11）只看 |
 | `pomelo-v1-1-questionnaire/` | Pomelo 1.1 的问卷（单个页面），等站主填；读法在它的 `README.md` | 现用账号 |
-| `v1-phase56-questionnaire/` | 到 v1.0 计划 Phase 5、6 的验收问卷（单个页面），第 1 页是 pith 的简报；给三家的说明 `phase5-brief.md` | 只在本地 |
 
 问卷用完、结论写进文档以后就删（答案留在 Git 历史）。第二条线做版时，各家的画布只在它们自己的分支上，验收时并排进一块临时对比画布，站主挑完就删（`docs/sessions.md`「第二条线」）。删掉的画布和页先进回收处 `.trash/`（只在本机，`node bench/bin/dw.js trash` 列出、放回、清空）。
 
@@ -62,5 +61,6 @@ canvases/<画布名>/
 - **先进这里，再上云端。** 发布只从 `project/` 发，不手写一份临时的。
 - **云端改过的要带回来。** 站主在画布上挪了画板或改了字，发布前先拉回；读不回来就先问站主。
 - **发布前 `node bench/bin/dw.js check <画布名>`**：每张板截图、零报错、版面，再跑这块自带的 `lint.mjs`。
+- **板和生成器要对得上**：改了方案、生成器以后重跑用到它的页；`npm run check:canvases` 在临时目录里把生成器全跑一遍、和 `project/` 逐个文件比，对不上就列出来（站主 2026-11-24 定，`npm run all` 的一步）。新画布有生成器就登记进 `tooling/qa/canvases.mjs` 的 `GENERATORS`；冻结的、跑不了的不登记。
 - **生成器取用仓库里的东西只走 `_lib/root.mjs`**：`rootImport('tooling/…')` 引入工具，`rootPackage('apca-w3')` 引入根目录装好的依赖（CommonJS 的包也能按名字取导出），`ROOT` 是仓库根目录，`RUNTIME` 是画布运行时的副本。画板外壳、对比度、中文字体子集用共用的 `_lib/board.mjs`、`_lib/apca.mjs`、`tooling/fonts/subset.mjs`，别各写一份（Phase 5 三家各写了一遍）。
 - **内容**：仓库私有，为推进项目站主少量的作品和文章可以进；Pomelo 的真实数据不进。

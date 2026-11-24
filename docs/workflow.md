@@ -55,7 +55,7 @@
 
 ## 验证
 
-- **改了哪边跑哪边**：方案和资产在 `schemes/`、`tooling/`、`canvases/`，引擎在 `bench/`、`docs/cloud.md` 和画布用的 Skill。日常只跑和改动直接相关的最小验证；`npm run all` 只在发版前或站主要求时跑（`tooling/README.md`）。
+- **改了哪边跑哪边**：方案和资产在 `schemes/`、`tooling/`、`canvases/`，引擎在 `bench/`、`docs/cloud.md` 和画布用的 Skill。日常只跑和改动直接相关的最小验证；`npm run all` 只在发版前或站主要求时跑（`tooling/README.md`），它的最后几步核对 Atlas 的快照、各画布的板和生成器对得上（`check:canvases`）。
 - **画板**：`node bench/bin/dw.js check <画布名>`（只看一张加 `--board <文件>`）全部通过，再看 `canvases/<画布名>/.shots/check/<画板名>.png`（画板名去掉 `.dc.html`）。它会跑画布自带的 `*/lint.mjs`；故意出框、藏起来的字给元素加 `data-nolint`。
 - **动效**：`dw check` 截的是减弱动效下的终态；动效用 `node bench/bin/dw.js frames <画布名> --board <文件>` 看按时间线截的总览，方案的动效零件用逐帧总览图（`npm run build:motion`）。节奏和手感由站主目视；预览面板隐藏时 `requestAnimationFrame` 会停，没法目视的部分只做程序化验证，交付说明里列出哪些没目视。
 - **导出要确定**：同一份源两次导出逐字节一样（`npm run qa:determinism`）。

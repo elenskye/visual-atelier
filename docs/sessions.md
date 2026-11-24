@@ -5,7 +5,7 @@
 ## 新会话接手（换账号、换 Agent、新 worktree）
 
 1. 照 `README.md`「第一次用」准备：`nvm use`、`npm ci`、`VA_BROWSER_CHANNEL=chrome npm run build`（Design System 页和挂到画布上都用它的构建产物），`npm test` 要全过。
-   - Agent 的命令跑在非交互的 shell 里时没有 `nvm`：每条命令前加 `source ~/.nvm/nvm.sh && nvm use`，或者直接用 `~/.nvm/versions/node/v22.*/bin/node`（系统默认的 node 不是 22）。
+   - 系统默认的 node 不是 22。Agent 的命令先试 `nvm use`；shell 里没有 `nvm` 再 `source ~/.nvm/nvm.sh && nvm use`（Claude Code 的隔离 worktree 不让跑 `source`，那里 `nvm use` 直接能用）；都不行就 `export PATH="$(ls -d ~/.nvm/versions/node/v22.*/bin | tail -1):$PATH"`。只换 `node` 的路径不够，`npm` 跑的脚本还是用默认的 node。
    - `npm ci`、`npm test`、`dw check`、`dw serve` 要写 npm 缓存、启动 Chrome、绑本机端口：在沙箱里跑会被拦，先放行再跑；页面打不开时 `dw check` 报「打不开页面」或「报错页」，不会当作通过。在 worktree 里，`.git` 指向主工作区的 `.git/worktrees/<名字>`，在沙箱的工作区外面：`git` 也要放行。
    - Claude 的云端容器里没有 Chrome：设 `VA_CHROMIUM` 指向预装的 Chromium（`/opt/pw-browsers/chromium-*/chrome-linux64/chrome`），`dw check`、`dw frames`、`npm test` 都认它。
    - 新 worktree 里没有 `node_modules/`、`dist/`，看不到主工作区的 `scratch/` 和别的 worktree 里没提交的改动：换会话或换账号前先提交。

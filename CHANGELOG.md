@@ -11,6 +11,13 @@
 - **验证**：`npm test` 37/37；bench 的 CLI、MCP、HTTP、导入导出前后逐字节一样；tooling 和生成器 4113 个产物逐字节一样（`atlas-envelope` 的 GIF 本来就不稳定）；`qa` 1674 项全过；Pith、Pomelo 的 QA 和 `dw check` 过；`vermilion-v1.5.0` 和网站副本的资产一致。没做：`npm run all`、新会话冷启动验收。
 
 
+### 1.0.1 收尾（同一天，还是 1.0.1）
+
+- **Pomelo Explore 的板和生成器对上了**：R2 的 10 张、R5 的 `Atlas-Main` 停在方案旧的样子，站主定重跑：R2「模块贴纸」「选择器」多了「见字如面」「玩物有志」，「模块坞」那格改叫「有板有眼」，别的 8 张只是内部 id 和代码；EX6、EX7 三张滚动面板最后一行标成故意裁掉（`data-nolint`，样子没变）；93 张板 `dw check` 全过。Peck Explore 的 Design System 副本跟着 1.0.0 换了版本号。
+- **以后防漂移**（站主定）：新的 `npm run check:canvases`（`tooling/qa/canvases.mjs`，`npm run all` 的一步）在临时目录里把各画布的生成器重跑、和 `canvases/` 逐个文件比；共用的 `writePage` 重跑时保留 `canvas.json` 原来的顺序，不再整段挪动。`.claude/worktrees/` 进了 `.gitignore`。
+- **Phase 6 收口**：一个新开的 Agent 只照文档冷启动（隔离的 worktree）：`npm ci`、构建、`npm test` 37/37、用 dw 的 MCP 列出 6 块画布，跑通；它指出的四处照改了（切 Node 的办法、构建要五六分钟、没设变量时用哪个浏览器、MCP 怎么调一个工具）。验收问卷 `v1-phase56-questionnaire/` 删了。
+- **验证**：`npm run all` 全过（QA 1674 项、水印 50/50、Atlas 快照、画布和生成器）；`npm test` 37/37；故意改一张板，`check:canvases` 报得出来。
+
 ## 1.0.0 之前 · 2026-11-13～11-24 摘要
 
 | 日期 | 结果 | 版本 |

@@ -540,7 +540,7 @@ ${fld('尝尝咸淡', stars(5, 22))}
 ${fld('完成时间', `<div class="runs"><div class="run"><span class="rn">一周目</span>${dd('2023')}</div><div class="run"><span class="rn">二周目</span>${dd('2026')}${stars(5, 16)}<button type="button" class="rx" aria-label="去掉二周目">${ic('x', 15)}</button></div><button type="button" class="addrun">${ic('plus', 13)}再玩一周目</button></div>`)}
 ${fld('备注', `<div class="pm-field ta" data-hand="field" data-seed="${seed()}">二周目在找全部的呀哈哈，还差 120 个。</div>`)}
 ${backList('玩后感', [['notes', '通关了。最后那段从天上一路往下跳，配乐响起来…', '11 / 12'], ['articles', '<b>今年玩过的几个游戏</b>', '11 / 13'], ['notes', '二周目开始了，这次先把地图点亮', '11 / 14']])}
-<p class="spmeta">添加于 2023 / 5 / 14</p>`);
+<p class="spmeta" data-nolint>添加于 2023 / 5 / 14</p>`);
 }
 export function bookPanel() {
   return panelShell(`${fld('书名', `<div class="frow">${field('夜航西飞')}${sparkBtn()}</div>`)}
@@ -551,7 +551,7 @@ ${fld('状态', seg(['待标记', '想读', '在读', '已读'], '在读'))}
 ${fld('尝尝咸淡', stars(4, 22))}
 ${fld('备注', `<div class="pm-field ta" data-hand="field" data-seed="${seed()}">书架上放了快两年。</div>`)}
 ${backList('读后感', [['articles', '<b>读《夜航西飞》</b>', '11 / 09'], ['articles', '<b>十月读了什么</b>', '11 / 14'], ['notes', '地铁上读夜航西飞：「如果必须离开一个地方…」', '11 / 02'], ['notes', '想把柏瑞尔飞过的路线画出来', '11 / 10']])}
-<p class="spmeta">添加于 2024 / 12 / 30</p>`);
+<p class="spmeta" data-nolint>添加于 2024 / 12 / 30</p>`);
 }
 export function filmPanel() {
   return panelShell(`${fld('名称', `<div class="frow">${field('千与千寻')}${sparkBtn()}</div>`)}
@@ -563,5 +563,5 @@ ${fld('尝尝咸淡', stars(5, 22))}
 ${fld('完成时间', `<div class="runs"><div class="run">${dd('2019')}</div><div class="run">${dd('2026')}${stars(5, 16)}<button type="button" class="rx" aria-label="去掉这一次">${ic('x', 15)}</button></div><button type="button" class="addrun">${ic('plus', 13)}再看一次</button></div>`)}
 ${fld('备注', `<div class="pm-field ta" data-hand="field" data-seed="${seed()}">重看，这次是一个人去影院。</div>`)}
 ${backList('观后感', [['notes', '重看了千与千寻，这次注意到锅炉爷爷…', '11 / 10'], ['articles', '<b>宫崎骏重看计划</b>', '10 / 30']])}
-<p class="spmeta">添加于 2019 / 7 / 2</p>`);
+<p class="spmeta" data-nolint>添加于 2019 / 7 / 2</p>`);
 }

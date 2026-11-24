@@ -46,7 +46,7 @@ scratch/           临时文件，不进 Git
 nvm use && npm ci
 ```
 
-完整构建一次（约一分钟；Design System 页和挂到画布上都用构建产物）。浏览器用系统的 Chrome；不想用就先 `npx playwright-core install chromium` 下载一个，去掉前面的环境变量：
+完整构建一次（五、六分钟，动效 GIF 占大头；Agent 跑要把超时设够或放到后台。Design System 页和挂到画布上都用构建产物）。浏览器用系统的 Chrome；不想用就先 `npx playwright-core install chromium` 下载一个，去掉前面的环境变量：
 
 ```bash
 VA_BROWSER_CHANNEL=chrome npm run build
@@ -62,7 +62,7 @@ npm test
 node bench/bin/dw.js offline
 ```
 
-浏览器怎么选：环境变量 `VA_CHROMIUM`（可执行文件路径）优先，其次 `VA_BROWSER_CHANNEL`（`chrome` 或 `msedge`），最后是 playwright-core 下载的 Chromium。Agent 在非交互的 shell、沙箱里跑要注意的，见 `docs/sessions.md`「新会话接手」。
+浏览器怎么选：环境变量 `VA_CHROMIUM`（可执行文件路径）优先，其次 `VA_BROWSER_CHANNEL`（`chrome` 或 `msedge`）。两个都没设时：`npm run …` 的构建和导出用 playwright-core 下载的 Chromium（没下载就报错，告诉你怎么办）；bench（`npm test`、`dw check`、`dw frames`、Motion Deck、Checks）直接用系统的 Chrome，所以 `npm test` 不用带变量。Agent 在非交互的 shell、沙箱里跑要注意的，见 `docs/sessions.md`「新会话接手」。
 
 ## 常用命令
 

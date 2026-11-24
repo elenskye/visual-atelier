@@ -1024,7 +1024,7 @@
       "y": -220,
       "w": 820,
       "fill": "orange",
-      "text": "怎么看\n每格就是 schemes/pomelo/motion/ 的一个零件，和导出的 GIF、Pomelo 以后用的是同一份。「再来一次」重放；控件能直接点。\n要拖时间轴、一帧帧看、导 GIF：bench 的 Motion Deck http://127.0.0.1:4321/#/motion/pomelo\n外框里的样子：这块画布的「优化 · 外框（B3）」那一页，五张板都能玩。",
+      "text": "怎么看\n每格就是 schemes/pomelo/motion/ 的一个零件，和导出的 GIF、Pomelo 以后用的是同一份。「再来一次」重放；控件能直接点。\n要拖时间轴、一帧帧看、导 GIF：bench 的 Motion Deck http://127.0.0.1:4321/#/motion/pomelo\n外框里的样子：这块画布的「R1：外框（B3）」那一页，五张板都能玩。",
       "page": "motion"
     },
     "p3Top": {
