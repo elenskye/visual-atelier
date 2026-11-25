@@ -1,4 +1,4 @@
-<!-- @dsCard group="文献库" height=150 width=960 subtitle="集合一栏：平时、选中、展开的下级（小枝、长出来）、「＋ 集合」；知识库的生长阶段" -->
+<!-- @dsCard group="文献库" height=150 width=960 subtitle="集合一栏：选中、展开的下级（带叶的岔、茎、节点、芽）、「＋ 集合」；知识库的生长阶段（带图标，悬停上墨）" -->
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -7,27 +7,29 @@
 <style>
   html, body { margin: 0; }
   .demo { display: flex; flex-direction: column; gap: 18px; padding: 24px 32px; width: 820px; }
-  .pith-strip-item.is-sub, .pith-strip-twig { animation: none; }
+  .pith-strip-item.is-sub, .pith-strip-fork .st, .pith-strip-fork .lf, .pith-strip-sub::before, .pith-strip-bud, .pith-strip-node::after { animation-duration: 0s !important; animation-delay: 0s !important; }
 </style>
 </head>
 <body class="pith">
 <div class="demo">
   <div class="pith-strip">
-    <button class="pith-strip-item">方法论<em>12</em></button>
-    <button class="pith-strip-item has-kids is-open">政治学<em>30</em></button>
-    <span class="pith-strip-twig"></span>
-    <button class="pith-strip-item is-sub is-on">政治效能感<em>18</em></button>
-    <button class="pith-strip-item is-sub">比较政治<em>7</em></button>
-    <span class="pith-strip-end"></span>
-    <button class="pith-strip-item has-kids">毕业论文<em>4</em></button>
-    <button class="pith-strip-item">读书会</button>
-    <button class="pith-strip-item is-add">＋ 集合</button>
+    <button class="pith-strip-item pith-ink">方法论<em>12</em></button>
+    <button class="pith-strip-item pith-ink has-kids is-open">政治学<em>30</em></button>
+    <span class="pith-strip-sub" style="--n:2">
+      <svg class="pith-strip-fork" viewBox="0 0 24 36" aria-hidden="true"><path class="st" pathLength="1" d="M0 18C7.5 18 9 31.4 24 31.4"/><path class="lf" d="M9.4 25.2C8.2 20.6 10.6 17.6 15 16.6C15.8 20.8 13.8 24.2 9.4 25.2Z"/></svg>
+      <button class="pith-strip-item pith-ink is-sub is-on" style="--i:0"><i class="pith-strip-node"></i>政治效能感<em>18</em></button>
+      <button class="pith-strip-item pith-ink is-sub" style="--i:1"><i class="pith-strip-node"></i>比较政治<em>7</em></button>
+      <i class="pith-strip-bud"></i>
+    </span>
+    <button class="pith-strip-item pith-ink has-kids">毕业论文<em>4</em></button>
+    <button class="pith-strip-item pith-ink">读书会</button>
+    <button class="pith-strip-item pith-ink is-add">＋ 集合</button>
   </div>
   <div class="pith-strip">
-    <button class="pith-strip-item is-on">全部</button>
-    <button class="pith-strip-item">刚种下<em>1</em></button>
-    <button class="pith-strip-item">长着<em>3</em></button>
-    <button class="pith-strip-item">常青<em>2</em></button>
+    <button class="pith-strip-item pith-ink is-on">全部</button>
+    <button class="pith-strip-item pith-ink"><!-- @include marks/stages/seed.svg -->刚种下<em>1</em></button>
+    <button class="pith-strip-item pith-ink"><!-- @include marks/stages/sprout.svg -->长着<em>3</em></button>
+    <button class="pith-strip-item pith-ink"><!-- @include marks/stages/evergreen.svg -->常青<em>2</em></button>
   </div>
 </div>
 </body>

@@ -8,7 +8,11 @@
    换颜色：根上写 --ink-x、--ink-y（点的位置）、--ink-r（到最远那个角再加 160px），document.startViewTransition(() => 换 data-palette)。
    波纹等 transition.ready 再加 .is-in：浏览器拍旧画面的那一下（约 0.2 秒）屏幕是冻住的，早起的话最浓的那段被吃掉，看起来像没有波纹。
    波纹留在页面里（不另起 view-transition-name：WebKit 里单独那一层过渡时不实时画）。
-   没有 View Transitions、减弱动态效果时直接换。 */
+   没有 View Transitions、减弱动态效果时直接换。
+   1.2.0（Pith 1.0.4，站主 11-25：「我还是要让整页像水一样扭，这是招牌时刻」）：整页的水面回来了，但不在这份 CSS 里——
+   App 让 WKWebView 拍一张旧样子（原生、约 50 毫秒），WebGL 着色器在 GPU 上逐像素扭：五圈波纹按这里的半径和节奏折射、整页一层慢慢晃的水波，
+   新颜色带着毛边跟在波纹后面洇开（Pith 的 src/app/water.ts、src-tauri/src/snapshot.rs）。这份 CSS 的波纹压在画布上面；
+   这里的 View Transitions 洇开留给拍不到的时候（浏览器里预览、Design System）。 */
 @property --color-page { syntax: '<color>'; inherits: true; initial-value: transparent; }
 @property --color-surface { syntax: '<color>'; inherits: true; initial-value: transparent; }
 @property --color-raised { syntax: '<color>'; inherits: true; initial-value: transparent; }
