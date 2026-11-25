@@ -1,0 +1,43 @@
+{
+  "id": "stage-grow",
+  "title": "生长阶段 · 各演各的",
+  "status": "proposed",
+  "tier": "calm",
+  "trigger": "鼠标放上、键盘聚焦（演示加 .is-hover）：带生长阶段图标的 .pith-ink（知识库的阶段一栏）、.pith-lift（卡片）、.pith-row",
+  "durationMs": 600,
+  "reducedMotion": "不动，直接是图标原样",
+  "use": "生长阶段的三个图标（marks/stages/）；通用的上墨（hover）让开它们",
+  "source": "Pith 1.0.5（站主 11-25：「常青」「长着」的图标动效只有一个点和一条线，而且一模一样）",
+  "requires": [
+    "design-system/bundle.css"
+  ],
+  "files": {
+    "css": "stage-grow.css",
+    "html": "stage-grow.fragment.html"
+  },
+  "capture": {
+    "scale": 2,
+    "padPx": 0,
+    "fps": 25,
+    "holdStartMs": 300,
+    "holdEndMs": 900,
+    "themes": [
+      "light",
+      "dark"
+    ],
+    "loop": 0,
+    "host": ".sg-demo",
+    "viewport": [
+      300,
+      96
+    ],
+    "steps": [
+      {
+        "at": 0,
+        "add": "is-hover",
+        "on": ".h",
+        "all": true
+      }
+    ]
+  }
+}

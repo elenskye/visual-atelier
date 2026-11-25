@@ -348,7 +348,7 @@
     },
     {
       "id": "stage-seed",
-      "title": "生长阶段 · 刚种下",
+      "title": "生长阶段 · 发芽",
       "file": "stages/seed.svg",
       "kind": "svg",
       "status": "approved",
@@ -364,7 +364,7 @@
     },
     {
       "id": "stage-sprout",
-      "title": "生长阶段 · 长着",
+      "title": "生长阶段 · 生长",
       "file": "stages/sprout.svg",
       "kind": "svg",
       "status": "approved",
@@ -376,7 +376,7 @@
         "geometry": "tooling/pith/glyphs.mjs",
         "rules": "schemes/pith/DESIGN.md §4"
       },
-      "sha256": "4b98be53f9fc3d3ea435ccaa46009ef66dae7dd95411fe525931c5342d8a083a"
+      "sha256": "0c87e8bbb856528b354e1b3a6b5da82a6a245a73df1bb7ecc060c7d62184cf10"
     },
     {
       "id": "stage-evergreen",
@@ -392,7 +392,7 @@
         "geometry": "tooling/pith/glyphs.mjs",
         "rules": "schemes/pith/DESIGN.md §4"
       },
-      "sha256": "f57d1c462a0b49ee19b5f2ad87503859dbd020873737dc25b5f65fb134bd26d2"
+      "sha256": "b7ceb273f89b85633f3218a99fb718216d122d4ce67a1032d61e3e6c4dc45165"
     },
     {
       "id": "agent-think",

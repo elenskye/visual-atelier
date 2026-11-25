@@ -4,6 +4,8 @@
 
 **展开下级**（1.2.0，站主 11-25：「做一个小分支图形展开的想法非常好，但一条曲线很单调」）：有下级的名字后面一个小折角；点开以后折角收起，从它身上长出一小段枝桠——一根带叶的岔（`pith-strip-fork`，先画线、叶子再弹出来），底下一根茎往右长，每个下级下面一颗节点（`pith-strip-node`，选中、悬停时是珊瑚色），茎的尽头一个珊瑚色的芽（`pith-strip-bud`）；下级的名字一个接一个从左边长出来。和对话历史、设置的枝桠是同一种画法。
 
-**写法**：`<div class="pith-strip"><button class="pith-strip-item pith-ink">方法论<em>2</em></button>…</div>`。选中 `is-on`；有下级 `has-kids`，展开 `is-open`，下级包在 `<span class="pith-strip-sub" style="--n:下级个数">` 里：先放岔的 SVG（`.st` 线、`.lf` 叶），再放下级 `<button class="pith-strip-item pith-ink is-sub" style="--i:第几个"><i class="pith-strip-node"></i>名字</button>`，最后 `<i class="pith-strip-bud"></i>`。末尾「＋ 集合」用 `is-add`。前面带图标的（生长阶段）把图标放在名字前面。
+**收起**（1.3.0，站主 11-25：「只在我展开、收起时播放动效，其他时候保持状态」）：倒着演，整段的宽从当时的样子收到 0、往左缩回它身上，茎和芽跟着右边缘往回收，下级的名字从右往左淡出去，岔最后收起，后面的名字滑回来（0.34 秒）。点已经长出来的下级、换别的范围都不重演：消费方别在换范围时重建这一栏。
+
+**写法**：`<div class="pith-strip"><button class="pith-strip-item pith-ink">方法论<em>2</em></button>…</div>`。选中 `is-on`；有下级 `has-kids`，展开 `is-open`，下级包在 `<span class="pith-strip-sub" style="--n:下级个数">` 里：先放岔的 SVG（`.st` 线、`.lf` 叶），再放下级 `<button class="pith-strip-item pith-ink is-sub" style="--i:第几个"><i class="pith-strip-node"></i>名字</button>`，最后 `<i class="pith-strip-bud"></i>`。末尾「＋ 集合」用 `is-add`。收起时给 `pith-strip-sub` 加 `is-closing`、写 `--w`（它当时的宽，px），0.36 秒后再拿掉；收到一半又点开，拿掉 `is-closing` 就重新长一遍。前面带图标的（生长阶段）把图标放在名字前面。
 
 **字的居中**：Newsreader（中文后备宋体）的字形比行框的中线高约 0.07em，胶囊里的行框往下挪 0.14em（WebKit 里量过，偏差在 0.35px 内）。`Tag` 的集合、`Branch` 的条目同样处理。

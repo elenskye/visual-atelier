@@ -105,8 +105,9 @@ export const TYPE = {
   answer: `<g class="t"><path class="so" d="M10 9L38 9C40.2 9 42 10.8 42 13L42 30C42 32.2 40.2 34 38 34L22 34L13 42L14 34L10 34C7.8 34 6 32.2 6 30L6 13C6 10.8 7.8 9 10 9Z"/>${leaf([33, 12], [37.6, 2.4], 3.4, { rib: false, cls: 'co' })}</g>`,
 };
 
-/** 生长阶段：一颗珊瑚色的种子 → 四瓣 → 八瓣，芯一直是珊瑚色。 */
-const petals = (n, d, rx, ry) => Array.from({ length: n }, (_, k) => `<ellipse class="so" cx="24" cy="${24 - d}" rx="${rx}" ry="${ry}" transform="rotate(${(360 / n) * k} 24 24)"/>`).join('');
+/** 生长阶段：一颗珊瑚色的种子 → 四瓣 → 八瓣，芯一直是珊瑚色。
+ *  每片瓣的旋转写在外面一层 <g> 上（1.3.0）：动效给瓣本身加 CSS transform 时，会盖掉写在瓣上的 transform 属性，八片就叠成一片。 */
+const petals = (n, d, rx, ry) => Array.from({ length: n }, (_, k) => `<g transform="rotate(${(360 / n) * k} 24 24)"><ellipse class="so" cx="24" cy="${24 - d}" rx="${rx}" ry="${ry}"/></g>`).join('');
 export const STAGE = [
   `<g class="t">${ball(24, 24, 6)}</g>`,
   `<g class="t">${petals(4, 11, 3.4, 6.2)}${ball(24, 24, 4.2)}</g>`,

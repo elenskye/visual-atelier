@@ -64,7 +64,7 @@ const svgFile = (inner, cls) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox
 const approved = '站主 2026-11-24 验收 Pith Explore EX11（「验收完毕，开始做优化页、建 schemes/pith/」）';
 const src = { generator: 'tooling/pith/build.mjs', geometry: 'tooling/pith/glyphs.mjs', rules: 'schemes/pith/DESIGN.md §4' };
 const TYPES = [['full', '全文'], ['excerpt', '摘抄'], ['note', '笔记'], ['web', '网页快照'], ['file', '本机文件'], ['scan', '扫描件'], ['concept', '概念卡'], ['report', '调查报告'], ['wonder', 'WonderLab 作品'], ['answer', '存下的回答']];
-const STAGES = [['seed', '刚种下'], ['sprout', '长着'], ['evergreen', '常青']];
+const STAGES = [['seed', '发芽'], ['sprout', '生长'], ['evergreen', '常青']];
 const ICONS = [['kb', '知识库', '叶序：一根茎上三片互生的叶，顶上一颗珊瑚色的芽'], ['lib', '文献库', '三本书，中间那本夹着一片叶当书签'], ['set', '设置', '轮生：一圈六片叶围着一个环，环心是珊瑚色的髓'], ['new', '新对话', '一颗芽从横线上长起来'], ['search', '搜索 ⌘K', '放大镜，镜里一颗种子'], ['send', '发送', '一根细线推着实心的箭头']];
 
 const assets = [];

@@ -173,7 +173,7 @@ export function iconsBoard() {
 <p class="lede">图形语言定为铅字：实心、一粗一细，每个图标一处珊瑚色（芽、种子、注码），是它「活」的那一点。顶栏三个借植物的特征：知识库是叶序，文献库是夹着一片叶的书，设置是轮生的叶。最下面两条能把鼠标放上去看悬停（顶栏三个各自长出来，见「顶栏」那张）。</p>
 <div class="top">${TOP.map(([n, t, d]) => `<figure><div class="cell">${grid48}${svg48(ICON[n], 'ico')}</div><figcaption><b>${t}</b><span>${esc(d)}</span></figcaption></figure>`).join('')}</div>
 <div class="row2"><div><h3>界面里的</h3><div class="ui">${[['new', '新对话'], ['search', '搜索 ⌘K'], ['send', '发送']].map(([n, t]) => `<span>${svg48(ICON[n], 'ico')}${t}</span>`).join('')}</div>
-<h3 style="margin-top:22px">生长阶段 <span>只在这里写名字</span></h3><div class="stages">${[0, 1, 2].map((k) => `<span class="g${k}">${svg48(STAGE[k], 'ico')}${['刚种下', '长着', '常青'][k]}</span>`).join('')}</div></div>
+<h3 style="margin-top:22px">生长阶段 <span>只在这里写名字</span></h3><div class="stages">${[0, 1, 2].map((k) => `<span class="g${k}">${svg48(STAGE[k], 'ico')}${['发芽', '生长', '常青'][k]}</span>`).join('')}</div></div>
 <div><h3>知识库里的十种记录</h3><div class="types">${TYPES.map(([k, t]) => `<span>${svg48(TYPE[k], 'ico')}${t}</span>`).join('')}</div></div></div>
 <h3 style="margin-top:26px">用起来 <span>顶栏、对话历史的「新对话」、输入框、知识库卡片；亮、暗各一条</span></h3><div class="strips">${strip('light')}${strip('dark')}</div>`;
   return { html: page({ title: 'Pith · 图标：铅字 × 数字花园', root: 'ib', w: W, h: H, css, body }), w: W, h: H };

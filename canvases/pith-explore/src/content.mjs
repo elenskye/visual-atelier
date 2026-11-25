@@ -43,13 +43,13 @@ export const KBS = [
   { name: '随手存', note: '网页和对话里的好回答', n: 9 },
 ];
 
-/** 每个知识库里的材料。stage：0 刚种下、1 长着、2 常青（数字花园的生长阶段）。dyn：'saved' 存了概念卡才有、'rev' 审稿人查过才有。 */
+/** 每个知识库里的材料。stage：0 发芽、1 生长、2 常青（数字花园的生长阶段）。dyn：'saved' 存了概念卡才有、'rev' 审稿人查过才有。 */
 /** 记录的种类：type 决定卡片的样子（A 的知识库每种一个样式，C 的画布上每种一个芽的记号）。 */
 export const TYPES = {
   full: '全文', excerpt: '摘抄', note: '笔记', web: '网页快照', file: '本机文件', scan: '扫描件', concept: '概念卡', report: '调查报告', wonder: 'WonderLab 作品', answer: '存下的回答',
 };
 
-/** 每个知识库里的材料。stage：0 刚种下、1 长着、2 常青。dyn：'saved' 存了概念卡才有、'rev' 审稿人查过才有。 */
+/** 每个知识库里的材料。stage：0 发芽、1 生长、2 常青。dyn：'saved' 存了概念卡才有、'rev' 审稿人查过才有。 */
 export const MATS = [
   [
     { type: 'full', kind: '全文', title: 'The Voter Decides', sub: 'Campbell 等 1954 · 第 11 章', stage: 2, date: '10 月 18 日', text: '第 11 章把「政治效能感」定义成一种感觉：个人的政治行动对政治过程有影响，或者能有影响。' },
@@ -121,6 +121,6 @@ export const RECENT = [
 ];
 
 export const SETTINGS = ['角色', '技能', '知识库与检索', '模型与费用', 'Word 与引文', '数据', '外观'];
-export const STAGES = ['刚种下', '长着', '常青'];
+export const STAGES = ['发芽', '生长', '常青'];
 export const GREETING = '今天想弄清什么？';
 export const HINT = '问一个问题。/ 叫一个技能，@ 请一个角色，# 选知识库。';
