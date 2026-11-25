@@ -2,6 +2,12 @@
 
 只记做完且验证过的结果，不写待办。这里只留最近一轮和摘要表；逐条记录在 `history/changelog-2026-11.md`（2026-11-02～11-24），VL1 每一步在 `schemes/vermilion/history/vl1-changelog.md`。
 
+## 2026-11-25 · Pith 1.0.1、两条规矩（Pith 的会话；非本体，仓库还是 1.0.1）
+
+- **规矩**（站主定）：除非站主明确要求，画布和 Design System 不和云端同步（`CLAUDE.md`「画布与 bench」、`docs/cloud.md`、`skills/design-loop`）；只有本体的开发才升仓库的版本号，方案、画布这类平时的更新不升（`CLAUDE.md`「版本与 Git」）。`build:ds` 和 bench 在本地改过、云端没更新时的提示跟着改了。
+- **Pith** `1.0.1`：文献库图标单独打开解析不了（叶书签一个元素两个 `style`），Design System 的 TopBar 里看不到图，生成器里并成一个，`tooling/pith/build.mjs` 以后查到重复的属性就报错；首页的叶子几何挪进 `tooling/pith/glyphs.mjs`，单独成一张 `marks/garden/leaf.svg`（画布 R1 改成从这里取，6 张板逐字节不变），Design System 的封面铺上它；`DESIGN.md` 加第 9 节，shadcn 变量和 `--color-*` 的对照。云端的 Design System 没更新（新规矩）。
+- **验证**：`node tooling/pith/build.mjs --check`（37 个资产）；`npm run qa -- --scheme pith` 163 项全过；`check:ds` 12 个预览明暗都没问题，封面看过截图；`dw check pith-explore` 6 张全过；`check:canvases` 三块画布和生成器一致；`npm test` 37/37。没跑 `npm run all`、`build:motion`（动效没改）。
+
 ## 1.0.1 · 2026-11-24 · 精简、Pith 1.0.0、Pomelo fold（本仓库的会话）
 
 - **Pith** `1.0.0`：站主批了 `logo-grow`，全部已批；补了同步清单 `sync.json`；Design System「Pith」发到现用账号（36 个文件回读一致）；现用账号新建 Pith Explore（只有 R1，11 个文件一致），本地画布挂上 Design System。

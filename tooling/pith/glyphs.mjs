@@ -113,6 +113,47 @@ export const STAGE = [
   `<g class="t">${petals(8, 13, 3.2, 7.4)}${ball(24, 24, 4.6)}</g>`,
 ];
 
+// ---------- 首页的叶子（V1「生长」，站主 11-23 定、11-24 验收 EX11） ----------
+// 坐标是 1280×800 的窗口：主脉在对话框的中线上（y = 448），叶柄在左、叶尖在右；十对侧脉，叶缘上五颗芽是最近照料的材料。
+// 画布 R1 的首页（canvases/pith-explore/src/garden.mjs）和 marks/garden/leaf.svg 都从这里取。
+const r1 = (v) => Math.round(v * 10) / 10;
+const LY = 448, LX0 = 176, LX1 = 1124, LH = 154;
+const lfa = 0.78, lfb = 1.15, LTSTAR = lfa / (lfa + lfb);
+const lf = (t) => Math.pow(t, lfa) * Math.pow(1 - t, lfb);
+const lhalf = (t) => (t <= 0 || t >= 1 ? 0 : (LH * lf(t)) / lf(LTSTAR));
+const LX = (t) => LX0 + t * (LX1 - LX0);
+const LVEINS = Array.from({ length: 10 }, (_, i) => 0.085 + i * 0.076);
+const lvEnd = (t) => Math.min(t + 0.13 + 0.05 * (1 - t), 0.93);
+/** 叶缘上的五颗芽：长在哪根侧脉（下标）的末端，上 -1、下 1。 */
+const LBUDS = [{ i: 0, s: -1 }, { i: 2, s: 1 }, { i: 5, s: 1 }, { i: 7, s: 1 }, { i: 9, s: -1 }];
+/** 首页叶子的几何：叶面 blade、主脉 rib、侧脉 veins（i 侧脉、s 上下、bud 通到第几颗芽，没有是 -1）、叶缘 contours（上、下）、芽 buds（x、y 没取整）。 */
+export function homeLeaf() {
+  const pts = (s) => Array.from({ length: 121 }, (_, k) => { const t = (k / 120) ** 1.35; return [LX(t), LY + s * lhalf(t)]; });
+  const poly = (p) => 'M' + p.map(([x, y]) => `${r1(x)} ${r1(y)}`).join('L');
+  const up = pts(-1), dn = pts(1);
+  const blade = poly(up) + 'L' + dn.slice().reverse().map(([x, y]) => `${r1(x)} ${r1(y)}`).join('L') + 'Z';
+  const veins = [];
+  LVEINS.forEach((t, i) => {
+    const te = lvEnd(t);
+    [-1, 1].forEach((s) => {
+      const bud = LBUDS.findIndex((b) => b.i === i && b.s === s);
+      const k = bud >= 0 ? 1 : 0.86;
+      const P0 = LX(t), E = [LX(te), LY + s * lhalf(te) * k];
+      const C = [P0 + (E[0] - P0) * 0.26, LY + s * lhalf(te) * k * 0.8];
+      veins.push({ i, s, bud, d: `M${r1(P0)} ${LY}Q${r1(C[0])} ${r1(C[1])} ${r1(E[0])} ${r1(E[1])}` });
+    });
+  });
+  const buds = LBUDS.map(({ i, s }) => { const te = lvEnd(LVEINS[i]); return { i, s, x: LX(te), y: LY + s * lhalf(te) }; });
+  return { blade, rib: `M108 465Q146 452 ${LX0} ${LY}L${LX1 - 14} ${LY}`, veins, contours: [poly(up), poly(dn)], buds };
+}
+/** 叶子单独的一张：类名和首页一样（.bl 叶面、.mr 主脉、.vn 侧脉、.bv 通到芽的侧脉、.ct 叶缘、.bd 芽），裁到叶子那一块（viewBox 100 286 1032 324）。 */
+export function leafMark() {
+  const L = homeLeaf();
+  const veins = L.veins.map((v) => `<path class="vn${v.bud >= 0 ? ` bv bv${v.bud}` : ''}" pathLength="1" d="${v.d}"/>`).join('');
+  const buds = L.buds.map((b, n) => `<circle class="bd bd${n}" cx="${r1(b.x)}" cy="${r1(b.y)}" r="4"/>`).join('');
+  return `<g class="t lf"><path class="bl" d="${L.blade}"/><path class="mr" pathLength="1" d="${L.rib}"/>${veins}${L.contours.map((d) => `<path class="ct" pathLength="1" d="${d}"/>`).join('')}${buds}</g>`;
+}
+
 /** App 图标：墨色的圆角方，Logo 用纸色，芽是珊瑚色。 */
 export const appIcon = (g) => `<svg class="pith-appicon" viewBox="0 0 100 100" aria-hidden="true"><rect x="5" y="5" width="90" height="90" rx="21" class="ap-bg"/><g transform="translate(20 21) scale(1.25)" class="ap">${g}</g></svg>`;
 

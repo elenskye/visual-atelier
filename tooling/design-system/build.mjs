@@ -274,7 +274,7 @@ export async function runDesignSystem(args = parseArgs()) {
     }
 
     if (missing.length || !published?.createdOnFiles) {
-      log(`ds      ${scheme} → ${path.relative(process.cwd(), out)}（还没有 index：${missing.length} 个资产待上传，先上传 upload/ 里的文件，把记录写进 design-system/published.json）`);
+      log(`ds      ${scheme} → ${path.relative(process.cwd(), out)}（没写 index：${missing.length} 个资产和云端的上传记录对不上，bench 按记录补出来、图片用本机的；要更新云端时先上传 upload/ 里的文件，把记录写进 design-system/published.json）`);
     } else {
       const index = {
         v: 3,

@@ -75,6 +75,22 @@
       "sha256": "400cf8604493867028fda0225c7dc0200c5e8e19535eefb5a84761f8f71875ed"
     },
     {
+      "id": "home-leaf",
+      "title": "首页 · 叶子",
+      "file": "garden/leaf.svg",
+      "kind": "svg",
+      "status": "approved",
+      "approved": "站主 2026-11-24 验收 Pith Explore EX11（首页的叶子，R1 原样；11-25 几何挪进 glyphs.mjs，单独成一张）",
+      "colorMode": "currentColor",
+      "use": "首页的背景（V1「生长」）：放在 color-accent 里（color: var(--color-accent)），叶面、叶脉、叶缘的淡度写在文件里，芽的底是 color-page。坐标是 1280×800 窗口里的（主脉 y = 448，和对话框的中线对齐）。打开时的生长动画还没做成零件，照画布 R1 的首页（canvases/pith-explore/src/garden.mjs）。Design System 的封面也用它。",
+      "source": {
+        "generator": "tooling/pith/build.mjs",
+        "geometry": "tooling/pith/glyphs.mjs",
+        "rules": "schemes/pith/DESIGN.md §4"
+      },
+      "sha256": "96eca488a3d724005fd85101dfc017e9b2dcaeb30769c6bf53b166a503c1d29f"
+    },
+    {
       "id": "icon-kb",
       "title": "图标 · 知识库",
       "file": "icons/kb.svg",
@@ -104,7 +120,7 @@
         "geometry": "tooling/pith/glyphs.mjs",
         "rules": "schemes/pith/DESIGN.md §4"
       },
-      "sha256": "1f3359c473d65eb54cdef36f16ad84ff3151cdc4f2170511d3620178097c8509"
+      "sha256": "ddc48c2267941dcaa042d28388825fd9d90e6511ee53eac419d62fb34a451833"
     },
     {
       "id": "icon-set",

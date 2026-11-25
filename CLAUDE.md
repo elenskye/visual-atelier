@@ -38,7 +38,8 @@ visual-atelier：站主的个人视觉仓库。多套视觉方案（`schemes/`�
 ## 版本与 Git（站主 2026-11-24 定）
 
 - **版本号**：整个仓库一个版本号，从 1.0.0 起，记在 `package.json` 的 `version`（连 `package-lock.json`）；所有会话都用它。各方案自己的版本记在 `scheme.json`，给消费方的 tag 是 `<方案>-v<版本>`（核心约定 6、`docs/adoption.md`），和仓库的版本号分开。
-- **开发程度**，开工前先问站主是哪种：
+- **本体才升仓库的版本号**（站主 2026-11-25）：本体是 Atelier 自己的东西：`bench/`、共用的 `tooling/`、`skills/`、`docs/`、根目录的规则和配置。平时给某套方案、某块画布做的更新和优化（方案发版、资产、画板、Design System、给消费方同步，连同只给一套方案用的 `tooling/<方案>/`）不升仓库的版本号、不打 `v<版本>`，也不用为它问开发程度；方案的版本照样升在 `scheme.json`、打 `<方案>-v<版本>`，提交信息写当前的仓库版本。
+- **开发程度**（本体的开发），开工前先问站主是哪种：
   - 小幅优化、Bug 修复：1.0.0 → 1.0.1，不分 Phase。
   - 新增功能、大幅优化：1.0.0 → 1.1.0，计划分 Phase（如 1.2.0 Phase 1~5）。
   - 1.0.0 → 2.0.0：由站主决定，同样分 Phase。
@@ -76,6 +77,7 @@ visual-atelier：站主的个人视觉仓库。多套视觉方案（`schemes/`�
 ## 画布与 bench
 
 - 格式和 Claude 云端画布同一套（`project/canvas.json` 加 `*.dc.html`）；看、批、改名的分工，Explore Deck 的页名和**两档门槛**，都在 `canvases/README.md`。站主看、批，不改内容；批准退回只由站主做，Agent 只标「待批」。
+- **云端不主动碰**（站主 2026-11-25）：除非站主明确要求，不和云端同步：画布、Design System 不拉回、不发回，也不在云端新建或更新；改了只在本地看（bench）。云端那份因此旧了没关系，交付说明里提一句就行。问卷页照 `skills/questionnaire`，不受这条管（发出去给站主填本身就是站主要的）。
 - 拉回、发回逐个文件核对 sha256，对不上就停下；碰云端前照 `docs/cloud.md`「账号」看清账号（旧账号的只看不动，例外记在 `ROADMAP.md`「授权记录」）。
 - 运行时不手改：云端换了就对照 sha256 换掉 `bench/vendor/claude-design/` 的副本（`dw pull`、`verify`、`publish` 会提示）。服务只听 127.0.0.1，不加遥测。
 - 有 `dw` 的 MCP 就用它（三家的配置都在仓库里，`bench/README.md`「MCP」）。`node bench/bin/dw.js help` 列出全部命令。

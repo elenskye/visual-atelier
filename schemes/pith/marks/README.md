@@ -6,5 +6,6 @@ Pith 的图形，全部由 `node tooling/pith/build.mjs` 从 `tooling/pith/glyph
 - `icons/`：顶栏三个（kb、lib、set）、界面三个（new、search、send）。
 - `types/`：知识库的十种记录。`stages/`：生长阶段（seed、sprout、evergreen）。
 - `agents/`：十四个 Agent 图标的静止样子（会动的在 `motion/agents/`）。
+- `garden/`：`leaf.svg` 首页的那片叶子（主脉、十对侧脉、叶缘、五颗芽，1280×800 窗口里的坐标，裁到叶子那一块）；放在 `color-accent` 里用，淡度写在文件里。Design System 的封面也用它。
 
 单独打开靠属性上色（实心 `currentColor`、细线描边、珊瑚色 `var(--color-coral)`）；内联进页面时保留 `.t .so .st .co` 和部件的类名（`.stem`、`.l1`、`.b3`、`.w0`……），动效照类名动。

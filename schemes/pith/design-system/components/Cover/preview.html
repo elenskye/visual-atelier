@@ -10,12 +10,18 @@
   .lb { margin: 0 0 8px; font: 700 11px/1 var(--font-sans); letter-spacing: .1em; color: var(--color-text-4); }
   .row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
   .row svg { width: 100%; height: 100%; }
+  .cover { position: relative; height: 320px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 44px 40px; box-sizing: border-box; }
+  /* 首页的那片叶子（marks/garden/leaf.svg）铺在后面：叶柄从字标的右上角长出去，主脉在 120px 那条线上（叶子图的正中），叶尖朝右 */
+  .cover .leaf { position: absolute; left: 296px; top: 120px; width: min(calc(100% - 280px), 760px); transform: translateY(-50%); color: var(--color-accent); pointer-events: none; }
+  .cover .leaf svg { display: block; width: 100%; height: auto; }
+  .cover .row, .cover p { position: relative; }
 </style>
 </head>
 <body class="pith">
-<div style="height:320px;display:flex;flex-direction:column;justify-content:flex-end;padding:0 44px 40px;box-sizing:border-box">
+<div class="cover">
+  <span class="leaf" aria-hidden="true"><!-- @include marks/garden/leaf.svg --></span>
   <div class="row" style="gap:16px;color:var(--color-text)"><span style="width:72px;height:72px;display:block"><!-- @include marks/logo/pith.svg --></span><span class="pith-wordmark" style="font-size:72px">Pith</span></div>
-  <p style="margin-top:14px;font:300 20px/1.5 var(--font-serif);color:var(--color-text-3)">研究工作台的花园笔记：铅字 × 数字花园。奶油纸、衬线、海蓝和绯红，一处珊瑚色。</p>
+  <p style="margin-top:14px;font:300 20px/1.5 var(--font-serif);color:var(--color-text-3)">研究工作台的花园笔记：铅字 × 数字花园。<br>奶油纸、衬线、海蓝和绯红，一处珊瑚色。</p>
 </div>
 </body>
 </html>

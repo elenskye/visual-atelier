@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { LOGO, logoGrow, ICON, TYPE, STAGE, AGENTS, appIcon } from './glyphs.mjs';
+import { LOGO, logoGrow, ICON, TYPE, STAGE, AGENTS, appIcon, leafMark } from './glyphs.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const MARKS = path.join(ROOT, 'schemes/pith/marks');
@@ -27,11 +27,36 @@ const PAINT = [
 ];
 const OPACITY = [[/\btrk\b/, '.22'], [/\bedge\b/, '.45']];
 function standalone(inner) {
-  return inner.replace(/<(path|circle|rect|ellipse) class="([^"]*)"/g, (m, tag, cls) => {
-    const paint = PAINT.find(([re]) => re.test(cls));
+  return inner.replace(/<(path|circle|rect|ellipse) class="([^"]*)"(?: style="([^"]*)")?/g, (m, tag, cls, own) => {
+    const paint = PAINT.find(([re]) => re.test(cls))?.[1] ?? '';
     const op = OPACITY.find(([re]) => re.test(cls));
-    return `<${tag} class="${cls}"${paint ? ' ' + paint[1] : ''}${op ? ` opacity="${op[1]}"` : ''}`;
+    // 元素自己带 style（叶柄那一点 --o）时并进上色的 style：一个元素只能有一个 style 属性，两个的话单独打开就解析不了
+    const attrs = !own ? paint : paint.startsWith('style="') ? paint.replace(/"$/, `;${own}"`) : `${paint} style="${own}"`.trim();
+    return `<${tag} class="${cls}"${attrs ? ' ' + attrs : ''}${op ? ` opacity="${op[1]}"` : ''}`;
   });
+}
+/** 首页的叶子单独成一张：按 1280×800 窗口的粗细和淡度上色（和画布 R1 首页停住时一样），放在 color-accent 里用。 */
+const LEAF_PAINT = {
+  bl: 'fill="currentColor" opacity=".05"',
+  mr: 'fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" opacity=".8"',
+  vn: 'fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round" opacity=".42"',
+  bv: 'fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round" opacity=".7"',
+  ct: 'fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity=".3"',
+  bd: 'style="fill:var(--color-page, white)" stroke="currentColor" stroke-width="1.6"',
+};
+const leafFile = (inner) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="100 286 1032 324" class="pith-leaf">${inner.replace(/<(path|circle) class="([^"]*)"/g, (m, tag, cls) => {
+  const k = cls.split(' ');
+  return `<${tag} class="${cls}" ${LEAF_PAINT[k.includes('bv') ? 'bv' : k[0]]}`;
+})}</svg>\n`;
+/** 一个标签里同名的属性出现两次，浏览器单独打开 SVG 就报错、整张不显示（1.0.0 的文献库图标就是这样）。 */
+function duplicateAttrs(body) {
+  const bad = [];
+  for (const [tag] of body.matchAll(/<[a-zA-Z][^>]*>/g)) {
+    const names = [...tag.matchAll(/\s([a-zA-Z_:][-a-zA-Z0-9_:.]*)=/g)].map((x) => x[1]);
+    const dup = names.find((n, i) => names.indexOf(n) !== i);
+    if (dup) bad.push(`${dup}（${tag.slice(0, 60)}…）`);
+  }
+  return bad;
 }
 // var() 写不进属性，用到变量的都写成 style（引用编号里的「1」用 page 色画在珊瑚方块上）
 const svgFile = (inner, cls) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="pith-glyph ${cls}">${standalone(inner)}</svg>\n`;
@@ -56,6 +81,10 @@ add('app-icon', 'App 图标', 'logo/app-icon.svg', `<svg xmlns="http://www.w3.or
   colorMode: 'fixed', use: '纸与海的 App 图标：墨色圆角方、纸色的蕨芽、珊瑚色的果。颜色是 color.json 里纸与海的 app-ink、app-paper、app-coral。',
   renders: [1024, 512, 256, 128, 64, 32, 16].map((size) => ({ size })),
 });
+add('home-leaf', '首页 · 叶子', 'garden/leaf.svg', leafFile(leafMark()), {
+  approved: '站主 2026-11-24 验收 Pith Explore EX11（首页的叶子，R1 原样；11-25 几何挪进 glyphs.mjs，单独成一张）',
+  use: '首页的背景（V1「生长」）：放在 color-accent 里（color: var(--color-accent)），叶面、叶脉、叶缘的淡度写在文件里，芽的底是 color-page。坐标是 1280×800 窗口里的（主脉 y = 448，和对话框的中线对齐）。打开时的生长动画还没做成零件，照画布 R1 的首页（canvases/pith-explore/src/garden.mjs）。Design System 的封面也用它。',
+});
 for (const [id, t, use] of ICONS) add(`icon-${id}`, `图标 · ${t}`, `icons/${id}.svg`, svgFile(ICON[id], `pith-icon pith-icon--${id}`), { use });
 TYPES.forEach(([id, t]) => add(`type-${id}`, `记录 · ${t}`, `types/${id}.svg`, svgFile(TYPE[id], `pith-type pith-type--${id}`), { use: `知识库卡片的类型标签（16px，第二色）：${t}` }));
 STAGES.forEach(([id, t], k) => add(`stage-${id}`, `生长阶段 · ${t}`, `stages/${id}.svg`, svgFile(STAGE[k], `pith-stage pith-stage--${id}`), { use: '交付卡、知识库卡片上的生长阶段（强调色）；界面不写阶段的名字' }));
@@ -63,6 +92,9 @@ for (const a of AGENTS) add(`agent-${a.id}`, `Agent · ${a.name}`, `agents/${a.i
 
 const manifest = { scheme: 'pith', $note: 'Pith 的资产，全部由 node tooling/pith/build.mjs 从 tooling/pith/glyphs.mjs 生成，别手改（改几何改 glyphs.mjs 再跑）。SVG 单独打开靠属性上色，内联时保留 .t .so .st .co 类名给动效用。status 见 docs/workflow.md；approved 的不改几何，要改开新的。', assets: assets.map((a) => JSON.parse(JSON.stringify(a))) };
 files.set('manifest.json', JSON.stringify(manifest, null, 2) + '\n');
+
+const broken = [...files].filter(([rel]) => rel.endsWith('.svg')).flatMap(([rel, body]) => duplicateAttrs(body).map((x) => `${rel}：重复的属性 ${x}`));
+if (broken.length) { console.log(broken.join('\n')); process.exit(1); }
 
 const changed = [];
 for (const [rel, body] of files) {

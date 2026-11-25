@@ -51,7 +51,7 @@ function readIndex(config, name) {
     groups: (system.assetGroups || []).map((g) => g.name),
     assetGroups,
     lastChange: published.lastChange || null,
-    partial: '构建没写出 design-system.json（有资产和上传记录对不上，多半是渲染没做到每次一致）；这里按 system.json 和 published.json 补出来，图片用本机这次渲染的'
+    partial: '构建没写出 design-system.json（有资产和云端的上传记录对不上：本地改了、云端没更新，或渲染没做到每次一致）；这里按 system.json 和 published.json 补出来，图片用本机这次构建的，云端还没有的资产不列'
   };
 }
 

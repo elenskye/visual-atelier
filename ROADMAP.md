@@ -9,12 +9,12 @@ visual-atelier 自己的状态和计划（Pomelo、Peck、Pith 的计划在各�
   - **Vermilion** `1.5.0`：网站线上在用，没有新工作。Design System「Vermilion 朱红」（https://claude.ai/artifact/B89E9carxtZjjkT4adbNer ）和画布 Vermilion Explore 在现用账号。
   - **Pomelo** `1.0.1`（11-24 加了动效零件 `fold`）：Design System「Pomelo 柚儿园」（https://claude.ai/artifact/5uaouHwXAXihjxhh9g4vb3 ）按 1.0.1 发了；同步进 Pomelo、删掉 Pomelo 里临时的 `src/shared/fold.css` 由 Pomelo 的会话做（站主说一声）。方案和设计由 Pomelo 的会话做（`schemes/pomelo/DESIGN.md`、`canvases/pomelo-explore/README.md`），要 Pomelo 接的写进 Pomelo 的 `docs/atelier-sync.md`。
   - **Peck** `1.0.0`（11-24 由 0.1.0 定为 1.0.0，内容没变）：Design System「Peck」在现用账号，由 Peck 的会话做（`schemes/peck/CLAUDE.md`）。
-  - **Pith** `1.0.0`（11-24 站主批了 `logo-grow`，全部已批）：两套配色、36 个资产、七个动效零件、12 个组件；Design System「Pith」（https://claude.ai/artifact/CPavXvD8wdYuEEXbVhYqAb ）和 Pith Explore（https://claude.ai/artifact/HcCFtnXuGg9fQnp5qSVoH7 ，只有 R1）在现用账号。视觉基线和开发说明在 `schemes/pith/DESIGN.md`。由 Pith 的会话做；WonderLab 的 `pith-wonder-*` 等 Pith 做到 WonderLab 再起。
+  - **Pith** `1.0.1`（11-25：修好文献库图标、首页的叶子单独成一张、封面铺上叶子；已同步进 Pith）：两套配色、37 个资产、七个动效零件、12 个组件；Design System「Pith」（https://claude.ai/artifact/CPavXvD8wdYuEEXbVhYqAb ，云端还是 1.0.0）和 Pith Explore（https://claude.ai/artifact/HcCFtnXuGg9fQnp5qSVoH7 ，只有 R1）在现用账号。视觉基线和开发说明在 `schemes/pith/DESIGN.md`。由 Pith 的会话做；WonderLab 的 `pith-wonder-*` 等 Pith 做到 WonderLab 再起。
 - **几个会话一起做**：本仓库、Pomelo、Peck、Pith 各一个（`CLAUDE.md`「几个会话怎么分」、`docs/sessions.md`）。
 
 ## 接下来
 
-- **Pith 的前端 UI**（Pith 的会话）：照 tag `pith-v1.0.0` 同步进 Pith 的 `src/vendor/pith/`（`docs/adoption.md`，站主说一声），再接到界面上。用的时候发现 Atelier 的工具、Skill 不顺，回这里改。
+- **Pith 的前端 UI**（Pith 的会话）：`pith-v1.0.1` 11-25 同步进了 Pith 的 `src/vendor/pith/`，变量、字、明暗、App 图标接上了；界面照新架构重做在 Pith 的 1.1.0。用的时候发现 Atelier 的工具、Skill 不顺，回这里改。
 - **Pomelo**（Pomelo 的会话）：同步 `pomelo-v1.0.1`；1.1 的问卷等站主填（`canvases/pomelo-v1-1-questionnaire/`）。
 - **以后**（没排期）：Peck 方案的后续视觉；Vermilion 的新工作（网站、PPT、动图）；MCP 接 Pomelo 的柚子和 Peck。
 - **不做**：Pomelo Explore 发回云端（以本地为准）；在 bench 里看云端的版本历史。
@@ -53,7 +53,8 @@ visual-atelier 自己的状态和计划（Pomelo、Peck、Pith 的计划在各�
 - **迁入范围**：只迁消费方自定义的视觉资产，不含私人页面、第三方图标与品牌标识、字体文件、内容图片（2026-10-23）。
 - **MCP 的配置**（2026-11-15）：三家都用项目级配置，进 Git、不写绝对路径（Claude Code `.mcp.json`、Codex `.codex/config.toml`、Antigravity `.agents/plugins/dw/`）；用户目录里的不改。
 - **规则文档的写法**（2026-11-22）：`CLAUDE.md` 只放核心规则，细则在 `docs/` 和各份 README；`ROADMAP.md` 只放现在、接下来、决定和授权，过程进 `history/`；不再用根目录的 `HANDOFF.md`（11-24）。
-- **版本和 Git**（2026-11-24）：整个仓库一个版本号、从 1.0.0 起，每轮 Agent 提交、站主推送（`CLAUDE.md`「版本与 Git」）。站主当天重建了 Git，之前的提交只在旧 `.git` 备份里，旧提交号和 tag 都不在新仓库里；方案的 tag 在 1.0.1 补打。
+- **版本和 Git**（2026-11-24）：整个仓库一个版本号、从 1.0.0 起，每轮 Agent 提交、站主推送（`CLAUDE.md`「版本与 Git」）。站主当天重建了 Git，之前的提交只在旧 `.git` 备份里，旧提交号和 tag 都不在新仓库里；方案的 tag 在 1.0.1 补打。**2026-11-25**：只有本体（`bench/`、共用的 `tooling/`、`skills/`、`docs/`、根目录）的开发才升仓库的版本号；方案、画布这类平时的更新不升，只升方案自己的版本。
+- **云端**（2026-11-25）：除非站主明确要求，画布和 Design System 不拉回、不发回、不在云端新建或更新，改了只在本地看（`CLAUDE.md`「画布与 bench」）。
 
 ## 授权记录（现行）
 

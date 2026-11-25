@@ -21,7 +21,7 @@ description: 在 visual-atelier 里新建、修改、检查一块画布或一张
 
 ## 步骤
 
-1. **读**：`canvases/<画布名>/README.md`、`project/canvas.json`。有云端那份的（`cloud.json` 的 `targets` 不空）云端可能被站主改过：先 `list_files`，`node bench/bin/dw.js pull <画布名> --listing <清单>`，有改动先拉回。本地新建、没发过云端的画布跳过这一步。
+1. **读**：`canvases/<画布名>/README.md`、`project/canvas.json`。站主要求和云端同步、而且有云端那份的（`cloud.json` 的 `targets` 不空），云端可能被站主改过：先 `list_files`，`node bench/bin/dw.js pull <画布名> --listing <清单>`，有改动先拉回。平时（站主没要求）不碰云端，跳过这一步（根目录 `CLAUDE.md`「画布与 bench」）。
 2. **写**：画板是 `project/<文件>.dc.html`，格式照 Claude 的 Design 类型（`<script src="./support.js">`、`<x-dc>`、`data-props` 里的 Tweaks）。新画板同时在 `canvas.json` 的 `boards` 和 `order` 里登记，`w`、`h` 和 `$preview` 一致。有生成器的画布改生成器，不手改 `project/`。
    - **探索页（EX）和优化页（R）门槛不一样**（`canvases/README.md`「Explore Deck 的规矩」两档门槛）：探索页可以直接手写画板、用 Google Fonts、APCA 只提示；优化页和建方案才要生成器、逐字节一致、字体子集、APCA 全过。
    - 挂 Design System：`node bench/bin/dw.js ds install <画布名> <方案>`。它把 `tokens.json`、`tokens.css`、`components/bundle.css` 复制进 `project/ds/<名字>/`、在 `canvas.json` 记一条，并打印画板要加的几行：`<link rel="stylesheet" href="ds/<名字>/tokens.css">` 和组件样式放在 `<head>` 里 `support.js` 那行后面，Google Fonts 的 `<link>` 放进 `<helmet>`。之后画板里用 `var(--color-page)` 这类变量和 Design System 的类名，不抄数值。带 `components/bundle.js` 的（Pomelo 的手画零件）它也打印引它的那行，用法看那份 Design System 的 `README.md`。组件的类名和写法直接读文件：`schemes/<方案>/design-system/README.md`（「使用这套系统」一节）和 `components/<组件>/README.md`、`preview.html`（预览就是标准写法，照抄类名，比如 Vermilion 的描边按钮是 `.button-link`、页面外层是 `.vm-page`）；挂上以后 `project/ds/<名字>/tokens.css` 列着全部变量，`components/bundle.css` 列着全部类名。开着 `dw serve` 时 `http://127.0.0.1:4321/#/ds/<方案>` 是同样的内容，带预览。
@@ -36,7 +36,7 @@ description: 在 visual-atelier 里新建、修改、检查一块画布或一张
 5. **存版本**：`node bench/bin/dw.js snapshot <画布名> --label <说明>`。
    - 改名、删整块画布、一页或一张画板：`node bench/bin/dw.js rename …`、`dw delete …`（`--board <文件>` 是一张画板；都进回收处 `canvases/.trash/`，`dw trash` 放回），和站主在界面里做的同一套；页名以 `canvas.json` 为准，生成器别盖掉站主改的名字；站主在界面里改过板名、删过板的页，重跑生成器之前先把改动写进生成器。
 6. **导出**（要交 PNG 或单文件 HTML 时）：`node bench/bin/dw.js export <画布名> [--board <文件>] --png --html`，默认放 `canvases/<画布名>/.shots/export/<画板名>.png`。单文件 HTML 断网也能打开（React 和这张板用到的字体都打进去；先要联网取过一次，`node bench/bin/dw.js offline` 一次取齐），导出时说「没取到，打开时要联网」的就是还缺的。
-7. **发回**（要发时）：先照 `docs/cloud.md`「账号」确认云端那份是你这个账号的，再照「发回」做，最后 `--record` 核对。
+7. **发回**（只在站主明确要求时）：先照 `docs/cloud.md`「账号」确认云端那份是你这个账号的，再照「发回」做，最后 `--record` 核对。
 
 ## 输出
 

@@ -3,7 +3,7 @@
 import { rootImport } from '../../_lib/root.mjs';
 
 const G = await rootImport('tooling/pith/glyphs.mjs');
-export const { LOGO, ICON, TYPE, STAGE, AGENTS, svg48 } = G;
+export const { LOGO, ICON, TYPE, STAGE, AGENTS, svg48, homeLeaf } = G;
 export const icon = (n, cls = 'ico') => G.svg48(G.ICON[n], `${cls} pith-icon pith-icon--${n}`);
 export const typeIcon = (t, cls = 'tyi') => G.svg48(G.TYPE[t], `${cls} pith-type`);
 export const stageIcon = (k, cls = 'stg') => G.svg48(G.STAGE[k], `${cls} pith-stage`);

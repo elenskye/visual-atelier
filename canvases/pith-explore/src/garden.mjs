@@ -1,59 +1,34 @@
 // EX11（页 id ex12）从 EX10 原样复制，没改。
 // EX10（页 id ex11）的叶子和枝桠：从 EX9 复制，芽悬停时变珊瑚色、对话历史和设置的行加了悬停（hv-row）。原注：EX9（页 id ex10）的叶子和枝桠：从 EX8（ex9/app.mjs）原样搬出来，App 板和亮眼时刻板共用。
-// 叶子：主脉在对话框的中线上，十对侧脉、叶缘、叶面、五颗芽；枝桠：对话历史（叫出来才长）、设置的导航（常驻）。
+// 叶子：主脉在对话框的中线上，十对侧脉、叶缘、叶面、五颗芽（几何 11-25 挪进 tooling/pith/glyphs.mjs）；枝桠：对话历史（叫出来才长）、设置的导航（常驻）。
 import { esc, C } from './shell.mjs';
-import { icon } from './marks.mjs';
+import { icon, homeLeaf } from './marks.mjs';
 
 const r1 = (v) => Math.round(v * 10) / 10;
 
-// ---------- 叶子：主脉在对话框的中线上（y = 448），叶柄在左、叶尖在右 ----------
-const Y = 448, X0 = 176, X1 = 1124, LEN = X1 - X0, H = 154;
-const fa = 0.78, fb = 1.15, TSTAR = fa / (fa + fb);
-const f = (t) => Math.pow(t, fa) * Math.pow(1 - t, fb);
-const half = (t) => (t <= 0 || t >= 1 ? 0 : (H * f(t)) / f(TSTAR));
-const X = (t) => X0 + t * LEN;
-const VEINS = Array.from({ length: 10 }, (_, i) => 0.085 + i * 0.076);
-const vEnd = (t) => Math.min(t + 0.13 + 0.05 * (1 - t), 0.93);
-/** 叶缘上的芽：哪根侧脉（下标）、上还是下（-1 上、1 下）、哪份材料、标签放哪。 */
+// ---------- 叶子：几何在 tooling/pith/glyphs.mjs（homeLeaf，marks/garden/leaf.svg 也从它出），这里只加动画的延时和芽的标签 ----------
+/** 五颗芽各挂哪份材料（k 哪个知识库、j 第几份）、标签放哪；顺序和 homeLeaf().buds 一样。 */
 const BUDS = [
-  { i: 0, s: -1, k: 1, j: 2, at: 'l' },
-  { i: 2, s: 1, k: 1, j: 5, at: 'b' },
-  { i: 5, s: 1, k: 0, j: 3, at: 'b' },
-  { i: 7, s: 1, k: 1, j: 9, at: 'b' },
-  { i: 9, s: -1, k: 2, j: 1, at: 'r' },
+  { k: 1, j: 2, at: 'l' },
+  { k: 1, j: 5, at: 'b' },
+  { k: 0, j: 3, at: 'b' },
+  { k: 1, j: 9, at: 'b' },
+  { k: 2, j: 1, at: 'r' },
 ];
 
 export function leaf() {
-  const pts = (s) => Array.from({ length: 121 }, (_, k) => { const t = (k / 120) ** 1.35; return [X(t), Y + s * half(t)]; });
-  const poly = (p) => 'M' + p.map(([x, y]) => `${r1(x)} ${r1(y)}`).join('L');
-  const up = pts(-1), dn = pts(1);
-  const blade = poly(up) + 'L' + dn.slice().reverse().map(([x, y]) => `${r1(x)} ${r1(y)}`).join('L') + 'Z';
-  let veins = '';
-  VEINS.forEach((t, i) => {
-    const te = vEnd(t);
-    [-1, 1].forEach((s) => {
-      const bud = BUDS.find((b) => b.i === i && b.s === s);
-      const k = bud ? 1 : 0.86;
-      const P = [X(t), Y], E = [X(te), Y + s * half(te) * k];
-      const Cc = [P[0] + (E[0] - P[0]) * 0.26, Y + s * half(te) * k * 0.8];
-      const d = (0.95 + i * 0.07).toFixed(2);
-      veins += `<path class="vn${bud ? ` bv bv${BUDS.indexOf(bud)}` : ''}" pathLength="1" style="--d:${d}s" d="M${r1(P[0])} ${Y}Q${r1(Cc[0])} ${r1(Cc[1])} ${r1(E[0])} ${r1(E[1])}"/>`;
-    });
-  });
-  const budsDots = BUDS.map((b, n) => {
-    const te = vEnd(VEINS[b.i]);
-    return `<circle class="bd bd${n}" cx="${r1(X(te))}" cy="${r1(Y + b.s * half(te))}" r="4" style="--d:${(2.35 + n * 0.1).toFixed(2)}s"/>`;
-  }).join('');
+  const L = homeLeaf();
+  const veins = L.veins.map((v) => `<path class="vn${v.bud >= 0 ? ` bv bv${v.bud}` : ''}" pathLength="1" style="--d:${(0.95 + v.i * 0.07).toFixed(2)}s" d="${v.d}"/>`).join('');
+  const budsDots = L.buds.map((b, n) => `<circle class="bd bd${n}" cx="${r1(b.x)}" cy="${r1(b.y)}" r="4" style="--d:${(2.35 + n * 0.1).toFixed(2)}s"/>`).join('');
   const svg = `<svg class="v1-leaf" viewBox="0 0 1280 800" aria-hidden="true">
-<path class="bl" d="${blade}"/>
-<path class="mr" pathLength="1" d="M108 465Q146 452 ${X0} ${Y}L${X1 - 14} ${Y}"/>
+<path class="bl" d="${L.blade}"/>
+<path class="mr" pathLength="1" d="${L.rib}"/>
 ${veins}
-<path class="ct" pathLength="1" d="${poly(up)}"/><path class="ct" pathLength="1" d="${poly(dn)}"/>
+<path class="ct" pathLength="1" d="${L.contours[0]}"/><path class="ct" pathLength="1" d="${L.contours[1]}"/>
 ${budsDots}</svg>`;
   const labels = BUDS.map((b, n) => {
     const m = C.MATS[b.k][b.j];
-    const te = vEnd(VEINS[b.i]);
-    const x = X(te), y = Y + b.s * half(te);
+    const { x, y } = L.buds[n];
     const pos = b.at === 'l' ? `right:${r1(1280 - x + 14)}px;top:${r1(y - 46)}px;text-align:right` : b.at === 'r' ? `left:${r1(x + 14)}px;top:${r1(y - 46)}px` : `left:${r1(x - 10)}px;top:${r1(y + 14)}px`;
     return `<button type="button" class="v1-bud b${n} at-${b.at}" onClick="{{bud${b.k}_${b.j}}}" style="${pos};--d:${(2.45 + n * 0.1).toFixed(2)}s"><b class="w${m.stage}">${esc(m.title)}</b><span>${esc(C.KBS[b.k].name)} · ${m.date}</span></button>`;
   }).join('');

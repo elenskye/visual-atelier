@@ -166,6 +166,10 @@
           "src": "marks/agents/done.svg"
         },
         {
+          "to": "marks/garden/leaf.svg",
+          "src": "marks/garden/leaf.svg"
+        },
+        {
           "to": "marks/logo/app-icon@1024.png",
           "dist": "marks/png/app-icon@1024.png"
         }

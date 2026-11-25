@@ -1,5 +1,7 @@
 # 云端往返
 
+**什么时候碰云端**：只在站主明确要求时（`CLAUDE.md`「画布与 bench」，站主 2026-11-25）；平时改了只在本地看，云端那份旧了没关系。问卷页照 `skills/questionnaire`。
+
 云端只能通过 Claude 的 artifact 工具碰到，所以 `dw` 自己从不联网：Agent 把工具返回的清单存成 JSON，按 `dw` 给的单子下载或上传，再交回 `dw` 核对。所有文件都按 sha256 对。
 
 下面的工具名是 claude-artifacts 的（`list_files`、`read_file`、`publish_files`、`upload_asset`、`list_assets`、`read_asset`）。Claude Code 自带的 Artifact 工具也能做同样的事，见「下载」。

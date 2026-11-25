@@ -49,6 +49,7 @@ Pith（站主的 macOS 研究工作台）的视觉基线：花园笔记 × 铅�
 - **Logo · 蕨芽**（站主 11-24）：茎往上长，顶上卷成一个蕨芽，卷起来的那一圈就是 P 的碗，卷心一颗珊瑚色的果。顶栏 30px，配 Newsreader 500 的「Pith」字标；最小 16px。文件：`marks/logo/pith.svg`；会长的那一版 `marks/logo/pith-grow.svg`（只在动效里用）。
 - **App 图标**：墨色圆角方、纸色的蕨芽、珊瑚色的果（纸与海的颜色），`marks/logo/app-icon.svg`，导出 16–1024 的 PNG。
 - **顶栏**：知识库是叶序（一根茎三片互生的叶、顶上一颗芽），文献库是三本书（中间那本夹着一片叶当书签），设置是轮生（六片叶围着一个环，环心是髓）。
+- **首页的叶子**：`marks/garden/leaf.svg`（几何和画布 R1 的首页是同一份，11-25 单独成一张），放在 `color-accent` 里，淡度写在文件里；Design System 的封面也铺着它。
 - **界面**：新对话、搜索、发送。**十种记录**：全文、摘抄、笔记、网页快照、本机文件、扫描件、概念卡、调查报告、WonderLab 作品、存下的回答。**生长阶段**：种子 → 四瓣 → 八瓣，芯是珊瑚色。**Agent 图标**：第 7 节。
 
 ## 7. 动效
@@ -79,3 +80,28 @@ Pith（站主的 macOS 研究工作台）的视觉基线：花园笔记 × 铅�
 - 中文字体要不要随 App 打包（Noto Serif SC、Noto Sans SC 整个很大，要带就做子集或按需下载）。
 - 雾与赭要不要自己的 App 图标（现在只有纸与海那一个）。
 - 顶栏悬停「一两秒内不重演」的具体时长，开发时手感定。
+- 要不要一个「危险」色（删除、报错）：现在 Pith 里 shadcn 的 `destructive` 借 `color-second`（第 9 节），纸与海的绯红够醒目，雾与赭的靛蓝就不像了。
+
+## 9. 在 Pith 里怎么接（2026-11-25 定）
+
+同步进 Pith 的 `src/vendor/pith/`（`sync.json`），Pith 的 `src/index.css` 先引 `pith.css`，再把 shadcn 命名的变量指过来；组件只用 shadcn 的名字（`bg-muted`、`text-primary`……），值都从 `--color-*` 来，不写死。
+
+| shadcn | Pith | 为什么 |
+| --- | --- | --- |
+| `background` | `color-page` | 页面是纸 |
+| `foreground` | `color-text` | |
+| `sidebar` | `color-page` | Pith 没有带底色的侧栏，和页面是同一张纸，靠线分开 |
+| `card` | `color-surface` | |
+| `border` | `color-line` | |
+| `muted` | `color-tint` | 淡底：悬停、选中的行 |
+| `muted-foreground` | `color-text-3` | 在 tint 上比 `color-text-4` 还深，过 Lc 60 |
+| `primary` / `primary-foreground` | `color-accent` / `color-on-accent` | |
+| `accent` / `accent-foreground` | `color-tint` / `color-text` | shadcn 的 accent 是悬停、选中的淡底，**不是** Pith 的强调色 `color-accent` |
+| `destructive` | `color-second` | 方案没有危险色（第 8 节） |
+| `ring` | `color-accent` | |
+
+- **名字撞了一个**：`--color-accent` 在 `pith.css` 里是海蓝，Tailwind 的 `bg-accent` 是 shadcn 的淡底。Pith 的 `@theme inline` 让 `bg-accent` 直接取 `var(--accent)`，不经过 `--color-accent`，所以两边不打架；手写 CSS 要强调色就写 `var(--color-accent)`。
+- **字**：`pith.css` 的 `--font-sans`、`--font-serif`、`--font-mono` 不在 layer 里，压过 Tailwind 默认主题里同名的变量，`font-sans`、`font-serif` 就是 Lato、Newsreader 那两栈。Lato、Newsreader 随 App 打包（字体不经过同步，Pith 自己装 `@fontsource` 的包）；中文照第 3 节先用系统字体。
+- **明暗**：`pith.css` 看根上的 `data-theme`。Pith 现在跟着系统写 `data-theme`，Tailwind 的 `dark:` 也改成看它；以后设置 › 外观能选亮、暗、配色，改这一处就行。
+- App 原来用的琥珀、翠绿（提示、完成）还是 Tailwind 的色板，等界面照 Pith 重做时一起换。
+
