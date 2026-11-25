@@ -567,12 +567,14 @@ textarea.pith-field { height: auto; min-height: 140px; padding: 10px 12px; resiz
 /* ---------- 动效 · 换配色 · 湖面波纹（palette-lake，expressive） ---------- */
 /* 换配色 · 湖面波纹（expressive，登记的表面 palette-lake，2.3 秒；站主 2026-11-23：要像几层真实的湖面波纹，不是一个圈）。
    从点的地方漾开五圈：暗的波谷（强调色压暗）和亮的波峰（纸色提亮）一对一对，第二、四圈是珊瑚色，一圈比一圈晚、一圈比一圈细；
-   新的颜色从同一个点像墨一样洇开（1.2 秒）。
+   新的颜色从同一个点像墨一样洇开（1.3 秒，和波纹同一种先快后慢的节奏、半径大得多，波纹一直落在已经洇开的那片里）。
    1.1.0（Pith 1.0.3 实测）：拿掉整页的水面扭曲（SVG 滤镜，WebKit 里每帧约 100 毫秒，换一次卡一秒多）；颜色改成 View Transitions 的「洇开」：
    浏览器拍下旧的样子，新样子的样式只算一次，洇开是一张图上的软边遮罩。.pith-smooth（十四个颜色变量各自过渡）留给小页面和导出动图：
    它每帧要重算整页，文献库一长（1500 行）在 WebKit 里会掉到一秒几帧，真的 App 里别用。
    用法：.pith-lake 放在点的位置（left/top），里面五对圆 .rg1–5、.rh1–5，加 .is-in 才漾开；
    换颜色：根上写 --ink-x、--ink-y（点的位置）、--ink-r（到最远那个角再加 160px），document.startViewTransition(() => 换 data-palette)。
+   波纹等 transition.ready 再加 .is-in：浏览器拍旧画面的那一下（约 0.2 秒）屏幕是冻住的，早起的话最浓的那段被吃掉，看起来像没有波纹。
+   波纹留在页面里（不另起 view-transition-name：WebKit 里单独那一层过渡时不实时画）。
    没有 View Transitions、减弱动态效果时直接换。 */
 @property --color-page { syntax: '<color>'; inherits: true; initial-value: transparent; }
 @property --color-surface { syntax: '<color>'; inherits: true; initial-value: transparent; }
@@ -604,7 +606,7 @@ textarea.pith-field { height: auto; min-height: 140px; padding: 10px 12px; resiz
 /* 洇开：新的样子从 --ink-x、--ink-y 用一圈 160px 的软边遮罩露出来，旧的垫在下面不动 */
 @property --ink { syntax: '<length>'; inherits: false; initial-value: 0px; }
 ::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
-::view-transition-new(root) { -webkit-mask: radial-gradient(circle at var(--ink-x, 50%) var(--ink-y, 50%), #000 calc(var(--ink) - 160px), transparent var(--ink)); mask: radial-gradient(circle at var(--ink-x, 50%) var(--ink-y, 50%), #000 calc(var(--ink) - 160px), transparent var(--ink)); animation: pith-ink 1.2s cubic-bezier(.45,.05,.3,1) both; }
+::view-transition-new(root) { -webkit-mask: radial-gradient(circle at var(--ink-x, 50%) var(--ink-y, 50%), #000 calc(var(--ink) - 160px), transparent var(--ink)); mask: radial-gradient(circle at var(--ink-x, 50%) var(--ink-y, 50%), #000 calc(var(--ink) - 160px), transparent var(--ink)); animation: pith-ink 1.3s cubic-bezier(.15,.65,.3,1) both; }
 @keyframes pith-ink { from { --ink: 0px; } to { --ink: var(--ink-r, 150vmax); } }
 @media (prefers-reduced-motion: reduce) {
   .pith-lake { display: none; }

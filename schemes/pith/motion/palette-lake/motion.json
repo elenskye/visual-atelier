@@ -5,7 +5,7 @@
   "approved": "站主 2026-11-24 验收 Pith Explore EX11（「验收完毕，开始做优化页、建 schemes/pith/」）",
   "tier": "expressive",
   "surface": "palette-lake",
-  "trigger": "设置 › 外观、⌘K 换配色：点的位置放 .pith-lake 加 .is-in（2.3 秒后拿掉）；根上写 --ink-x、--ink-y、--ink-r，document.startViewTransition 里换 data-palette（颜色从点的地方洇开 1.2 秒）",
+  "trigger": "设置 › 外观、⌘K 换配色：点的位置放 .pith-lake；根上写 --ink-x、--ink-y、--ink-r，document.startViewTransition 里换 data-palette，transition.ready 时给 .pith-lake 加 .is-in（2.3 秒后拿掉）",
   "durationMs": 2300,
   "reducedMotion": "颜色直接换，不漾、不洇",
   "use": "整个 App（View Transitions 的根）；.pith-smooth 只给小页面和导出动图",
@@ -48,9 +48,10 @@
       }
     ]
   },
-  "version": "1.1.0",
+  "version": "1.1.1",
   "history": [
     "1.0.0 站主 2026-11-24 验收 Pith Explore EX11 时批（整页水面扭曲 + 十四个颜色变量过渡）",
-    "1.1.0 Pith 的会话 2026-11-25（站主 11-25 让查换配色为什么卡）：WKWebView 实测整页扭曲每帧约 100 毫秒、换一次掉到约 28 帧；颜色变量过渡在 1500 行的文献库里有 5 个 150–280 毫秒的长帧。拿掉扭曲，颜色改成 View Transitions 从点的地方洇开；波纹不变。待批"
+    "1.1.0 Pith 的会话 2026-11-25（站主 11-25 让查换配色为什么卡）：WKWebView 实测整页扭曲每帧约 100 毫秒、换一次掉到约 28 帧；颜色变量过渡在 1500 行的文献库里有 5 个 150–280 毫秒的长帧。拿掉扭曲，颜色改成 View Transitions 从点的地方洇开；波纹不变。待批",
+    "1.1.1 同一天：站主看到波纹不见了——拍旧画面那 0.2 秒吃掉了波纹最浓的一段，洇开又比波纹慢、把它盖住。波纹改成等 ready 再起，洇开换成和波纹同一种节奏（1.3 秒）。待批"
   ]
 }
