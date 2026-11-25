@@ -1,0 +1,30 @@
+<!-- @dsCard group="控件" height=170 width=960 subtitle="勾选框、单选框 × 没选 / 选上 / 悬停 / 不能点" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Check</title>
+<style>
+  html, body { margin: 0; }
+  .demo { display: flex; flex-direction: column; gap: 16px; padding: 24px 32px; }
+  .row { display: flex; align-items: center; gap: 28px; }
+  label { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--color-text-2); }
+</style>
+</head>
+<body class="pith">
+<div class="demo">
+  <div class="row">
+    <label><input type="checkbox" class="pith-check"> 含子集合</label>
+    <label><input type="checkbox" class="pith-check" checked> 导入后、填写 DOI 后自动查</label>
+    <label><input type="checkbox" class="pith-check" style="box-shadow: inset 0 0 0 1.4px var(--color-accent)"> 悬停</label>
+    <label><input type="checkbox" class="pith-check" disabled> 不能点</label>
+    <label><input type="checkbox" class="pith-check" checked disabled> 选上、不能点</label>
+  </div>
+  <div class="row">
+    <label><input type="radio" class="pith-radio" name="d"> 单面</label>
+    <label><input type="radio" class="pith-radio" name="d" checked> 双面（页眉分奇偶页）</label>
+    <label><input type="radio" class="pith-radio" disabled> 不能点</label>
+  </div>
+</div>
+</body>
+</html>

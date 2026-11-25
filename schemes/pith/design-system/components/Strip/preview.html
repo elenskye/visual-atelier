@@ -1,0 +1,34 @@
+<!-- @dsCard group="文献库" height=150 width=960 subtitle="集合一栏：平时、选中、展开的下级（小枝、长出来）、「＋ 集合」；知识库的生长阶段" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Strip</title>
+<style>
+  html, body { margin: 0; }
+  .demo { display: flex; flex-direction: column; gap: 18px; padding: 24px 32px; width: 820px; }
+  .pith-strip-item.is-sub, .pith-strip-twig { animation: none; }
+</style>
+</head>
+<body class="pith">
+<div class="demo">
+  <div class="pith-strip">
+    <button class="pith-strip-item">方法论<em>12</em></button>
+    <button class="pith-strip-item has-kids is-open">政治学<em>30</em></button>
+    <span class="pith-strip-twig"></span>
+    <button class="pith-strip-item is-sub is-on">政治效能感<em>18</em></button>
+    <button class="pith-strip-item is-sub">比较政治<em>7</em></button>
+    <span class="pith-strip-end"></span>
+    <button class="pith-strip-item has-kids">毕业论文<em>4</em></button>
+    <button class="pith-strip-item">读书会</button>
+    <button class="pith-strip-item is-add">＋ 集合</button>
+  </div>
+  <div class="pith-strip">
+    <button class="pith-strip-item is-on">全部</button>
+    <button class="pith-strip-item">刚种下<em>1</em></button>
+    <button class="pith-strip-item">长着<em>3</em></button>
+    <button class="pith-strip-item">常青<em>2</em></button>
+  </div>
+</div>
+</body>
+</html>

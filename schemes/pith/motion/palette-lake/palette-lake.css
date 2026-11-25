@@ -1,8 +1,12 @@
 /* 换配色 · 湖面波纹（expressive，登记的表面 palette-lake，2.3 秒；站主 2026-11-23：要像几层真实的湖面波纹，不是一个圈）。
    从点的地方漾开五圈：暗的波谷（强调色压暗）和亮的波峰（纸色提亮）一对一对，第二、四圈是珊瑚色，一圈比一圈晚、一圈比一圈细；
-   同时整页像水面一样轻轻晃一下（SVG 滤镜 #pith-lake-f，1.4 秒），颜色 token 慢慢过渡（0.9 秒，@property 注册成 <color>）。
-   用法：.pith-lake 放在点的位置（left/top），里面五对圆 .rg1–5、.rh1–5，加 .is-in 才漾开；页面的根加 .pith-smooth（颜色过渡）；换的那一刻根加 .is-lake（1.45 秒后拿掉），
-   并调滤镜里 <animate id="pith-lake-anim"> 的 beginElement()。滤镜在大页面上可能吃性能，开发时要量，必要时只扭曲一张截图层。 */
+   新的颜色从同一个点像墨一样洇开（1.2 秒）。
+   1.1.0（Pith 1.0.3 实测）：拿掉整页的水面扭曲（SVG 滤镜，WebKit 里每帧约 100 毫秒，换一次卡一秒多）；颜色改成 View Transitions 的「洇开」：
+   浏览器拍下旧的样子，新样子的样式只算一次，洇开是一张图上的软边遮罩。.pith-smooth（十四个颜色变量各自过渡）留给小页面和导出动图：
+   它每帧要重算整页，文献库一长（1500 行）在 WebKit 里会掉到一秒几帧，真的 App 里别用。
+   用法：.pith-lake 放在点的位置（left/top），里面五对圆 .rg1–5、.rh1–5，加 .is-in 才漾开；
+   换颜色：根上写 --ink-x、--ink-y（点的位置）、--ink-r（到最远那个角再加 160px），document.startViewTransition(() => 换 data-palette)。
+   没有 View Transitions、减弱动态效果时直接换。 */
 @property --color-page { syntax: '<color>'; inherits: true; initial-value: transparent; }
 @property --color-surface { syntax: '<color>'; inherits: true; initial-value: transparent; }
 @property --color-raised { syntax: '<color>'; inherits: true; initial-value: transparent; }
@@ -18,7 +22,6 @@
 @property --color-second { syntax: '<color>'; inherits: true; initial-value: transparent; }
 @property --color-coral { syntax: '<color>'; inherits: true; initial-value: transparent; }
 .pith-smooth { transition: --color-page .9s cubic-bezier(.4,0,.2,1), --color-surface .9s cubic-bezier(.4,0,.2,1), --color-raised .9s cubic-bezier(.4,0,.2,1), --color-tint .9s cubic-bezier(.4,0,.2,1), --color-line .9s cubic-bezier(.4,0,.2,1), --color-line-2 .9s cubic-bezier(.4,0,.2,1), --color-text .9s cubic-bezier(.4,0,.2,1), --color-text-2 .9s cubic-bezier(.4,0,.2,1), --color-text-3 .9s cubic-bezier(.4,0,.2,1), --color-text-4 .9s cubic-bezier(.4,0,.2,1), --color-accent .9s cubic-bezier(.4,0,.2,1), --color-accent-text .9s cubic-bezier(.4,0,.2,1), --color-second .9s cubic-bezier(.4,0,.2,1), --color-coral .9s cubic-bezier(.4,0,.2,1); }
-.pith-smooth.is-lake { filter: url(#pith-lake-f); }
 .pith-lake { position: absolute; z-index: 65; width: 40px; height: 40px; margin: -20px 0 0 -20px; overflow: visible; pointer-events: none; }
 .pith-lake circle { fill: none; vector-effect: non-scaling-stroke; transform-box: fill-box; transform-origin: center; opacity: 0; }
 .pith-lake.is-in circle { animation: pith-lake 2.1s cubic-bezier(.15,.65,.3,1) var(--d) forwards; }
@@ -31,8 +34,13 @@
 .pith-lake :is(.rg4, .rh4) { --d: .54s; --k: 32; --o: .42; stroke-width: 1.4; }
 .pith-lake :is(.rg5, .rh5) { --d: .76s; --k: 22; --o: .34; stroke-width: 1; }
 @keyframes pith-lake { 0% { transform: scale(.15); opacity: 0; } 8% { opacity: var(--o); } 100% { transform: scale(var(--k)); opacity: 0; } }
+/* 洇开：新的样子从 --ink-x、--ink-y 用一圈 160px 的软边遮罩露出来，旧的垫在下面不动 */
+@property --ink { syntax: '<length>'; inherits: false; initial-value: 0px; }
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-new(root) { -webkit-mask: radial-gradient(circle at var(--ink-x, 50%) var(--ink-y, 50%), #000 calc(var(--ink) - 160px), transparent var(--ink)); mask: radial-gradient(circle at var(--ink-x, 50%) var(--ink-y, 50%), #000 calc(var(--ink) - 160px), transparent var(--ink)); animation: pith-ink 1.2s cubic-bezier(.45,.05,.3,1) both; }
+@keyframes pith-ink { from { --ink: 0px; } to { --ink: var(--ink-r, 150vmax); } }
 @media (prefers-reduced-motion: reduce) {
   .pith-lake { display: none; }
-  .pith-smooth.is-lake { filter: none; }
   .pith-smooth { transition: none; }
+  ::view-transition-new(root) { animation: none; -webkit-mask: none; mask: none; }
 }

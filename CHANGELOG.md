@@ -2,6 +2,12 @@
 
 只记做完且验证过的结果，不写待办。这里只留最近一轮和摘要表；逐条记录在 `history/changelog-2026-11.md`（2026-11-02～11-24），VL1 每一步在 `schemes/vermilion/history/vl1-changelog.md`。
 
+## 2026-11-25 · Pith 1.1.0：控件、换配色不卡（Pith 的会话；非本体，仓库还是 1.0.1）
+
+- **新组件**（站主 11-25：「检查所有勾选框、下拉框，把新的设计加到 Design System，不用等我审批」）：`Select`（下拉框和弹出的列表，右键菜单也用它；macOS 的原生菜单改不了样子）、`Check`（勾选框、单选框）、`Field`（输入框、搜索、就地改的字）、`Strip`（左右滑的一栏：文献库的集合、知识库的生长阶段）、`Tag`、`Dialog`（弹窗、提示条）、`TagTree`（文献库的标签树，`Branch` 加了分组、计数、多选）；`Buttons` 加小一号和危险的。都是 Pith 1.0.3 里先调好的样子，待批。
+- **palette-lake 1.1.0**（待批）：Pith 在 WKWebView 里量，换配色时整页的水面扭曲每帧约 100 毫秒（一次掉到约 28 帧），十四个颜色变量过渡在 1500 行的文献库里有 5 个 150–280 毫秒的长帧。拿掉扭曲，颜色改成 View Transitions 从点的地方洇开；五圈波纹不变；`.pith-smooth` 只留给小页面和导出动图。`DESIGN.md` 第 1、2、5、7、9 节跟着改（第 1 节不再指已删的交接文件）。
+- **验证**：`node tooling/pith/build.mjs --check`（37 个资产）；`npm run qa -- --scheme pith` 163 项全过；`check:ds` 19 个预览明暗都没问题、看过截图；`build:motion` 导出 palette-lake 明暗两张；画布重建后 `dw check pith-explore` 6 张全过，`dw ds install` 换了画布挂的副本，`check:canvases` 三块一致。云端的 Design System 没更新（规矩）。
+
 ## 2026-11-25 · Pith 1.0.1、两条规矩（Pith 的会话；非本体，仓库还是 1.0.1）
 
 - **规矩**（站主定）：除非站主明确要求，画布和 Design System 不和云端同步（`CLAUDE.md`「画布与 bench」、`docs/cloud.md`、`skills/design-loop`）；只有本体的开发才升仓库的版本号，方案、画布这类平时的更新不升（`CLAUDE.md`「版本与 Git」）。`build:ds` 和 bench 在本地改过、云端没更新时的提示跟着改了。

@@ -1,0 +1,37 @@
+<!-- @dsCard group="控件" height=300 width=960 subtitle="确认的弹窗（危险的）、选集合；提示条、出错的提示条" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Dialog</title>
+<style>
+  html, body { margin: 0; }
+  .demo { display: flex; gap: 28px; align-items: flex-start; padding: 24px 32px; }
+  .pith-dialog { animation: none; width: 340px; }
+  .toasts { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; width: 260px; }
+  .pith-toast { animation: none; }
+</style>
+</head>
+<body class="pith">
+<div class="demo">
+  <div class="pith-dialog">
+    <header><h2>删掉标签「待读」？</h2><button class="pith-dialog-x">×</button></header>
+    <div class="pith-dialog-msg">会从 3 条记录上去掉这个标签，文献本身不受影响。</div>
+    <div class="pith-dialog-acts"><button class="pith-button pith-button--quiet">算了</button><button class="pith-button pith-button--danger">删掉</button></div>
+  </div>
+  <div class="pith-dialog">
+    <header><h2>添加到集合</h2><button class="pith-dialog-x">×</button></header>
+    <div class="pith-picklist">
+      <button class="pith-row">方法论</button>
+      <button class="pith-row is-on">政治学</button>
+      <button class="pith-row" style="padding-left:42px">政治效能感</button>
+    </div>
+    <div class="pith-dialog-acts"><button class="pith-button pith-button--quiet">算了</button><button class="pith-button">添加</button></div>
+  </div>
+  <div class="toasts">
+    <div class="pith-toast"><span>3 项已移到回收站</span><a class="pith-link">撤销</a></div>
+    <div class="pith-toast is-error"><span>没有找到这个 DOI</span></div>
+  </div>
+</div>
+</body>
+</html>

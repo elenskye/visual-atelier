@@ -1,0 +1,29 @@
+<!-- @dsCard group="文献库" height=130 width=960 subtitle="标签、悬停出 ×、筛选里选中的；集合；加标签的输入框" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Tag</title>
+<style>
+  html, body { margin: 0; }
+  .demo { display: flex; flex-direction: column; gap: 14px; padding: 24px 32px; }
+  .row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .show .pith-tag-x { opacity: 1; }
+</style>
+</head>
+<body class="pith">
+<div class="demo">
+  <div class="row">
+    <span class="pith-tag">测量</span>
+    <span class="pith-tag show">政治心理<button class="pith-tag-x">×</button></span>
+    <span class="pith-tag is-on">待读<i>×</i></span>
+    <input class="pith-tag-add" placeholder="＋ 标签">
+  </div>
+  <div class="row">
+    <span class="pith-tag is-col">毕业论文</span>
+    <span class="pith-tag is-col show">政治效能感<button class="pith-tag-x">×</button></span>
+    <span class="pith-tag-add is-btn">＋</span>
+  </div>
+</div>
+</body>
+</html>

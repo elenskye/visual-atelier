@@ -1,0 +1,37 @@
+<!-- @dsCard group="控件" height=250 width=960 subtitle="输入框、小一号、正在输入；搜索（平时 / 点进去）；就地改的字（平时 / 悬停 / 在改）" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Field</title>
+<style>
+  html, body { margin: 0; }
+  .demo { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; padding: 24px 32px; }
+  .lb { margin: 0 0 10px; font: 700 11px/1 var(--font-sans); letter-spacing: .1em; color: var(--color-text-4); }
+  .col { display: flex; flex-direction: column; gap: 10px; }
+  .t { font: 600 20px/1.3 var(--font-serif); }
+</style>
+</head>
+<body class="pith">
+<div class="demo">
+  <div class="col">
+    <p class="lb">输入框</p>
+    <input class="pith-field" placeholder="名字，例如：导师">
+    <input class="pith-field" value="在读的那本书" style="box-shadow: inset 0 0 0 1.5px var(--color-accent), 0 0 0 3px color-mix(in srgb, var(--color-accent) 14%, transparent)">
+    <input class="pith-field pith-field--s" placeholder="姓">
+  </div>
+  <div class="col">
+    <p class="lb">搜索</p>
+    <label class="pith-search"><!-- @include marks/icons/search.svg --><input placeholder="搜索标题、作者、标签"></label>
+    <label class="pith-search" style="width:300px;box-shadow: inset 0 0 0 1.5px var(--color-accent)"><!-- @include marks/icons/search.svg --><input value="效能感"><span class="pith-search-x">×</span></label>
+  </div>
+  <div class="col">
+    <p class="lb">就地改的字</p>
+    <span class="pith-inline t">国富论</span>
+    <span class="pith-inline" style="background: color-mix(in srgb, var(--color-tint) 70%, transparent)">9787224094282</span>
+    <textarea class="pith-inline is-editing" rows="1">2011</textarea>
+    <span class="pith-inline is-empty">没有摘要，点一下写</span>
+  </div>
+</div>
+</body>
+</html>

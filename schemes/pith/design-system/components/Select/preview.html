@@ -1,0 +1,48 @@
+<!-- @dsCard group="控件" height=330 width=960 subtitle="下拉框：工具栏里的一行字、表单里有框的、小一号；打开的列表（选中、悬停、分隔、危险）" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>Select</title>
+<style>
+  html, body { margin: 0; }
+  .demo { display: flex; gap: 40px; padding: 24px 32px; }
+  .lb { margin: 0 0 10px; font: 700 11px/1 var(--font-sans); letter-spacing: .1em; color: var(--color-text-4); }
+  .col { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .pith-menu.is-demo { position: static; animation: none; margin-top: 6px; }
+</style>
+</head>
+<body class="pith">
+<div class="demo">
+  <div class="col">
+    <p class="lb">平时</p>
+    <span class="pith-select">全部类型</span>
+    <span class="pith-select pith-select--field" style="width:180px">作者</span>
+    <span class="pith-select pith-select--field pith-select--s">正文</span>
+    <span class="pith-select pith-select--field pith-select--s is-bad">两端对齐</span>
+  </div>
+  <div class="col">
+    <p class="lb">打开</p>
+    <span class="pith-select is-open">图书</span>
+    <div class="pith-menu is-demo" style="width:220px">
+      <button class="pith-menu-item pith-row"><span>全部类型</span></button>
+      <button class="pith-menu-item pith-row"><span>期刊论文</span><em>12</em></button>
+      <button class="pith-menu-item pith-row is-on"><span>图书</span><em>4</em></button>
+      <button class="pith-menu-item pith-row is-active"><span>图书章节</span><em>2</em></button>
+      <button class="pith-menu-item pith-row"><span>学位论文</span></button>
+    </div>
+  </div>
+  <div class="col">
+    <p class="lb">右键菜单</p>
+    <div class="pith-menu is-demo" style="width:200px">
+      <p class="pith-menu-group">集合</p>
+      <button class="pith-menu-item pith-row"><span>新建子集合…</span></button>
+      <button class="pith-menu-item pith-row"><span>改名…</span></button>
+      <button class="pith-menu-item pith-row"><span>移动到…</span></button>
+      <hr class="pith-menu-sep">
+      <button class="pith-menu-item pith-row is-danger"><span>移到回收站</span></button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

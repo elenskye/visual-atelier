@@ -1,0 +1,31 @@
+<!-- @dsCard group="文献库" height=300 width=960 subtitle="标签树：标签、计数、按「/」分组、选中两个" -->
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>TagTree</title>
+<style>
+  html, body { margin: 0; }
+  .demo { display: flex; gap: 60px; padding: 24px 32px; }
+  .h { margin: 0 0 12px; font: 400 24px/1 var(--font-serif); }
+  .h span { margin-left: 8px; font: 400 12px/1 var(--font-sans); color: var(--color-text-4); }
+  .pith-branch { width: 220px; }
+</style>
+</head>
+<body class="pith">
+<div class="demo">
+  <div>
+    <p class="h">标签<span>7</span></p>
+    <nav class="pith-branch">
+      <a class="pith-branch-item pith-row">方法<em>1</em></a>
+      <a class="pith-branch-item pith-row is-on">测量<em>4</em></a>
+      <a class="pith-branch-item pith-row">待读<em>6</em></a>
+      <p class="pith-branch-group">政治</p>
+      <a class="pith-branch-item pith-row is-on">效能感<em>3</em></a>
+      <a class="pith-branch-item pith-row">政治心理<em>2</em></a>
+      <a class="pith-branch-item pith-row is-hover">参与<em>5</em></a>
+    </nav>
+  </div>
+</div>
+</body>
+</html>

@@ -18,7 +18,8 @@ Pith 的 Design System：站主的 macOS 研究工作台。花园笔记（奶油
 
 - 框架：`TopBar`（Logo + 三个图标，不写字）、`Branch`（对话历史、设置的枝桠导航，没有底色）。
 - 对话：`Composer`（输入框、/ @ #、发送、「在想」）、`Status`（状态行和 Agent 图标）、`Answer`（回答、编号、页边注）、`DeliveryCard`（交付卡和「存进……」）。
-- 知识库、文献库：`KnowledgeCard`、`LibraryRow`。设置：`Appearance`（两块色板）。控件：`Buttons`（按钮少，链接多）。图形：`Icons`。
+- 知识库、文献库：`KnowledgeCard`、`LibraryRow`、`Strip`（集合一栏、生长阶段）、`Tag`、`TagTree`。设置：`Appearance`（两块色板）。
+- 控件：`Buttons`（按钮少，链接多）、`Select`（下拉框和弹出的列表，也是右键菜单）、`Check`（勾选框、单选框）、`Field`（输入框、搜索、就地改的字）、`Dialog`（弹窗、提示条）。图形：`Icons`。
 
 ## 动效
 

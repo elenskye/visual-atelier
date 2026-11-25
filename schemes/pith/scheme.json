@@ -1,9 +1,9 @@
 {
-  "$note": "Pith 的 App 方案。0.1.0：站主 2026-11-24 验收 Pith Explore EX11 后建。1.0.0：同一天站主批了 logo-grow，全部资产和动效零件都已批，定为 1.0.0。1.0.1（11-25）：文献库图标单独打开时解析不了（同一个元素两个 style），修好；首页的叶子单独成一张 marks/garden/leaf.svg，Design System 的封面铺上它；DESIGN.md 加第 9 节「在 Pith 里怎么接」。",
+  "$note": "Pith 的 App 方案。0.1.0：站主 2026-11-24 验收 Pith Explore EX11 后建。1.0.0：同一天站主批了 logo-grow，全部资产和动效零件都已批，定为 1.0.0。1.0.1（11-25）：文献库图标单独打开时解析不了（同一个元素两个 style），修好；首页的叶子单独成一张 marks/garden/leaf.svg，Design System 的封面铺上它；DESIGN.md 加第 9 节「在 Pith 里怎么接」。 1.1.0（11-25，Pith 1.0.3）：七个新组件（Select、Check、Field、Strip、Tag、Dialog、TagTree），按钮加小一号和危险的；palette-lake 拿掉整页水面扭曲、颜色改成 View Transitions 洇开（实测 WebKit 卡顿，待批）；DESIGN.md 第 5、7、9 节跟着改。",
   "name": "pith",
   "title": "Pith",
   "status": "approved",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "motion": {
     "default": "calm",
     "expressive": "registered-surfaces-only"

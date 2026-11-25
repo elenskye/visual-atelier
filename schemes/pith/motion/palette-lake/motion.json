@@ -1,14 +1,14 @@
 {
   "id": "palette-lake",
   "title": "换配色 · 湖面波纹",
-  "status": "approved",
+  "status": "proposed",
   "approved": "站主 2026-11-24 验收 Pith Explore EX11（「验收完毕，开始做优化页、建 schemes/pith/」）",
   "tier": "expressive",
   "surface": "palette-lake",
-  "trigger": "设置 › 外观、⌘K 换配色：根换 data-palette、加 .is-lake（1.45 秒后拿掉）；点的位置放 .pith-lake 加 .is-in；滤镜调 beginElement()",
+  "trigger": "设置 › 外观、⌘K 换配色：点的位置放 .pith-lake 加 .is-in（2.3 秒后拿掉）；根上写 --ink-x、--ink-y、--ink-r，document.startViewTransition 里换 data-palette（颜色从点的地方洇开 1.2 秒）",
   "durationMs": 2300,
-  "reducedMotion": "颜色直接换，不漾、不晃",
-  "use": "整个 App（根元素 .pith-smooth）",
+  "reducedMotion": "颜色直接换，不漾、不洇",
+  "use": "整个 App（View Transitions 的根）；.pith-smooth 只给小页面和导出动图",
   "source": "canvases/pith-explore EX10、EX11（站主 11-23、11-24 定的动效）",
   "requires": [
     "design-system/bundle.css"
@@ -43,17 +43,14 @@
       },
       {
         "at": 0,
-        "add": "is-lake"
-      },
-      {
-        "at": 0,
         "add": "is-in",
         "on": ".k"
-      },
-      {
-        "at": 1450,
-        "remove": "is-lake"
       }
     ]
-  }
+  },
+  "version": "1.1.0",
+  "history": [
+    "1.0.0 站主 2026-11-24 验收 Pith Explore EX11 时批（整页水面扭曲 + 十四个颜色变量过渡）",
+    "1.1.0 Pith 的会话 2026-11-25（站主 11-25 让查换配色为什么卡）：WKWebView 实测整页扭曲每帧约 100 毫秒、换一次掉到约 28 帧；颜色变量过渡在 1500 行的文献库里有 5 个 150–280 毫秒的长帧。拿掉扭曲，颜色改成 View Transitions 从点的地方洇开；波纹不变。待批"
+  ]
 }
