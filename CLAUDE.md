@@ -33,7 +33,9 @@ visual-atelier：站主的个人视觉仓库。多套视觉方案（`schemes/`�
 | Peck 的会话 | `schemes/peck/`、`canvases/peck-*/` |
 | Pith 的会话 | `schemes/pith/`、`schemes/pith-wonder-*/`、`canvases/pith-*/`、`tooling/pith/` |
 
-共用的 `CHANGELOG.md`、`ROADMAP.md`「现在」的方案行、`README.md` 的方案表，各写各的那一条；`package.json` 只归本仓库的会话。要改别人那块先问站主，例外记在 `ROADMAP.md`「授权记录」。
+**用 Atelier 的项目各管自己那块**（站主 2026-11-26）：Pomelo、Peck、Pith 这些项目的会话，对上表里自己那一部分可以直接编辑、更新、发版、同步、提交、打 tag，不用先问。只有 Atelier 本体（`bench/`、共用的 `tooling/`、`skills/`、`docs/`、根目录的规则和配置、`package.json`）和 Atelier 本身的功能归本仓库的会话。
+
+共用的 `CHANGELOG.md`、`ROADMAP.md`「现在」的方案行、`README.md` 的方案表，各写各的那一条。要改别人那块或本体先问站主，例外记在 `ROADMAP.md`「授权记录」。
 
 ## 版本与 Git（站主 2026-11-24 定）
 
