@@ -16,8 +16,7 @@ visual-atelier 自己的状态和计划（Pomelo、Peck、Pith 的计划在各�
 
 - **本仓库**：没有排期的本体开发；Pomelo、Peck、Pith 用的时候发现工具、Skill 不顺，回这里改。
 - **以后**（没排期）：Peck 方案的后续视觉；Vermilion 的新工作（网站、PPT、动图）；MCP 接 Pomelo 的柚子和 Peck。
-- **等站主**：Peck 的 Design System 云端那份要不要重发（`tokens.json` 里方案版本还是 0.1.0，别的都一样；它共享给了组织外的人）。
-- **不做**：Pomelo Explore 发回云端（以本地为准）；在 bench 里看云端的版本历史。
+- **不做**：Pomelo Explore 发回云端（以本地为准）；Peck 的 Design System 云端那份重发（站主 11-26：不重发，它的 `tokens.json` 里方案版本还写着 0.1.0）；在 bench 里看云端的版本历史。
 
 ## 知道的限制
 
@@ -44,7 +43,7 @@ visual-atelier 自己的状态和计划（Pomelo、Peck、Pith 的计划在各�
 - **Design System**：只从本仓库生成和发布，不在页面上直接改；组件是静态预览（HTML 加和消费方同名同值的样式），不做 React；字体用 Google Fonts 托管的同款，不上传（2026-10-23～11-03）。Pomelo 的例外（Mac 系统字体、`bundle.js` 带手画零件、主题只放默认配色）见 `schemes/pomelo/DESIGN.md`（2026-11-07）。
 - **工具**：GIF 用 gifenc，不依赖 ffmpeg；浏览器用 playwright-core（2026-11-02）。
 - **迁入范围**：只迁消费方自定义的视觉资产，不含私人页面、第三方图标与品牌标识、字体文件、内容图片（2026-10-23）。
-- **写在别处的**（定过，别再问）：版本与 Git、云端不主动碰、规则文档怎么写 → `CLAUDE.md`；账号和旧账号 → `docs/cloud.md`「账号」；画布、Explore Deck 的页名和留哪些、探索和优化两档门槛 → `canvases/README.md`；bench 的五类、Checks、断网也能看、MCP 的配置 → `bench/README.md`；问卷 → `skills/questionnaire`；视觉探索的做法 → `skills/design-craft`；会话分工、第二条线 → `docs/sessions.md`；同步、tag → `docs/adoption.md`、`tooling/README.md`；一个仓库、重建 Git → `README.md`、`history/README.md`。
+- **写在别处的**（定过，别再问）：版本与 Git、默认不更新到云端、规则文档怎么写 → `CLAUDE.md`；账号和旧账号 → `docs/cloud.md`「账号」；画布、Explore Deck 的页名和留哪些、探索和优化两档门槛 → `canvases/README.md`；bench 的五类、Checks、断网也能看、MCP 的配置 → `bench/README.md`；问卷 → `skills/questionnaire`；视觉探索的做法 → `skills/design-craft`；会话分工、第二条线 → `docs/sessions.md`；同步、tag → `docs/adoption.md`、`tooling/README.md`；一个仓库、重建 Git → `README.md`、`history/README.md`。
 
 ## 授权记录（现行）
 

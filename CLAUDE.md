@@ -80,7 +80,7 @@ visual-atelier：站主的个人视觉仓库。多套视觉方案（`schemes/`�
 ## 画布与 bench
 
 - 格式和 Claude 云端画布同一套（`project/canvas.json` 加 `*.dc.html`）；看、批、改名的分工，Explore Deck 的页名和**两档门槛**，都在 `canvases/README.md`。站主看、批，不改内容；批准退回只由站主做，Agent 只标「待批」。
-- **云端不主动碰**（站主 2026-11-25）：除非站主明确要求，不和云端同步：画布、Design System 不拉回、不发回，也不在云端新建或更新；改了只在本地看（bench）。云端那份因此旧了没关系，交付说明里提一句就行。问卷页照 `skills/questionnaire`，不受这条管（发出去给站主填本身就是站主要的）。
+- **默认只在本地，不更新到云端**（站主 2026-11-25、11-26）：Atelier 本地的画布和 Design System 默认不更新到 Claude Artifacts 云端，除非站主特别要求：不拉回、不发回，也不在云端新建或更新；改了只在本地看（bench）。云端那份因此旧了不算待办，不用问要不要重发，交付说明里提一句就行。问卷页照 `skills/questionnaire`，不受这条管（发出去给站主填本身就是站主要的）。
 - 拉回、发回逐个文件核对 sha256，对不上就停下；碰云端前照 `docs/cloud.md`「账号」看清账号（旧账号的只看不动，例外记在 `ROADMAP.md`「授权记录」）。
 - 运行时不手改：云端换了就对照 sha256 换掉 `bench/vendor/claude-design/` 的副本（`dw pull`、`verify`、`publish` 会提示）。服务只听 127.0.0.1，不加遥测。
 - 有 `dw` 的 MCP 就用它（三家的配置都在仓库里，`bench/README.md`「MCP」）。`node bench/bin/dw.js help` 列出全部命令。
