@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
-import { canvasDir, kindOf, readCloud, readCanvasJson, boardOrder } from './store.js';
+import { canvasDir, needCanvas, readCloud, readCanvasJson, boardOrder } from './store.js';
 import { startServer } from '../server/server.js';
 import { captureUrl } from '../server/headless.js';
 
@@ -69,13 +69,7 @@ const LAYOUT_EXPRESSION = `(() => {
 
 /** Every board of a canvas in order, or the entry of a page: [{ file, w, h }]. */
 export function boardsOf(config, name, only = null) {
-  const dir = canvasDir(config, name);
-  const kind = kindOf(dir);
-  if (kind === 'page') {
-    const entry = readCloud(dir).entry;
-    return [{ file: entry, w: 1280, h: 800, page: true }];
-  }
-  if (kind !== 'canvas') throw new Error(`${name} 不是画布`);
+  if (needCanvas(config, name) === 'page') return [{ file: readCloud(canvasDir(config, name)).entry, w: 1280, h: 800, page: true }];
   const c = readCanvasJson(config, name);
   const list = boardOrder(c).map((f) => ({ file: f, w: c.boards[f].w, h: c.boards[f].h }));
   if (!only) return list;

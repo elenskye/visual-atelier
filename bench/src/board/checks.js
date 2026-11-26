@@ -2,24 +2,11 @@
 // tooling/qa/all.mjs（POST /api/checks/run），跑的时候服务每秒告诉一次（SSE checks），这里重新读。
 // 先看哪一步没过；再按方案列出没过、提醒的检查项，说的是哪张图的点了看图；过了的收起来。
 
-const $ = (sel, root = document) => root.querySelector(sel);
-const h = (tag, attrs = {}, kids = []) => {
-  const n = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs)) {
-    if (v === null || v === undefined || v === false) continue;
-    if (k === 'text') n.textContent = v;
-    else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
-    else if (k === 'style' && typeof v === 'object') Object.assign(n.style, v);
-    else n.setAttribute(k, v === true ? '' : v);
-  }
-  for (const c of [].concat(kids)) if (c !== null && c !== undefined && c !== false) n.append(c);
-  return n;
-};
+import { $, h, when, post } from './dom.js';
 
-const C = { data: null, open: new Set(), starting: false };
+const C = { data: null, open: new Set(), starting: false }; // open：展开的输出（步骤 id）和「过了的」（pass:<标题>），每次重画都照着
 const STATUS = { pass: '过了', fail: '没过', warn: '提醒', running: '正在跑', waiting: '等着', skipped: '没跑', stopped: '没跑完', info: '说明' };
 const IMG = /\.(png|jpe?g|gif|webp|svg)$/i;
-const when = (iso) => (iso ? new Date(iso).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '');
 const dur = (ms) => (ms == null ? '' : ms < 1000 ? `${ms} 毫秒` : ms < 60000 ? `${(ms / 1000).toFixed(1)} 秒` : `${Math.floor(ms / 60000)} 分 ${Math.round((ms % 60000) / 1000)} 秒`);
 
 export async function openChecks() {
@@ -44,11 +31,10 @@ export async function refreshChecks() {
 
 async function runAll() {
   C.starting = true;
+  note = null; // 上一次没跑起来的那句不留着
   render();
   try {
-    const r = await fetch('/api/checks/run', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}' });
-    const d = await r.json().catch(() => ({}));
-    if (!r.ok) throw new Error(d.message || r.status);
+    await post('/api/checks/run', {});
   } catch (e) {
     alertLine(`没跑起来：${e.message}`);
   }
@@ -92,7 +78,13 @@ function render() {
   if (run) kids.push(stepsCard(run));
   for (const s of d?.schemes || []) kids.push(schemeCard(s));
   if (d?.watermark) kids.push(listCard('作品水印', d.watermark.at, d.watermark.items));
+  // 跑的时候每秒重画一次：展开的输出保持滚到的地方（在最底下就跟着到最底下）
+  const logs = new Map([...main.querySelectorAll('.ck-log[data-step]')].map((p) => [p.dataset.step, p.scrollTop + p.clientHeight >= p.scrollHeight - 4 ? -1 : p.scrollTop]));
   main.replaceChildren(...kids);
+  for (const p of main.querySelectorAll('.ck-log[data-step]')) {
+    const top = logs.get(p.dataset.step);
+    if (top !== undefined) p.scrollTop = top < 0 ? p.scrollHeight : top;
+  }
 }
 
 function stepsCard(run) {
@@ -104,7 +96,7 @@ function stepsCard(run) {
       h('td', { class: 'sub', text: dur(s.ms) }),
       h('td', {}, s.log?.length ? h('button', { class: 'pill', text: open ? '收起输出' : '看输出', onclick: () => { open ? C.open.delete(s.id) : C.open.add(s.id); render(); } }) : null)
     ]);
-    return open ? [row, h('tr', {}, h('td', { colspan: '4' }, h('pre', { class: 'ck-log', text: s.log.join('\n') })))] : [row];
+    return open ? [row, h('tr', {}, h('td', { colspan: '4' }, h('pre', { class: 'ck-log', 'data-step': s.id, text: s.log.join('\n') })))] : [row];
   });
   return h('section', { class: 'ds-card' }, [h('div', { class: 'ds-card-head' }, h('h1', { text: '每一步' })), h('div', { class: 'ds-table' }, h('table', {}, h('tbody', {}, rows.flat())))]);
 }
@@ -129,7 +121,7 @@ function listCard(title, at, items) {
   return h('section', { class: 'ds-card' }, [
     h('div', { class: 'ds-card-head' }, [h('h1', { text: title }), h('span', { class: 'sub', text: `${count('fail')} 没过 · ${count('warn')} 提醒 · ${count('pass')} 过了${at ? ` · ${when(at)}` : ''}` })]),
     bad.length ? h('div', { class: 'ds-table' }, h('table', {}, h('tbody', {}, bad.map(itemRow)))) : h('p', { class: 'sub', text: '没有没过的，也没有提醒。' }),
-    good.length ? h('details', {}, [h('summary', { text: `过了的 ${good.length} 项` }), h('div', { class: 'ds-table' }, h('table', {}, h('tbody', {}, good.map(itemRow))))]) : null
+    good.length ? h('details', { open: C.open.has(`pass:${title}`), ontoggle: (e) => (e.currentTarget.open ? C.open.add(`pass:${title}`) : C.open.delete(`pass:${title}`)) }, [h('summary', { text: `过了的 ${good.length} 项` }), h('div', { class: 'ds-table' }, h('table', {}, h('tbody', {}, good.map(itemRow))))]) : null
   ]);
 }
 

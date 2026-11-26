@@ -119,10 +119,21 @@ export function buildAtTag(scheme, tag, consumer) {
     if (sameLock) symlinkSync(path.join(ROOT, 'node_modules'), path.join(tmp, 'node_modules'), 'dir');
     else execFileSync('npm', ['ci', '--ignore-scripts'], { cwd: tmp, stdio: 'inherit' });
     const node = (script, ...a) => execFileSync(process.execPath, [script, '--scheme', scheme, ...a], { cwd: tmp, stdio: ['ignore', 'ignore', 'inherit'] });
-    // tag 里的源文件必须与生成器一致；再构建要用到的产物
-    if (existsSync(path.join(sdir, 'tokens', 'graphic.json'))) node('tooling/graphic/build.mjs', '--check');
-    if (existsSync(path.join(sdir, 'marks', 'derived.json'))) node('tooling/marks/derive.mjs', '--check');
-    if (existsSync(path.join(sdir, 'marks', 'art.mjs'))) node('tooling/handmade/marks.mjs', '--check');
+    // tag 里的源文件必须与生成器一致（生成器的 --check 不一致时退出码 1），对不上就停下、列出它说的
+    const check = (script) => {
+      try {
+        execFileSync(process.execPath, [script, '--scheme', scheme, '--check'], { cwd: tmp, stdio: ['ignore', 'pipe', 'pipe'], encoding: 'utf8' });
+      } catch (e) {
+        throw new Error(`${tag} 里的源文件和 ${script} 的生成结果对不上，先在发版前跑一遍生成器：\n${`${e.stdout ?? ''}${e.stderr ?? ''}`.trim()}`);
+      }
+    };
+    if (existsSync(path.join(sdir, 'tokens', 'graphic.json'))) check('tooling/graphic/build.mjs');
+    if (existsSync(path.join(sdir, 'marks', 'derived.json'))) check('tooling/marks/derive.mjs');
+    if (existsSync(path.join(sdir, 'marks', 'art.mjs'))) check('tooling/handmade/marks.mjs');
+    // 只有命令行的生成器：清单里有它生成的资产才跑（Pith 的图形，tooling/pith/build.mjs）
+    const generators = new Set(readJson(path.join(sdir, 'marks', 'manifest.json')).assets.map((a) => a.source?.generator));
+    for (const script of ['tooling/pith/build.mjs']) if (generators.has(script) && existsSync(path.join(tmp, script))) check(script);
+    // 再构建要用到的产物
     if (files.some((f) => f.dist)) { node('tooling/tokens/build.mjs'); node('tooling/render/marks.mjs'); }
     if (files.some((f) => f.dist?.startsWith('design-system/'))) node('tooling/design-system/build.mjs');
 

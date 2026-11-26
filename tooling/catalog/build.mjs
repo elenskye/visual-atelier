@@ -7,6 +7,8 @@ import { calcAPCA } from 'apca-w3';
 import { parseArgs, schemesToBuild, outRoot, schemeDir, readJson, readText, loadTokens, resolveColor, paletteIds, pageColor, markColorRole, motionParts, walk, writeFile, log, isMain } from '../lib/common.mjs';
 import { buildWebCss, buildPomeloCss } from '../tokens/build.mjs';
 import { fakeLabel } from '../watermark/fake-images.mjs';
+import { requiredCss, fragmentOf } from '../render/motion.mjs';
+import { applyStepInPage } from '../lib/motion-harness.mjs';
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const STATUS = { approved: '已批准', proposed: '提议中', draft: '草稿' };
@@ -142,11 +144,9 @@ function marksSection(scheme, tokens, out) {
 function motionSection(scheme, css) {
   const blocks = [];
   for (const { dir, spec } of motionParts(schemeDir(scheme))) {
-    const fragment = readText(path.join(dir, spec.files.html));
-    for (const p of spec.requires ?? []) {
-      const dep = readText(path.join(schemeDir(scheme), p));
-      if (!css.includes(dep)) css.push(dep);
-    }
+    // 片段里的 <!-- @include … --> 展开（和逐帧导出同一份）；依赖的方案内 CSS 同一份只放一次
+    const fragment = fragmentOf(scheme, dir, spec);
+    for (const dep of requiredCss(scheme, spec)) if (!css.includes(dep)) css.push(dep);
     css.push(readText(path.join(dir, spec.files.css)));
     // 同页放两份（演示、静止态），遮罩 id 各加后缀，免得互相引用
     const ids = [...fragment.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]);
@@ -160,7 +160,7 @@ function motionSection(scheme, css) {
       <figure><a href="../${scheme}/motion/${spec.id}/contact-${t}.png"><img src="../${scheme}/motion/${spec.id}/contact-${t}.png" alt="逐帧总览 ${t}"></a>
       <figcaption>逐帧总览（${t === 'light' ? '浅色' : '深色'}）</figcaption></figure>`).join('');
     blocks.push(`
-    <article class="motion" data-piece="${esc(spec.id)}"${spec.capture.playTarget ? ` data-play-target="${esc(spec.capture.playTarget)}"` : ''}${spec.capture.playAll ? ' data-play-all' : ''}>
+    <article class="motion" data-piece="${esc(spec.id)}" data-host="${esc(spec.capture.host)}"${spec.capture.steps?.length ? ` data-steps="${esc(JSON.stringify(spec.capture.steps))}"` : ''}${spec.capture.playClass ? ` data-play-class="${esc(spec.capture.playClass)}"` : ''}${spec.capture.playTarget ? ` data-play-target="${esc(spec.capture.playTarget)}"` : ''}${spec.capture.playAll ? ' data-play-all' : ''}>
       <div class="live">
         <div class="stage" data-demo>${demo}</div>
         <div class="stage still" aria-label="静止态">${still.replace('class="va-logo-route"', 'class="va-logo-route" tabindex="-1"')}</div>
@@ -270,8 +270,14 @@ footer{margin:56px 0 40px;color:var(--color-muted);font-size:13px}
 @media (max-width:560px){.live{grid-template-columns:1fr}.stage.still{border-left:0;border-top:1px solid var(--color-soft-line)}.tiles{grid-template-columns:1fr}}
 `;
 
+// 页面样式用到的颜色变量：挑哪个方案的网页方言当页面的底，要它都给全
+const PAGE_VARS = [...new Set([...PAGE_CSS.matchAll(/var\((--color-[\w-]+)/g)].map((m) => m[1]))];
+
+// 重播：写了 capture.steps 的零件把演示换回原样，再照步骤的时刻一步一步做（applyStepInPage 原样放进页面，只在这个零件的演示里找元素；
+// 改整页的步骤，比如给 html 换配色，找不到就跳过）；只写了 playClass 的照旧加上那个类；两样都没写的（循环）换回原样就是从头放
 const PAGE_JS = `
 (function(){
+  var applyStep = ${applyStepInPage};
   var root=document.documentElement;
   function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
   var saved=store('va-theme');
@@ -282,14 +288,23 @@ const PAGE_JS = `
   var reduced=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll('[data-reduced]').forEach(function(el){el.hidden=!reduced});
   document.querySelectorAll('.motion').forEach(function(m){
-    var host=m.querySelector('[data-demo] > *');var btn=m.querySelector('[data-replay]');
+    var demo=m.querySelector('[data-demo]');var host=m.querySelector('[data-demo] > *');var btn=m.querySelector('[data-replay]');
     if(!host||!btn)return;
+    if(m.dataset.steps||!m.dataset.playClass){
+      var steps=m.dataset.steps?JSON.parse(m.dataset.steps):[],orig=demo.innerHTML,timers=[];
+      btn.addEventListener('click',function(){
+        timers.forEach(clearTimeout);timers=[];
+        demo.innerHTML=orig;void demo.getBoundingClientRect();
+        steps.forEach(function(s){timers.push(setTimeout(function(){try{applyStep(s,m.dataset.host,demo)}catch(e){}},s.at))});
+      });
+      return;
+    }
     var t=m.dataset.playTarget;
     var stages=t?(m.hasAttribute('data-play-all')?[].slice.call(host.querySelectorAll(t)):[host.querySelector(t)||host]):[host];
     btn.addEventListener('click',function(){
       stages.forEach(function(stage){
-        stage.classList.remove('is-playing');void stage.getBoundingClientRect();stage.classList.add('is-playing');
-        clearTimeout(stage._t);stage._t=setTimeout(function(){stage.classList.remove('is-playing')},1400);
+        stage.classList.remove(m.dataset.playClass);void stage.getBoundingClientRect();stage.classList.add(m.dataset.playClass);
+        clearTimeout(stage._t);stage._t=setTimeout(function(){stage.classList.remove(m.dataset.playClass)},1400);
       });
     });
   });
@@ -313,9 +328,9 @@ export function buildCatalogHtml(schemes, out) {
     ${body}
   </section>`;
   }).join('\n');
-  // 页面自身的明暗配色取第一个有这些变量的方案（页面样式用 --color-page 等）；动效零件的 CSS 原样内联
-  const first = schemes.find((s) => loadTokens(s).targets.web.colorVars.page) ?? schemes[0];
-  const webCss = buildWebCss(first, loadTokens(first));
+  // 页面自身的明暗配色取第一个把 PAGE_CSS 用到的变量都给全的方案（现在只有 Vermilion）；动效零件的 CSS 原样内联
+  const dialects = schemes.map((s) => buildWebCss(s, loadTokens(s)));
+  const webCss = dialects.find((d) => PAGE_VARS.every((v) => d.includes(`${v}:`))) ?? dialects[0];
   return `<!doctype html>
 <html lang="zh-CN">
 <head>

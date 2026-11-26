@@ -7,21 +7,8 @@
 // 演示页是 /motion/<方案>/<零件>.html（tooling 的 partPage），预览面板藏起来时 requestAnimationFrame 会停，
 // 但拖时间轴是直接定格，不靠它。
 import { advanceSteps } from '/_va/motion-harness.mjs';
+import { $, h, when } from './dom.js';
 
-const $ = (sel, root = document) => root.querySelector(sel);
-const h = (tag, attrs = {}, kids = []) => {
-  const n = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs)) {
-    if (v === null || v === undefined || v === false) continue;
-    if (k === 'text') n.textContent = v;
-    else if (k === 'html') n.innerHTML = v;
-    else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
-    else if (k === 'style' && typeof v === 'object') Object.assign(n.style, v);
-    else n.setAttribute(k, v === true ? '' : v);
-  }
-  for (const c of [].concat(kids)) if (c !== null && c !== undefined && c !== false) n.append(c);
-  return n;
-};
 const kb = (n) => (n >= 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(2)} MB` : `${(n / 1024).toFixed(1)} KB`);
 const TIER = { calm: 'calm · 控件的小动静', expressive: 'expressive · 招牌时刻' };
 const STATUS = { draft: '草稿', proposed: '待批', approved: '已批准' };
@@ -29,7 +16,8 @@ const STATUS = { draft: '草稿', proposed: '待批', approved: '已批准' };
 const M = {
   scheme: null, data: null, part: null, onNav: null,
   theme: 'light', palette: null, reduce: false, zoom: null,
-  frame: null, state: null, live: false, t: 0, end: null, exactEnd: false,
+  // live：演示页实时播放过（拖时间轴前要重新载入）；playing：这会儿正在播（播放键是「停」）
+  frame: null, state: null, live: false, playing: false, t: 0, end: null, exactEnd: false,
   timers: [], raf: 0, exporting: false, loading: null, error: null
 };
 
@@ -42,10 +30,19 @@ export async function openMotion(scheme, partId, { onNav }) {
   if (!M.part || !next || next.id !== M.part.id) {
     M.part = next;
     M.zoom = null;
-    M.theme = next?.capture.themes.includes(M.theme) ? M.theme : next?.capture.themes[0] || 'light';
+    // 读不了的零件（只有 id 和 error）没有 capture
+    const themes = next?.capture?.themes || [];
+    M.theme = themes.includes(M.theme) ? M.theme : themes[0] || 'light';
   }
   render();
   return M.part?.id || null;
+}
+
+/** The Motion Deck's name changed in the bench (bench/names.json): only the list's heading changes. */
+export function setMotionTitle(title) {
+  if (!M.data) return;
+  M.data.title = title;
+  renderNav();
 }
 
 export function closeMotion() {
@@ -67,7 +64,7 @@ async function load(scheme) {
 export function motionKey(e) {
   if (!M.part || M.part.error || e.metaKey || e.ctrlKey || e.altKey) return;
   const step = 1000 / (M.part.capture.fps || 50);
-  if (e.key === ' ') { e.preventDefault(); M.live ? stopPlay(true) : play(); }
+  if (e.key === ' ') { e.preventDefault(); M.playing ? stopPlay(true) : play(); }
   else if (e.key === 'ArrowRight') { e.preventDefault(); scrubTo(Math.min(maxT(), M.t + step)); }
   else if (e.key === 'ArrowLeft') { e.preventDefault(); scrubTo(Math.max(0, M.t - step)); }
   else if (e.key === 'Home') { e.preventDefault(); scrubTo(0); }
@@ -159,7 +156,7 @@ function render() {
   const slider = h('input', { type: 'range', class: 'mo-range', min: '0', max: '1000', step: '1', value: '0', 'aria-label': '时间轴', oninput: (e) => scrubTo(Number(e.target.value)) });
   const ticks = h('div', { class: 'mo-ticks', 'aria-hidden': 'true' });
   const time = h('span', { class: 'mo-time', text: '触发前' });
-  const playBtn = h('button', { class: 'pill mo-play', title: '空格', text: '▶ 播放', onclick: () => (M.live ? stopPlay(true) : play()) });
+  const playBtn = h('button', { class: 'pill mo-play', title: '空格', text: '▶ 播放', onclick: () => (M.playing ? stopPlay(true) : play()) });
   const fstep = 1000 / (c.fps || 50);
   const timeline = h('div', { class: 'mo-timeline' }, [
     playBtn,
@@ -307,12 +304,13 @@ async function play() {
   const w = M.frame.contentWindow;
   const H = w.__vaHarness;
   M.live = true;
+  M.playing = true;
   M.ui.playBtn.textContent = '■ 停';
   const t0 = performance.now();
   for (const s of steps) M.timers.push(setTimeout(() => { try { H.applyStepInPage(s, M.part.capture.host); } catch {} }, s.at));
   const loop = M.part.capture.endMs;
   const tick = () => {
-    if (!M.live) return;
+    if (!M.playing) return;
     const e = performance.now() - t0;
     if (!loop && e > M.end + 400) return stopPlay(false);
     setTime(loop ? e % M.end : Math.min(e, M.end));
@@ -322,6 +320,7 @@ async function play() {
 }
 
 function stopPlay(freeze = false) {
+  M.playing = false;
   for (const t of M.timers) clearTimeout(t);
   M.timers = [];
   cancelAnimationFrame(M.raf);
@@ -348,7 +347,7 @@ function renderExport(box) {
       const x = p.exported[t];
       if (!x) return h('div', { class: 'mo-ex' }, [h('h2', { text: t === 'dark' ? '深色' : '浅色' }), h('p', { class: 'sub', text: '这一版还没导出' })]);
       return h('div', { class: 'mo-ex' }, [
-        h('h2', { text: `${t === 'dark' ? '深色' : '浅色'} · GIF ${kb(x.bytes)} · ${new Date(x.at).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })}` }),
+        h('h2', { text: `${t === 'dark' ? '深色' : '浅色'} · GIF ${kb(x.bytes)} · ${when(x.at)}` }),
         h('div', { class: 'mo-ex-row' }, [
           h('a', { href: x.gif, target: '_blank', rel: 'noopener', class: 'mo-gif' }, [h('img', { src: x.gif, alt: `${p.title} ${t} GIF` })]),
           x.contact ? h('a', { href: x.contact, target: '_blank', rel: 'noopener', class: 'mo-contact' }, [h('img', { src: x.contact, alt: `${p.title} ${t} 逐帧总览` })]) : null

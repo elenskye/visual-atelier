@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { canvasDir, trackedFiles } from './store.js';
+import { canvasDir, needCanvas, trackedFiles } from './store.js';
 import { readJsonFile, writeJsonFile, stamp } from '../utils/config.js';
 
 // Local version history: canvases/<name>/.versions/
@@ -62,6 +62,7 @@ export function snapshot(config, name, label = 'save', { at = new Date() } = {})
 
 /** Puts the tracked files back as they were in version `id`. The current state is saved first. */
 export function restore(config, name, id) {
+  needCanvas(config, name);
   const dir = versionsDir(config, name);
   const root = canvasDir(config, name);
   const record = readJsonFile(path.join(dir, `${id}.json`));

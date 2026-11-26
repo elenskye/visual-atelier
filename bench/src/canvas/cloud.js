@@ -3,17 +3,18 @@ import path from 'node:path';
 import {
   canvasDir,
   kindOf,
+  needCanvas,
   readCloud,
   writeCloud,
   trackedFiles,
   localBlobs,
   referencedBlobs,
   rewriteBlobIds,
-  isText,
-  extForContentType
+  isText
 } from './store.js';
 import { snapshot } from './versions.js';
 import { sha256 } from '../utils/config.js';
+import { mimeToExt } from '../bundler/codec.js';
 
 // The cloud side is only reachable through Claude's artifact tools, so these functions never touch
 // the network. An Agent saves what list_files / list_assets returned as JSON, downloads the files
@@ -50,6 +51,7 @@ export function runtimeDrift(config, listing) {
 
 /** Reads a saved list_files / list_assets result. Accepts the bare JSON or a saved tool result wrapping it. */
 export function readListing(file) {
+  if (!fs.existsSync(file)) throw new Error(`没有这个文件：${file}`);
   const raw = fs.readFileSync(file, 'utf8');
   const tryParse = (s) => {
     try {
@@ -72,11 +74,21 @@ export function readListing(file) {
   return data;
 }
 
-function cloudOf(config, name) {
+/**
+ * A canvas's cloud.json. `create`: the canvas need not exist yet (dw target --new: a cloud canvas that is pulled into
+ * a new local one); without it a name nobody has is an error, so a typo never leaves a half canvas behind.
+ */
+function cloudOf(config, name, { create = false } = {}) {
   const dir = canvasDir(config, name);
+  if (!create) needCanvas(config, name);
   const cloud = readCloud(dir) || { kind: kindOf(dir) || 'canvas', targets: {} };
   cloud.targets = cloud.targets || {};
   return { dir, cloud };
+}
+
+/** A page's cloud listing has no checksums: it can be published, not pulled or checked file by file. */
+function needChecksums(config, name) {
+  if (needCanvas(config, name) !== 'canvas') throw new Error(`${name} 是问卷页：单个页面的云端不给校验和，没法按文件拉回或核对`);
 }
 
 /** Resolves a target slug (default: the canvas's home) and its blob map (local id → remote id). */
@@ -92,8 +104,8 @@ function resolveTarget(config, name, slug = null) {
   return { slug: target, entry, same, forward, reverse };
 }
 
-export function addTarget(config, name, slug, { url = null, type = null, title = null, account = null, home = false, blobs = undefined } = {}) {
-  const { dir, cloud } = cloudOf(config, name);
+export function addTarget(config, name, slug, { url = null, type = null, title = null, account = null, home = false, blobs = undefined, create = false } = {}) {
+  const { dir, cloud } = cloudOf(config, name, { create });
   const prev = cloud.targets[slug] || {};
   cloud.targets[slug] = {
     ...prev,
@@ -117,9 +129,14 @@ export function listTargets(config, name) {
   return rows.sort((a, b) => Number(b.home) - Number(a.home));
 }
 
-/** Records uploaded blob ids for a target. entries: { localId: remoteId or /_blob/url } or [{ name, opaque_id | url }]. */
-export function addBlobMap(config, name, slug, entries) {
+/**
+ * Records uploaded blob ids for a target (null: the home). entries: { localId: remoteId or /_blob/url },
+ * [{ name, opaque_id | url }] or the raw upload_asset result ({ assets: [...] }).
+ */
+export function addBlobMap(config, name, target, entries) {
   const { dir, cloud } = cloudOf(config, name);
+  const slug = target || cloud.home;
+  if (!slug) throw new Error(`${name} 还没有云端地址：先用 dw target ${name} <slug> --url <链接> 登记`);
   const entry = cloud.targets[slug];
   if (!entry) throw new Error(`没有登记云端 ${slug}`);
   if (entry.blobs === 'same') throw new Error(`${slug} 和本地用同一套图片 id，不需要对照表`);
@@ -183,7 +200,7 @@ function batches(items, { maxCount, maxBytes, size = (x) => x.size || 0 }) {
 
 export function planPull(config, name, listing, { target = null } = {}) {
   const dir = canvasDir(config, name);
-  if (kindOf(dir) !== 'canvas') throw new Error(`${name} 不是画布，单个页面的云端不给校验和，没法按文件拉回`);
+  needChecksums(config, name);
   const t = resolveTarget(config, name, target);
   const local = localProject(config, name);
   const remote = remoteProjectFiles(listing);
@@ -255,6 +272,7 @@ export function applyPull(config, name, listing, fromPaths, { target = null } = 
 /** Compares every remote project file with the local one (blob ids mapped). */
 export function verify(config, name, listing, { target = null } = {}) {
   const dir = canvasDir(config, name);
+  needChecksums(config, name);
   const t = resolveTarget(config, name, target);
   const local = localProject(config, name);
   const bad = [];
@@ -296,7 +314,7 @@ export function applyBlobs(config, name, assetsListing, fromPaths, { target = nu
   if (missing.length) throw new Error(`还缺 ${missing.length} 张图片：${missing.map((b) => b.remoteId).join('、')}`);
   snapshot(config, name, 'before-pull');
   for (const b of plan.need) {
-    const out = path.join(dir, 'blobs', `${b.localId}${extForContentType(b.contentType)}`);
+    const out = path.join(dir, 'blobs', `${b.localId}${mimeToExt(b.contentType)}`);
     fs.mkdirSync(path.dirname(out), { recursive: true });
     fs.copyFileSync(index.get(b.sha256), out);
   }
@@ -362,6 +380,7 @@ export function planPublish(config, name, listing = null, { target = null } = {}
 /** After publishing: checks the target's new listing against local and saves a version. */
 export function recordPublish(config, name, listing, { target = null } = {}) {
   const dir = canvasDir(config, name);
+  needChecksums(config, name);
   const t = resolveTarget(config, name, target);
   const check = verify(config, name, listing, { target });
   if (check.bad.length) throw new Error(`云端和本地对不上：${check.bad.join('、')}`);

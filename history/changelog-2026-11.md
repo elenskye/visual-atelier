@@ -10,6 +10,50 @@
 
 2026-11-24（仓库 1.0.1）又原样移来 11-13～11-24 的全部段落（Pomelo v1.0、Phase 5、Pith 的设计、版本号从 1.0.0 起），排在最前面。那几段写的旧提交号（`546725d` 这类）在站主 11-24 重建 Git 之前的历史里。
 
+2026-11-26（仓库 1.0.2）又原样移来 11-24～11-25 的五段（仓库 1.0.1 和它的收尾、Pith 1.0.1～1.3.0），排在最前面。
+
+## 2026-11-25 · Pith 1.3.0：生长阶段各演各的、集合收起（Pith 的会话；非本体，仓库还是 1.0.1）
+
+- **生长阶段**（站主 11-25：「常青」「长着」的图标动效只有一个点和一条线，而且一模一样）：通用上墨给瓣加的 CSS transform 盖掉了瓣上的 `rotate`，八片叠成一片。瓣的旋转挪到外面一层 `<g>`（几何不变），新零件 `stage-grow`（calm，待批）：发芽一沉一挺；生长芯先鼓、四瓣依次伸出来；常青整朵转过一瓣、隔一片的瓣先收后展。上墨让开它们。阶段改名「发芽、生长、常青」（站主定）。
+- **Strip 收起**：以前收起是一下没了；现在倒着缩回去（宽收到 0、名字从右往左淡出、岔最后收起，0.34 秒），写法见组件说明。
+- **验证**：`node tooling/pith/build.mjs --check`；`qa` 167 项全过；`build:ds`、`check:ds`；`build:motion` 导出 stage-grow 明暗两张、看过逐帧总览；画布重建后 `dw check pith-explore` 6 张全过、`check:canvases`。Pith 那边在 WKWebView 里按时间截过生长阶段的悬停和集合收起。云端的 Design System 没更新（规矩）。
+
+## 2026-11-25 · Pith 1.2.0：集合的小枝桠、整页水面回来（Pith 的会话；非本体，仓库还是 1.0.1）
+
+- **Strip**：有下级的点开长出一小段枝桠（带叶的岔、茎、每个下级一颗节点、珊瑚色的芽，依次长出来），代替原来那一根弯线（站主嫌单调、违和）；悬停改成「上墨」（`pith-ink`，带图标的图标也动）；栏高固定 42px，展开不跳。
+- **衬线字的光学居中**：WebKit 里量，Newsreader（后备宋体）在固定高度的胶囊里偏上 0.9–1.4px；Strip、Tag 的集合、Branch 的条目行框下移 0.14em，复量都在 0.35px 内。
+- **palette-lake 1.2.0**（待批）：整页水面回来了——App 里原生拍一张旧样子，WebGL 着色器在 GPU 上扭（实现在 Pith，CSS 里只写了做法）；WKWebView 实测约 0.1 秒开始动、144 帧无慢帧。`DESIGN.md` 第 2、7 节跟着改。
+
+## 2026-11-25 · Pith 1.1.0、1.1.1：控件、换配色不卡（Pith 的会话；非本体，仓库还是 1.0.1）
+
+- **1.1.1**（同一天，站主看到波纹不见了）：拍旧画面那约 0.2 秒屏幕是冻住的，吃掉了波纹最浓的一段；洇开又比波纹慢，把波纹盖住。波纹改成等 `transition.ready` 再起，洇开换成和波纹同一种先快后慢的节奏（1.3 秒）。WKWebView 里按时间截了几帧，五圈都看得见；帧数和 1.1.0 一样。
+
+- **新组件**（站主 11-25：「检查所有勾选框、下拉框，把新的设计加到 Design System，不用等我审批」）：`Select`（下拉框和弹出的列表，右键菜单也用它；macOS 的原生菜单改不了样子）、`Check`（勾选框、单选框）、`Field`（输入框、搜索、就地改的字）、`Strip`（左右滑的一栏：文献库的集合、知识库的生长阶段）、`Tag`、`Dialog`（弹窗、提示条）、`TagTree`（文献库的标签树，`Branch` 加了分组、计数、多选）；`Buttons` 加小一号和危险的。都是 Pith 1.0.3 里先调好的样子，待批。
+- **palette-lake 1.1.0**（待批）：Pith 在 WKWebView 里量，换配色时整页的水面扭曲每帧约 100 毫秒（一次掉到约 28 帧），十四个颜色变量过渡在 1500 行的文献库里有 5 个 150–280 毫秒的长帧。拿掉扭曲，颜色改成 View Transitions 从点的地方洇开；五圈波纹不变；`.pith-smooth` 只留给小页面和导出动图。`DESIGN.md` 第 1、2、5、7、9 节跟着改（第 1 节不再指已删的交接文件）。
+- **验证**：`node tooling/pith/build.mjs --check`（37 个资产）；`npm run qa -- --scheme pith` 163 项全过；`check:ds` 19 个预览明暗都没问题、看过截图；`build:motion` 导出 palette-lake 明暗两张；画布重建后 `dw check pith-explore` 6 张全过，`dw ds install` 换了画布挂的副本，`check:canvases` 三块一致。云端的 Design System 没更新（规矩）。
+
+## 2026-11-25 · Pith 1.0.1、两条规矩（Pith 的会话；非本体，仓库还是 1.0.1）
+
+- **规矩**（站主定）：除非站主明确要求，画布和 Design System 不和云端同步（`CLAUDE.md`「画布与 bench」、`docs/cloud.md`、`skills/design-loop`）；只有本体的开发才升仓库的版本号，方案、画布这类平时的更新不升（`CLAUDE.md`「版本与 Git」）。`build:ds` 和 bench 在本地改过、云端没更新时的提示跟着改了。
+- **Pith** `1.0.1`：文献库图标单独打开解析不了（叶书签一个元素两个 `style`），Design System 的 TopBar 里看不到图，生成器里并成一个，`tooling/pith/build.mjs` 以后查到重复的属性就报错；首页的叶子几何挪进 `tooling/pith/glyphs.mjs`，单独成一张 `marks/garden/leaf.svg`（画布 R1 改成从这里取，6 张板逐字节不变），Design System 的封面铺上它；`DESIGN.md` 加第 9 节，shadcn 变量和 `--color-*` 的对照。云端的 Design System 没更新（新规矩）。
+- **验证**：`node tooling/pith/build.mjs --check`（37 个资产）；`npm run qa -- --scheme pith` 163 项全过；`check:ds` 12 个预览明暗都没问题，封面看过截图；`dw check pith-explore` 6 张全过；`check:canvases` 三块画布和生成器一致；`npm test` 37/37。没跑 `npm run all`、`build:motion`（动效没改）。
+
+## 1.0.1 · 2026-11-24 · 精简、Pith 1.0.0、Pomelo fold（本仓库的会话）
+
+- **Pith** `1.0.0`：站主批了 `logo-grow`，全部已批；补了同步清单 `sync.json`；Design System「Pith」发到现用账号（36 个文件回读一致）；现用账号新建 Pith Explore（只有 R1，11 个文件一致），本地画布挂上 Design System。
+- **Pomelo** `1.0.1`：Pomelo Fold 验收，零件 `motion/fold` 进方案，画板并进 Pomelo Explore 的 R8，原画布删了；Design System 重发（3 个文件一致）。**Peck** 定为 `1.0.0`（内容不变）。站主删了 `canvases/peck-mcp-pomelo/`。
+- **代码精简**（行为不变）：bench 删了约 900 行（打包的死路径、重复的 helper）；tooling 和生成器合并重复（`tooling/lib/common.mjs`、`canvases/_lib/page.mjs`、Pomelo Explore 的 `dsBoard`）。
+- **文档**：`ROADMAP.md`、`CHANGELOG.md` 改短，旧段落进 `history/`（`v1-close.md`、`changelog-2026-11.md`）；根目录 `HANDOFF.md` 搬进 Pith 仓库；`docs/sessions.md` 不再重复分工表；三个旧 Skill 过了一遍。`sharp` 升到 0.35.5（高危审计清掉），水印输出逐字节一样。`scratch/` 清空。
+- **验证**：`npm test` 37/37；bench 的 CLI、MCP、HTTP、导入导出前后逐字节一样；tooling 和生成器 4113 个产物逐字节一样（`atlas-envelope` 的 GIF 本来就不稳定）；`qa` 1674 项全过；Pith、Pomelo 的 QA 和 `dw check` 过；`vermilion-v1.5.0` 和网站副本的资产一致。没做：`npm run all`、新会话冷启动验收。
+
+
+### 1.0.1 收尾（同一天，还是 1.0.1）
+
+- **Pomelo Explore 的板和生成器对上了**：R2 的 10 张、R5 的 `Atlas-Main` 停在方案旧的样子，站主定重跑：R2「模块贴纸」「选择器」多了「见字如面」「玩物有志」，「模块坞」那格改叫「有板有眼」，别的 8 张只是内部 id 和代码；EX6、EX7 三张滚动面板最后一行标成故意裁掉（`data-nolint`，样子没变）；93 张板 `dw check` 全过。Peck Explore 的 Design System 副本跟着 1.0.0 换了版本号。
+- **以后防漂移**（站主定）：新的 `npm run check:canvases`（`tooling/qa/canvases.mjs`，`npm run all` 的一步）在临时目录里把各画布的生成器重跑、和 `canvases/` 逐个文件比；共用的 `writePage` 重跑时保留 `canvas.json` 原来的顺序，不再整段挪动。`.claude/worktrees/` 进了 `.gitignore`。
+- **Phase 6 收口**：一个新开的 Agent 只照文档冷启动（隔离的 worktree）：`npm ci`、构建、`npm test` 37/37、用 dw 的 MCP 列出 6 块画布，跑通；它指出的四处照改了（切 Node 的办法、构建要五六分钟、没设变量时用哪个浏览器、MCP 怎么调一个工具）。验收问卷 `v1-phase56-questionnaire/` 删了。
+- **验证**：`npm run all` 全过（QA 1674 项、水印 50/50、Atlas 快照、画布和生成器）；`npm test` 37/37；故意改一张板，`check:canvases` 报得出来。
+
 ## 2026-11-24 · 合并 Pith 的设计；版本号从 1.0.0 起（Pith 的会话）
 
 - **合并**：云端的 `agent/claude/pith`（19 个提交，到 `7c1350f`）并进 `main`。只有 `CHANGELOG.md` 冲突，两边的条目都留了；`schemes/pith/CLAUDE.md` 里 Pith 的旧路径 `personal-research-lab` 改成 `pith`。

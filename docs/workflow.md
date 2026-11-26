@@ -21,7 +21,7 @@
 ## 资产从做到用
 
 1. 在本仓库做。要选的给 2–4 版小样，放进画布 `canvases/<画布名>/`（`design-loop` Skill），站主在 bench 或云端画布上看、批；`scratch/` 和会话临时目录不算留了一份。
-2. 站主批准，资产改为 `approved`。Design System 跟着更新，发布记录 `published.json` 进这次提交。
+2. 站主批准，资产改为 `approved`。Design System 的源跟着更新；发到云端只在站主要求时做（`CLAUDE.md`「画布与 bench」），发了的话 `published.json` 进这次提交。
 3. 打 tag 前跑 `npm run all`。做这个方案的会话提交、打 tag，站主推送（`CLAUDE.md`「版本与 Git」）。给站主的命令写全路径（`git -C <路径>`），因为 worktree 和主工作区容易弄混。
 4. Agent 核对 tag，都对上才继续：
    - `git rev-parse <tag>` 是预期的提交；

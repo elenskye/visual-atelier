@@ -3,8 +3,9 @@ import os from 'node:os';
 import path from 'node:path';
 import { canvasDir, writeCloud } from './store.js';
 import { snapshot } from './versions.js';
-import { readJsonFile, writeJsonFile, sha256 } from '../utils/config.js';
-import { BundlerRegistry } from '../bundler/registry.js';
+import { writeJsonFile, sha256 } from '../utils/config.js';
+import { adapterFor } from '../bundler/registry.js';
+import { previewSize } from '../bundler/codec.js';
 
 const GAP_X = 80;
 const GAP_Y = 120;
@@ -114,19 +115,19 @@ export async function importBundle(config, bundlePath, name, { title = null } = 
   const html = fs.readFileSync(bundlePath, 'utf8');
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'dw-import-'));
   try {
-    const adapter = new BundlerRegistry(config).resolve(html, bundlePath);
-    const manifest = await adapter.unpack(html, { artifactId: name, artifactDir: tmp, sourcePath: bundlePath });
-    const meta = readJsonFile(path.join(tmp, 'raw', 'bundler-meta.json'), { subpagesMeta: {} });
+    const manifest = await adapterFor(config, html).unpack(html, { artifactId: name, artifactDir: tmp, sourcePath: bundlePath });
+    // a bundle of one board (page_order empty) is its own root: its files sit next to it (./assets/…), not one up
     const pages = manifest.subpages?.length
       ? manifest.subpages
-      : [{ uuid: null, title: manifest.title, path: manifest.entry || 'index.html', width: 1280, height: 800 }];
+      : [{ uuid: null, title: manifest.title, path: manifest.entry || 'index.html', width: null, height: null }];
 
     fs.mkdirSync(path.join(dir, 'project'), { recursive: true });
     const boards = [];
     pages.forEach((sp, i) => {
       let src = fs.readFileSync(path.join(tmp, sp.path), 'utf8');
       src = src.replace(/<script data-dw-injected="resources">[\s\S]*?<\/script>\n?/g, '');
-      const assetUuids = (sp.uuid && meta.subpagesMeta?.[sp.uuid]?.assetUuids) || {};
+      const assetUuids = (sp.uuid ? sp.assetUuids : manifest.rootAssetUuids) || {};
+      const up = sp.uuid ? '../' : './';
       for (const rel of new Set(['assets/dc-runtime.js', ...Object.values(assetUuids)])) {
         const abs = path.join(tmp, rel);
         if (!rel.endsWith('.js') || !fs.existsSync(abs)) continue;
@@ -143,11 +144,12 @@ export async function importBundle(config, bundlePath, name, { title = null } = 
         const out = path.join(dir, 'blobs', `${id}${path.extname(file).toLowerCase()}`);
         fs.mkdirSync(path.dirname(out), { recursive: true });
         fs.copyFileSync(path.join(tmp, rel), out);
-        src = src.split(`../${rel}`).join(`/_blob/${id}`);
+        src = src.split(`${up}${rel}`).join(`/_blob/${id}`);
       }
       const fileName = i === 0 ? 'Main.dc.html' : `B${String(i + 1).padStart(2, '0')}.dc.html`;
       fs.writeFileSync(path.join(dir, 'project', fileName), src, 'utf8');
-      boards.push({ file: fileName, w: sp.width || 1280, h: sp.height || 800, title: sp.title || fileName, interactive: true });
+      const size = sp.width ? null : previewSize(src);
+      boards.push({ file: fileName, w: sp.width || size?.width || 1280, h: sp.height || size?.height || 800, title: sp.title || fileName, interactive: true });
     });
     const canvasTitle = title || manifest.title || name;
     writeJsonFile(path.join(dir, 'project', 'canvas.json'), canvasIndex(canvasTitle, boards));

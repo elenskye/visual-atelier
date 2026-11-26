@@ -8,7 +8,6 @@ export const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '
 
 export const readJson = (p) => JSON.parse(readFileSync(p, 'utf8'));
 export const readText = (p) => readFileSync(p, 'utf8');
-export const exists = existsSync;
 export const sha256 = (buf) => createHash('sha256').update(buf).digest('hex');
 
 /** 写文件。目标已存在时先删掉再写：产物目录里的旧文件可能是只读的（例如从别处带来的），直接覆盖会 EACCES。 */
@@ -156,6 +155,52 @@ export function writeGenerated(sdir, files, changed, manifestPath, manifest, ass
     writeFileSync(p, files[rel]);
   }
   if (assets) writeFileSync(manifestPath, JSON.stringify({ ...manifest, assets }, null, 2) + '\n');
+}
+
+/**
+ * 生成器（build:graphic、build:derived）共用的一遍：逐个方案生成、和方案目录比较，不是 --check 就写回。
+ * generate(scheme) 返回 { files: { 相对方案目录的路径: 内容 }, entries: 清单条目 }；applies(sdir) 为假的方案跳过。
+ * 保护：文件属于清单里已是 approved 的资产（条目的 marks/<file>）、内容又变了，算 blocked，不覆盖。
+ * 清单：保留状态、批准记录与备注，其余字段以生成结果为准；新资产记为 proposed；不再生成的条目移除；approved 且校验和变了的条目不动。
+ * 退出码：有 blocked，或 --check 时有待更新的文件，就是 1（同步在 tag 里跑 --check 靠它）；quiet 时不设（质量检查自己报）。
+ * 返回 [{ scheme, changed: [相对方案目录的路径], blocked: [...] }]。
+ */
+export function runGenerated(args, { generator, label, noun, applies, generate }) {
+  const results = [];
+  for (const scheme of schemesToBuild(args)) {
+    const sdir = schemeDir(scheme);
+    if (!applies(sdir)) continue;
+    const { files, entries } = generate(scheme);
+    const mpath = path.join(sdir, 'marks', 'manifest.json');
+    const manifest = readJson(mpath);
+    const byId = new Map(manifest.assets.map((a) => [a.id, a]));
+    const changed = [], blocked = [];
+    for (const [rel, content] of Object.entries(files)) {
+      const p = path.join(sdir, rel);
+      if (existsSync(p) && readFileSync(p, 'utf8') === content) continue;
+      const id = entries.find((e) => `marks/${e.file}` === rel)?.id;
+      if (id && byId.get(id)?.status === 'approved') { blocked.push(rel); continue; }
+      changed.push(rel);
+    }
+    const next = manifest.assets.filter((a) => a.source?.generator !== generator || entries.some((e) => e.id === a.id));
+    for (const e of entries) {
+      const old = byId.get(e.id);
+      if (old?.status === 'approved' && old.sha256 !== e.sha256) continue;
+      const merged = mergeManifestEntry(old, e);
+      const i = next.findIndex((a) => a.id === e.id);
+      if (i < 0) next.push(merged);
+      else next[i] = merged;
+    }
+    const manifestChanged = JSON.stringify(next) !== JSON.stringify(manifest.assets);
+    if (manifestChanged) changed.push('marks/manifest.json');
+
+    if (!args.check) writeGenerated(sdir, files, changed, mpath, manifest, manifestChanged ? next : null);
+    const verb = args.check ? '待更新' : '已写入';
+    log(`${label} ${scheme}: ${Object.keys(files).length} 个${noun}，${changed.length ? `${verb} ${changed.length} 个：${changed.join('、')}` : '与源文件一致'}${blocked.length ? `；已批准、拒绝覆盖：${blocked.join('、')}` : ''}`);
+    results.push({ scheme, changed, blocked });
+  }
+  if (!args.quiet && results.some((r) => r.blocked.length || (args.check && r.changed.length))) process.exitCode = 1;
+  return results;
 }
 
 /** 方案的配色 id；只有一套的方案返回 [null]，循环写法两边一样。 */

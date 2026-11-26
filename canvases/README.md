@@ -12,11 +12,10 @@ bench 把画布分成两类列出（`bench/README.md`）：**Explore Deck** 是�
 | `pomelo-explore/` | Pomelo 的 Explore Deck：EX1–EX8（画法、配色家族、外框 A / B3、方案、见字如面的贴纸、跨模块联动、玩物有志、Atlas 新的几幕）和 R1–R8（外框、图形、小图标、动效、Atlas、见字如面两页、侧栏展开），站主在 bench 里批 | 只看：旧账号 Pomelo Explore（前两页）、现用账号几块并进来之前的（列在它的 `README.md`）；以本地为准 |
 | `peck-explore/` | Peck 的 Explore Deck：初版、图形语言三轮、外框小样、方案、Design System；生成器在 `project/src/`，方案在 `schemes/peck/` | 现用账号 [Peck Explore](https://claude.ai/artifact/2YJB1WKiiC6q7s6VmryCaR)，11-10 的样子 |
 | `pith-explore/` | Pith 的 Explore Deck：只有 R1「Pith 定稿」（站主 11-24 验收后清理，EX1–EX11 的经过在 `history/pith-phase5.md` 和 `CHANGELOG.md` 的归档）；颜色、图形、动效都从 `schemes/pith/` 来，挂着 Design System「Pith」 | 现用账号 [Pith Explore](https://claude.ai/artifact/HcCFtnXuGg9fQnp5qSVoH7)（R1）；旧账号那份（EX1–EX11）只看 |
-| `pomelo-v1-1-questionnaire/` | Pomelo 1.1 的问卷（单个页面），等站主填；读法在它的 `README.md` | 现用账号 |
 
-问卷用完、结论写进文档以后就删（答案留在 Git 历史）。第二条线做版时，各家的画布只在它们自己的分支上，验收时并排进一块临时对比画布，站主挑完就删（`docs/sessions.md`「第二条线」）。删掉的画布和页先进回收处 `.trash/`（只在本机，`node bench/bin/dw.js trash` 列出、放回、清空）。
+现在没有问卷页；问卷用完、结论写进文档以后就删（答案留在 Git 历史）。第二条线做版时，各家的画布只在它们自己的分支上，验收时并排进一块临时对比画布，站主挑完就删（`docs/sessions.md`「第二条线」）。删掉的画布和页先进回收处 `.trash/`（只在本机，`node bench/bin/dw.js trash` 列出、放回、清空）。
 
-## 看、批、写（2026-11-22 从 `CLAUDE.md`「画布与 bench」挪过来）
+## 看、批、写
 
 - **两条线**（站主 2026-11-05）：Claude 探索可以就在 Claude 的云端画布上做，到里程碑把成稿拉回本地（`dw pull`）；其他 Agent（Codex、Antigravity Argon、另一个账号的 Claude Code）探索和成稿都在本地画布上做。碰云端前照 `docs/cloud.md`「账号」看清自己是哪个账号。
 - **站主看、批，不改内容**：平移缩放、动 Tweaks、批准退回，给画布、页和画板改名、删除（进回收处，能撤销），给 Design System、Motion Deck 改 bench 里显示的名字（只记在 `bench/names.json`）；画板里的东西交给 Agent 改。Tweaks 不写回文件，站主说「就这个」，Agent 再改源。批准和退回只由站主做，Agent 只标「待批」。
@@ -54,7 +53,7 @@ canvases/<画布名>/
 
 页面（问卷这类单个 Artifact 页面）没有 `project/`：`cloud.json` 的 `kind` 是 `page`，`entry` 是那个 HTML。
 
-画布名只用小写字母、数字和连字符。`_lib/` 不是画布，放生成器共用的零件：`root.mjs`（取仓库里的东西）、`board.mjs`（画板外壳 `dcBoard`、一张板几屏共用状态的 `screens`）、`page.mjs`（只写一页的 `writePage`）、`apca.mjs`（对比度 `lc`、`checkPairs`）。`node bench/bin/dw.js new <画布名>` 一次建好 `README.md`、`cloud.json`、`project/canvas.json` 和 `project/Main.dc.html`；本地新建的画布 `cloud.json` 的 `targets` 是空的，发到云端以后才有。
+画布名只用小写字母、数字和连字符。`_lib/` 不是画布，放生成器共用的零件：`root.mjs`（取仓库里的东西）、`board.mjs`（画板外壳 `dcBoard`、一张板几屏共用状态的 `screens`）、`page.mjs`（只写一页的 `writePage`）、`apca.mjs`（对比度 `lc`）。`node bench/bin/dw.js new <画布名>` 一次建好 `README.md`、`cloud.json`、`project/canvas.json` 和 `project/Main.dc.html`；本地新建的画布 `cloud.json` 的 `targets` 是空的，发到云端以后才有。
 
 ## 注意
 

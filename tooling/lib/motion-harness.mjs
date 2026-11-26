@@ -28,10 +28,13 @@ export function stepsOf({ steps, trigger, host }) {
   return null;
 }
 
-/** 在页面里做一步（浏览器里也用这一份：bench 的 Motion Deck把它原样放进页面）。 */
-export function applyStepInPage(step, host) {
+/**
+ * 在页面里做一步（浏览器里也用这一份：bench 的 Motion Deck、目录页的重播都把它原样放进页面）。
+ * root：在哪个元素里找 on 和 host，默认整页（目录页一页放了很多零件，只在这个零件的演示里找）。
+ */
+export function applyStepInPage(step, host, root = document) {
   const sel = step.on ?? host;
-  const nodes = step.all ? [...document.querySelectorAll(sel)] : [document.querySelector(sel)];
+  const nodes = step.all ? [...root.querySelectorAll(sel)] : [root.querySelector(sel)];
   for (const n of nodes) {
     if (!n) throw new Error(`找不到 ${sel}`);
     for (const c of String(step.add ?? '').split(/\s+/).filter(Boolean)) n.classList.add(c);
@@ -40,7 +43,7 @@ export function applyStepInPage(step, host) {
     for (const [k, v] of Object.entries(step.style ?? {})) n.style.setProperty(k, v);
   }
   // 读一次样式：过渡从这一刻的值开始
-  getComputedStyle(document.querySelector(host) ?? document.body).transform;
+  getComputedStyle(root.querySelector(host) ?? document.body).transform;
 }
 
 /** 在页面里：新出现的动画记下它是第几毫秒（at）出现的，全部暂停；返回最晚的结束时刻。 */

@@ -57,8 +57,9 @@ visual-atelier：站主的个人视觉仓库。多套视觉方案（`schemes/`�
 | `canvases/<画布名>/` | 一块画布或一个问卷页的全部源；`canvases/_lib/` 是生成器共用的零件（`canvases/README.md`） |
 | `bench/` | 看画布的引擎：`dw` 命令行和 MCP、本地画布界面、画布运行时的副本、测试（`bench/README.md`） |
 | `skills/` | 本仓库的 Skill（`.claude/skills`、`.agents/skills` 指向它） |
-| `docs/` | 架构、工作流和验证、会话、云端往返、采用、动效档位、许可 |
-| `history/` | 做完的大计划和逐条记录，只是历史、不是规则 |
+| `.mcp.json`、`.codex/`、`.agents/` | Claude Code、Codex、Antigravity 的项目级配置：MCP 服务 `dw`、Skill 的链接（`bench/README.md`「MCP」） |
+| `docs/` | 细则（下面「文档职责」） |
+| `history/` | 做完的大计划和逐条记录（只是历史） |
 | `dist/`、`scratch/` | 构建产物、临时文件，不进 Git |
 
 ## 核心约定
@@ -97,15 +98,18 @@ visual-atelier：站主的个人视觉仓库。多套视觉方案（`schemes/`�
 
 ## 文档职责
 
-| 文件 | 内容 |
-| --- | --- |
-| `CLAUDE.md` | 核心规则（本文件） |
-| `ROADMAP.md` | 现在的状态、接下来做什么、跨方案的决定、现行授权 |
-| `CHANGELOG.md` | 做完且验证过的结果，不写待办 |
-| `README.md` | 仓库是什么、第一次怎么用 |
-| `docs/` | `sessions.md` 会话和第二条线、`workflow.md` 工作流和验证、`cloud.md` 云端往返、`architecture.md`、`adoption.md`、`motion-tiers.md`、`licensing.md` |
-| `canvases/README.md`、`bench/README.md`、`tooling/README.md` | 画布的约定、引擎怎么用、工具 |
-| `schemes/<方案>/DESIGN.md` | 这套方案定了的视觉基线和待确认的点 |
-| `history/` | 大阶段结束后归档的计划和过程 |
+同一件事只写一处，别处指过去。
 
-大阶段结束时，把过程移进 `history/`，`ROADMAP.md` 只留下一阶段，`CHANGELOG.md` 只留摘要表。
+| 文件 | 管什么 |
+| --- | --- |
+| `CLAUDE.md` | 核心规则、仓库结构、文档职责（本文件）：每次开工都读，只放规则 |
+| `ROADMAP.md` | 现在、接下来、知道的限制、别处没写的跨方案决定、现行授权；不写过程 |
+| `CHANGELOG.md` | 做完且验证过的结果：最近一轮加摘要表，逐条的在 `history/`；不写待办 |
+| `README.md` | 给站主看：仓库是什么、方案表、第一次怎么用、常用命令 |
+| `docs/` | `sessions.md` 会话分工和第二条线、`workflow.md` 工作流和验证、`cloud.md` 云端往返和账号、`architecture.md` 分层和数据流、新方案怎么起、`adoption.md` 同步到消费方、`motion-tiers.md` 动效档位、`licensing.md` 字体许可 |
+| `canvases/README.md`、`bench/README.md`、`tooling/README.md` | 画布的约定；引擎怎么用（界面、给别的程序的接口、MCP）；每个脚本做什么、确定性、发布 Design System |
+| `skills/<名字>/SKILL.md` | 一类活怎么做：步骤、命令、验证；规则指回上面这些 |
+| `schemes/<方案>/` 的 `DESIGN.md`、`CLAUDE.md`、`scheme.json` | 方案定了的视觉基线和待确认的点、方案的规矩、版本和每版改了什么 |
+| `history/` | 归档：大阶段的计划和过程，只是历史，不是规则 |
+
+大阶段结束时，把过程移进 `history/`，`ROADMAP.md` 只留下一阶段，`CHANGELOG.md` 只留最近一轮和摘要表。

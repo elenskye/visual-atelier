@@ -6,6 +6,7 @@ import { launchBrowser } from '../lib/browser.mjs';
 import { buildWebCss } from '../tokens/build.mjs';
 import { harnessHtml, captureFrames } from '../lib/motion-harness.mjs';
 import { diffPng } from '../lib/gif.mjs';
+import { pieceCss as partCss, fragmentOf } from '../render/motion.mjs';
 
 /**
  * 网站那边的标记：parity.siteMarkup 为 { file, pattern } 时从网站源文件里取（Astro 写法替换掉），
@@ -33,8 +34,9 @@ export async function runParity(args = parseArgs()) {
         const parity = spec.parity;
         if (!parity) continue; // 只比较网站上有对应实现的零件（motion.json 写了 parity）
         const siteCss = readText(path.join(origin, parity.siteCss));
-        const pieceCss = readText(path.join(dir, spec.files.css));
-        const fragment = readText(path.join(dir, spec.files.html));
+        // 零件这边的 CSS 和片段与逐帧导出同一份（带 requires、展开 @include）
+        const pieceCss = partCss(scheme, dir, spec);
+        const fragment = fragmentOf(scheme, dir, spec);
         const markup = siteMarkup(origin, parity, fragment);
         // baseCss 为 site：零件这边也垫上网站的样式表（正文字体、字号），只让零件自己的规则决定动效
         const minePiece = parity.baseCss === 'site' ? `${siteCss}\n${pieceCss}` : pieceCss;

@@ -3,10 +3,9 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 /**
- * Base Pluggable Bundler Adapter (`BaseBundlerAdapter`)
- *
- * Defines the standard lifecycle hooks and contract for all design bundle providers
- * (e.g. `ClaudeDesignAdapter`, `RawHtmlAdapter`).
+ * What the `dw import` adapters share (`ClaudeDesignAdapter`, `RawHtmlAdapter`): the bench config and the bridge's
+ * hooks (`bridges/claude/`). `unpack(html, { artifactId, artifactDir, sourcePath })` writes the files into
+ * artifactDir and returns { title, entry, subpages }.
  */
 export class BaseBundlerAdapter {
   /**
@@ -46,38 +45,11 @@ export class BaseBundlerAdapter {
     }
   }
 
-  /**
-   * Runs a named lifecycle hook if registered on externalHooks or subclass.
-   * @param {string} hookName
-   * @param  {...any} args
-   */
+  /** Runs the bridge's hook of that name; without one, gives back its first argument. */
   async runHook(hookName, ...args) {
     if (this.externalHooks && typeof this.externalHooks[hookName] === 'function') {
       return await this.externalHooks[hookName](...args);
     }
-    if (typeof this[hookName] === 'function') {
-      return await this[hookName](...args);
-    }
     return args[0];
-  }
-
-  /**
-   * Determines whether this adapter can handle the given HTML content / file.
-   * @param {string} _htmlContent
-   * @param {string} _filePath
-   * @returns {boolean}
-   */
-  detect(_htmlContent, _filePath) {
-    return false;
-  }
-
-  /**
-   * Unpacks a bundle file into `options.artifactDir`.
-   * @param {string} _htmlContent
-   * @param {object} _options
-   * @returns {Promise<object>} The generated artifact manifest
-   */
-  async unpack(_htmlContent, _options) {
-    throw new Error(`${this.name}.unpack() is not implemented`);
   }
 }

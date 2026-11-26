@@ -25,7 +25,7 @@ export function staticSvg(els, [w, h], { paperFallback = 'currentColor' } = {}) 
  * 动效用的内联 SVG。idPrefix 让同页多个实例的遮罩 id 各不相同。
  * 纸片带 --i（顺序）与 --dx/--dy（入场错位），遮罩描边带 --i。
  */
-export function inlineSvg(els, [w, h], { idPrefix, className = 'va-graphic' }) {
+export function inlineSvg(els, [w, h], { idPrefix }) {
   let n = 0;
   const defs = [], body = [];
   for (const e of els) {
@@ -39,7 +39,7 @@ export function inlineSvg(els, [w, h], { idPrefix, className = 'va-graphic' }) {
       body.push(`<circle class="va-ember" cx="${num(e.cx)}" cy="${num(e.cy)}" r="${num(e.r)}" fill="${fillOf('ember')}"/>`);
     }
   }
-  return `<svg class="${className}" viewBox="0 0 ${w} ${h}" aria-hidden="true" focusable="false"><defs>${defs.join('')}</defs>${body.join('')}</svg>`;
+  return `<svg class="va-graphic" viewBox="0 0 ${w} ${h}" aria-hidden="true" focusable="false"><defs>${defs.join('')}</defs>${body.join('')}</svg>`;
 }
 
 /**

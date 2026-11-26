@@ -10,15 +10,14 @@ export function resolveChromeExecutable(config) {
   const candidates = [
     process.env.VA_CHROMIUM,
     process.env.CHROME_PATH,
-    config?.browser?.executablePath,
-    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+    config?.browser?.executablePath, // bench/config.json; Google Chrome's own place by default
     '/Applications/Chromium.app/Contents/MacOS/Chromium'
   ].filter(Boolean);
 
   for (const p of candidates) {
     if (fs.existsSync(p)) return p;
   }
-  throw new Error('Could not locate Google Chrome executable. Set browser.executablePath in config.json.');
+  throw new Error('找不到 Chrome：在 bench/config.json 的 browser.executablePath 写它的位置（或设环境变量 VA_CHROMIUM）');
 }
 
 /**
@@ -347,7 +346,8 @@ const clickExpression = (text) => `(() => {
  * times：从「画板画完（点完 clicks）」那一刻算起的毫秒数，误差一两百毫秒；clicks：先依次点这些字的按钮，每点一个等 clickWait。
  * 返回 { frames: [{ t, actual, png }], missedClicks, passed, allErrors, ready }；png 是 Buffer。只为看，不保证两次一样。
  */
-export async function captureFrames(config, url, { width = 1280, height = 800, scale = 1, times = [0, 250, 500, 750, 1000], clicks = [], clickWait = 400 } = {}) {
+export async function captureFrames(config, url, { width = 1280, height = 800, scale = 1, times, clicks = [] }) {
+  const clickWait = 400;
   return withCdpPage(config, { width, height, scale, reducedMotion: false }, async (ctx) => {
     const { domReport, failed } = await openAndSettle(ctx, url);
     if (failed) return { frames: [], missedClicks: [], ...buildVerificationResult('chrome-cdp-pipe', ctx.consoleErrors, ctx.pageErrors, { ...(domReport || {}), ready: false, zeroSizeElements: [] }) };

@@ -2,16 +2,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { BaseBundlerAdapter } from '../base-adapter.js';
-import {
-  isClaudeBundlerHtml,
-  extractBundlerBlocks,
-  decodeManifestEntry,
-  mimeToExt,
-  stripSriOnLocalTags,
-  extractTweaksFromHtml,
-  decodeHtmlEntities
-} from '../codec.js';
-import { slugify, writeJsonFile } from '../../utils/config.js';
+import { isClaudeBundlerHtml, extractBundlerBlocks, decodeManifestEntry, mimeToExt, stripSriOnLocalTags, previewSize, decodeHtmlEntities } from '../codec.js';
+import { slugify } from '../../utils/config.js';
 
 /**
  * Puts `window.__resources` (an ext_resources id → the unpacked file, `prefix` + its path) first in <head>, so the
@@ -30,11 +22,8 @@ function withResources(html, extResources, assetPaths, prefix) {
 }
 
 /**
- * Standard Pluggable Adapter for Claude Design Single-File HTML Bundles (`ClaudeDesignAdapter`)
- *
- * Connected to the dedicated Claude Bridge Slot (`bridges/claude/`):
- * - Reads `bridges/claude/adapter.config.json`
- * - Invokes lifecycle hooks from `bridges/claude/scripts/hooks.mjs`
+ * Claude's "standalone HTML" export (`__bundler` single-file bundle), unpacked for `dw import`.
+ * Names the runtime and other assets with the bridge's `onAssetExtracted` (`bridges/claude/`).
  *
  * Handles both:
  * 1. Multi-board recursive bundles (`page_order` non-empty, `about:blank#<uuid>` iframe markers,
@@ -47,64 +36,31 @@ export class ClaudeDesignAdapter extends BaseBundlerAdapter {
     this.name = 'claude-design';
   }
 
-  async init() {
-    await this.loadBridgeSlot(this.config.claudeBridgeAbs);
-  }
-
-  detect(htmlContent, _filePath = '') {
-    return isClaudeBundlerHtml(htmlContent);
-  }
-
   /**
-   * Unpacks a Claude Design HTML bundle into `artifactDir` (`dw import` makes it a canvas from there).
+   * Unpacks a bundle into `artifactDir` (pages/, assets/, index.html). Returns what `dw import` needs:
+   * { title, entry, subpages: [{ uuid, title, path, width, height, assetUuids }], rootAssetUuids }
+   * (assetUuids: asset uuid → the unpacked file, relative to artifactDir).
    * @param {string} htmlContent
-   * @param {{ artifactId: string, artifactDir: string, sourcePath?: string, model?: string, title?: string, tags?: string[], parentId?: string }} options
+   * @param {{ artifactId: string, artifactDir: string }} options
    */
-  async unpack(htmlContent, options) {
-    await this.init();
-
-    const {
-      artifactId,
-      artifactDir,
-      sourcePath = '',
-      model = 'claude-design',
-      title: customTitle = null,
-      tags = [],
-      parentId = null
-    } = options;
-
-    let context = {
-      htmlContent,
-      sourcePath,
-      artifactId,
-      artifactDir,
-      adapterConfig: this.adapterConfig
-    };
-
-    context = (await this.runHook('beforeUnpack', context)) || context;
-
-    if (this.externalHooks && typeof this.externalHooks.customUnpack === 'function') {
-      const customResult = await this.externalHooks.customUnpack(context.htmlContent, context);
-      if (customResult) return customResult;
-    }
+  async unpack(htmlContent, { artifactId, artifactDir }) {
+    await this.loadBridgeSlot(this.config.claudeBridgeAbs);
+    const context = { adapterConfig: this.adapterConfig };
 
     const pagesDir = path.join(artifactDir, 'pages');
     const assetsDir = path.join(artifactDir, 'assets');
-    const rawDir = path.join(artifactDir, 'raw');
     fs.mkdirSync(pagesDir, { recursive: true });
     fs.mkdirSync(assetsDir, { recursive: true });
-    fs.mkdirSync(rawDir, { recursive: true });
 
-    const rootBlocks = extractBundlerBlocks(context.htmlContent);
-    const title = customTitle || rootBlocks.title || artifactId;
+    const rootBlocks = extractBundlerBlocks(htmlContent);
+    const title = rootBlocks.title || artifactId;
     const pageSet = new Set(rootBlocks.pageOrder || []);
     const isMultiPage = pageSet.size > 0;
 
     // Extract board titles and dimensions from root template (`<section class="board"><h2>...</h2><iframe src="about:blank#<uuid>" width="..." height="...">`)
     const boardMetaByUuid = this._parseRootBoardMarkers(rootBlocks.template);
 
-    // Track extracted assets across root and nested pages (deduplicating identical content hashes or known UUIDs)
-    const assetsManifest = {};
+    // one file per distinct content (same sha256, same file), named by the bridge or by uuid
     const hashToAssetPath = new Map();
     const usedFilenames = new Set();
 
@@ -147,25 +103,11 @@ export class ClaudeDesignAdapter extends BaseBundlerAdapter {
         fs.writeFileSync(path.join(artifactDir, relPath), assetObj.buffer);
         hashToAssetPath.set(sha256, relPath);
       }
-
-      assetsManifest[uuid] = {
-        uuid,
-        path: relPath,
-        mime: assetObj.mime,
-        compressed: assetObj.compressed,
-        size: assetObj.size,
-        sha256,
-        scope
-      };
-
       return relPath;
     };
 
     const subpages = [];
-    // which unpacked file each asset uuid became, for `dw import` (raw/bundler-meta.json)
-    const bundlerMeta = { rootAssetUuids: {}, subpagesMeta: {} };
-
-    const aggregatedTweaks = {};
+    const rootAssetUuids = {};
 
     // 1. Process root manifest entries
     const rootExtByUuid = new Map(
@@ -176,8 +118,7 @@ export class ClaudeDesignAdapter extends BaseBundlerAdapter {
         // Defer subpage processing to ordered loop below
         continue;
       }
-      const relPath = await saveAsset(uuid, entry, 'root', rootExtByUuid.get(uuid) || null);
-      bundlerMeta.rootAssetUuids[uuid] = relPath;
+      rootAssetUuids[uuid] = await saveAsset(uuid, entry, 'root', rootExtByUuid.get(uuid) || null);
     }
 
     // 2. Process ordered subpages (if multi-page bundle)
@@ -188,11 +129,9 @@ export class ClaudeDesignAdapter extends BaseBundlerAdapter {
         if (!entry) continue;
         index++;
 
-        const decodedPage = decodeManifestEntry(entry);
-        const pageHtmlRaw = decodedPage.buffer.toString('utf8');
+        const pageHtmlRaw = decodeManifestEntry(entry).buffer.toString('utf8');
         const markerMeta = boardMetaByUuid.get(pageUuid) || {};
 
-        const indexPrefix = String(index).padStart(2, '0');
         let pageTitle = markerMeta.title || `Board ${index}`;
         let pageTemplate = pageHtmlRaw;
         let innerBlocks = null;
@@ -209,70 +148,29 @@ export class ClaudeDesignAdapter extends BaseBundlerAdapter {
             (innerBlocks.extResources || []).map((r) => [r.uuid, r.id])
           );
           for (const [innerUuid, innerEntry] of Object.entries(innerBlocks.manifest)) {
-            const relAssetPath = await saveAsset(
-              innerUuid,
-              innerEntry,
-              `page:${pageUuid}`,
-              innerExtByUuid.get(innerUuid) || null
-            );
-            pageAssetUuids[innerUuid] = relAssetPath;
+            pageAssetUuids[innerUuid] = await saveAsset(innerUuid, innerEntry, `page:${pageUuid}`, innerExtByUuid.get(innerUuid) || null);
           }
         }
 
-        const pageSlug = `${indexPrefix}-${slugify(pageTitle, `board-${index}`)}`;
-        const pageRelPath = `pages/${pageSlug}.html`;
+        const pageRelPath = `pages/${String(index).padStart(2, '0')}-${slugify(pageTitle, `board-${index}`)}.html`;
 
         // Rewrite inner asset UUIDs in pageTemplate to `../assets/...` for direct HTTP preview
         let cleanPageHtml = pageTemplate;
         for (const [innerUuid, relAssetPath] of Object.entries(pageAssetUuids)) {
-          const fromPageRel = `../${relAssetPath}`;
-          cleanPageHtml = cleanPageHtml.split(innerUuid).join(fromPageRel);
+          cleanPageHtml = cleanPageHtml.split(innerUuid).join(`../${relAssetPath}`);
         }
         cleanPageHtml = stripSriOnLocalTags(cleanPageHtml);
-
         if (innerBlocks) cleanPageHtml = withResources(cleanPageHtml, innerBlocks.extResources, pageAssetUuids, '../');
+        fs.writeFileSync(path.join(artifactDir, pageRelPath), cleanPageHtml, 'utf8');
 
-        // Extract tweaks / data-props from this subpage
-        const pageTweaks = extractTweaksFromHtml(cleanPageHtml);
-        if (Object.keys(pageTweaks.values).length > 0) {
-          aggregatedTweaks[pageSlug] = pageTweaks.values;
-        }
-
-        const isDcComponent = /<x-dc[\s>]/i.test(cleanPageHtml);
-        const width = markerMeta.width || pageTweaks.preview?.width || 1280;
-        const height = markerMeta.height || pageTweaks.preview?.height || 800;
-
-        let subpageRecord = {
-          uuid: pageUuid,
-          index,
-          slug: pageSlug,
-          title: pageTitle,
-          path: pageRelPath,
-          width,
-          height,
-          isDcComponent,
-          tweaks: pageTweaks.values,
-          propsMeta: pageTweaks.propsMeta,
-          html: cleanPageHtml
-        };
-
-        subpageRecord = (await this.runHook('onSubpageExtracted', subpageRecord, context)) || subpageRecord;
-
-        fs.writeFileSync(path.join(artifactDir, pageRelPath), subpageRecord.html, 'utf8');
-
-        bundlerMeta.subpagesMeta[pageUuid] = { assetUuids: pageAssetUuids };
-
+        const size = previewSize(cleanPageHtml);
         subpages.push({
           uuid: pageUuid,
-          index,
-          slug: pageSlug,
           title: pageTitle,
           path: pageRelPath,
-          width,
-          height,
-          isDcComponent,
-          tweaks: subpageRecord.tweaks,
-          propsMeta: subpageRecord.propsMeta
+          width: markerMeta.width || size?.width || 1280,
+          height: markerMeta.height || size?.height || 800,
+          assetUuids: pageAssetUuids
         });
       }
     }
@@ -283,47 +181,15 @@ export class ClaudeDesignAdapter extends BaseBundlerAdapter {
       const markerRe = new RegExp(`about:blank#${sp.uuid}(#[^"']*)?`, 'gi');
       rootIndexHtml = rootIndexHtml.replace(markerRe, (_m, frag) => `./${sp.path}${frag || ''}`);
     }
-    for (const [uuid, relAssetPath] of Object.entries(bundlerMeta.rootAssetUuids)) {
+    for (const [uuid, relAssetPath] of Object.entries(rootAssetUuids)) {
       rootIndexHtml = rootIndexHtml.split(uuid).join(`./${relAssetPath}`);
     }
     rootIndexHtml = stripSriOnLocalTags(rootIndexHtml);
-    if (!isMultiPage) {
-      // a single-page bundle (`page_order` is empty): the root is the board
-      rootIndexHtml = withResources(rootIndexHtml, rootBlocks.extResources, bundlerMeta.rootAssetUuids, './');
-      const rootTweaks = extractTweaksFromHtml(rootIndexHtml);
-      if (Object.keys(rootTweaks.values).length > 0) {
-        Object.assign(aggregatedTweaks, rootTweaks.values);
-      }
-    }
+    // a single-page bundle (`page_order` is empty): the root is the board
+    if (!isMultiPage) rootIndexHtml = withResources(rootIndexHtml, rootBlocks.extResources, rootAssetUuids, './');
     fs.writeFileSync(path.join(artifactDir, 'index.html'), rootIndexHtml, 'utf8');
 
-    writeJsonFile(path.join(rawDir, 'bundler-meta.json'), bundlerMeta);
-
-    const nowIso = new Date().toISOString();
-    const manifest = {
-      id: artifactId,
-      title,
-      createdAt: nowIso,
-      updatedAt: nowIso,
-      source: {
-        model,
-        origin: 'claude-design-bundle',
-        adapter: this.name,
-        originalFile: sourcePath ? path.basename(sourcePath) : null
-      },
-      status: 'exploring',
-      tags: Array.from(new Set(['claude-design', ...tags])),
-      entry: 'index.html',
-      subpages,
-      assets: assetsManifest,
-      tweaks: aggregatedTweaks,
-      lineage: {
-        parent: parentId,
-        notes: `Unpacked from ${sourcePath ? path.basename(sourcePath) : 'Claude Design bundle'} (${subpages.length || 1} board(s), ${Object.keys(assetsManifest).length} unique asset(s)).`
-      }
-    };
-
-    return (await this.runHook('afterUnpack', manifest, context)) || manifest;
+    return { title, entry: 'index.html', subpages, rootAssetUuids };
   }
 
   _parseRootBoardMarkers(rootTemplate) {

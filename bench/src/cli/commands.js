@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import util from 'node:util';
 import { loadConfig, readJsonFile } from '../utils/config.js';
-import { listCanvases, canvasDir, kindOf, readCloud, readCanvasJson } from '../canvas/store.js';
+import { listCanvases, canvasDir, needCanvas, readCanvasJson, boardOrder, walk } from '../canvas/store.js';
 import { snapshot, listVersions, restore } from '../canvas/versions.js';
 import { createCanvas, importBundle } from '../canvas/create.js';
 import {
@@ -22,7 +23,7 @@ import { listSystems, installSystem, readSystem, systemPaths } from '../ds/syste
 import { prefetchPage, runtimeResources, getResource, cacheDir } from '../server/offline.js';
 import { getDoc, setDoc, readStore, dbFile } from '../canvas/db.js';
 import { listReviews, setReview, clearReview, STATUS_LABEL } from '../canvas/review.js';
-import { runCheck } from '../canvas/check.js';
+import { runCheck, boardsOf, boardUrl, stemOf } from '../canvas/check.js';
 import { runFrames, frameTimes } from '../canvas/frames.js';
 import { exportBoards } from '../canvas/export.js';
 import { startServer, BENCH_APP, BENCH_API } from '../server/server.js';
@@ -32,14 +33,38 @@ import { captureUrl } from '../server/headless.js';
 import { listMotionSchemes, readMotion, exportMotion, closeExportBrowser } from '../motion/parts.js';
 import { createScheme, checkScheme } from '../scheme/new.js';
 
-const list = (v) => (v === undefined || v === true ? [] : Array.isArray(v) ? v.flatMap((x) => String(x).split(',')) : String(v).split(','));
 const out = (flags, data, text) => console.log(flags.json ? JSON.stringify(data, null, 2) : text);
-/** A flag's value, or null when it is missing or was given without one (`--board` alone). */
-const opt = (v) => (v && v !== true ? v : null);
 
 function need(value, usage) {
   if (!value || value === true) throw new Error(`用法：${usage}`);
   return value;
+}
+
+const noValue = (key, usage) => new Error(`--${key} 后面要写值。用法：${usage}`);
+
+/** A flag's value: null when it is not there, an error when it is there without one (`--out` and then nothing). Given twice, the last counts. */
+function arg(flags, key, usage) {
+  const v = Array.isArray(flags[key]) ? flags[key].at(-1) : flags[key];
+  if (v === undefined) return null;
+  if (v === true || v === '') throw noValue(key, usage);
+  return String(v);
+}
+
+/** A number flag (not negative); `fallback` when it is not there. */
+function num(flags, key, usage, fallback) {
+  const v = arg(flags, key, usage);
+  if (v === null) return fallback;
+  const n = Number(v);
+  if (!Number.isFinite(n) || n < 0) throw new Error(`--${key} 要写一个不小于 0 的数：${v}`);
+  return n;
+}
+
+/** Every value of a flag that may be given several times (`--board a --board b`); `split`: also a,b. */
+function args(flags, key, usage, { split = true } = {}) {
+  if (flags[key] === undefined) return [];
+  const all = [].concat(flags[key]);
+  if (all.some((x) => x === true || x === '')) throw noValue(key, usage);
+  return split ? all.flatMap((x) => String(x).split(',')) : all.map(String);
 }
 
 export async function cmdList(_pos, flags) {
@@ -114,28 +139,31 @@ export async function cmdTrash(pos, flags) {
 }
 
 export async function cmdNew(pos, flags) {
-  const name = need(pos[0], 'dw new <画布名> [--title 标题]');
-  const dir = createCanvas(loadConfig(), name, { title: flags.title || name });
+  const usage = 'dw new <画布名> [--title 标题]';
+  const name = need(pos[0], usage);
+  const dir = createCanvas(loadConfig(), name, { title: arg(flags, 'title', usage) || name });
   out(flags, { dir }, `已新建 ${dir}`);
 }
 
 export async function cmdImport(pos, flags) {
-  const file = need(pos[0], 'dw import <导出的单文件.html> --name <画布名>');
-  const name = need(flags.name, 'dw import <导出的单文件.html> --name <画布名>');
-  const r = await importBundle(loadConfig(), path.resolve(file), name, { title: flags.title || null });
+  const usage = 'dw import <导出的单文件.html> --name <画布名> [--title 标题]';
+  const file = need(pos[0], usage);
+  const name = need(flags.name, usage);
+  const r = await importBundle(loadConfig(), path.resolve(file), name, { title: arg(flags, 'title', usage) });
   out(flags, r, `已导入 ${r.boards} 张板到 ${r.dir}。导出包里没有画布的排布、页和便签，板子按每行 4 张排开。`);
 }
 
 export async function cmdTarget(pos, flags) {
-  const usage = 'dw target <画布名> [<slug> --url <链接> --account <账号> [--home] [--same-ids]]';
+  const usage = 'dw target <画布名> [<slug> --url <链接> --account <账号> [--home] [--same-ids] [--new]]';
   const name = need(pos[0], usage);
   const config = loadConfig();
   if (!pos[1]) {
+    needCanvas(config, name);
     const rows = listTargets(config, name);
     return out(flags, { targets: rows }, rows.length ? rows.map((t) => `${t.home ? '* ' : '  '}${t.slug}  ${t.account || '（没记账号）'}  ${t.url || ''}`).join('\n') + '\n（* 是 home：不加 --target 时用它）' : `${name} 还没有云端地址`);
   }
-  const str = (v) => (opt(v) ? String(v) : null);
-  const t = addTarget(config, name, pos[1], { url: str(flags.url), type: str(flags.type), title: str(flags.title), account: str(flags.account), home: Boolean(flags.home), blobs: flags['same-ids'] ? 'same' : undefined });
+  const v = (key) => arg(flags, key, usage);
+  const t = addTarget(config, name, pos[1], { url: v('url'), type: v('type'), title: v('title'), account: v('account'), home: Boolean(flags.home), blobs: flags['same-ids'] ? 'same' : undefined, create: flags.new === true });
   out(flags, t, `已登记 ${name} → ${pos[1]}${t.account ? `（${t.account}）` : ''}${t.blobs === 'same' ? '，图片 id 和本地相同' : '，图片 id 要对照表'}${flags.home ? '，设为 home' : ''}`);
 }
 
@@ -143,10 +171,11 @@ export async function cmdPull(pos, flags) {
   const usage = 'dw pull <画布名> --listing <list_files.json> [--from <下载的文件或目录>] [--assets <list_assets.json>] [--target <slug>]';
   const name = need(pos[0], usage);
   const config = loadConfig();
-  const target = opt(flags.target);
-  const from = list(flags.from);
-  if (flags.assets) {
-    const assets = readListing(flags.assets);
+  const target = arg(flags, 'target', usage);
+  const from = args(flags, 'from', usage);
+  const assetsFile = arg(flags, 'assets', usage);
+  if (assetsFile) {
+    const assets = readListing(assetsFile);
     if (from.length) {
       const r = applyBlobs(config, name, assets, from, { target });
       return out(flags, r, `图片：${r.same} 张本来就一样，写入 ${r.written} 张`);
@@ -154,7 +183,7 @@ export async function cmdPull(pos, flags) {
     const r = planBlobs(config, name, assets, { target });
     return out(flags, r, `图片：${r.same} 张一样，要下载 ${r.need.length} 张${r.need.length ? `：\n${r.need.map((b) => `  ${b.remoteId} → blobs/${b.localId}`).join('\n')}` : ''}`);
   }
-  const listing = readListing(need(flags.listing, usage));
+  const listing = readListing(need(arg(flags, 'listing', usage), usage));
   const drift = runtimeDrift(config, listing);
   if (from.length) {
     const r = applyPull(config, name, listing, from, { target });
@@ -176,31 +205,38 @@ export async function cmdVerify(pos, flags) {
   const usage = 'dw verify <画布名> --listing <list_files.json> [--target <slug>]';
   const name = need(pos[0], usage);
   const config = loadConfig();
-  const listing = readListing(need(flags.listing, usage));
-  const r = verify(config, name, listing, { target: opt(flags.target) });
+  const listing = readListing(need(arg(flags, 'listing', usage), usage));
+  const r = verify(config, name, listing, { target: arg(flags, 'target', usage) });
   const drift = runtimeDrift(config, listing);
   out(flags, { ...r, runtime: drift }, `${r.bad.length ? `对不上 ${r.bad.length} 个：\n  ${r.bad.join('\n  ')}` : `校验和 ${r.ok}/${r.total} 全对`}${drift ? `\n注意：${drift.message}` : ''}`);
   if (r.bad.length) process.exitCode = 1;
 }
 
 export async function cmdPublish(pos, flags) {
-  const usage = 'dw publish <画布名> [--listing <list_files.json>] [--target <slug>] [--blob-map <file>] [--record]';
+  const usage = 'dw publish <画布名> [--listing <list_files.json>] [--target <slug>] [--blob-map <file>] [--record] [--out <file>]';
   const name = need(pos[0], usage);
   const config = loadConfig();
-  const target = opt(flags.target);
-  if (flags['blob-map']) {
-    const map = addBlobMap(config, name, target || readCloud(canvasDir(config, name)).home, readJsonFile(flags['blob-map']));
-    console.log(`对照表现在有 ${Object.keys(map).length} 张图片`);
+  const target = arg(flags, 'target', usage);
+  const listingFile = arg(flags, 'listing', usage);
+  const outFile = arg(flags, 'out', usage);
+  const mapFile = arg(flags, 'blob-map', usage);
+  // the upload_asset results, recorded first; said together with the rest (one JSON with --json)
+  let mapped = null;
+  if (mapFile) {
+    const entries = readJsonFile(mapFile);
+    if (!entries) throw new Error(`读不到 ${mapFile}（要是 upload_asset 的结果存成的 JSON）`);
+    mapped = Object.keys(addBlobMap(config, name, target, entries)).length;
   }
-  const listing = opt(flags.listing) ? readListing(flags.listing) : null;
+  const say = (data, text) => out(flags, mapped === null ? data : { ...data, blobMap: mapped }, mapped === null ? text : `对照表现在有 ${mapped} 张图片\n${text}`);
+  const listing = listingFile ? readListing(listingFile) : null;
   if (flags.record) {
     const r = recordPublish(config, name, need(listing, usage), { target });
-    return out(flags, r, `云端 ${r.target} 和本地校验和 ${r.verified} 个全对，已存版本 ${r.version}`);
+    return say(r, `云端 ${r.target} 和本地校验和 ${r.verified} 个全对，已存版本 ${r.version}`);
   }
   const r = planPublish(config, name, listing, { target });
-  if (flags.out) fs.writeFileSync(flags.out, JSON.stringify(r, null, 2) + '\n');
+  if (outFile) fs.writeFileSync(path.resolve(outFile), JSON.stringify(r, null, 2) + '\n');
   if (r.needUpload) {
-    return out(flags, r, `先用 upload_asset 上传 ${r.uploads.length} 张图片（name 照写，每次最多 10 张），再把结果存成 JSON，用 --blob-map 记下：\n${r.uploads.map((u) => `  ${u.name}  ${u.path}`).join('\n')}`);
+    return say(r, `先用 upload_asset 上传 ${r.uploads.length} 张图片（name 照写，每次最多 10 张），再把结果存成 JSON，用 --blob-map 记下：\n${r.uploads.map((u) => `  ${u.name}  ${u.path}`).join('\n')}`);
   }
   const lines = [`${name} → ${r.target}${r.url ? `（${r.url}）` : ''}：${r.unchanged ?? 0} 个不用发`];
   r.publishFilesCalls.forEach((c, i) => lines.push(`publish_files 第 ${i + 1} 次（mode patch）files: ${JSON.stringify(c)}`));
@@ -208,19 +244,22 @@ export async function cmdPublish(pos, flags) {
   if (!r.publishFilesCalls.length && !r.remove.length) lines.push('云端已经是最新的');
   const drift = listing ? runtimeDrift(config, listing) : null;
   if (drift) lines.push(`注意：${drift.message}`);
-  out(flags, { ...r, runtime: drift }, lines.join('\n'));
+  say({ ...r, runtime: drift }, lines.join('\n'));
 }
 
 export async function cmdVersions(pos, flags) {
   const name = need(pos[0], 'dw versions <画布名>');
-  const vs = listVersions(loadConfig(), name);
+  const config = loadConfig();
+  needCanvas(config, name);
+  const vs = listVersions(config, name);
   out(flags, { versions: vs.map(({ id, label, createdAt, files }) => ({ id, label, createdAt, files: Object.keys(files).length })) },
     vs.length ? vs.map((v) => `${v.id}  ${Object.keys(v.files).length} 个文件${v.events?.length ? `  之后：${v.events.map((e) => e.label).join('、')}` : ''}`).join('\n') : '还没有版本');
 }
 
 export async function cmdSnapshot(pos, flags) {
-  const name = need(pos[0], 'dw snapshot <画布名> [--label 名字]');
-  const v = snapshot(loadConfig(), name, opt(flags.label) || 'save');
+  const usage = 'dw snapshot <画布名> [--label 名字]';
+  const name = need(pos[0], usage);
+  const v = snapshot(loadConfig(), name, arg(flags, 'label', usage) || 'save');
   out(flags, v, v.reused ? `和上一版一样，没有新存：${v.id}` : `已存版本 ${v.id}`);
 }
 
@@ -230,8 +269,9 @@ export async function cmdRestore(pos, flags) {
   out(flags, r, `已恢复到 ${r.restored}；恢复前的样子存成了 ${r.savedBefore}`);
 }
 
-const portOf = (config, flags) => (opt(flags.port) ? Number(flags.port) : config.server.port);
-const baseOf = (config, flags) => `http://127.0.0.1:${portOf(config, flags)}`;
+/** Where `dw serve` listens: 127.0.0.1 and the port asked for, else bench/config.json's. */
+export const benchBase = (config, port) => `http://127.0.0.1:${port || config.server.port}`;
+const portFlag = (flags, usage) => num(flags, 'port', usage, null);
 
 /** What answers on the port: this server's `/api/status`, or null (nothing there, or something else). */
 export async function benchStatus(base) {
@@ -259,19 +299,33 @@ export function boardAddress(base, name, { page = null, board = null } = {}) {
   return `${base}/#/${name}${q ? `?${q}` : ''}`;
 }
 
+/**
+ * Where the bench at `base` shows a canvas, one page of it or one board (a file, or its name without .dc.html);
+ * a questionnaire page: its own address. Checks that the page and the board are there (dw open, MCP open).
+ */
+export function canvasAddress(config, name, base, { page = null, board = null } = {}) {
+  if (needCanvas(config, name) === 'page') return `${base}/c/${name}/`;
+  const c = readCanvasJson(config, name);
+  if (page && !(c.pages || []).some((p) => p.id === page)) throw new Error(`${name} 没有这一页：${page}（有：${(c.pages || []).map((p) => p.id).join('、') || '没有分页'}）`);
+  const file = board ? boardsOf(config, name, board)[0].file : null;
+  return boardAddress(base, name, { page: page || (file && c.boards[file].page) || null, board: file });
+}
+
 export async function cmdServe(_pos, flags) {
+  const usage = 'dw serve [--port 4321] [--json]';
   const config = loadConfig();
+  const port = portFlag(flags, usage);
   let stop;
   const stopped = new Promise((resolve) => (stop = resolve));
   let srv;
   try {
-    srv = await startServer(config, { port: opt(flags.port) ? Number(flags.port) : undefined, onStop: stop, quiet: !!flags.json });
+    srv = await startServer(config, { port: port ?? undefined, onStop: stop, quiet: !!flags.json });
   } catch (e) {
     if (e.code !== 'EADDRINUSE') throw e;
-    const base = baseOf(config, flags);
+    const base = benchBase(config, port);
     const there = await benchStatus(base);
     if (flags.json) console.log(JSON.stringify({ ready: false, running: !!there, url: base, pid: there?.pid ?? null }));
-    throw new Error(there ? `已经有一个在跑了：${base}/（进程 ${there.pid}），用 dw stop 停掉它` : `${portOf(config, flags)} 端口被别的程序占着，换一个：dw serve --port <端口>`);
+    throw new Error(there ? `已经有一个在跑了：${base}/（进程 ${there.pid}），用 dw stop 停掉它` : `${port || config.server.port} 端口被别的程序占着，换一个：dw serve --port <端口>`);
   }
   // one line a program that started this can wait for
   if (flags.json) console.log(JSON.stringify({ ready: true, url: srv.baseUrl, pid: process.pid, api: BENCH_API }));
@@ -283,14 +337,14 @@ export async function cmdServe(_pos, flags) {
 
 export async function cmdStatus(_pos, flags) {
   const config = loadConfig();
-  const base = baseOf(config, flags);
+  const base = benchBase(config, portFlag(flags, 'dw status [--port 4321]'));
   const s = await benchStatus(base);
   out(flags, s ? { running: true, ...s } : { running: false, url: base }, s ? `在跑：${s.url}/  进程 ${s.pid}  ${s.canvases} 块画布  ${s.startedAt} 启动` : `没在跑（${base}）`);
 }
 
 export async function cmdStop(_pos, flags) {
   const config = loadConfig();
-  const base = baseOf(config, flags);
+  const base = benchBase(config, portFlag(flags, 'dw stop [--port 4321]'));
   const s = await benchStatus(base);
   if (!s) return out(flags, { stopped: false, running: false, url: base }, `没在跑（${base}）`);
   await stopBench(base);
@@ -299,50 +353,30 @@ export async function cmdStop(_pos, flags) {
 
 /** The address of a canvas, a page of it or one board — printed, not opened in a browser (the caller shows it). */
 export async function cmdOpen(pos, flags) {
-  const name = need(pos[0], 'dw open <画布名> [--page 页] [--board 文件名]');
+  const usage = 'dw open <画布名> [--page 页] [--board 文件名] [--port 4321]';
+  const name = need(pos[0], usage);
   const config = loadConfig();
-  const kind = kindOf(canvasDir(config, name));
-  if (!kind) throw new Error(`没有这块画布：${name}`);
-  const base = baseOf(config, flags);
-  let url = `${base}/c/${name}/`;
-  if (kind === 'canvas') {
-    const canvas = readCanvasJson(config, name);
-    const page = opt(flags.page) ? String(flags.page) : null;
-    const board = opt(flags.board) ? String(flags.board) : null;
-    if (page && !(canvas.pages || []).some((p) => p.id === page)) throw new Error(`${name} 没有这一页：${page}（有：${(canvas.pages || []).map((p) => p.id).join('、') || '没有分页'}）`);
-    if (board && !canvas.boards?.[board]) throw new Error(`${name} 没有画板 ${board}`);
-    url = boardAddress(base, name, { page: page || (board && canvas.boards[board].page) || null, board });
-  }
+  const base = benchBase(config, portFlag(flags, usage));
+  const url = canvasAddress(config, name, base, { page: arg(flags, 'page', usage), board: arg(flags, 'board', usage) });
   const running = !!(await benchStatus(base));
   out(flags, { url, running }, running ? url : `${url}\n（服务没在跑：先 dw serve）`);
 }
 
 export async function cmdShot(pos, flags) {
-  const name = need(pos[0], 'dw shot <画布名> [--board 文件名] [--out 图片路径] [--strict]');
+  const usage = 'dw shot <画布名> [--board 文件名] [--out 图片路径] [--width 1280 --height 800] [--full-page] [--strict]';
+  const name = need(pos[0], usage);
   const config = loadConfig();
-  const dir = canvasDir(config, name);
-  const kind = kindOf(dir);
-  let file;
-  let w = flags.width ? Number(flags.width) : 1280;
-  let h = flags.height ? Number(flags.height) : 800;
-  if (kind === 'canvas') {
-    const canvas = readCanvasJson(config, name);
-    file = opt(flags.board) || canvas.order?.[0] || Object.keys(canvas.boards)[0];
-    const b = canvas.boards[file];
-    if (!b) throw new Error(`${name} 没有画板 ${file}`);
-    if (!flags.width) w = b.w;
-    if (!flags.height) h = b.h;
-  } else if (kind === 'page') {
-    file = readCloud(dir).entry;
-  } else {
-    throw new Error(`${name} 不是画布`);
-  }
-  const outPath = opt(flags.out) ? path.resolve(flags.out) : path.join(dir, '.shots', `${file.replace(/\.dc\.html$|\.html$/, '')}.png`);
+  const b = boardsOf(config, name, arg(flags, 'board', usage))[0];
+  if (!b) throw new Error(`${name} 还没有画板`);
+  const w = num(flags, 'width', usage, b.w);
+  const h = num(flags, 'height', usage, b.h);
+  const outFile = arg(flags, 'out', usage);
+  const outPath = outFile ? path.resolve(outFile) : path.join(canvasDir(config, name), '.shots', `${stemOf(b.file)}.png`);
   const srv = await startServer(config, { port: 0, watch: false, quiet: true });
   try {
-    const r = await captureUrl(config, `${srv.baseUrl}/c/${name}/${encodeURI(file)}`, outPath, { width: w, height: h, fullPage: Boolean(flags['full-page']) });
+    const r = await captureUrl(config, boardUrl(srv.baseUrl, name, b), outPath, { width: w, height: h, fullPage: Boolean(flags['full-page']) });
     const text = [
-      `${name}/${file}  ${w}×${h}  ${r.passed ? '通过（0 个报错）' : '没通过'}`,
+      `${name}/${b.file}  ${w}×${h}  ${r.passed ? '通过（0 个报错）' : '没通过'}`,
       `截图：${r.outputPath}`,
       ...r.allErrors.map((e) => `  报错：${e}`),
       ...r.zeroSizeElements.map((z) => `  宽或高为 0：${z}`)
@@ -371,7 +405,7 @@ export async function cmdDs(pos, flags) {
   if (sub === 'install') {
     need(canvas, usage);
     need(scheme, usage);
-    const r = await installSystem(config, canvas, scheme);
+    const r = installSystem(config, canvas, scheme);
     return out(
       flags,
       r,
@@ -392,7 +426,7 @@ export async function cmdScheme(pos, flags) {
   const [sub, name] = pos;
   if (sub !== 'new') throw new Error(`用法：${usage}`);
   need(name, usage);
-  const made = createScheme(config.repoAbs, name, { title: flags.title === true ? undefined : flags.title });
+  const made = createScheme(config.repoAbs, name, { title: arg(flags, 'title', usage) || undefined });
   const check = flags['no-check'] ? null : checkScheme(config.repoAbs, name);
   if (check && !check.ok) process.exitCode = 1;
   return out(flags, { ...made, check }, [
@@ -422,16 +456,17 @@ export async function cmdDb(pos, flags) {
 }
 
 export async function cmdReview(pos, flags) {
-  const usage = 'dw review <画布名> [--propose [--board 文件名]…] [--clear --board 文件名]';
+  const usage = 'dw review <画布名> [--propose [--board 文件名]… [--note 一句话]] [--clear --board 文件名]';
   const name = need(pos[0], usage);
   const config = loadConfig();
   const canvas = readCanvasJson(config, name);
-  const boards = list(flags.board);
+  const boards = args(flags, 'board', usage);
   for (const b of boards) if (!canvas.boards?.[b]) throw new Error(`${name} 没有画板 ${b}`);
   if (flags.approve || flags.reject) throw new Error('批准和退回只由站主在画布界面里做；Agent 只能标「待批」（--propose）或清掉（--clear）');
   if (flags.propose) {
-    const done = boards.length ? boards : canvas.order || Object.keys(canvas.boards);
-    for (const b of done) setReview(config, name, b, 'proposed', { by: 'agent', note: typeof flags.note === 'string' ? flags.note : '' });
+    const done = boards.length ? boards : boardOrder(canvas);
+    const note = arg(flags, 'note', usage) || '';
+    for (const b of done) setReview(config, name, b, 'proposed', { by: 'agent', note });
     return out(flags, { proposed: done }, `已标待批：${done.join('、')}`);
   }
   if (flags.clear) {
@@ -440,8 +475,7 @@ export async function cmdReview(pos, flags) {
     return out(flags, { cleared: boards }, `已清掉：${boards.join('、')}`);
   }
   const reviews = listReviews(config, name);
-  const order = canvas.order || Object.keys(canvas.boards);
-  const rows = order.map((file) => {
+  const rows = boardOrder(canvas).map((file) => {
     const r = reviews[file];
     if (!r) return `${file}  没标`;
     const when = new Date(r.at).toLocaleString('zh-CN', { hour12: false, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' });
@@ -474,7 +508,8 @@ export async function cmdOffline(_pos, flags) {
   note('画布运行时（React、Babel）', rt);
   for (const c of listCanvases(config)) {
     const dir = canvasDir(config, c.name);
-    const files = c.kind === 'canvas' ? fs.readdirSync(path.join(dir, 'project')).filter((f) => /\.html?$/i.test(f)).map((f) => path.join(dir, 'project', f)) : [path.join(dir, c.entry)];
+    // every page of a canvas, boards in sub-folders too (walk gives [] when project/ is not there yet)
+    const files = c.kind === 'canvas' ? walk(path.join(dir, 'project')).filter((f) => /\.html?$/i.test(f)).map((f) => path.join(dir, 'project', f)) : [path.join(dir, c.entry)];
     const total = { have: [], missing: [] };
     for (const f of files) {
       if (!fs.existsSync(f)) continue;
@@ -515,13 +550,13 @@ export async function cmdMcp() {
 }
 
 export async function cmdCheck(pos, flags) {
-  const name = need(pos[0], 'dw check <画布名> [--board 文件名] [--no-lint]');
+  const usage = 'dw check <画布名> [--board 文件名] [--no-lint]';
+  const name = need(pos[0], usage);
   const config = loadConfig();
-  const board = opt(flags.board);
-  const lines = [];
-  const say = (t) => (flags.json ? lines.push(t) : console.log(t));
+  // with --json only the result goes out, at the end
+  const say = flags.json ? () => {} : (t) => console.log(t);
   const r = await runCheck(config, name, {
-    board,
+    board: arg(flags, 'board', usage),
     lints: !flags['no-lint'],
     onBoard: (row) => {
       say(`${row.passed ? '通过' : '没通过'}  ${row.file}  ${row.size}`);
@@ -542,11 +577,12 @@ export async function cmdCheck(pos, flags) {
 export async function cmdFrames(pos, flags) {
   const usage = 'dw frames <画布名> --board 文件名 [--at 0,300,600 | --every 250 --until 2000] [--click 按钮上的字] [--scale 1]';
   const name = need(pos[0], usage);
-  const board = need(flags.board, usage);
+  const board = need(arg(flags, 'board', usage), usage);
   const config = loadConfig();
-  const times = frameTimes({ at: flags.at ? list(flags.at) : null, every: flags.every, until: flags.until });
-  const clicks = flags.click === undefined || flags.click === true ? [] : [].concat(flags.click).map(String);
-  const r = await runFrames(config, name, { board, times, clicks, scale: flags.scale ? Number(flags.scale) : 1 });
+  const at = args(flags, 'at', usage);
+  const times = frameTimes({ at: at.length ? at : null, every: num(flags, 'every', usage, null), until: num(flags, 'until', usage, null) });
+  const clicks = args(flags, 'click', usage, { split: false });
+  const r = await runFrames(config, name, { board, times, clicks, scale: num(flags, 'scale', usage, 1) });
   const text = [
     `${name}/${r.file}  ${r.size}  ${r.frames.length} 帧（${times.join('、')} ms）`,
     r.sheet && `总览：${path.relative(process.cwd(), r.sheet)}`,
@@ -559,16 +595,18 @@ export async function cmdFrames(pos, flags) {
 }
 
 export async function cmdExport(pos, flags) {
-  const name = need(pos[0], 'dw export <画布名> [--board 文件名] [--png] [--html] [--scale 2] [--out 目录]');
+  const usage = 'dw export <画布名> [--board 文件名] [--png] [--html] [--scale 2] [--out 目录]';
+  const name = need(pos[0], usage);
   const config = loadConfig();
   const html = Boolean(flags.html);
   const png = Boolean(flags.png) || !html;
+  const outDir = arg(flags, 'out', usage);
   const r = await exportBoards(config, name, {
-    board: opt(flags.board),
+    board: arg(flags, 'board', usage),
     png,
     html,
-    scale: flags.scale ? Number(flags.scale) : 2,
-    outDir: opt(flags.out) ? path.resolve(flags.out) : null
+    scale: num(flags, 'scale', usage, 2),
+    outDir: outDir ? path.resolve(outDir) : null
   });
   const text = [
     ...r.rows.map((row) => [row.file, row.png && `  PNG ${path.relative(process.cwd(), row.png)}`, row.html && `  HTML ${path.relative(process.cwd(), row.html)}${row.offlineMissing?.length ? '' : '（断网也能打开）'}`, ...(row.errors || []).map((e) => `  报错：${e}`), ...(row.missing || []).map((m) => `  没找到，原样留着：${m}`), ...(row.offlineMissing || []).map((u) => `  没取到，打开时要联网：${u}`)].filter(Boolean).join('\n'))
@@ -598,12 +636,18 @@ export async function cmdMotion(pos, flags) {
   }
   if (sub === 'export') {
     need(scheme, usage);
+    const dest = arg(flags, 'out', usage);
+    // tooling's renderPart says each GIF it writes on stdout: with --json that goes to stderr, stdout is the JSON alone
+    const log = console.log;
+    if (flags.json) console.log = (...a) => process.stderr.write(util.format(...a) + '\n');
+    let rows;
     try {
-      const rows = await exportMotion(config, scheme, id || '', { out: opt(flags.out) ? path.resolve(flags.out) : null });
-      return out(flags, { rows }, rows.map((r) => `${r.id} ${r.theme}：${r.frames} 帧，GIF ${(r.gif / 1024).toFixed(1)} KB → ${path.relative(process.cwd(), r.out)}`).join('\n'));
+      rows = await exportMotion(config, scheme, id || '', { out: dest ? path.resolve(dest) : null });
     } finally {
+      console.log = log;
       await closeExportBrowser();
     }
+    return out(flags, { rows }, rows.map((r) => `${r.id} ${r.theme}：${r.frames} 帧，GIF ${(r.gif / 1024).toFixed(1)} KB → ${path.relative(process.cwd(), r.out)}`).join('\n'));
   }
   throw new Error(`用法：${usage}`);
 }

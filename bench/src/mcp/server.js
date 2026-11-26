@@ -4,7 +4,7 @@ import util from 'node:util';
 import readline from 'node:readline';
 import { spawn } from 'node:child_process';
 import { loadConfig, readJsonFile, writeJsonFile, BENCH_ROOT, REPO_ROOT } from '../utils/config.js';
-import { canvasDir, kindOf, readCloud, readCanvasJson, boardOrder } from '../canvas/store.js';
+import { canvasDir, needCanvas, readCloud, readCanvasJson, boardOrder } from '../canvas/store.js';
 import { snapshot } from '../canvas/versions.js';
 import { createCanvas } from '../canvas/create.js';
 import { runCheck } from '../canvas/check.js';
@@ -17,7 +17,7 @@ import { listSystems, installSystem } from '../ds/systems.js';
 import { listMotionSchemes } from '../motion/parts.js';
 import { catalog } from '../server/catalog.js';
 import { readChecks, startChecks } from '../server/checks.js';
-import { benchStatus, stopBench, boardAddress } from '../cli/commands.js';
+import { benchStatus, stopBench, benchBase, canvasAddress } from '../cli/commands.js';
 import { BENCH_API } from '../server/server.js';
 import { createScheme, checkScheme } from '../scheme/new.js';
 
@@ -42,12 +42,6 @@ const str = (description) => ({ type: 'string', description });
 const num = (description) => ({ type: 'number', description });
 const bool = (description) => ({ type: 'boolean', description });
 
-function needCanvas(config, name, want = null) {
-  const kind = kindOf(canvasDir(config, name));
-  if (!kind) throw new Error(`没有画布 ${name}（list 看有哪些）`);
-  if (want && kind !== want) throw new Error(want === 'canvas' ? `${name} 是问卷页，没有画板` : `${name} 不是问卷页`);
-  return kind;
-}
 function projectFile(config, name, rel) {
   const base = path.join(canvasDir(config, name), 'project');
   const abs = path.resolve(base, rel);
@@ -127,10 +121,6 @@ async function shotImage(file) {
   }
 }
 
-function serveBase(config, port) {
-  return `http://${config.server.host || '127.0.0.1'}:${port || config.server.port}`;
-}
-
 /** The bench on that port shows some other canvases folder (the main checkout, another worktree): not ours. */
 function notOurs(config, s) {
   return !!(s?.canvasesDir && path.resolve(s.canvasesDir) !== path.resolve(config.canvasesAbs));
@@ -142,7 +132,7 @@ function notOursMessage(config, s, port) {
 }
 
 async function serveStart(config, { port }) {
-  const base = serveBase(config, port);
+  const base = benchBase(config, port);
   const there = await benchStatus(base);
   if (there && notOurs(config, there)) throw new Error(notOursMessage(config, there, port));
   if (there) return { running: true, started: false, url: there.url, pid: there.pid, api: there.api };
@@ -161,7 +151,7 @@ async function serveStart(config, { port }) {
 }
 
 async function serveStop(config, { port }) {
-  const base = serveBase(config, port);
+  const base = benchBase(config, port);
   const s = await benchStatus(base);
   if (!s) return { running: false, stopped: false, url: base };
   if (notOurs(config, s)) throw new Error(`${notOursMessage(config, s, port)}。它不归这一份管，不停`);
@@ -315,15 +305,8 @@ const TOOLS = [
     description: '给站主看的地址：一块画布、某一页、某一张（单张铺满）。看服务在不在跑；没在跑先 serve_start。',
     inputSchema: S({ canvas: str('画布名'), page: str('页 id'), board: str('画板文件名'), port: num('端口，默认 4321；serve_start 换过端口就写同一个') }, ['canvas']),
     run: async (config, a) => {
-      const kind = needCanvas(config, a.canvas);
-      const base = serveBase(config, a.port);
-      let url = `${base}/c/${a.canvas}/`;
-      if (kind === 'canvas') {
-        const c = readCanvasJson(config, a.canvas);
-        if (a.page && !(c.pages || []).some((p) => p.id === a.page)) throw new Error(`${a.canvas} 没有这一页：${a.page}`);
-        if (a.board && !c.boards?.[a.board]) throw new Error(`${a.canvas} 没有画板 ${a.board}`);
-        url = boardAddress(base, a.canvas, { page: a.page || (a.board && c.boards[a.board].page) || null, board: a.board || null });
-      }
+      const base = benchBase(config, a.port);
+      const url = canvasAddress(config, a.canvas, base, { page: a.page || null, board: a.board || null });
       const s = await benchStatus(base);
       if (s && notOurs(config, s)) return { url, running: false, note: notOursMessage(config, s, a.port) };
       return { url, running: !!s };
@@ -392,12 +375,13 @@ const TOOLS = [
   },
   {
     name: 'review_propose',
-    description: '把画板标成「待批」，请站主看（不写 boards 就是全部）。批准和退回只由站主在画布界面里做，这里做不了。clear 为 true 时清掉这几张的状态。',
+    description: '把画板标成「待批」，请站主看（不写 boards 就是全部）。批准和退回只由站主在画布界面里做，这里做不了。clear 为 true 时清掉 boards 这几张的状态（要写 boards）。',
     inputSchema: S({ canvas: str('画布名'), boards: { type: 'array', items: { type: 'string' }, description: '画板文件名' }, note: str('给站主的一句话'), clear: bool('清掉状态') }, ['canvas']),
     run: (config, a) => {
       needCanvas(config, a.canvas, 'canvas');
       const c = readCanvasJson(config, a.canvas);
-      const boards = a.boards?.length ? a.boards : c.order || Object.keys(c.boards);
+      if (a.clear && !a.boards?.length) throw new Error('clear 要写 boards：清掉哪几张的状态');
+      const boards = a.boards?.length ? a.boards : boardOrder(c);
       for (const b of boards) if (!c.boards?.[b]) throw new Error(`${a.canvas} 没有画板 ${b}`);
       if (a.clear) {
         for (const b of boards) clearReview(config, a.canvas, b);
@@ -412,9 +396,9 @@ const TOOLS = [
     description: '看画布的服务（dw serve）在不在跑。',
     inputSchema: S({ port: num('端口，默认 4321') }),
     run: async (config, a) => {
-      const s = await benchStatus(serveBase(config, a.port));
-      if (s && notOurs(config, s)) return { running: false, url: serveBase(config, a.port), other: s, note: notOursMessage(config, s, a.port) };
-      return s ? { running: true, ...s } : { running: false, url: serveBase(config, a.port) };
+      const s = await benchStatus(benchBase(config, a.port));
+      if (s && notOurs(config, s)) return { running: false, url: benchBase(config, a.port), other: s, note: notOursMessage(config, s, a.port) };
+      return s ? { running: true, ...s } : { running: false, url: benchBase(config, a.port) };
     }
   },
   {

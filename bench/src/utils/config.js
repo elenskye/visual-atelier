@@ -14,11 +14,8 @@ const DEFAULTS = {
   canvasesDir: '../canvases',
   claudeBridgeDir: './bridges/claude',
   runtime: './vendor/claude-design/dc-runtime.js',
-  server: { host: '127.0.0.1', port: 4321 },
-  browser: {
-    executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-    defaultViewport: { width: 1280, height: 800 }
-  }
+  server: { port: 4321 },
+  browser: { executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' }
 };
 
 /**
@@ -37,11 +34,7 @@ export function loadConfig(overrides = {}) {
     ...user,
     ...overrides,
     server: { ...DEFAULTS.server, ...(user.server || {}), ...(overrides.server || {}) },
-    browser: {
-      ...DEFAULTS.browser,
-      ...(user.browser || {}),
-      defaultViewport: { ...DEFAULTS.browser.defaultViewport, ...(user.browser?.defaultViewport || {}) }
-    }
+    browser: { ...DEFAULTS.browser, ...(user.browser || {}) }
   };
   const canvasesAbs = process.env.DW_CANVASES && !overrides.canvasesDir
     ? path.resolve(process.env.DW_CANVASES)

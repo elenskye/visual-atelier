@@ -6,31 +6,7 @@ import path from 'node:path';
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { parseArgs, schemesToBuild, outRoot, readJson, readText, writeFile, log, isMain } from '../lib/common.mjs';
 import { launchBrowser, nextFrames } from '../lib/browser.mjs';
-import { tokensCss } from './tokens-css.mjs';
-
-// bench 从这里取 tokensCss（dw ds install 写画布里的 tokens.css）
-export { tokensCss };
-
-/**
- * tokens.json 字体栈里要从 Google Fonts 取的字体：每个栈开头带引号的名字，跳过 meta.localFonts（只在本机有的系统字体）。
- * 和 Design System 页一样按样式里用到的字重取。
- */
-export function fontLinks(t) {
-  // 本机字体和随 Design System 打包的字体（type.fonts）都不去 Google Fonts 取
-  const local = new Set([...(t.meta?.localFonts ?? []), ...(t.type.fonts ?? []).map((f) => f.family)]);
-  const weights = new Set([400]);
-  for (const g of t.type.groups) for (const s of g.styles) if (s.fontWeight) String(s.fontWeight).split(/\s+/).forEach((w) => weights.add(Number(w)));
-  const names = [];
-  for (const stack of Object.values(t.type.families)) {
-    for (const part of stack.split(',').map((x) => x.trim())) {
-      const q = /^"(.+)"$/.exec(part);
-      if (!q) break;
-      if (!local.has(q[1]) && !names.includes(q[1])) names.push(q[1]);
-    }
-  }
-  const w = [...weights].sort((a, b) => a - b).join(';');
-  return names.map((n) => `https://fonts.googleapis.com/css2?family=${n.replace(/ /g, '+')}:wght@${w}&display=swap`);
-}
+import { tokensCss, fontLinks } from './tokens-css.mjs';
 
 export async function runCheck(args = parseArgs()) {
   const browser = await launchBrowser();

@@ -1,29 +1,6 @@
 import path from 'node:path';
 
-/**
- * Claude Bridge Slot — Lifecycle Hooks (`bridges/claude/scripts/hooks.mjs`)
- *
- * Claude 接手工作台时，可在此文件中直接注入专有的无损导入逻辑、
- * AST 转换规则或 `<x-dc>` 组件提取器，无需修改 `src/` 主干代码。
- */
-
-/**
- * 若返回非 null 对象，则完全接管 `dw import` 的解包流程。
- * @param {string} _htmlContent
- * @param {object} _context
- * @returns {Promise<null | object>}
- */
-export async function customUnpack(_htmlContent, _context) {
-  return null;
-}
-
-/**
- * 解包开始前的预处理 Hook。
- * @param {{ htmlContent: string, sourcePath: string, adapterConfig: object }} context
- */
-export async function beforeUnpack(context) {
-  return context;
-}
+// Claude 导出包的解包钩子：`dw import` 解出每个资产时给它起名（src/bundler/adapters/claude-design-adapter.js 调用）。
 
 /**
  * 单个 UUID 资产解压后的处理 Hook。
@@ -60,22 +37,4 @@ export async function onAssetExtracted(asset, context) {
   }
 
   return asset;
-}
-
-/**
- * 单个子页面（Board / `<x-dc>` 页面）解压并还原后的处理 Hook。
- * @param {{ uuid: string, index: number, title: string, slug: string, html: string, tweaks: object }} subpage
- * @param {object} _context
- */
-export async function onSubpageExtracted(subpage, _context) {
-  return subpage;
-}
-
-/**
- * 解包完成、把清单交给 `dw import` 前的 Hook。
- * @param {object} manifest
- * @param {object} _context
- */
-export async function afterUnpack(manifest, _context) {
-  return manifest;
 }

@@ -1,6 +1,7 @@
 // 质量检查。fail 让进程退出码非 0；warn / info 只提示。
 // 用法：npm run qa  或  npm run qa -- --origin ~/Documents/GitHub/personal-website
 import path from 'node:path';
+import { spawnSync } from 'node:child_process';
 import { existsSync, statSync, readFileSync } from 'node:fs';
 import { calcAPCA } from 'apca-w3';
 import { ROOT, parseArgs, schemesToBuild, schemeDir, outRoot, readJson, readText, loadTokens, resolveColor, paletteIds, extractBlock, parseVars, motionParts, expandHome, sha256, walk, writeFile, log, isMain } from '../lib/common.mjs';
@@ -15,16 +16,19 @@ const IMAGE_EXT = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.avif']);
 const MB = 1024 * 1024;
 const LOOP = /animation[^;]*\binfinite\b|animation-iteration-count:\s*infinite/;
 
-/** 静静地跑一个生成器的 --check（它自己的输出不打出来），返回这个方案的 { changed, blocked }。 */
+// 只有命令行、没有导出 run 函数的生成器：清单里有它生成的资产，就跑一遍它的 --check（不一致时退出码 1）
+const SCRIPT_GENERATORS = { 'tooling/pith/build.mjs': 'Pith 图形与生成器一致' };
+
+/** 静静地跑一个生成器的 --check（它自己的输出不打出来，退出码也不留下：结果由这里报），返回这个方案的 { changed, blocked }。 */
 async function quietCheck(run, { errors = false } = {}) {
-  const log0 = console.log, err0 = console.error;
+  const log0 = console.log, err0 = console.error, code0 = process.exitCode;
   console.log = () => {};
   if (errors) console.error = () => {};
-  try { return (await run())[0]; } finally { console.log = log0; console.error = err0; }
+  try { return (await run())[0]; } finally { console.log = log0; console.error = err0; process.exitCode = code0; }
 }
 
 export async function runQa(args = parseArgs()) {
-  const origin = typeof args.origin === 'string' ? expandHome(args.origin) : null;
+  const origin = typeof args.origin === 'string' ? path.resolve(expandHome(args.origin)) : null;
   const report = [];
   // file：这一项说的是哪个文件（相对仓库根目录），bench 的 Checks 页点了能看图
   const add = (scheme, group, name, status, detail = '', file = null) => report.push({ scheme, group, name, status, detail, ...(file ? { file: path.relative(ROOT, file).split(path.sep).join('/') } : {}) });
@@ -32,6 +36,8 @@ export async function runQa(args = parseArgs()) {
   for (const scheme of schemesToBuild(args)) {
     const sdir = schemeDir(scheme);
     const tokens = loadTokens(scheme);
+    // 只对照用这个网站的方案：scheme.json 的 consumers 写了 --origin 那个仓库的名字（比如 personal-website）
+    const site = origin && (readJson(path.join(sdir, 'scheme.json')).consumers ?? []).includes(path.basename(origin)) ? origin : null;
 
     // 1. 资产清单：文件存在、sha256 与迁入时一致
     const mpath = path.join(sdir, 'marks', 'manifest.json');
@@ -44,8 +50,8 @@ export async function runQa(args = parseArgs()) {
         add(scheme, '资产', `${a.id} 校验和`, h === a.sha256 ? 'pass' : 'fail', h === a.sha256 ? '与迁入时一致' : '与清单不一致（被改动过？）');
         if (!['draft', 'proposed', 'approved'].includes(a.status)) add(scheme, '资产', `${a.id} 状态`, 'fail', `未知状态 ${a.status}`);
         // 2. 只读对照网站现用的文件（需要 --origin），发现网站被手改或没跟上；已被新资产取代（supersededBy）的不再对照
-        if (origin && a.origin && !a.supersededBy) {
-          const of = path.join(origin, a.origin.path);
+        if (site && a.origin && !a.supersededBy) {
+          const of = path.join(site, a.origin.path);
           if (!existsSync(of)) add(scheme, '网站对照', a.id, 'warn', '网站里没有这个文件（可能已移走或改用复制件）');
           else if (a.origin.inline) {
             // 从页面内联 SVG 提取的资产没有独立文件，只核对关键几何仍在网站页面里
@@ -73,13 +79,19 @@ export async function runQa(args = parseArgs()) {
       add(scheme, '资产', name, stale.length ? 'warn' : 'pass', stale.length ? `与 ${cmd} 的结果不同：${stale.join('、')}` : ok);
     };
     if (tokens.graphic) {
-      generated('图形语言源文件与生成器一致', await quietCheck(() => runGraphic({ ...args, scheme, check: true })), 'npm run build:graphic', 'marks/graphic/ 与动效片段都是最新的');
+      generated('图形语言源文件与生成器一致', await quietCheck(() => runGraphic({ ...args, scheme, check: true, quiet: true })), 'npm run build:graphic', 'marks/graphic/ 与动效片段都是最新的');
     }
     if (existsSync(path.join(sdir, 'marks', 'derived.json'))) {
-      generated('派生资产与生成器一致', await quietCheck(() => runDerived({ ...args, scheme, check: true })), 'npm run build:derived', '字标转曲线与默认分享图都是最新的');
+      generated('派生资产与生成器一致', await quietCheck(() => runDerived({ ...args, scheme, check: true, quiet: true })), 'npm run build:derived', '字标转曲线与默认分享图都是最新的');
     }
     if (existsSync(path.join(sdir, 'marks', 'art.mjs'))) {
       generated('手作资产与生成器一致', await quietCheck(() => runHandmadeMarks({ ...args, scheme, check: true, quiet: true }), { errors: true }), 'node tooling/handmade/marks.mjs', 'marks/ 的 SVG 和清单都是最新的');
+    }
+    const usedGenerators = existsSync(mpath) ? new Set(readJson(mpath).assets.map((a) => a.source?.generator)) : new Set();
+    for (const [script, name] of Object.entries(SCRIPT_GENERATORS)) {
+      if (!usedGenerators.has(script)) continue;
+      const r = spawnSync(process.execPath, [path.join(ROOT, script), '--check'], { cwd: ROOT, encoding: 'utf8' });
+      add(scheme, '资产', name, r.status === 0 ? 'pass' : 'warn', r.status === 0 ? 'marks/ 的 SVG 和清单都是最新的' : `与 node ${script} 的结果不同：${(r.stdout || r.stderr || '').trim()}`);
     }
 
     // 1d. 文章分享图：示例标题排得下、守标点禁则，导出的 PNG 尺寸对（体积在下面的预算里查，两次一致由 qa:determinism 查）
@@ -102,9 +114,9 @@ export async function runQa(args = parseArgs()) {
       add(scheme, '分享图', `${a.id} 超长标题截断`, renderCardSvg(template, longest).layout.lines.at(-1)?.endsWith('…') ? 'pass' : 'fail', '最后一个示例要排不下、停在省略号上');
     }
 
-    // 3. token 与网站 global.css 一致（需要 --origin）
-    if (origin) {
-      const gp = path.join(origin, 'src/styles/global.css');
+    // 3. token 与网站 global.css 一致（需要 --origin，只查用这个网站的方案）
+    if (site) {
+      const gp = path.join(site, 'src/styles/global.css');
       if (existsSync(gp)) {
         const css = readText(gp);
         const siteLight = parseVars(extractBlock(css, ':root {'));

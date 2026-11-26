@@ -5,33 +5,15 @@
 | 方案 | 给谁用 | 状态 |
 | --- | --- | --- |
 | `schemes/vermilion/`（朱红） | 个人网站，以及站主的 PPT 与动图 | `1.5.0`，已上线；[Design System](https://claude.ai/artifact/B89E9carxtZjjkT4adbNer)（私有，现用账号） |
-| `schemes/pomelo/`（柚儿园） | Pomelo | `1.0.1`（加了侧栏展开 `fold`）；[Design System](https://claude.ai/artifact/5uaouHwXAXihjxhh9g4vb3)（私有，现用账号，按 1.0.1 发了）；由 Pomelo 的会话做，计划在 Pomelo 的 `docs/roadmap.md` |
+| `schemes/pomelo/`（柚儿园） | Pomelo | `1.0.1`；[Design System](https://claude.ai/artifact/5uaouHwXAXihjxhh9g4vb3)（私有，现用账号）；由 Pomelo 的会话做，计划在 Pomelo 的 `docs/roadmap.md` |
 | `schemes/peck/` | Peck（站主的本地 Coding Agent） | `1.0.0`；Design System「Peck」（私有）；由 Peck 的会话做，计划在 Peck 自己的仓库 |
-| `schemes/pith/` | Pith（站主的 macOS 研究工作台）的 App 界面：花园笔记 × 铅字 × 数字花园；WonderLab 作品另起 `pith-wonder-*` | `1.0.0`（站主 2026-11-24 验收）；[Design System](https://claude.ai/artifact/CPavXvD8wdYuEEXbVhYqAb)（私有，现用账号）；由 Pith 的会话做 |
+| `schemes/pith/` | Pith（站主的 macOS 研究工作台）的 App 界面：花园笔记 × 铅字 × 数字花园；WonderLab 作品另起 `pith-wonder-*` | `1.3.0`；[Design System](https://claude.ai/artifact/CPavXvD8wdYuEEXbVhYqAb)（私有，现用账号，云端还是 1.0.0）；由 Pith 的会话做 |
 
 2026-11-06 之前分成两个仓库：visual-assets（方案和工具）和 visual-workbench（画布和引擎）。旧文档、历史记录、消费方和云端里写着这两个名字的，说的都是这里。
 
-## 目录
-
-```
-CLAUDE.md          核心规则（AGENTS.md 是指向它的软链接；细则在 docs/ 和各份 README）
-ROADMAP.md         当前状态、接下来做什么、长期的决定和授权
-CHANGELOG.md       已完成的结果
-docs/              会话和第二条线、工作流和验证、架构、动效档位、采用、许可、云端往返
-schemes/           视觉方案（_template 是新方案的起点）
-tooling/           共用工具
-canvases/          画布（每个方案一块 Explore Deck）和问卷页的源
-bench/             看画布的引擎：命令行 dw、本地服务和画布界面（分五类：Design System、Motion Deck、Explore Deck、Questionnaire、Checks）、给 Agent 用的 MCP 服务
-skills/            本仓库的 Skill（.claude/skills、.agents/skills 指向这里）
-history/           做完的大计划和逐条记录（只是历史）
-.mcp.json、.codex/、.agents/   三家 Agent（Claude Code、Codex、Antigravity）的项目级配置：MCP 服务 dw（Antigravity 的在 .agents/plugins/dw/）、Skill 的链接
-package.json       命令入口（npm run ...）
-dist/              构建产物，不进 Git
-scratch/           临时文件，不进 Git
-```
-
 ## 开始
 
+- 每个目录、每份文档管什么：`CLAUDE.md`「仓库结构」「文档职责」。
 - 想知道做到哪了、下一步做什么：读 `ROADMAP.md`。
 - 想了解规则：读 `CLAUDE.md`；做视觉探索先读 `skills/design-craft/SKILL.md`。
 - 想了解整体设计：读 `docs/architecture.md`。

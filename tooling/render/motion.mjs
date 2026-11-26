@@ -18,10 +18,12 @@ import { dsRuntime, expand } from '../design-system/build.mjs';
 
 const hexToRgba = (hex) => [parseInt(hex.slice(1, 3), 16), parseInt(hex.slice(3, 5), 16), parseInt(hex.slice(5, 7), 16), 255];
 
-/** 零件的 CSS：先放它依赖的方案内 CSS（例如 marks/graphic/graphic.css），再放零件自己的。 */
+/** 零件依赖的方案内 CSS（requires，相对方案目录，例如 marks/graphic/graphic.css），按写的顺序。 */
+export const requiredCss = (scheme, spec) => (spec.requires ?? []).map((p) => readText(path.join(schemeDir(scheme), p)));
+
+/** 零件的 CSS：先放它依赖的方案内 CSS，再放零件自己的。 */
 export function pieceCss(scheme, dir, spec) {
-  const deps = (spec.requires ?? []).map((p) => readText(path.join(schemeDir(scheme), p)));
-  return [...deps, readText(path.join(dir, spec.files.css))].join('\n');
+  return [...requiredCss(scheme, spec), readText(path.join(dir, spec.files.css))].join('\n');
 }
 
 /** 方案的全部零件：[{ id, dir, spec }]，按目录名排。 */
@@ -46,7 +48,7 @@ export async function schemeBase(scheme) {
     const rt = await dsRuntime(scheme, { motion: false });
     base = {
       tokens, webCss: rt.tokensCss, head: `<style>${rt.bundleCss}</style><script>${rt.bundleJs}</script>`,
-      boot: rt.paints ? `window.${rt.namespace}.paint(document.body)` : '', bodyClass: 'pm',
+      boot: rt.paints ? `window.${rt.namespace}.paint(document.body)` : '', bodyClass: 'pm', namespace: rt.namespace,
     };
   }
   bases.set(scheme, base);
@@ -66,10 +68,10 @@ export async function partPage(scheme, id, theme, { palette } = {}) {
   });
 }
 
-/** 等字体到、手画的框画好。 */
-export async function settle(page) {
+/** 等字体到、手画的框画好（namespace：Design System 的命名空间，画法挂在它上面；不写就按 Pomelo）。 */
+export async function settle(page, namespace = 'Pomelo') {
   await page.evaluate(() => document.fonts.ready);
-  await page.evaluate(() => { if (window.Pomelo?.paint) window.Pomelo.paint(document.body); });
+  await page.evaluate((ns) => { if (window[ns]?.paint) window[ns].paint(document.body); }, namespace);
   await nextFrames(page);
 }
 
@@ -90,7 +92,7 @@ export async function renderPart(browser, scheme, id, { out = null, write = true
     const ctx = await browser.newContext({ viewport: { width: vw, height: vh }, deviceScaleFactor: c.scale, colorScheme: theme });
     const page = await ctx.newPage();
     await page.setContent(await partPage(scheme, id, theme));
-    await settle(page);
+    await settle(page, base.namespace);
     const times = c.endMs ? frameTimes(c.endMs, c.fps).filter((t) => t < c.endMs) : null;
     const { rest, frames } = await captureFrames(page, {
       host: c.host, trigger: { type: 'class', host: c.host, playClass: c.playClass, target: c.playTarget, all: c.playAll }, steps: c.steps ?? null, padPx: c.padPx, fps: c.fps, times,

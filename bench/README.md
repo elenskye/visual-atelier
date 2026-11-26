@@ -44,8 +44,8 @@ node bench/bin/dw.js serve
 - **批准状态**：画板名字后面的小牌子是它的状态（待批、已批准、退回；标完以后板又改过会多「· 改过」），点开能批准、退回（可以写一句原因）、改回待批。单张铺满时顶栏也有「批准」「退回」。记在这块画布的 `db.json`（`review/<画板>`），Agent 用 `dw review` 读。
 - **并排对比**：单张铺满时点「对比」，选另一张板，或这张在本地存过的某个旧版本，左右各一半；地址带 `&vs=<文件>` 或 `&vs=@<版本>`。`Esc` 先关掉对比。
 - **深色、减弱动效**：顶栏（单张铺满时在它自己的顶栏）的两个开关管所有画板：带 `dark` 参数的画板直接改参数，其余的由 `src/board/emulate.js` 模拟系统的深色和「减弱动态效果」（画板会重新载入）。开关记在浏览器里，下次打开还在。
-- **Design System**：菜单的第一类，打开就和 Claude 的 Design System 页一样看 Overview、Colors、Typography、Spacing……Components（能切明暗）、Assets、Files（分节的名字和云端一样用英文）。Colors 照云端分组：`color-` 后面那个词有别的 token 接着往下写的（`color-surface-cool` → surface，`color-surface` 也进去）自成一组，其余是 Palette。Files 和云端一样连资产一起数：构建产物里的文件加上 Assets 里的图（云端 Vermilion 是 165 = 50 + 115；云端「assets」文件夹 118 是 115 张图加 3 个 `README.md`）。内容直接读构建好的那份（`npm run build:ds` 之后刷新）。挂着 Design System 的画布，顶栏右边有它的名字，点一下过去。
-- **Motion Deck**（原来叫「动效台」）：菜单的第二类，或地址 `/#/motion/<方案>?p=<零件>`。左边是 `schemes/<方案>/motion/` 里的零件（按档位分，开着时新加的零件点「重新读零件」），右边一次看一个：
+- **Design System**：菜单的第一类，打开就和 Claude 的 Design System 页一样看 Overview、Colors、Typography、Spacing……Components（能切明暗）、Assets、Files（分节的名字和云端一样用英文）。Colors 照云端分组：`color-` 后面那个词有别的 token 接着往下写的（`color-surface-cool` → surface，`color-surface` 也进去）自成一组，其余是 Palette。Files 和云端一样连资产一起数（构建产物里的文件加上 Assets 里的图）。内容直接读构建好的那份（`npm run build:ds` 之后刷新）。挂着 Design System 的画布，顶栏右边有它的名字，点一下过去。
+- **Motion Deck**：菜单的第二类，或地址 `/#/motion/<方案>?p=<零件>`。左边是 `schemes/<方案>/motion/` 里的零件（按档位分，开着时新加的零件点「重新读零件」），右边一次看一个：
   - 演示页就是逐帧导出用的那一页（`tooling/render/motion.mjs` 的 `partPage`，Pomelo 的底是 Design System 的 tokens、`bundle.css`、`bundle.js`），能切明暗、配色、减弱动效、放大。
   - 「播放」重新载入演示页，按 `capture.steps` 的时刻真的去做；拖时间轴（或 ←、→ 一帧，空格播放）是定格，和导出同一个算法：步骤和页面里的做法都直接用 `tooling/lib/motion-harness.mjs`。预览面板藏起来时 `requestAnimationFrame` 会停，定格不靠它，照样准；倒回到某一步之前会重新载入演示页（约一秒）。
   - 「导出 GIF」在服务端调 `renderPart`，写 `dist/<方案>/motion/<零件>/`，和 `npm run build:motion` 逐字节一样；下面是两种明暗的 GIF 和逐帧总览图（触发前一张，再每 3 帧一张）。没设 `VA_CHROMIUM`、`VA_BROWSER_CHANNEL` 时用 Chrome。
@@ -78,77 +78,14 @@ node bench/bin/dw.js frames pith-explore --board X3-B.dc.html --every 600 --unti
 node bench/bin/dw.js export pomelo-explore --board X4-Kit.dc.html --png --html
 ```
 
-改名、删除、回收处（和界面里的同一套，`src/canvas/manage.js`）：
+其余命令（改名删除和回收处、挂 Design System、起新方案、批准状态、动效零件、页面存储、拉回发回、版本）和界面、MCP 是同一套，全部用法 `node bench/bin/dw.js help`，一条命令的 `node bench/bin/dw.js <命令> --help`。常用的几条：
 
-```bash
-node bench/bin/dw.js rename <画布名> <新名字>
-```
-
-```bash
-node bench/bin/dw.js rename <画布名> --page <页 id> <新页名>
-```
-
-```bash
-node bench/bin/dw.js rename <画布名> --board <文件> <新标题>
-```
-
-```bash
-node bench/bin/dw.js delete <画布名> [--page <页 id> | --board <文件>]
-```
-
-Design System、Motion Deck 在 bench 里的名字（不写新名字就回到方案自己的）：
-
-```bash
-node bench/bin/dw.js rename --ds <方案> <新名字>
-```
-
-```bash
-node bench/bin/dw.js rename --motion <方案> <新名字>
-```
-
-```bash
-node bench/bin/dw.js trash
-```
-
-`dw trash restore <id>` 放回一样，`dw trash empty --yes` 清空（清空就找不回了，提交过的还在 Git 里）。
-
-把 Design System 挂到一块画布上：
-
-```bash
-node bench/bin/dw.js ds install <画布名> vermilion
-```
-
-起一套新方案（从 `schemes/_template/` 复制、填名字，再跑一遍 token 构建、质量检查、Design System 构建；`docs/architecture.md`「新方案怎么起」）：
-
-```bash
-node bench/bin/dw.js scheme new <方案名> --title <显示名>
-```
-
-看每张画板的批准状态（批准、退回只由站主在界面里做；Agent 只标「待批」）：
-
-```bash
-node bench/bin/dw.js review pomelo-explore
-```
-
-```bash
-node bench/bin/dw.js review pomelo-explore --propose --note "第一版"
-```
-
-列出动效零件、导出一个（和 `npm run build:motion -- --scheme pomelo --part tooltip` 同一个函数；不写零件就是整个方案）：
-
-```bash
-node bench/bin/dw.js motion list pomelo
-```
-
-```bash
-node bench/bin/dw.js motion export pomelo tooltip
-```
-
-读问卷存的答案：
-
-```bash
-node bench/bin/dw.js db <问卷名> survey/answers
-```
+- **改名、删除**：`dw rename <画布名> <新名字>`（加 `--page <页 id>`、`--board <文件>` 改一页、一张；`--ds`、`--motion <方案>` 只改 bench 里显示的名字），`dw delete <画布名> [--page … | --board …]`。删掉的进回收处 `canvases/.trash/`，`dw trash` 看、`restore <id>` 放回、`empty --yes` 清空。
+- **挂 Design System**：`dw ds install <画布名> <方案>`。
+- **起新方案**：`dw scheme new <方案名> --title <显示名>`（`docs/architecture.md`「新方案怎么起」）。
+- **批准状态**：`dw review <画布名>`；Agent 只能标待批（`--propose [--board 文件] [--note 说明]`），批准、退回只由站主在界面里做。
+- **动效零件**：`dw motion list <方案>`、`dw motion export <方案> [零件]`（和 `npm run build:motion` 同一个函数）。
+- **问卷答案**：`dw db <问卷名> survey/answers`。
 
 ## 给别的程序用
 
@@ -156,8 +93,8 @@ Pomelo 的「有板有眼」模块用这一套在它自己的窗口里启动、�
 
 | 要做的事 | 命令行 | 开着的服务 |
 | --- | --- | --- |
-| 启动 | `dw serve [--port 4321] --json`：启动好了打一行 `{"ready":true,"url":…,"pid":…,"api":1}`，然后一直开着；端口上已经有一个时打 `{"ready":false,"running":true,…}` 并退出 | |
-| 是不是它、在不在跑 | `dw status [--port] [--json]` | `GET /api/status` → `{"app":"visual-atelier-bench","api":1,"pid":…,"startedAt":…,"url":…,"root":…,"canvases":…,"stoppable":…}`；认 `app` 这个名字，不是它就当没在跑 |
+| 启动 | `dw serve [--port 4321] --json`：启动好了打一行 `{"ready":true,"url":…,"pid":…,"api":5}`，然后一直开着；端口上已经有一个时打 `{"ready":false,"running":true,…}` 并退出 | |
+| 是不是它、在不在跑 | `dw status [--port] [--json]` | `GET /api/status` → `{"app":"visual-atelier-bench","api":5,"pid":…,"startedAt":…,"url":…,"root":…,"canvases":…,"stoppable":…}`；认 `app` 这个名字，不是它就当没在跑 |
 | 停止 | `dw stop [--port] [--json]` | `POST /api/stop`，内容是 JSON（`{}` 就行，`Content-Type: application/json`）；只有 `dw serve` 启动的能停 |
 | 列出全部（五类） | `dw list --json`（`sections`） | `GET /api/index`：`{ sections: [{ id, title, items: [{ name, title, sub, route, … }] }] }`，`id` 依次是 `ds`、`motion`、`explore`、`questionnaire`、`checks`（`api` 5 起；它只有一项，`route` 是 `/qa/all`，`sub` 说上次的结果）；`route` 是 `#` 后面那段，问卷另有 `page`（`/c/<名字>/`） |
 | `npm run all` 的结果 | `npm run all` | `GET /api/checks`：`{ run, schemes: [{ scheme, at, items }], watermark }`；`POST /api/checks/run` `{}` 在后台跑一遍（已经在跑回 409）；跑的时候 `/api/events` 发 `checks`；`/_dist/<路径>` 给 `dist/` 里的图 |
@@ -189,7 +126,7 @@ Pomelo 的「有板有眼」模块用这一套在它自己的窗口里启动、�
 | `rename`、`delete`、`trash` | 改名（画布、页、画板、Design System 和 Motion Deck 在 bench 里的名字）；删除进回收处、放回 |
 | `ds_list`、`ds_install` | Design System |
 | `db_get`、`db_set` | 页面存储（问卷答案在 `survey/answers`） |
-| `review`、`review_propose` | 批准状态；Agent 只能标「待批」 |
+| `review`、`review_propose` | 批准状态；Agent 只能标「待批」，清掉要写是哪几张（`boards`） |
 | `serve_status`、`serve_start`、`serve_stop` | 看画布的服务。几份同时开（主工作区和 worktree）各用各的 `port`；端口上开着的是别的仓库或 worktree 的 bench 时，说换个端口，不当成自己的、也不停它 |
 | `checks` | `npm run all` 的结果，`run` 为 true 时再跑一遍 |
 | `dw` | 其余命令行能做的（拉回、发回、版本、动效导出、断网缓存……），照 `dw <args>` 跑，给回输出 |

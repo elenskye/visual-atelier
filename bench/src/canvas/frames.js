@@ -18,7 +18,7 @@ export function frameTimes({ at = null, every = null, until = null } = {}) {
   let times;
   if (at && at.length) times = at.map(Number);
   else {
-    const step = Number(every) || 250;
+    const step = every != null ? Number(every) : 250;
     const end = until != null ? Number(until) : 2000;
     if (step <= 0) throw new Error('--every 要大于 0');
     times = [];
@@ -30,11 +30,14 @@ export function frameTimes({ at = null, every = null, until = null } = {}) {
   return times;
 }
 
+/** How many frames a row of the contact sheet holds. */
+const sheetCols = (count, thumbW) => Math.min(count, thumbW > 400 ? 3 : 4);
+
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 /** 总览页：每帧一格，标上时间点和实际截到的时间。 */
 function sheetHtml({ title, frames, thumbW, thumbH }) {
-  const cols = Math.min(frames.length, thumbW > 400 ? 3 : 4);
+  const cols = sheetCols(frames.length, thumbW);
   const cells = frames
     .map((f) => `<figure><img src="${esc(f.file)}" width="${thumbW}" height="${thumbH}" alt=""><figcaption><b>${f.t} ms</b>${f.actual !== f.t ? `<span>实际 ${f.actual} ms</span>` : ''}</figcaption></figure>`)
     .join('\n');
@@ -89,7 +92,7 @@ export async function runFrames(config, name, { board, times, clicks = [], scale
     const title = `${name} / ${b.file} · ${clicks.length ? `先点「${clicks.join('」「')}」，` : ''}从画完那一刻算起`;
     const html = path.join(outDir, 'sheet.html');
     fs.writeFileSync(html, sheetHtml({ title, frames, thumbW, thumbH }));
-    const cols = Math.min(frames.length, thumbW > 400 ? 3 : 4);
+    const cols = sheetCols(frames.length, thumbW);
     const rows = Math.ceil(frames.length / cols);
     sheet = path.join(dir, '.shots', 'frames', `${stem}.png`);
     await captureUrl(config, pathToFileURL(html).href, sheet, { width: 32 + cols * thumbW + (cols - 1) * 14, height: 40 + rows * (thumbH + 34), scale: 1, fullPage: true });

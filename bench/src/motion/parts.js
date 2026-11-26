@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { NAME_RE as NAME } from '../canvas/store.js';
 
 // The Motion Deck: each scheme's motion parts (schemes/<方案>/motion/<id>/motion.json), the same page the
 // exporter freezes (tooling/render/motion.mjs partPage) and the same export (renderPart). Nothing here draws or times a
@@ -8,7 +9,6 @@ import { pathToFileURL } from 'node:url';
 // shows and exports is what `npm run build:motion` gives.
 
 const readJson = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));
-const NAME = /^[a-z0-9][a-z0-9-]*$/;
 
 /** A tooling/ module of this repository (config.repoAbs). */
 const tooling = (config, rel) => import(pathToFileURL(path.join(config.repoAbs, rel)).href);
@@ -24,6 +24,15 @@ const partDirs = (dir) =>
     ? fs.readdirSync(dir).filter((id) => NAME.test(id) && fs.existsSync(path.join(dir, id, 'motion.json'))).sort()
     : [];
 
+/** A scheme's own name (scheme.json's title), or its folder name. */
+function schemeTitle(config, scheme) {
+  try {
+    return readJson(path.join(config.repoAbs, 'schemes', scheme, 'scheme.json')).title || scheme;
+  } catch {
+    return scheme;
+  }
+}
+
 /** Every scheme with at least one motion part: [{ name, title, parts }]. */
 export function listMotionSchemes(config) {
   const root = path.join(config.repoAbs, 'schemes');
@@ -31,14 +40,7 @@ export function listMotionSchemes(config) {
   return fs
     .readdirSync(root)
     .filter((s) => NAME.test(s))
-    .map((name) => {
-      const parts = partDirs(path.join(root, name, 'motion')).length;
-      let title = name;
-      try {
-        title = readJson(path.join(root, name, 'scheme.json')).title || name;
-      } catch {}
-      return { name, title, parts };
-    })
+    .map((name) => ({ name, title: schemeTitle(config, name), parts: partDirs(path.join(root, name, 'motion')).length }))
     .filter((s) => s.parts > 0);
 }
 
@@ -58,10 +60,7 @@ export async function readMotion(config, scheme) {
     palettes = paletteIds(t).filter(Boolean).map((id) => ({ id, label: t.color.palettes[id]?.label || id }));
     defaultPalette = t.color.defaultPalette || palettes[0]?.id || null;
   } catch {}
-  let title = scheme;
-  try {
-    title = readJson(path.join(config.repoAbs, 'schemes', scheme, 'scheme.json')).title || scheme;
-  } catch {}
+  const title = schemeTitle(config, scheme);
   const parts = partDirs(src).map((dir) => {
     let spec;
     try {

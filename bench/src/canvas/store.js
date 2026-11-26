@@ -15,7 +15,7 @@ const TEXT_EXT = new Set(['.html', '.htm', '.css', '.js', '.mjs', '.json', '.md'
 
 function assertName(name) {
   if (!name || !NAME_RE.test(name)) {
-    throw new Error(`画布名只能用小写字母、数字和连字符：${name}`);
+    throw Object.assign(new Error(`画布名只能用小写字母、数字和连字符：${name}`), { code: 'invalid_argument' });
   }
 }
 
@@ -38,6 +38,17 @@ export function kindOf(dir) {
   if (cloud?.kind === 'canvas') return 'canvas';
   if (cloud?.kind === 'page' && cloud.entry) return 'page';
   return null;
+}
+
+/**
+ * The kind of an existing canvas: 'canvas' (an Explore Deck) or 'page' (a questionnaire). Throws when there is none,
+ * or when it is not the kind `want` asks for. Every command and tool that needs a canvas starts here.
+ */
+export function needCanvas(config, name, want = null) {
+  const kind = kindOf(canvasDir(config, name));
+  if (!kind) throw Object.assign(new Error(`没有画布 ${name}（list 看有哪些）`), { code: 'not_found' });
+  if (want && kind !== want) throw Object.assign(new Error(want === 'canvas' ? `${name} 是问卷页，没有画板` : `${name} 不是问卷页`), { code: 'failed_precondition' });
+  return kind;
 }
 
 /** Sorted POSIX paths of every file under dir, skipping dotfiles and dot-folders. */
@@ -88,25 +99,23 @@ export function listCanvases(config) {
 export const boardOrder = (c) => [...(c.order || []).filter((f) => c.boards[f]), ...Object.keys(c.boards).filter((f) => !(c.order || []).includes(f))];
 
 export function readCanvasJson(config, name) {
-  const file = path.join(canvasDir(config, name), 'project', 'canvas.json');
-  const data = readJsonFile(file, null);
-  if (!data) throw new Error(`读不到 ${file}`);
+  needCanvas(config, name, 'canvas');
+  const data = readJsonFile(path.join(canvasDir(config, name), 'project', 'canvas.json'), null);
+  if (!data) throw Object.assign(new Error(`${name} 还没有 project/canvas.json（云端那份还没拉回来：dw pull）`), { code: 'failed_precondition' });
   return data;
 }
 
 /** The files a canvas keeps in sync with the cloud and in its versions: rel path → sha256. */
 export function trackedFiles(config, name) {
   const dir = canvasDir(config, name);
-  const kind = kindOf(dir);
+  const kind = needCanvas(config, name);
   const files = {};
   if (kind === 'canvas') {
     for (const rel of walk(path.join(dir, 'project'))) files[`project/${rel}`] = sha256File(path.join(dir, 'project', rel));
     for (const rel of walk(path.join(dir, 'blobs'))) files[`blobs/${rel}`] = sha256File(path.join(dir, 'blobs', rel));
-  } else if (kind === 'page') {
+  } else {
     const { entry } = readCloud(dir);
     if (fs.existsSync(path.join(dir, entry))) files[entry] = sha256File(path.join(dir, entry));
-  } else {
-    throw new Error(`${dir} 不是画布：没有 project/canvas.json，也没有 kind 为 page 的 cloud.json`);
   }
   return files;
 }
@@ -153,22 +162,4 @@ export function rewriteBlobIds(buffer, map) {
     return full;
   });
   return changed ? Buffer.from(out, 'utf8') : buffer;
-}
-
-export function extForContentType(type = '') {
-  const t = String(type).split(';')[0].trim().toLowerCase();
-  return {
-    'image/svg+xml': '.svg',
-    'image/png': '.png',
-    'image/jpeg': '.jpg',
-    'image/webp': '.webp',
-    'image/gif': '.gif',
-    'font/woff2': '.woff2',
-    'font/woff': '.woff',
-    'font/ttf': '.ttf',
-    'font/otf': '.otf',
-    'text/css': '.css',
-    'text/javascript': '.js',
-    'application/json': '.json'
-  }[t] || '.bin';
 }

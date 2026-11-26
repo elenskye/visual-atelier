@@ -79,6 +79,7 @@ node bench/bin/dw.js scheme new <方案名> --title <显示名>
 | --- | --- |
 | `tokens/graphic.json` | `tooling/graphic/`。里面的形状是 Vermilion 的「笔势与纸片」，别的方案不写这个文件，也不借用这些形状 |
 | `tokens/handmade.json` | `tooling/handmade/`：手绘线条、贴纸、错版的生成器，算法通用，数值在这个文件。出样张到 `dist/<方案>/handmade/` |
+| `marks/art.mjs`（还要有 `tokens/handmade.json`） | `tooling/handmade/marks.mjs`：照它的几何把手作资产写进 `marks/` 和清单 |
 | `marks/derived.json` | `tooling/marks/derive.mjs`：文字转曲线、合成分享图、生成分享图与水印模板 |
 | `design-system/` | `tooling/design-system/` |
 | `sync.json` | `tooling/sync/` |
@@ -106,4 +107,4 @@ node bench/bin/dw.js scheme new <方案名> --title <显示名>
 
 `dist/<方案>/` 的结构：`tokens/`、`marks/`（`png/` 放导出的 PNG）、`motion/<id>/`（GIF、逐帧总览图、CSS 与 HTML 片段）、`design-system/`（`project/` 要发布的文件、`upload/` 要上传的图片、`check/` 自检截图）、`qa-report.json`；`dist/catalog/index.html` 是目录页。`dist/` 不进 Git。
 
-质量检查的几类：资产校验和、颜色没有写死、对比度、体积预算、动效规则（档位、循环、时长）、渲染合理性；另有确定性检查。加 `--origin` 时再只读对照网站现用的文件、变量与动效，发现网站被手改或没跟上。
+质量检查的几类：资产校验和、颜色没有写死、对比度、体积预算、动效规则（档位、循环、时长）、渲染合理性；另有确定性检查。加 `--origin <消费方目录>` 时，再只读对照 `scheme.json` 的 `consumers` 里有这个消费方的方案（现在是 Vermilion 和网站）：现用的文件、变量与动效，发现被手改或没跟上。

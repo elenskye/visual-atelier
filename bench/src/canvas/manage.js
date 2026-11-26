@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { canvasDir, kindOf, readCloud, writeCloud, NAME_RE } from './store.js';
+import { canvasDir, needCanvas, readCloud, writeCloud, NAME_RE } from './store.js';
 import { snapshot } from './versions.js';
 import { readStore, setDoc, deleteDoc } from './db.js';
 import { REVIEW_COLLECTION } from './review.js';
@@ -42,11 +42,8 @@ function cleanName(value, what) {
 }
 
 function existing(config, name) {
-  if (!name || !NAME_RE.test(name)) fail('invalid_argument', `画布名只能用小写字母、数字和连字符：${name}`);
-  const dir = canvasDir(config, name);
-  const kind = kindOf(dir);
-  if (!kind) fail('not_found', `没有画布 ${name}`);
-  return { dir, kind };
+  const kind = needCanvas(config, name);
+  return { dir: canvasDir(config, name), kind };
 }
 
 function readCanvas(dir) {

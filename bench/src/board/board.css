@@ -61,8 +61,8 @@ kbd { font: 11px var(--font); color: var(--muted); margin-left: auto; }
 .menu-wrap { position: relative; }
 .menu { position: absolute; top: calc(100% + 6px); left: 0; min-width: 240px; max-height: 70vh; overflow: auto; padding: 6px; background: var(--float); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); z-index: 30; }
 .menu.right { left: auto; right: 0; }
-.menu button, .menu a { display: flex; align-items: center; gap: 10px; width: 100%; padding: 7px 10px; border-radius: 8px; text-align: left; color: var(--text); text-decoration: none; }
-.menu button:hover, .menu a:hover { background: var(--hover); }
+.menu button { display: flex; align-items: center; gap: 10px; width: 100%; padding: 7px 10px; border-radius: 8px; text-align: left; color: var(--text); text-decoration: none; }
+.menu button:hover { background: var(--hover); }
 .menu .on { background: var(--accent-soft); }
 .menu .sub { color: var(--muted); font-size: 12px; }
 .menu .grow { flex: 1; min-width: 0; }
@@ -153,7 +153,6 @@ kbd { font: 11px var(--font); color: var(--muted); margin-left: auto; }
 .field select, .field input[type="text"], .field input[type="number"], .field textarea { width: 100%; height: 32px; padding: 0 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--text); font: inherit; }
 .field textarea { height: 72px; padding: 6px 8px; resize: vertical; }
 .field .seg { flex-wrap: wrap; }
-.field .seg button { height: 26px; }
 .field .inline { display: flex; align-items: center; gap: 8px; }
 .field input[type="color"] { width: 36px; height: 30px; padding: 0; border: 1px solid var(--line); border-radius: 6px; background: none; }
 .field input[type="range"] { flex: 1; }
@@ -232,7 +231,6 @@ button.rv { cursor: pointer; }
 .ds-chip { text-decoration: none; color: var(--text); }
 .ds-chip.off { color: var(--muted); }
 .dsview { position: absolute; top: 48px; left: 0; right: 0; bottom: 0; display: flex; background: var(--bg); }
-.dsview[hidden] { display: none; }
 .ds-nav { width: 200px; flex: none; padding: 12px 8px; border-right: 1px solid var(--line); overflow-x: hidden; overflow-y: auto; display: flex; flex-direction: column; gap: 2px; }
 .ds-nav-item { display: flex; align-items: center; gap: 8px; width: 100%; text-align: left; padding: 6px 10px; border-radius: 8px; color: var(--text); font-size: 13px; }
 .ds-nav-item:hover { background: var(--hover); }

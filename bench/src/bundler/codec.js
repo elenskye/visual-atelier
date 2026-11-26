@@ -159,73 +159,14 @@ export function stripSriOnLocalTags(html) {
   );
 }
 
-/**
- * Extracts `tweaks` / `data-props` / `EDITMODE` parameters from an HTML string.
- * Supports:
- * 1. `<script ... data-dc-script data-props='...'>` (Claude Design `<x-dc>` props & `$preview`)
- * 2. `/*EDITMODE-BEGIN* / ... /*EDITMODE-END* /`
- * 3. `window.__tweaks = {...}`
- * @param {string} htmlContent
- */
-export function extractTweaksFromHtml(htmlContent) {
-  const result = {
-    propsMeta: null,
-    preview: null,
-    values: {},
-    editModeRaw: null
-  };
-
-  if (typeof htmlContent !== 'string') return result;
-
-  // 1. Check <script ... data-props='...'>
-  const dataPropsMatch = htmlContent.match(
-    /<script\b[^>]*\bdata-props=(?:'([^']*)'|"([^"]*)")[^>]*>/i
-  );
-  if (dataPropsMatch) {
-    const rawProps = decodeHtmlEntities(dataPropsMatch[1] ?? dataPropsMatch[2] ?? '');
-    try {
-      const parsed = JSON.parse(rawProps);
-      if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
-        const meta = {};
-        for (const [k, v] of Object.entries(parsed)) {
-          if (k === '$preview' && v && typeof v === 'object') {
-            result.preview = v;
-          } else if (!k.startsWith('$')) {
-            meta[k] = v;
-            if (v && typeof v === 'object' && 'default' in v) {
-              result.values[k] = v.default;
-            } else {
-              result.values[k] = v;
-            }
-          }
-        }
-        if (Object.keys(meta).length > 0) {
-          result.propsMeta = meta;
-        }
-      }
-    } catch {
-      // Ignore malformed data-props JSON
-    }
+/** A board's own size: the `$preview` in its `<script data-props='…'>` (Claude Design `<x-dc>`), or null. */
+export function previewSize(htmlContent) {
+  const m = String(htmlContent).match(/<script\b[^>]*\bdata-props=(?:'([^']*)'|"([^"]*)")[^>]*>/i);
+  if (!m) return null;
+  try {
+    const preview = JSON.parse(decodeHtmlEntities(m[1] ?? m[2] ?? ''))?.$preview;
+    return preview && typeof preview === 'object' ? preview : null;
+  } catch {
+    return null;
   }
-
-  // 2. Check /*EDITMODE-BEGIN*/ ... /*EDITMODE-END*/
-  const editModeMatch = htmlContent.match(
-    /\/\*EDITMODE-BEGIN\*\/([\s\S]*?)\/\*EDITMODE-END\*\//
-  );
-  if (editModeMatch) {
-    const block = editModeMatch[1].trim();
-    result.editModeRaw = block;
-    // Try extracting JSON object from const/window assignment or raw JSON
-    const jsonMatch = block.match(/(\{[\s\S]*\})/);
-    if (jsonMatch) {
-      try {
-        const parsed = JSON.parse(jsonMatch[1]);
-        Object.assign(result.values, parsed);
-      } catch {
-        // Ignore non-JSON JS expressions
-      }
-    }
-  }
-
-  return result;
 }

@@ -8,8 +8,8 @@
 //
 // 保护：清单里已是 approved 的派生资产，生成结果与文件不同就报错、不覆盖（approved 不改几何与参数，要改开新版本）。
 import path from 'node:path';
-import { existsSync, readFileSync } from 'node:fs';
-import { parseArgs, schemesToBuild, schemeDir, readJson, readText, loadTokens, sha256, mergeManifestEntry, writeGenerated, log, isMain } from '../lib/common.mjs';
+import { existsSync } from 'node:fs';
+import { parseArgs, schemeDir, readJson, readText, loadTokens, sha256, runGenerated, isMain } from '../lib/common.mjs';
 import { roleColors, themedSvg } from '../graphic/svg.mjs';
 import { textToPath } from '../og-card/outline.mjs';
 
@@ -188,44 +188,13 @@ export function generate(scheme) {
   return { files, entries };
 }
 
-/** 比较或写入。返回 { changed: [相对方案目录的路径], blocked: [...] }。 */
+/** 比较或写入（--check 只比较）。返回 [{ scheme, changed: [相对方案目录的路径], blocked: [...] }]。 */
 export function runDerived(args = parseArgs()) {
-  const results = [];
-  for (const scheme of schemesToBuild(args)) {
-    const sdir = schemeDir(scheme);
-    if (!existsSync(path.join(sdir, 'marks', 'derived.json'))) continue;
-    const { files, entries } = generate(scheme);
-    const mpath = path.join(sdir, 'marks', 'manifest.json');
-    const manifest = readJson(mpath);
-    const byId = new Map(manifest.assets.map((a) => [a.id, a]));
-    const changed = [], blocked = [];
-    for (const [rel, content] of Object.entries(files)) {
-      const p = path.join(sdir, rel);
-      if (existsSync(p) && readFileSync(p, 'utf8') === content) continue;
-      const e = entries.find((x) => `marks/${x.file}` === rel);
-      if (byId.get(e.id)?.status === 'approved') { blocked.push(rel); continue; }
-      changed.push(rel);
-    }
-    // 清单：保留状态、批准记录与备注；新资产记为 proposed；不再派生的条目移除
-    const next = manifest.assets.filter((a) => a.source?.generator !== GENERATOR || entries.some((e) => e.id === a.id));
-    for (const e of entries) {
-      const old = byId.get(e.id);
-      if (old?.status === 'approved' && old.sha256 !== e.sha256) continue;
-      const merged = mergeManifestEntry(old, e);
-      const i = next.findIndex((a) => a.id === e.id);
-      if (i < 0) next.push(merged);
-      else next[i] = merged;
-    }
-    const manifestChanged = JSON.stringify(next) !== JSON.stringify(manifest.assets);
-    if (manifestChanged) changed.push('marks/manifest.json');
-
-    if (!args.check) writeGenerated(sdir, files, changed, mpath, manifest, manifestChanged ? next : null);
-    const verb = args.check ? '待更新' : '已写入';
-    log(`derived ${scheme}: ${Object.keys(files).length} 个派生文件，${changed.length ? `${verb} ${changed.length} 个：${changed.join('、')}` : '与源文件一致'}${blocked.length ? `；已批准、拒绝覆盖：${blocked.join('、')}` : ''}`);
-    results.push({ scheme, changed, blocked });
-  }
-  if (results.some((r) => r.blocked.length)) process.exitCode = 1;
-  return results;
+  return runGenerated(args, {
+    generator: GENERATOR, label: 'derived', noun: '派生文件',
+    applies: (sdir) => existsSync(path.join(sdir, 'marks', 'derived.json')),
+    generate,
+  });
 }
 
 if (isMain(import.meta.url)) {

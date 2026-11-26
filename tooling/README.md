@@ -8,9 +8,10 @@
 | --- | --- |
 | `graphic/` | 生成 Vermilion 图形语言「笔势与纸片」的 SVG、内容图标清单与动效片段，并更新 `marks/manifest.json`。几何在 `geometry.mjs`、图形定义在 `shapes.mjs`、内容图标在 `icons.mjs`、写法与上色在 `svg.mjs` |
 | `marks/derive.mjs` | 由已批准资产派生新资产（规格在 `marks/derived.json`）：文字转曲线、合成默认分享图、生成文章分享图与水印模板。字体按 `type/fonts.json` 登记的 npm 包取，只用可转曲线的 OFL 字体；排字用 fontkit（带 GPOS 字偶距，与浏览器一致） |
-| `pith/` | Pith 的图形：`glyphs.mjs` 是 Logo、图标、十种记录、生长阶段、Agent 图标的几何（唯一的一份），`build.mjs` 写出 `schemes/pith/marks/` 的 SVG 和清单（`--check` 只核对）。Pith Explore 的生成器也从 `glyphs.mjs` 取图形 |
+| `handmade/marks.mjs` | 带 `marks/art.mjs` 的方案（Pomelo）的手作资产：按 `art.mjs` 的几何、`tokens/handmade.json` 的数值写出 `marks/` 的 SVG 和清单（`npm run build:handmade` 的一步） |
+| `pith/` | Pith 的图形：`glyphs.mjs` 是 Logo、图标、十种记录、生长阶段、Agent 图标的几何（唯一的一份），`build.mjs` 写出 `schemes/pith/marks/` 的 SVG 和清单。Pith Explore 的生成器也从 `glyphs.mjs` 取图形 |
 
-两者都拒绝覆盖已批准的文件；`--check` 只比较不写入。
+四个都带 `--check`：只比较、不写入，对不上就退出码 1（同步时在 tag 里跑）。`graphic/`、`marks/derive.mjs`、`handmade/marks.mjs` 还拒绝覆盖已批准的文件（`handmade/marks.mjs` 只改了换色挂钩的除外）。
 
 ## 构建（写进 `dist/`）
 
@@ -20,7 +21,7 @@
 | `handmade/texture.mjs` | 纸纹的一小块：照 SVG 规范里 feTurbulence 的参考算法算好（数值在方案 `tokens/handmade.json` 的 `texture`），存成能平铺的带调色板 PNG；`build:ds` 把它内联进 `bundle.css` 的 `@texture-data`。不在页面上放实时滤镜：WebKit 里它是 CPU 逐像素算的 |
 | `handmade/build.mjs` | 手作零件的样张，逐套配色、逐明暗一张。算法在 `line.mjs`（手绘的线，抖动算进路径）、`sticker.mjs`（贴纸和错版）、`frame.mjs`（框、胶带、缝线），`paint.mjs` 是组件的形状（勾选框、星星、开关、小图标）和在页面上按 `data-hand` 画的办法；数值在方案的 `tokens/handmade.json` | `dist/<方案>/handmade/` |
 | `render/marks.mjs` | 复制资产；按清单的 `renders` 导出 PNG；`colorMode: roles` 的图形另出上好色的 `themed/<id>-light\|dark.svg`；带 `samples` 的分享图模板与带 `fakeImages` 的水印模板出示例 | `dist/<方案>/marks/` |
-| `render/motion.mjs` | 把动效零件逐帧定格，合成 GIF 与逐帧总览图，复制 CSS 与片段。导出参数写在零件的 `capture`（`steps` 是一串按时间加类名、改属性的触发）、`requires`、`files.site`；片段里的 `<!-- @include 路径 -->` 展开成方案里的文件。方案有 Design System 的画法（Pomelo）时，页面的底是 Design System 的 tokens、`bundle.css`、`bundle.js`。bench 的 Motion Deck调同一个 `renderPart` | `dist/<方案>/motion/<id>/` |
+| `render/motion.mjs` | 把动效零件逐帧定格，合成 GIF 与逐帧总览图，复制 CSS 与片段。导出参数写在零件的 `capture`（`steps` 是一串按时间加类名、改属性的触发）、`requires`、`files.site`；片段里的 `<!-- @include 路径 -->` 展开成方案里的文件。方案有 Design System 的画法（Pomelo）时，页面的底是 Design System 的 tokens、`bundle.css`、`bundle.js`。bench 的 Motion Deck 调同一个 `renderPart` | `dist/<方案>/motion/<id>/` |
 | `catalog/build.mjs` | 目录页：颜色与对比度、标志与插图（明暗）、实时动效与重播、GIF、检查结果 | `dist/catalog/index.html` |
 | `design-system/build.mjs` | 由方案的 `tokens/` 与 `design-system/` 生成 Claude Design System 的文件；`bundle.css` 里的 `/* @generate motion */` 换成方案全部动效零件的 CSS（同一份，不另写）；把要上传的图片放进 `upload/`。多套配色的方案，默认那套进 tokens 的明暗，其余各套插进 `bundle.css` 的 `/* @generate palettes */`；`system.json` 写了 `bundle` 的，用 `bundle.mjs` 把列出的模块打包成 `components/bundle.js`，并在 vm 里和模块本身逐字比对 | `dist/<方案>/design-system/` |
 | `design-system/check.mjs` | 按 Design System 页面的方式渲染每个组件预览（注入 tokens、字体、`bundle.css`、`bundle.js`），明暗各截一张，报告脚本错误、横向溢出与没画上的手画零件 | `dist/<方案>/design-system/check/` |
@@ -30,23 +31,23 @@
 
 | 目录 | 做什么 |
 | --- | --- |
-| `qa/check.mjs` | 质量检查：资产校验和、颜色写死、生成器一致、分享图示例、APCA 对比度、体积预算、动效规则、渲染合理性；加 `--origin` 时只读对照网站现用的文件与变量。结果写进 `dist/<方案>/qa-report.json`（说的是某个文件的项带 `file`，bench 的 Checks 页点了看图）|
+| `qa/check.mjs` | 质量检查：资产校验和、颜色写死、生成器一致（graphic、derive、handmade、pith 四个生成器）、分享图示例、APCA 对比度、体积预算、动效规则、渲染合理性；加 `--origin <消费方目录>` 时，只读对照 `consumers` 里有这个目录名的方案现用的文件与变量。结果写进 `dist/<方案>/qa-report.json`（说的是某个文件的项带 `file`，bench 的 Checks 页点了看图）|
 | `qa/watermark.mjs` | 作品水印的检查，只用假图：不遮主体、位置与取色、尺寸格式不变、原图不动、不留 EXIF、体积上限、两次一致；结果写进 `dist/qa/watermark.json` |
 | `qa/all.mjs` | `npm run all`：一步一步跑构建和检查，结果写进 `dist/qa/run.json`（同一时间只跑一遍） |
 | `qa/determinism.mjs` | 同一份源导出两次，逐字节比较 |
 | `qa/canvases.mjs` | `npm run check:canvases`（`npm run all` 的一步）：把工作区复制到临时目录，把各画布的生成器按顺序重跑，和真的 `canvases/` 逐个文件比（`canvas.json` 只比内容），列出对不上的；真的画布不动。新画布有生成器就登记进它的 `GENERATORS` |
-| `qa/canvas-lint.mjs` | 画布样稿的版面检查：字糊、字贴边、出框。由 `canvases/` 里每一页的 `lint.mjs` 调用，发布前跑 |
+| `qa/canvas-lint.mjs` | 画布样稿（画板根是 `.bd` 的）的版面检查：字糊、字贴边、出框。给某一页的 `lint.mjs` 调（`runCanvasLint`，`dw check` 会跑各页的 `lint.mjs`）；现在没有页用它 |
 | `qa/motion-parity.mjs` | 网站现用的动效是否与零件逐像素一致（只读）；比较什么写在零件的 `parity` 里 |
 
 ## 同步与运行时模块
 
 | 目录 | 做什么 |
 | --- | --- |
-| `sync/sync.mjs` | 单向同步（`docs/adoption.md`）：把 tag 用 `git archive` 导出到临时目录再构建，把 `sync.json` 登记的文件复制到消费方，写 `VERSION`、`README.md`、`SHA256SUMS`。只同步 approved 的资产与零件，token 方言（`dist` 的 `tokens/`）和手画零件的画法（`design-system/project/components/bundle.js`）跟着 `scheme.json` 的状态；要构建时用到浏览器，加 `VA_BROWSER_CHANNEL=chrome`；tag 名必须是 `<方案>-v<version>`；只在 Mac 上跑；目标目录与上次的校验和对不上就停下（`--force` 跳过）。`--check` 只核对，加 `--tag` 时再与该 tag 的构建逐字节比较；`--dry-run` 只列出要写的文件 |
+| `sync/sync.mjs` | 单向同步（`docs/adoption.md`）：把 tag 用 `git archive` 导出到临时目录，先跑这套方案用到的生成器的 `--check`（对不上就停下、说是哪个），再构建，把 `sync.json` 登记的文件复制到消费方，写 `VERSION`、`README.md`、`SHA256SUMS`。只同步 approved 的资产与零件，token 方言（`dist` 的 `tokens/`）和手画零件的画法（`design-system/project/components/bundle.js`）跟着 `scheme.json` 的状态；要构建时用到浏览器，加 `VA_BROWSER_CHANNEL=chrome`；tag 名必须是 `<方案>-v<version>`；只在 Mac 上跑；目标目录与上次的校验和对不上就停下（`--force` 跳过）。`--check` 只核对，加 `--tag` 时再与该 tag 的构建逐字节比较；`--dry-run` 只列出要写的文件 |
 | `og-card/` | 文章分享图的生成模块，同步到消费方、在消费方构建时运行：给标题，按模板排版，用 resvg（wasm 版）出 PNG，不依赖浏览器，两次输出逐字节一致 |
 | `watermark/` | 作品水印的生成模块，同步到消费方运行：给一张图，选位置和墨色，输出同格式、同尺寸的新图，只依赖 sharp。`fake-images.mjs` 是假图，只在本仓库用 |
 | `lib/` | 共用函数：路径与哈希、`~` 展开、列出方案的动效零件、生成器写清单（`common.mjs`），浏览器启动、GIF 编码、逐帧采集 |
-| `fonts/subset.mjs` | TrueType 字体子集：只留用到的字，补上浏览器要的 cmap、name、OS/2、post。画布的优化页和方案要打包中文字体时用（探索页直接用 Google Fonts）；生成器经 `canvases/_lib/root.mjs` 的 `rootImport` 引，命令行 `node tooling/fonts/subset.mjs <原字体.ttf> --text <字> --out <输出.ttf>`。保留字名的字体（得意黑这类）别做子集 |
+| `fonts/subset.mjs` | TrueType 字体子集：只留用到的字，补上浏览器要的 cmap、name、OS/2、post。画布的优化页和方案要打包中文字体时用（探索页直接用 Google Fonts）；生成器要用就经 `canvases/_lib/root.mjs` 的 `rootImport` 引，命令行 `node tooling/fonts/subset.mjs <原字体.ttf> --text <放着要留的字的文件> --out <输出.ttf>`。保留字名的字体（得意黑这类）别做子集 |
 
 第一次用（装依赖、选浏览器、构建）见根目录 `README.md`「第一次用」。
 

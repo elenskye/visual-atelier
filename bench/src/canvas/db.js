@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { canvasDir, kindOf } from './store.js';
+import { canvasDir, needCanvas } from './store.js';
 
 // 本地的页面存储：和云端 artifact 的 db 同一套路径和写法（claude.use('db')），存在 canvases/<名字>/db.json，
 // 一个 JSON 对象，键是文档路径（survey/answers），值是文档内容。按路径排序写出，Agent 直接读这个文件就行。
@@ -40,9 +40,8 @@ function checkBody(body) {
 }
 
 export function dbFile(config, name) {
-  const dir = canvasDir(config, name);
-  if (!kindOf(dir)) throw new DbError('invalid_argument', `没有画布或页面 ${name}`);
-  return path.join(dir, 'db.json');
+  needCanvas(config, name);
+  return path.join(canvasDir(config, name), 'db.json');
 }
 
 export function readStore(config, name) {

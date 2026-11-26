@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { canvasDir, kindOf, readCanvasJson, localBlobs } from './store.js';
+import { canvasDir, needCanvas, readCanvasJson, localBlobs } from './store.js';
 import { encodeManifestEntry, extToMime, escapeHtml } from '../bundler/codec.js';
 import { boardsOf, boardUrl, stemOf } from './check.js';
 import { startServer } from '../server/server.js';
@@ -26,11 +26,12 @@ function stableUuid(seed) {
 }
 
 const TEXT = /^(text\/|application\/(javascript|json)|image\/svg)/;
+const PAGE_IS_ONE_FILE = (name) => `${name} 是问卷页，本来就是一个文件：要单文件 HTML 直接用它的入口`;
 
 /** Packs one board into a self-contained bundle HTML string. */
 export function packBoard(config, name, file) {
+  if (needCanvas(config, name) !== 'canvas') throw new Error(PAGE_IS_ONE_FILE(name));
   const dir = canvasDir(config, name);
-  if (kindOf(dir) !== 'canvas') throw new Error(`${name} 不是画布（页面已经是单文件，直接用它的入口）`);
   const projectDir = path.join(dir, 'project');
   const boardAbs = path.join(projectDir, file);
   if (!fs.existsSync(boardAbs)) throw new Error(`${name} 没有画板 ${file}`);
@@ -122,11 +123,12 @@ export function packBoard(config, name, file) {
  * Returns one row per board.
  */
 export async function exportBoards(config, name, { board = null, png = true, html = false, scale = 2, outDir = null } = {}) {
+  const boards = boardsOf(config, name, board);
+  if (html && boards[0]?.page) throw new Error(PAGE_IS_ONE_FILE(name));
   const dir = canvasDir(config, name);
   const out = outDir || path.join(dir, '.shots', 'export');
   fs.mkdirSync(out, { recursive: true });
   const rows = [];
-  const boards = boardsOf(config, name, board);
   const srv = png ? await startServer(config, { port: 0, watch: false, quiet: true }) : null;
   try {
     for (const b of boards) {
@@ -138,7 +140,7 @@ export async function exportBoards(config, name, { board = null, png = true, htm
         row.png = target;
         row.errors = r.allErrors;
       }
-      if (html && !b.page) {
+      if (html) {
         // everything it needs offline into the cache first (needs the network once); what can't be had stays online
         await prefetchPage(config, fs.readFileSync(path.join(dir, 'project', b.file), 'utf8'));
         const p = packBoard(config, name, b.file);

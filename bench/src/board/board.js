@@ -16,23 +16,10 @@
 // 一次两张；载入后过一会儿，看不见的、缩得很小的（屏幕上窄于 LIVE_W）板定格（embed.js），悬停、选中、试玩、开着
 // Tweaks 的照常动；单张铺满时背后画布上的板全定格。
 import { openSystem, closeSystem } from './ds.js';
-import { openMotion, closeMotion, motionKey } from './motion.js';
+import { openMotion, closeMotion, motionKey, setMotionTitle } from './motion.js';
 import { openChecks, closeChecks, refreshChecks } from './checks.js';
+import { $, h as el, when, post } from './dom.js';
 
-const $ = (sel, el = document) => el.querySelector(sel);
-const el = (tag, attrs = {}, kids = []) => {
-  const n = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs)) {
-    if (v == null || v === false) continue;
-    if (k === 'class') n.className = v;
-    else if (k === 'text') n.textContent = v;
-    else if (k === 'style') Object.assign(n.style, v);
-    else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
-    else n.setAttribute(k, v === true ? '' : v);
-  }
-  for (const kid of [].concat(kids)) if (kid != null) n.append(kid.nodeType ? kid : document.createTextNode(kid));
-  return n;
-};
 const svg = (d) => {
   const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   s.setAttribute('viewBox', '0 0 24 24');
@@ -55,6 +42,8 @@ const api = async (p) => {
   if (!r.ok) throw new Error(`${r.status} ${p}`);
   return r.json();
 };
+/** The line under Checks in the menu (/api/index). */
+const checksSubOf = () => api('/api/index').then((d) => d.sections.find((x) => x.id === 'checks')?.items?.[0]?.sub || '');
 const MIN_Z = 0.02;
 const MAX_Z = 4;
 const STICKY = { gray: '#e9e7e2', red: '#ffd8d2', orange: '#ffe2c2', green: '#d8f0d4', teal: '#cdeee9', blue: '#d8e6ff', purple: '#e6dcff', pink: '#ffdaec', yellow: '#fff1b8' };
@@ -194,7 +183,7 @@ const pages = () => S.canvas?.pages || [];
 const pageOf = (item) => item.page || pages()[0]?.id || null;
 function boardsOnPage() {
   const all = S.canvas?.boards || {};
-  const order = [...(S.canvas.order || []).filter((f) => all[f]), ...Object.keys(all).filter((f) => !(S.canvas.order || []).includes(f))];
+  const order = [...(S.canvas?.order || []).filter((f) => all[f]), ...Object.keys(all).filter((f) => !(S.canvas?.order || []).includes(f))];
   return order.filter((f) => pageOf(all[f]) === S.page).map((f) => ({ file: f, ...all[f] }));
 }
 function notesOnPage() {
@@ -207,7 +196,7 @@ async function loadList() {
   S.list = (await api('/api/canvases')).canvases;
   S.systems = await api('/api/ds').then((d) => d.systems, () => []);
   S.motionSchemes = await api('/api/motion').then((d) => d.schemes, () => []);
-  S.checksSub = await api('/api/index').then((d) => d.sections.find((x) => x.id === 'checks')?.items?.[0]?.sub || '', () => '');
+  S.checksSub = await checksSubOf().catch(() => '');
 }
 
 // A Design System, a Motion Deck or Checks takes the canvas's place: the stage and its bars go, and come back after.
@@ -342,6 +331,7 @@ async function openCanvas(name, { page = null, board = null, v = null, vs = null
   renderBanner();
   renderDsChips();
   if (S.kind === 'page') {
+    if (S.focus) closeFocus(); // a page has no boards to show full size
     S.page = null; // a page has no pages: don't carry the last canvas's into the address
     showPage();
   } else {
@@ -357,7 +347,7 @@ async function openCanvas(name, { page = null, board = null, v = null, vs = null
     if (board && vs !== undefined && (vs || null) !== (S.compare ? vsOf() : null)) S.compare = parseVs(vs, board);
     if (board && S.canvas.boards[board]) openFocus(board);
     else if (!keepView && launchFile && S.canvas.boards[launchFile]) openFocus(launchFile);
-    else if (!board && S.focus) closeFocus();
+    else if (S.focus) closeFocus(); // no board asked for, or the one shown full size is gone (deleted elsewhere)
   }
   writeHash();
 }
@@ -408,16 +398,22 @@ function renderWorld({ keepView = false } = {}) {
   const boards = boardsOnPage();
   const notes = notesOnPage();
   showEmpty(boards.length || notes.length ? '' : '这一页没有画板');
+  // 选中、试玩、指着、Tweaks 只对这一页上的板（换了页、板没了就放下）
+  const here = new Set(boards.map((b) => b.file));
+  if (!here.has(S.selected)) S.selected = null;
+  if (!here.has(S.playing)) S.playing = null;
+  if (!here.has(S.hover)) S.hover = null;
+  if (S.panelFor && !here.has(S.panelFor) && S.panelFor !== S.focus) closePanel();
 
   for (const n of notes) world.append(noteEl(n));
   boards.forEach((b, i) => {
     const box = el('div', {
-      class: 'board',
+      class: ['board', S.selected === b.file && 'sel', S.playing === b.file && 'playing'].filter(Boolean).join(' '),
       'data-file': b.file,
       style: { left: `${b.x}px`, top: `${b.y}px`, width: `${b.w}px`, height: `${b.h}px`, zIndex: String(10 + i), borderRadius: b.radius ? `${b.radius}px` : '' }
     });
     const iframe = el('iframe', { title: b.title || b.file, loading: 'eager' });
-    // embed.js says when it's loaded; the frame's own load event too (a server from before embed.js has none)
+    // the frame's own load event (embed.js also posts va-embed-ready then; this covers a board that 404s too)
     iframe.addEventListener('load', () => {
       const f = S.frames.get(b.file);
       if (f?.loaded && f.iframe === iframe && iframe.getAttribute('src') !== 'about:blank') loaded(f);
@@ -428,6 +424,7 @@ function renderWorld({ keepView = false } = {}) {
     strips.append(strip);
     S.frames.set(b.file, { b, box, iframe, strip, loaded: false, loading: false, warm: false, frozen: false });
   });
+  for (const k of new Set([S.selected, S.playing])) if (k) refreshStrip(k);
   for (const n of world.querySelectorAll('.note-title')) fitTitle(n);
 
   renderPageButton();
@@ -763,9 +760,9 @@ function setCompare(c) {
 }
 function layoutFocus() {
   if (!S.focus) return;
-  const b = S.canvas.boards[S.focus];
+  const b = S.canvas?.boards?.[S.focus]; // 换到问卷页那一下 S.canvas 是 null
   const body = $('#focus-body');
-  if (!body.querySelector('.focus-sizer') || b.expand === 'fill') return;
+  if (!b || !body.querySelector('.focus-sizer') || b.expand === 'fill') return;
   // 面板在宽屏时贴右边，窄屏（≤ 720）时在底部，铺满区给它让位
   const narrow = innerWidth <= 720;
   const panel = S.panelFor ? $('#panel').getBoundingClientRect() : null;
@@ -900,17 +897,16 @@ async function buildCompareMenu() {
     if (!v.board || v.board === prev) continue;
     prev = v.board;
     n++;
-    const when = new Date(v.createdAt).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    const at = when(v.createdAt);
     const on = S.compare?.kind === 'version' && S.compare.id === v.id;
-    m.append(el('button', { role: 'menuitem', class: on ? 'on' : '', onclick: () => { closeMenus(); setCompare({ kind: 'version', id: v.id, label: `${labelOf(v.label)} ${when}` }); } }, [el('span', { class: 'grow two' }, [el('span', { text: labelOf(v.label) }), el('span', { class: 'sub', text: when })])]));
+    m.append(el('button', { role: 'menuitem', class: on ? 'on' : '', onclick: () => { closeMenus(); setCompare({ kind: 'version', id: v.id, label: `${labelOf(v.label)} ${at}` }); } }, [el('span', { class: 'grow two' }, [el('span', { text: labelOf(v.label) }), el('span', { class: 'sub', text: at })])]));
   }
   if (!n) m.append(el('p', { class: 'head', text: '还没有存过（dw snapshot 存一个）' }));
 }
 
 // ---------- 批准状态 ----------
 const reviewTitle = (rec) => {
-  const when = new Date(rec.at).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
-  return `${RV_LABEL[rec.status] || rec.status} · ${when}${rec.by === 'agent' ? ' · Agent 标的' : ''}${rec.note ? `\n${rec.status === 'rejected' ? '原因' : '备注'}：${rec.note}` : ''}${rec.changed ? '\n标完以后这张板又改过' : ''}`;
+  return `${RV_LABEL[rec.status] || rec.status} · ${when(rec.at)}${rec.by === 'agent' ? ' · Agent 标的' : ''}${rec.note ? `\n${rec.status === 'rejected' ? '原因' : '备注'}：${rec.note}` : ''}${rec.changed ? '\n标完以后这张板又改过' : ''}`;
 };
 async function loadReviews() {
   if (S.kind !== 'canvas' || !S.name) {
@@ -928,10 +924,7 @@ async function loadReviews() {
 }
 async function postReview(file, status, note = '') {
   try {
-    const r = await fetch(`/api/review/${S.name}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ file, status, note }) });
-    const d = await r.json().catch(() => ({}));
-    if (!r.ok) throw new Error(d.message || `${r.status}`);
-    S.reviews = d.reviews || {};
+    S.reviews = (await post(`/api/review/${S.name}`, { file, status, note })).reviews || {};
   } catch (e) {
     toast(`没记上：${e.message}`);
     return;
@@ -1093,10 +1086,7 @@ addEventListener('message', async (e) => {
   if (!d || typeof d !== 'object' || typeof d.type !== 'string') return;
   const file = fileOfWindow(e.source);
   if (!file) return;
-  if (d.type === 'va-embed-ready') {
-    const f = S.frames.get(file);
-    if (f && f.iframe.contentWindow === e.source) loaded(f);
-  } else if (d.type === '__dc_booted') {
+  if (d.type === '__dc_booted') {
     S.meta[file] = d.propsMeta || S.meta[file] || (await metaFromSource(file)) || {};
     if (S.tweaks[file] || Object.keys(globalProps(file)).length) pushTweaks(file);
     refreshStrip(file);
@@ -1218,8 +1208,8 @@ function closeMenus() {
   for (const m of document.querySelectorAll('.menu')) m.hidden = true;
   for (const b of document.querySelectorAll('[aria-haspopup]')) b.setAttribute('aria-expanded', 'false');
 }
-// 四类，次序和 server/catalog.js 的 SECTIONS 一样
-const deckOf = (c) => c.deck || (c.kind === 'page' ? 'questionnaire' : 'explore');
+// 五类，次序和 server/catalog.js 的 SECTIONS 一样；画布按服务给的 deck 分，不认识的和 catalog.js 一样归 Explore Deck
+const deckOf = (c) => (c.deck === 'questionnaire' ? 'questionnaire' : 'explore');
 function buildCanvasMenu() {
   const m = $('#canvas-menu');
   m.replaceChildren();
@@ -1304,25 +1294,22 @@ function ask({ title, text = '', value, ok = '确定', danger = false }) {
     } else $('#ask-cancel').focus();
   });
 }
-async function post(p, body) {
-  const r = await fetch(p, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-  const d = await r.json().catch(() => ({}));
-  if (!r.ok) throw new Error(d.message || `${r.status}`);
-  return d;
-}
 async function afterChange(name = S.name, opts = {}) {
   await loadList();
   tellChanged();
-  if (S.ds || S.motion) return;
+  if (S.ds || S.motion || S.checks) return;
   if (!S.list.some((c) => c.name === name)) return openCanvas(S.list.find((c) => c.kind === 'canvas')?.name || S.list[0]?.name);
-  if (name === S.name) return openCanvas(S.name, { page: opts.page ?? S.page, keepView: true });
+  // 单张铺满时改了这张的名字：铺满留着，顶上的名字跟着变
+  if (name === S.name) return openCanvas(S.name, { page: opts.page ?? S.page, board: S.focus, keepView: true });
 }
-async function undo(id, back) {
+async function undo(id) {
   try {
     const t = await post('/api/trash/restore', { id });
     await loadList();
     tellChanged();
-    if (back) await openCanvas(t.canvas, { page: t.what === 'page' ? t.page.id : null });
+    // 放回去的画板回到它那一页，视图不动；页、整块画布就去看它
+    const board = t.what === 'board';
+    await openCanvas(t.canvas, { page: t.what === 'page' ? t.page.id : board ? t.page || null : null, keepView: board });
     toast('放回去了');
   } catch (e) {
     toast(`放不回去：${e.message}`);
@@ -1349,7 +1336,7 @@ async function deleteCanvasUi(c) {
     return toast(`没删成：${e.message}`);
   }
   await afterChange(c.name);
-  toast(`删了「${c.title}」`, { label: '撤销', run: () => undo(t.id, true) });
+  toast(`删了「${c.title}」`, { label: '撤销', run: () => undo(t.id) });
 }
 async function renamePageUi(p) {
   const t = await ask({ title: `给「${p.name}」改名`, value: p.name, ok: '改名' });
@@ -1373,7 +1360,7 @@ async function deletePageUi(p, n) {
   }
   if (S.focus) closeFocus();
   await afterChange(S.name, { page: S.page === p.id ? null : S.page });
-  toast(`删了「${p.name}」这一页`, { label: '撤销', run: () => undo(t.id, true) });
+  toast(`删了「${p.name}」这一页`, { label: '撤销', run: () => undo(t.id) });
 }
 // 画板：改名只改标题（文件名、地址不变），删除连它的批准记录挪进回收处
 const boardActs = (file) => [['改名…', () => renameBoardUi(file)], ['删除这张…', () => deleteBoardUi(file), true]];
@@ -1409,7 +1396,7 @@ async function deleteBoardUi(file) {
   if (S.playing === file) S.playing = null;
   if (S.panelFor === file) closePanel();
   await afterChange(S.name);
-  toast(`删了画板「${name}」`, { label: '撤销', run: () => undo(t.id, true) });
+  toast(`删了画板「${name}」`, { label: '撤销', run: () => undo(t.id) });
 }
 // Design System、Motion Deck：只改 bench 里的名字（bench/names.json），方案的源和云端不变
 const KIND_LABEL = { ds: 'Design System', motion: 'Motion Deck' };
@@ -1433,7 +1420,12 @@ async function namesChanged() {
   await loadList();
   tellChanged();
   if (S.ds) $('#canvas-title').textContent = S.systems.find((x) => x.name === S.ds)?.title || S.ds;
-  if (S.motion) await openMotionView(S.motion, S.motionPart);
+  if (S.motion) {
+    // 只换名字，不重新渲染零件（演示页不重新载入）
+    const title = S.motionSchemes.find((x) => x.name === S.motion)?.title || S.motion;
+    $('#canvas-title').textContent = `Motion Deck · ${title}`;
+    setMotionTitle(title);
+  }
 }
 async function buildVersionMenu() {
   const m = $('#version-menu');
@@ -1448,11 +1440,10 @@ async function buildVersionMenu() {
     el('button', { role: 'menuitem', class: S.version ? '' : 'on', onclick: () => { closeMenus(); openCanvas(S.name, { page: S.page }); } }, [el('span', { class: 'grow', text: '最新（本地文件）' })])
   );
   for (const v of [...S.versions].reverse()) {
-    const when = new Date(v.createdAt).toLocaleString('zh-CN', { month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' });
     const extra = v.events?.length ? ` · 之后：${v.events.map((e) => labelOf(e.label)).join('、')}` : '';
     m.append(
       el('button', { role: 'menuitem', class: S.version === v.id ? 'on' : '', onclick: () => { closeMenus(); closeFocus(); openCanvas(S.name, { page: S.page, v: v.id }); } }, [
-        el('span', { class: 'grow two' }, [el('span', { text: labelOf(v.label) }), el('span', { class: 'sub', text: `${when} · ${v.files} 个文件${extra}` })])
+        el('span', { class: 'grow two' }, [el('span', { text: labelOf(v.label) }), el('span', { class: 'sub', text: `${when(v.createdAt)} · ${v.files} 个文件${extra}` })])
       ])
     );
   }
@@ -1544,7 +1535,8 @@ world.addEventListener('pointerleave', () => {
   liveness();
 });
 stage.addEventListener('dblclick', (e) => {
-  const box = e.target.closest('.board');
+  // 拖动用了 setPointerCapture，Chrome 就把 dblclick 发给 stage 本身：按指着的地方找板
+  const box = e.target.closest('.board') || document.elementFromPoint(e.clientX, e.clientY)?.closest('.board');
   if (box) openFocus(box.dataset.file);
 });
 
@@ -1574,7 +1566,22 @@ addEventListener('keydown', (e) => {
     return;
   }
   if (S.kind === 'page') return;
+  // 带 ⌘ / Ctrl：只有 + − 0 是画布的放大缩小（和单张铺满一样，不让浏览器整页缩放）；⌘V、⌘1 这些留给浏览器
+  if (e.altKey) return;
+  if (e.metaKey || e.ctrlKey) {
+    if (e.key === '+' || e.key === '=') zoomBy(1.25);
+    else if (e.key === '-' || e.key === '_') zoomBy(0.8);
+    else if (e.key === '0') {
+      const { w, h } = viewport();
+      zoomAt(1, w / 2, h / 2);
+    } else return;
+    e.preventDefault();
+    return;
+  }
+  // 焦点在按钮上：回车按那个按钮，不再铺满选中的板；菜单和 Tweaks 面板里空格也按按钮
+  const onControl = e.target.closest?.('button, a');
   if (e.key === ' ' && !spaceDown) {
+    if (onControl && e.target.closest('.menu, #panel')) return;
     spaceDown = true;
     stage.classList.add('hand');
     e.preventDefault();
@@ -1586,7 +1593,7 @@ addEventListener('keydown', (e) => {
   else if (e.key === '0') {
     const { w, h } = viewport();
     zoomAt(1, w / 2, h / 2);
-  } else if (e.key === 'Enter' && S.selected) openFocus(S.selected);
+  } else if (e.key === 'Enter' && S.selected && !onControl) openFocus(S.selected);
 });
 addEventListener('keyup', (e) => {
   if (e.key === ' ') {
@@ -1621,14 +1628,9 @@ $('#panel-reset').addEventListener('click', () => {
   delete S.tweaks[f];
   saveTweaks();
   refreshStrip(f);
-  pushTweaksDefaults(f);
+  pushTweaks(f); // 没有改过的值：默认值（和全局深色）
   renderPanel();
 });
-function pushTweaksDefaults(file) {
-  S.tweaks[file] = {};
-  pushTweaks(file);
-  delete S.tweaks[file];
-}
 $('#panel-copy').addEventListener('click', async () => {
   const f = S.panelFor;
   if (!f) return;
@@ -1650,6 +1652,8 @@ function toast(text, action = null) {
   setTimeout(() => t.remove(), action ? 10000 : 1600);
 }
 addEventListener('resize', () => {
+  // 在看 Design System、Motion Deck、Checks 时画布藏着：不排版、不载板，横幅也别冒出来（回到画布时都重画）
+  if (S.ds || S.motion || S.checks) return;
   applyView();
   layoutFocus();
   renderBanner();
@@ -1682,7 +1686,7 @@ function listenChanges() {
   // 存储变了（站主在别的窗口批了一张、Agent 标了待批）：重新读批准状态
   // npm run all 在跑（这里点的「跑一遍」，或者 Agent 在终端跑的）：结果变了就重新读
   es.addEventListener('checks', async () => {
-    S.checksSub = await api('/api/index').then((d) => d.sections.find((x) => x.id === 'checks')?.items?.[0]?.sub || '', () => S.checksSub);
+    S.checksSub = await checksSubOf().catch(() => S.checksSub);
     if (S.checks) refreshChecks();
     tellChanged();
   });
@@ -1698,24 +1702,26 @@ function listenChanges() {
       ({ files = [], names = false } = JSON.parse(e.data));
     } catch {}
     if (names) return namesChanged();
-    if (files.some((f) => !f.includes('/'))) await loadList();
-    // 画布多了、少了、改了名（在这里、Pomelo 里或 dw 改的）：外面那一页的清单跟着读；在看的这块没了就换一块
-    if (files.some((f) => !f.includes('/') || /^[^/]+\/(cloud\.json|project\/canvas\.json)$/.test(f))) tellChanged();
-    if (!S.ds && !S.motion && !S.checks && S.name && !S.list.some((c) => c.name === S.name)) {
-      await loadList();
-      if (!S.list.some((c) => c.name === S.name)) return openCanvas(S.list.find((c) => c.kind === 'canvas')?.name || S.list[0]?.name);
-    }
-    if (S.version) return; // 旧版本不跟着变
-    const mine = files.filter((f) => f.startsWith(`${S.name}/`)).map((f) => f.slice(S.name.length + 1));
-    if (!mine.length) return;
-    await loadList();
+    const mine = S.name ? files.filter((f) => f.startsWith(`${S.name}/`)).map((f) => f.slice(S.name.length + 1)) : [];
+    // 画布多了、少了、改了名（在这里、Pomelo 里或 dw 改的，哪一块都算）
+    const listed = files.some((f) => !f.includes('/') || /^[^/]+\/(cloud\.json|project\/canvas\.json)$/.test(f));
+    // 清单最多读一遍：上面这些，在看的这块的文件变了，或者清单里没有在看的这块了
+    if (listed || mine.length || (S.name && !S.list.some((c) => c.name === S.name))) await loadList();
+    // 外面那一页的清单跟着读；在看的这块没了就换一块
+    if (listed) tellChanged();
+    // 在看 Design System、Motion Deck、Checks：画布藏着，不跟着变（回到画布时 openCanvas 重新读、重新画）
+    if (S.ds || S.motion || S.checks) return;
+    if (S.name && !S.list.some((c) => c.name === S.name)) return openCanvas(S.list.find((c) => c.kind === 'canvas')?.name || S.list[0]?.name);
+    if (S.version || !mine.length) return; // 旧版本不跟着变
     if (S.kind === 'page') {
       $('#pageview').contentWindow?.location.reload();
       return;
     }
     if (mine.some((f) => f === 'project/canvas.json' || f === 'cloud.json')) {
-      await openCanvas(S.name, { page: S.page, board: S.focus, vs: vsOf(), keepView: true });
-      return;
+      // 这里改名、删除、撤销以后 afterChange 已经按新的画过了：内容和画着的一样就不再重画（不再载一遍所有板）
+      const data = await api(`/api/canvases/${S.name}`).catch(() => null);
+      const same = data && JSON.stringify(data.canvas ?? null) === JSON.stringify(S.canvas) && JSON.stringify(data.cloud ?? null) === JSON.stringify(S.cloud ?? null);
+      if (!same) return openCanvas(S.name, { page: S.page, board: S.focus, vs: vsOf(), keepView: true });
     }
     const boards = mine.filter((f) => f.startsWith('project/')).map((f) => f.slice('project/'.length));
     const all = mine.some((f) => f.startsWith('blobs/'));

@@ -155,9 +155,9 @@ export const BENCH_API = 5; // 2: /api/index (the four lists), boards on the can
  * server can't be stopped from outside (tests, anything that owns the server itself).
  */
 export async function startServer(config, { port = config.server.port, watch = true, quiet = false, onStop = null } = {}) {
-  const host = config.server.host || '127.0.0.1';
+  // only ever this machine
+  const host = '127.0.0.1';
   const startedAt = new Date().toISOString();
-  if (host !== '127.0.0.1') throw new Error(`服务只能听 127.0.0.1，现在是 ${host}`);
   // the board UI is code, so it comes from next to this file, not from config.rootDir
   const boardDir = fileURLToPath(new URL('../board/', import.meta.url)).replace(/\/$/, '');
   let blobs = null;
@@ -403,12 +403,12 @@ export async function startServer(config, { port = config.server.port, watch = t
         const project = systemPaths(config, name).project;
         const prev = rel.match(/^components\/([A-Za-z_$][\w$]*)\/preview\.html$/);
         if (prev) {
-          const html = await previewDocument(config, name, prev[1], url.searchParams.get('theme'));
+          const html = previewDocument(config, name, prev[1], url.searchParams.get('theme'));
           return html ? send(res, 200, rewritePage(html), MIME['.html']) : send(res, 404, 'Not Found');
         }
         if (rel === 'tokens.css' && !fs.existsSync(path.join(project, rel))) {
           const tokens = JSON.parse(fs.readFileSync(path.join(project, 'tokens.json'), 'utf8'));
-          return send(res, 200, await tokensCss(config, tokens), MIME['.css']);
+          return send(res, 200, tokensCss(tokens), MIME['.css']);
         }
         return sendFile(res, safeJoin(project, rel));
       }
@@ -500,7 +500,6 @@ export async function startServer(config, { port = config.server.port, watch = t
   } catch (e) {
     // the port is taken: nothing of ours may keep the process alive
     for (const w of watchers) w.close();
-    stopWatching();
     throw e;
   }
   const actualPort = server.address().port;
@@ -511,6 +510,7 @@ export async function startServer(config, { port = config.server.port, watch = t
     port: actualPort,
     close: async () => {
       for (const w of watchers) w.close();
+      stopWatching();
       for (const r of clients) r.end();
       await closeExportBrowser();
       server.closeAllConnections?.();

@@ -21,7 +21,7 @@
 - **Pith 的会话**（站主 2026-11-16）：开在 Pith 仓库（`~/Documents/GitHub/pith`）、把本仓库加为第二个目录，站主叫它「pith 环境」。Pith 开发、使用中发现工具、Skill、流程不顺，它也改本仓库的共用部分（`bench/`、`tooling/`、`skills/`、`docs/`），这时照本仓库的会话的规矩：动之前读最新的，改了跑对应的验证，记进 `CHANGELOG.md`。
 - **Pith 用别的方案就复制**：要用 Pomelo、Vermilion、Peck 的设计，复制成新方案 `pith-wonder-<名字>`（Design System「Pith Wonder - <名字>」），原方案不动，`DESIGN.md` 第一节写从哪个方案、哪个版本复制的。App 用的 `pith` 和 WonderLab 用的 `pith-wonder-*` 不共用 token。
 - **共用的几个文件**：`CHANGELOG.md`、`ROADMAP.md`「现在」里的方案那几行、`README.md` 的方案表，各写各的那一条，动之前先读最新的。`package.json`、`package-lock.json` 只归本仓库的会话，别的会话要加依赖或命令先问站主。
-- **要改别人那块**：先问站主，或者写进对方的计划等对方做（给 Pomelo 的写进 Pomelo 的 `docs/atelier-sync.md`）。
+- **要改别人那块**：先问站主，或者告诉站主、等对方的会话做。
 - **提交**：每个会话只 `git add` 自己动过的文件，提交信息照 `CLAUDE.md`「版本与 Git」。
 
 ## 第二条线：几家 Agent 各在自己的分支上做一版（站主 2026-11-15 批）

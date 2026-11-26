@@ -8,5 +8,5 @@
     "default": "calm",
     "expressive": "registered-surfaces-only"
   },
-  "consumers": []
+  "consumers": ["pith"]
 }

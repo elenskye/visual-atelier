@@ -31,7 +31,9 @@ description: 在 visual-atelier 里新建、修改、检查一块画布或一张
    node bench/bin/dw.js check <画布名>
    ```
 
-   要全部通过（只查一张加 `--board <文件>`）。`dw check` 截的是减弱动效下的终态；有动效的板再跑 `node bench/bin/dw.js frames <画布名> --board <文件>`（MCP `frames`），看按时间线截的总览图（`.shots/frames/<画板名>.png`），要先点一下才动的加 `--click <按钮上的字>`。它在「减弱动态效果」下按每张板的宽高打开，查报错、宽高为 0 的容器、内容或字出了画板、字被容器裁掉、图片没出来，再跑画布自带的 `*/lint.mjs`。故意出框或藏起来的字给元素加 `data-nolint`。然后用看图工具看截图：`canvases/<画布名>/.shots/check/<画板名>.png`（画板名去掉 `.dc.html`，不进 Git）：排版、对比、留白。页面打不开（沙箱拦了 Chrome 或端口）时它报「打不开页面」或「报错页」，先放行再跑。
+   要全部通过（只查一张加 `--board <文件>`）。它在「减弱动态效果」下按每张板的宽高打开，查报错、宽高为 0 的容器、内容或字出了画板、字被容器裁掉、图片没出来，再跑画布自带的 `*/lint.mjs`；故意出框或藏起来的字给元素加 `data-nolint`。页面打不开（沙箱拦了 Chrome 或端口）时它报「打不开页面」或「报错页」，先放行再跑。然后用看图工具看截图：`canvases/<画布名>/.shots/check/<画板名>.png`（画板名去掉 `.dc.html`，不进 Git）：排版、对比、留白。
+
+   `dw check` 截的是终态，看不到动效：有动效的板再跑 `node bench/bin/dw.js frames <画布名> --board <文件>`（MCP `frames`），看按时间线截的总览图（`.shots/frames/<画板名>.png`），要先点一下才动的加 `--click <按钮上的字>`。
 4. **给站主看**：开 `node bench/bin/dw.js serve`，给站主地址 `http://127.0.0.1:4321/#/<画布名>?page=<页>&board=<文件>`。画布上缩得很小、在视野外的板会定格（指着、选中、PLAY 时才动），要看动效就放大或指着它。站主在 Tweaks 里挑好的参数会复制给你，照着改源，Tweaks 本身不写回文件。
 5. **存版本**：`node bench/bin/dw.js snapshot <画布名> --label <说明>`。
    - 改名、删整块画布、一页或一张画板：`node bench/bin/dw.js rename …`、`dw delete …`（`--board <文件>` 是一张画板；都进回收处 `canvases/.trash/`，`dw trash` 放回），和站主在界面里做的同一套；页名以 `canvas.json` 为准，生成器别盖掉站主改的名字；站主在界面里改过板名、删过板的页，重跑生成器之前先把改动写进生成器。

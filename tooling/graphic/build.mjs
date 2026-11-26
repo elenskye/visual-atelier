@@ -8,8 +8,8 @@
 //
 // 保护：清单里已是 approved 的资产，生成结果与文件不同就报错、不覆盖（approved 不改几何与参数，要改开新版本）。
 import path from 'node:path';
-import { existsSync, readFileSync } from 'node:fs';
-import { parseArgs, schemesToBuild, schemeDir, readJson, sha256, mergeManifestEntry, writeGenerated, log, isMain } from '../lib/common.mjs';
+import { existsSync } from 'node:fs';
+import { parseArgs, schemeDir, readJson, sha256, runGenerated, isMain } from '../lib/common.mjs';
 import { graphics, glyph, endMark, contentIcon, CATEGORIES, END_MARKS } from './shapes.mjs';
 import { CONTENT_ICONS } from './icons.mjs';
 import { staticSvg, inlineSvg } from './svg.mjs';
@@ -119,46 +119,13 @@ export function generate(scheme) {
   return { files, entries };
 }
 
-/** 比较或写入。返回 { changed: [相对方案目录的路径], blocked: [...] }。 */
+/** 比较或写入（--check 只比较）。返回 [{ scheme, changed: [相对方案目录的路径], blocked: [...] }]。 */
 export function runGraphic(args = parseArgs()) {
-  const results = [];
-  for (const scheme of schemesToBuild(args)) {
-    const sdir = schemeDir(scheme);
-    if (!existsSync(path.join(sdir, 'tokens', 'graphic.json'))) continue;
-    const { files, entries } = generate(scheme);
-    const mpath = path.join(sdir, 'marks', 'manifest.json');
-    const manifest = readJson(mpath);
-    const byId = new Map(manifest.assets.map((a) => [a.id, a]));
-    const changed = [], blocked = [];
-    for (const [rel, content] of Object.entries(files)) {
-      const p = path.join(sdir, rel);
-      const cur = existsSync(p) ? readFileSync(p, 'utf8') : null;
-      if (cur === content) continue;
-      const id = rel.startsWith('marks/graphic/') ? path.basename(rel, '.svg') : rel === 'marks/icons.json' ? 'content-icons' : null;
-      if (id && byId.get(id)?.status === 'approved') { blocked.push(rel); continue; }
-      changed.push(rel);
-    }
-    // 清单：保留状态、批准记录与备注，其余字段以生成结果为准；新资产记为 proposed
-    let manifestChanged = false;
-    const next = manifest.assets.filter((a) => a.source?.generator !== 'tooling/graphic/build.mjs' || entries.some((e) => e.id === a.id));
-    for (const e of entries) {
-      const old = byId.get(e.id);
-      if (old?.status === 'approved' && old.sha256 !== e.sha256) continue;
-      const merged = mergeManifestEntry(old, e);
-      const i = next.findIndex((a) => a.id === e.id);
-      if (i < 0) { next.push(merged); manifestChanged = true; }
-      else if (JSON.stringify(next[i]) !== JSON.stringify(merged)) { next[i] = merged; manifestChanged = true; }
-    }
-    if (next.length !== manifest.assets.length) manifestChanged = true;
-    if (manifestChanged) changed.push('marks/manifest.json');
-
-    if (!args.check) writeGenerated(sdir, files, changed, mpath, manifest, manifestChanged ? next : null);
-    const verb = args.check ? '待更新' : '已写入';
-    log(`graphic ${scheme}: ${Object.keys(files).length} 个生成文件，${changed.length ? `${verb} ${changed.length} 个：${changed.join('、')}` : '与源文件一致'}${blocked.length ? `；已批准、拒绝覆盖：${blocked.join('、')}` : ''}`);
-    results.push({ scheme, changed, blocked });
-  }
-  if (results.some((r) => r.blocked.length)) process.exitCode = 1;
-  return results;
+  return runGenerated(args, {
+    generator: 'tooling/graphic/build.mjs', label: 'graphic', noun: '生成文件',
+    applies: (sdir) => existsSync(path.join(sdir, 'tokens', 'graphic.json')),
+    generate,
+  });
 }
 
 if (isMain(import.meta.url)) {

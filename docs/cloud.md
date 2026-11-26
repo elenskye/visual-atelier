@@ -12,7 +12,7 @@
 node bench/bin/dw.js target <画布名> <slug> --url <链接> --home
 ```
 
-- 从云端拉下来的画布，本地和云端用同一套图片 id，加 `--same-ids`。
+- 从云端拉下来的画布，本地和云端用同一套图片 id，加 `--same-ids`；本地还没有这块画布的再加 `--new`（先登记，再 `dw pull`）。
 - 本地新建、要发到一块新云端画布的，不加：图片上传后会拿到新 id，记在 `cloud.json` 的对照表里。
 - 新建云端画布：`create_from_type`，类型选 Design，标题用站主的说法。
 

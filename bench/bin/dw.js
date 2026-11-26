@@ -34,7 +34,7 @@ const COMMANDS = {
 
 const HELP = `dw：visual-atelier 看画布的命令行（画布在仓库根目录的 canvases/<画布名>/）
 
-  dw list [--json]                              分四类列出：Design System、Motion Deck、Explore Deck、Questionnaire
+  dw list [--json]                              分五类列出：Design System、Motion Deck、Explore Deck、Questionnaire、Checks
   dw new <画布名> [--title 标题]                  新建一块画布（canvas.json 加 Main.dc.html）
   dw rename <画布名> <新名字>                     改画布或问卷页的名字（标题；目录名和地址不变）
   dw rename <画布名> --page <页 id> <新页名>       改一页的名字
@@ -48,11 +48,13 @@ const HELP = `dw：visual-atelier 看画布的命令行（画布在仓库根目�
   dw mcp                                         MCP 服务（stdio，给 Agent 用；配置写 bench/bin/dw-mcp.sh，见 bench/README.md「MCP」）
   dw offline [--all-glyphs]                      把画布运行时的 React、Google Fonts 一次取好存在本机（bench/.cache/），
                                                  之后断网也能看；--all-glyphs 连没用到的字也取
-  dw import <导出.html> --name <画布名>           把 Claude 画布导出的单文件 HTML 转成画布
+  dw import <导出.html> --name <画布名> [--title 标题]
+                                                 把 Claude 画布导出的单文件 HTML（或一张 .dc.html）转成画布
   dw target <画布名>                              列出这块画布的每份云端、各属于哪个账号
-  dw target <画布名> <slug> --url <链接> --account <账号> [--home] [--same-ids]
+  dw target <画布名> <slug> --url <链接> --account <账号> [--home] [--same-ids] [--new]
                                                  登记一份云端；--account：建它的 Claude 账号，只有它能拉回、发回；
-                                                 --same-ids：云端那份和本地用同一套图片 id（从云端拉下来的画布）
+                                                 --same-ids：云端那份和本地用同一套图片 id（从云端拉下来的画布）；
+                                                 --new：本地还没有这块画布（云端的拉成一块新的：先登记，再 dw pull）
 
   dw pull <画布名> --listing <list_files.json>    看要从云端拉回哪些文件（按 read_file 分好批）
        --from <下载的文件或目录>                    写进 project/，逐个核对 sha256，存一个版本
@@ -61,6 +63,7 @@ const HELP = `dw：visual-atelier 看画布的命令行（画布在仓库根目�
   dw publish <画布名> [--listing <list_files.json>] 列出 publish_files 要发的文件（只发改过的）
        --blob-map <file>                            记下上传后图片的新 id
        --record --listing <发完后的 list_files.json> 核对云端和本地一致，存一个版本
+       --out <file>                                 要发的单子另存一份 JSON
   （以上都可加 --target <slug> 指定另一份云端，默认是 home）
 
   dw versions <画布名>                            列出本地版本
@@ -71,7 +74,8 @@ const HELP = `dw：visual-atelier 看画布的命令行（画布在仓库根目�
   dw db <画布名> set <文档路径> <JSON 文件>          写一个文档（整份替换）
 
   dw review <画布名>                              每张画板的批准状态（站主在画布界面里批准、退回，存在 db.json 的 review/<画板>）
-  dw review <画布名> --propose [--board 文件名]    标「待批」（不写 --board 就是全部画板）；批准和退回只由站主做
+  dw review <画布名> --propose [--board 文件名] [--note 一句话]
+                                                 标「待批」（不写 --board 就是全部画板），--note 是给站主的话；批准和退回只由站主做
   dw review <画布名> --clear --board 文件名        清掉一张的状态
 
   dw ds [list]                                   列出 schemes/ 里的 Design System
@@ -86,10 +90,11 @@ const HELP = `dw：visual-atelier 看画布的命令行（画布在仓库根目�
   dw motion export <方案> [零件] [--out 目录]      逐帧导出 GIF 和逐帧总览图，和 npm run build:motion 同一个函数，
                                                  默认写 dist/<方案>/motion/<零件>/
 
-  dw serve [--port 4321] [--json]                本地预览，只听 127.0.0.1；--json：启动好了打一行 {"ready":true,"url":…,"pid":…}
+  dw serve [--port 4321] [--json]                本地预览，只听 127.0.0.1；--json：启动好了打一行 {"ready":true,"url":…,"pid":…,"api":…}
   dw status [--port 4321]                        服务在不在跑（问它的 /api/status）
   dw stop [--port 4321]                          停掉 dw serve 启动的服务
-  dw open <画布名> [--page 页] [--board 文件名]    给出这块画布（某一页、某一张）在界面里的地址，不开浏览器
+  dw open <画布名> [--page 页] [--board 文件名] [--port 4321]
+                                                 给出这块画布（某一页、某一张）在界面里的地址，不开浏览器
   dw check <画布名> [--board 文件名] [--no-lint]   一条命令自检：每张板截图、零报错、版面（出框、字被裁、图片），
                                                  再跑画布自带的 */lint.mjs；没通过时退出码为 1
   dw frames <画布名> --board 文件名 [--at 0,300,600 | --every 250 --until 2000] [--click 按钮上的字] [--scale 1]
@@ -98,8 +103,9 @@ const HELP = `dw：visual-atelier 看画布的命令行（画布在仓库根目�
                                                  只为看，不保证两次一样
   dw export <画布名> [--board 文件名] [--png] [--html] [--scale 2] [--out 目录]
                                                  导出 PNG（默认）或单文件 HTML，默认放 .shots/export/
-  dw shot <画布名> [--board 文件名] [--out 路径] [--strict]
-                                                 无头截图，查控制台报错和宽高为 0 的容器
+  dw shot <画布名> [--board 文件名] [--out 路径] [--width 宽 --height 高] [--full-page] [--strict]
+                                                 无头截图，查控制台报错和宽高为 0 的容器；默认按画板自己的宽高，
+                                                 --full-page 截整页；--strict：没通过时退出码为 1
 
   加 --json 输出机器读的结果。`;
 
@@ -123,15 +129,40 @@ function parseArgs(argv) {
   return { positional, flags };
 }
 
+const HELP_FLAGS = ['--help', '-h'];
+
+/** One command's part of HELP: its lines and what is indented under them, the notes of its group (`  （…）`), the --json line. */
+function helpFor(sub) {
+  const lines = [];
+  for (const group of HELP.split('\n\n')) {
+    let take = false;
+    const mine = [];
+    for (const line of group.split('\n')) {
+      if (line.startsWith('  dw ')) take = line.startsWith(`  dw ${sub} `) || line.trimEnd() === `  dw ${sub}`;
+      else if (line.startsWith('  （')) {
+        if (mine.length) mine.push(line);
+        continue;
+      } else if (!line.startsWith('   ')) take = false;
+      if (take) mine.push(line);
+    }
+    lines.push(...mine);
+  }
+  return `dw ${sub}（全部命令：dw help）\n\n${lines.join('\n')}\n\n  加 --json 输出机器读的结果。`;
+}
+
 async function main() {
-  const [sub, ...rest] = process.argv.slice(2);
-  if (!sub || sub === 'help' || sub === '--help' || sub === '-h') return console.log(HELP);
+  const argv = process.argv.slice(2);
+  const helpOf = argv[0] === 'help' ? argv[1] : argv.slice(1).some((a) => HELP_FLAGS.includes(a)) ? argv[0] : null;
+  const sub = helpOf || argv[0];
+  if (!sub || HELP_FLAGS.includes(sub) || sub === 'help') return console.log(HELP);
   const run = COMMANDS[sub];
   if (!run) {
     console.error(`没有这个命令：${sub}\n\n${HELP}`);
     process.exitCode = 1;
     return;
   }
+  if (helpOf) return console.log(helpFor(sub));
+  const rest = argv.slice(1);
   const { positional, flags } = parseArgs(rest);
   try {
     await run(positional, flags);

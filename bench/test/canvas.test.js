@@ -738,7 +738,7 @@ test('targets: account label, listing with home first, home can move', () => {
 // A fake repo root with one built Design System; tokens.css comes from the real tooling.
 function fakeRepo() {
   const real = path.join(REPO_ROOT, 'tooling');
-  if (!fs.existsSync(path.join(real, 'design-system/check.mjs'))) return null;
+  if (!fs.existsSync(path.join(real, 'design-system/tokens-css.mjs'))) return null;
   const va = fs.mkdtempSync(path.join(os.tmpdir(), 'dw-va-'));
   fs.symlinkSync(real, path.join(va, 'tooling'));
   const w = (rel, text) => {
@@ -759,7 +759,7 @@ function fakeRepo() {
 
 test('design systems: list, read, install on a canvas, serve previews and assets', async (t) => {
   const va = fakeRepo();
-  if (!va) return t.skip('仓库里没有 tooling/design-system/check.mjs');
+  if (!va) return t.skip('仓库里没有 tooling/design-system/tokens-css.mjs');
   const config = { ...tempConfig(), repoAbs: va };
   const [ds] = listSystems(config);
   assert.deepEqual([ds.name, ds.title, ds.built, ds.cloud.account], ['demo', 'Demo 示例', true, '账号一']);

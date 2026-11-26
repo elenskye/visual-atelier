@@ -3,21 +3,7 @@
 // 分节的名字和云端一样用英文（站主 2026-11-14）；颜色照云端分组（Palette、surface、accent……，见 colorGroups）；
 // Files 和云端一样连资产一起数。
 import { markdown } from './md.js';
-
-const $ = (sel, root = document) => root.querySelector(sel);
-const h = (tag, attrs = {}, kids = []) => {
-  const n = document.createElement(tag);
-  for (const [k, v] of Object.entries(attrs)) {
-    if (v === null || v === undefined || v === false) continue;
-    if (k === 'text') n.textContent = v;
-    else if (k === 'html') n.innerHTML = v;
-    else if (k.startsWith('on')) n.addEventListener(k.slice(2), v);
-    else if (k === 'style' && typeof v === 'object') Object.assign(n.style, v);
-    else n.setAttribute(k, v === true ? '' : v);
-  }
-  for (const c of [].concat(kids)) if (c !== null && c !== undefined && c !== false) n.append(c);
-  return n;
-};
+import { $, h } from './dom.js';
 
 // 和云端 Design System 页的叫法一样；没列的照 token 的名字首字母大写
 const FAMILY = { spacing: 'Spacing', radius: 'Corner radius', shadow: 'Shadows', width: 'Width', text: 'Text', leading: 'Leading', size: 'Size', step: 'Step', opacity: 'Opacity', zIndex: 'Z-index' };
@@ -272,7 +258,17 @@ function components() {
       )
     ])
   );
-  return card('Components', kids, themeSeg(render));
+  return card('Components', kids, themeSeg(retheme));
+}
+// 换明暗只换预览的地址，不重排这一节（不跳回顶上）
+function retheme() {
+  const main = $('#ds-main');
+  for (const f of main.querySelectorAll('.ds-preview iframe')) {
+    const u = new URL(f.src);
+    u.searchParams.set('theme', D.theme);
+    f.src = u.href;
+  }
+  main.querySelector('.ds-card-head > .seg')?.replaceWith(themeSeg(retheme));
 }
 
 function assets() {
