@@ -7,7 +7,7 @@ visual-atelier 自己的状态和计划（Pomelo、Peck、Pith 的计划在各�
 - **仓库 `1.0.1`**：文档和代码精简一遍；Pith 方案定为 1.0.0、发到云端；Pomelo 的侧栏展开 `fold` 进了方案；方案的 tag 补齐（`CHANGELOG.md`）。到 v1.0 的计划（Phase 0–6）都做完了，经过在 `history/`。
 - **方案**（每个方案一行，各会话只改自己那一行）：
   - **Vermilion** `1.5.0`：网站线上在用，没有新工作。Design System「Vermilion 朱红」（https://claude.ai/artifact/B89E9carxtZjjkT4adbNer ）和画布 Vermilion Explore 在现用账号。
-  - **Pomelo** `1.0.1`（11-24 加了动效零件 `fold`）：Design System「Pomelo 柚儿园」（https://claude.ai/artifact/5uaouHwXAXihjxhh9g4vb3 ）按 1.0.1 发了；同步进 Pomelo、删掉 Pomelo 里临时的 `src/shared/fold.css` 由 Pomelo 的会话做（站主说一声）。方案和设计由 Pomelo 的会话做（`schemes/pomelo/DESIGN.md`、`canvases/pomelo-explore/README.md`），要 Pomelo 接的写进 Pomelo 的 `docs/atelier-sync.md`。
+  - **Pomelo** `1.0.1`（11-24 加了动效零件 `fold`）：Design System「Pomelo 柚儿园」（https://claude.ai/artifact/5uaouHwXAXihjxhh9g4vb3 ）按 1.0.1 发了；11-26 同步进 Pomelo（App 1.1.0），临时的 `src/shared/fold.css` 删了。方案和设计由 Pomelo 的会话做（`schemes/pomelo/DESIGN.md`、`canvases/pomelo-explore/README.md`），要 Pomelo 接的写进 Pomelo 的 `docs/atelier-sync.md`。
   - **Peck** `1.0.0`（11-24 由 0.1.0 定为 1.0.0，内容没变）：Design System「Peck」在现用账号，由 Peck 的会话做（`schemes/peck/CLAUDE.md`）。
   - **Pith** `1.3.0`（11-25：生长阶段的悬停各演各的、Strip 收起倒着缩回去、阶段改名「发芽、生长、常青」，待批；已同步进 Pith 1.0.5。1.2.0：集合的小枝桠、悬停上墨、衬线字光学居中，palette-lake 整页水面回来，待批）：两套配色、37 个资产、八个动效零件、19 个组件；Design System「Pith」（https://claude.ai/artifact/CPavXvD8wdYuEEXbVhYqAb ，云端还是 1.0.0）和 Pith Explore（https://claude.ai/artifact/HcCFtnXuGg9fQnp5qSVoH7 ，只有 R1）在现用账号。视觉基线和开发说明在 `schemes/pith/DESIGN.md`。由 Pith 的会话做；WonderLab 的 `pith-wonder-*` 等 Pith 做到 WonderLab 再起。
 - **几个会话一起做**：本仓库、Pomelo、Peck、Pith 各一个（`CLAUDE.md`「几个会话怎么分」、`docs/sessions.md`）。
