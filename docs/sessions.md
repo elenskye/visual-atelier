@@ -9,20 +9,20 @@
    - `npm ci`、`npm test`、`dw check`、`dw serve` 要写 npm 缓存、启动 Chrome、绑本机端口：在沙箱里跑会被拦，先放行再跑；页面打不开时 `dw check` 报「打不开页面」或「报错页」，不会当作通过。在 worktree 里，`.git` 指向主工作区的 `.git/worktrees/<名字>`，在沙箱的工作区外面：`git` 也要放行。
    - Claude 的云端容器里没有 Chrome：设 `VA_CHROMIUM` 指向预装的 Chromium（`/opt/pw-browsers/chromium-*/chrome-linux64/chrome`），`dw check`、`dw frames`、`npm test` 都认它。
    - 新 worktree 里没有 `node_modules/`、`dist/`，看不到主工作区的 `scratch/` 和别的 worktree 里没提交的改动：换会话或换账号前先提交。
-2. 读 `CLAUDE.md` 和 `ROADMAP.md`：站主定过什么、现行授权都写在那里，已经定的别再问。认清自己是哪个会话、能动哪些文件（`CLAUDE.md`「几个会话怎么分」）；Pomelo 的会话还要读 Pomelo 的 `CLAUDE.md` 和 `docs/roadmap.md`。
+2. 读 `CLAUDE.md` 和 `ROADMAP.md`：站主定过什么、现行授权都写在那里，已经定的别再问。认清自己是哪个会话、负责哪块（`CLAUDE.md`「几个会话怎么分」）；从别的项目来的会话同时守自己项目的规则。
 3. 只认提交过的东西。`git status` 里有你不认识的改动，多半是别的会话的：别动也别还原，先问站主。
 4. 碰云端之前，照 `docs/cloud.md`「账号」看清自己是哪个账号：旧账号的云端只看不动，要上云端在现用账号里新建。
 5. 记忆不跟人走：规矩都写在仓库里。Agent 自己的记忆、会话临时目录不进 Git；`.versions/`、`.shots/`、`dist/`、`scratch/`、`node_modules/`、`bench/.cache/`（断网缓存）只在这台机器上。
 
-## 几个会话一起做（站主 2026-11-12）
+## 几个会话一起做（站主 2026-11-12，权限 2026-11-27）
 
-同一个仓库、同一个工作区，几个会话同时做，按文件分开（谁能动哪些在 `CLAUDE.md`「几个会话怎么分」），各照各的计划：本仓库的会话照 `ROADMAP.md`，Pomelo、Peck、Pith 的会话照各自仓库的计划。各方案的发版、Design System 的发布、同步进消费方只由做这个方案的会话做。
+同一个仓库、同一个工作区，几个会话同时做，各照各的计划：本仓库的会话照 `ROADMAP.md`，Pomelo、Peck、Pith 的会话照各自仓库的计划。谁能改什么、谁负责哪块在 `CLAUDE.md`「几个会话怎么分」：用 Atelier 的项目对本体和自己那块有全部权限，别家的方案先问站主。
 
-- **Pith 的会话**（站主 2026-11-16）：开在 Pith 仓库（`~/Documents/GitHub/pith`）、把本仓库加为第二个目录，站主叫它「pith 环境」。Pith 开发、使用中发现工具、Skill、流程不顺，它也改本仓库的共用部分（`bench/`、`tooling/`、`skills/`、`docs/`），这时照本仓库的会话的规矩：动之前读最新的，改了跑对应的验证，记进 `CHANGELOG.md`。
+- **从别的项目来**：Pomelo、Peck、Pith 的会话开在自己的仓库、把本仓库加为第二个目录（Pith 那边叫「pith 环境」），也可能直接开在这里。用到本仓库就先读 `CLAUDE.md`；在这里的提交、版本、tag 照本仓库的规矩，不照自己仓库的。改了本体跑对应的验证（`CLAUDE.md`「验证」），记进 `CHANGELOG.md`。
 - **Pith 用别的方案就复制**：要用 Pomelo、Vermilion、Peck 的设计，复制成新方案 `pith-wonder-<名字>`（Design System「Pith Wonder - <名字>」），原方案不动，`DESIGN.md` 第一节写从哪个方案、哪个版本复制的。App 用的 `pith` 和 WonderLab 用的 `pith-wonder-*` 不共用 token。
-- **共用的几个文件**：`CHANGELOG.md`、`ROADMAP.md`「现在」里的方案那几行、`README.md` 的方案表，各写各的那一条，动之前先读最新的。`package.json`、`package-lock.json` 只归本仓库的会话，别的会话要加依赖或命令先问站主。
-- **要改别人那块**：先问站主，或者告诉站主、等对方的会话做。
-- **提交**：每个会话只 `git add` 自己动过的文件，提交信息照 `CLAUDE.md`「版本与 Git」。
+- **共用的几个文件**：`CHANGELOG.md`、`ROADMAP.md`「现在」里的方案那几行、`README.md` 的方案表，各写各的那一条；`package.json` 的版本号谁改本体谁升。动之前都先读最新的。加依赖写 `^x.y.z`，新的外部或付费服务要站主授权（`CLAUDE.md`「权限边界」）。
+- **要别的项目接的**：本仓库改了、要消费方跟着改代码的，告诉站主，由那个项目的会话接（Pomelo 的写进 Pomelo 的 `docs/atelier-sync.md`：用时再建，Pomelo 做完删）。
+- **提交**：每个会话只 `git add` 自己动过的文件，提交信息照 `CLAUDE.md`「版本与 Git」；工作区里别人没提交的改动别动、别还原。
 
 ## 第二条线：几家 Agent 各在自己的分支上做一版（站主 2026-11-15 批）
 

@@ -8,7 +8,7 @@ visual-atelier：站主的个人视觉仓库。多套视觉方案（`schemes/`�
 
 1. 读本文件和 `ROADMAP.md`（现在在哪、定过什么、现行授权）。动某套方案再读它的 `DESIGN.md` 和 `CLAUDE.md`；动某块画布再读它的 `README.md`；**做视觉探索、写简报、评估几家的版本，先读 `skills/design-craft/SKILL.md`**。
 2. 新会话、新 worktree、换账号：照 `docs/sessions.md`「新会话接手」冷启动（`npm ci`、构建、`npm test` 全过），认清自己是哪个会话、能动哪些文件。只认提交过的东西。
-3. 每次开发前，先问站主这次属于哪种程度（下面「版本与 Git」），再开工。
+3. 每次开发前，先问站主这次属于哪种程度（下面「版本与 Git」），再开工；站主已经写明版本号就不用问，别的项目的会话顺手修本体见「几个会话怎么分」。
 4. 方案获批不等于开工许可：开始实现要站主明确说；「进入 Plan 阶段」只调研、提问、写文档。计划里上一个 Phase 验收后，下一个直接开工。
 5. 定过的不再问（跨方案的在 `ROADMAP.md`，方案的在它的 `DESIGN.md` 和 `history/`）。要站主定的，工作中直接用提问功能（AskUserQuestion）问，别等写完长篇汇报再列问题。
 6. Git 照下面「版本与 Git」。保留站主手写的内容；工作区里不认识的改动多半是别的会话的，别动也别还原，先问。
@@ -22,31 +22,34 @@ visual-atelier：站主的个人视觉仓库。多套视觉方案（`schemes/`�
 - **不进仓库、不做演示**：网站隐藏页 `/love-shuyu/` 及其内容、站主的私人内容、Pomelo 的真实数据目录（演示一律 `?mock` 假数据）。本仓库私有，站主少量的作品和文章可以进；看效果的截图只放会话临时目录或画布的 `.shots/`。
 - 依赖写 `^x.y.z`，不用 `latest`；新增外部或付费服务要站主授权；不用 Rive。
 
-## 几个会话怎么分
+## 几个会话怎么分（谁能改什么）
 
-同一个仓库几个会话同时做，按文件分开，谁也不改别人那块（站主 2026-11-12；细则、Pith 的会话、共用文件、第二条线的 Git 规矩在 `docs/sessions.md`）：
+用 Atelier 的项目（现在是 Pomelo、Peck、Pith，以后加的也一样）的会话，和本仓库的会话一样在这里做事、照本文件的规矩（站主 2026-11-27，取代 11-26「各管自己那块」）：
 
-| 会话 | 能动 |
+- **先读本文件**：这次要用到本仓库（改视觉、同步方案、用 `dw` 看画布、改 Atelier 本身），开工前先读本文件，再照「开工前」读要读的。
+- **全部权限**：Atelier 本体（`bench/`、共用的 `tooling/`、`skills/`、`docs/`、根目录的规则和配置、`package.json`）和自己负责的那块（下表）都能直接编辑、优化、更新，照「版本与 Git」提交、打 tag，不用先问、不用另开会话。用的时候发现 Atelier 不顺，就在这里改，记进 `CHANGELOG.md`。
+- **别家的方案先问**：下表里别的项目负责的方案、画布、工具，要改先问站主（方案互相独立，核心约定 1）；站主同意的例外记在 `ROADMAP.md`「授权记录」。
+- **开发程度**：改本体时，修小毛病、改顺手的直接按小幅优化升版本（1.0.x），不用为它另问；要给 Atelier 加功能（1.1.0 这类）先问站主。
+
+| 会话 | 负责（这块的发版、Design System 的发布、同步进消费方由它做） |
 | --- | --- |
-| 本仓库的会话 | 下面三行以外的全部：`bench/`、`tooling/`（`atlas/`、`handmade/` 除外）、`skills/`、`docs/`、`schemes/vermilion/`、`schemes/_template/`、新方案、别的画布、根目录的文件 |
+| 本仓库的会话 | Atelier 本体的计划（`ROADMAP.md`「接下来」）、`schemes/vermilion/`、`schemes/_template/`、`canvases/vermilion-*/`、还没有归属的新方案 |
 | Pomelo 的会话 | `schemes/pomelo/`、`canvases/pomelo-*/`、`tooling/atlas/`、`tooling/handmade/` |
 | Peck 的会话 | `schemes/peck/`、`canvases/peck-*/` |
 | Pith 的会话 | `schemes/pith/`、`schemes/pith-wonder-*/`、`canvases/pith-*/`、`tooling/pith/` |
 
-**用 Atelier 的项目各管自己那块**（站主 2026-11-26）：Pomelo、Peck、Pith 这些项目的会话，对上表里自己那一部分可以直接编辑、更新、发版、同步、提交、打 tag，不用先问。只有 Atelier 本体（`bench/`、共用的 `tooling/`、`skills/`、`docs/`、根目录的规则和配置、`package.json`）和 Atelier 本身的功能归本仓库的会话。
-
-共用的 `CHANGELOG.md`、`ROADMAP.md`「现在」的方案行、`README.md` 的方案表，各写各的那一条。要改别人那块或本体先问站主，例外记在 `ROADMAP.md`「授权记录」。
+几个会话在同一个工作区里一起做：动之前读最新的；只 `git add` 自己改的文件；工作区里别人没提交的改动别动、别还原；共用的 `CHANGELOG.md`、`ROADMAP.md`「现在」的方案行、`README.md` 的方案表各写各的那一条。细则、第二条线的 Git 规矩在 `docs/sessions.md`。
 
 ## 版本与 Git（站主 2026-11-24 定）
 
 - **版本号**：整个仓库一个版本号，从 1.0.0 起，记在 `package.json` 的 `version`（连 `package-lock.json`）；所有会话都用它。各方案自己的版本记在 `scheme.json`，给消费方的 tag 是 `<方案>-v<版本>`（核心约定 6、`docs/adoption.md`），和仓库的版本号分开。
-- **本体才升仓库的版本号**（站主 2026-11-25）：本体是 Atelier 自己的东西：`bench/`、共用的 `tooling/`、`skills/`、`docs/`、根目录的规则和配置。平时给某套方案、某块画布做的更新和优化（方案发版、资产、画板、Design System、给消费方同步，连同只给一套方案用的 `tooling/<方案>/`）不升仓库的版本号、不打 `v<版本>`，也不用为它问开发程度；方案的版本照样升在 `scheme.json`、打 `<方案>-v<版本>`，提交信息写当前的仓库版本。
+- **本体才升仓库的版本号**（站主 2026-11-25）：本体是 Atelier 自己的东西：`bench/`、共用的 `tooling/`、`skills/`、`docs/`、根目录的规则和配置。谁改本体谁升，升之前读最新的 `package.json`。平时给某套方案、某块画布做的更新和优化（方案发版、资产、画板、Design System、给消费方同步，连同只给一套方案用的 `tooling/<方案>/`）不升仓库的版本号、不打 `v<版本>`，也不用为它问开发程度；方案的版本照样升在 `scheme.json`、打 `<方案>-v<版本>`，提交信息写当前的仓库版本。
 - **开发程度**（本体的开发），开工前先问站主是哪种：
   - 小幅优化、Bug 修复：1.0.0 → 1.0.1，不分 Phase。
   - 新增功能、大幅优化：1.0.0 → 1.1.0，计划分 Phase（如 1.2.0 Phase 1~5）。
   - 1.0.0 → 2.0.0：由站主决定，同样分 Phase。
 - **正式版**：改 `package.json` 的版本，`CHANGELOG.md` 记一条，打 tag `v<版本>`。1.0.1 这类做完自动出；1.1.0、2.0.0 只在最后一轮收尾自动出，中间的 Phase 不出，除非站主在那一期要求；站主也可以自己出。方案发版的 tag `<方案>-v<版本>` 由做这个方案的会话在提交后打。
-- **Git**：每一轮做完、对应的验证过了，自己 commit；push（连 tag）由站主做。每轮结束告诉站主这轮有哪些 commit、tag，分别是什么。
+- **Git**：每一轮做完、对应的验证过了，自己 commit；push（连 tag）由站主做。不管是哪个项目的会话，在本仓库里的提交都照这里的写法。每轮结束告诉站主这轮有哪些 commit、tag，分别是什么。
 - **提交信息**：`vx.x.x: dev description`。x.x.x 是这轮所属的版本；description 全英文，简约、概括，可以直接写 `fix some problems`、`minor improvement`。不写正文，不署名（不加 `Co-Authored-By`；`.claude/settings.json` 已关掉 Claude Code 默认加的署名）。
 - 不 force push、不改写历史、不删分支、不改远端设置，站主说的除外。
 

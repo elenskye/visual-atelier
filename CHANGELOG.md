@@ -1,18 +1,15 @@
 # CHANGELOG
 
-只记做完且验证过的结果，不写待办。这里只留最近一轮和摘要表；逐条记录在 `history/changelog-2026-11.md`（2026-11-02～11-25），VL1 每一步在 `schemes/vermilion/history/vl1-changelog.md`。
+只记做完且验证过的结果，不写待办。这里只留最近一轮和摘要表；逐条记录在 `history/changelog-2026-11.md`（2026-11-02～11-26），VL1 每一步在 `schemes/vermilion/history/vl1-changelog.md`。
 
-## 1.0.2 · 2026-11-26 · 修小毛病、清死代码、文档精简（本仓库的会话，在 pith 环境里做）
+## 1.0.3 · 2026-11-27 · 用 Atelier 的项目有全部权限，四个仓库的规则对齐（在 pith 环境里做）
 
-- **`dw` 的帮助**：`dw <命令> --help`、`-h`、`dw help <命令>` 只打这条命令的用法、退出码 0（以前 `dw frames --help` 按缺参数报错）；`dw list` 的帮助改成五类；帮助里补上漏写的参数（`serve --json` 的 `api`、`shot --width/--height/--full-page`、`publish --out`、`review --note` 等）。
-- **命令行和 MCP**：没有的画布一律说「没有画布 X」、退出码 1（以前六种说法，`versions`、`target` 还退出 0）；`dw target` 打错名字不再凭空建一块画布（本地还没有的云端画布加 `--new`）；`dw export` 一个不存在的画布不再留下空目录；问卷页的 `verify`、`publish --record` 不再假装全对，`export --html` 不再什么都不做就退出 0；参数后面没写值（`--title`、`--board`、`--port`……）一律报「后面要写值」，不再写进 `"title": true` 或被悄悄忽略；`--json` 的输出只有 JSON；只有一页的导出包导入时图片不再丢；`dw shot`、`open` 认不带 `.dc.html` 的板名；MCP 清掉批准状态要写是哪几张。
-- **画布界面**：双击画板能打开单张铺满了（以前只能点 ⤢）；在单张铺满里改板名不再退出铺满；撤销删板回到它那一页；看 Design System、Motion Deck、Checks 时别处改了文件不再被拉回画布；换页时选中、PLAY、Tweaks 面板跟着清掉；Motion Deck 播完一遍再点一次就重播、打开读不了的零件不再报错；Checks 页的错误提示会清掉、展开的列表不再一更新就收起；⌘ 加快捷键不再误触；改名、删除只重画一次。
-- **tooling**：目录页的动效演示不再丢 `@include` 的内容、改用 Vermilion 的配色（以前拿了 Peck 的，缺 9 个变量）、「重播」对按步骤触发的 43 个零件也能动；`sync` 在 tag 里先核对生成器（加上 Pith 的），对不上就停下；`npm run qa` 加一项「Pith 图形与生成器一致」，不会再在 0 项没过时退出码 1；`qa --origin` 只对照 `consumers` 里有这个消费方的方案（以前 Pomelo、Peck、Pith 拿去和网站比，报 6 项没过）；`fontLinks` 只留一份（`check:ds` 不再向 Google Fonts 要 Mac 的系统字体），bench 不再为取 `tokensCss` 带上 playwright。
-- **死代码和重复**：bench 的解包删掉没人读的字段、空钩子和走不到的分支；扩展名、遍历目录、读 JSON、画板次序、DOM 小工具（新的 `bench/src/board/dom.js`）各只留一份；tooling 的 graphic、derive 共用一个比较、拦已批、写清单的函数；删 `exists`、`checkPairs`、`server.host`、`browser.defaultViewport` 这类没人用的。源码共少了约 300 行，测试多了 7 个。
-- **文档**：`CLAUDE.md`「文档职责」写清每份管什么；`README.md` 的目录改成指过去；`ROADMAP.md` 的决定只留别处没写的，其余列出在哪；`CHANGELOG.md` 11-24～11-25 的五段挪进 `history/changelog-2026-11.md`；`bench/README.md` 的命令示例改指 `dw help`；改掉过期的（已删的 Pomelo 问卷、Pomelo 不再用的 `docs/atelier-sync.md`、`"api":1`、Pith 的版本和消费方、`tooling/README.md` 的几处参数）。`atlas-envelope` 的 GIF 不确定查清了原因，记在「知道的限制」。
-- **验证**：`npm test` 44/44（新加 `cli.test.js`、`edges.test.js`）；`npm run all` 全过（QA 1681 项、水印 50/50、Atlas 快照、`check:canvases`）；`qa:determinism` 1132 个文件两次一致；`dw import`、`dw export --html` 在 163 张真实画板和四种导出包上改前改后逐字节一样（单页导出包的图片是有意改的）；`dw check` pith-explore 6 张、vermilion-explore 16 张全过；`sync --check` Pith、网站两份一致；内置浏览器里过了画布、单张铺满、Design System、Motion Deck、Checks，另用 Chrome 脚本跑了界面的 40 项（旧代码 29 项不过）。云端没碰。
+- **权限**（站主 2026-11-27，取代 11-26「各管自己那块」）：Pomelo、Peck、Pith 这些用 Atelier 的项目，对本仓库有全部权限：本体（`bench/`、共用的 `tooling/`、`skills/`、`docs/`、根目录、`package.json`）和自己负责的那块都能直接改、照本仓库的规矩提交、打 tag，不用问；只有改别家的方案、给 Atelier 加新功能先问站主，修小毛病按 1.0.x 直接做。用到本仓库之前先读 `CLAUDE.md`。写在 `CLAUDE.md`「几个会话怎么分」，`docs/sessions.md`、`ROADMAP.md`「授权记录」、`schemes/peck/CLAUDE.md` 跟着改。
+- **三家 App 的规则跟着改**（站主授权直接改、直接提交）：Pith 规则 2、9，Pomelo「开工前」和「visual-atelier」，Peck「开工前」和「边界」，写法一致：用到 Atelier 先读它的 `CLAUDE.md`；在 Atelier 里的版本、Git、提交信息、tag 照 Atelier 的规矩；全部权限和两件先问；别人没提交的改动别动。各自的 HANDOFF 记了一行。
+- **顺手对齐的**：Pomelo 让它在 Atelier 里写 `pomelo 1.0.0: …` 的提交信息，改成照 Atelier 的 `v<版本>: …`；Pomelo「新设计先在云端画布上出样子」（11-21）、本仓库 `canvases/README.md` 的「Claude 可以在云端探索」（11-05）、`docs/workflow.md` 的探索一步，改成默认在本地（11-25、11-26 定的）；Pith 补了 `AGENTS.md`（Codex 这类 Agent 读它）；Pomelo 的 `docs/atelier-sync.md` 是「用时再建、做完删」，1.0.2 写成「没有了」是错的，改回来。
+- **验证**：只改了文档；`npm test` 过。三家提交前照各自的规矩跑了 `pnpm check`。
 
-## 2026-11-24～11-25 摘要
+## 2026-11-24～11-26 摘要
 
 逐条的结果和检查数字在 `history/changelog-2026-11.md`。
 
@@ -21,6 +18,7 @@
 | 11-24 | 精简文档和代码（bench 删约 900 行）；Pith 定为 1.0.0、发到云端；Pomelo 的 `fold` 进方案；方案的 tag 补齐；新的 `check:canvases` 防板和生成器漂移；Phase 6 冷启动验收 | 仓库 `1.0.1`，Pith `1.0.0`，Pomelo `1.0.1`，Peck `1.0.0` |
 | 11-25 | 两条规矩：云端不主动碰、只有本体才升仓库的版本号（站主） | — |
 | 11-25 | Pith 的会话：七个新组件、换配色改成洇开不卡、Strip 的小枝桠和收起、衬线字光学居中、整页水面回来、生长阶段的悬停各演各的 | Pith `1.0.1`～`1.3.0` |
+| 11-26 | 修 `dw` 的帮助和二十多处小毛病、源码少约 300 行、文档精简；用 Atelier 的项目各管自己那块、画布默认只在本地（站主） | 仓库 `1.0.2` |
 
 ## 1.0.0 之前 · 2026-11-13～11-24 摘要
 

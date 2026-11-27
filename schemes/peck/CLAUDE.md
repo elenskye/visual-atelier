@@ -10,6 +10,6 @@
 - 本方案的 token 与规则不得借用其他方案（Vermilion、Pomelo）；不写 `tokens/graphic.json`、`tokens/handmade.json`。
 - **源从哪来**：0.1.0 的全部文件由画布 `canvases/peck-explore/` 的第 4 步生成器（`project/src/s4/`）生成，画布里 `project/scheme/` 是同一份。改方案先改生成器、在画布上给站主看，批了再复制过来；不直接手改这里的生成文件。不是生成的：`CLAUDE.md`、`AGENTS.md`、`sync.json`、各目录的 `README.md`、`type/fonts/`（两个 OFL 字体和许可原文）。
 - **Design System**：只从本目录生成（`npm run build:ds`，`tokens.config.json` 的 themes、fonts、scaleGroups 都要认）；云端那份是现用账号的「Peck」（`design-system/published.json`）。不在 Design System 页面上直接改。
-- **和别的会话互不冲突**（本仓库的会话、Pomelo 的会话，见根目录 `CLAUDE.md`「几个会话怎么分」）：做 Peck 的会话只碰 `schemes/peck/`、`canvases/peck-*/` 和两份索引里自己的那一行；不碰 `schemes/pomelo/`、`schemes/vermilion/`、`bench/`、`tooling/`、`docs/`、`ROADMAP.md`、`CHANGELOG.md`，除非站主针对这一次同意。动索引前先 `git status`，有别人没提交的改动就不动。
+- **和别的会话互不冲突**（根目录 `CLAUDE.md`「几个会话怎么分」）：做 Peck 的会话负责 `schemes/peck/`、`canvases/peck-*/`；Atelier 本体（`bench/`、共用的 `tooling/`、`skills/`、`docs/`、根目录）也能直接改、照根目录的规矩提交；别家的方案（`schemes/pomelo/`、`schemes/vermilion/`、`schemes/pith/` 这些）要改先问站主。动共用的文件前先 `git status`，别人没提交的改动别动、别还原。
 - 演示只用假数据：项目名、任务、文件路径都编，不出现站主真实项目的路径。
 - 同步到 Peck 只走 `sync.json`（Peck 的 `src/vendor/peck/`），tag 叫 `peck-v<版本>`；由站主打 tag，Agent 核对 tag 再同步。

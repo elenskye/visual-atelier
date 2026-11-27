@@ -12,6 +12,18 @@
 
 2026-11-26（仓库 1.0.2）又原样移来 11-24～11-25 的五段（仓库 1.0.1 和它的收尾、Pith 1.0.1～1.3.0），排在最前面。
 
+2026-11-27（仓库 1.0.3）又原样移来 1.0.2 那一段，排在最前面。
+
+## 1.0.2 · 2026-11-26 · 修小毛病、清死代码、文档精简（本仓库的会话，在 pith 环境里做）
+
+- **`dw` 的帮助**：`dw <命令> --help`、`-h`、`dw help <命令>` 只打这条命令的用法、退出码 0（以前 `dw frames --help` 按缺参数报错）；`dw list` 的帮助改成五类；帮助里补上漏写的参数（`serve --json` 的 `api`、`shot --width/--height/--full-page`、`publish --out`、`review --note` 等）。
+- **命令行和 MCP**：没有的画布一律说「没有画布 X」、退出码 1（以前六种说法，`versions`、`target` 还退出 0）；`dw target` 打错名字不再凭空建一块画布（本地还没有的云端画布加 `--new`）；`dw export` 一个不存在的画布不再留下空目录；问卷页的 `verify`、`publish --record` 不再假装全对，`export --html` 不再什么都不做就退出 0；参数后面没写值（`--title`、`--board`、`--port`……）一律报「后面要写值」，不再写进 `"title": true` 或被悄悄忽略；`--json` 的输出只有 JSON；只有一页的导出包导入时图片不再丢；`dw shot`、`open` 认不带 `.dc.html` 的板名；MCP 清掉批准状态要写是哪几张。
+- **画布界面**：双击画板能打开单张铺满了（以前只能点 ⤢）；在单张铺满里改板名不再退出铺满；撤销删板回到它那一页；看 Design System、Motion Deck、Checks 时别处改了文件不再被拉回画布；换页时选中、PLAY、Tweaks 面板跟着清掉；Motion Deck 播完一遍再点一次就重播、打开读不了的零件不再报错；Checks 页的错误提示会清掉、展开的列表不再一更新就收起；⌘ 加快捷键不再误触；改名、删除只重画一次。
+- **tooling**：目录页的动效演示不再丢 `@include` 的内容、改用 Vermilion 的配色（以前拿了 Peck 的，缺 9 个变量）、「重播」对按步骤触发的 43 个零件也能动；`sync` 在 tag 里先核对生成器（加上 Pith 的），对不上就停下；`npm run qa` 加一项「Pith 图形与生成器一致」，不会再在 0 项没过时退出码 1；`qa --origin` 只对照 `consumers` 里有这个消费方的方案（以前 Pomelo、Peck、Pith 拿去和网站比，报 6 项没过）；`fontLinks` 只留一份（`check:ds` 不再向 Google Fonts 要 Mac 的系统字体），bench 不再为取 `tokensCss` 带上 playwright。
+- **死代码和重复**：bench 的解包删掉没人读的字段、空钩子和走不到的分支；扩展名、遍历目录、读 JSON、画板次序、DOM 小工具（新的 `bench/src/board/dom.js`）各只留一份；tooling 的 graphic、derive 共用一个比较、拦已批、写清单的函数；删 `exists`、`checkPairs`、`server.host`、`browser.defaultViewport` 这类没人用的。源码共少了约 300 行，测试多了 7 个。
+- **文档**：`CLAUDE.md`「文档职责」写清每份管什么；`README.md` 的目录改成指过去；`ROADMAP.md` 的决定只留别处没写的，其余列出在哪；`CHANGELOG.md` 11-24～11-25 的五段挪进 `history/changelog-2026-11.md`；`bench/README.md` 的命令示例改指 `dw help`；改掉过期的（已删的 Pomelo 问卷、Pomelo 不再用的 `docs/atelier-sync.md`、`"api":1`、Pith 的版本和消费方、`tooling/README.md` 的几处参数）。`atlas-envelope` 的 GIF 不确定查清了原因，记在「知道的限制」。
+- **验证**：`npm test` 44/44（新加 `cli.test.js`、`edges.test.js`）；`npm run all` 全过（QA 1681 项、水印 50/50、Atlas 快照、`check:canvases`）；`qa:determinism` 1132 个文件两次一致；`dw import`、`dw export --html` 在 163 张真实画板和四种导出包上改前改后逐字节一样（单页导出包的图片是有意改的）；`dw check` pith-explore 6 张、vermilion-explore 16 张全过；`sync --check` Pith、网站两份一致；内置浏览器里过了画布、单张铺满、Design System、Motion Deck、Checks，另用 Chrome 脚本跑了界面的 40 项（旧代码 29 项不过）。云端没碰。
+
 ## 2026-11-25 · Pith 1.3.0：生长阶段各演各的、集合收起（Pith 的会话；非本体，仓库还是 1.0.1）
 
 - **生长阶段**（站主 11-25：「常青」「长着」的图标动效只有一个点和一条线，而且一模一样）：通用上墨给瓣加的 CSS transform 盖掉了瓣上的 `rotate`，八片叠成一片。瓣的旋转挪到外面一层 `<g>`（几何不变），新零件 `stage-grow`（calm，待批）：发芽一沉一挺；生长芯先鼓、四瓣依次伸出来；常青整朵转过一瓣、隔一片的瓣先收后展。上墨让开它们。阶段改名「发芽、生长、常青」（站主定）。

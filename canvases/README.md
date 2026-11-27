@@ -17,7 +17,7 @@ bench 把画布分成两类列出（`bench/README.md`）：**Explore Deck** 是�
 
 ## 看、批、写
 
-- **两条线**（站主 2026-11-05）：Claude 探索可以就在 Claude 的云端画布上做，到里程碑把成稿拉回本地（`dw pull`）；其他 Agent（Codex、Antigravity Argon、另一个账号的 Claude Code）探索和成稿都在本地画布上做。碰云端前照 `docs/cloud.md`「账号」看清自己是哪个账号。
+- **都在本地做**（站主 2026-11-25、11-26，取代 11-05 的「Claude 可以在云端探索」）：探索和成稿都在本地画布上做，站主在 bench 或「有板有眼」里看、批；站主特别要求才发到云端或在云端探索（`CLAUDE.md`「画布与 bench」），碰云端前照 `docs/cloud.md`「账号」看清自己是哪个账号。
 - **站主看、批，不改内容**：平移缩放、动 Tweaks、批准退回，给画布、页和画板改名、删除（进回收处，能撤销），给 Design System、Motion Deck 改 bench 里显示的名字（只记在 `bench/names.json`）；画板里的东西交给 Agent 改。Tweaks 不写回文件，站主说「就这个」，Agent 再改源。批准和退回只由站主做，Agent 只标「待批」。
 - **格式和 Claude 画布同一套**：`project/` 里是 `canvas.json` 加 `*.dc.html`，和云端一模一样；普通 HTML 也能当画板。第一张画板叫 `Main.dc.html`；文件名用字母或数字开头，只用字母、数字、`.`、`-`、`_`。
 - **给站主看某一张，直接给地址**：`http://127.0.0.1:4321/#/<画布名>?page=<页>&board=<文件>`（`page` 在 `canvas.json` 的 `pages` 里，没有分页就不写；不带 `board` 是整块画布）。
